@@ -62,7 +62,7 @@ module pcie_phy # (
   parameter PCIE_EXT_CLK        = "TRUE",    // Use External Clocking Module
   parameter PCIE_EXT_GT_COMMON  = "FALSE",
   parameter REF_CLK_FREQ        = 0,     // 0 - 100 MHz, 1 - 125 MHz, 2 - 250 MHz
-  parameter C_DATA_WIDTH        = 64, // RX/TX interface data width
+  parameter C_DATA_WIDTH        = 128, // RX/TX interface data width
   parameter KEEP_WIDTH          = C_DATA_WIDTH / 8, // TSTRB width
   parameter C_PCIE_GT_DEVICE  = "GTX",
   parameter C_BAR0 = 32'hF0000000,
@@ -78,10 +78,10 @@ module pcie_phy # (
   input           sys_rst_n,
 
   // Lanes
-  output  [1:0]    pci_exp_txp,
-  output  [1:0]    pci_exp_txn,
-  input   [1:0]    pci_exp_rxp,
-  input   [1:0]    pci_exp_rxn,
+  output  [3:0]    pci_exp_txp,
+  output  [3:0]    pci_exp_txn,
+  input   [3:0]    pci_exp_rxp,
+  input   [3:0]    pci_exp_rxn,
 
   //--- USER INTERFACE------------------------------------------------------
   // Clk / rst
@@ -198,8 +198,8 @@ module pcie_phy # (
 
 // Local Parameters
   localparam TCQ               = 1;
-  localparam USER_CLK_FREQ     = 2;
-  localparam USER_CLK2_DIV2    = "FALSE";
+  localparam USER_CLK_FREQ     = 3;
+  localparam USER_CLK2_DIV2    = "TRUE";
   localparam USERCLK2_FREQ     = (USER_CLK2_DIV2 == "TRUE") ? (USER_CLK_FREQ == 4) ? 3 : (USER_CLK_FREQ == 3) ? 2 : USER_CLK_FREQ: USER_CLK_FREQ;
 
 
@@ -220,7 +220,7 @@ module pcie_phy # (
 
 pcie_support #
    (
-    .LINK_CAP_MAX_LINK_WIDTH        ( 2 ),  // PCIe Lane Width
+    .LINK_CAP_MAX_LINK_WIDTH        ( 4 ),  // PCIe Lane Width
     .C_DATA_WIDTH                   ( C_DATA_WIDTH ),                       // RX/TX interface data width
     .KEEP_WIDTH                     ( KEEP_WIDTH ),                         // TSTRB width
     .PCIE_REFCLK_FREQ               ( REF_CLK_FREQ ),                       // PCIe reference clock frequency

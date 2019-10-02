@@ -543,7 +543,7 @@ module pcie_pcie_7x # (
 
   input wire                sys_clk,
   input wire       [4:0]    pipe_rst_fsm,
-  input wire [(( 2 *3)-1):0] pipe_rxstatus,
+  input wire [(( 4 *3)-1):0] pipe_rxstatus,
 
 
   output wire               trn_clk,
@@ -1151,8 +1151,8 @@ pcie_pcie_bram_top_7x #(
   )
   pcie_block_i (
   
-    .TRNTD                               ({{(128-C_DATA_WIDTH){1'b0}},trn_td}          ),
-    .TRNTREM                             ({1'b0,trn_trem}          ),
+    .TRNTD                               (trn_td                                     ),
+    .TRNTREM                             (trn_trem                                   ),
 
 
     .TRNTSOF                             (trn_tsof                                   ),
