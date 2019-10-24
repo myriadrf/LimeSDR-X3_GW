@@ -65,8 +65,7 @@ end packets2data;
 -- ----------------------------------------------------------------------------
 architecture arch of packets2data is
 --declare signals,  components here
-constant c_N_FIFO_RDWIDTH            : integer := 64;
-constant c_PCT_HALF_DATA_WORDS       : integer := (TX_IN_PCT_SIZE - TX_IN_PCT_HDR_SIZE)*8 / c_N_FIFO_RDWIDTH / 2;
+
 --inst0
 signal inst0_pct_hdr_0           : std_logic_vector(63 downto 0);
 signal inst0_pct_hdr_0_valid     : std_logic_vector(n_buff-1 downto 0);
@@ -126,25 +125,25 @@ sync_reg1 : entity work.sync_reg
 port map(rclk, '1', pct_sync_dis, pct_sync_dis_rclk);
 
 
---process(rclk, reset_n)
---begin
---   if reset_n = '0' then 
---      pct_size_only_data <= (others=>'1');
---   elsif (rclk'event AND rclk='1') then 
---      pct_size_only_data <= unsigned(pct_size)-4;
---   end if;
---end process;
---
---process(rclk, reset_n)
---begin
---   if reset_n = '0' then 
---      half_pct_size_only_data <= (others=>'1');
---   elsif (rclk'event AND rclk='1') then
---      half_pct_size_only_data <= unsigned('0' & pct_size_only_data(pct_size_w-1 downto 1));
---   end if;
---end process;
+process(rclk, reset_n)
+begin
+   if reset_n = '0' then 
+      pct_size_only_data <= (others=>'1');
+   elsif (rclk'event AND rclk='1') then 
+      pct_size_only_data <= unsigned(pct_size)-4;
+   end if;
+end process;
 
---inst3_pct_size <= std_logic_vector(half_pct_size_only_data);
+process(rclk, reset_n)
+begin
+   if reset_n = '0' then 
+      half_pct_size_only_data <= (others=>'1');
+   elsif (rclk'event AND rclk='1') then
+      half_pct_size_only_data <= unsigned('0' & pct_size_only_data(pct_size_w-1 downto 1));
+   end if;
+end process;
+
+inst3_pct_size <= std_logic_vector(half_pct_size_only_data);
 
 
 process(rclk, reset_n)
@@ -236,8 +235,7 @@ begin
       pct_buff_rdy_int <= (others=>'0');
    elsif (rclk'event AND rclk='1') then 
       for i in 0 to n_buff-1 loop
-         --if unsigned(instx_rdusedw(i)) = half_pct_size_only_data then
-         if unsigned(instx_rdusedw(i)) >= c_PCT_HALF_DATA_WORDS then
+         if unsigned(instx_rdusedw(i)) >= half_pct_size_only_data then 
             pct_buff_rdy_int(i)<= '1';
          else 
             pct_buff_rdy_int(i)<= '0';

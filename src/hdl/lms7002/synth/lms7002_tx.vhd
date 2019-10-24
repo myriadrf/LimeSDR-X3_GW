@@ -146,7 +146,7 @@ begin
       data     => fifo_0_data,
       wrfull   => fifo_0_wrfull,
       wrempty  => open,
-      wrusedw  => open, --fifo_0_wrusedw,
+      wrusedw  => fifo_0_wrusedw,
       rdclk    => clk,
       rdreq    => inst0_rdreq,
       q        => inst0_q,

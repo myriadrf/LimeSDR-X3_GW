@@ -55,13 +55,13 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- clk_out1___160.000______0.000______50.0______108.430_____95.076
--- clk_out2___160.000_____90.000______50.0______108.430_____95.076
+-- clk_out1___122.880______0.000______50.0______120.093____286.156
+-- clk_out2___122.880______0.000______50.0______120.093____286.156
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
 ------------------------------------------------------------------------------
--- __primary_________160.000____________0.010
+-- __primary__________122.88____________0.010
 
 
 -- The following code must appear in the VHDL architecture header:
@@ -72,6 +72,11 @@ port
   -- Clock out ports
   clk_out1          : out    std_logic;
   clk_out2          : out    std_logic;
+  -- Dynamic phase shift ports
+  psclk             : in     std_logic;
+  psen              : in     std_logic;
+  psincdec          : in     std_logic;
+  psdone            : out    std_logic;
   -- Status and control signals
   reset             : in     std_logic;
   locked            : out    std_logic;
@@ -88,6 +93,11 @@ your_instance_name : rx_pll
   -- Clock out ports  
    clk_out1 => clk_out1,
    clk_out2 => clk_out2,
+  -- Dynamic phase shift ports                 
+   psclk => psclk,
+   psen => psen,
+   psincdec => psincdec,
+   psdone => psdone,
   -- Status and control signals                
    reset => reset,
    locked => locked,

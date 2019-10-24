@@ -77,6 +77,7 @@ package pllcfg_pkg is
       --c9_cnt          : std_logic_vector(15 downto 0) --
       auto_phcfg_smpls  : std_logic_vector(15 downto 0);
       auto_phcfg_step   : std_logic_vector(15 downto 0);
+      xil_cm_f          : std_logic_vector(9 downto 0);
    end record t_FROM_PLLCFG;
   
    -- Inputs to the .

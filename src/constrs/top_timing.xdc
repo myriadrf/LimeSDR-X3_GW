@@ -19,11 +19,19 @@
 #CLK_LMK_FPGA_IN
 #Clock period 30.72MHz
 
+#CLK100_FPGA
+
+
 # ----------------------------------------------------------------------------
 # Base clocks
 # ----------------------------------------------------------------------------
 
 #LMK clk, 30.72MHz
+create_clock -period 32.55 -name LMK_CLK [get_ports LMK_CLK]
+
+#CLK100_FPGA
+create_clock -period 10.000 -name CLK100_FPGA_P -waveform {0.000 5.000} [get_ports CLK100_FPGA_P]
+
 
 
 

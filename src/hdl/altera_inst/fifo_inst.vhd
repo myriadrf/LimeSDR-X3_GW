@@ -61,9 +61,22 @@ architecture arch of fifo_inst is
         else return "std";
         end if;
    end show_ahead_to_read_mode;
+      
+   function fifo_latency(show_ahead : string) return natural is 
+   begin 
+        if show_ahead = "ON" then return 0;
+        else return 1;
+        end if;
+   end fifo_latency;
         
    constant fifo_read_mode : string := show_ahead_to_read_mode(show_ahead); 
+   constant fifo_read_latency : natural := fifo_latency(show_ahead);
    signal rst : std_logic;
+   signal xilinx_wrusedw      : std_logic_vector(wrusedw_witdth-1 downto 0);
+   signal xilinx_rdusedw      : std_logic_vector(rdusedw_width-1 downto 0);
+   signal xilinx_wrfull       : std_logic;
+   signal xilinx_wrfull_rdclk : std_logic;
+   signal xilinx_rdfull       : std_logic; -- same signal as xilinx_wrfull only in rdclk domain
 
 
       COMPONENT dcfifo_mixed_widths
@@ -232,7 +245,7 @@ begin
           DOUT_RESET_VALUE => "0",    -- String
           ECC_MODE => "no_ecc",       -- String
           FIFO_MEMORY_TYPE => "block", -- String
-          FIFO_READ_LATENCY => 1,     -- DECIMAL
+          FIFO_READ_LATENCY => fifo_read_latency,     -- DECIMAL
           FIFO_WRITE_DEPTH => 2**(wrusedw_witdth-1),   -- DECIMAL
           FULL_RESET_VALUE => 0,      -- DECIMAL
           PROG_EMPTY_THRESH => 10,    -- DECIMAL
@@ -266,7 +279,7 @@ begin
                                           -- the FIFO is empty. Read requests are ignored when the FIFO is empty,
                                           -- initiating a read while empty is not destructive to the FIFO.
     
-          full => wrfull,                   -- 1-bit output: Full Flag: When asserted, this signal indicates that the
+          full => xilinx_wrfull,          -- 1-bit output: Full Flag: When asserted, this signal indicates that the
                                           -- FIFO is full. Write requests are ignored when the FIFO is full,
                                           -- initiating a write when the FIFO is full is not destructive to the
                                           -- contents of the FIFO.
@@ -287,7 +300,7 @@ begin
                                           -- of words in the FIFO is less than the programmable full threshold
                                           -- value.
     
-          rd_data_count => rdusedw, -- RD_DATA_COUNT_WIDTH-bit output: Read Data Count: This bus indicates
+          rd_data_count => xilinx_rdusedw, -- RD_DATA_COUNT_WIDTH-bit output: Read Data Count: This bus indicates
                                           -- the number of words read from the FIFO.
     
           rd_rst_busy => open,     -- 1-bit output: Read Reset Busy: Active-High indicator that the FIFO
@@ -303,7 +316,7 @@ begin
           wr_ack => open,               -- 1-bit output: Write Acknowledge: This signal indicates that a write
                                           -- request (wr_en) during the prior clock cycle is succeeded.
     
-          wr_data_count => wrusedw, -- WR_DATA_COUNT_WIDTH-bit output: Write Data Count: This bus indicates
+          wr_data_count => xilinx_wrusedw, -- WR_DATA_COUNT_WIDTH-bit output: Write Data Count: This bus indicates
                                           -- the number of words written into the FIFO.
     
           wr_rst_busy => open,     -- 1-bit output: Write Reset Busy: Active-High indicator that the FIFO
@@ -340,6 +353,25 @@ begin
                                           -- active-low when rst or wr_rst_busy is active high.
     
        );
+       
+       process(rst, rdclk)
+       begin 
+         if rst = '1' then 
+            xilinx_rdfull        <= '0';
+            xilinx_wrfull_rdclk  <= '0';
+         elsif rising_edge(rdclk) then 
+            xilinx_wrfull_rdclk  <= xilinx_wrfull;
+            xilinx_rdfull        <= xilinx_wrfull_rdclk;
+         end if;
+       end process;
+       
+       wrempty <= '1' when unsigned(xilinx_wrusedw)=0 else '0';
+       wrfull  <= xilinx_wrfull;
+       
+       wrusedw <= xilinx_wrusedw when xilinx_wrfull = '0' else (wrusedw_witdth-1=> '1', others=>'0');
+       rdusedw <= xilinx_rdusedw when xilinx_rdfull = '0' else (rdusedw_width-1=> '1', others=>'0');
+       
+            
     end generate;
   
 end arch;   

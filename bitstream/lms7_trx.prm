@@ -1,0 +1,11 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               32M
+Start Address      0x00000000
+End Address        0x01FFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x00947A5B    Oct 23 14:07:34 2019    G:/working_dir/xilinx/PCIe_5GRadio/lms7_trx/vivado/PCIe_5GRadio_lms7_trx.runs/impl_debug1_incremental/lms7_trx_top.bit
