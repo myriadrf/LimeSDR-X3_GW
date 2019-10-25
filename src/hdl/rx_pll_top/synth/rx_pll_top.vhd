@@ -314,37 +314,37 @@ inst1_pll_scanclk <= rcnfg_clk;
   MMCM_inst1 : entity work.rx_pll
   port map(
       clk_in1        => pll_inclk,
-      reset          => inst1_pll_areset_in,
+      --reset          => inst1_pll_areset_in,
       clk_out1       => inst3_clk(0),
       clk_out2       => inst3_clk(1),
       locked         => inst3_locked,
       
-      --s_axi_aclk     => rcnfg_axi_clk,           -- in
-      --s_axi_aresetn  => rcfig_axi_reset_n,        -- in
-      --   
-      --s_axi_awaddr   => rcnfig_from_axim.awaddr(10 downto 0),         -- in
-      --s_axi_awvalid  => rcnfig_from_axim.awvalid(0),        -- in
-      --s_axi_awready  => rcnfig_to_axim.awready(0),        -- out
-      --s_axi_wdata    => rcnfig_from_axim.wdata,          -- in
-      --s_axi_wstrb    => rcnfig_from_axim.wstrb,          -- in
-      --s_axi_wvalid   => rcnfig_from_axim.wvalid(0),         -- in
-      --s_axi_wready   => rcnfig_to_axim.wready(0),         -- out
-      --s_axi_bresp    => rcnfig_to_axim.bresp,          -- out
-      --s_axi_bvalid   => rcnfig_to_axim.bvalid(0),         -- out
-      --s_axi_bready   => rcnfig_from_axim.bready(0),         -- in
-      --   
-      --s_axi_araddr   => rcnfig_from_axim.araddr(10 downto 0),         -- in
-      --s_axi_arvalid  => rcnfig_from_axim.arvalid(0),        -- in
-      --s_axi_arready  => rcnfig_to_axim.arready(0),        -- out
-      --s_axi_rdata    => rcnfig_to_axim.rdata,          -- out
-      --s_axi_rresp    => rcnfig_to_axim.rresp,          -- out
-      --s_axi_rvalid   => rcnfig_to_axim.rvalid(0),         -- out
-      --s_axi_rready   => rcnfig_from_axim.rready(0),         -- in
+      s_axi_aclk     => rcnfg_axi_clk,           -- in
+      s_axi_aresetn  => rcfig_axi_reset_n,        -- in
+         
+      s_axi_awaddr   => rcnfig_from_axim.awaddr(10 downto 0),         -- in
+      s_axi_awvalid  => rcnfig_from_axim.awvalid(0),        -- in
+      s_axi_awready  => rcnfig_to_axim.awready(0),        -- out
+      s_axi_wdata    => rcnfig_from_axim.wdata,          -- in
+      s_axi_wstrb    => rcnfig_from_axim.wstrb,          -- in
+      s_axi_wvalid   => rcnfig_from_axim.wvalid(0),         -- in
+      s_axi_wready   => rcnfig_to_axim.wready(0),         -- out
+      s_axi_bresp    => rcnfig_to_axim.bresp,          -- out
+      s_axi_bvalid   => rcnfig_to_axim.bvalid(0),         -- out
+      s_axi_bready   => rcnfig_from_axim.bready(0),         -- in
+         
+      s_axi_araddr   => rcnfig_from_axim.araddr(10 downto 0),         -- in
+      s_axi_arvalid  => rcnfig_from_axim.arvalid(0),        -- in
+      s_axi_arready  => rcnfig_to_axim.arready(0),        -- out
+      s_axi_rdata    => rcnfig_to_axim.rdata,          -- out
+      s_axi_rresp    => rcnfig_to_axim.rresp,          -- out
+      s_axi_rvalid   => rcnfig_to_axim.rvalid(0),         -- out
+      s_axi_rready   => rcnfig_from_axim.rready(0)         -- in
       
-      psclk          => inst1_pll_scanclk,
-      psen           => inst2_pll_phasestep,
-      psincdec       => inst2_pll_phaseupdown,
-      psdone         => inst3_phasedone 
+      --psclk          => inst1_pll_scanclk,
+      --psen           => inst2_pll_phasestep,
+      --psincdec       => inst2_pll_phaseupdown,
+      --psdone         => inst3_phasedone 
   );
 
 

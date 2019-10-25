@@ -16,8 +16,7 @@ preplace port pllcfg_cmd -pg 1 -lvl 6 -x 2240 -y 1000 -defaultsOSRD
 preplace port pll_rst -pg 1 -lvl 6 -x 2240 -y 1460 -defaultsOSRD
 preplace port extm_0_axi -pg 1 -lvl 6 -x 2240 -y 1080 -defaultsOSRD
 preplace port extm_0_axi_sel -pg 1 -lvl 6 -x 2240 -y 360 -defaultsOSRD
-preplace port smpl_cmp_en -pg 1 -lvl 6 -x 2240 -y 2010 -defaultsOSRD
-preplace port smpl_cmp_cnt -pg 1 -lvl 6 -x 2240 -y 2030 -defaultsOSRD
+preplace port smpl_cmp_en -pg 1 -lvl 6 -x 2240 -y 2020 -defaultsOSRD
 preplace port smpl_cmp_status -pg 1 -lvl 6 -x 2240 -y 2190 -defaultsOSRD
 preplace port Clk -pg 1 -lvl 0 -x -10 -y 410 -defaultsOSRD
 preplace port reset_n -pg 1 -lvl 0 -x -10 -y 490 -defaultsOSRD
@@ -93,8 +92,7 @@ preplace netloc microblaze_0_axi_periph_M11_AXI 1 4 1 1550 1040n
 preplace netloc microblaze_0_axi_periph_M12_AXI 1 4 2 1610J 1080 NJ
 preplace netloc microblaze_0_axi_periph_M13_AXI 1 4 1 1590 340n
 preplace netloc axi_gpio_1_GPIO 1 5 1 NJ 360
-preplace netloc smpl_cmp_cmd_GPIO 1 5 1 N 2010
-preplace netloc smpl_cmp_cmd_GPIO2 1 5 1 N 2030
+preplace netloc smpl_cmp_cmd_GPIO 1 5 1 N 2020
 preplace netloc smpl_cmp_stat_GPIO 1 5 1 N 2190
 preplace netloc microblaze_0_axi_periph_M14_AXI 1 4 1 1540 1100n
 preplace netloc microblaze_0_axi_periph_M15_AXI 1 4 1 1530 1120n

@@ -1,7 +1,7 @@
 --Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
---Date        : Thu Oct 24 11:39:25 2019
+--Date        : Fri Oct 25 11:16:14 2019
 --Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 --Command     : generate_target mb_subsystem.bd
 --Design      : mb_subsystem
@@ -4655,13 +4655,10 @@ entity mb_subsystem is
     pll_locked : out STD_LOGIC;
     pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
     pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
     reset_n : in STD_LOGIC;
-    smpl_cmp_cnt_tri_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
     smpl_cmp_en_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    smpl_cmp_status_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    smpl_cmp_status_tri_t : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_0_io0_i : in STD_LOGIC;
     spi_0_io0_o : out STD_LOGIC;
     spi_0_io0_t : out STD_LOGIC;
@@ -5077,7 +5074,7 @@ architecture STRUCTURE of mb_subsystem is
     s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
-    gpio_io_o : out STD_LOGIC_VECTOR ( 9 downto 0 )
+    gpio_io_o : out STD_LOGIC_VECTOR ( 11 downto 0 )
   );
   end component mb_subsystem_axi_gpio_1_0;
   component mb_subsystem_axi_gpio_1_1 is
@@ -5200,8 +5197,7 @@ architecture STRUCTURE of mb_subsystem is
     s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
-    gpio_io_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    gpio2_io_o : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    gpio_io_o : out STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   end component mb_subsystem_axi_gpio_1_3;
   component mb_subsystem_axi_gpio_1_4 is
@@ -5225,9 +5221,7 @@ architecture STRUCTURE of mb_subsystem is
     s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
-    gpio_io_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    gpio_io_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    gpio_io_t : out STD_LOGIC_VECTOR ( 31 downto 0 )
+    gpio_io_i : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   end component mb_subsystem_axi_gpio_1_4;
   signal AXI_to_native_FIFO_0_M00_NATIVE_READ_ALMOST_EMPTY : STD_LOGIC;
@@ -5240,7 +5234,7 @@ architecture STRUCTURE of mb_subsystem is
   signal AXI_to_native_FIFO_0_M00_NATIVE_WRITE_WR_EN : STD_LOGIC;
   signal AXI_to_native_FIFO_0_M_NATIVE_WRITE_ACLR : STD_LOGIC;
   signal PLLCFG_Command_GPIO_TRI_I : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal PLLCFG_Status_GPIO_TRI_O : STD_LOGIC_VECTOR ( 9 downto 0 );
+  signal PLLCFG_Status_GPIO_TRI_O : STD_LOGIC_VECTOR ( 11 downto 0 );
   signal PLL_RST_GPIO_TRI_O : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_gpio_0_GPIO2_TRI_O : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal axi_gpio_0_GPIO_TRI_I : STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -5628,11 +5622,8 @@ architecture STRUCTURE of mb_subsystem is
   signal rst_Clk_100M_bus_struct_reset : STD_LOGIC_VECTOR ( 0 to 0 );
   signal rst_Clk_100M_mb_reset : STD_LOGIC;
   signal rst_Clk_100M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal smpl_cmp_cmd_GPIO2_TRI_O : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal smpl_cmp_cmd_GPIO_TRI_O : STD_LOGIC_VECTOR ( 3 downto 0 );
-  signal smpl_cmp_stat_GPIO_TRI_I : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal smpl_cmp_stat_GPIO_TRI_O : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal smpl_cmp_stat_GPIO_TRI_T : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal smpl_cmp_stat_GPIO_TRI_I : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_axi_iic_0_gpo_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_axi_quad_spi_1_ip2intc_irpt_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_quad_spi_2_ip2intc_irpt_UNCONNECTED : STD_LOGIC;
@@ -5728,11 +5719,8 @@ architecture STRUCTURE of mb_subsystem is
   attribute x_interface_info of pll_rst_tri_o : signal is "xilinx.com:interface:gpio:1.0 pll_rst ";
   attribute x_interface_info of pllcfg_cmd_tri_i : signal is "xilinx.com:interface:gpio:1.0 pllcfg_cmd ";
   attribute x_interface_info of pllcfg_stat_tri_o : signal is "xilinx.com:interface:gpio:1.0 pllcfg_stat ";
-  attribute x_interface_info of smpl_cmp_cnt_tri_o : signal is "xilinx.com:interface:gpio:1.0 smpl_cmp_cnt ";
   attribute x_interface_info of smpl_cmp_en_tri_o : signal is "xilinx.com:interface:gpio:1.0 smpl_cmp_en ";
   attribute x_interface_info of smpl_cmp_status_tri_i : signal is "xilinx.com:interface:gpio:1.0 smpl_cmp_status ";
-  attribute x_interface_info of smpl_cmp_status_tri_o : signal is "xilinx.com:interface:gpio:1.0 smpl_cmp_status ";
-  attribute x_interface_info of smpl_cmp_status_tri_t : signal is "xilinx.com:interface:gpio:1.0 smpl_cmp_status ";
   attribute x_interface_info of spi_0_ss_i : signal is "xilinx.com:interface:spi:1.0 spi_0 SS_I";
   attribute x_interface_info of spi_0_ss_o : signal is "xilinx.com:interface:spi:1.0 spi_0 SS_O";
   attribute x_interface_info of spi_1_ss_i : signal is "xilinx.com:interface:spi:1.0 spi_1 SS_I";
@@ -5797,13 +5785,10 @@ begin
   pll_c1 <= clk_wiz_0_clk_out2;
   pll_locked <= clk_wiz_0_locked;
   pll_rst_tri_o(31 downto 0) <= PLL_RST_GPIO_TRI_O(31 downto 0);
-  pllcfg_stat_tri_o(9 downto 0) <= PLLCFG_Status_GPIO_TRI_O(9 downto 0);
+  pllcfg_stat_tri_o(11 downto 0) <= PLLCFG_Status_GPIO_TRI_O(11 downto 0);
   reset_rtl_0_1 <= reset_n;
-  smpl_cmp_cnt_tri_o(15 downto 0) <= smpl_cmp_cmd_GPIO2_TRI_O(15 downto 0);
   smpl_cmp_en_tri_o(3 downto 0) <= smpl_cmp_cmd_GPIO_TRI_O(3 downto 0);
-  smpl_cmp_stat_GPIO_TRI_I(31 downto 0) <= smpl_cmp_status_tri_i(31 downto 0);
-  smpl_cmp_status_tri_o(31 downto 0) <= smpl_cmp_stat_GPIO_TRI_O(31 downto 0);
-  smpl_cmp_status_tri_t(31 downto 0) <= smpl_cmp_stat_GPIO_TRI_T(31 downto 0);
+  smpl_cmp_stat_GPIO_TRI_I(1 downto 0) <= smpl_cmp_status_tri_i(1 downto 0);
   spi_0_io0_o <= axi_quad_spi_0_SPI_0_IO0_O;
   spi_0_io0_t <= axi_quad_spi_0_SPI_0_IO0_T;
   spi_0_io1_o <= axi_quad_spi_0_SPI_0_IO1_O;
@@ -5887,7 +5872,7 @@ PLLCFG_Command: component mb_subsystem_axi_gpio_1_1
     );
 PLLCFG_Status: component mb_subsystem_axi_gpio_1_0
      port map (
-      gpio_io_o(9 downto 0) => PLLCFG_Status_GPIO_TRI_O(9 downto 0),
+      gpio_io_o(11 downto 0) => PLLCFG_Status_GPIO_TRI_O(11 downto 0),
       s_axi_aclk => microblaze_0_Clk,
       s_axi_araddr(8 downto 0) => microblaze_0_axi_periph_M08_AXI_ARADDR(8 downto 0),
       s_axi_aresetn => rst_Clk_100M_peripheral_aresetn(0),
@@ -6675,7 +6660,6 @@ rst_Clk_100M: component mb_subsystem_rst_Clk_100M_4
     );
 smpl_cmp_cmd: component mb_subsystem_axi_gpio_1_3
      port map (
-      gpio2_io_o(15 downto 0) => smpl_cmp_cmd_GPIO2_TRI_O(15 downto 0),
       gpio_io_o(3 downto 0) => smpl_cmp_cmd_GPIO_TRI_O(3 downto 0),
       s_axi_aclk => microblaze_0_Clk,
       s_axi_araddr(8 downto 0) => microblaze_0_axi_periph_M14_AXI_ARADDR(8 downto 0),
@@ -6699,9 +6683,7 @@ smpl_cmp_cmd: component mb_subsystem_axi_gpio_1_3
     );
 smpl_cmp_stat: component mb_subsystem_axi_gpio_1_4
      port map (
-      gpio_io_i(31 downto 0) => smpl_cmp_stat_GPIO_TRI_I(31 downto 0),
-      gpio_io_o(31 downto 0) => smpl_cmp_stat_GPIO_TRI_O(31 downto 0),
-      gpio_io_t(31 downto 0) => smpl_cmp_stat_GPIO_TRI_T(31 downto 0),
+      gpio_io_i(1 downto 0) => smpl_cmp_stat_GPIO_TRI_I(1 downto 0),
       s_axi_aclk => microblaze_0_Clk,
       s_axi_araddr(8 downto 0) => microblaze_0_axi_periph_M15_AXI_ARADDR(8 downto 0),
       s_axi_aresetn => rst_Clk_100M_peripheral_aresetn(0),

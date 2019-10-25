@@ -460,6 +460,9 @@ signal inst0_from_memcfg         : t_FROM_MEMCFG;
 signal inst0_pll_from_axim       : t_FROM_AXIM_32x32;
 signal inst0_pll_axi_sel         : std_logic_vector(3 downto 0);
 signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
+signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
+signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
+
 
 --test_out
 signal inst0_pll_c0              : std_logic;
@@ -484,6 +487,7 @@ signal inst1_lms2_txpll_c1             : std_logic;
 signal inst1_lms2_txpll_c2             : std_logic;
 signal inst1_lms2_txpll_locked         : std_logic;
 signal inst1_lms2_txpll_rcnfg_from_pll : std_logic_vector(63 downto 0);
+signal inst1_lms2_rxpll_c0             : std_logic;
 signal inst1_lms2_rxpll_c1             : std_logic;
 signal inst1_lms2_rxpll_locked         : std_logic;
 signal inst1_lms2_rxpll_rcnfg_from_pll : std_logic_vector(63 downto 0);
@@ -875,10 +879,21 @@ begin
       from_memcfg                => inst0_from_memcfg,
       pll_c0                     => inst0_pll_c0,
       pll_c1                     => inst0_pll_c1,
-      pll_locked                 => inst0_pll_locked
+      pll_locked                 => inst0_pll_locked,
+      smpl_cmp_en                => inst0_smpl_cmp_en, 
+      smpl_cmp_status            => inst0_smpl_cmp_status
       
       
    );
+   
+   
+   inst0_smpl_cmp_status(0)   <= inst6_rx_smpl_cmp_done when inst0_smpl_cmp_en(0)='1' else
+                                 inst8_rx_smpl_cmp_done;
+   
+   inst0_smpl_cmp_status(1)   <= inst6_rx_smpl_cmp_err when inst0_smpl_cmp_en(0)='1' else
+                                 inst8_rx_smpl_cmp_err;
+                                 
+                                                     
 
    --process( inst1_lms1_txpll_locked, inst1_lms1_rxpll_locked, inst1_lms2_txpll_locked, inst1_lms2_rxpll_locked,
    --         inst1_pll_0_locked)
@@ -976,7 +991,7 @@ begin
       lms1_rxpll_logic_reset_n   => not inst0_pll_rst(1),
       lms1_rxpll_clk_ena         => inst0_from_fpgacfg_0.CLK_ENA(3 downto 2),
       lms1_rxpll_drct_clk_en     => inst0_from_fpgacfg_0.drct_clk_en(1) & inst0_from_fpgacfg_0.drct_clk_en(1),
-      lms1_rxpll_c0              => LMS1_FCLK2,
+      lms1_rxpll_c0              => inst1_lms1_rxpll_c0, --LMS1_FCLK2,
       lms1_rxpll_c1              => inst1_lms1_rxpll_c1,
       lms1_rxpll_locked          => inst1_lms1_rxpll_locked,
       -- Sample comparing ports from LMS#1 RX interface
@@ -1047,7 +1062,12 @@ begin
       from_pllcfg                => inst0_from_pllcfg,
       to_pllcfg                  => inst0_to_pllcfg
    );
+   
+   LMS1_FCLK2 <= inst1_lms1_rxpll_c0;
+   
 
+
+   
 
    io_adc_i.CLK <= inst1_pll_0_c0;
       
@@ -1380,8 +1400,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst6_rx_data_valid,
       rx_data              => inst6_rx_data,
-      rx_smpl_cmp_start    => inst1_lms1_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst1_lms1_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst0_smpl_cmp_en(0),                  --inst1_lms1_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls,    --inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
             -- SPI for internal modules
@@ -1508,8 +1528,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst8_rx_data_valid,
       rx_data              => inst8_rx_data,
-      rx_smpl_cmp_start    => inst1_lms2_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst1_lms2_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst0_smpl_cmp_en(1),               --inst1_lms2_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms2_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst8_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst8_rx_smpl_cmp_err,
             -- SPI for internal modules
@@ -2099,17 +2119,17 @@ begin
    gpio_t(14) <= '1';
    gpio_t(15) <= '1';
    
-   gpio_i( 0) <= '0';         
+   gpio_i( 0) <= inst1_lms1_rxpll_c0;         
    gpio_i( 1) <= '0';
-   gpio_i( 2) <= inst1_lms1_txpll_locked;
+   gpio_i( 2) <= '0';
    gpio_i( 3) <= '0';
-   gpio_i( 4) <= '0';
-   gpio_i( 5) <= inst1_lms1_rxpll_locked;
+   gpio_i( 4) <= inst1_lms1_rxpll_c1;
+   gpio_i( 5) <= '0';
    gpio_i( 6) <= '0';
    gpio_i( 7) <= '0';
-   gpio_i( 8) <= inst0_pll_c0;
-   gpio_i( 9) <= inst0_pll_c1;
-   gpio_i(10) <= inst0_pll_locked;
+   gpio_i( 8) <= inst1_lms1_rxpll_locked;
+   gpio_i( 9) <= '0';
+   gpio_i(10) <= '0';
    gpio_i(11) <= '0';
    gpio_i(12) <= '0';
    gpio_i(13) <= '0';

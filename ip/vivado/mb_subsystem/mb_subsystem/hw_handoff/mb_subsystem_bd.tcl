@@ -268,8 +268,6 @@ proc create_root_design { parentCell } {
 
   set pllcfg_stat [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 pllcfg_stat ]
 
-  set smpl_cmp_cnt [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 smpl_cmp_cnt ]
-
   set smpl_cmp_en [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 smpl_cmp_en ]
 
   set smpl_cmp_status [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 smpl_cmp_status ]
@@ -312,7 +310,7 @@ proc create_root_design { parentCell } {
   set PLLCFG_Status [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 PLLCFG_Status ]
   set_property -dict [ list \
    CONFIG.C_ALL_OUTPUTS {1} \
-   CONFIG.C_GPIO_WIDTH {10} \
+   CONFIG.C_GPIO_WIDTH {12} \
  ] $PLLCFG_Status
 
   # Create instance: PLL_RST, and set properties
@@ -420,13 +418,20 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.C_ALL_OUTPUTS {1} \
    CONFIG.C_ALL_OUTPUTS_2 {1} \
-   CONFIG.C_GPIO2_WIDTH {16} \
+   CONFIG.C_GPIO2_WIDTH {4} \
    CONFIG.C_GPIO_WIDTH {4} \
-   CONFIG.C_IS_DUAL {1} \
+   CONFIG.C_IS_DUAL {0} \
  ] $smpl_cmp_cmd
 
   # Create instance: smpl_cmp_stat, and set properties
   set smpl_cmp_stat [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 smpl_cmp_stat ]
+  set_property -dict [ list \
+   CONFIG.C_ALL_INPUTS {1} \
+   CONFIG.C_ALL_OUTPUTS_2 {1} \
+   CONFIG.C_GPIO2_WIDTH {16} \
+   CONFIG.C_GPIO_WIDTH {2} \
+   CONFIG.C_IS_DUAL {0} \
+ ] $smpl_cmp_stat
 
   # Create interface connections
   connect_bd_intf_net -intf_net AXI_to_native_FIFO_0_M00_NATIVE_READ [get_bd_intf_ports fifo_read_0] [get_bd_intf_pins AXI_to_native_FIFO_0/M00_NATIVE_READ]
@@ -464,7 +469,6 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net microblaze_0_intc_axi [get_bd_intf_pins microblaze_0_axi_intc/s_axi] [get_bd_intf_pins microblaze_0_axi_periph/M00_AXI]
   connect_bd_intf_net -intf_net microblaze_0_interrupt [get_bd_intf_pins microblaze_0/INTERRUPT] [get_bd_intf_pins microblaze_0_axi_intc/interrupt]
   connect_bd_intf_net -intf_net smpl_cmp_cmd_GPIO [get_bd_intf_ports smpl_cmp_en] [get_bd_intf_pins smpl_cmp_cmd/GPIO]
-  connect_bd_intf_net -intf_net smpl_cmp_cmd_GPIO2 [get_bd_intf_ports smpl_cmp_cnt] [get_bd_intf_pins smpl_cmp_cmd/GPIO2]
   connect_bd_intf_net -intf_net smpl_cmp_stat_GPIO [get_bd_intf_ports smpl_cmp_status] [get_bd_intf_pins smpl_cmp_stat/GPIO]
 
   # Create port connections

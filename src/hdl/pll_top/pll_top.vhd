@@ -282,7 +282,7 @@ begin
    
 
 
-   inst0_tx_pll_top_cyc5 : entity work.tx_pll_top
+   inst0_tx_pll_top_cyc5 : entity work.rx_pll_top
    generic map(
       vendor                  => "XILINX", -- ALTERA or XILINX
       intended_device_family  => INTENDED_DEVICE_FAMILY,
@@ -404,7 +404,7 @@ begin
    inst2_rcnfig_from_axim <= rcnfg_from_axim when rcnfg_sel = "0010" else c_FROM_AXIM_32x32_ZERO;
    
    
-   inst2_tx_pll_top_cyc5 : entity work.tx_pll_top
+   inst2_tx_pll_top_cyc5 : entity work.rx_pll_top
    generic map(
       vendor                  => "XILINX", -- ALTERA or XILINX
       intended_device_family  => INTENDED_DEVICE_FAMILY,

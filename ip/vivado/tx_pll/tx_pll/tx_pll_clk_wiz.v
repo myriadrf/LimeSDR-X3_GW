@@ -56,13 +56,13 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___122.880______0.000______50.0______107.317_____84.619
-// clk_out2___122.880______0.000______50.0______107.317_____84.619
+// clk_out1____20.000______0.000______50.0______283.451____320.726
+// clk_out2____20.000______0.000______50.0______283.451____320.726
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
 //----------------------------------------------------------------------------
-// __primary__________122.88____________0.010
+// __primary______________20____________0.010
 
 `timescale 1ps/1ps
 
@@ -72,6 +72,14 @@ module tx_pll_clk_wiz
   // Clock out ports
   output        clk_out1,
   output        clk_out2,
+  // Dynamic reconfiguration ports
+  input   [6:0] daddr,
+  input         dclk,
+  input         den,
+  input  [15:0] din,
+  output [15:0] dout,
+  output        drdy,
+  input         dwe,
   // Dynamic phase shift ports
   input         psclk,
   input         psen,
@@ -108,8 +116,6 @@ wire clk_in2_tx_pll;
   wire        clk_out6_tx_pll;
   wire        clk_out7_tx_pll;
 
-  wire [15:0] do_unused;
-  wire        drdy_unused;
   wire        locked_int;
   wire        clkfbout_tx_pll;
   wire        clkfbout_buf_tx_pll;
@@ -133,18 +139,18 @@ wire clk_in2_tx_pll;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (10.000),
+    .CLKFBOUT_MULT_F      (64.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (10.000),
+    .CLKOUT0_DIVIDE_F     (64.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (10),
+    .CLKOUT1_DIVIDE       (64),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("TRUE"),
-    .CLKIN1_PERIOD        (8.138))
+    .CLKIN1_PERIOD        (50.000))
   mmcm_adv_inst
     // Output clocks
    (
@@ -168,13 +174,13 @@ wire clk_in2_tx_pll;
      // Tied to always select the primary input clock
     .CLKINSEL            (1'b1),
     // Ports for dynamic reconfiguration
-    .DADDR               (7'h0),
-    .DCLK                (1'b0),
-    .DEN                 (1'b0),
-    .DI                  (16'h0),
-    .DO                  (do_unused),
-    .DRDY                (drdy_unused),
-    .DWE                 (1'b0),
+    .DADDR               (daddr),
+    .DCLK                (dclk),
+    .DEN                 (den),
+    .DI                  (din),
+    .DO                  (dout),
+    .DRDY                (drdy),
+    .DWE                 (dwe),
     // Ports for dynamic phase shift
     .PSCLK               (psclk),
     .PSEN                (psen),
