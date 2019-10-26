@@ -46,6 +46,7 @@ entity rx_path_top is
       ld_smpl_nr           : in std_logic;
       smpl_nr_in           : in std_logic_vector(63 downto 0);
       smpl_nr_cnt          : out std_logic_vector(63 downto 0);
+      smpl_nr_cnt_en       : in  std_logic;
       --flag control
       tx_pct_loss          : in std_logic;
       tx_pct_loss_clr      : in std_logic
@@ -77,6 +78,7 @@ signal smpl_nr_in_sync        : std_logic_vector(63 downto 0);
 --inst0 
 signal inst0_fifo_wrreq       : std_logic;
 signal inst0_fifo_wdata       : std_logic_vector(iq_width*4-1 downto 0);
+
 --inst1
 signal inst1_wrfull           : std_logic;
 signal inst1_q                : std_logic_vector(iq_width*4-1 downto 0);
@@ -246,7 +248,7 @@ smpl_cnt_inst3 : entity work.smpl_cnt
 -- ----------------------------------------------------------------------------
 -- Instance for sample counter
 -- ----------------------------------------------------------------------------        
-smpl_cnt_inst4 : entity work.smpl_cnt
+smpl_cnt_inst4 : entity work.iq_smpl_cnt
    generic map(
       cnt_width   => 64
    )
@@ -262,7 +264,7 @@ smpl_cnt_inst4 : entity work.smpl_cnt
       sclr        => clr_smpl_nr_sync,
       sload       => ld_smpl_nr_sync,
       data        => smpl_nr_in_sync,
-      cnt_en      => smpl_fifo_wrreq,
+      cnt_en      => smpl_nr_cnt_en,
       q           => smpl_nr_cnt        
         );
         

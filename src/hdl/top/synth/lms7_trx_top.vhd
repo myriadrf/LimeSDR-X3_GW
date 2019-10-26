@@ -569,6 +569,7 @@ signal inst6_rx_smpl_cmp_done       : std_logic;
 signal inst6_rx_smpl_cmp_err        : std_logic; 
 signal inst6_sdout                  : std_logic;
 signal inst6_tx_ant_en              : std_logic; 
+signal inst6_rx_smpl_cnt_en         : std_logic;
 
 --inst7
 --constant c_WFM_INFIFO_SIZE          : integer := FIFO_WORDS_TO_Nbits(g_WFM_INFIFO_SIZE/(c_S0_DATA_WIDTH/8),true);
@@ -598,6 +599,7 @@ signal inst8_rx_smpl_cmp_done       : std_logic;
 signal inst8_rx_smpl_cmp_err        : std_logic;
 signal inst8_sdout                  : std_logic; 
 signal inst8_tx_ant_en              : std_logic; 
+signal inst8_rx_smpl_cnt_en         : std_logic;
 
 --inst9
 signal inst9_tx_pct_loss_flg        : std_logic;
@@ -1404,6 +1406,7 @@ begin
       rx_smpl_cmp_length   => inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
+      rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en,
             -- SPI for internal modules
       sdin                 => inst0_spi_0_MOSI,  -- Data in
       sclk                 => inst0_spi_0_SCLK,  -- Data clock
@@ -1459,7 +1462,9 @@ begin
       rx_pct_fifo_aclrn_req   => inst7_rx_pct_fifo_aclrn_req,
       rx_pct_fifo_wusedw      => inst2_F2H_S0_wrusedw,
       rx_pct_fifo_wrreq       => inst7_rx_pct_fifo_wrreq,
-      rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata  
+      rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata,
+      -- RX sample nr count enable
+      rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en  
    );   
 	
 ---- ----------------------------------------------------------------------------
@@ -1532,6 +1537,7 @@ begin
       rx_smpl_cmp_length   => inst1_lms2_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst8_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst8_rx_smpl_cmp_err,
+      rx_smpl_cnt_en       => inst8_rx_smpl_cnt_en,
             -- SPI for internal modules
       sdin                 => inst0_spi_0_MOSI,  -- Data in
       sclk                 => inst0_spi_0_SCLK,  -- Data clock
@@ -1587,7 +1593,9 @@ begin
       rx_pct_fifo_aclrn_req   => inst9_rx_pct_fifo_aclrn_req,
       rx_pct_fifo_wusedw      => inst2_F2H_S1_wrusedw,
       rx_pct_fifo_wrreq       => inst9_rx_pct_fifo_wrreq,
-      rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata  
+      rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata,
+      -- RX sample nr count enable
+      rx_smpl_nr_cnt_en       => inst8_rx_smpl_cnt_en   
    );   
 ----   --Module for LMS7002 IC
 ----   inst8_lms7002_top : entity work.lms7002_top

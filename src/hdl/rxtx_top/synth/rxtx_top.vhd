@@ -71,7 +71,9 @@ entity rxtx_top is
       rx_pct_fifo_aclrn_req   : out    std_logic;
       rx_pct_fifo_wusedw      : in     std_logic_vector(RX_PCT_BUFF_WRUSEDW_W-1 downto 0);
       rx_pct_fifo_wrreq       : out    std_logic;
-      rx_pct_fifo_wdata       : out    std_logic_vector(63 downto 0)
+      rx_pct_fifo_wdata       : out    std_logic_vector(63 downto 0);
+         -- RX sample nr count enable
+      rx_smpl_nr_cnt_en       : in     std_logic
       );
 end rxtx_top;
 
@@ -241,6 +243,7 @@ begin
       ld_smpl_nr           => '0',
       smpl_nr_in           => (others=>'0'),
       smpl_nr_cnt          => inst5_smpl_nr_cnt,
+      smpl_nr_cnt_en       => rx_smpl_nr_cnt_en,
       --flag control
       tx_pct_loss          => inst1_pct_loss_flg,
       tx_pct_loss_clr      => from_fpgacfg.txpct_loss_clr

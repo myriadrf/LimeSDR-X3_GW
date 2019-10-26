@@ -80,6 +80,8 @@ entity lms7002_top is
       rx_smpl_cmp_length: in std_logic_vector(15 downto 0);
       rx_smpl_cmp_done  : out std_logic;
       rx_smpl_cmp_err   : out std_logic;
+      -- RX sample counter enable
+      rx_smpl_cnt_en    : out std_logic;
          -- SPI for internal modules
       sdin              : in std_logic;   -- Data in
       sclk              : in std_logic;   -- Data clock
@@ -211,7 +213,9 @@ inst0_diq2fifo : entity work.diq2fifo
       smpl_cmp_start => rx_smpl_cmp_start_sync,
       smpl_cmp_length=> rx_smpl_cmp_length,
       smpl_cmp_done  => rx_smpl_cmp_done,
-      smpl_cmp_err   => rx_smpl_cmp_err
+      smpl_cmp_err   => rx_smpl_cmp_err,
+      -- sample counter enable
+      smpl_cnt_en    => rx_smpl_cnt_en
    );
    
 -- ----------------------------------------------------------------------------
