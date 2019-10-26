@@ -55,52 +55,33 @@
 --  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 --   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 ------------------------------------------------------------------------------
--- clk_out1____20.000______0.000______50.0______332.086____730.728
--- clk_out2____20.000______0.000______50.0______332.086____730.728
+-- clk_out1___122.880______0.000______50.0_______99.661____216.121
+-- clk_out2___122.880______0.000______50.0_______99.661____216.121
 --
 ------------------------------------------------------------------------------
 -- Input Clock   Freq (MHz)    Input Jitter (UI)
 ------------------------------------------------------------------------------
--- __primary______________20____________0.010
+-- __primary__________122.88____________0.010
 
 
 -- The following code must appear in the VHDL architecture header:
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 component rx_pll
-  port (
-  -- System interface
-  s_axi_aclk      : in  std_logic;                                      
-  s_axi_aresetn   : in  std_logic;                                      
-  -- AXI Write address channel signals                                        
-  s_axi_awaddr    : in  std_logic_vector(10 downto 0);                  
-  s_axi_awvalid   : in  std_logic;                                      
-  s_axi_awready   : out std_logic;                                      
-  -- AXI Write data channel signals                                           
-  s_axi_wdata     : in  std_logic_vector(31 downto 0);                  
-  s_axi_wstrb     : in  std_logic_vector(3 downto 0);              
-  s_axi_wvalid    : in  std_logic;                                      
-  s_axi_wready    : out std_logic;                                      
-  -- AXI Write response channel signals                                       
-  s_axi_bresp     : out std_logic_vector(1 downto 0);                   
-  s_axi_bvalid    : out std_logic;                                      
-  s_axi_bready    : in  std_logic;                                      
-  -- AXI Read address channel signals                                         
-  s_axi_araddr    : in  std_logic_vector(10 downto 0);                  
-  s_axi_arvalid   : in  std_logic;                                      
-  s_axi_arready   : out std_logic;                                      
-  -- AXI Read address channel signals                                         
-  s_axi_rdata     : out std_logic_vector(31 downto 0);                  
-  s_axi_rresp     : out std_logic_vector(1 downto 0);                   
-  s_axi_rvalid    : out std_logic;                                      
-  s_axi_rready    : in  std_logic;                                      
+port
+ (-- Clock in ports
   -- Clock out ports
   clk_out1          : out    std_logic;
   clk_out2          : out    std_logic;
+  -- Dynamic phase shift ports
+  psclk             : in     std_logic;
+  psen              : in     std_logic;
+  psincdec          : in     std_logic;
+  psdone            : out    std_logic;
   -- Status and control signals
+  reset             : in     std_logic;
   locked            : out    std_logic;
-  -- Clock in ports
   clk_in1           : in     std_logic
-  );
+ );
 end component;
 
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------
@@ -109,31 +90,16 @@ end component;
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : rx_pll
    port map ( 
-   s_axi_aclk                => s_axi_aclk,           -- in
-   s_axi_aresetn             => s_axi_aresetn,        -- in
-
-   s_axi_awaddr              => s_axi_awaddr,         -- in
-   s_axi_awvalid             => s_axi_awvalid,        -- in
-   s_axi_awready             => s_axi_awready,        -- out
-   s_axi_wdata               => s_axi_wdata,          -- in
-   s_axi_wstrb               => s_axi_wstrb,          -- in
-   s_axi_wvalid              => s_axi_wvalid,         -- in
-   s_axi_wready              => s_axi_wready,         -- out
-   s_axi_bresp               => s_axi_bresp,          -- out
-   s_axi_bvalid              => s_axi_bvalid,         -- out
-   s_axi_bready              => s_axi_bready,         -- in
-   
-   s_axi_araddr              => s_axi_araddr,         -- in
-   s_axi_arvalid             => s_axi_arvalid,        -- in
-   s_axi_arready             => s_axi_arready,        -- out
-   s_axi_rdata               => s_axi_rdata,          -- out
-   s_axi_rresp               => s_axi_rresp,          -- out
-   s_axi_rvalid              => s_axi_rvalid,         -- out
-   s_axi_rready              => s_axi_rready,         -- in
   -- Clock out ports  
    clk_out1 => clk_out1,
    clk_out2 => clk_out2,
+  -- Dynamic phase shift ports                 
+   psclk => psclk,
+   psen => psen,
+   psincdec => psincdec,
+   psdone => psdone,
   -- Status and control signals                
+   reset => reset,
    locked => locked,
    -- Clock in ports
    clk_in1 => clk_in1
