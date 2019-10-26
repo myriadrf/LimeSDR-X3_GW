@@ -1047,19 +1047,19 @@ int main()
 	    		pllcfgrez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
 
 	    		if (PLL_IND(rd_buf[3]) == 0) {
-	    			pllcfgrez = AutoUpdatePHCFG();
+	    			//pllcfgrez = AutoUpdatePHCFG();
 	    		}
 
 	    		if (PLL_IND(rd_buf[3]) == 1) {
-	    			pllcfgrez = AutoUpdatePHCFG();
+	    			//pllcfgrez = AutoUpdatePHCFG();
 	    		}
 
 	    		if (PLL_IND(rd_buf[3]) == 2) {
-	    			pllcfgrez = AutoUpdatePHCFG();
+	    			//pllcfgrez = AutoUpdatePHCFG();
 	    		}
 
 	    		if (PLL_IND(rd_buf[3]) == 3) {
-	    			pllcfgrez = AutoUpdatePHCFG();
+	    			//pllcfgrez = AutoUpdatePHCFG();
 	    		}
 
 	    	}
@@ -1071,7 +1071,8 @@ int main()
 	    	//IOWR(PLLCFG_STATUS_BASE, 0x00, (pllcfgrez << 2) | PLLCFG_DONE);
 	    	pllcfgrez = 0x00;
 	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1 , (pllcfgrez << 2) | PLLCFG_DONE);
-	    	XGpio_DiscreteWrite(&pllcfg_stat, 1 , PLLCFG_DONE | PHCFG_DONE);
+	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1 , PLLCFG_DONE | PHCFG_DONE);
+	    	XGpio_DiscreteWrite(&pllcfg_stat, 1 , PLLCFG_DONE);
 	    }
 
 	    // Check if there is a request for PLL configuration update
