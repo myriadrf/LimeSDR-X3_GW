@@ -592,8 +592,6 @@ begin
       to_pllcfg_int.pllcfg_done  <= inst0_pllcfg_stat_export(0);
       to_pllcfg_int.pllcfg_busy  <= inst0_pllcfg_stat_export(1);
       to_pllcfg_int.pllcfg_err   <= inst0_pllcfg_stat_export(9 downto 2);
-      to_pllcfg_int.phcfg_done   <= inst0_pllcfg_stat_export(10);
-      to_pllcfg_int.phcfg_error  <= inst0_pllcfg_stat_export(11);
    end process;
    
 -- ----------------------------------------------------------------------------

@@ -226,7 +226,7 @@ pll_ps_fsm_inst1 : entity work.pll_ps_fsm
       reset_n           => reset_n,
       --module control ports
       ps_en             => inst1_ps_en,
-      ps_reset_at_start => '0',
+      ps_reset_at_start => '1',
       ps_mode           => ps_mode,
       ps_cnt            => ps_cnt,
       ps_updwn          => ps_updwn,

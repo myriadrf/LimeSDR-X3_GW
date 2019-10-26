@@ -1400,8 +1400,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst6_rx_data_valid,
       rx_data              => inst6_rx_data,
-      rx_smpl_cmp_start    => inst0_smpl_cmp_en(0),                  --inst1_lms1_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls,    --inst1_lms1_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst1_lms1_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
             -- SPI for internal modules
@@ -1528,8 +1528,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst8_rx_data_valid,
       rx_data              => inst8_rx_data,
-      rx_smpl_cmp_start    => inst0_smpl_cmp_en(1),               --inst1_lms2_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms2_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst1_lms2_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst1_lms2_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst8_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst8_rx_smpl_cmp_err,
             -- SPI for internal modules
