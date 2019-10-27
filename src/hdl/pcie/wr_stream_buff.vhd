@@ -68,6 +68,8 @@ architecture arch of wr_stream_buff is
    --inst0
    signal inst0_wrreq               : std_logic;
    signal inst0_wrfull              : std_logic;
+   signal inst0_rdempty             : std_logic;
+   signal inst0_rdusedw             : std_logic_vector(g_BUFF_0_RDUSEDW_WIDTH-1 downto 0);
    
    --inst1
    signal inst1_reset_n             : std_logic;
@@ -168,9 +170,12 @@ begin
       rdclk       => buff_0_rdclk,
       rdreq       => buff_0_rd,
       q           => buff_0_rdata,
-      rdempty     => buff_0_rempty,
-      rdusedw     => buff_0_rdusedw   
+      rdempty     => inst0_rdempty, --buff_0_rempty,
+      rdusedw     => inst0_rdusedw --buff_0_rdusedw   
    );
+   
+   buff_0_rempty <= '1' when (unsigned(inst0_rdusedw) < 4 OR inst0_rdempty = '1') else '0'; 
+   buff_0_rdusedw <= inst0_rdusedw;
    
 -- ----------------------------------------------------------------------------
 -- Second FIFO, dedicated for WFM player

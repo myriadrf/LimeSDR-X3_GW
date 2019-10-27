@@ -153,14 +153,12 @@ begin
 
    tx_path_top_inst1 : entity work.tx_path_top
    generic map( 
-      dev_family           => DEV_FAMILY,
-      iq_width             => TX_IQ_WIDTH,
-      TX_IN_PCT_SIZE       => TX_IN_PCT_SIZE,
-      TX_IN_PCT_HDR_SIZE   => TX_IN_PCT_HDR_SIZE,
-      pct_size_w           => 16,
-      n_buff               => TX_N_BUFF,
-      in_pct_data_w        => TX_IN_PCT_DATA_W,
-      out_pct_data_w       => 64,
+      g_DEV_FAMILY         => DEV_FAMILY,
+      g_IQ_WIDTH           => TX_IQ_WIDTH,
+      g_PCT_MAX_SIZE       => TX_IN_PCT_SIZE,
+      g_PCT_HDR_SIZE       => TX_IN_PCT_HDR_SIZE,
+      g_BUFF_COUNT         => TX_N_BUFF,
+      g_FIFO_DATA_W        => TX_IN_PCT_DATA_W,
       decomp_fifo_size     => 9
       )
    port map(
@@ -199,10 +197,9 @@ begin
       smpl_fifo_wrusedw    => tx_smpl_fifo_wrusedw,
       smpl_fifo_data       => tx_smpl_fifo_data,
       --fifo ports
-      in_pct_reset_n_req   => inst1_in_pct_reset_n_req,
       in_pct_rdreq         => tx_in_pct_rdreq,
       in_pct_data          => tx_in_pct_data,
-      in_pct_rdy           => inst1_in_pct_rdy
+      in_pct_rdempty       => tx_in_pct_rdempty
       );
       
 -- ----------------------------------------------------------------------------
