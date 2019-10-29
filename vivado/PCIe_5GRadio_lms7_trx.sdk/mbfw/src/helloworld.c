@@ -128,7 +128,7 @@ signed short int converted_val = 300;	//Temperature
  * but should at least be static so they are zeroed.
  */
 static XSpi Spi0, Spi1, Spi2;
-static XGpio pll_rst, pllcfg_cmd, pllcfg_stat, extm_0_axi_sel, smpl_cmp_en, smpl_cmp_status;
+static XGpio pll_rst, pllcfg_cmd, pllcfg_stat, extm_0_axi_sel, smpl_cmp_sel, smpl_cmp_en, smpl_cmp_status;
 XClk_Wiz ClkWiz_Dynamic; /* The instance of the ClkWiz_Dynamic */
 
 
@@ -453,40 +453,182 @@ void ResetPLL(void)
 }
 
 // Change PLL phase
-void RdRXPLLCFG(tXPLL_CFG *pll_cfg)
+void RdPLLCFG(tXPLL_CFG *pll_cfg)
 {
-	pll_cfg->DIVCLK_DIVIDE	=1;
-	pll_cfg->CLKFBOUT_MULT	=23;
-	pll_cfg->CLKFBOUT_FRAC	=0;
+	uint8_t wr_buf[4];
+	uint8_t rd_buf[4];
+	int spirez;
+
+	uint8_t D_BYP, M_BYP, C0_BYP, C1_BYP, C2_BYP, C3_BYP, C4_BYP, C5_BYP, C6_BYP;
+
+	/* Get DIV and MULT bypass values */
+	/* D_BYP and M_BYP values comes from compatibility with existing Altera GW*/
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x26;	// Command and Address
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+	D_BYP = rd_buf[3] & 0x01;
+	M_BYP = (rd_buf[3] >> 2) & 0x01;
+
+	/* Get Output counter bypass values */
+	/* OX_BYP values comes from compatibility with existing Altera GW*/
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x27;	// Command and Address
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+	C0_BYP = rd_buf[3] & 0x01;
+	C1_BYP = (rd_buf[3] >>  2) & 0x01;
+	C2_BYP = (rd_buf[3] >>  4) & 0x01;
+	C3_BYP = (rd_buf[3] >>  6) & 0x01;
+	C4_BYP = (rd_buf[2]) & 0x01;
+	C5_BYP = (rd_buf[2] >> 2) & 0x01;
+	C6_BYP = (rd_buf[2] >> 4) & 0x01;
+
+	/* Read Divide value */
+	if (D_BYP) {
+		pll_cfg->DIVCLK_DIVIDE =1;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x2A;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->DIVCLK_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
+
+	/* Read Multiply value */
+	if (M_BYP) {
+		pll_cfg->CLKFBOUT_MULT	=1;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x2B;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKFBOUT_MULT	=rd_buf[2] + rd_buf[3];
+	}
+
+	/* Read Fractional multiply part*/
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x2C;	// Command and Address
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+	pll_cfg->CLKFBOUT_FRAC	=MFRAC_CNT_LSB(rd_buf[2], rd_buf[3]);
+
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x2D;	// Command and Address
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+
+	pll_cfg->CLKFBOUT_FRAC	= pll_cfg->CLKFBOUT_FRAC | MFRAC_CNT_MSB(rd_buf[2], rd_buf[3]);
 	pll_cfg->CLKFBOUT_PHASE	=0;
 
-	pll_cfg->CLKOUT0_DIVIDE  =23;
+	/* Read C0 divider*/
+	if (C0_BYP) {
+		pll_cfg->CLKOUT0_DIVIDE  = 1;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x2E;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT0_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
+
+
 	pll_cfg->CLKOUT0_FRAC    =0;
 	pll_cfg->CLKOUT0_PHASE   =0*1000;	//Phase value = (Phase Requested) * 1000. For example, for a 45.5 degree phase, the required value is 45500 = 0xB1BC.
 	pll_cfg->CLKOUT0_DUTY    =50*1000; 	//Duty cycle value = (Duty Cycle in %) * 1000
 
-	pll_cfg->CLKOUT1_DIVIDE  =23;
-	pll_cfg->CLKOUT1_FRAC    =0;
-	pll_cfg->CLKOUT1_PHASE   =90*1000;
+	/* Read C1 divider*/
+	if (C1_BYP) {
+		pll_cfg->CLKOUT1_DIVIDE  = pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x2F;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT1_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
+
+	pll_cfg->CLKOUT1_PHASE   =0*1000;
 	pll_cfg->CLKOUT1_DUTY    =50*1000;
 
-	pll_cfg->CLKOUT2_DIVIDE  =23;
+	/* Read C2 divider*/
+	if (C2_BYP) {
+		/* All register has to be set to valid values so we take same value as CO output */
+		pll_cfg->CLKOUT2_DIVIDE  = pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x30;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT2_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
+
 	pll_cfg->CLKOUT2_PHASE   =0;
 	pll_cfg->CLKOUT2_DUTY    =50*1000;
 
-	pll_cfg->CLKOUT3_DIVIDE  =23;
+	/* Read C3 divider*/
+	if (C3_BYP) {
+		/* All register has to be set to valid values so we take same value as CO output */
+		pll_cfg->CLKOUT3_DIVIDE  =pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x31;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT3_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
+
 	pll_cfg->CLKOUT3_PHASE   =0;
 	pll_cfg->CLKOUT3_DUTY    =50*1000;
 
-	pll_cfg->CLKOUT4_DIVIDE  =23;
+	/* Read C4 divider*/
+	if (C4_BYP) {
+		/* All register has to be set to valid values so we take same value as CO output */
+		pll_cfg->CLKOUT4_DIVIDE  =pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x32;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT4_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
 	pll_cfg->CLKOUT4_PHASE   =0;
 	pll_cfg->CLKOUT4_DUTY    =50*1000;
 
-	pll_cfg->CLKOUT5_DIVIDE  =23;
+	/* Read C5 divider*/
+	if (C5_BYP) {
+		/* All register has to be set to valid values so we take same value as CO output */
+		pll_cfg->CLKOUT5_DIVIDE  =pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x33;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT5_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
 	pll_cfg->CLKOUT5_PHASE   =0;
 	pll_cfg->CLKOUT5_DUTY    =50*1000;
 
-	pll_cfg->CLKOUT6_DIVIDE  =23;
+	/* Read C6 divider*/
+	if (C6_BYP) {
+		/* All register has to be set to valid values so we take same value as CO output */
+		pll_cfg->CLKOUT6_DIVIDE  =pll_cfg->CLKOUT0_DIVIDE;
+	}
+	else{
+		wr_buf[0] = 0x00;	// Command and Address
+		wr_buf[1] = 0x34;	// Command and Address
+		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		pll_cfg->CLKOUT3_DIVIDE	= rd_buf[2] + rd_buf[3];
+	}
 	pll_cfg->CLKOUT6_PHASE   =0;
 	pll_cfg->CLKOUT6_DUTY    =50*1000;
 
@@ -506,7 +648,6 @@ void RdTXPLLCFG(tXPLL_CFG *pll_cfg)
 	pll_cfg->CLKOUT0_DUTY    =50*1000; 	//Duty cycle value = (Duty Cycle in %) * 1000
 
 	pll_cfg->CLKOUT1_DIVIDE  =64;
-	pll_cfg->CLKOUT1_FRAC    =0;
 	pll_cfg->CLKOUT1_PHASE   =90*1000;
 	pll_cfg->CLKOUT1_DUTY    =50*1000;
 
@@ -638,6 +779,9 @@ uint8_t AutoUpdatePHCFG(void)
 	int PhaseMiddle = 0;
 	int cmp_status = 0;
 	int cmp_en = 0;
+	int cmp_sel= 0;
+	int timeout;
+	int lock_status;
 
 	/* State machine for VCTCXO tuning */
 	typedef enum state {
@@ -672,44 +816,63 @@ uint8_t AutoUpdatePHCFG(void)
 	//spirez = alt_avalon_spi_command(PLLCFG_SPI_BASE, 0, 2, wr_buf, 2, rd_buf, 0);
 	Val = CX_PHASE(rd_buf[0], rd_buf[1]); //(rd_buf[1] << 8) | rd_buf[0];
 
+	RdPLLCFG(&pll_cfg);
+
 	switch(pll_ind) {
 	case 0:
-		RdRXPLLCFG(&pll_cfg);
-		cmp_en = 0x01;
+		cmp_sel = 0x00;
 		break;
 	case 1:
-		RdRXPLLCFG(&pll_cfg);
-		cmp_en = 0x01;
+		cmp_sel = 0x00;
 		break;
 	case 2:
-		RdRXPLLCFG(&pll_cfg);
-		cmp_en = 0x02;
+		cmp_sel = 0x01;
 		break;
 	case 3:
-		RdRXPLLCFG(&pll_cfg);
-		cmp_en = 0x02;
+		cmp_sel = 0x01;
 		break;
 	default:
-		RdRXPLLCFG(&pll_cfg);
-		cmp_en = 0;
+		cmp_sel= 0x00;
 		break;
 	}
+
+	/* Select sample compare MUX */
+	XGpio_DiscreteWrite(&smpl_cmp_sel, 1, cmp_sel);
+	XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+
+
 
 	XGpio_DiscreteWrite(&extm_0_axi_sel, 1, pll_ind); 					// Select PLL AXI slave
 	pll_cfg.CLKOUT0_PHASE = 0;
 	pll_cfg.CLKOUT1_PHASE = 0;
-	while(!(Xil_In32(XPAR_EXTM_0_AXI_BASEADDR + XIL_CCR_STATUS)));
 
 	pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
 	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
 
-	for (int i=0; i<3600; i++){
-		XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0);
-		XGpio_DiscreteWrite(&smpl_cmp_en, 1, cmp_en);
-	    cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
-		while(!(cmp_status & 0x01)) {
+	for (int i=0; i<360; i++){
+		do {
 			cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
 		}
+		while((cmp_status & 0x01)!= 0);
+
+		timeout = 0;
+		do
+		{
+			lock_status = Xil_In32(XPAR_EXTM_0_AXI_BASEADDR + XIL_CCR_STATUS);
+		  	if (timeout++ > PLLCFG_TIMEOUT) return PHCFG_ERROR;
+		}
+		while (!(lock_status & 0x01));
+
+		XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x01);
+		asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+		asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+
+		do {
+			cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
+		}
+		while((cmp_status & 0x01)== 0);
 
 
 		switch(phase_state) {
@@ -721,9 +884,15 @@ uint8_t AutoUpdatePHCFG(void)
 			break;
 		case PHASE_MAX:
 			if (cmp_status == 0x03) {
-				phase_state = PHASE_DONE;
 				PhaseMax = i;
-				PhaseMiddle = (PhaseMax - PhaseMin) / 2;
+				PhaseMiddle = PhaseMin + (PhaseMax - PhaseMin) / 2;
+				if (PhaseMiddle > 0) {
+					phase_state = PHASE_DONE;
+				}
+				else
+				{
+					phase_state = PHASE_MIN;
+				}
 			}
 			break;
 		case PHASE_DONE:
@@ -735,19 +904,33 @@ uint8_t AutoUpdatePHCFG(void)
 		}
 
 		if (phase_state != PHASE_DONE) {
-			pll_cfg.CLKOUT1_PHASE = i*100;
+			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
+		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+			do {
+				cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
+			}
+			while((cmp_status & 0x01)!= 0);
+			pll_cfg.CLKOUT1_PHASE = i*1000;
 			while(!(Xil_In32(XPAR_EXTM_0_AXI_BASEADDR + XIL_CCR_STATUS)));
 			pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
 			pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
-			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0);
+
 		}
 
 		else {
-			pll_cfg.CLKOUT1_PHASE = PhaseMiddle*100;
+			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
+		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
+			do {
+				cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
+			}
+			while((cmp_status & 0x01)!= 0);
+			pll_cfg.CLKOUT1_PHASE = PhaseMiddle*1000;
 			while(!(Xil_In32(XPAR_EXTM_0_AXI_BASEADDR + XIL_CCR_STATUS)));
 			pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
 			pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
-			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0);
+			return PHCFG_DONE;
 			break;
 		}
 
@@ -755,7 +938,36 @@ uint8_t AutoUpdatePHCFG(void)
 
 
 
+	return PHCFG_ERROR;
+}
+
+// Updates PLL configuration
+uint8_t UpdatePLLCFG(void)
+{
+	uint8_t wr_buf[4];
+	uint8_t rd_buf[4];
+	int pll_ind, spirez;
+	uint8_t pllcfgrez;
+	tXPLL_CFG pll_cfg = {0};
+
+	// Get PLL index
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x23;	// Command and Address
+	//spirez = alt_avalon_spi_command(PLLCFG_SPI_BASE, 0, 2, wr_buf, 2, rd_buf, 0);
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+	pll_ind = PLL_IND(rd_buf[3]); //(rd_buf[0] >> 3) & 0x3F;
+
+	// Select PLL AXI slave to which PLL is connected externally
+	XGpio_DiscreteWrite(&extm_0_axi_sel, 1, pll_ind);
+
+	RdPLLCFG(&pll_cfg);
+
+	pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
+	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
+
 	return pllcfgrez;
+
 }
 
 void CfgPLL(void)
@@ -972,8 +1184,9 @@ int main()
 	uint8_t pllcfg_start_old, pllcfg_start;
 	uint8_t pllrst_start_old, pllrst_start;
 	uint8_t phcfg_mode;
-	//tPLL_CFG pll_config;
+tXPLL_CFG pll_cfg = {0};
 	uint8_t pllcfgrez;
+	uint16_t phcfgrez;
 
 	u32 pll_stat;
 
@@ -999,6 +1212,7 @@ int main()
     XGpio_Initialize(&pllcfg_cmd, XPAR_PLLCFG_COMMAND_DEVICE_ID);
     XGpio_Initialize(&pllcfg_stat, XPAR_PLLCFG_STATUS_DEVICE_ID);
     XGpio_Initialize(&extm_0_axi_sel, XPAR_EXTM_0_AXI_SEL_DEVICE_ID);
+    XGpio_Initialize(&smpl_cmp_sel, XPAR_SMPL_CMP_SEL_DEVICE_ID);
     XGpio_Initialize(&smpl_cmp_en, XPAR_SMPL_CMP_CMD_DEVICE_ID);
     XGpio_Initialize(&smpl_cmp_status, XPAR_SMPL_CMP_STAT_DEVICE_ID);
 
@@ -1020,6 +1234,9 @@ int main()
 
 
 	//pllcfgrez = AutoUpdatePHCFG();
+
+	RdPLLCFG(&pll_cfg);
+	//pllcfgrez = UpdatePLLCFG();
 
 
 
@@ -1046,41 +1263,28 @@ int main()
 	    		pllcfgrez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
 	    		pllcfgrez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
 
-	    		if (PLL_IND(rd_buf[3]) == 0) {
-	    			//pllcfgrez = AutoUpdatePHCFG();
-	    		}
+	    			phcfgrez = AutoUpdatePHCFG();
 
-	    		if (PLL_IND(rd_buf[3]) == 1) {
-	    			//pllcfgrez = AutoUpdatePHCFG();
-	    		}
-
-	    		if (PLL_IND(rd_buf[3]) == 2) {
-	    			//pllcfgrez = AutoUpdatePHCFG();
-	    		}
-
-	    		if (PLL_IND(rd_buf[3]) == 3) {
-	    			//pllcfgrez = AutoUpdatePHCFG();
-	    		}
 
 	    	}
 	    	else{
-	    		//pllcfgrez = UpdatePHCFG();
+	    			phcfgrez = 0x01;
 
 	    	};
 
 	    	//IOWR(PLLCFG_STATUS_BASE, 0x00, (pllcfgrez << 2) | PLLCFG_DONE);
-	    	pllcfgrez = 0x00;
+	    	//pllcfgrez = 0x00;
 	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1 , (pllcfgrez << 2) | PLLCFG_DONE);
 	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1 , PLLCFG_DONE | PHCFG_DONE);
-	    	XGpio_DiscreteWrite(&pllcfg_stat, 1 , PLLCFG_DONE);
+	    	XGpio_DiscreteWrite(&pllcfg_stat, 1 , (phcfgrez << 10) | PLLCFG_DONE);
 	    }
 
 	    // Check if there is a request for PLL configuration update
 	    if((pllcfg_start_old == 0) && (pllcfg_start != 0))
 	    {
 	    	//IOWR(PLLCFG_STATUS_BASE, 0x00, PLLCFG_BUSY);
-	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1, PLLCFG_BUSY);
-	    	//pllcfgrez = UpdatePLLCFG();
+	    	XGpio_DiscreteWrite(&pllcfg_stat, 1, PLLCFG_BUSY);
+	    	pllcfgrez = UpdatePLLCFG();
 	    	//IOWR(PLLCFG_STATUS_BASE, 0x00, (pllcfgrez << 2) | PLLCFG_DONE);
 	    	pllcfgrez = 0x00;
 	    	//XGpio_DiscreteWrite(&pllcfg_stat, 1 , (pllcfgrez << 2) | PLLCFG_DONE);

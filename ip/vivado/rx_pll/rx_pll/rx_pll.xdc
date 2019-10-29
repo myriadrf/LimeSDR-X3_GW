@@ -56,4 +56,7 @@
 #set_input_jitter [get_clocks -of_objects [get_ports clk_in1]] 0.08138
 
 
+
+#create_clock -period 10 [get_ports s_axi_aclk]
+set_false_path -from  [get_pins  -leaf -of_objects [get_cells -hier *ram_clk_config* -filter {is_sequential}] -filter {NAME=~*/C}] -to [get_pins  -leaf -of_objects [get_cells -hier *ram* -filter {is_sequential}] -filter {NAME=~*/D}]
 set_property PHASESHIFT_MODE WAVEFORM [get_cells -hierarchical *adv*]

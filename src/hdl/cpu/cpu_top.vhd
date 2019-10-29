@@ -155,7 +155,8 @@ entity cpu_top is
       pll_c1               : out    std_logic;
       pll_locked           : out    std_logic;
       smpl_cmp_en          : out    std_logic_vector ( 3 downto 0 );
-      smpl_cmp_status      : in     std_logic_vector ( 1 downto 0 )
+      smpl_cmp_status      : in     std_logic_vector ( 1 downto 0 );
+      smpl_cmp_sel         : out    std_logic_vector (0 downto 0)
       
 
    );
@@ -305,6 +306,7 @@ architecture arch of cpu_top is
       extm_0_axi_sel_tri_o       : out STD_LOGIC_VECTOR ( 3 downto 0 );
       smpl_cmp_en_tri_o          : out STD_LOGIC_VECTOR ( 3 downto 0 );
       smpl_cmp_status_tri_i      : in STD_LOGIC_VECTOR ( 1 downto 0 );
+      smpl_cmp_sel_tri_o         : out STD_LOGIC_VECTOR ( 0 to 0 );
       
       pll_c0                     : out STD_LOGIC;
       pll_c1                     : out STD_LOGIC;
@@ -579,7 +581,8 @@ begin
       pll_c1                   => pll_c1,
       pll_locked               => pll_locked,
       smpl_cmp_en_tri_o        => smpl_cmp_en,
-      smpl_cmp_status_tri_i    => smpl_cmp_status_sync
+      smpl_cmp_status_tri_i    => smpl_cmp_status_sync,
+      smpl_cmp_sel_tri_o       => smpl_cmp_sel
    );
    
 
@@ -592,6 +595,8 @@ begin
       to_pllcfg_int.pllcfg_done  <= inst0_pllcfg_stat_export(0);
       to_pllcfg_int.pllcfg_busy  <= inst0_pllcfg_stat_export(1);
       to_pllcfg_int.pllcfg_err   <= inst0_pllcfg_stat_export(9 downto 2);
+      to_pllcfg_int.phcfg_done   <= inst0_pllcfg_stat_export(10);
+      to_pllcfg_int.phcfg_error  <= inst0_pllcfg_stat_export(11);
    end process;
    
 -- ----------------------------------------------------------------------------

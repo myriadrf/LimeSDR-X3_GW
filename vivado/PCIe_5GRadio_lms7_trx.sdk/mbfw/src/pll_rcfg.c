@@ -73,7 +73,7 @@ uint8_t set_xpll_config(uint32_t PLL_BASE, tXPLL_CFG *pll_cfg)
 	Xil_Out32(PLL_BASE + XIL_CCR_4, pll_cfg->CLKOUT0_DUTY);
 
 	// Clock Configuration Register 5,6,7
-	Xil_Out32(PLL_BASE + XIL_CCR_5, 0x00000000 | pll_cfg->CLKOUT1_FRAC << 8 | pll_cfg->CLKOUT1_DIVIDE );
+	Xil_Out32(PLL_BASE + XIL_CCR_5, 0x00000000 | pll_cfg->CLKOUT1_DIVIDE );
 	Xil_Out32(PLL_BASE + XIL_CCR_6, pll_cfg->CLKOUT1_PHASE);
 	Xil_Out32(PLL_BASE + XIL_CCR_7, pll_cfg->CLKOUT1_DUTY);
 
@@ -153,6 +153,16 @@ uint8_t start_XReconfig(uint32_t PLL_BASE)
 {
 	unsigned int status_reconfig, timeout;
 
+	timeout = 0;
+	timeout = 0;
+	do
+	{
+	  	status_reconfig = Xil_In32(PLL_BASE + XIL_CCR_STATUS);
+	  	if (timeout++ > PLLCFG_TIMEOUT) return PLLCFG_CX_TIMEOUT;
+	}
+	while (!(status_reconfig & 0x01));
+
+
 	//Loads Clock Configuration Registers (Bit[0] = LOAD / SEN, Bit[1] = SADDR)
 	Xil_Out32(PLL_BASE + XIL_CCR_23, 0x3);
 
@@ -163,6 +173,10 @@ uint8_t start_XReconfig(uint32_t PLL_BASE)
 	  	if (timeout++ > PLLCFG_TIMEOUT) return PLLCFG_CX_TIMEOUT;
 	}
 	while (status_reconfig & 0x01);
+
+	Xil_Out32(PLL_BASE + XIL_CCR_RESET, 0xA);
+
+
 
 	return PLLCFG_NOERR;
 }

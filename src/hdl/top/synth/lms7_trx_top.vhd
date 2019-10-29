@@ -462,6 +462,7 @@ signal inst0_pll_axi_sel         : std_logic_vector(3 downto 0);
 signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
 signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
 signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
+signal inst0_smpl_cmp_sel        : std_logic_vector(0 downto 0);
 
 
 --test_out
@@ -570,6 +571,7 @@ signal inst6_rx_smpl_cmp_err        : std_logic;
 signal inst6_sdout                  : std_logic;
 signal inst6_tx_ant_en              : std_logic; 
 signal inst6_rx_smpl_cnt_en         : std_logic;
+signal inst6_rx_smpl_cmp_start      : std_logic;
 
 --inst7
 --constant c_WFM_INFIFO_SIZE          : integer := FIFO_WORDS_TO_Nbits(g_WFM_INFIFO_SIZE/(c_S0_DATA_WIDTH/8),true);
@@ -600,6 +602,7 @@ signal inst8_rx_smpl_cmp_err        : std_logic;
 signal inst8_sdout                  : std_logic; 
 signal inst8_tx_ant_en              : std_logic; 
 signal inst8_rx_smpl_cnt_en         : std_logic;
+signal inst8_rx_smpl_cmp_start      : std_logic;
 
 --inst9
 signal inst9_tx_pct_loss_flg        : std_logic;
@@ -882,6 +885,7 @@ begin
       pll_c0                     => inst0_pll_c0,
       pll_c1                     => inst0_pll_c1,
       pll_locked                 => inst0_pll_locked,
+      smpl_cmp_sel               => inst0_smpl_cmp_sel,
       smpl_cmp_en                => inst0_smpl_cmp_en, 
       smpl_cmp_status            => inst0_smpl_cmp_status
       
@@ -889,11 +893,15 @@ begin
    );
    
    
-   inst0_smpl_cmp_status(0)   <= inst6_rx_smpl_cmp_done when inst0_smpl_cmp_en(0)='1' else
+   inst0_smpl_cmp_status(0)   <= inst6_rx_smpl_cmp_done when inst0_smpl_cmp_sel(0)='0' else
                                  inst8_rx_smpl_cmp_done;
    
-   inst0_smpl_cmp_status(1)   <= inst6_rx_smpl_cmp_err when inst0_smpl_cmp_en(0)='1' else
+   inst0_smpl_cmp_status(1)   <= inst6_rx_smpl_cmp_err when inst0_smpl_cmp_sel(0)='0' else
                                  inst8_rx_smpl_cmp_err;
+                                 
+                                 
+   inst6_rx_smpl_cmp_start <= inst0_smpl_cmp_en(0) when inst0_smpl_cmp_sel(0)='0' else '0';
+   inst8_rx_smpl_cmp_start <= inst0_smpl_cmp_en(0) when inst0_smpl_cmp_sel(0)='1' else '0';
                                  
                                                      
 
@@ -1402,8 +1410,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst6_rx_data_valid,
       rx_data              => inst6_rx_data,
-      rx_smpl_cmp_start    => inst1_lms1_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst1_lms1_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst6_rx_smpl_cmp_start,               --inst1_lms1_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
       rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en,
@@ -1533,8 +1541,8 @@ begin
       rx_diq_l             => open,
       rx_data_valid        => inst8_rx_data_valid,
       rx_data              => inst8_rx_data,
-      rx_smpl_cmp_start    => inst1_lms2_smpl_cmp_en,
-      rx_smpl_cmp_length   => inst1_lms2_smpl_cmp_cnt,
+      rx_smpl_cmp_start    => inst8_rx_smpl_cmp_start,               --inst1_lms2_smpl_cmp_en,
+      rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms2_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst8_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst8_rx_smpl_cmp_err,
       rx_smpl_cnt_en       => inst8_rx_smpl_cnt_en,

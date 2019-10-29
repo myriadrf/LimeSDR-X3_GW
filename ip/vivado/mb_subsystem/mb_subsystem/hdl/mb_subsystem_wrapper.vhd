@@ -1,7 +1,7 @@
 --Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
---Date        : Fri Oct 25 11:16:15 2019
+--Date        : Tue Oct 29 10:18:23 2019
 --Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 --Command     : generate_target mb_subsystem_wrapper.bd
 --Design      : mb_subsystem_wrapper
@@ -56,6 +56,7 @@ entity mb_subsystem_wrapper is
     pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
     reset_n : in STD_LOGIC;
     smpl_cmp_en_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    smpl_cmp_sel_tri_o : out STD_LOGIC_VECTOR ( 0 to 0 );
     smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_0_io0_io : inout STD_LOGIC;
     spi_0_io1_io : inout STD_LOGIC;
@@ -80,18 +81,23 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     Clk : in STD_LOGIC;
     reset_n : in STD_LOGIC;
     fifo_write_0_aclr : out STD_LOGIC;
-    spi_0_io0_i : in STD_LOGIC;
-    spi_0_io0_o : out STD_LOGIC;
-    spi_0_io0_t : out STD_LOGIC;
-    spi_0_io1_i : in STD_LOGIC;
-    spi_0_io1_o : out STD_LOGIC;
-    spi_0_io1_t : out STD_LOGIC;
-    spi_0_sck_i : in STD_LOGIC;
-    spi_0_sck_o : out STD_LOGIC;
-    spi_0_sck_t : out STD_LOGIC;
-    spi_0_ss_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    spi_0_ss_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
-    spi_0_ss_t : out STD_LOGIC;
+    pll_c0 : out STD_LOGIC;
+    pll_locked : out STD_LOGIC;
+    pll_c1 : out STD_LOGIC;
+    extm_axi_resetn_out : out STD_LOGIC_VECTOR ( 0 to 0 );
+    extm_0_axi_sel_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    gpio_1_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    gpio_0_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    iic_0_scl_i : in STD_LOGIC;
+    iic_0_scl_o : out STD_LOGIC;
+    iic_0_scl_t : out STD_LOGIC;
+    iic_0_sda_i : in STD_LOGIC;
+    iic_0_sda_o : out STD_LOGIC;
+    iic_0_sda_t : out STD_LOGIC;
+    fifo_write_0_wr_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    fifo_write_0_almost_full : in STD_LOGIC;
+    fifo_write_0_wr_en : out STD_LOGIC;
+    fifo_write_0_full : in STD_LOGIC;
     spi_1_io0_i : in STD_LOGIC;
     spi_1_io0_o : out STD_LOGIC;
     spi_1_io0_t : out STD_LOGIC;
@@ -104,24 +110,12 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_1_ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_1_ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_1_ss_t : out STD_LOGIC;
-    gpio_0_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    iic_0_scl_i : in STD_LOGIC;
-    iic_0_scl_o : out STD_LOGIC;
-    iic_0_scl_t : out STD_LOGIC;
-    iic_0_sda_i : in STD_LOGIC;
-    iic_0_sda_o : out STD_LOGIC;
-    iic_0_sda_t : out STD_LOGIC;
-    gpio_1_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    fifo_write_0_wr_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    fifo_write_0_almost_full : in STD_LOGIC;
-    fifo_write_0_wr_en : out STD_LOGIC;
-    fifo_write_0_full : in STD_LOGIC;
-    uart_0_rxd : in STD_LOGIC;
-    uart_0_txd : out STD_LOGIC;
     fifo_read_0_almost_empty : in STD_LOGIC;
     fifo_read_0_rd_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
     fifo_read_0_rd_en : out STD_LOGIC;
     fifo_read_0_empty : in STD_LOGIC;
+    uart_0_rxd : in STD_LOGIC;
+    uart_0_txd : out STD_LOGIC;
     spi_2_io0_i : in STD_LOGIC;
     spi_2_io0_o : out STD_LOGIC;
     spi_2_io0_t : out STD_LOGIC;
@@ -134,12 +128,21 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_2_ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_2_ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_2_ss_t : out STD_LOGIC;
-    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    spi_0_io0_i : in STD_LOGIC;
+    spi_0_io0_o : out STD_LOGIC;
+    spi_0_io0_t : out STD_LOGIC;
+    spi_0_io1_i : in STD_LOGIC;
+    spi_0_io1_o : out STD_LOGIC;
+    spi_0_io1_t : out STD_LOGIC;
+    spi_0_sck_i : in STD_LOGIC;
+    spi_0_sck_o : out STD_LOGIC;
+    spi_0_sck_t : out STD_LOGIC;
+    spi_0_ss_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    spi_0_ss_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
+    spi_0_ss_t : out STD_LOGIC;
     pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    pll_c0 : out STD_LOGIC;
-    pll_locked : out STD_LOGIC;
-    pll_c1 : out STD_LOGIC;
+    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
     extm_0_axi_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
     extm_0_axi_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     extm_0_axi_awvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -159,10 +162,9 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     extm_0_axi_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     extm_0_axi_rvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     extm_0_axi_rready : out STD_LOGIC_VECTOR ( 0 to 0 );
-    extm_0_axi_sel_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    extm_axi_resetn_out : out STD_LOGIC_VECTOR ( 0 to 0 );
     smpl_cmp_en_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 )
+    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    smpl_cmp_sel_tri_o : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
   end component mb_subsystem;
   component IOBUF is
@@ -312,6 +314,7 @@ mb_subsystem_i: component mb_subsystem
       pllcfg_stat_tri_o(11 downto 0) => pllcfg_stat_tri_o(11 downto 0),
       reset_n => reset_n,
       smpl_cmp_en_tri_o(3 downto 0) => smpl_cmp_en_tri_o(3 downto 0),
+      smpl_cmp_sel_tri_o(0) => smpl_cmp_sel_tri_o(0),
       smpl_cmp_status_tri_i(1 downto 0) => smpl_cmp_status_tri_i(1 downto 0),
       spi_0_io0_i => spi_0_io0_i,
       spi_0_io0_o => spi_0_io0_o,

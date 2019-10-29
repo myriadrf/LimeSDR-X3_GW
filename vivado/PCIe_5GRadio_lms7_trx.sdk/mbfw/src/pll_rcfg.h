@@ -96,8 +96,8 @@
 // PLL configuration status defines
 #define PLLCFG_DONE 1
 #define PLLCFG_BUSY 2
-#define PHCFG_DONE 	0x400
-#define PHCFG_ERROR 0x800
+#define PHCFG_DONE 	0x01
+#define PHCFG_ERROR 0x03
 
 // PLL configuration error codes
 #define PLLCFG_NOERR 0x00
@@ -148,7 +148,6 @@
 		uint32_t CLKOUT0_DUTY;
 
 		uint32_t CLKOUT1_DIVIDE;
-		uint32_t CLKOUT1_FRAC;
 		uint32_t CLKOUT1_PHASE;
 		uint32_t CLKOUT1_DUTY;
 
