@@ -171,10 +171,10 @@ begin
       rdreq       => buff_0_rd,
       q           => buff_0_rdata,
       rdempty     => inst0_rdempty, --buff_0_rempty,
-      rdusedw     => inst0_rdusedw --buff_0_rdusedw   
+      rdusedw     => inst0_rdusedw  --buff_0_rdusedw   
    );
    
-   buff_0_rempty <= '1' when (unsigned(inst0_rdusedw) < 4 OR inst0_rdempty = '1') else '0'; 
+   buff_0_rempty  <= inst0_rdempty; 
    buff_0_rdusedw <= inst0_rdusedw;
    
 -- ----------------------------------------------------------------------------

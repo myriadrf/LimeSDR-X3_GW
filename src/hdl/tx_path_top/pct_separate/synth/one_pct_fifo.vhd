@@ -66,6 +66,8 @@ signal inst1_reset_n             : std_logic;
 signal inst1_wrempty             : std_logic;
 signal inst1_rdusedw             : std_logic_vector(c_INST1_RDUSEDW_WIDTH-1 downto 0);
 signal inst1_rdempty             : std_logic;
+signal inst1_wr_rst_busy         : std_logic;
+signal inst1_rd_rst_busy         : std_logic;
 
 -- inst2
 signal inst2_rdreq               : std_logic;
@@ -102,7 +104,7 @@ begin
       infifo_rdempty    => infifo_rdempty,
       pct_wrreq         => inst0_pct_wrreq,
       pct_data          => inst0_pct_data,
-      pct_wrempty       => inst1_wrempty,
+      pct_wrempty       => inst1_wrempty AND (NOT inst1_wr_rst_busy),
       pct_header        => inst0_pct_header,    
       pct_header_valid  => inst0_pct_header_valid
    );
@@ -120,18 +122,20 @@ begin
       show_ahead     => "OFF"
    )
    port map(
-      reset_n     => inst1_reset_n,
-      wrclk       => clk,
-      wrreq       => inst0_pct_wrreq,
-      data        => inst0_pct_data,
-      wrfull      => open,
-      wrempty     => inst1_wrempty,
-      wrusedw     => open,
-      rdclk       => pct_rdclk,
-      rdreq       => pct_data_rdreq,
-      q           => pct_data,
-      rdempty     => inst1_rdempty,
-      rdusedw     => inst1_rdusedw           
+      reset_n        => inst1_reset_n,
+      wr_rst_busy    => inst1_wr_rst_busy,
+      rd_rst_busy    => inst1_rd_rst_busy,
+      wrclk          => clk,
+      wrreq          => inst0_pct_wrreq,
+      data           => inst0_pct_data,
+      wrfull         => open,
+      wrempty        => inst1_wrempty,
+      wrusedw        => open,
+      rdclk          => pct_rdclk,
+      rdreq          => pct_data_rdreq,
+      q              => pct_data,
+      rdempty        => inst1_rdempty,
+      rdusedw        => inst1_rdusedw           
    );
 
 -- ----------------------------------------------------------------------------
@@ -209,7 +213,7 @@ begin
          pct_rdy_reg <= '0';
       elsif (pct_rdclk'event AND pct_rdclk='1') then 
       
-         if unsigned(inst1_rdusedw) = pct_words  then 
+         if unsigned(inst1_rdusedw) >= pct_words  then 
             pct_rdy_reg <= '1';
          else
             pct_rdy_reg <= '0';

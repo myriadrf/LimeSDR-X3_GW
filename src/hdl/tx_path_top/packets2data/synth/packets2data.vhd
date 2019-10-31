@@ -182,7 +182,7 @@ p2d_wr_fsm_inst0 : entity work.p2d_wr_fsm
       
       process(instx_wrempty, instx_wr_rst_busy)
       begin   
-         for i in 0 to n_buff-1 loop
+         for i in 0 to g_BUFF_COUNT-1 loop
             inst0_pct_buff_rdy(i) <= instx_wrempty(i) AND NOT instx_wr_rst_busy(i);
          end loop;
       end process;

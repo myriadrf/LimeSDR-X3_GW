@@ -79,6 +79,8 @@ architecture arch of fifo_inst is
    signal xilinx_wrfull       : std_logic;
    signal xilinx_wrfull_rdclk : std_logic;
    signal xilinx_rdfull       : std_logic; -- same signal as xilinx_wrfull only in rdclk domain
+   signal xilinx_empty        : std_logic;
+   signal xilinx_rd_rst_busy  : std_logic;
 
 
       COMPONENT dcfifo_mixed_widths
@@ -277,7 +279,7 @@ begin
           dout => q,                   -- READ_DATA_WIDTH-bit output: Read Data: The output data bus is driven
                                           -- when reading the FIFO.
     
-          empty => rdempty,                 -- 1-bit output: Empty Flag: When asserted, this signal indicates that
+          empty => xilinx_empty,       -- 1-bit output: Empty Flag: When asserted, this signal indicates that
                                           -- the FIFO is empty. Read requests are ignored when the FIFO is empty,
                                           -- initiating a read while empty is not destructive to the FIFO.
     
@@ -305,7 +307,7 @@ begin
           rd_data_count => xilinx_rdusedw, -- RD_DATA_COUNT_WIDTH-bit output: Read Data Count: This bus indicates
                                           -- the number of words read from the FIFO.
     
-          rd_rst_busy => rd_rst_busy,     -- 1-bit output: Read Reset Busy: Active-High indicator that the FIFO
+          rd_rst_busy => xilinx_rd_rst_busy,     -- 1-bit output: Read Reset Busy: Active-High indicator that the FIFO
                                           -- read domain is currently in a reset state.
     
           sbiterr => open,             -- 1-bit output: Single Bit Error: Indicates that the ECC decoder
@@ -367,11 +369,15 @@ begin
          end if;
        end process;
        
-       wrempty <= '1' when unsigned(xilinx_wrusedw)=0 else '0';
-       wrfull  <= xilinx_wrfull;
+      wrempty <= '1' when unsigned(xilinx_wrusedw)=0 else '0';
+      wrfull  <= xilinx_wrfull;
        
-       wrusedw <= xilinx_wrusedw when xilinx_wrfull = '0' else (wrusedw_witdth-1=> '1', others=>'0');
-       rdusedw <= xilinx_rdusedw when xilinx_rdfull = '0' else (rdusedw_width-1=> '1', others=>'0');
+      wrusedw <= xilinx_wrusedw when xilinx_wrfull = '0' else (wrusedw_witdth-1=> '1', others=>'0');
+      
+      rdusedw <= xilinx_rdusedw when xilinx_rdfull = '0' else (rdusedw_width-1=> '1', others=>'0');
+      rdempty <= '1' when xilinx_rd_rst_busy = '1' else xilinx_empty;
+      
+      rd_rst_busy <= xilinx_rd_rst_busy;
        
             
     end generate;
