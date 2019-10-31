@@ -32,6 +32,8 @@ entity fifo_inst is
   port (
       --input ports 
       reset_n       : in std_logic;
+      wr_rst_busy   : out std_logic;
+      rd_rst_busy   : out std_logic;
       wrclk         : in std_logic;
       wrreq         : in std_logic;
       data          : in std_logic_vector(wrwidth-1 downto 0);
@@ -303,7 +305,7 @@ begin
           rd_data_count => xilinx_rdusedw, -- RD_DATA_COUNT_WIDTH-bit output: Read Data Count: This bus indicates
                                           -- the number of words read from the FIFO.
     
-          rd_rst_busy => open,     -- 1-bit output: Read Reset Busy: Active-High indicator that the FIFO
+          rd_rst_busy => rd_rst_busy,     -- 1-bit output: Read Reset Busy: Active-High indicator that the FIFO
                                           -- read domain is currently in a reset state.
     
           sbiterr => open,             -- 1-bit output: Single Bit Error: Indicates that the ECC decoder
@@ -319,7 +321,7 @@ begin
           wr_data_count => xilinx_wrusedw, -- WR_DATA_COUNT_WIDTH-bit output: Write Data Count: This bus indicates
                                           -- the number of words written into the FIFO.
     
-          wr_rst_busy => open,     -- 1-bit output: Write Reset Busy: Active-High indicator that the FIFO
+          wr_rst_busy => wr_rst_busy,     -- 1-bit output: Write Reset Busy: Active-High indicator that the FIFO
                                           -- write domain is currently in a reset state.
     
           din => data,                     -- WRITE_DATA_WIDTH-bit input: Write Data: The input data bus used when
