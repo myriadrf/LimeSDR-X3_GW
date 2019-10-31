@@ -102,6 +102,8 @@ signal inst3_pct_buff_sel           : std_logic_vector(3 downto 0);
 
 
 --instx
+signal instx_wr_rst_busy            : std_logic_vector(n_buff-1 downto 0);
+signal instx_rd_rst_busy            : std_logic_vector(n_buff-1 downto 0);
 signal instx_wrempty                : std_logic_vector(n_buff-1 downto 0);
 type instx_rdusedw_array is array (0 to (n_buff-1)) of std_logic_vector(9 downto 0);
 signal instx_rdusedw                : instx_rdusedw_array;
@@ -193,8 +195,15 @@ p2d_wr_fsm_inst0 : entity work.p2d_wr_fsm
       pct_data          => inst0_pct_data,
       pct_data_wrreq    => inst0_pct_data_wrreq,
 
-      pct_buff_rdy      => instx_wrempty     
+      pct_buff_rdy      => inst0_pct_buff_rdy --instx_wrempty     
       );
+      
+      process(instx_wrempty, instx_wr_rst_busy)
+      begin   
+         for i in 0 to n_buff-1 loop
+            inst0_pct_buff_rdy(i) <= instx_wrempty(i) AND NOT instx_wr_rst_busy(i);
+         end loop;
+      end process;
       
         
 -- ----------------------------------------------------------------------------
@@ -214,6 +223,8 @@ gen_fifo :
          port map(
             --input ports 
             reset_n       => inst3_pct_buff_clr_n(i),
+            wr_rst_busy   => instx_wr_rst_busy(i),
+            rd_rst_busy   => instx_rd_rst_busy(i),
             wrclk         => wclk,
             wrreq         => inst0_pct_data_wrreq(i),
             data          => inst0_pct_data,
