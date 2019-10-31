@@ -275,7 +275,7 @@ begin
       mem(22)  <= "0000000000000000"; -- 0  free, C8_HCNT[15:8], C8_LCNT[7:0]
       mem(23)  <= "0000000000000000"; -- 0  free, C9_HCNT[15:8], C9_LCNT[7:0]
       --mem(24)-mem(29) reserved for C10-C15 counters
-      mem(30)  <= "0000111111111111"; -- 0  free, auto_phcfg_smpls[15:0]
+      mem(30)  <= "1110111111111111"; -- 0  free, auto_phcfg_smpls[15:0]
       mem(31)  <= "0000000000000010"; -- 0  free, auto_phcfg_step
       
          
