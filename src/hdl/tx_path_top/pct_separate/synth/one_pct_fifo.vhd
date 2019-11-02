@@ -60,8 +60,8 @@ signal inst0_pct_header          : std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0)
 signal inst0_pct_header_valid    : std_logic;
 
 -- inst1
-constant c_INST1_WRUSEDW_WIDTH   : integer := FIFO_WORDS_TO_Nbits(g_PCT_MAX_SIZE/(g_INFIFO_DATA_WIDTH/8),true);
-constant c_INST1_RDUSEDW_WIDTH   : integer := FIFO_WORDS_TO_Nbits(g_PCT_MAX_SIZE/(g_PCTFIFO_RDATA_WIDTH/8),true);
+constant c_INST1_WRUSEDW_WIDTH   : integer := FIFO_WORDS_TO_Nbits(g_PCT_MAX_SIZE*2/(g_INFIFO_DATA_WIDTH/8),true);
+constant c_INST1_RDUSEDW_WIDTH   : integer := FIFO_WORDS_TO_Nbits(g_PCT_MAX_SIZE*2/(g_PCTFIFO_RDATA_WIDTH/8),true);
 signal inst1_reset_n             : std_logic;
 signal inst1_wrempty             : std_logic;
 signal inst1_rdusedw             : std_logic_vector(c_INST1_RDUSEDW_WIDTH-1 downto 0);
@@ -213,7 +213,7 @@ begin
          pct_rdy_reg <= '0';
       elsif (pct_rdclk'event AND pct_rdclk='1') then 
       
-         if unsigned(inst1_rdusedw) >= pct_words  then 
+         if unsigned(inst1_rdusedw) = pct_words  then 
             pct_rdy_reg <= '1';
          else
             pct_rdy_reg <= '0';
