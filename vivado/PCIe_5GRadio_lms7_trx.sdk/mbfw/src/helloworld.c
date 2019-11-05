@@ -764,6 +764,37 @@ uint8_t UpdatePHCFG(void)
 	return pllcfgrez;
 }
 
+int CheckSamples(int sel) {
+
+	int cmp_status = 1;
+	int timeout;
+
+	/* Select sample compare MUX */
+	XGpio_DiscreteWrite(&smpl_cmp_sel, 1, sel);
+	/* Disable sample compare*/
+	XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
+
+
+	timeout = 0;
+	do {
+		cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
+		if (timeout++ > PLLCFG_TIMEOUT) return 0;
+	}
+	while((cmp_status & 0x01)!= 0);
+
+	/* Enalbe sample compare */
+	XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x01);
+
+	timeout = 0;
+	do {
+		cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
+		if (timeout++ > PLLCFG_TIMEOUT) return 0;
+	}
+	while((cmp_status & 0x01)== 0);
+
+	return cmp_status;
+}
+
 // Change PLL phase
 uint8_t AutoUpdatePHCFG(void)
 {
@@ -777,7 +808,9 @@ uint8_t AutoUpdatePHCFG(void)
 	int PhaseMin = 0;
 	int PhaseMax = 0;
 	int PhaseMiddle = 0;
+	int PhaseRange = 0;
 	int cmp_status = 0;
+	int cmp_status_1 = 0;
 	int cmp_en = 0;
 	int cmp_sel= 0;
 	int timeout;
@@ -805,16 +838,16 @@ uint8_t AutoUpdatePHCFG(void)
 
 
 	// Set Up/Down
-	Dir = PH_DIR(rd_buf[0]); //(rd_buf[1] >> 5) & 0x01;
+	//Dir = PH_DIR(rd_buf[0]); //(rd_buf[1] >> 5) & 0x01;
 
 	// Set Cx
-	Cx = CX_IND(rd_buf[0]) - 2; //(rd_buf[1] & 0x1F);
+	//Cx = CX_IND(rd_buf[0]) - 2; //(rd_buf[1] & 0x1F);
 
 	// Set Phase Cnt
-	wr_buf[0] = 0x00;	// Command and Address
-	wr_buf[1] = 0x24;	// Command and Address
+	//wr_buf[0] = 0x00;	// Command and Address
+	//wr_buf[1] = 0x24;	// Command and Address
 	//spirez = alt_avalon_spi_command(PLLCFG_SPI_BASE, 0, 2, wr_buf, 2, rd_buf, 0);
-	Val = CX_PHASE(rd_buf[0], rd_buf[1]); //(rd_buf[1] << 8) | rd_buf[0];
+	//Val = CX_PHASE(rd_buf[0], rd_buf[1]); //(rd_buf[1] << 8) | rd_buf[0];
 
 	RdPLLCFG(&pll_cfg);
 
@@ -839,8 +872,6 @@ uint8_t AutoUpdatePHCFG(void)
 	/* Select sample compare MUX */
 	XGpio_DiscreteWrite(&smpl_cmp_sel, 1, cmp_sel);
 	XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
-    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
-    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
 
 
 
@@ -852,10 +883,6 @@ uint8_t AutoUpdatePHCFG(void)
 	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
 
 	for (int i=0; i<360; i++){
-		do {
-			cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
-		}
-		while((cmp_status & 0x01)!= 0);
 
 		timeout = 0;
 		do
@@ -865,14 +892,7 @@ uint8_t AutoUpdatePHCFG(void)
 		}
 		while (!(lock_status & 0x01));
 
-		XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x01);
-		asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
-		asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
-
-		do {
-			cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
-		}
-		while((cmp_status & 0x01)== 0);
+		cmp_status 	= CheckSamples(cmp_sel);
 
 
 		switch(phase_state) {
@@ -885,8 +905,9 @@ uint8_t AutoUpdatePHCFG(void)
 		case PHASE_MAX:
 			if (cmp_status == 0x03) {
 				PhaseMax = i;
+				PhaseRange = (PhaseMax - PhaseMin);
 				PhaseMiddle = PhaseMin + (PhaseMax - PhaseMin) / 2;
-				if (PhaseMiddle > 0) {
+				if (PhaseRange > 10) {
 					phase_state = PHASE_DONE;
 				}
 				else
@@ -1258,11 +1279,6 @@ tXPLL_CFG pll_cfg = {0};
 	    	//phcfg_mode = (IORD(PLLCFG_COMMAND_BASE, 0x00) & 0x08) >> 3;
 	    	phcfg_mode = (XGpio_DiscreteRead(&pllcfg_cmd, 1) & 0x08) >> 3;
 	    	if (phcfg_mode){
-	    		wr_buf[0] = 0x00;	// Command and Address
-	    		wr_buf[1] = 0x23;	// Command and Address
-	    		pllcfgrez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
-	    		pllcfgrez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-
 	    			phcfgrez = AutoUpdatePHCFG();
 
 
