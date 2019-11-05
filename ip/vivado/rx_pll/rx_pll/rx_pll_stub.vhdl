@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Mon Oct 28 11:24:04 2019
+-- Date        : Mon Oct 28 11:23:49 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/rx_pll/rx_pll/rx_pll_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top rx_pll -prefix
+--               rx_pll_ rx_pll_stub.vhdl
 -- Design      : rx_pll
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a200tfbg484-2
