@@ -77,8 +77,6 @@ architecture arch of fifo_inst is
    signal xilinx_wrusedw      : std_logic_vector(wrusedw_witdth-1 downto 0);
    signal xilinx_rdusedw      : std_logic_vector(rdusedw_width-1 downto 0);
    signal xilinx_wrfull       : std_logic;
-   signal xilinx_wrfull_rdclk : std_logic;
-   signal xilinx_rdfull       : std_logic; -- same signal as xilinx_wrfull only in rdclk domain
    signal xilinx_empty        : std_logic;
    signal xilinx_rd_rst_busy  : std_logic;
 
@@ -358,25 +356,14 @@ begin
     
        );
        
-       process(rst, rdclk)
-       begin 
-         if rst = '1' then 
-            xilinx_rdfull        <= '0';
-            xilinx_wrfull_rdclk  <= '0';
-         elsif rising_edge(rdclk) then 
-            xilinx_wrfull_rdclk  <= xilinx_wrfull;
-            xilinx_rdfull        <= xilinx_wrfull_rdclk;
-         end if;
-       end process;
-       
       wrempty <= '1' when unsigned(xilinx_wrusedw)=0 else '0';
       wrfull  <= xilinx_wrfull;
-       
-      wrusedw <= xilinx_wrusedw when xilinx_wrfull = '0' else (wrusedw_witdth-1=> '1', others=>'0');
+      wrusedw <= xilinx_wrusedw;
       
-      rdusedw <= xilinx_rdusedw when xilinx_rdfull = '0' else (rdusedw_width-1=> '1', others=>'0');
+      
+      
+      rdusedw <= xilinx_rdusedw;
       rdempty <= '1' when xilinx_rd_rst_busy = '1' else xilinx_empty;
-      
       rd_rst_busy <= xilinx_rd_rst_busy;
        
             
