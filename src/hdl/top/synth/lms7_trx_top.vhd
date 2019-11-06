@@ -2124,7 +2124,7 @@ begin
    gpio_t( 3) <= '0';
    gpio_t( 4) <= '0';
    gpio_t( 5) <= '0';
-   gpio_t( 6) <= '1';
+   gpio_t( 6) <= '0';
    gpio_t( 7) <= '1';
    gpio_t( 8) <= '0';
    gpio_t( 9) <= '0';
@@ -2137,11 +2137,11 @@ begin
    
    gpio_i( 0) <= inst1_lms1_rxpll_c0;         
    gpio_i( 1) <= '0';
-   gpio_i( 2) <= '0';
+   gpio_i( 2) <= inst6_tx_ant_en;
    gpio_i( 3) <= '0';
    gpio_i( 4) <= inst1_lms1_rxpll_c1;
    gpio_i( 5) <= '0';
-   gpio_i( 6) <= '0';
+   gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
    gpio_i( 8) <= inst1_lms1_rxpll_locked;
    gpio_i( 9) <= '0';
@@ -2170,33 +2170,33 @@ begin
    
    
    -- LMS1 PA power control (Active high, by default disabled)
-   LMS1_TX1_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(0); -- 0 default 
-   LMS1_TX1_2_EN        <= inst0_from_fpgacfg_mod_0.GPIO(1); -- 0 default
-   LMS1_TX2_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(2); -- 0 default
+   LMS1_TX1_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(0) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default 
+   LMS1_TX1_2_EN        <= inst0_from_fpgacfg_mod_0.GPIO(1) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
+   LMS1_TX2_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(2) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
    -- RF Switch LMS1 port 1
    RFSW1_TX1_V1         <= inst0_from_fpgacfg_mod_0.GPIO(4); -- 0 default
-   RFSW1_TRX1T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(5); -- 0 default 
+   RFSW1_TRX1T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(5) when inst0_from_fpgacfg_mod_0.GPIO(7) = '0' else NOT inst6_tx_ant_en; -- 0 default 
    RFSW1_TRX1R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(6); -- 1 default
    LNA1_EN_M            <= inst0_from_fpgacfg_mod_0.GPIO(8); -- 1 default 
    LNA1_BP_M            <= inst0_from_fpgacfg_mod_0.GPIO(9); -- 1 default 
    -- RF Switch LMS1 port 2
-   RFSW1_TRX2T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(12);-- 0 default
+   RFSW1_TRX2T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(12) when inst0_from_fpgacfg_mod_0.GPIO(15) = '0' else NOT inst6_tx_ant_en; -- 0 default
    RFSW1_TRX2R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(13);-- 1 default 
    RFSW1_RX2_V1         <= inst0_from_fpgacfg_mod_0.GPIO(14);-- 0 default 
    
    
    -- LMS2 PA power control (Active high, by default disabled)
-   LMS2_TX1_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(0); -- 0 default
-   LMS2_TX1_2_EN        <= inst0_from_fpgacfg_mod_1.GPIO(1); -- 0 default
-   LMS2_TX2_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(2); -- 0 default
+   LMS2_TX1_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(0) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
+   LMS2_TX1_2_EN        <= inst0_from_fpgacfg_mod_1.GPIO(1) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
+   LMS2_TX2_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(2) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
    -- RF Switch LMS2 port 1
    RFSW2_TX1_V1         <= inst0_from_fpgacfg_mod_1.GPIO(4); -- 0 default
-   RFSW2_TRX1T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(5); -- 0 default
+   RFSW2_TRX1T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(5) when inst0_from_fpgacfg_mod_1.GPIO(7) = '0' else NOT inst8_tx_ant_en; -- 0 default
    RFSW2_TRX1R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(6); -- 1 default                 
    LNA2_EN_M            <= inst0_from_fpgacfg_mod_1.GPIO(8); -- 1 default
    LNA2_BP_M            <= inst0_from_fpgacfg_mod_1.GPIO(9); -- 1 default
    -- RF Switch LMS2 port 2
-   RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12);-- 0 default
+   RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
                            
                         
