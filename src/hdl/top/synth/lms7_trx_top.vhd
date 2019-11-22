@@ -342,9 +342,9 @@ entity lms7_trx_top is
       XO_TUNE_FPGA      : out    std_logic;
          --GNSS
       GNSS_UART_TX      : in     std_logic;
-      GNSS_UART_RX      : out    std_logic;
+      GNSS_UART_RX      : out    std_logic := '1';
       GNSS_LCKIND       : in     std_logic;
-      GNSS_RESET_N      : out    std_logic;
+      GNSS_RESET_N      : out    std_logic := '1';
       GNSS_PPS          : in     std_logic;
          -- PPS
       PPS_OUT            : out    std_logic;
@@ -496,6 +496,7 @@ signal inst1_lms2_smpl_cmp_en          : std_logic;
 signal inst1_lms2_smpl_cmp_cnt         : std_logic_vector(15 downto 0);
 
 signal inst1_pll_0_c0                  : std_logic;
+signal inst1_pll_0_c0_pin              : std_logic;
 signal inst1_pll_0_c1                  : std_logic;
 signal inst1_pll_0_locked              : std_logic;
 signal inst1_pll_0_rcnfg_from_pll      : std_logic_vector(63 downto 0);
@@ -728,6 +729,7 @@ begin
    
    io_inst : entity work.io_buff
    port map(
+      clk_200mhz        => inst1_pll_0_c0,
       -- 14-bit ADC
       ADC_CLK_P         => FPGA_ADC_CLK_P,
       ADC_CLK_N         => FPGA_ADC_CLK_N,
@@ -741,6 +743,8 @@ begin
       adc_o             => io_adc_o,
       adc_i             => io_adc_i
       );
+      
+      io_adc_i.RESET <= inst0_gpo(0);
    
 -- ----------------------------------------------------------------------------
 -- Reset logic
@@ -1039,14 +1043,12 @@ begin
       lms2_smpl_cmp_error        => inst8_rx_smpl_cmp_err,
       lms2_smpl_cmp_cnt          => inst1_lms2_smpl_cmp_cnt,
       -- PLL for DAC, ADC
-      pll_0_inclk                => LMK_CLK,
+      pll_0_inclk                => CLK100_FPGA, 
       pll_0_rcnfg_to_pll         => inst0_pll_rcfg_to_pll_4,
       pll_0_rcnfg_from_pll       => inst1_pll_0_rcnfg_from_pll,
       pll_0_logic_reset_n        => not inst0_pll_rst(4),
       pll_0_c0                   => inst1_pll_0_c0,
-      pll_0_c0_pin               => open,  -- ADC_CLK !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
       pll_0_c1                   => inst1_pll_0_c1,
-      pll_0_c1_pin               => open,  -- DAC_CLK_WRT !!!!!!
       pll_0_locked               => inst1_pll_0_locked,
       -- Reconfiguration AXI ports
       rcnfg_axi_clk              => CLK100_FPGA,
@@ -1075,11 +1077,13 @@ begin
    
    LMS1_FCLK2 <= inst1_lms1_rxpll_c0;
    
+   
+   
 
 
    
 
-   io_adc_i.CLK <= inst1_pll_0_c0;
+   io_adc_i.CLK <= inst1_pll_0_c1;
       
 -- ----------------------------------------------------------------------------
 -- pcie_top instance.
@@ -1164,14 +1168,14 @@ begin
      H2F_S1_1_rempty      => inst2_H2F_S1_1_rempty,
      H2F_S1_1_rdusedw     => inst2_H2F_S1_1_rdusedw, 
 
-     H2F_S2_0_rdclk       => inst1_pll_0_c1,
+     H2F_S2_0_rdclk       => io_adc_o.CLKOUT_LOGIC,
      H2F_S2_0_aclrn       => inst11_tx_in_pct_reset_n_req,
      H2F_S2_0_rd          => inst11_tx_in_pct_rdreq,
      H2F_S2_0_rdata       => inst2_H2F_S2_0_rdata,
      H2F_S2_0_rempty      => inst2_H2F_S2_0_rempty,
      H2F_S2_0_rdusedw     => inst2_H2F_S2_0_rdusedw,
   
-     H2F_S2_1_rdclk       => inst1_pll_0_c1,
+     H2F_S2_1_rdclk       => io_adc_o.CLKOUT_LOGIC,
      H2F_S2_1_aclrn       => inst0_from_fpgacfg_2.wfm_load,
      H2F_S2_1_rd          => inst11_wfm_in_pct_rdreq,
      H2F_S2_1_rdata       => inst2_H2F_S2_1_rdata,
@@ -1192,7 +1196,7 @@ begin
      F2H_S1_wfull         => inst2_F2H_S1_wfull,
      F2H_S1_wrusedw       => inst2_F2H_S1_wrusedw,
    
-     F2H_S2_wclk          => LMK_CLK,  -- !!!!!! change to ADC_CLKOUT,
+     F2H_S2_wclk          => io_adc_o.CLKOUT_LOGIC,  -- !!!!!! change to ADC_CLKOUT,
      F2H_S2_aclrn         => inst11_rx_pct_fifo_aclrn_req,
      F2H_S2_wr            => inst11_rx_pct_fifo_wrreq,
      F2H_S2_wdata         => inst11_rx_pct_fifo_wdata,
@@ -1716,97 +1720,100 @@ begin
 ----      rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata  
 ----   );
    
----- ----------------------------------------------------------------------------
----- External DAC and ADC
----- ----------------------------------------------------------------------------
---   -- Rx interface is enabled only when user_read_32 port is opened from Host. 
---   process(inst0_from_fpgacfg_2, inst2_F2H_S2_open)
---   begin 
---      inst0_from_fpgacfg_mod_2        <= inst0_from_fpgacfg_2;
---      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open;
---   end process;
-   
---   inst10_adc_top : entity work.adc_top
---   generic map( 
---      dev_family           => g_DEV_FAMILY,
---      data_width           => 7,
---      smpls_to_capture     => 4
---      )
---   port map(
---      clk               => io_adc_o.CLKOUT,
---      reset_n           => inst1_pll_0_locked,
---      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
---      ch_a              => io_adc_o.DA,
---      ch_b              => io_adc_o.DB,     
---      --SDR parallel output data
---      data_ch_a         => inst10_data_ch_a, 
---      data_ch_b         => inst10_data_ch_b,  
---      --Interleaved samples of both channels
---      data_ch_ab        => inst10_rx_data,
---      data_ch_ab_valid  => inst10_rx_data_valid,
---      test_out          => open,
---      to_rxtspcfg       => inst0_to_rxtspcfg,
---      from_rxtspcfg     => inst0_from_rxtspcfg
---   );
+-- ----------------------------------------------------------------------------
+-- External DAC and ADC
+-- ----------------------------------------------------------------------------
+   -- Rx interface is enabled only when user_read_32 port is opened from Host. 
+   process(inst0_from_fpgacfg_2, inst2_F2H_S2_open)
+   begin 
+      inst0_from_fpgacfg_mod_2        <= inst0_from_fpgacfg_2;
+      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open;
+   end process;
+ 
+   inst10_adc_top : entity work.adc_top
+   generic map( 
+      dev_family           => g_DEV_FAMILY,
+      data_width           => 7,
+      smpls_to_capture     => 4
+      )
+   port map(
+      clk               => io_adc_o.CLKOUT_LOGIC,
+      clk_io            => io_adc_o.CLKOUT_IO,
+      reset_n           => reset_n,
+      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
+      ch_a              => io_adc_o.DA,
+      ch_b              => io_adc_o.DB,     
+      --SDR parallel output data
+      data_ch_a         => inst10_data_ch_a, 
+      data_ch_b         => inst10_data_ch_b,  
+      --Interleaved samples of both channels
+      data_ch_ab        => inst10_rx_data,
+      data_ch_ab_valid  => inst10_rx_data_valid,
+      test_out          => open,
+      to_rxtspcfg       => inst0_to_rxtspcfg,
+      from_rxtspcfg     => inst0_from_rxtspcfg
+   );
    
  -- RX and TX module
---   inst11_rxtx_top : entity work.rxtx_top
---   generic map(
---      DEV_FAMILY              => g_DEV_FAMILY,
---      -- TX parameters
---      TX_IQ_WIDTH             => 14,
---      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
---      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
---      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
---      TX_IN_PCT_DATA_W        => c_H2F_S2_0_RWIDTH,      -- 
---      TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
---      
---      -- RX parameters
---      RX_IQ_WIDTH             => 14,
---      RX_INVERT_INPUT_CLOCKS  => "ON",
---      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
---      
---   )
---   port map(                                             
---      from_fpgacfg            => inst0_from_fpgacfg_mod_2,
---      to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
---      from_tstcfg             => inst0_from_tstcfg,      
---      -- TX module signals
---      tx_clk                  => inst1_pll_0_c1,
---      tx_clk_reset_n          => inst1_pll_0_locked,     
---      tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
---      tx_txant_en             => inst11_tx_txant_en,  
---      --Tx interface data 
---      tx_smpl_fifo_wrreq      => inst11_tx_smpl_fifo_wrreq,
---      tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
---      tx_smpl_fifo_wrusedw    => inst12_tx0_wrusedw,
---      tx_smpl_fifo_data       => inst11_tx_smpl_fifo_data,
---      --TX packet FIFO ports
---      tx_in_pct_reset_n_req   => inst11_tx_in_pct_reset_n_req,
---      tx_in_pct_rdreq         => inst11_tx_in_pct_rdreq,
---      tx_in_pct_data          => inst2_H2F_S2_0_rdata,
---      tx_in_pct_rdempty       => inst2_H2F_S2_0_rempty,
---      tx_in_pct_rdusedw       => inst2_H2F_S2_0_rdusedw,     
---      -- RX path
---      rx_clk                  => io_adc_o.CLKOUT,
---      rx_clk_reset_n          => inst1_pll_0_locked,
---      --RX FIFO for IQ samples   
---      rx_smpl_fifo_wrreq      => inst10_rx_data_valid,
---      rx_smpl_fifo_data       => inst10_rx_data,
---      rx_smpl_fifo_wrfull     => open,
---      --RX Packet FIFO ports
---      rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
---      rx_pct_fifo_wusedw      => inst2_F2H_S2_wrusedw,
---      rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
---      rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata  
---   );
-   
---   inst12_tx1_data   <= inst10_data_ch_b & inst10_data_ch_a;
---   inst12_tx1_wrreq  <= (not inst12_tx1_wrfull) AND (inst0_from_fpgacfg_mod_2.dlb_en AND inst1_pll_0_locked);
-   
---   inst12_tx_src_sel <= "00" when inst0_from_fpgacfg_mod_2.rx_en = '1' else 
---                        "01" when inst0_from_fpgacfg_mod_2.dlb_en = '1' else 
---                        "10";
+   inst11_rxtx_top : entity work.rxtx_top
+   generic map(
+      DEV_FAMILY              => g_DEV_FAMILY,
+      -- TX parameters
+      TX_IQ_WIDTH             => 14,
+      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
+      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
+      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
+      TX_IN_PCT_DATA_W        => c_H2F_S2_0_RWIDTH,      -- 
+      TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
+      
+      -- RX parameters
+      RX_IQ_WIDTH             => 14,
+      RX_INVERT_INPUT_CLOCKS  => "ON",
+      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
+      
+   )
+   port map(                                             
+      from_fpgacfg            => inst0_from_fpgacfg_mod_2,
+      to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
+      from_tstcfg             => inst0_from_tstcfg,      
+      -- TX module signals
+      tx_clk                  => io_adc_o.CLKOUT_LOGIC,
+      tx_clk_reset_n          => reset_n,     
+      tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
+      tx_txant_en             => inst11_tx_txant_en,  
+      --Tx interface data 
+      tx_smpl_fifo_wrreq      => inst11_tx_smpl_fifo_wrreq,
+      tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
+      tx_smpl_fifo_wrusedw    => inst12_tx0_wrusedw,
+      tx_smpl_fifo_data       => inst11_tx_smpl_fifo_data,
+      --TX packet FIFO ports
+      tx_in_pct_reset_n_req   => inst11_tx_in_pct_reset_n_req,
+      tx_in_pct_rdreq         => inst11_tx_in_pct_rdreq,
+      tx_in_pct_data          => inst2_H2F_S2_0_rdata,
+      tx_in_pct_rdempty       => inst2_H2F_S2_0_rempty,
+      tx_in_pct_rdusedw       => inst2_H2F_S2_0_rdusedw,     
+      -- RX path
+      rx_clk                  => io_adc_o.CLKOUT_LOGIC,
+      rx_clk_reset_n          => reset_n,
+      --RX FIFO for IQ samples   
+      rx_smpl_fifo_wrreq      => inst10_rx_data_valid,
+      rx_smpl_fifo_data       => inst10_rx_data,
+      rx_smpl_fifo_wrfull     => open,
+      --RX Packet FIFO ports
+      rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
+      rx_pct_fifo_wusedw      => inst2_F2H_S2_wrusedw,
+      rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
+      rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata,
+      -- RX sample nr count enable
+      rx_smpl_nr_cnt_en       => '1'
+   );
+ 
+   inst12_tx1_data   <= inst10_data_ch_b & inst10_data_ch_a;
+   inst12_tx1_wrreq  <= (not inst12_tx1_wrfull) AND (inst0_from_fpgacfg_mod_2.dlb_en AND inst1_pll_0_locked);
+ 
+   inst12_tx_src_sel <= "00" when inst0_from_fpgacfg_mod_2.rx_en = '1' else 
+                        "01" when inst0_from_fpgacfg_mod_2.dlb_en = '1' else 
+                        "10";
    
 --   -- DAC module
 ----   inst12_dac5672_top : entity work.dac5672_top
@@ -2070,11 +2077,6 @@ begin
 --   FPGA_SPI0_SCLK    <= inst0_spi_0_SCLK;
 --   FPGA_SPI0_LMS1_SS <= inst0_spi_0_SS_n(0);
 --   FPGA_SPI0_LMS2_SS <= inst0_spi_0_SS_n(1);
-
-   FPGA_SPI2_MOSI       <= inst0_spi_2_MOSI;
-   FPGA_SPI2_SCLK       <= inst0_spi_2_SCLK;
-   FPGA_SPI2_BB_ADC_SS  <= inst0_spi_2_SS_n(0);
-   FPGA_SPI2_CDCM_SS    <= inst0_spi_2_SS_n(1);
    
 --   inst0_OPNDRN : OPNDRN
 --	port map (a_in =>inst0_spi_0_SS_n(2), a_out => FPGA_SPI0_ADF_SS); 
@@ -2130,27 +2132,27 @@ begin
    gpio_t( 9) <= '0';
    gpio_t(10) <= '0';
    gpio_t(11) <= '0';
-   gpio_t(12) <= '1';
-   gpio_t(13) <= '1';
-   gpio_t(14) <= '1';
-   gpio_t(15) <= '1';
+   gpio_t(12) <= '0';
+   gpio_t(13) <= '0';
+   gpio_t(14) <= '0';
+   gpio_t(15) <= '0';
    
-   gpio_i( 0) <= inst1_lms1_rxpll_c0;         
+   gpio_i( 0) <= '0';         
    gpio_i( 1) <= '0';
    gpio_i( 2) <= inst6_tx_ant_en;
    gpio_i( 3) <= '0';
-   gpio_i( 4) <= inst1_lms1_rxpll_c1;
+   gpio_i( 4) <= '0';
    gpio_i( 5) <= '0';
    gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
-   gpio_i( 8) <= inst1_lms1_rxpll_locked;
-   gpio_i( 9) <= '0';
-   gpio_i(10) <= '0';
+   gpio_i( 8) <= inst1_pll_0_locked;
+   gpio_i( 9) <= GNSS_PPS;
+   gpio_i(10) <= GNSS_UART_TX;
    gpio_i(11) <= '0';
-   gpio_i(12) <= '0';
-   gpio_i(13) <= '0';
-   gpio_i(14) <= '0';
-   gpio_i(15) <= '0';
+   gpio_i(12) <= inst0_spi_2_SCLK;
+   gpio_i(13) <= FPGA_SPI2_MISO_ADC;
+   gpio_i(14) <= inst0_spi_2_MOSI;
+   gpio_i(15) <= inst0_spi_2_SS_n(0);
    
 
    FPGA_SPI0_SCLK_LMS1  <= inst0_spi_0_SCLK;
@@ -2167,6 +2169,11 @@ begin
    FPGA_SPI1_MOSI    <= inst0_spi_1_MOSI;
    FPGA_SPI1_DAC_SS  <= inst0_spi_1_SS_n(0);
    FPGA_SPI1_ADC_SS  <= inst0_spi_1_SS_n(1);
+   
+   FPGA_SPI2_MOSI       <= inst0_spi_2_MOSI;
+   FPGA_SPI2_SCLK       <= inst0_spi_2_SCLK;
+   FPGA_SPI2_BB_ADC_SS  <= inst0_spi_2_SS_n(0);
+   FPGA_SPI2_CDCM_SS    <= inst0_spi_2_SS_n(1);
    
    
    -- LMS1 PA power control (Active high, by default disabled)
@@ -2198,6 +2205,11 @@ begin
    -- RF Switch LMS2 port 2
    RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
+   
+   
+   CDCM_RESET_N         <= '1';
+   CDCM_SYNCN           <= '1';
+   
                            
                         
    
