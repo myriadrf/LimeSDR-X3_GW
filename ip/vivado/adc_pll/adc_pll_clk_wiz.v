@@ -56,12 +56,13 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___122.880______0.000______50.0______198.555____204.619
+// clk_out1___200.000______0.000______50.0_______90.666_____79.592
+// clk_out2___100.000______0.000______50.0______102.665_____79.592
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
 //----------------------------------------------------------------------------
-// __primary___________30.72____________0.010
+// __primary_____________100____________0.010
 
 `timescale 1ps/1ps
 
@@ -70,8 +71,17 @@ module adc_pll_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk_out1,
+  output        clk_out2,
+  // Dynamic reconfiguration ports
+  input   [6:0] daddr,
+  input         dclk,
+  input         den,
+  input  [15:0] din,
+  output [15:0] dout,
+  output        drdy,
+  input         dwe,
   // Status and control signals
-  input         resetn,
+  input         reset,
   output        locked,
   input         clk_in1
  );
@@ -79,7 +89,7 @@ module adc_pll_clk_wiz
   //------------------------------------
 wire clk_in1_adc_pll;
 wire clk_in2_adc_pll;
-  BUFG clkin1_bufg
+  IBUF clkin1_ibufg
    (.O (clk_in1_adc_pll),
     .I (clk_in1));
 
@@ -101,15 +111,12 @@ wire clk_in2_adc_pll;
   wire        clk_out6_adc_pll;
   wire        clk_out7_adc_pll;
 
-  wire [15:0] do_unused;
-  wire        drdy_unused;
   wire        psdone_unused;
   wire        locked_int;
   wire        clkfbout_adc_pll;
   wire        clkfbout_buf_adc_pll;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
-   wire clkout1_unused;
    wire clkout1b_unused;
    wire clkout2_unused;
    wire clkout2b_unused;
@@ -123,19 +130,23 @@ wire clk_in2_adc_pll;
   wire        reset_high;
 
   MMCME2_ADV
-  #(.BANDWIDTH            ("OPTIMIZED"),
+  #(.BANDWIDTH            ("HIGH"),
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (32.500),
+    .CLKFBOUT_MULT_F      (14.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (8.125),
+    .CLKOUT0_DIVIDE_F     (7.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (32.552))
+    .CLKOUT1_DIVIDE       (14),
+    .CLKOUT1_PHASE        (0.000),
+    .CLKOUT1_DUTY_CYCLE   (0.500),
+    .CLKOUT1_USE_FINE_PS  ("FALSE"),
+    .CLKIN1_PERIOD        (10.000))
   mmcm_adv_inst
     // Output clocks
    (
@@ -143,7 +154,7 @@ wire clk_in2_adc_pll;
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_out1_adc_pll),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clkout1_unused),
+    .CLKOUT1             (clk_out2_adc_pll),
     .CLKOUT1B            (clkout1b_unused),
     .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
@@ -159,13 +170,13 @@ wire clk_in2_adc_pll;
      // Tied to always select the primary input clock
     .CLKINSEL            (1'b1),
     // Ports for dynamic reconfiguration
-    .DADDR               (7'h0),
-    .DCLK                (1'b0),
-    .DEN                 (1'b0),
-    .DI                  (16'h0),
-    .DO                  (do_unused),
-    .DRDY                (drdy_unused),
-    .DWE                 (1'b0),
+    .DADDR               (daddr),
+    .DCLK                (dclk),
+    .DEN                 (den),
+    .DI                  (din),
+    .DO                  (dout),
+    .DRDY                (drdy),
+    .DWE                 (dwe),
     // Ports for dynamic phase shift
     .PSCLK               (1'b0),
     .PSEN                (1'b0),
@@ -177,7 +188,7 @@ wire clk_in2_adc_pll;
     .CLKFBSTOPPED        (clkfbstopped_unused),
     .PWRDWN              (1'b0),
     .RST                 (reset_high));
-  assign reset_high = ~resetn; 
+  assign reset_high = reset; 
 
   assign locked = locked_int;
 // Clock Monitor clock assigning
@@ -198,6 +209,10 @@ wire clk_in2_adc_pll;
    (.O   (clk_out1),
     .I   (clk_out1_adc_pll));
 
+
+  BUFG clkout2_buf
+   (.O   (clk_out2),
+    .I   (clk_out2_adc_pll));
 
 
 
