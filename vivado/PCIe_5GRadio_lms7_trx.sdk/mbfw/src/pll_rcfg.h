@@ -144,7 +144,7 @@
 
 		uint32_t CLKOUT0_DIVIDE;
 		uint32_t CLKOUT0_FRAC;
-		uint32_t CLKOUT0_PHASE;
+		int32_t CLKOUT0_PHASE;
 		uint32_t CLKOUT0_DUTY;
 
 		uint32_t CLKOUT1_DIVIDE;

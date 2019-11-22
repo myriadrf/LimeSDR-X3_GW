@@ -60,6 +60,7 @@
 #include "PCIe_5GRadio_brd.h"
 #include "pll_rcfg.h"
 #include "vctcxo_tamer.h"
+#include "ADS4246_reg.h"
 
 /************************** Constant Definitions *****************************/
 /*
@@ -82,7 +83,8 @@
 
 #define SPI1_TCXO_DAC_SS	0x01
 
-#define CDCM_SPI2_SELECT 0x02
+#define SPI2_BB_ADC_SS   	0x01
+#define CDCM_SPI2_SELECT 	0x02
 
 #define BRD_SPI_REG_LMS1_LMS2_CTRL  0x13
 #define LMS1_SS			0
@@ -128,7 +130,7 @@ signed short int converted_val = 300;	//Temperature
  * but should at least be static so they are zeroed.
  */
 static XSpi Spi0, Spi1, Spi2;
-static XGpio pll_rst, pllcfg_cmd, pllcfg_stat, extm_0_axi_sel, smpl_cmp_sel, smpl_cmp_en, smpl_cmp_status;
+static XGpio gpio, pll_rst, pllcfg_cmd, pllcfg_stat, extm_0_axi_sel, smpl_cmp_sel, smpl_cmp_en, smpl_cmp_status;
 XClk_Wiz ClkWiz_Dynamic; /* The instance of the ClkWiz_Dynamic */
 
 
@@ -178,8 +180,13 @@ void Write_to_CDCM(uint16_t Address, uint16_t Value)
 	spi_status = XSpi_Transfer(&Spi2, data, NULL, 4);
 }
 
-void Init_CDCM(void)
+void Init_CDCM(XSpi *InstancePtr)
 {
+	int spi_status;
+
+	/* Set SPI 0 0 mode*/
+	spi_status = XSpi_SetOptions(InstancePtr, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
+
     Write_to_CDCM( 0,reg_0_data);
     Write_to_CDCM( 1,reg_1_data);
     Write_to_CDCM( 2,reg_2_data);
@@ -317,6 +324,299 @@ void Configure_LM75(void)
 	WriteBuffer[1] = 55;	// Set TOS H
 	WriteBuffer[2] = 0;		// Set TOS L
 	rez = XIic_Send(XPAR_AXI_IIC_0_BASEADDR, LM75_I2C_ADDR, (u8 *)&WriteBuffer, ByteCount, XIIC_STOP);
+
+}
+
+
+
+void TestMode_ADC()
+{
+	uint8_t wr_buf[2];
+	uint8_t rd_buf[2];
+	int spirez;
+
+	/* Set SPI 1 0 mode */
+	spirez = XSpi_SetOptions(&Spi2, XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_MANUAL_SSELECT_OPTION);
+
+	// Disable ADC readout
+	wr_buf[0] = 0x00;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x25
+	wr_buf[0] = 0x25;	//Address
+	wr_buf[1] = ADS4246_R25_DIG_RAMP;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x2B
+	wr_buf[0] = 0x2B;	//Address
+	wr_buf[1] = ADS4246_R2B_DIG_RAMP;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x3F
+	wr_buf[0] = 0x3F;	//Address
+	wr_buf[1] = 0x2A;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x40
+	wr_buf[0] = 0x40;	//Address
+	wr_buf[1] = 0xAA;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+
+	// 0x42 Enable Digital functions
+	wr_buf[0] = 0x42;	//Address
+	wr_buf[1] = ( ADS4246_R42_EN_DIGITAL | ADS4246_R42_CLKOUT_RISE_450 | ADS4246_R42_CLKOUT_FALL_450);	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+}
+
+void init_ADC()
+{
+	uint8_t wr_buf[2];
+	uint8_t rd_buf[2];
+	int spirez;
+
+	/* Set SPI 1 0 mode */
+	spirez = XSpi_SetOptions(&Spi2, XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_MANUAL_SSELECT_OPTION);
+
+	// Set ADC reset to 0
+	XGpio_DiscreteWrite(&gpio, 2 , 0x00);
+	asm("nop"); asm("nop"); asm("nop"); asm("nop");
+	XGpio_DiscreteWrite(&gpio, 2 , 0x01);
+	asm("nop"); asm("nop"); asm("nop"); asm("nop");
+	XGpio_DiscreteWrite(&gpio, 2 , 0x00);
+	asm("nop"); asm("nop"); asm("nop"); asm("nop");
+
+	// Select BB ADC on SPI2
+	spirez = XSpi_SetSlaveSelect(&Spi2, SPI2_BB_ADC_SS);
+
+
+	// Disable ADC readout and reset
+	wr_buf[0] = 0x00;	//Address
+	wr_buf[1] = 0x02;	//Data
+	//wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+
+	// 0x01
+	wr_buf[0] = 0x01;	//Address
+	wr_buf[1] = ADS4246_R01_LVDS_SWING_DEF;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x03
+	wr_buf[0] = 0x03;	//Address
+	//wr_buf[1] = 0x53;	//Data
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x25
+	wr_buf[0] = 0x25;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x29
+	wr_buf[0] = 0x29;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x2B
+	wr_buf[0] = 0x2B;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x3D
+	wr_buf[0] = 0x3D;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x3F
+	wr_buf[0] = 0x3F;	//Address
+	wr_buf[1] = 0x2A;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x40
+	wr_buf[0] = 0x40;	//Address
+	wr_buf[1] = 0xAA;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x41
+	wr_buf[0] = 0x41;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x42
+	wr_buf[0] = 0x42;	//Address
+	//wr_buf[1] = 0x08;	//Data
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x45
+	wr_buf[0] = 0x45;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x4A
+	wr_buf[0] = 0x4A;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0x58
+	wr_buf[0] = 0x58;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xBF
+	wr_buf[0] = 0xBF;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xC1
+	wr_buf[0] = 0xC1;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xCF
+	wr_buf[0] = 0xCF;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xDB
+	wr_buf[0] = 0xDB;	//Address
+	wr_buf[1] = 0x01;	//Data (0x01 - Low Speed MODE CH B enabled, 0x00 - Low Speed MODE CH B disabled)
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xEF
+	wr_buf[0] = 0xEF;	//Address
+	wr_buf[1] = 0x10;	//Data (0x10 - Low Speed MODE enabled, 0x00 - Low Speed MODE disabled)
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xF1
+	wr_buf[0] = 0xF1;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// 0xF2
+	wr_buf[0] = 0xF2;	//Address
+	wr_buf[1] = 0x08;	//Data (0x08 - Low Speed MODE CH A enabled, 0x00 - Low Speed MODE CH A disabled)
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	// ---------------Testing
+	// Enable ADC readout
+
+	/*
+	wr_buf[0] = 0x00;	//Address
+	wr_buf[1] = 0x01;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, NULL, 2);
+
+	wr_buf[0] = 0x3F;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x40;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x41;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x42;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x45;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x4A;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0x58;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xBF;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xC1;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xCF;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xDB;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xEF;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xF1;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	wr_buf[0] = 0xF2;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 1, wr_buf, 1, rd_buf, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+
+	// Disable ADC readout
+	wr_buf[0] = 0x00;	//Address
+	wr_buf[1] = 0x00;	//Data
+	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
+	spirez = XSpi_Transfer(&Spi2, wr_buf, rd_buf, 2);
+	*/
+
+
+
+
 
 }
 
@@ -627,7 +927,7 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x34;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		pll_cfg->CLKOUT3_DIVIDE	= rd_buf[2] + rd_buf[3];
+		pll_cfg->CLKOUT6_DIVIDE	= rd_buf[2] + rd_buf[3];
 	}
 	pll_cfg->CLKOUT6_PHASE   =0;
 	pll_cfg->CLKOUT6_DUTY    =50*1000;
@@ -668,6 +968,44 @@ void RdTXPLLCFG(tXPLL_CFG *pll_cfg)
 	pll_cfg->CLKOUT5_DUTY    =50*1000;
 
 	pll_cfg->CLKOUT6_DIVIDE  =64;
+	pll_cfg->CLKOUT6_PHASE   =0;
+	pll_cfg->CLKOUT6_DUTY    =50*1000;
+
+}
+
+void RdADCPLLCFG(tXPLL_CFG *pll_cfg)
+{
+	pll_cfg->DIVCLK_DIVIDE	=1;
+	pll_cfg->CLKFBOUT_MULT	=46;
+	pll_cfg->CLKFBOUT_FRAC	=0;
+	pll_cfg->CLKFBOUT_PHASE	=0;
+
+	pll_cfg->CLKOUT0_DIVIDE  =46;
+	pll_cfg->CLKOUT0_FRAC    =0;
+	pll_cfg->CLKOUT0_PHASE   =-10*1000;	//Phase value = (Phase Requested) * 1000. For example, for a 45.5 degree phase, the required value is 45500 = 0xB1BC.
+	pll_cfg->CLKOUT0_DUTY    =50*1000; 	//Duty cycle value = (Duty Cycle in %) * 1000
+
+	pll_cfg->CLKOUT1_DIVIDE  =46;
+	pll_cfg->CLKOUT1_PHASE   =360*1000;
+	pll_cfg->CLKOUT1_DUTY    =50*1000;
+
+	pll_cfg->CLKOUT2_DIVIDE  =46;
+	pll_cfg->CLKOUT2_PHASE   =0;
+	pll_cfg->CLKOUT2_DUTY    =50*1000;
+
+	pll_cfg->CLKOUT3_DIVIDE  =46;
+	pll_cfg->CLKOUT3_PHASE   =0;
+	pll_cfg->CLKOUT3_DUTY    =50*1000;
+
+	pll_cfg->CLKOUT4_DIVIDE  =46;
+	pll_cfg->CLKOUT4_PHASE   =0;
+	pll_cfg->CLKOUT4_DUTY    =50*1000;
+
+	pll_cfg->CLKOUT5_DIVIDE  =46;
+	pll_cfg->CLKOUT5_PHASE   =0;
+	pll_cfg->CLKOUT5_DUTY    =50*1000;
+
+	pll_cfg->CLKOUT6_DIVIDE  =46;
 	pll_cfg->CLKOUT6_PHASE   =0;
 	pll_cfg->CLKOUT6_DUTY    =50*1000;
 
@@ -927,7 +1265,6 @@ uint8_t AutoUpdatePHCFG(void)
 		if (phase_state != PHASE_DONE) {
 			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
 		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
-		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
 			do {
 				cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
 			}
@@ -941,7 +1278,6 @@ uint8_t AutoUpdatePHCFG(void)
 
 		else {
 			XGpio_DiscreteWrite(&smpl_cmp_en, 1, 0x00);
-		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
 		    asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop"); asm("nop");
 			do {
 				cmp_status = XGpio_DiscreteRead(&smpl_cmp_status, 1);
@@ -983,6 +1319,35 @@ uint8_t UpdatePLLCFG(void)
 	XGpio_DiscreteWrite(&extm_0_axi_sel, 1, pll_ind);
 
 	RdPLLCFG(&pll_cfg);
+
+	pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
+	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
+
+	return pllcfgrez;
+
+}
+
+// Updates PLL configuration
+uint8_t UpdateADCPLLCFG(void)
+{
+	uint8_t wr_buf[4];
+	uint8_t rd_buf[4];
+	int pll_ind, spirez;
+	uint8_t pllcfgrez;
+	tXPLL_CFG pll_cfg = {0};
+
+	// Get PLL index
+	wr_buf[0] = 0x00;	// Command and Address
+	wr_buf[1] = 0x23;	// Command and Address
+	//spirez = alt_avalon_spi_command(PLLCFG_SPI_BASE, 0, 2, wr_buf, 2, rd_buf, 0);
+	spirez = XSpi_SetSlaveSelect(&Spi0, SPI_NR_FPGA);
+	spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+	pll_ind = 4; //(rd_buf[0] >> 3) & 0x3F;
+
+	// Select PLL AXI slave to which PLL is connected externally
+	XGpio_DiscreteWrite(&extm_0_axi_sel, 1, pll_ind);
+
+	RdADCPLLCFG(&pll_cfg);
 
 	pllcfgrez = set_xpll_config(XPAR_EXTM_0_AXI_BASEADDR, &pll_cfg);
 	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
@@ -1229,6 +1594,7 @@ tXPLL_CFG pll_cfg = {0};
     init_platform();
 
     //initialize XGpio variable
+    XGpio_Initialize(&gpio, XPAR_AXI_GPIO_0_DEVICE_ID);
     XGpio_Initialize(&pll_rst, XPAR_PLL_RST_DEVICE_ID);
     XGpio_Initialize(&pllcfg_cmd, XPAR_PLLCFG_COMMAND_DEVICE_ID);
     XGpio_Initialize(&pllcfg_stat, XPAR_PLLCFG_STATUS_DEVICE_ID);
@@ -1245,13 +1611,20 @@ tXPLL_CFG pll_cfg = {0};
 
     Init_SPI(SPI0_DEVICE_ID, &Spi0, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
     Init_SPI(SPI1_DEVICE_ID, &Spi1, XSP_MASTER_OPTION | XSP_CLK_PHASE_1_OPTION | XSP_MANUAL_SSELECT_OPTION);
+    //Init_SPI(SPI2_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_MANUAL_SSELECT_OPTION);
     Init_SPI(SPI2_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
 
 
-    Init_CDCM();
+    Init_CDCM(&Spi2);
 
 	dac_val = 30714;
 	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+
+	// Initialize ADC
+
+	//UpdateADCPLLCFG();
+	init_ADC();
+	//TestMode_ADC();
 
 
 	//pllcfgrez = AutoUpdatePHCFG();
