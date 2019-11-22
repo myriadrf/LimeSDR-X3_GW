@@ -89,7 +89,7 @@ module tx_pll_clk_wiz
   //------------------------------------
 wire clk_in1_tx_pll;
 wire clk_in2_tx_pll;
-  BUFG clkin1_bufg
+  IBUF clkin1_ibufg
    (.O (clk_in1_tx_pll),
     .I (clk_in1));
 

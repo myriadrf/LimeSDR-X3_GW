@@ -1225,7 +1225,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:5640f30e</spirit:value>
+            <spirit:value>9:fa0f37d9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1241,11 +1241,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:45 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:25 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1260,11 +1260,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:47 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:27 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1275,7 +1275,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1290,11 +1290,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:47 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:28 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1309,11 +1309,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:47 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:27 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9e939f7f</spirit:value>
+            <spirit:value>9:64566c56</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1328,11 +1328,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:47 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:28 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:9e939f7f</spirit:value>
+            <spirit:value>9:64566c56</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1346,11 +1346,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:48 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:28 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1364,11 +1364,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:54:48 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:50:28 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1382,11 +1382,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Nov 04 15:58:56 UTC 2019</spirit:value>
+            <spirit:value>Fri Nov 08 12:54:39 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e5421f76</spirit:value>
+            <spirit:value>9:e9cabb82</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2520,7 +2520,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_PRIM_SOURCE</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_PRIM_SOURCE" spirit:order="224">Global_buffer</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_PRIM_SOURCE" spirit:order="224">Single_ended_clock_capable_pin</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="STRING">
         <spirit:name>C_PHASESHIFT_MODE</spirit:name>
@@ -4427,7 +4427,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>PRIM_SOURCE</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PRIM_SOURCE" spirit:choiceRef="choice_pairs_11d71346" spirit:order="14.1" spirit:configGroups="0 NoDisplay">Global_buffer</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.PRIM_SOURCE" spirit:choiceRef="choice_pairs_11d71346" spirit:order="14.1" spirit:configGroups="0 NoDisplay">Single_ended_clock_capable_pin</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CLKOUT1_DRIVES</spirit:name>
