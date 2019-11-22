@@ -100,9 +100,7 @@ entity pll_top is
       pll_0_rcnfg_from_pll          : out std_logic_vector(63 downto 0);
       pll_0_logic_reset_n           : in  std_logic;
       pll_0_c0                      : out std_logic;
-      pll_0_c0_pin                  : out std_logic;
       pll_0_c1                      : out std_logic;
-      pll_0_c1_pin                  : out std_logic;
       pll_0_locked                  : out std_logic;
       -- Reconfiguration AXI ports 
       rcnfg_axi_clk                 : in  std_logic;
@@ -529,6 +527,44 @@ begin
   --   pll_c1_pin           => pll_0_c1_pin, 
   --   pll_locked           => pll_0_locked
   --);
+  
+   inst4_rcnfig_from_axim <= rcnfg_from_axim when rcnfg_sel = "0100" else c_FROM_AXIM_32x32_ZERO;
+  
+   inst6 : entity work.adc_pll
+   port map(
+      -- System interface
+      s_axi_aclk        => rcnfg_axi_clk,                                      
+      s_axi_aresetn     => rcnfg_axi_reset_n,                                      
+      -- AXI Write address channel signals                                        
+      s_axi_awaddr      => inst4_rcnfig_from_axim.awaddr(10 downto 0),                  
+      s_axi_awvalid     => inst4_rcnfig_from_axim.awvalid(0),                  
+      s_axi_awready     => inst4_rcnfig_to_axim.awready(0),                  
+      -- AXI Write data channel signals                                           
+      s_axi_wdata       => inst4_rcnfig_from_axim.wdata,                 
+      s_axi_wstrb       => inst4_rcnfig_from_axim.wstrb,            
+      s_axi_wvalid      => inst4_rcnfig_from_axim.wvalid(0),                 
+      s_axi_wready      => inst4_rcnfig_to_axim.wready(0),                 
+      -- AXI Write response channel signals                                       
+      s_axi_bresp       => inst4_rcnfig_to_axim.bresp,                   
+      s_axi_bvalid      => inst4_rcnfig_to_axim.bvalid(0),                   
+      s_axi_bready      => inst4_rcnfig_from_axim.bready(0),                   
+      -- AXI Read address channel signals                                         
+      s_axi_araddr      => inst4_rcnfig_from_axim.araddr(10 downto 0),                  
+      s_axi_arvalid     => inst4_rcnfig_from_axim.arvalid(0),                  
+      s_axi_arready     => inst4_rcnfig_to_axim.arready(0),                  
+      -- AXI Read address channel signals                                         
+      s_axi_rdata       => inst4_rcnfig_to_axim.rdata,                  
+      s_axi_rresp       => inst4_rcnfig_to_axim.rresp,                  
+      s_axi_rvalid      => inst4_rcnfig_to_axim.rvalid(0),                  
+      s_axi_rready      => inst4_rcnfig_from_axim.rready(0),                  
+      -- Clock out ports
+      clk_out1          => pll_0_c0,
+      clk_out2          => pll_0_c1,
+      -- Status and control signals
+      locked            => pll_0_locked,
+      -- Clock in ports
+      clk_in1           => pll_0_inclk
+   );
   
   
   rcnfg_to_axim <=   inst0_rcnfig_to_axim when rcnfg_sel = "0000" else 
