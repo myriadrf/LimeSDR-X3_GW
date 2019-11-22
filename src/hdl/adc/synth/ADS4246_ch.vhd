@@ -25,6 +25,7 @@ entity ADS4246_ch is
   port (
       --input ports 
       clk         : in std_logic;
+      clk_io      : in std_logic;
       reset_n     : in std_logic;
       dd_in       : in std_logic_vector(6 downto 0); 	--Input to DDR cells from pins
       --output ports 
@@ -45,11 +46,11 @@ signal data_out_l          : std_logic_vector(6 downto 0);
 signal data_h_reg          : std_logic_vector(6 downto 0);
 signal data_l_reg          : std_logic_vector(6 downto 0);
 signal captured_data       : std_logic_vector(13 downto 0); 
-signal captured_data_reg   : std_logic_vector(13 downto 0);
+
 
 component IDDR 
    generic (
-      DDR_CLK_EDGE :string     := "SAME_EDGE_PIPELINED"; -- "OPPOSITE_EDGE", "SAME_EDGE" 
+      DDR_CLK_EDGE :string     := "SAME_EDGE"; -- "OPPOSITE_EDGE", "SAME_EDGE" 
                                                      -- or "SAME_EDGE_PIPELINED" 
       INIT_Q1     : std_logic  :=  '0';              -- Initial value of Q1: '0' or '1'
       INIT_Q2     : std_logic  :=  '0';              -- Initial value of Q2: '0' or '1'
@@ -92,7 +93,7 @@ reset_p<= not reset_n;
    XILINX_DDR_IN_REG : for i in 0 to 6 generate
       IDDR_inst : IDDR
       GENERIC MAP(
-         DDR_CLK_EDGE   => "SAME_EDGE_PIPELINED",
+         DDR_CLK_EDGE   => "SAME_EDGE",
          INIT_Q1        => '0',
          INIT_Q2        => '0',
          SRTYPE         => "ASYNC" 
@@ -100,7 +101,7 @@ reset_p<= not reset_n;
       PORT MAP(
          Q1             => data_out_h(i),
          Q2             => data_out_l(i),
-         C              => clk,
+         C              => clk_io,
          CE             => '1',
          D              => dd_in(i),
          R              => reset_p,
@@ -123,7 +124,7 @@ reset_p<= not reset_n;
       process(reset_n, clk)
    begin
       if reset_n='0' then
-         captured_data<=(others=>'0');
+         captured_data <= (others=>'0');
       elsif (clk'event and clk = '1') then
          captured_data <=  data_out_l (6) & data_h_reg (6) & 
                            data_out_l (5) & data_h_reg (5) & 
@@ -132,9 +133,9 @@ reset_p<= not reset_n;
                            data_out_l (2) & data_h_reg (2) & 
                            data_out_l (1) & data_h_reg (1) &
                            data_out_l (0) & data_h_reg (0);
+                           
       end if;
-   end process;
-                                       
+   end process;                             
                      
    data <= captured_data;
   

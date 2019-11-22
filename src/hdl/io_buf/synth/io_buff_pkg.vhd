@@ -20,9 +20,10 @@ package io_buff_pkg is
    
    -- ADC->FPGA
    type t_FROM_ADC is record
-      CLKOUT   : std_logic;
-      DA       : std_logic_vector(6 downto 0);
-      DB       : std_logic_vector(6 downto 0);
+      CLKOUT_IO      : std_logic;
+      CLKOUT_LOGIC   : std_logic;  
+      DA             : std_logic_vector(6 downto 0);
+      DB             : std_logic_vector(6 downto 0);
    end record t_FROM_ADC;
   
    -- FPGA -> ADC 

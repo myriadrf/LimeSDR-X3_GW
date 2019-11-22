@@ -24,6 +24,7 @@ entity adc_top is
       
 
       clk               : in std_logic;
+      clk_io            : in std_logic;
       reset_n           : in std_logic;
       en                : in std_logic;
       
@@ -80,6 +81,7 @@ port map(clk, reset_n, en, reset_n_sync);
    )
    port map(
       clk         => clk,
+      clk_io      => clk_io,
       reset_n     => reset_n_sync,
       ch_a        => ch_a,
       ch_b        => ch_b,
@@ -91,24 +93,24 @@ port map(clk, reset_n, en, reset_n_sync);
 inst1_RXI <= inst0_data_ch_a & "0000";
 inst1_RXQ <= inst0_data_ch_b & "0000";       
         
-rx_chain_inst1 : entity work.rx_chain 
-   port map
-   (
-      clk            => clk,
-      nrst           => reset_n_sync,
-      HBD_ratio      => (others=>'0'),
-      RXI            => inst1_RXI,
-      RXQ            => inst1_RXQ,
-      xen            => open,
-      RYI            => inst1_RYI,
-      RYQ            => inst1_RYQ,
-      to_rxtspcfg    => to_rxtspcfg,
-      from_rxtspcfg  => from_rxtspcfg
-   );
+--rx_chain_inst1 : entity work.rx_chain 
+--   port map
+--   (
+--      clk            => clk,
+--      nrst           => reset_n_sync,
+--      HBD_ratio      => (others=>'0'),
+--      RXI            => inst1_RXI,
+--      RXQ            => inst1_RXQ,
+--      xen            => open,
+--      RYI            => inst1_RYI,
+--      RYQ            => inst1_RYQ,
+--      to_rxtspcfg    => to_rxtspcfg,
+--      from_rxtspcfg  => from_rxtspcfg
+--   );
 
 --for testing rx_chain is bypassed
---inst1_RYI <= inst1_RXI;
---inst1_RYQ <= inst1_RXQ;
+inst1_RYI <= inst1_RXI;
+inst1_RYQ <= inst1_RXQ;
 
         
 -- ----------------------------------------------------------------------------

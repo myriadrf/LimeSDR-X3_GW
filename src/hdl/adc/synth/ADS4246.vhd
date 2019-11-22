@@ -18,6 +18,7 @@ entity ADS4246 is
   port (
       --input ports 
       clk         : in std_logic;
+      clk_io      : in std_logic;
       reset_n     : in std_logic;
       ch_a        : in std_logic_vector(6 downto 0); 	--Input to DDR cells from pins
       ch_b        : in std_logic_vector(6 downto 0); 	--Input to DDR cells from pins
@@ -40,6 +41,7 @@ architecture arch of ADS4246 is
       port (
          --input ports 
          clk       : in std_logic;
+         clk_io    : in std_logic;
          reset_n   : in std_logic;
          dd_in     : in std_logic_vector(6 downto 0); --Input to DDR cells from pins
          --output ports 
@@ -57,7 +59,8 @@ begin
       generic map( dev_family	=> "Cyclone V"
          )
       port map(
-         clk         => clk, 
+         clk         => clk,
+         clk_io      => clk_io, 
          reset_n     => reset_n,
          dd_in       => ch_a,
          data        => data_ch_a  
@@ -69,6 +72,7 @@ begin
          )
       port map(
          clk       => clk, 
+         clk_io    => clk_io, 
          reset_n   => reset_n,
          dd_in     => ch_b,
          data      => data_ch_b  
