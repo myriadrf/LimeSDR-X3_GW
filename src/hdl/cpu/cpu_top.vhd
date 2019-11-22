@@ -384,9 +384,6 @@ architecture arch of cpu_top is
 --   );
 --   end component nios_cpu;
 
-attribute DONT_TOUCH : string;
-attribute DONT_TOUCH of cfg_top_inst1: label is "TRUE";
-
 
 begin
 -- ----------------------------------------------------------------------------

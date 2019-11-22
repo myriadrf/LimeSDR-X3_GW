@@ -227,20 +227,6 @@ architecture arch of pcie_top is
    signal inst1_cntrl_reader_data      : std_logic_vector(511 downto 0); 
    signal inst1_cntrl_reader_valid     : std_logic; 
    
-   attribute MARK_DEBUG : string;
-   attribute MARK_DEBUG of inst1_to_dma_reader0      : signal is "TRUE";
-	attribute MARK_DEBUG of inst1_from_dma_reader0    : signal is "TRUE";
-	
-	attribute DONT_TOUCH : string;
-   attribute DONT_TOUCH of inst2_H2F_S0_FIFO      : label is "TRUE";
-
-	
-			
-              
-   
-   
-   
-
 begin
 -- ----------------------------------------------------------------------------
 -- Reset logic
