@@ -131,6 +131,7 @@ signed short int converted_val = 300;	//Temperature
  */
 static XSpi Spi0, Spi1, Spi2;
 static XGpio gpio, pll_rst, pllcfg_cmd, pllcfg_stat, extm_0_axi_sel, smpl_cmp_sel, smpl_cmp_en, smpl_cmp_status;
+static XGpio vctcxo_tamer_ctrl;
 XClk_Wiz ClkWiz_Dynamic; /* The instance of the ClkWiz_Dynamic */
 
 
@@ -1566,6 +1567,29 @@ int main()
 	uint8_t wr_buf[4];
 	uint8_t rd_buf[4];
 
+    uint8_t vctcxo_tamer_irq = 0;
+    uint8_t vctcxo_tamer_en=0,	vctcxo_tamer_en_old = 0;
+
+    // Trim DAC constants
+    const uint16_t trimdac_min       = 0x1938; // Decimal value = 6456
+    const uint16_t trimdac_max       = 0xE2F3; // Decimal value = 58099
+
+    // Trim DAC calibration line
+    line_t trimdac_cal_line;
+
+    // VCTCXO Tune State machine
+    state_t tune_state = COARSE_TUNE_MIN;
+
+    // Set the known/default values of the trim DAC cal line
+    trimdac_cal_line.point[0].x  = 0;
+    trimdac_cal_line.point[0].y  = trimdac_min;
+    trimdac_cal_line.point[1].x  = 0;
+    trimdac_cal_line.point[1].y  = trimdac_max;
+    trimdac_cal_line.slope       = 0;
+    trimdac_cal_line.y_intercept = 0;
+    struct vctcxo_tamer_pkt_buf vctcxo_tamer_pkt;
+    vctcxo_tamer_pkt.ready = false;
+
 	uint8_t phcfg_start_old, phcfg_start;
 	uint8_t pllcfg_start_old, pllcfg_start;
 	uint8_t pllrst_start_old, pllrst_start;
@@ -1602,6 +1626,8 @@ tXPLL_CFG pll_cfg = {0};
     XGpio_Initialize(&smpl_cmp_sel, XPAR_SMPL_CMP_SEL_DEVICE_ID);
     XGpio_Initialize(&smpl_cmp_en, XPAR_SMPL_CMP_CMD_DEVICE_ID);
     XGpio_Initialize(&smpl_cmp_status, XPAR_SMPL_CMP_STAT_DEVICE_ID);
+    XGpio_Initialize(&vctcxo_tamer_ctrl, XPAR_VCTCXO_TAMER_CTRL_DEVICE_ID);
+
 
 
 	// Initialize variables to detect PLL phase change and PLL config update request
@@ -1643,6 +1669,177 @@ tXPLL_CFG pll_cfg = {0};
 
     while (1)
     {
+    	vctcxo_tamer_irq = (XGpio_DiscreteRead(&vctcxo_tamer_ctrl, 1) & 0x02);
+	    // Clear VCTCXO tamer interrupt
+	    if(vctcxo_tamer_irq != 0)
+	    {
+	    	vctcxo_tamer_isr(&vctcxo_tamer_pkt);
+	    }
+
+    	//Get vctcxo tamer enable bit status
+    	vctcxo_tamer_en_old = vctcxo_tamer_en;
+    	vctcxo_tamer_en = (XGpio_DiscreteRead(&vctcxo_tamer_ctrl, 1) & 0x01);
+
+    	if (vctcxo_tamer_en_old != vctcxo_tamer_en){
+    		if (vctcxo_tamer_en == 0x01){
+    			vctcxo_tamer_init();
+    			vctcxo_tamer_pkt.ready = true;
+    		}
+    		else {
+    			vctcxo_tamer_dis();
+    			tune_state = COARSE_TUNE_MIN;
+    			vctcxo_tamer_pkt.ready = false;
+    		}
+    	}
+
+
+        /* Temporarily putting the VCTCXO Calibration stuff here. */
+        if( vctcxo_tamer_pkt.ready ) {
+
+            vctcxo_tamer_pkt.ready = false;
+
+            switch(tune_state) {
+
+            case COARSE_TUNE_MIN:
+
+                /* Tune to the minimum DAC value */
+                vctcxo_trim_dac_write( 0x08, trimdac_min );
+                dac_val = (uint16_t) trimdac_min;
+            	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+
+                /* State to enter upon the next interrupt */
+                tune_state = COARSE_TUNE_MAX;
+                //printf("COARSE_TUNE_MIN: \r\n\t");
+                //printf("DAC value: ");
+                //printf("%u;\t", (unsigned int)dac_val);
+
+
+                break;
+
+            case COARSE_TUNE_MAX:
+
+                /* We have the error from the minimum DAC setting, store it
+                 * as the 'x' coordinate for the first point */
+                trimdac_cal_line.point[0].x = vctcxo_tamer_pkt.pps_1s_error;
+
+                //printf("1s_error: ");
+                //printf("%i;\r\n", (int)vctcxo_tamer_pkt.pps_1s_error);
+
+                /* Tune to the maximum DAC value */
+                vctcxo_trim_dac_write( 0x08, trimdac_max );
+                dac_val = (uint16_t) trimdac_max;
+            	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+
+                /* State to enter upon the next interrupt */
+                tune_state = COARSE_TUNE_DONE;
+                //printf("COARSE_TUNE_MAX: \r\n\t");
+                //printf("DAC value: ");
+                //printf("%u;\t", (unsigned int)dac_val);
+
+                break;
+
+            case COARSE_TUNE_DONE:
+            	/* Write status to to state register*/
+            	vctcxo_tamer_write(VT_STATE_ADDR, 0x01);
+
+                /* We have the error from the maximum DAC setting, store it
+                 * as the 'x' coordinate for the second point */
+                trimdac_cal_line.point[1].x = vctcxo_tamer_pkt.pps_1s_error;
+
+                //printf("1s_error: ");
+                //printf("%i;\r\n", (int)vctcxo_tamer_pkt.pps_1s_error);
+
+                /* We now have two points, so we can calculate the equation
+                 * for a line plotted with DAC counts on the Y axis and
+                 * error on the X axis. We want a PPM of zero, which ideally
+                 * corresponds to the y-intercept of the line. */
+
+
+                trimdac_cal_line.slope = ( (float) (trimdac_cal_line.point[1].y - trimdac_cal_line.point[0].y) / (float)
+                                           (trimdac_cal_line.point[1].x - trimdac_cal_line.point[0].x) );
+
+                trimdac_cal_line.y_intercept = ( trimdac_cal_line.point[0].y -
+                                                 (uint16_t)(lroundf(trimdac_cal_line.slope * (float) trimdac_cal_line.point[0].x)));
+
+                /* Set the trim DAC count to the y-intercept */
+                vctcxo_trim_dac_write( 0x08, trimdac_cal_line.y_intercept );
+                dac_val = (uint16_t) trimdac_cal_line.y_intercept;
+            	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+
+                /* State to enter upon the next interrupt */
+                tune_state = FINE_TUNE;
+                //printf("COARSE_TUNE_DONE: \r\n\t");
+                //printf("DAC value: ");
+                //printf("%u;\r\n\r\n", (unsigned int)dac_val);
+                //printf("FINE_TUNE: \r\n");
+                //printf("Err_Flag;DAC value;Error;\r\n");
+
+                break;
+
+            case FINE_TUNE:
+
+                /* We should be extremely close to a perfectly tuned
+                 * VCTCXO, but some minor adjustments need to be made */
+
+                /* Check the magnitude of the errors starting with the
+                 * one second count. If an error is greater than the maximum
+                 * tolerated error, adjust the trim DAC by the error (Hz)
+                 * multiplied by the slope (in counts/Hz) and scale the
+                 * result by the precision interval (e.g. 1s, 10s, 100s). */
+
+                if( vctcxo_tamer_pkt.pps_1s_error_flag ) {
+                	vctcxo_trim_dac_value = (vctcxo_trim_dac_value -
+                	                    		(uint16_t) (lroundf((float)vctcxo_tamer_pkt.pps_1s_error * trimdac_cal_line.slope)/1));
+                	// Write tuned val to VCTCXO_tamer MM registers
+                    vctcxo_trim_dac_write( 0x08, vctcxo_trim_dac_value);
+                    // Change DAC value
+                    dac_val = (uint16_t) vctcxo_trim_dac_value;
+                	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+                	//printf("001;");
+                	//printf("%u;", (unsigned int)dac_val);
+                	//printf("%i;\r\n", (int) vctcxo_tamer_pkt.pps_1s_error);
+
+                } else if( vctcxo_tamer_pkt.pps_10s_error_flag ) {
+                	vctcxo_trim_dac_value = (vctcxo_trim_dac_value -
+                    							(uint16_t)(lroundf((float)vctcxo_tamer_pkt.pps_10s_error * trimdac_cal_line.slope)/10));
+                	// Write tuned val to VCTCXO_tamer MM registers
+                    vctcxo_trim_dac_write( 0x08, vctcxo_trim_dac_value);
+                    // Change DAC value
+                    dac_val = (uint16_t) vctcxo_trim_dac_value;
+                	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+                	//printf("010;");
+                	//printf("%u;", (unsigned int)dac_val);
+                	//printf("%i;\r\n", (int) vctcxo_tamer_pkt.pps_10s_error);
+
+                } else if( vctcxo_tamer_pkt.pps_100s_error_flag ) {
+                	vctcxo_trim_dac_value = (vctcxo_trim_dac_value -
+                    							(uint16_t)(lroundf((float)vctcxo_tamer_pkt.pps_100s_error * trimdac_cal_line.slope)/100));
+                	// Write tuned val to VCTCXO_tamer MM registers
+                    vctcxo_trim_dac_write( 0x08, vctcxo_trim_dac_value);
+                    // Change DAC value
+                    dac_val = (uint16_t) vctcxo_trim_dac_value;
+                	Control_TCXO_DAC (1, &dac_val); //enable DAC output, set new val
+                	//printf("100;");
+                	//printf("%u;", (unsigned int)dac_val);
+                	//printf("%i;\r\n", (int) vctcxo_tamer_pkt.pps_100s_error);
+                }
+
+                break;
+
+            default:
+                break;
+
+            } /* switch */
+
+            /* Take PPS counters out of reset */
+            vctcxo_tamer_reset_counters( false );
+
+            /* Enable interrupts */
+            vctcxo_tamer_enable_isr( true );
+
+        } /* VCTCXO Tamer interrupt */
+
+
 
 	    // Check if there is a request for PLL phase update
  	    if((phcfg_start_old == 0) && (phcfg_start != 0))

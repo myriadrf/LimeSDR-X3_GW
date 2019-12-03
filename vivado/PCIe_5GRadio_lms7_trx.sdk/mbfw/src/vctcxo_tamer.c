@@ -1,8 +1,8 @@
-//#include "io.h"
-//#include "system.h"
 #include <stdbool.h>
 #include <stdint.h>
 #include "vctcxo_tamer.h"
+#include "xparameters.h"
+#include "xil_io.h"
 
 
 /* Define a cached version of the VCTCXO tamer control register */
@@ -14,14 +14,15 @@ uint8_t vctcxo_tamer_ctrl_reg = 0x00;
  * going out to the DAC. Initial power-up state of the DAC is mid-scale.
  */
 uint16_t vctcxo_trim_dac_value = 0x77FA;
-/*
+
 uint8_t vctcxo_tamer_read(uint8_t addr) {
-    return (uint8_t)IORD_8DIRECT(AVALON_MM_EXTERNAL_0_BASE, addr);
+    return (uint8_t)Xil_In8(XPAR_AVMM_M0_BASEADDR + addr);
+
 }
 
 void vctcxo_tamer_write(uint8_t addr, uint8_t data) {
-    IOWR_8DIRECT(AVALON_MM_EXTERNAL_0_BASE, addr, data);
-}*/
+    Xil_Out8(XPAR_AVMM_M0_BASEADDR+addr, data);
+}
 
 void vctcxo_tamer_reset_counters(bool reset) {
     if( reset ) {
@@ -90,19 +91,20 @@ void vctcxo_tamer_set_tune_mode(vctcxo_tamer_mode mode) {
 
     return;
 }
-/*
+
 int32_t vctcxo_tamer_read_count(uint8_t addr) {
-    uint32_t base = AVALON_MM_EXTERNAL_0_BASE;
+    //uint32_t base = AVALON_MM_EXTERNAL_0_BASE;
+    uint32_t base = XPAR_AVMM_M0_BASEADDR;
     uint8_t offset = addr;
     int32_t value = 0;
 
-    value  = IORD_8DIRECT(base, offset++);
-    value |= ((int32_t) IORD_8DIRECT(base, offset++)) << 8;
-    value |= ((int32_t) IORD_8DIRECT(base, offset++)) << 16;
-    value |= ((int32_t) IORD_8DIRECT(base, offset++)) << 24;
+    value  = Xil_In8(base + offset++);
+    value |= ((int32_t) Xil_In8(base + offset++)) << 8;
+    value |= ((int32_t) Xil_In8(base + offset++)) << 16;
+    value |= ((int32_t) Xil_In8(base + offset++)) << 24;
 
     return value;
-}*/
+}
 
 void vctcxo_trim_dac_write(uint8_t cmd, uint16_t val)
 {
@@ -166,6 +168,3 @@ void vctcxo_tamer_dis(){
 	/* Write status to to state register*/
 	vctcxo_tamer_write(VT_STATE_ADDR, 0x00);
 }
-
-
-
