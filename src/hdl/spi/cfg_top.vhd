@@ -358,48 +358,48 @@ begin
 -- ----------------------------------------------------------------------------
 -- tamercfg instance
 -- ----------------------------------------------------------------------------    
-   inst7_tamercfg : entity work.tamercfg
-   port map(
-      -- Address and location of this module
-      -- Will be hard wired at the top level
-      maddress    => std_logic_vector(to_unsigned(TAMERCFG_START_ADDR/32,10)),
-      mimo_en     => '1',   
-      -- Serial port IOs
-      sdin        => sdin,
-      sclk        => sclk,
-      sen         => sen,
-      sdout       => inst7_sdout,  
-      -- Signals coming from the pins or top level serial interface
-      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
-      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
-      oen         => open,
-      stateo      => open,    
-      to_tamercfg    => to_tamercfg,
-      from_tamercfg  => from_tamercfg
-   );
+--  inst7_tamercfg : entity work.tamercfg
+--  port map(
+--     -- Address and location of this module
+--     -- Will be hard wired at the top level
+--     maddress    => std_logic_vector(to_unsigned(TAMERCFG_START_ADDR/32,10)),
+--     mimo_en     => '1',   
+--     -- Serial port IOs
+--     sdin        => sdin,
+--     sclk        => sclk,
+--     sen         => sen,
+--     sdout       => inst7_sdout,  
+--     -- Signals coming from the pins or top level serial interface
+--     lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+--     mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+--     oen         => open,
+--     stateo      => open,    
+--     to_tamercfg    => to_tamercfg,
+--     from_tamercfg  => from_tamercfg
+--  );
    
 -- ----------------------------------------------------------------------------
 -- gnsscfg instance
 -- ----------------------------------------------------------------------------    
-   inst8_gnsscfg : entity work.gnsscfg
-   port map(
-      -- Address and location of this module
-      -- Will be hard wired at the top level
-      maddress    => std_logic_vector(to_unsigned(GNSSCFG_START_ADDR/32,10)),
-      mimo_en     => '1',   
-      -- Serial port IOs
-      sdin        => sdin,
-      sclk        => sclk,
-      sen         => sen,
-      sdout       => inst8_sdout,  
-      -- Signals coming from the pins or top level serial interface
-      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
-      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
-      oen         => open,
-      stateo      => open,    
-      to_gnsscfg     => to_gnsscfg,
-      from_gnsscfg   => from_gnsscfg
-   );
+--   inst8_gnsscfg : entity work.gnsscfg
+--   port map(
+--      -- Address and location of this module
+--      -- Will be hard wired at the top level
+--      maddress    => std_logic_vector(to_unsigned(GNSSCFG_START_ADDR/32,10)),
+--      mimo_en     => '1',   
+--      -- Serial port IOs
+--      sdin        => sdin,
+--      sclk        => sclk,
+--      sen         => sen,
+--      sdout       => inst8_sdout,  
+--      -- Signals coming from the pins or top level serial interface
+--      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+--      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+--      oen         => open,
+--      stateo      => open,    
+--      to_gnsscfg     => to_gnsscfg,
+--      from_gnsscfg   => from_gnsscfg
+--   );
    
 -- ----------------------------------------------------------------------------
 -- memcfg instance
@@ -428,7 +428,7 @@ begin
 -- ----------------------------------------------------------------------------    
    sdout <= inst0_0_sdout OR inst0_1_sdout OR inst0_2_sdout OR inst1_sdoutA OR 
             inst3_sdout OR inst4_0_sdout OR inst4_1_sdout OR inst5_sdout OR 
-            inst6_sdout OR inst7_sdout OR inst8_sdout OR inst255_sdout;
+            inst6_sdout OR inst8_sdout OR inst255_sdout;
             
             
       inst255_to_memcfg <= to_memcfg;

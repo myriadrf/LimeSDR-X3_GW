@@ -648,6 +648,18 @@ signal inst11_tx_smpl_fifo_wrreq     : std_logic;
 signal inst11_tx_smpl_fifo_data      : std_logic_vector(127 downto 0);
 
 --inst12 
+signal inst12_sdout                    : std_logic;
+signal inst12_fpga_led_g               : std_logic;
+signal inst12_fpga_led_r               : std_logic;
+signal inst12_en                       : std_logic;
+signal inst12_mm_rd_data               : std_logic_vector(7 downto 0);
+signal inst12_mm_rd_datav              : std_logic;
+signal inst12_mm_wait_req              : std_logic;
+signal inst12_mm_irq                   : std_logic;
+signal inst12_uart_tx                  : std_logic;
+
+
+
 signal inst12_tx0_wrfull               : std_logic;
 signal inst12_tx0_wrusedw              : std_logic_vector(8 downto 0);
 signal inst12_tx1_wrfull               : std_logic;
@@ -793,7 +805,7 @@ begin
       exfifo_of_wrfull           => inst2_F2H_C0_wfull,
       exfifo_of_rst              => inst0_exfifo_of_rst, 
       -- SPI 0 
-      spi_0_MISO                 => inst0_spi_0_MISO OR inst6_sdout,
+      spi_0_MISO                 => inst0_spi_0_MISO OR inst6_sdout OR inst12_sdout,
       spi_0_MOSI                 => inst0_spi_0_MOSI,
       spi_0_SCLK                 => inst0_spi_0_SCLK,
       spi_0_SS_n                 => inst0_spi_0_SS_n,
@@ -816,8 +828,8 @@ begin
       -- LMS7002 control 
       lms_ctr_gpio               => inst0_lms_ctr_gpio,
       -- VCTCXO tamer control
-      vctcxo_tune_en             => '0',
-      vctcxo_irq                 => '0',
+      vctcxo_tune_en             => inst12_en,
+      vctcxo_irq                 => inst12_mm_irq,
       -- PLL reconfiguration
       pll_rst                    => inst0_pll_rst,
       pll_axi_resetn_out         => inst0_pll_axi_resetn_out,
@@ -853,9 +865,9 @@ begin
       -- Avalon master
       avmm_m0_address            => inst0_avmm_m0_address,
       avmm_m0_read               => inst0_avmm_m0_read,
-      avmm_m0_waitrequest        => '0',
-      avmm_m0_readdata           => (others=>'0'),
-      avmm_m0_readdatavalid      => '0',
+      avmm_m0_waitrequest        => inst12_mm_wait_req,
+      avmm_m0_readdata           => inst12_mm_rd_data,
+      avmm_m0_readdatavalid      => inst12_mm_rd_datav,
       avmm_m0_write              => inst0_avmm_m0_write,
       avmm_m0_writedata          => inst0_avmm_m0_writedata,
       avmm_m0_clk_clk            => inst0_avmm_m0_clk_clk,
@@ -1814,7 +1826,56 @@ begin
    inst12_tx_src_sel <= "00" when inst0_from_fpgacfg_mod_2.rx_en = '1' else 
                         "01" when inst0_from_fpgacfg_mod_2.dlb_en = '1' else 
                         "10";
-   
+
+   inst12_limegnss_gpio_top : entity work.limegnss_gpio_top
+   generic map( 
+      UART_BAUD_RATE          => 9600,
+      VCTCXO_CLOCK_FREQUENCY  => 30720000,
+      MM_CLOCK_FREQUENCY      => 100000000
+   )
+   port map(
+      areset_n          => reset_n,
+      -- SPI interface
+      -- Address and location of SPI memory module
+      -- Will be hard wired at the top level
+      tamercfg_maddress => "0000000111",
+      gnsscfg_maddress  => "0000001000",
+      -- Serial port IOs
+      sdin              => inst0_spi_0_MOSI,    -- Data in
+      sclk              => inst0_spi_0_SCLK,    -- Data clock
+      sen               => inst0_spi_0_SS_n(0), -- Enable signal (active low)
+      sdout             => inst12_sdout,        -- Data out 
+      -- Signals coming from the pins or top level serial interface
+      lreset            => reset_n,    -- Logic reset signal, resets logic cells only  (use only one reset)
+      mreset            => reset_n,    -- Memory reset signal, resets configuration memory only (use only one reset)
+      vctcxo_clk        => LMK_CLK,    -- Clock from VCTCXO       
+      --LimeGNSS-GPIO pins
+      gnss_tx           => open,   
+      gnss_rx           => GNSS_UART_TX,  
+      gnss_tpulse       => GNSS_PPS,   
+      gnss_fix          => '0',           
+      fpga_led_g        => inst12_fpga_led_g,
+      fpga_led_r        => inst12_fpga_led_r, 
+      -- NIOS PIO
+      en                => inst12_en,     
+      -- NIOs  Avalon-MM Interface (External master)
+      mm_clock          => inst0_avmm_m0_clk_clk,
+      mm_reset          => inst0_avmm_m0_reset_reset,
+      mm_rd_req         => inst0_avmm_m0_read,
+      mm_wr_req         => inst0_avmm_m0_write,
+      mm_addr           => inst0_avmm_m0_address,
+      mm_wr_data        => inst0_avmm_m0_writedata,
+      mm_rd_data        => inst12_mm_rd_data,
+      mm_rd_datav       => inst12_mm_rd_datav,
+      mm_wait_req       => inst12_mm_wait_req,
+      -- Avalon Interrupts
+      mm_irq            => inst12_mm_irq,
+      
+      -- Testing (UART logger)
+      fan_ctrl_in       => '0',
+      uart_tx           => inst12_uart_tx
+      
+   );
 --   -- DAC module
 ----   inst12_dac5672_top : entity work.dac5672_top
 ----   generic map(
@@ -2148,7 +2209,7 @@ begin
    gpio_i( 8) <= inst1_pll_0_locked;
    gpio_i( 9) <= GNSS_PPS;
    gpio_i(10) <= GNSS_UART_TX;
-   gpio_i(11) <= '0';
+   gpio_i(11) <= inst12_uart_tx;
    gpio_i(12) <= inst0_spi_2_SCLK;
    gpio_i(13) <= FPGA_SPI2_MISO_ADC;
    gpio_i(14) <= inst0_spi_2_MOSI;

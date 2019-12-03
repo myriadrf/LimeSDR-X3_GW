@@ -207,6 +207,10 @@ architecture arch of cpu_top is
    signal inst0_pllcfg_cmd_export   : std_logic_vector(3 downto 0);
    signal inst0_pllcfg_stat_export  : std_logic_vector(11 downto 0);
    
+   signal inst0_avmm_m0_address     : std_logic_vector(31 downto 0);
+   signal inst0_avmm_m0_readdata    : std_logic_vector(31 downto 0);
+   signal inst0_avmm_m0_writedata   : std_logic_vector(31 downto 0);
+   
    
    --inst1
    signal inst1_sdout            : std_logic;
@@ -224,6 +228,13 @@ architecture arch of cpu_top is
    component mb_subsystem is
    port (
       clk                        : in std_logic;
+      avmm_m0_address            : out STD_LOGIC_VECTOR ( 31 downto 0 );
+      avmm_m0_read               : out STD_LOGIC;
+      avmm_m0_readdata           : in STD_LOGIC_VECTOR ( 31 downto 0 );
+      avmm_m0_readdatavalid      : in STD_LOGIC;
+      avmm_m0_waitrequest        : in STD_LOGIC;
+      avmm_m0_write              : out STD_LOGIC;
+      avmm_m0_writedata          : out STD_LOGIC_VECTOR ( 31 downto 0 );
       fifo_read_0_almost_empty   : in std_logic;
       fifo_read_0_empty          : in std_logic;
       fifo_read_0_rd_data        : in std_logic_vector ( 31 downto 0 );
@@ -307,6 +318,7 @@ architecture arch of cpu_top is
       smpl_cmp_en_tri_o          : out STD_LOGIC_VECTOR ( 3 downto 0 );
       smpl_cmp_status_tri_i      : in STD_LOGIC_VECTOR ( 1 downto 0 );
       smpl_cmp_sel_tri_o         : out STD_LOGIC_VECTOR ( 0 to 0 );
+      vctcxo_tamer_0_ctrl_tri_i  : in STD_LOGIC_VECTOR ( 3 downto 0 );
       
       pll_c0                     : out STD_LOGIC;
       pll_c1                     : out STD_LOGIC;
@@ -489,6 +501,13 @@ begin
    inst0_mb_cpu : mb_subsystem
    port map (
       clk                      => clk,
+      avmm_m0_address          => inst0_avmm_m0_address,
+      avmm_m0_read             => avmm_m0_read,
+      avmm_m0_readdata         => inst0_avmm_m0_readdata,
+      avmm_m0_readdatavalid    => avmm_m0_readdatavalid,
+      avmm_m0_waitrequest      => avmm_m0_waitrequest,
+      avmm_m0_write            => avmm_m0_write,
+      avmm_m0_writedata        => inst0_avmm_m0_writedata,
       fifo_read_0_almost_empty => '0',
       fifo_read_0_empty        => exfifo_if_rdempty,
       fifo_read_0_rd_data      => exfifo_if_d,
@@ -572,6 +591,7 @@ begin
       extm_0_axi_wstrb         => pll_from_axim.wstrb,
       extm_0_axi_wvalid        => pll_from_axim.wvalid, 
       extm_0_axi_sel_tri_o     => pll_axi_sel,
+      vctcxo_tamer_0_ctrl_tri_i=> vctcxo_tamer_0_ctrl_export,
       
       -- tsting
       pll_c0                   => pll_c0, 
@@ -581,6 +601,17 @@ begin
       smpl_cmp_status_tri_i    => smpl_cmp_status_sync,
       smpl_cmp_sel_tri_o       => smpl_cmp_sel
    );
+   
+   avmm_m0_clk_clk                     <= clk;
+   avmm_m0_reset_reset                 <= NOT pll_axi_resetn_out(0);
+   avmm_m0_address                     <= inst0_avmm_m0_address(7 downto 0);
+   avmm_m0_writedata                   <= inst0_avmm_m0_writedata(7 downto 0);
+   inst0_avmm_m0_readdata( 7 downto  0) <= avmm_m0_readdata;
+   inst0_avmm_m0_readdata(15 downto  8) <= avmm_m0_readdata;
+   inst0_avmm_m0_readdata(23 downto 16) <= avmm_m0_readdata;
+   inst0_avmm_m0_readdata(31 downto 24) <= avmm_m0_readdata;
+
+   
    
 
    inst0_pllcfg_cmd_export <= from_pllcfg.phcfg_mode & from_pllcfg.pllrst_start & 
