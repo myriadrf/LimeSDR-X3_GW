@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="37">
   <CompositeFile CompositeFileTopName="mb_subsystem" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1572337105"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1572337105"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1572337105"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1572337105"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1575358711"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1575358711"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1575358711"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1575358711"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\mb_subsystem_microblaze_0_7\mb_subsystem_microblaze_0_7.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0"/>
@@ -227,6 +227,22 @@
       </File>
       <File Name="ip\mb_subsystem_smpl_cmp_stat_0\mb_subsystem_smpl_cmp_stat_0.xci" Type="IP">
         <Instance HierarchyPath="smpl_cmp_sel"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\mb_subsystem_axi_amm_bridge_0_0\mb_subsystem_axi_amm_bridge_0_0.xci" Type="IP">
+        <Instance HierarchyPath="axi_amm_bridge_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip\mb_subsystem_axi_gpio_1_5\mb_subsystem_axi_gpio_1_5.xci" Type="IP">
+        <Instance HierarchyPath="vctcxo_tamer_ctrl"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="work"/>
         <UsedIn Val="SYNTHESIS"/>

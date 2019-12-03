@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Sep 24 10:43:55 2019
+// Date        : Fri Nov 29 17:12:21 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub -rename_top mb_subsystem_ilmb_bram_if_cntlr_7 -prefix
-//               mb_subsystem_ilmb_bram_if_cntlr_7_ mb_subsystem_ilmb_bram_if_cntlr_7_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_ilmb_bram_if_cntlr_7/mb_subsystem_ilmb_bram_if_cntlr_7_stub.v
 // Design      : mb_subsystem_ilmb_bram_if_cntlr_7
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tfbg484-2

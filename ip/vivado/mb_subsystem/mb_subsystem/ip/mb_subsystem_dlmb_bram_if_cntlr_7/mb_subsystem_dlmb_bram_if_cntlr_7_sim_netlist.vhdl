@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Sep 24 10:43:55 2019
+-- Date        : Fri Nov 29 18:07:53 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_dlmb_bram_if_cntlr_7 -prefix
---               mb_subsystem_dlmb_bram_if_cntlr_7_ mb_subsystem_dlmb_bram_if_cntlr_7_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_dlmb_bram_if_cntlr_7/mb_subsystem_dlmb_bram_if_cntlr_7_sim_netlist.vhdl
 -- Design      : mb_subsystem_dlmb_bram_if_cntlr_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -113,7 +113,7 @@ entity mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 0;
   attribute C_HIGHADDR : string;
-  attribute C_HIGHADDR of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000000000000111111111111111";
+  attribute C_HIGHADDR of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000000000000000000001111111111111111";
   attribute C_INTERCONNECT : integer;
   attribute C_INTERCONNECT of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 0;
   attribute C_LMB_AWIDTH : integer;
@@ -142,6 +142,8 @@ entity mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
   attribute C_UE_FAILING_REGISTERS of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 0;
   attribute C_WRITE_ACCESS : integer;
   attribute C_WRITE_ACCESS of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 2;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is "lmb_bram_if_cntlr";
 end mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr;
 
 architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
@@ -502,7 +504,7 @@ architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of U0 : label is 0;
   attribute C_HIGHADDR : string;
-  attribute C_HIGHADDR of U0 : label is "64'b0000000000000000000000000000000000000000000000000111111111111111";
+  attribute C_HIGHADDR of U0 : label is "64'b0000000000000000000000000000000000000000000000001111111111111111";
   attribute C_INTERCONNECT : integer;
   attribute C_INTERCONNECT of U0 : label is 0;
   attribute C_LMB_AWIDTH : integer;
@@ -536,7 +538,7 @@ architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute x_interface_info of BRAM_EN_A : signal is "xilinx.com:interface:bram:1.0 BRAM_PORT EN";
   attribute x_interface_info of BRAM_Rst_A : signal is "xilinx.com:interface:bram:1.0 BRAM_PORT RST";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of BRAM_Rst_A : signal is "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 32768, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_LATENCY 1";
+  attribute x_interface_parameter of BRAM_Rst_A : signal is "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 65536, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_LATENCY 1";
   attribute x_interface_info of LMB_AddrStrobe : signal is "xilinx.com:interface:lmb:1.0 SLMB ADDRSTROBE";
   attribute x_interface_info of LMB_Clk : signal is "xilinx.com:signal:clock:1.0 CLK.LMB_Clk CLK";
   attribute x_interface_parameter of LMB_Clk : signal is "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
