@@ -2188,7 +2188,7 @@ begin
    gpio_t( 4) <= '0';
    gpio_t( 5) <= '0';
    gpio_t( 6) <= '0';
-   gpio_t( 7) <= '1';
+   gpio_t( 7) <= '0';
    gpio_t( 8) <= '0';
    gpio_t( 9) <= '0';
    gpio_t(10) <= '0';
@@ -2198,11 +2198,11 @@ begin
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= '0';         
-   gpio_i( 1) <= '0';
+   gpio_i( 0) <= inst0_spi_1_SCLK;         
+   gpio_i( 1) <= inst0_spi_1_MOSI;
    gpio_i( 2) <= inst6_tx_ant_en;
-   gpio_i( 3) <= '0';
-   gpio_i( 4) <= '0';
+   gpio_i( 3) <= FPGA_SPI1_MISO;
+   gpio_i( 4) <= inst0_spi_1_SS_n(1);
    gpio_i( 5) <= '0';
    gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
