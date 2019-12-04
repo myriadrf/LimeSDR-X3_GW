@@ -22,12 +22,13 @@ vivado/mb_subsystem.tcl
 vivado/PCIe_5GRadio_lms7_trx.xpr
 vivado/PCIe_5GRadio_lms7_trx.sdk/.metadata
 vivado/PCIe_5GRadio_lms7_trx.sdk/.sdk
-vivado/PCIe_5GRadio_lms7_trx.sdk/lms7_trx_top_hw_platform_0
-vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/Debug
-vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.cproject
-vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.project
-vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw_bsp
+#vivado/PCIe_5GRadio_lms7_trx.sdk/lms7_trx_top_hw_platform_0
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/Debug
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.cproject
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.project
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw_bsp
 vivado/PCIe_5GRadio_lms7_trx.sdk/RemoteSystemsTempFiles
+vivado/PCIe_5GRadio_lms7_trx.sdk/webtalk
 vivado/PCIe_5GRadio_lms7_trx.sdk/SDK.log
 
 # --------------
