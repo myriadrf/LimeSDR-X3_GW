@@ -64,7 +64,6 @@
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="ip\mb_subsystem_microblaze_0_axi_periph_5\mb_subsystem_microblaze_0_axi_periph_5.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="work"/>
         <UsedIn Val="SYNTHESIS"/>
