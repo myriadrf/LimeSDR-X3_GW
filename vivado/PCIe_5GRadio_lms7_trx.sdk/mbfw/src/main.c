@@ -39,6 +39,7 @@
 #define SPI0_LMS7002M_1_SS	0x04
 
 #define SPI1_TCXO_DAC_SS	0x01
+#define SPI1_ADC_SS			0x02
 
 #define SPI2_BB_ADC_SS   	0x01
 #define CDCM_SPI2_SELECT 	0x02
@@ -1518,6 +1519,35 @@ int Clk_Wiz_Reconfig(XClk_Wiz_Config *CfgPtr_Dynamic)
 	return Error;
 }
 
+int RdADC(uint8_t ch) {
+
+	uint8_t wr_buf[3];
+	uint8_t rd_buf[3];
+	uint16_t D;
+	int64_t Vin;
+	int64_t Vref = 2500000; // Reference voltage in uV
+	int spirez;
+
+	/* Set SPI 1 0 mode */
+	spirez = XSpi_SetOptions(&Spi1, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
+
+	// Select ADC on SPI1
+	spirez = XSpi_SetSlaveSelect(&Spi1, SPI1_ADC_SS);
+
+	// Disable ADC readout and reset
+	wr_buf[0] = 0x06;		// Start bit, Input cofig: Single-ended,
+	wr_buf[1] = ch << 6;	// Channel selection
+	wr_buf[2] = 0x00;		// Dont care
+	spirez = XSpi_Transfer(&Spi1, wr_buf, rd_buf, 3);
+
+	D = ((rd_buf[1] & 0x0F) << 8) | rd_buf[2];
+
+	Vin = D * Vref / 4096;
+
+	// Return measured voltage Vin in uV
+	return Vin;
+}
+
 
 int main()
 {
@@ -1614,6 +1644,14 @@ tXPLL_CFG pll_cfg = {0};
 
 	RdPLLCFG(&pll_cfg);
 	//pllcfgrez = UpdatePLLCFG();
+
+
+	// ADC test read
+	int test_rd;
+	test_rd = RdADC(0x00);
+	test_rd = RdADC(0x01);
+	test_rd = RdADC(0x02);
+	test_rd = RdADC(0x03);
 
 
 
