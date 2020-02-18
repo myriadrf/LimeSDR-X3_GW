@@ -1,11 +1,11 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Wed Jul 24 16:39:36 2019
+// Date        : Tue Dec 10 13:52:12 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_mdm_1_6 -prefix
-//               mb_subsystem_mdm_1_6_ mb_subsystem_mdm_1_0_sim_netlist.v
-// Design      : mb_subsystem_mdm_1_0
+//               mb_subsystem_mdm_1_6_ mb_subsystem_mdm_1_6_sim_netlist.v
+// Design      : mb_subsystem_mdm_1_6
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7a200tfbg484-2
@@ -11544,7 +11544,7 @@ module mb_subsystem_mdm_1_6_MDM_Core
         .O(\Use_E2.BSCANE2_I_i_2_n_0 ));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_mdm_1_0,MDM,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MDM,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "mb_subsystem_mdm_1_6,MDM,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MDM,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
 module mb_subsystem_mdm_1_6
    (Debug_SYS_Rst,

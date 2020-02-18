@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Thu Oct 24 13:56:57 2019
+// Date        : Tue Dec 10 13:55:51 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               g:/working_dir/xilinx/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_axi_gpio_1_4/mb_subsystem_axi_gpio_1_4_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top mb_subsystem_axi_gpio_1_4 -prefix
+//               mb_subsystem_axi_gpio_1_4_ mb_subsystem_axi_gpio_1_4_stub.v
 // Design      : mb_subsystem_axi_gpio_1_4
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tfbg484-2

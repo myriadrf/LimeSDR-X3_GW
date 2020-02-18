@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Dec  3 09:39:26 2019
+-- Date        : Tue Dec 10 13:56:11 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_axi_amm_bridge_0_0/mb_subsystem_axi_amm_bridge_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_axi_amm_bridge_0_0 -prefix
+--               mb_subsystem_axi_amm_bridge_0_0_ mb_subsystem_axi_amm_bridge_0_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_axi_amm_bridge_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -45,8 +45,6 @@ entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite : entity is "axi_amm_bridge_v1_0_9_lite";
 end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite;
 
 architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite is
@@ -2901,8 +2899,6 @@ entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top is
   attribute C_USE_WSTRB of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "yes";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "axi_amm_bridge_v1_0_9_top";
 end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top;
 
 architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top is

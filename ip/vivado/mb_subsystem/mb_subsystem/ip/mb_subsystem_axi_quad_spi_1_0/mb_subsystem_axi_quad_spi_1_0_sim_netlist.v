@@ -1,11 +1,11 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Sep 24 11:19:44 2019
+// Date        : Tue Dec 10 13:54:22 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_axi_quad_spi_1_0 -prefix
-//               mb_subsystem_axi_quad_spi_1_0_ mb_subsystem_axi_quad_spi_0_1_sim_netlist.v
-// Design      : mb_subsystem_axi_quad_spi_0_1
+//               mb_subsystem_axi_quad_spi_1_0_ mb_subsystem_axi_quad_spi_1_0_sim_netlist.v
+// Design      : mb_subsystem_axi_quad_spi_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7a200tfbg484-2
@@ -4937,7 +4937,7 @@ module mb_subsystem_axi_quad_spi_1_0_interrupt_control
         .R(reset2ip_reset_int));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_quad_spi_0_1,axi_quad_spi,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_quad_spi,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_quad_spi_1_0,axi_quad_spi,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axi_quad_spi,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
 module mb_subsystem_axi_quad_spi_1_0
    (ext_spi_clk,

@@ -1,11 +1,11 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Wed Jul 24 16:55:28 2019
+-- Date        : Tue Dec 10 13:51:11 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_microblaze_0_7 -prefix
---               mb_subsystem_microblaze_0_7_ mb_subsystem_microblaze_0_1_sim_netlist.vhdl
--- Design      : mb_subsystem_microblaze_0_1
+--               mb_subsystem_microblaze_0_7_ mb_subsystem_microblaze_0_7_sim_netlist.vhdl
+-- Design      : mb_subsystem_microblaze_0_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a200tfbg484-2
@@ -59898,7 +59898,7 @@ entity mb_subsystem_microblaze_0_7_MicroBlaze is
   attribute C_IMPRECISE_EXCEPTIONS : integer;
   attribute C_IMPRECISE_EXCEPTIONS of mb_subsystem_microblaze_0_7_MicroBlaze : entity is 0;
   attribute C_INSTANCE : string;
-  attribute C_INSTANCE of mb_subsystem_microblaze_0_7_MicroBlaze : entity is "mb_subsystem_microblaze_0_1";
+  attribute C_INSTANCE of mb_subsystem_microblaze_0_7_MicroBlaze : entity is "mb_subsystem_microblaze_0_7";
   attribute C_INSTR_SIZE : integer;
   attribute C_INSTR_SIZE of mb_subsystem_microblaze_0_7_MicroBlaze : entity is 32;
   attribute C_INTERCONNECT : integer;
@@ -73068,7 +73068,7 @@ entity mb_subsystem_microblaze_0_7 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of mb_subsystem_microblaze_0_7 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of mb_subsystem_microblaze_0_7 : entity is "mb_subsystem_microblaze_0_1,MicroBlaze,{}";
+  attribute CHECK_LICENSE_TYPE of mb_subsystem_microblaze_0_7 : entity is "mb_subsystem_microblaze_0_7,MicroBlaze,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_microblaze_0_7 : entity is "yes";
   attribute x_core_info : string;
@@ -73432,7 +73432,7 @@ architecture STRUCTURE of mb_subsystem_microblaze_0_7 is
   attribute C_IMPRECISE_EXCEPTIONS : integer;
   attribute C_IMPRECISE_EXCEPTIONS of U0 : label is 0;
   attribute C_INSTANCE : string;
-  attribute C_INSTANCE of U0 : label is "mb_subsystem_microblaze_0_1";
+  attribute C_INSTANCE of U0 : label is "mb_subsystem_microblaze_0_7";
   attribute C_INSTR_SIZE : integer;
   attribute C_INSTR_SIZE of U0 : label is 32;
   attribute C_INTERCONNECT : integer;

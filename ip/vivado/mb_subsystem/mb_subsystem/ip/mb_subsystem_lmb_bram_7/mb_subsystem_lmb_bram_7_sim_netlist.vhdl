@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Fri Nov 29 17:13:45 2019
+-- Date        : Tue Dec 10 13:52:43 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_lmb_bram_7/mb_subsystem_lmb_bram_7_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_lmb_bram_7 -prefix
+--               mb_subsystem_lmb_bram_7_ mb_subsystem_lmb_bram_7_sim_netlist.vhdl
 -- Design      : mb_subsystem_lmb_bram_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,8 +31,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper is
@@ -4387,8 +4385,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width is
@@ -5343,8 +5339,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr is
@@ -5655,8 +5649,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_top is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_top;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_top is
@@ -5704,8 +5696,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth is
@@ -5950,8 +5940,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "yes";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3;
@@ -6306,7 +6294,7 @@ architecture STRUCTURE of mb_subsystem_lmb_bram_7 is
   attribute x_interface_info : string;
   attribute x_interface_info of clka : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of clka : signal is "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 32768, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE BRAM_CTRL, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1";
+  attribute x_interface_parameter of clka : signal is "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 65536, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE BRAM_CTRL, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1";
   attribute x_interface_info of clkb : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB CLK";
   attribute x_interface_parameter of clkb : signal is "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 65536, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE BRAM_CTRL, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1";
   attribute x_interface_info of ena : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA EN";

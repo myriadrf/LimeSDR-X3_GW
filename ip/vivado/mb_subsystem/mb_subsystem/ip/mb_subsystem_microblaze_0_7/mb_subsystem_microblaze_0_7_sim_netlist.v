@@ -1,18 +1,18 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Wed Jul 24 16:55:28 2019
+// Date        : Tue Dec 10 13:51:11 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_microblaze_0_7 -prefix
-//               mb_subsystem_microblaze_0_7_ mb_subsystem_microblaze_0_1_sim_netlist.v
-// Design      : mb_subsystem_microblaze_0_1
+//               mb_subsystem_microblaze_0_7_ mb_subsystem_microblaze_0_7_sim_netlist.v
+// Design      : mb_subsystem_microblaze_0_7
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7a200tfbg484-2
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_microblaze_0_1,MicroBlaze,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MicroBlaze,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "mb_subsystem_microblaze_0_7,MicroBlaze,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MicroBlaze,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
 module mb_subsystem_microblaze_0_7
    (Clk,
@@ -473,7 +473,7 @@ module mb_subsystem_microblaze_0_7
   (* C_ICACHE_VICTIMS = "0" *) 
   (* C_ILL_OPCODE_EXCEPTION = "0" *) 
   (* C_IMPRECISE_EXCEPTIONS = "0" *) 
-  (* C_INSTANCE = "mb_subsystem_microblaze_0_1" *) 
+  (* C_INSTANCE = "mb_subsystem_microblaze_0_7" *) 
   (* C_INSTR_SIZE = "32" *) 
   (* C_INTERCONNECT = "2" *) 
   (* C_INTERRUPT_IS_EDGE = "0" *) 
@@ -42718,7 +42718,7 @@ endmodule
 (* C_ICACHE_ALWAYS_USED = "0" *) (* C_ICACHE_BASEADDR = "64'b0000000000000000000000000000000000000000000000000000000000000000" *) (* C_ICACHE_DATA_WIDTH = "0" *) 
 (* C_ICACHE_FORCE_TAG_LUTRAM = "0" *) (* C_ICACHE_HIGHADDR = "64'b0000000000000000000000000000000000111111111111111111111111111111" *) (* C_ICACHE_LINE_LEN = "4" *) 
 (* C_ICACHE_STREAMS = "0" *) (* C_ICACHE_VICTIMS = "0" *) (* C_ILL_OPCODE_EXCEPTION = "0" *) 
-(* C_IMPRECISE_EXCEPTIONS = "0" *) (* C_INSTANCE = "mb_subsystem_microblaze_0_1" *) (* C_INSTR_SIZE = "32" *) 
+(* C_IMPRECISE_EXCEPTIONS = "0" *) (* C_INSTANCE = "mb_subsystem_microblaze_0_7" *) (* C_INSTR_SIZE = "32" *) 
 (* C_INTERCONNECT = "2" *) (* C_INTERRUPT_IS_EDGE = "0" *) (* C_I_AXI = "0" *) 
 (* C_I_LMB = "1" *) (* C_LMB_DATA_SIZE = "32" *) (* C_LOCKSTEP_MASTER = "0" *) 
 (* C_LOCKSTEP_SLAVE = "0" *) (* C_M0_AXIS_DATA_WIDTH = "32" *) (* C_M10_AXIS_DATA_WIDTH = "32" *) 

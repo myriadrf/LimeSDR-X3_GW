@@ -1,11 +1,11 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Wed Jul 24 16:35:23 2019
+-- Date        : Tue Dec 10 13:50:19 2019
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_dlmb_v10_7 -prefix
---               mb_subsystem_dlmb_v10_7_ mb_subsystem_dlmb_v10_0_sim_netlist.vhdl
--- Design      : mb_subsystem_dlmb_v10_0
+--               mb_subsystem_dlmb_v10_7_ mb_subsystem_dlmb_v10_7_sim_netlist.vhdl
+-- Design      : mb_subsystem_dlmb_v10_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7a200tfbg484-2
@@ -138,7 +138,7 @@ entity mb_subsystem_dlmb_v10_7 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of mb_subsystem_dlmb_v10_7 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of mb_subsystem_dlmb_v10_7 : entity is "mb_subsystem_dlmb_v10_0,lmb_v10,{}";
+  attribute CHECK_LICENSE_TYPE of mb_subsystem_dlmb_v10_7 : entity is "mb_subsystem_dlmb_v10_7,lmb_v10,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_dlmb_v10_7 : entity is "yes";
   attribute x_core_info : string;
