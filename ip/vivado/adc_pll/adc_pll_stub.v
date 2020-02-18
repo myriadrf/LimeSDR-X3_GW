@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Mon Nov 18 17:08:40 2019
+// Date        : Tue Dec 10 14:01:50 2019
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/adc_pll/adc_pll_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top adc_pll -prefix
+//               adc_pll_ adc_pll_stub.v
 // Design      : adc_pll
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tfbg484-2
