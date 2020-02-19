@@ -20,8 +20,8 @@ entity tx_chain is
       nrst           : in  std_logic;
       TXI            : in  std_logic_vector(17 downto 0);
       TXQ            : in  std_logic_vector(17 downto 0);
-      TYI            : out std_logic_vector(13 downto 0);
-      TYQ            : out std_logic_vector(13 downto 0);
+      TYI            : out std_logic_vector(15 downto 0);
+      TYQ            : out std_logic_vector(15 downto 0);
       from_txtspcfg  : in  t_FROM_TXTSPCFG;
       to_txtspcfg    : out t_TO_TXTSPCFG
       
@@ -69,10 +69,10 @@ signal inst4_yi         : std_logic_vector(17 downto 0);
 signal inst4_yq         : std_logic_vector(17 downto 0);
 
 --inst5 
-signal inst5_y          : std_logic_vector(13 downto 0);
+signal inst5_y          : std_logic_vector(15 downto 0);
 
 --inst6
-signal inst6_y          : std_logic_vector(13 downto 0);
+signal inst6_y          : std_logic_vector(15 downto 0);
 
 
 component nco is
@@ -124,8 +124,8 @@ component dccorr
       en    : in std_logic;
       byp   : in std_logic;
       dc    : in std_logic_vector(7 downto 0);
-      x     : in std_logic_vector(13 downto 0);
-      y     : out std_logic_vector(13 downto 0)
+      x     : in std_logic_vector(15 downto 0);
+      y     : out std_logic_vector(15 downto 0)
    );
 end component;
 
@@ -324,7 +324,7 @@ port map(
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorri,
-   x     => inst4_yi(17 downto 4),
+   x     => inst4_yi(17 downto 2),
    y     => inst5_y
    );
 
@@ -336,7 +336,7 @@ port map(
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorrq,
-   x     => inst4_yq(17 downto 4),
+   x     => inst4_yq(17 downto 2),
    y     => inst6_y
    );
 

@@ -19,9 +19,9 @@ port
 		nrst	: in std_logic;
 		en		: in std_logic;
 		byp	: in std_logic;
-		x		: in signed (13 downto 0);
+		x		: in signed (15 downto 0);
 		dc		: in signed (7 downto 0);
-		y		: out signed (13 downto 0)
+		y		: out signed (15 downto 0)
 	);
 end dccorr;
 
@@ -30,16 +30,16 @@ end dccorr;
 -- ----------------------------------------------------------------------------
 architecture dccorr_arch of dccorr is
 
-	signal mux	: signed (13 downto 0);
-	signal s		: signed (13 downto 0);
-	signal r		: signed (13 downto 0);
+	signal mux	: signed (15 downto 0);
+	signal s		: signed (15 downto 0);
+	signal r		: signed (15 downto 0);
 	
 	
 begin
 	
 	
 	s <= x + dc;
-	mux <= s(13 downto 0) when byp = '0' else x;
+	mux <= s(15 downto 0) when byp = '0' else x;
 
 	reg: process(clk, nrst)
 	begin

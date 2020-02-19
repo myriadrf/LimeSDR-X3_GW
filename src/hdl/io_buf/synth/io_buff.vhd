@@ -175,13 +175,6 @@ begin
    );
    end generate gen_idelay_db;
    
-   IDELAYCTRL_inst : IDELAYCTRL
-   port map (
-      RDY      => open,       -- 1-bit output: Ready output
-      REFCLK   => clk_200mhz, -- 1-bit input: Reference clock input
-      RST      => '0'        -- 1-bit input: Active high reset input
-   );
-   
    -- Diferential DB (data B chanel) buffers
    DB_buff : for i in 0 to 6 generate
    IBUFDS_inst : IBUFDS

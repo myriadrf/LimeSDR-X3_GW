@@ -94,7 +94,7 @@ entity pll_top is
       lms2_smpl_cmp_done            : in  std_logic;
       lms2_smpl_cmp_error           : in  std_logic;
       lms2_smpl_cmp_cnt             : out std_logic_vector(15 downto 0);
-      -- PLL for DAC, ADC
+      -- PLL for ADC
       pll_0_inclk                   : in  std_logic;
       pll_0_rcnfg_to_pll            : in  std_logic_vector(63 downto 0);
       pll_0_rcnfg_from_pll          : out std_logic_vector(63 downto 0);
@@ -102,6 +102,14 @@ entity pll_top is
       pll_0_c0                      : out std_logic;
       pll_0_c1                      : out std_logic;
       pll_0_locked                  : out std_logic;
+      -- PLL for DAC
+      pll_1_inclk_p                 : in  std_logic;
+      pll_1_inclk_n                 : in  std_logic;
+      pll_1_logic_reset_n           : in  std_logic;
+      pll_1_c0                      : out std_logic;
+      pll_1_c1                      : out std_logic;
+      pll_1_c2                      : out std_logic;
+      pll_1_locked                  : out std_logic;
       -- Reconfiguration AXI ports 
       rcnfg_axi_clk                 : in  std_logic;
       rcnfg_axi_reset_n             : in  std_logic;
@@ -402,56 +410,56 @@ begin
    inst2_rcnfig_from_axim <= rcnfg_from_axim when rcnfg_sel = "0010" else c_FROM_AXIM_32x32_ZERO;
    
    
-   inst2_tx_pll_top_cyc5 : entity work.tx_pll_top
-   generic map(
-      vendor                  => "XILINX", -- ALTERA or XILINX
-      intended_device_family  => INTENDED_DEVICE_FAMILY,
-      drct_c0_ndly            => LMS2_TXPLL_DRCT_C0_NDLY,
-      drct_c1_ndly            => LMS2_TXPLL_DRCT_C1_NDLY
-   )
-   port map(
-   --PLL input    
-   pll_inclk                  => lms2_txpll_inclk_g,
-   pll_areset                 => inst4_pllrst_start(2),
-   pll_logic_reset_n          => lms2_txpll_logic_reset_n,
-   inv_c0                     => '0',
-   c0                         => lms2_txpll_c0, --muxed clock output
-   c1                         => lms2_txpll_c1, --muxed clock output
-   pll_locked                 => inst2_pll_locked,
-   --Bypass control
-   clk_ena                    => lms2_txpll_clk_ena,       --clock output enable
-   drct_clk_en                => lms2_txpll_drct_clk_en,   --1 - Direct clk, 0 - PLL clocks  
-   --Reconfiguration ports
-   rcnfg_clk                  => lms1_txpll_reconfig_clk,
-   rcnfig_areset              => inst4_pllrst_start(2),
-   rcnfg_axi_clk              => rcnfg_axi_clk,
-   rcfig_axi_reset_n          => rcnfg_axi_reset_n,
-   rcnfig_from_axim           => inst2_rcnfig_from_axim,
-   rcnfig_to_axim             => inst2_rcnfig_to_axim,
-   rcnfig_en                  => inst4_pllcfg_start(2),
-   rcnfig_data                => inst4_pllcfg_data,
-   rcnfig_status              => inst2_rcnfig_status,
-   --Dynamic phase shift ports
-   dynps_areset_n             => not inst4_pllrst_start(2),
-   dynps_mode                 => inst4_phcfg_mode, -- 0 - manual, 1 - auto
-   dynps_en                   => inst4_phcfg_start(2),
-   dynps_tst                  => inst4_phcfg_tst,
-   dynps_dir                  => inst4_phcfg_updn,
-   dynps_cnt_sel              => inst4_cnt_ind(2 downto 0),
-   -- max phase steps in auto mode, phase steps to shift in manual mode 
-   dynps_phase                => inst4_cnt_phase(9 downto 0),
-   dynps_step_size            => inst4_auto_phcfg_step(9 downto 0),
-   dynps_busy                 => open,
-   dynps_done                 => inst2_dynps_done,
-   dynps_status               => inst2_dynps_status,
-   --signals from sample compare module (required for automatic phase searching)
-   smpl_cmp_en                => inst2_smpl_cmp_en,
-   smpl_cmp_done              => lms2_smpl_cmp_done,
-   smpl_cmp_error             => lms2_smpl_cmp_error,
-      --Overall configuration PLL status
-   busy                       => inst2_busy,
-   from_pllcfg			         => from_pllcfg 
-   );
+   --inst2_tx_pll_top_cyc5 : entity work.tx_pll_top
+   --generic map(
+   --   vendor                  => "XILINX", -- ALTERA or XILINX
+   --   intended_device_family  => INTENDED_DEVICE_FAMILY,
+   --   drct_c0_ndly            => LMS2_TXPLL_DRCT_C0_NDLY,
+   --   drct_c1_ndly            => LMS2_TXPLL_DRCT_C1_NDLY
+   --)
+   --port map(
+   ----PLL input    
+   --pll_inclk                  => lms2_txpll_inclk_g,
+   --pll_areset                 => inst4_pllrst_start(2),
+   --pll_logic_reset_n          => lms2_txpll_logic_reset_n,
+   --inv_c0                     => '0',
+   --c0                         => lms2_txpll_c0, --muxed clock output
+   --c1                         => lms2_txpll_c1, --muxed clock output
+   --pll_locked                 => inst2_pll_locked,
+   ----Bypass control
+   --clk_ena                    => lms2_txpll_clk_ena,       --clock output enable
+   --drct_clk_en                => lms2_txpll_drct_clk_en,   --1 - Direct clk, 0 - PLL clocks  
+   ----Reconfiguration ports
+   --rcnfg_clk                  => lms1_txpll_reconfig_clk,
+   --rcnfig_areset              => inst4_pllrst_start(2),
+   --rcnfg_axi_clk              => rcnfg_axi_clk,
+   --rcfig_axi_reset_n          => rcnfg_axi_reset_n,
+   --rcnfig_from_axim           => inst2_rcnfig_from_axim,
+   --rcnfig_to_axim             => inst2_rcnfig_to_axim,
+   --rcnfig_en                  => inst4_pllcfg_start(2),
+   --rcnfig_data                => inst4_pllcfg_data,
+   --rcnfig_status              => inst2_rcnfig_status,
+   ----Dynamic phase shift ports
+   --dynps_areset_n             => not inst4_pllrst_start(2),
+   --dynps_mode                 => inst4_phcfg_mode, -- 0 - manual, 1 - auto
+   --dynps_en                   => inst4_phcfg_start(2),
+   --dynps_tst                  => inst4_phcfg_tst,
+   --dynps_dir                  => inst4_phcfg_updn,
+   --dynps_cnt_sel              => inst4_cnt_ind(2 downto 0),
+   ---- max phase steps in auto mode, phase steps to shift in manual mode 
+   --dynps_phase                => inst4_cnt_phase(9 downto 0),
+   --dynps_step_size            => inst4_auto_phcfg_step(9 downto 0),
+   --dynps_busy                 => open,
+   --dynps_done                 => inst2_dynps_done,
+   --dynps_status               => inst2_dynps_status,
+   ----signals from sample compare module (required for automatic phase searching)
+   --smpl_cmp_en                => inst2_smpl_cmp_en,
+   --smpl_cmp_done              => lms2_smpl_cmp_done,
+   --smpl_cmp_error             => lms2_smpl_cmp_error,
+   --   --Overall configuration PLL status
+   --busy                       => inst2_busy,
+   --from_pllcfg			         => from_pllcfg 
+   --);
 
 -- ----------------------------------------------------------------------------
 -- RX PLL instance for LMS#2
@@ -460,56 +468,56 @@ begin
 -- MUX for AXI bus 
    inst3_rcnfig_from_axim <= rcnfg_from_axim when rcnfg_sel = "0011" else c_FROM_AXIM_32x32_ZERO;
 
-   inst3_rx_pll_top_cyc5 : entity work.rx_pll_top
-   generic map(
-      vendor                  => "XILINX", -- ALTERA or XILINX
-      intended_device_family  => INTENDED_DEVICE_FAMILY,
-      drct_c0_ndly            => LMS2_RXPLL_DRCT_C0_NDLY,
-      drct_c1_ndly            => LMS2_RXPLL_DRCT_C1_NDLY
-   )
-   port map(
-   --PLL input
-   pll_inclk                  => lms2_rxpll_inclk_g,
-   pll_areset                 => inst4_pllrst_start(3),
-   pll_logic_reset_n          => lms2_rxpll_logic_reset_n,
-   inv_c0                     => '0',
-   c0                         => lms2_rxpll_c0, --muxed clock output
-   c1                         => lms2_rxpll_c1, --muxed clock output
-   pll_locked                 => inst3_pll_locked,
-   --Bypass control
-   clk_ena                    => lms2_rxpll_clk_ena,       --clock output enable
-   drct_clk_en                => lms2_rxpll_drct_clk_en,   --1 - Direct clk, 0 - PLL clocks 
-   --Reconfiguration ports
-   rcnfg_clk                  => lms1_rxpll_reconfig_clk,
-   rcnfig_areset              => inst4_pllrst_start(3),
-   rcnfg_axi_clk              => rcnfg_axi_clk,
-   rcfig_axi_reset_n          => rcnfg_axi_reset_n,
-   rcnfig_from_axim           => inst3_rcnfig_from_axim,
-   rcnfig_to_axim             => inst3_rcnfig_to_axim,
-   rcnfig_en                  => inst4_pllcfg_start(3),
-   rcnfig_data                => inst4_pllcfg_data,
-   rcnfig_status              => inst3_rcnfig_status,       
-   --Dynamic phase shift ports
-   dynps_mode                 => inst4_phcfg_mode, -- 0 - manual, 1 - auto
-   dynps_areset_n             => lms2_rxpll_logic_reset_n,
-   dynps_en                   => inst4_phcfg_start(3),
-   dynps_tst                  => inst4_phcfg_tst,
-   dynps_dir                  => inst4_phcfg_updn,
-   dynps_cnt_sel              => inst4_cnt_ind(2 downto 0),
-   -- max phase steps in auto mode, phase steps to shift in manual mode 
-   dynps_phase                => inst4_cnt_phase(9 downto 0),
-   dynps_step_size            => inst4_auto_phcfg_step(9 downto 0),
-   dynps_busy                 => open,
-   dynps_done                 => inst3_dynps_done,
-   dynps_status               => inst3_dynps_status,
-   --signals from sample compare module (required for automatic phase searching)
-   smpl_cmp_en                => inst3_smpl_cmp_en,
-   smpl_cmp_done              => lms2_smpl_cmp_done,
-   smpl_cmp_error             => lms2_smpl_cmp_error,
-   busy                       => inst3_busy,
-   from_pllcfg                => from_pllcfg
-   
-   );   
+   --inst3_rx_pll_top_cyc5 : entity work.rx_pll_top
+   --generic map(
+   --   vendor                  => "XILINX", -- ALTERA or XILINX
+   --   intended_device_family  => INTENDED_DEVICE_FAMILY,
+   --   drct_c0_ndly            => LMS2_RXPLL_DRCT_C0_NDLY,
+   --   drct_c1_ndly            => LMS2_RXPLL_DRCT_C1_NDLY
+   --)
+   --port map(
+   ----PLL input
+   --pll_inclk                  => lms2_rxpll_inclk_g,
+   --pll_areset                 => inst4_pllrst_start(3),
+   --pll_logic_reset_n          => lms2_rxpll_logic_reset_n,
+   --inv_c0                     => '0',
+   --c0                         => lms2_rxpll_c0, --muxed clock output
+   --c1                         => lms2_rxpll_c1, --muxed clock output
+   --pll_locked                 => inst3_pll_locked,
+   ----Bypass control
+   --clk_ena                    => lms2_rxpll_clk_ena,       --clock output enable
+   --drct_clk_en                => lms2_rxpll_drct_clk_en,   --1 - Direct clk, 0 - PLL clocks 
+   ----Reconfiguration ports
+   --rcnfg_clk                  => lms1_rxpll_reconfig_clk,
+   --rcnfig_areset              => inst4_pllrst_start(3),
+   --rcnfg_axi_clk              => rcnfg_axi_clk,
+   --rcfig_axi_reset_n          => rcnfg_axi_reset_n,
+   --rcnfig_from_axim           => inst3_rcnfig_from_axim,
+   --rcnfig_to_axim             => inst3_rcnfig_to_axim,
+   --rcnfig_en                  => inst4_pllcfg_start(3),
+   --rcnfig_data                => inst4_pllcfg_data,
+   --rcnfig_status              => inst3_rcnfig_status,       
+   ----Dynamic phase shift ports
+   --dynps_mode                 => inst4_phcfg_mode, -- 0 - manual, 1 - auto
+   --dynps_areset_n             => lms2_rxpll_logic_reset_n,
+   --dynps_en                   => inst4_phcfg_start(3),
+   --dynps_tst                  => inst4_phcfg_tst,
+   --dynps_dir                  => inst4_phcfg_updn,
+   --dynps_cnt_sel              => inst4_cnt_ind(2 downto 0),
+   ---- max phase steps in auto mode, phase steps to shift in manual mode 
+   --dynps_phase                => inst4_cnt_phase(9 downto 0),
+   --dynps_step_size            => inst4_auto_phcfg_step(9 downto 0),
+   --dynps_busy                 => open,
+   --dynps_done                 => inst3_dynps_done,
+   --dynps_status               => inst3_dynps_status,
+   ----signals from sample compare module (required for automatic phase searching)
+   --smpl_cmp_en                => inst3_smpl_cmp_en,
+   --smpl_cmp_done              => lms2_smpl_cmp_done,
+   --smpl_cmp_error             => lms2_smpl_cmp_error,
+   --busy                       => inst3_busy,
+   --from_pllcfg                => from_pllcfg
+   --
+   --);   
    
   -- Replace with Xilinx instance
   --inst6_adc_dac_pll_top : entity work.adc_dac_pll_top
@@ -564,6 +572,17 @@ begin
       locked            => pll_0_locked,
       -- Clock in ports
       clk_in1           => pll_0_inclk
+   );
+   
+   inst7 : entity work.max5878_mmcm
+   port map ( 
+      -- Clock out ports  
+      clk_out1 => pll_1_c0,
+      clk_out2 => pll_1_c1,
+      clk_out3 => pll_1_c2,
+      -- Clock in ports
+      clk_in1_p => pll_1_inclk_p,
+      clk_in1_n => pll_1_inclk_n
    );
   
   
