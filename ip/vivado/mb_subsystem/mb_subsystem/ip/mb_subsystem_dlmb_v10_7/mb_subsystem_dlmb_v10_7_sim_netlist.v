@@ -1,108 +1,16 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Dec 10 13:50:19 2019
+// Date        : Tue Feb 18 10:27:24 2020
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_dlmb_v10_7 -prefix
-//               mb_subsystem_dlmb_v10_7_ mb_subsystem_dlmb_v10_7_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_dlmb_v10_7/mb_subsystem_dlmb_v10_7_sim_netlist.v
 // Design      : mb_subsystem_dlmb_v10_7
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a200tfbg484-2
+// Device      : xc7a200tfbg676-2
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
-
-(* C_EXT_RESET_HIGH = "1" *) (* C_LMB_AWIDTH = "32" *) (* C_LMB_DWIDTH = "32" *) 
-(* C_LMB_NUM_SLAVES = "1" *) 
-module mb_subsystem_dlmb_v10_7_lmb_v10
-   (LMB_Clk,
-    SYS_Rst,
-    LMB_Rst,
-    M_ABus,
-    M_ReadStrobe,
-    M_WriteStrobe,
-    M_AddrStrobe,
-    M_DBus,
-    M_BE,
-    Sl_DBus,
-    Sl_Ready,
-    Sl_Wait,
-    Sl_UE,
-    Sl_CE,
-    LMB_ABus,
-    LMB_ReadStrobe,
-    LMB_WriteStrobe,
-    LMB_AddrStrobe,
-    LMB_ReadDBus,
-    LMB_WriteDBus,
-    LMB_Ready,
-    LMB_Wait,
-    LMB_UE,
-    LMB_CE,
-    LMB_BE);
-  input LMB_Clk;
-  input SYS_Rst;
-  output LMB_Rst;
-  input [0:31]M_ABus;
-  input M_ReadStrobe;
-  input M_WriteStrobe;
-  input M_AddrStrobe;
-  input [0:31]M_DBus;
-  input [0:3]M_BE;
-  input [0:31]Sl_DBus;
-  input [0:0]Sl_Ready;
-  input [0:0]Sl_Wait;
-  input [0:0]Sl_UE;
-  input [0:0]Sl_CE;
-  output [0:31]LMB_ABus;
-  output LMB_ReadStrobe;
-  output LMB_WriteStrobe;
-  output LMB_AddrStrobe;
-  output [0:31]LMB_ReadDBus;
-  output [0:31]LMB_WriteDBus;
-  output LMB_Ready;
-  output LMB_Wait;
-  output LMB_UE;
-  output LMB_CE;
-  output [0:3]LMB_BE;
-
-  wire LMB_Clk;
-  wire LMB_Rst;
-  wire [0:31]M_ABus;
-  wire M_AddrStrobe;
-  wire [0:3]M_BE;
-  wire [0:31]M_DBus;
-  wire M_ReadStrobe;
-  wire M_WriteStrobe;
-  wire SYS_Rst;
-  wire [0:0]Sl_CE;
-  wire [0:31]Sl_DBus;
-  wire [0:0]Sl_Ready;
-  wire [0:0]Sl_UE;
-  wire [0:0]Sl_Wait;
-
-  assign LMB_ABus[0:31] = M_ABus;
-  assign LMB_AddrStrobe = M_AddrStrobe;
-  assign LMB_BE[0:3] = M_BE;
-  assign LMB_CE = Sl_CE;
-  assign LMB_ReadDBus[0:31] = Sl_DBus;
-  assign LMB_ReadStrobe = M_ReadStrobe;
-  assign LMB_Ready = Sl_Ready;
-  assign LMB_UE = Sl_UE;
-  assign LMB_Wait = Sl_Wait;
-  assign LMB_WriteDBus[0:31] = M_DBus;
-  assign LMB_WriteStrobe = M_WriteStrobe;
-  (* BOX_TYPE = "PRIMITIVE" *) 
-  (* XILINX_LEGACY_PRIM = "FDS" *) 
-  FDSE #(
-    .INIT(1'b1)) 
-    POR_FF_I
-       (.C(LMB_Clk),
-        .CE(1'b1),
-        .D(1'b0),
-        .Q(LMB_Rst),
-        .S(SYS_Rst));
-endmodule
 
 (* CHECK_LICENSE_TYPE = "mb_subsystem_dlmb_v10_7,lmb_v10,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "lmb_v10,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
@@ -214,6 +122,98 @@ module mb_subsystem_dlmb_v10_7
         .Sl_Ready(Sl_Ready),
         .Sl_UE(Sl_UE),
         .Sl_Wait(Sl_Wait));
+endmodule
+
+(* C_EXT_RESET_HIGH = "1" *) (* C_LMB_AWIDTH = "32" *) (* C_LMB_DWIDTH = "32" *) 
+(* C_LMB_NUM_SLAVES = "1" *) (* ORIG_REF_NAME = "lmb_v10" *) 
+module mb_subsystem_dlmb_v10_7_lmb_v10
+   (LMB_Clk,
+    SYS_Rst,
+    LMB_Rst,
+    M_ABus,
+    M_ReadStrobe,
+    M_WriteStrobe,
+    M_AddrStrobe,
+    M_DBus,
+    M_BE,
+    Sl_DBus,
+    Sl_Ready,
+    Sl_Wait,
+    Sl_UE,
+    Sl_CE,
+    LMB_ABus,
+    LMB_ReadStrobe,
+    LMB_WriteStrobe,
+    LMB_AddrStrobe,
+    LMB_ReadDBus,
+    LMB_WriteDBus,
+    LMB_Ready,
+    LMB_Wait,
+    LMB_UE,
+    LMB_CE,
+    LMB_BE);
+  input LMB_Clk;
+  input SYS_Rst;
+  output LMB_Rst;
+  input [0:31]M_ABus;
+  input M_ReadStrobe;
+  input M_WriteStrobe;
+  input M_AddrStrobe;
+  input [0:31]M_DBus;
+  input [0:3]M_BE;
+  input [0:31]Sl_DBus;
+  input [0:0]Sl_Ready;
+  input [0:0]Sl_Wait;
+  input [0:0]Sl_UE;
+  input [0:0]Sl_CE;
+  output [0:31]LMB_ABus;
+  output LMB_ReadStrobe;
+  output LMB_WriteStrobe;
+  output LMB_AddrStrobe;
+  output [0:31]LMB_ReadDBus;
+  output [0:31]LMB_WriteDBus;
+  output LMB_Ready;
+  output LMB_Wait;
+  output LMB_UE;
+  output LMB_CE;
+  output [0:3]LMB_BE;
+
+  wire LMB_Clk;
+  wire LMB_Rst;
+  wire [0:31]M_ABus;
+  wire M_AddrStrobe;
+  wire [0:3]M_BE;
+  wire [0:31]M_DBus;
+  wire M_ReadStrobe;
+  wire M_WriteStrobe;
+  wire SYS_Rst;
+  wire [0:0]Sl_CE;
+  wire [0:31]Sl_DBus;
+  wire [0:0]Sl_Ready;
+  wire [0:0]Sl_UE;
+  wire [0:0]Sl_Wait;
+
+  assign LMB_ABus[0:31] = M_ABus;
+  assign LMB_AddrStrobe = M_AddrStrobe;
+  assign LMB_BE[0:3] = M_BE;
+  assign LMB_CE = Sl_CE;
+  assign LMB_ReadDBus[0:31] = Sl_DBus;
+  assign LMB_ReadStrobe = M_ReadStrobe;
+  assign LMB_Ready = Sl_Ready;
+  assign LMB_UE = Sl_UE;
+  assign LMB_Wait = Sl_Wait;
+  assign LMB_WriteDBus[0:31] = M_DBus;
+  assign LMB_WriteStrobe = M_WriteStrobe;
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  (* XILINX_LEGACY_PRIM = "FDS" *) 
+  FDSE #(
+    .INIT(1'b1)) 
+    POR_FF_I
+       (.C(LMB_Clk),
+        .CE(1'b1),
+        .D(1'b0),
+        .Q(LMB_Rst),
+        .S(SYS_Rst));
 endmodule
 `ifndef GLBL
 `define GLBL

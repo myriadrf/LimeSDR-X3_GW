@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Dec 10 13:53:26 2019
+-- Date        : Tue Feb 18 10:29:57 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_AXI_to_native_FIFO_0_0 -prefix
---               mb_subsystem_AXI_to_native_FIFO_0_0_ mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_AXI_to_native_FIFO_0_0/mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_AXI_to_native_FIFO_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a200tfbg484-2
+-- Device      : xc7a200tfbg676-2
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -53,6 +53,8 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI is
   attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is 4;
   attribute C_S_AXI_DATA_WIDTH : integer;
   attribute C_S_AXI_DATA_WIDTH of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is 32;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is "AXI_to_native_FIFO_v1_0_S00_AXI";
 end mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI;
 
 architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI is
@@ -4327,6 +4329,8 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 is
     s00_axi_arvalid : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 : entity is "AXI_to_native_FIFO_v1_0";
 end mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0;
 
 architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 is

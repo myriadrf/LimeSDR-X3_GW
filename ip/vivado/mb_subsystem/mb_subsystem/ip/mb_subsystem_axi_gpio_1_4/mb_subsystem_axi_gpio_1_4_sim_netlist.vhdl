@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Dec 10 13:55:51 2019
+-- Date        : Tue Feb 18 10:31:55 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_axi_gpio_1_4 -prefix
 --               mb_subsystem_axi_gpio_1_4_ mb_subsystem_axi_gpio_1_4_sim_netlist.vhdl
 -- Design      : mb_subsystem_axi_gpio_1_4
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a200tfbg484-2
+-- Device      : xc7a200tfbg676-2
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -1487,9 +1487,9 @@ entity mb_subsystem_axi_gpio_1_4_axi_gpio is
     gpio_io_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     gpio_io_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
     gpio_io_t : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    gpio2_io_i : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    gpio2_io_o : out STD_LOGIC_VECTOR ( 15 downto 0 );
-    gpio2_io_t : out STD_LOGIC_VECTOR ( 15 downto 0 )
+    gpio2_io_i : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    gpio2_io_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    gpio2_io_t : out STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute C_ALL_INPUTS : integer;
   attribute C_ALL_INPUTS of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 1;
@@ -1498,7 +1498,7 @@ entity mb_subsystem_axi_gpio_1_4_axi_gpio is
   attribute C_ALL_OUTPUTS : integer;
   attribute C_ALL_OUTPUTS of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 0;
   attribute C_ALL_OUTPUTS_2 : integer;
-  attribute C_ALL_OUTPUTS_2 of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 1;
+  attribute C_ALL_OUTPUTS_2 of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 0;
   attribute C_DOUT_DEFAULT : integer;
   attribute C_DOUT_DEFAULT of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 0;
   attribute C_DOUT_DEFAULT_2 : integer;
@@ -1506,7 +1506,7 @@ entity mb_subsystem_axi_gpio_1_4_axi_gpio is
   attribute C_FAMILY : string;
   attribute C_FAMILY of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is "artix7";
   attribute C_GPIO2_WIDTH : integer;
-  attribute C_GPIO2_WIDTH of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 16;
+  attribute C_GPIO2_WIDTH of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 32;
   attribute C_GPIO_WIDTH : integer;
   attribute C_GPIO_WIDTH of mb_subsystem_axi_gpio_1_4_axi_gpio : entity is 2;
   attribute C_INTERRUPT_PRESENT : integer;
@@ -1559,6 +1559,22 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_4_axi_gpio is
   attribute sigis of s_axi_aclk : signal is "Clk";
   attribute sigis of s_axi_aresetn : signal is "Rst";
 begin
+  gpio2_io_o(31) <= \<const0>\;
+  gpio2_io_o(30) <= \<const0>\;
+  gpio2_io_o(29) <= \<const0>\;
+  gpio2_io_o(28) <= \<const0>\;
+  gpio2_io_o(27) <= \<const0>\;
+  gpio2_io_o(26) <= \<const0>\;
+  gpio2_io_o(25) <= \<const0>\;
+  gpio2_io_o(24) <= \<const0>\;
+  gpio2_io_o(23) <= \<const0>\;
+  gpio2_io_o(22) <= \<const0>\;
+  gpio2_io_o(21) <= \<const0>\;
+  gpio2_io_o(20) <= \<const0>\;
+  gpio2_io_o(19) <= \<const0>\;
+  gpio2_io_o(18) <= \<const0>\;
+  gpio2_io_o(17) <= \<const0>\;
+  gpio2_io_o(16) <= \<const0>\;
   gpio2_io_o(15) <= \<const0>\;
   gpio2_io_o(14) <= \<const0>\;
   gpio2_io_o(13) <= \<const0>\;
@@ -1575,6 +1591,22 @@ begin
   gpio2_io_o(2) <= \<const0>\;
   gpio2_io_o(1) <= \<const0>\;
   gpio2_io_o(0) <= \<const0>\;
+  gpio2_io_t(31) <= \<const1>\;
+  gpio2_io_t(30) <= \<const1>\;
+  gpio2_io_t(29) <= \<const1>\;
+  gpio2_io_t(28) <= \<const1>\;
+  gpio2_io_t(27) <= \<const1>\;
+  gpio2_io_t(26) <= \<const1>\;
+  gpio2_io_t(25) <= \<const1>\;
+  gpio2_io_t(24) <= \<const1>\;
+  gpio2_io_t(23) <= \<const1>\;
+  gpio2_io_t(22) <= \<const1>\;
+  gpio2_io_t(21) <= \<const1>\;
+  gpio2_io_t(20) <= \<const1>\;
+  gpio2_io_t(19) <= \<const1>\;
+  gpio2_io_t(18) <= \<const1>\;
+  gpio2_io_t(17) <= \<const1>\;
+  gpio2_io_t(16) <= \<const1>\;
   gpio2_io_t(15) <= \<const1>\;
   gpio2_io_t(14) <= \<const1>\;
   gpio2_io_t(13) <= \<const1>\;
@@ -1709,7 +1741,7 @@ gpio_core_1: entity work.mb_subsystem_axi_gpio_1_4_GPIO_Core
       ip2bus_rdack_i => ip2bus_rdack_i,
       ip2bus_wrack_i => ip2bus_wrack_i,
       s_axi_aclk => s_axi_aclk,
-      s_axi_wdata(3 downto 2) => s_axi_wdata(15 downto 14),
+      s_axi_wdata(3 downto 2) => s_axi_wdata(31 downto 30),
       s_axi_wdata(1 downto 0) => s_axi_wdata(1 downto 0)
     );
 \ip2bus_data_i_D1_reg[0]\: unisim.vcomponents.FDRE
@@ -1792,8 +1824,8 @@ end mb_subsystem_axi_gpio_1_4;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_4 is
   signal NLW_U0_ip2intc_irpt_UNCONNECTED : STD_LOGIC;
-  signal NLW_U0_gpio2_io_o_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
-  signal NLW_U0_gpio2_io_t_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
+  signal NLW_U0_gpio2_io_o_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal NLW_U0_gpio2_io_t_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal NLW_U0_gpio_io_o_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_U0_gpio_io_t_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute C_ALL_INPUTS : integer;
@@ -1803,7 +1835,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_4 is
   attribute C_ALL_OUTPUTS : integer;
   attribute C_ALL_OUTPUTS of U0 : label is 0;
   attribute C_ALL_OUTPUTS_2 : integer;
-  attribute C_ALL_OUTPUTS_2 of U0 : label is 1;
+  attribute C_ALL_OUTPUTS_2 of U0 : label is 0;
   attribute C_DOUT_DEFAULT : integer;
   attribute C_DOUT_DEFAULT of U0 : label is 0;
   attribute C_DOUT_DEFAULT_2 : integer;
@@ -1811,7 +1843,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_4 is
   attribute C_FAMILY : string;
   attribute C_FAMILY of U0 : label is "artix7";
   attribute C_GPIO2_WIDTH : integer;
-  attribute C_GPIO2_WIDTH of U0 : label is 16;
+  attribute C_GPIO2_WIDTH of U0 : label is 32;
   attribute C_GPIO_WIDTH : integer;
   attribute C_GPIO_WIDTH of U0 : label is 2;
   attribute C_INTERRUPT_PRESENT : integer;
@@ -1858,9 +1890,9 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_4 is
 begin
 U0: entity work.mb_subsystem_axi_gpio_1_4_axi_gpio
      port map (
-      gpio2_io_i(15 downto 0) => B"0000000000000000",
-      gpio2_io_o(15 downto 0) => NLW_U0_gpio2_io_o_UNCONNECTED(15 downto 0),
-      gpio2_io_t(15 downto 0) => NLW_U0_gpio2_io_t_UNCONNECTED(15 downto 0),
+      gpio2_io_i(31 downto 0) => B"00000000000000000000000000000000",
+      gpio2_io_o(31 downto 0) => NLW_U0_gpio2_io_o_UNCONNECTED(31 downto 0),
+      gpio2_io_t(31 downto 0) => NLW_U0_gpio2_io_t_UNCONNECTED(31 downto 0),
       gpio_io_i(1 downto 0) => gpio_io_i(1 downto 0),
       gpio_io_o(1 downto 0) => NLW_U0_gpio_io_o_UNCONNECTED(1 downto 0),
       gpio_io_t(1 downto 0) => NLW_U0_gpio_io_t_UNCONNECTED(1 downto 0),

@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="37">
   <CompositeFile CompositeFileTopName="mb_subsystem" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1575358711"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1575358711"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1575358711"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1575358711"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1582014378"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1582014378"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1582014378"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1582014378"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\mb_subsystem_microblaze_0_7\mb_subsystem_microblaze_0_7.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0"/>
@@ -55,15 +55,8 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip\mb_subsystem_xbar_2\mb_subsystem_xbar_2.xci" Type="IP">
-        <Instance HierarchyPath="microblaze_0_axi_periph/xbar"/>
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
-        <Library Name="work"/>
-        <UsedIn Val="SYNTHESIS"/>
-        <UsedIn Val="IMPLEMENTATION"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip\mb_subsystem_microblaze_0_axi_periph_5\mb_subsystem_microblaze_0_axi_periph_5.xci" Type="IP">
+        <Instance HierarchyPath="microblaze_0_axi_periph"/>
         <Properties IsEditable="false" IsVisible="false" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="work"/>
         <UsedIn Val="SYNTHESIS"/>
@@ -198,16 +191,6 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="synth\mb_subsystem.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="work"/>
-        <UsedIn Val="SYNTHESIS"/>
-      </File>
-      <File Name="sim\mb_subsystem.vhd" Type="VHDL">
-        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
-        <Library Name="work"/>
-        <UsedIn Val="SIMULATION"/>
-      </File>
       <File Name="ip\mb_subsystem_axi_gpio_1_3\mb_subsystem_axi_gpio_1_3.xci" Type="IP">
         <Instance HierarchyPath="smpl_cmp_cmd"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -248,6 +231,14 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
+      <File Name="ip\mb_subsystem_xbar_0\mb_subsystem_xbar_0.xci" Type="IP">
+        <Instance HierarchyPath="microblaze_0_axi_periph/xbar"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
       <File Name="ip\mb_subsystem_tier2_xbar_0_0\mb_subsystem_tier2_xbar_0_0.xci" Type="IP">
         <Instance HierarchyPath="microblaze_0_axi_periph/tier2_xbar_0"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
@@ -270,6 +261,16 @@
         <Library Name="work"/>
         <UsedIn Val="SYNTHESIS"/>
         <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="synth\mb_subsystem.vhd" Type="VHDL">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="work"/>
+        <UsedIn Val="SYNTHESIS"/>
+      </File>
+      <File Name="sim\mb_subsystem.vhd" Type="VHDL">
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
+        <Library Name="work"/>
         <UsedIn Val="SIMULATION"/>
       </File>
       <File Name="mb_subsystem.bmm" Type="BMM">

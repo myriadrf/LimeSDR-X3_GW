@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Dec 10 13:55:51 2019
+// Date        : Tue Feb 18 10:31:55 2020
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_axi_gpio_1_4 -prefix
 //               mb_subsystem_axi_gpio_1_4_ mb_subsystem_axi_gpio_1_4_sim_netlist.v
 // Design      : mb_subsystem_axi_gpio_1_4
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a200tfbg484-2
+// Device      : xc7a200tfbg676-2
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -507,8 +507,8 @@ module mb_subsystem_axi_gpio_1_4_address_decoder
 endmodule
 
 (* C_ALL_INPUTS = "1" *) (* C_ALL_INPUTS_2 = "0" *) (* C_ALL_OUTPUTS = "0" *) 
-(* C_ALL_OUTPUTS_2 = "1" *) (* C_DOUT_DEFAULT = "0" *) (* C_DOUT_DEFAULT_2 = "0" *) 
-(* C_FAMILY = "artix7" *) (* C_GPIO2_WIDTH = "16" *) (* C_GPIO_WIDTH = "2" *) 
+(* C_ALL_OUTPUTS_2 = "0" *) (* C_DOUT_DEFAULT = "0" *) (* C_DOUT_DEFAULT_2 = "0" *) 
+(* C_FAMILY = "artix7" *) (* C_GPIO2_WIDTH = "32" *) (* C_GPIO_WIDTH = "2" *) 
 (* C_INTERRUPT_PRESENT = "0" *) (* C_IS_DUAL = "0" *) (* C_S_AXI_ADDR_WIDTH = "9" *) 
 (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TRI_DEFAULT = "-1" *) (* C_TRI_DEFAULT_2 = "-1" *) 
 (* downgradeipidentifiedwarnings = "yes" *) (* ip_group = "LOGICORE" *) 
@@ -562,9 +562,9 @@ module mb_subsystem_axi_gpio_1_4_axi_gpio
   input [1:0]gpio_io_i;
   output [1:0]gpio_io_o;
   output [1:0]gpio_io_t;
-  input [15:0]gpio2_io_i;
-  output [15:0]gpio2_io_o;
-  output [15:0]gpio2_io_t;
+  input [31:0]gpio2_io_i;
+  output [31:0]gpio2_io_o;
+  output [31:0]gpio2_io_t;
 
   wire \<const0> ;
   wire \<const1> ;
@@ -609,6 +609,22 @@ module mb_subsystem_axi_gpio_1_4_axi_gpio
   wire s_axi_wready;
   wire s_axi_wvalid;
 
+  assign gpio2_io_o[31] = \<const0> ;
+  assign gpio2_io_o[30] = \<const0> ;
+  assign gpio2_io_o[29] = \<const0> ;
+  assign gpio2_io_o[28] = \<const0> ;
+  assign gpio2_io_o[27] = \<const0> ;
+  assign gpio2_io_o[26] = \<const0> ;
+  assign gpio2_io_o[25] = \<const0> ;
+  assign gpio2_io_o[24] = \<const0> ;
+  assign gpio2_io_o[23] = \<const0> ;
+  assign gpio2_io_o[22] = \<const0> ;
+  assign gpio2_io_o[21] = \<const0> ;
+  assign gpio2_io_o[20] = \<const0> ;
+  assign gpio2_io_o[19] = \<const0> ;
+  assign gpio2_io_o[18] = \<const0> ;
+  assign gpio2_io_o[17] = \<const0> ;
+  assign gpio2_io_o[16] = \<const0> ;
   assign gpio2_io_o[15] = \<const0> ;
   assign gpio2_io_o[14] = \<const0> ;
   assign gpio2_io_o[13] = \<const0> ;
@@ -625,6 +641,22 @@ module mb_subsystem_axi_gpio_1_4_axi_gpio
   assign gpio2_io_o[2] = \<const0> ;
   assign gpio2_io_o[1] = \<const0> ;
   assign gpio2_io_o[0] = \<const0> ;
+  assign gpio2_io_t[31] = \<const1> ;
+  assign gpio2_io_t[30] = \<const1> ;
+  assign gpio2_io_t[29] = \<const1> ;
+  assign gpio2_io_t[28] = \<const1> ;
+  assign gpio2_io_t[27] = \<const1> ;
+  assign gpio2_io_t[26] = \<const1> ;
+  assign gpio2_io_t[25] = \<const1> ;
+  assign gpio2_io_t[24] = \<const1> ;
+  assign gpio2_io_t[23] = \<const1> ;
+  assign gpio2_io_t[22] = \<const1> ;
+  assign gpio2_io_t[21] = \<const1> ;
+  assign gpio2_io_t[20] = \<const1> ;
+  assign gpio2_io_t[19] = \<const1> ;
+  assign gpio2_io_t[18] = \<const1> ;
+  assign gpio2_io_t[17] = \<const1> ;
+  assign gpio2_io_t[16] = \<const1> ;
   assign gpio2_io_t[15] = \<const1> ;
   assign gpio2_io_t[14] = \<const1> ;
   assign gpio2_io_t[13] = \<const1> ;
@@ -740,7 +772,7 @@ module mb_subsystem_axi_gpio_1_4_axi_gpio
         .ip2bus_rdack_i(ip2bus_rdack_i),
         .ip2bus_wrack_i(ip2bus_wrack_i),
         .s_axi_aclk(s_axi_aclk),
-        .s_axi_wdata({s_axi_wdata[15:14],s_axi_wdata[1:0]}));
+        .s_axi_wdata({s_axi_wdata[31:30],s_axi_wdata[1:0]}));
   FDRE \ip2bus_data_i_D1_reg[0] 
        (.C(s_axi_aclk),
         .CE(1'b1),
@@ -1084,19 +1116,19 @@ module mb_subsystem_axi_gpio_1_4
   wire [3:0]s_axi_wstrb;
   wire s_axi_wvalid;
   wire NLW_U0_ip2intc_irpt_UNCONNECTED;
-  wire [15:0]NLW_U0_gpio2_io_o_UNCONNECTED;
-  wire [15:0]NLW_U0_gpio2_io_t_UNCONNECTED;
+  wire [31:0]NLW_U0_gpio2_io_o_UNCONNECTED;
+  wire [31:0]NLW_U0_gpio2_io_t_UNCONNECTED;
   wire [1:0]NLW_U0_gpio_io_o_UNCONNECTED;
   wire [1:0]NLW_U0_gpio_io_t_UNCONNECTED;
 
   (* C_ALL_INPUTS = "1" *) 
   (* C_ALL_INPUTS_2 = "0" *) 
   (* C_ALL_OUTPUTS = "0" *) 
-  (* C_ALL_OUTPUTS_2 = "1" *) 
+  (* C_ALL_OUTPUTS_2 = "0" *) 
   (* C_DOUT_DEFAULT = "0" *) 
   (* C_DOUT_DEFAULT_2 = "0" *) 
   (* C_FAMILY = "artix7" *) 
-  (* C_GPIO2_WIDTH = "16" *) 
+  (* C_GPIO2_WIDTH = "32" *) 
   (* C_GPIO_WIDTH = "2" *) 
   (* C_INTERRUPT_PRESENT = "0" *) 
   (* C_IS_DUAL = "0" *) 
@@ -1107,9 +1139,9 @@ module mb_subsystem_axi_gpio_1_4
   (* downgradeipidentifiedwarnings = "yes" *) 
   (* ip_group = "LOGICORE" *) 
   mb_subsystem_axi_gpio_1_4_axi_gpio U0
-       (.gpio2_io_i({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .gpio2_io_o(NLW_U0_gpio2_io_o_UNCONNECTED[15:0]),
-        .gpio2_io_t(NLW_U0_gpio2_io_t_UNCONNECTED[15:0]),
+       (.gpio2_io_i({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .gpio2_io_o(NLW_U0_gpio2_io_o_UNCONNECTED[31:0]),
+        .gpio2_io_t(NLW_U0_gpio2_io_t_UNCONNECTED[31:0]),
         .gpio_io_i(gpio_io_i),
         .gpio_io_o(NLW_U0_gpio_io_o_UNCONNECTED[1:0]),
         .gpio_io_t(NLW_U0_gpio_io_t_UNCONNECTED[1:0]),

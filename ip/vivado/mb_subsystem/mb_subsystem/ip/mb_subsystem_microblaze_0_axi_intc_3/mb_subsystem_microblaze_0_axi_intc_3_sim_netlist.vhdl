@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Dec 10 13:51:14 2019
+-- Date        : Tue Feb 18 10:28:13 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_microblaze_0_axi_intc_3 -prefix
---               mb_subsystem_microblaze_0_axi_intc_3_ mb_subsystem_microblaze_0_axi_intc_3_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_microblaze_0_axi_intc_3/mb_subsystem_microblaze_0_axi_intc_3_sim_netlist.vhdl
 -- Design      : mb_subsystem_microblaze_0_axi_intc_3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a200tfbg484-2
+-- Device      : xc7a200tfbg676-2
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -78,6 +78,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_address_decoder is
     \CIE_GEN.CIE_BIT_GEN[0].cie_reg[0]\ : in STD_LOGIC;
     Bus_RNW_reg_reg_4 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_address_decoder : entity is "address_decoder";
 end mb_subsystem_microblaze_0_axi_intc_3_address_decoder;
 
 architecture STRUCTURE of mb_subsystem_microblaze_0_axi_intc_3_address_decoder is
@@ -1322,6 +1324,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_shared_ram_ivar is
     \ram_i[0].Doutb_reg[0]_0\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     ivar_index_axi_clk : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_shared_ram_ivar : entity is "shared_ram_ivar";
 end mb_subsystem_microblaze_0_axi_intc_3_shared_ram_ivar;
 
 architecture STRUCTURE of mb_subsystem_microblaze_0_axi_intc_3_shared_ram_ivar is
@@ -2766,6 +2770,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_intc_core is
     bus2ip_wrce : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \ram_i[0].Doutb_reg[0]\ : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_intc_core : entity is "intc_core";
 end mb_subsystem_microblaze_0_axi_intc_3_intc_core;
 
 architecture STRUCTURE of mb_subsystem_microblaze_0_axi_intc_3_intc_core is
@@ -3757,6 +3763,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_slave_attachment is
     p_0_in9_in : in STD_LOGIC;
     \CIE_GEN.CIE_BIT_GEN[0].cie_reg[0]\ : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_slave_attachment : entity is "slave_attachment";
 end mb_subsystem_microblaze_0_axi_intc_3_slave_attachment;
 
 architecture STRUCTURE of mb_subsystem_microblaze_0_axi_intc_3_slave_attachment is
@@ -5013,6 +5021,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_axi_lite_ipif is
     p_0_in9_in : in STD_LOGIC;
     \CIE_GEN.CIE_BIT_GEN[0].cie_reg[0]\ : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_axi_lite_ipif : entity is "axi_lite_ipif";
 end mb_subsystem_microblaze_0_axi_intc_3_axi_lite_ipif;
 
 architecture STRUCTURE of mb_subsystem_microblaze_0_axi_intc_3_axi_lite_ipif is
@@ -5181,6 +5191,8 @@ entity mb_subsystem_microblaze_0_axi_intc_3_axi_intc is
   attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_microblaze_0_axi_intc_3_axi_intc : entity is 9;
   attribute C_S_AXI_DATA_WIDTH : integer;
   attribute C_S_AXI_DATA_WIDTH of mb_subsystem_microblaze_0_axi_intc_3_axi_intc : entity is 32;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_microblaze_0_axi_intc_3_axi_intc : entity is "axi_intc";
   attribute hdl : string;
   attribute hdl of mb_subsystem_microblaze_0_axi_intc_3_axi_intc : entity is "VHDL";
   attribute imp_netlist : string;

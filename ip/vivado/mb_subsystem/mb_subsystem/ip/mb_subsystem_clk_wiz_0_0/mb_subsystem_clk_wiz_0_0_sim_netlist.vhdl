@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Jan 28 16:41:48 2020
+-- Date        : Tue Feb 18 10:34:46 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_clk_wiz_0_0 -prefix
---               mb_subsystem_clk_wiz_0_0_ mb_subsystem_clk_wiz_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_clk_wiz_0_0/mb_subsystem_clk_wiz_0_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_clk_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a200tfbg484-2
+-- Device      : xc7a200tfbg676-2
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -142,6 +142,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_address_decoder is
     load_enable_reg_d_reg : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_address_decoder : entity is "mb_subsystem_clk_wiz_0_0_address_decoder";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_address_decoder;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_address_decoder is
@@ -1828,6 +1830,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz is
     DI : in STD_LOGIC_VECTOR ( 15 downto 0 );
     DADDR : in STD_LOGIC_VECTOR ( 6 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz : entity is "mb_subsystem_clk_wiz_0_0_clk_wiz";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz is
@@ -2023,6 +2027,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_mmcm_drp is
     SRDY_reg_0 : in STD_LOGIC;
     \ram_addr_reg[1]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_mmcm_drp : entity is "mb_subsystem_clk_wiz_0_0_mmcm_drp";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_mmcm_drp;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_mmcm_drp is
@@ -14876,6 +14882,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_soft_reset is
     s_axi_aclk : in STD_LOGIC;
     reset_trig0 : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_soft_reset : entity is "mb_subsystem_clk_wiz_0_0_soft_reset";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_soft_reset;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_soft_reset is
@@ -15473,6 +15481,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz_drp is
     \ram_clk_config_reg[30][31]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \ram_clk_config_reg[31][31]_0\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz_drp : entity is "mb_subsystem_clk_wiz_0_0_clk_wiz_drp";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz_drp;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_clk_wiz_drp is
@@ -33981,6 +33991,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_slave_attachment is
     load_enable_reg_d_reg : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_slave_attachment : entity is "mb_subsystem_clk_wiz_0_0_slave_attachment";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_slave_attachment;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_slave_attachment is
@@ -36012,6 +36024,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_lite_ipif is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 10 downto 0 );
     load_enable_reg_d_reg : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_lite_ipif : entity is "mb_subsystem_clk_wiz_0_0_axi_lite_ipif";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_lite_ipif;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_lite_ipif is
@@ -36183,6 +36197,8 @@ entity mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config is
   attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config : entity is 11;
   attribute C_S_AXI_DATA_WIDTH : integer;
   attribute C_S_AXI_DATA_WIDTH of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config : entity is 32;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config : entity is "mb_subsystem_clk_wiz_0_0_axi_clk_config";
 end mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config;
 
 architecture STRUCTURE of mb_subsystem_clk_wiz_0_0_mb_subsystem_clk_wiz_0_0_axi_clk_config is

@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Dec 10 13:52:05 2019
+-- Date        : Tue Feb 18 10:28:57 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_rst_Clk_100M_4 -prefix
---               mb_subsystem_rst_Clk_100M_4_ mb_subsystem_rst_Clk_100M_4_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_rst_Clk_100M_4/mb_subsystem_rst_Clk_100M_4_sim_netlist.vhdl
 -- Design      : mb_subsystem_rst_Clk_100M_4
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a200tfbg484-2
+-- Device      : xc7a200tfbg676-2
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -25,6 +25,8 @@ entity mb_subsystem_rst_Clk_100M_4_cdc_sync is
     aux_reset_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_rst_Clk_100M_4_cdc_sync : entity is "cdc_sync";
 end mb_subsystem_rst_Clk_100M_4_cdc_sync;
 
 architecture STRUCTURE of mb_subsystem_rst_Clk_100M_4_cdc_sync is
@@ -233,6 +235,8 @@ entity mb_subsystem_rst_Clk_100M_4_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_rst_Clk_100M_4_upcnt_n : entity is "upcnt_n";
 end mb_subsystem_rst_Clk_100M_4_upcnt_n;
 
 architecture STRUCTURE of mb_subsystem_rst_Clk_100M_4_upcnt_n is
@@ -397,6 +401,8 @@ entity mb_subsystem_rst_Clk_100M_4_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_rst_Clk_100M_4_lpf : entity is "lpf";
 end mb_subsystem_rst_Clk_100M_4_lpf;
 
 architecture STRUCTURE of mb_subsystem_rst_Clk_100M_4_lpf is
@@ -578,6 +584,8 @@ entity mb_subsystem_rst_Clk_100M_4_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_rst_Clk_100M_4_sequence_psr : entity is "sequence_psr";
 end mb_subsystem_rst_Clk_100M_4_sequence_psr;
 
 architecture STRUCTURE of mb_subsystem_rst_Clk_100M_4_sequence_psr is
@@ -916,6 +924,8 @@ entity mb_subsystem_rst_Clk_100M_4_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of mb_subsystem_rst_Clk_100M_4_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of mb_subsystem_rst_Clk_100M_4_proc_sys_reset : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of mb_subsystem_rst_Clk_100M_4_proc_sys_reset : entity is "proc_sys_reset";
 end mb_subsystem_rst_Clk_100M_4_proc_sys_reset;
 
 architecture STRUCTURE of mb_subsystem_rst_Clk_100M_4_proc_sys_reset is

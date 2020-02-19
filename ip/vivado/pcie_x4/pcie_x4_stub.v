@@ -1,19 +1,19 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Oct  1 16:09:51 2019
+// Date        : Tue Feb 11 11:06:44 2020
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               G:/working_dir/xilinx/PCIe_5GRadio/lms7_trx/ip/vivado/pcie_x4/pcie_x4_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top pcie_x4 -prefix
+//               pcie_x4_ pcie_x4_stub.v
 // Design      : pcie_x4
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7a200tfbg484-2
+// Device      : xc7a200tfbg676-2
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "pcie_x4_pcie2_top,Vivado 2019.1" *)
+(* x_core_info = "pcie_x4_pcie2_top,Vivado 2019.1" *)
 module pcie_x4(pci_exp_txp, pci_exp_txn, pci_exp_rxp, 
   pci_exp_rxn, pipe_pclk_in, pipe_rxusrclk_in, pipe_rxoutclk_in, pipe_dclk_in, 
   pipe_userclk1_in, pipe_userclk2_in, pipe_oobclk_in, pipe_mmcm_lock_in, pipe_txoutclk_out, 
