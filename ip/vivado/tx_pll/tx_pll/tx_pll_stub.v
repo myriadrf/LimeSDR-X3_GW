@@ -1,13 +1,13 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Fri Nov  8 14:54:29 2019
+// Date        : Mon Feb 24 11:49:11 2020
 // Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
 //               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/tx_pll/tx_pll/tx_pll_stub.v
 // Design      : tx_pll
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7a200tfbg484-2
+// Device      : xc7a200tfbg676-2
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
