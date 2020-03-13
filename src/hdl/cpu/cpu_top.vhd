@@ -60,12 +60,12 @@ entity cpu_top is
       spi_0_MISO           : in     std_logic;
       spi_0_MOSI           : out    std_logic;
       spi_0_SCLK           : out    std_logic;
-      spi_0_SS_n           : out    std_logic_vector(8 downto 0);
+      spi_0_SS_n           : out    std_logic_vector(3 downto 0);
       -- SPI 1
       spi_1_MISO           : in     std_logic;
       spi_1_MOSI           : out    std_logic;
       spi_1_SCLK           : out    std_logic;
-      spi_1_SS_n           : out    std_logic_vector(1 downto 0);
+      spi_1_SS_n           : out    std_logic_vector(5 downto 0);
       -- SPI 2 
       spi_2_MISO           : in     std_logic;
       spi_2_MOSI           : out    std_logic;
@@ -177,12 +177,12 @@ architecture arch of cpu_top is
    signal inst0_spi_0_MISO          : std_logic;
    signal inst0_spi_0_MOSI          : std_logic;
    signal inst0_spi_0_SCLK          : std_logic;
-   signal inst0_spi_0_SS_n          : std_logic_vector(8 downto 0);
+   signal inst0_spi_0_SS_n          : std_logic_vector(3 downto 0);
    
    signal inst0_spi_1_MISO          : std_logic;
    signal inst0_spi_1_MOSI          : std_logic;
    signal inst0_spi_1_SCLK          : std_logic;
-   signal inst0_spi_1_SS_n          : std_logic_vector(1 downto 0);
+   signal inst0_spi_1_SS_n          : std_logic_vector(5 downto 0);
    
    signal inst0_spi_2_MISO          : std_logic;
    signal inst0_spi_2_MOSI          : std_logic;
@@ -265,8 +265,8 @@ architecture arch of cpu_top is
       spi_0_sck_i                : in std_logic;
       spi_0_sck_o                : out std_logic;
       spi_0_sck_t                : out std_logic;
-      spi_0_ss_i                 : in std_logic_vector ( 8 downto 0 );
-      spi_0_ss_o                 : out std_logic_vector ( 8 downto 0 );
+      spi_0_ss_i                 : in std_logic_vector ( 3 downto 0 );
+      spi_0_ss_o                 : out std_logic_vector ( 3 downto 0 );
       spi_0_ss_t                 : out std_logic;
       spi_1_io0_i                : in std_logic;
       spi_1_io0_o                : out std_logic;
@@ -277,8 +277,8 @@ architecture arch of cpu_top is
       spi_1_sck_i                : in std_logic;
       spi_1_sck_o                : out std_logic;
       spi_1_sck_t                : out std_logic;
-      spi_1_ss_i                 : in std_logic_vector ( 1 downto 0 );
-      spi_1_ss_o                 : out std_logic_vector ( 1 downto 0 );
+      spi_1_ss_i                 : in std_logic_vector ( 5 downto 0 );
+      spi_1_ss_o                 : out std_logic_vector ( 5 downto 0 );
       spi_1_ss_t                 : out std_logic;
       spi_2_io0_i                : in std_logic;
       spi_2_io0_o                : out std_logic;
@@ -326,76 +326,6 @@ architecture arch of cpu_top is
    );
    end component;
    
---   component nios_cpu is
---   port (
---      clk_clk                                : in    std_logic                     := 'X';             -- clk
---      dac_spi1_MISO                          : in    std_logic                     := 'X';             -- MISO
---      dac_spi1_MOSI                          : out   std_logic;                                        -- MOSI
---      dac_spi1_SCLK                          : out   std_logic;                                        -- SCLK
---      dac_spi1_SS_n                          : out   std_logic;                                        -- SS_n
---      exfifo_if_d_export                     : in    std_logic_vector(31 downto 0) := (others => 'X'); -- export
---      exfifo_if_rd_export                    : out   std_logic;                                        -- export
---      exfifo_if_rdempty_export               : in    std_logic                     := 'X';             -- export
---      exfifo_of_d_export                     : out   std_logic_vector(31 downto 0);                    -- export
---      exfifo_of_wr_export                    : out   std_logic;                                        -- export
---      exfifo_of_wrfull_export                : in    std_logic                     := 'X';             -- export
---      exfifo_rst_export                      : out   std_logic;                                        -- export
---      fpga_spi0_MISO                         : in    std_logic                     := 'X';             -- MISO
---      fpga_spi0_MOSI                         : out   std_logic;                                        -- MOSI
---      fpga_spi0_SCLK                         : out   std_logic;                                        -- SCLK
---      fpga_spi0_SS_n                         : out   std_logic_vector(7 downto 0);                     -- SS_n
---      gpi0_export                            : in    std_logic_vector(7 downto 0)  := (others => 'X'); -- export
---      gpio0_export                           : out   std_logic_vector(7 downto 0);                     -- export
---      pll_recfg_from_pll_0_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_from_pll_1_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_from_pll_2_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_from_pll_3_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_from_pll_4_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_from_pll_5_reconfig_from_pll : in    std_logic_vector(63 downto 0) := (others => 'X'); -- reconfig_from_pll
---      pll_recfg_to_pll_0_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_recfg_to_pll_1_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_recfg_to_pll_2_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_recfg_to_pll_3_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_recfg_to_pll_4_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_recfg_to_pll_5_reconfig_to_pll     : out   std_logic_vector(63 downto 0);                    -- reconfig_to_pll
---      pll_rst_export                         : out   std_logic_vector(31 downto 0);                    -- export
---      pllcfg_cmd_export                      : in    std_logic_vector(3 downto 0)  := (others => 'X'); -- export
---      pllcfg_spi_MISO                        : in    std_logic                     := 'X';             -- MISO
---      pllcfg_spi_MOSI                        : out   std_logic;                                        -- MOSI
---      pllcfg_spi_SCLK                        : out   std_logic;                                        -- SCLK
---      pllcfg_spi_SS_n                        : out   std_logic;                                        -- SS_n
---      pllcfg_stat_export                     : out   std_logic_vector(9 downto 0);                     -- export
---      scl_export                             : inout std_logic                     := 'X';             -- export
---      sda_export                             : inout std_logic                     := 'X';              -- export
---      avmm_s0_address                        : in    std_logic_vector(31 downto 0) := (others => 'X'); -- address
---      avmm_s0_read                           : in    std_logic                     := 'X';             -- read
---      avmm_s0_readdata                       : out   std_logic_vector(31 downto 0);                    -- readdata
---      avmm_s0_write                          : in    std_logic                     := 'X';             -- write
---      avmm_s0_writedata                      : in    std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
---      avmm_s0_waitrequest                    : out   std_logic;                                        -- waitrequest
---      avmm_s1_address                        : in    std_logic_vector(31 downto 0) := (others => 'X'); -- address
---      avmm_s1_read                           : in    std_logic                     := 'X';             -- read
---      avmm_s1_readdata                       : out   std_logic_vector(31 downto 0);                    -- readdata
---      avmm_s1_write                          : in    std_logic                     := 'X';             -- write
---      avmm_s1_writedata                      : in    std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
---      avmm_s1_waitrequest                    : out   std_logic;                                        -- waitrequest
---      vctcxo_tamer_0_ctrl_export             : in    std_logic_vector(3 downto 0)  := (others=>'0');   -- vctcxo_tamer_0_irq_in.export
---      avmm_m0_address                        : out   std_logic_vector(7 downto 0);                     --                avm_m0.address
---      avmm_m0_read                           : out   std_logic;                                        --                      .read
---      avmm_m0_waitrequest                    : in    std_logic                     := '0';             --                      .waitrequest
---      avmm_m0_readdata                       : in    std_logic_vector(7 downto 0)  := (others => '0'); --                      .readdata
---      avmm_m0_readdatavalid                  : in    std_logic                     := '0';             --                      .readdatavalid
---      avmm_m0_write                          : out   std_logic;                                        --                      .write
---      avmm_m0_writedata                      : out   std_logic_vector(7 downto 0);                     --                      .writedata
---      avmm_m0_clk_clk                        : out   std_logic;                                        --            avm_m0_clk.clk
---      avmm_m0_reset_reset                    : out   std_logic;
---      spi_2_MISO                             : in    std_logic                     := 'X';             -- MISO
---      spi_2_MOSI                             : out   std_logic;                                        -- MOSI
---      spi_2_SCLK                             : out   std_logic;                                        -- SCLK
---      spi_2_SS_n                             : out   std_logic                                         -- SS_n  
---   );
---   end component nios_cpu;
-
 
 begin
 -- ----------------------------------------------------------------------------
@@ -422,79 +352,6 @@ begin
                            avmm_s1_address(5 downto 0) & 
                            "00"; -- address range 200 - 3FF
    
--- ----------------------------------------------------------------------------
--- NIOS instance
--- ----------------------------------------------------------------------------
-   
---   inst0_nios_cpu : component nios_cpu
---   port map (
---      clk_clk                                => clk,
---      dac_spi1_MISO                          => spi_0_MISO,
---      dac_spi1_MOSI                          => inst0_dac_spi1_MOSI,
---      dac_spi1_SCLK                          => inst0_dac_spi1_SCLK,
---      dac_spi1_SS_n                          => inst0_dac_spi1_SS_n,
---      exfifo_if_d_export                     => exfifo_if_d,
---      exfifo_if_rd_export                    => exfifo_if_rd,
---      exfifo_if_rdempty_export               => exfifo_if_rdempty,
---      exfifo_of_d_export                     => exfifo_of_d,
---      exfifo_of_wr_export                    => exfifo_of_wr,
---      exfifo_of_wrfull_export                => exfifo_of_wrfull,
---      exfifo_rst_export                      => exfifo_of_rst,
---      fpga_spi0_MISO                         => spi_0_MISO OR inst1_sdout,
---      fpga_spi0_MOSI                         => inst0_fpga_spi0_MOSI,
---      fpga_spi0_SCLK                         => inst0_fpga_spi0_SCLK,
---      fpga_spi0_SS_n                         => inst0_fpga_spi0_SS_n,
---      gpi0_export                            => gpi,
---      gpio0_export                           => gpo,
---      pll_recfg_from_pll_0_reconfig_from_pll => pll_rcfg_from_pll_0,
---      pll_recfg_to_pll_0_reconfig_to_pll     => pll_rcfg_to_pll_0,
---      pll_recfg_from_pll_1_reconfig_from_pll => pll_rcfg_from_pll_1,
---      pll_recfg_to_pll_1_reconfig_to_pll     => pll_rcfg_to_pll_1,
---      pll_recfg_from_pll_2_reconfig_from_pll => pll_rcfg_from_pll_2,
---      pll_recfg_to_pll_2_reconfig_to_pll     => pll_rcfg_to_pll_2,
---      pll_recfg_from_pll_3_reconfig_from_pll => pll_rcfg_from_pll_3,
---      pll_recfg_to_pll_3_reconfig_to_pll     => pll_rcfg_to_pll_3,
---      pll_recfg_from_pll_4_reconfig_from_pll => pll_rcfg_from_pll_4,
---      pll_recfg_to_pll_4_reconfig_to_pll     => pll_rcfg_to_pll_4,
---      pll_recfg_from_pll_5_reconfig_from_pll => pll_rcfg_from_pll_5,
---      pll_recfg_to_pll_5_reconfig_to_pll     => pll_rcfg_to_pll_5,
---      pll_rst_export                         => pll_rst,
---      pllcfg_cmd_export                      => inst0_pllcfg_cmd_export,
---      pllcfg_stat_export                     => inst0_pllcfg_stat_export,
---      pllcfg_spi_MISO                        => inst1_pllcfg_sdout,
---      pllcfg_spi_MOSI                        => inst0_pllcfg_spi_MOSI,
---      pllcfg_spi_SCLK                        => inst0_pllcfg_spi_SCLK, 
---      pllcfg_spi_SS_n                        => inst0_pllcfg_spi_SS_n,
---      scl_export                             => i2c_scl,
---      sda_export                             => i2c_sda,
---      avmm_s0_address                        => avmm_s0_address_int,    
---      avmm_s0_read                           => avmm_s0_read,       
---      avmm_s0_readdata                       => avmm_s0_readdata,   
---      avmm_s0_write                          => avmm_s0_write,      
---      avmm_s0_writedata                      => avmm_s0_writedata,  
---      avmm_s0_waitrequest                    => avmm_s0_waitrequest,
---      avmm_s1_address                        => avmm_s1_address_int,    
---      avmm_s1_read                           => avmm_s1_read,       
---      avmm_s1_readdata                       => avmm_s1_readdata,   
---      avmm_s1_write                          => avmm_s1_write,      
---      avmm_s1_writedata                      => avmm_s1_writedata,  
---      avmm_s1_waitrequest                    => avmm_s1_waitrequest,
---      vctcxo_tamer_0_ctrl_export             => vctcxo_tamer_0_ctrl_export,
---      avmm_m0_address                        => avmm_m0_address,
---      avmm_m0_read                           => avmm_m0_read,
---      avmm_m0_waitrequest                    => avmm_m0_waitrequest,
---      avmm_m0_readdata                       => avmm_m0_readdata,
---      avmm_m0_readdatavalid                  => avmm_m0_readdatavalid,
---      avmm_m0_write                          => avmm_m0_write,
---      avmm_m0_writedata                      => avmm_m0_writedata,
---      avmm_m0_clk_clk                        => avmm_m0_clk_clk,
---      avmm_m0_reset_reset                    => avmm_m0_reset_reset,
---      spi_2_MISO                             => spi_0_MISO,
---      spi_2_MOSI                             => inst0_spi_2_MOSI,
---      spi_2_SCLK                             => inst0_spi_2_SCLK,
---      spi_2_SS_n                             => inst0_spi_2_SS_n
---   );
-
 -- ----------------------------------------------------------------------------
 -- MicroBlaze instance
 -- ----------------------------------------------------------------------------
@@ -696,32 +553,8 @@ begin
    spi_2_MOSI <= inst0_spi_2_MOSI;
    spi_2_SS_n <= inst0_spi_2_SS_n;
    
-   
-   
-   
    i2c_scl <= inst0_iic_0_scl_o when inst0_iic_0_scl_t = '0' else 'Z';
    i2c_sda <= inst0_iic_0_sda_o when inst0_iic_0_sda_t = '0' else 'Z';
-   
-   
-   
-   
-   -- spi_0_SS_n(4 downto 0)  <= inst0_fpga_spi0_SS_n(4 downto 0);
-   -- spi_0_SS_n(5)           <= inst0_spi_2_SS_n;
-   -- spi_0_SS_n(7 downto 6)  <= inst0_fpga_spi0_SS_n(7 downto 6);
-   -- spi_0_SS_n(8)           <= inst0_dac_spi1_SS_n;
-   
-   -- SPI MUX
---   spi_0_MOSI <= inst0_fpga_spi0_MOSI when inst0_dac_spi1_SS_n = '1' else inst0_dac_spi1_MOSI;
-   
---   spi_0_SCLK <= inst0_fpga_spi0_SCLK when inst0_dac_spi1_SS_n = '1' else inst0_dac_spi1_SCLK;
-   
-   -- spi_0_MOSI  <= inst0_dac_spi1_MOSI  when inst0_dac_spi1_SS_n = '0' else 
-                  -- inst0_spi_2_MOSI     when inst0_spi_2_SS_n = '0' else 
-                  -- inst0_fpga_spi0_MOSI;
-                  
-   -- spi_0_SCLK  <= inst0_dac_spi1_SCLK  when inst0_dac_spi1_SS_n = '0' else
-                  -- inst0_spi_2_SCLK     when inst0_spi_2_SS_n = '0' else 
-                  -- inst0_fpga_spi0_SCLK;
    
    vctcxo_tamer_0_ctrl_export(0) <= vctcxo_tune_en_sync;
    vctcxo_tamer_0_ctrl_export(1) <= vctcxo_irq_sync;
