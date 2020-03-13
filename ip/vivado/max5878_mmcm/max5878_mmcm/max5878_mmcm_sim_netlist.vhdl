@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Wed Feb 12 10:42:01 2020
+-- Date        : Thu Mar 12 11:10:15 2020
 -- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               g:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.vhdl
+--               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.vhdl
 -- Design      : max5878_mmcm
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -94,10 +94,10 @@ clkout3_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 2.000000,
+      CLKFBOUT_MULT_F => 4.000000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
-      CLKIN1_PERIOD => 2.034000,
+      CLKIN1_PERIOD => 4.069000,
       CLKIN2_PERIOD => 0.000000,
       CLKOUT0_DIVIDE_F => 2.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
