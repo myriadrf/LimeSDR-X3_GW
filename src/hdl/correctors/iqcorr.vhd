@@ -15,17 +15,17 @@ use ieee.numeric_std.all;
 -- ----------------------------------------------------------------------------
 entity iqcorr is
 port
-	(
-		clk		: in std_logic;
-		nrst	: in std_logic;
-		en		: in std_logic;
-		byp		: in std_logic;
-		xi		: in signed (17 downto 0);
-		xq		: in signed (17 downto 0);
-		pcw		: in signed (11 downto 0);
-		yi		: out signed (17 downto 0);
-		yq		: out signed (17 downto 0)
-	);
+   (
+      clk   : in  std_logic;
+      nrst  : in  std_logic;
+      en    : in  std_logic;
+      byp   : in  std_logic;
+      xi    : in  std_logic_vector(17 downto 0);
+      xq    : in  std_logic_vector(17 downto 0);
+      pcw   : in  std_logic_vector(11 downto 0);
+      yi    : out std_logic_vector(17 downto 0);
+      yq    : out std_logic_vector(17 downto 0)
+   );
 end iqcorr;
 
 -- ----------------------------------------------------------------------------
@@ -33,6 +33,10 @@ end iqcorr;
 -- ----------------------------------------------------------------------------
 architecture iqcorr_arch of iqcorr is
 
+      signal xi_signed  : signed(xi'left downto 0);	
+      signal xq_signed  : signed(xq'left downto 0);
+      signal pcw_signed : signed(pcw'left downto 0);
+      
 		signal cos_i : signed (17 downto 0);
 		signal cos_q : signed (17 downto 0);
 		
@@ -56,6 +60,10 @@ architecture iqcorr_arch of iqcorr is
 
 begin
 
+   xi_signed   <= signed(xi);
+   xq_signed   <= signed(xq);
+   pcw_signed  <= signed(pcw);
+   
 
    --	cos_i <= xi - resize (xi(17 downto 6),18);
    --	cos_q <= xq - resize (xq(17 downto 6),18);
@@ -68,14 +76,14 @@ begin
 			cos_q <= (others => '0');
 		elsif rising_edge(clk) then
 			if (en = '1') then
-            cos_i <= xi - resize (xi(17 downto 6),18);
-            cos_q <= xq - resize (xq(17 downto 6),18);
+            cos_i <= xi_signed - resize (xi_signed(17 downto 6),18);
+            cos_q <= xq_signed - resize (xq_signed(17 downto 6),18);
 			end if;
 		end if;
 	end process reg0;
 
-	r_xi <= cos_i * pcw;
-	r_xq <= cos_q * pcw;
+	r_xi <= cos_i * pcw_signed;
+	r_xq <= cos_q * pcw_signed;
 
 	reg1: process (clk, nrst)
 	begin
@@ -107,9 +115,9 @@ begin
 --	sumq <= (r_c_xq(17) & r_c_xq) + (r_r_xi(17) & r_r_xi);
 
 	--muxi <= sumi(18 downto 1) when byp = '0' else xi;
-	--muxq <= sumq(18 downto 1) when byp = '0' else xq;
-	muxi <= sumi(17 downto 0) when byp = '0' else xi;
-	muxq <= sumq(17 downto 0) when byp = '0' else xq;
+	--muxq <= sumq(18 downto 1) when byp = '0' else xq_signed;
+	muxi <= sumi(17 downto 0) when byp = '0' else xi_signed;
+	muxq <= sumq(17 downto 0) when byp = '0' else xq_signed;
 
 	reg2: process (clk, nrst)
 	begin
@@ -124,7 +132,7 @@ begin
 		end if;
 	end process reg2;
 
-	yi <= r_mux1;
-	yq <= r_mux2;
+	yi <= std_logic_vector(r_mux1);
+	yq <= std_logic_vector(r_mux2);
 
 end iqcorr_arch;

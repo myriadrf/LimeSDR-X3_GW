@@ -13,7 +13,7 @@ use ieee.numeric_std.all;
 LIBRARY altera_mf;
 USE altera_mf.all;
 Library UNISIM;
-use UNISIM.all;
+use UNISIM.vcomponents.all;
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -72,22 +72,22 @@ PORT(
 END COMPONENT;
 
 -- XILINX DDR OUTPUT REGISTER
-COMPONENT ODDR
-GENERIC(
-   DDR_CLK_EDGE   : string    := "SAME_EDGE";
-   INIT           : std_logic := '0';
-   SRTYPE         : string    := "ASYNC"
-);
-PORT(
-Q   : out std_Logic;
-C   : in  std_Logic;
-CE  : in  std_Logic;
-D1  : in  std_Logic;
-D2  : in  std_Logic;
-R   : in  std_Logic;
-S   : in  std_Logic
-);
-END COMPONENT;
+--COMPONENT ODDR
+--GENERIC(
+--   DDR_CLK_EDGE   : string    := "SAME_EDGE";
+--   INIT           : std_logic := '0';
+--   SRTYPE         : string    := "ASYNC"
+--);
+--PORT(
+--Q   : out std_Logic;
+--C   : in  std_Logic;
+--CE  : in  std_Logic;
+--D1  : in  std_Logic;
+--D2  : in  std_Logic;
+--R   : in  std_Logic;
+--S   : in  std_Logic
+--);
+--END COMPONENT;
 
 
 

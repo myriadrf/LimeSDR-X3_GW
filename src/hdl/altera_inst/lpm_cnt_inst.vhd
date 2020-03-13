@@ -52,14 +52,14 @@ aclr <= NOT reset_n;
 
 Counter_Operation : Process(all)
 begin
-   if aclr then
+   if aclr='1' then
       counter <= (others => '0');
    elsif(rising_edge(clk)) then
-      if sclr then
+      if sclr='1' then
          counter <= (others => '0');
-      elsif sload then
+      elsif sload='1' then
          counter <= data;
-      elsif cin and cnt_en then
+      elsif cin='1' and cnt_en='1' then
          counter <= std_logic_vector(unsigned(counter) + 1);
       end if; 
    end if;

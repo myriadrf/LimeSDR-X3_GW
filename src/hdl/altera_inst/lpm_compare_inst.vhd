@@ -56,7 +56,7 @@ begin
 
    COMPARE_AND_PIPELINE : process(all)
    begin
-   if aclr then
+   if aclr = '1' then
       pipeline <= (others => (others => '0'));
    else
       if lpm_representation = "SIGNED" then
@@ -76,7 +76,7 @@ begin
       end if;
    
       if(rising_edge(clock)) then
-         if clken then
+         if clken = '1' then
             if lpm_pipeline > 0 then
                for i in 1 to lpm_pipeline loop
                   pipeline(i) <= pipeline(i-1);
