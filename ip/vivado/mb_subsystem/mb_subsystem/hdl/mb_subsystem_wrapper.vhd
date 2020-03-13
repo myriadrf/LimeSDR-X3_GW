@@ -1,7 +1,7 @@
 --Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
---Date        : Tue Feb 18 10:26:05 2020
+--Date        : Mon Feb 24 16:06:20 2020
 --Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 --Command     : generate_target mb_subsystem_wrapper.bd
 --Design      : mb_subsystem_wrapper
@@ -68,11 +68,11 @@ entity mb_subsystem_wrapper is
     spi_0_io0_io : inout STD_LOGIC;
     spi_0_io1_io : inout STD_LOGIC;
     spi_0_sck_io : inout STD_LOGIC;
-    spi_0_ss_io : inout STD_LOGIC_VECTOR ( 8 downto 0 );
+    spi_0_ss_io : inout STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_1_io0_io : inout STD_LOGIC;
     spi_1_io1_io : inout STD_LOGIC;
     spi_1_sck_io : inout STD_LOGIC;
-    spi_1_ss_io : inout STD_LOGIC_VECTOR ( 1 downto 0 );
+    spi_1_ss_io : inout STD_LOGIC_VECTOR ( 5 downto 0 );
     spi_2_io0_io : inout STD_LOGIC;
     spi_2_io1_io : inout STD_LOGIC;
     spi_2_sck_io : inout STD_LOGIC;
@@ -93,6 +93,14 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     pll_locked : out STD_LOGIC;
     pll_c1 : out STD_LOGIC;
     extm_axi_resetn_out : out STD_LOGIC_VECTOR ( 0 to 0 );
+    gpio_0_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    extm_0_axi_sel_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    iic_0_scl_i : in STD_LOGIC;
+    iic_0_scl_o : out STD_LOGIC;
+    iic_0_scl_t : out STD_LOGIC;
+    iic_0_sda_i : in STD_LOGIC;
+    iic_0_sda_o : out STD_LOGIC;
+    iic_0_sda_t : out STD_LOGIC;
     extm_0_axi_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
     extm_0_axi_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
     extm_0_axi_awvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -112,15 +120,14 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     extm_0_axi_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     extm_0_axi_rvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     extm_0_axi_rready : out STD_LOGIC_VECTOR ( 0 to 0 );
-    gpio_0_tri_i : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    extm_0_axi_sel_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    iic_0_scl_i : in STD_LOGIC;
-    iic_0_scl_o : out STD_LOGIC;
-    iic_0_scl_t : out STD_LOGIC;
-    iic_0_sda_i : in STD_LOGIC;
-    iic_0_sda_o : out STD_LOGIC;
-    iic_0_sda_t : out STD_LOGIC;
+    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    fifo_read_0_almost_empty : in STD_LOGIC;
+    fifo_read_0_rd_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    fifo_read_0_rd_en : out STD_LOGIC;
+    fifo_read_0_empty : in STD_LOGIC;
     smpl_cmp_sel_tri_o : out STD_LOGIC_VECTOR ( 0 to 0 );
+    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
+    pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
     spi_1_io0_i : in STD_LOGIC;
     spi_1_io0_o : out STD_LOGIC;
     spi_1_io0_t : out STD_LOGIC;
@@ -130,21 +137,16 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_1_sck_i : in STD_LOGIC;
     spi_1_sck_o : out STD_LOGIC;
     spi_1_sck_t : out STD_LOGIC;
-    spi_1_ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    spi_1_ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    spi_1_ss_i : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    spi_1_ss_o : out STD_LOGIC_VECTOR ( 5 downto 0 );
     spi_1_ss_t : out STD_LOGIC;
-    fifo_read_0_almost_empty : in STD_LOGIC;
-    fifo_read_0_rd_data : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    fifo_read_0_rd_en : out STD_LOGIC;
-    fifo_read_0_empty : in STD_LOGIC;
-    smpl_cmp_status_tri_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
-    pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
     smpl_cmp_en_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     fifo_write_0_wr_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
     fifo_write_0_almost_full : in STD_LOGIC;
     fifo_write_0_wr_en : out STD_LOGIC;
     fifo_write_0_full : in STD_LOGIC;
+    uart_0_rxd : in STD_LOGIC;
+    uart_0_txd : out STD_LOGIC;
     avmm_m0_address : out STD_LOGIC_VECTOR ( 31 downto 0 );
     avmm_m0_read : out STD_LOGIC;
     avmm_m0_readdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -152,8 +154,6 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     avmm_m0_waitrequest : in STD_LOGIC;
     avmm_m0_write : out STD_LOGIC;
     avmm_m0_writedata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    uart_0_rxd : in STD_LOGIC;
-    uart_0_txd : out STD_LOGIC;
     spi_0_io0_i : in STD_LOGIC;
     spi_0_io0_o : out STD_LOGIC;
     spi_0_io0_t : out STD_LOGIC;
@@ -163,12 +163,12 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_0_sck_i : in STD_LOGIC;
     spi_0_sck_o : out STD_LOGIC;
     spi_0_sck_t : out STD_LOGIC;
-    spi_0_ss_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    spi_0_ss_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
+    spi_0_ss_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    spi_0_ss_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_0_ss_t : out STD_LOGIC;
-    pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    vctcxo_tamer_0_ctrl_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     gpio_1_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    vctcxo_tamer_0_ctrl_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_2_io0_i : in STD_LOGIC;
     spi_2_io0_o : out STD_LOGIC;
     spi_2_io0_t : out STD_LOGIC;
@@ -210,29 +210,14 @@ architecture STRUCTURE of mb_subsystem_wrapper is
   signal spi_0_ss_i_1 : STD_LOGIC_VECTOR ( 1 to 1 );
   signal spi_0_ss_i_2 : STD_LOGIC_VECTOR ( 2 to 2 );
   signal spi_0_ss_i_3 : STD_LOGIC_VECTOR ( 3 to 3 );
-  signal spi_0_ss_i_4 : STD_LOGIC_VECTOR ( 4 to 4 );
-  signal spi_0_ss_i_5 : STD_LOGIC_VECTOR ( 5 to 5 );
-  signal spi_0_ss_i_6 : STD_LOGIC_VECTOR ( 6 to 6 );
-  signal spi_0_ss_i_7 : STD_LOGIC_VECTOR ( 7 to 7 );
-  signal spi_0_ss_i_8 : STD_LOGIC_VECTOR ( 8 to 8 );
   signal spi_0_ss_io_0 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal spi_0_ss_io_1 : STD_LOGIC_VECTOR ( 1 to 1 );
   signal spi_0_ss_io_2 : STD_LOGIC_VECTOR ( 2 to 2 );
   signal spi_0_ss_io_3 : STD_LOGIC_VECTOR ( 3 to 3 );
-  signal spi_0_ss_io_4 : STD_LOGIC_VECTOR ( 4 to 4 );
-  signal spi_0_ss_io_5 : STD_LOGIC_VECTOR ( 5 to 5 );
-  signal spi_0_ss_io_6 : STD_LOGIC_VECTOR ( 6 to 6 );
-  signal spi_0_ss_io_7 : STD_LOGIC_VECTOR ( 7 to 7 );
-  signal spi_0_ss_io_8 : STD_LOGIC_VECTOR ( 8 to 8 );
   signal spi_0_ss_o_0 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal spi_0_ss_o_1 : STD_LOGIC_VECTOR ( 1 to 1 );
   signal spi_0_ss_o_2 : STD_LOGIC_VECTOR ( 2 to 2 );
   signal spi_0_ss_o_3 : STD_LOGIC_VECTOR ( 3 to 3 );
-  signal spi_0_ss_o_4 : STD_LOGIC_VECTOR ( 4 to 4 );
-  signal spi_0_ss_o_5 : STD_LOGIC_VECTOR ( 5 to 5 );
-  signal spi_0_ss_o_6 : STD_LOGIC_VECTOR ( 6 to 6 );
-  signal spi_0_ss_o_7 : STD_LOGIC_VECTOR ( 7 to 7 );
-  signal spi_0_ss_o_8 : STD_LOGIC_VECTOR ( 8 to 8 );
   signal spi_0_ss_t : STD_LOGIC;
   signal spi_1_io0_i : STD_LOGIC;
   signal spi_1_io0_o : STD_LOGIC;
@@ -245,10 +230,22 @@ architecture STRUCTURE of mb_subsystem_wrapper is
   signal spi_1_sck_t : STD_LOGIC;
   signal spi_1_ss_i_0 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal spi_1_ss_i_1 : STD_LOGIC_VECTOR ( 1 to 1 );
+  signal spi_1_ss_i_2 : STD_LOGIC_VECTOR ( 2 to 2 );
+  signal spi_1_ss_i_3 : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal spi_1_ss_i_4 : STD_LOGIC_VECTOR ( 4 to 4 );
+  signal spi_1_ss_i_5 : STD_LOGIC_VECTOR ( 5 to 5 );
   signal spi_1_ss_io_0 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal spi_1_ss_io_1 : STD_LOGIC_VECTOR ( 1 to 1 );
+  signal spi_1_ss_io_2 : STD_LOGIC_VECTOR ( 2 to 2 );
+  signal spi_1_ss_io_3 : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal spi_1_ss_io_4 : STD_LOGIC_VECTOR ( 4 to 4 );
+  signal spi_1_ss_io_5 : STD_LOGIC_VECTOR ( 5 to 5 );
   signal spi_1_ss_o_0 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal spi_1_ss_o_1 : STD_LOGIC_VECTOR ( 1 to 1 );
+  signal spi_1_ss_o_2 : STD_LOGIC_VECTOR ( 2 to 2 );
+  signal spi_1_ss_o_3 : STD_LOGIC_VECTOR ( 3 to 3 );
+  signal spi_1_ss_o_4 : STD_LOGIC_VECTOR ( 4 to 4 );
+  signal spi_1_ss_o_5 : STD_LOGIC_VECTOR ( 5 to 5 );
   signal spi_1_ss_t : STD_LOGIC;
   signal spi_2_io0_i : STD_LOGIC;
   signal spi_2_io0_o : STD_LOGIC;
@@ -348,20 +345,10 @@ mb_subsystem_i: component mb_subsystem
       spi_0_sck_i => spi_0_sck_i,
       spi_0_sck_o => spi_0_sck_o,
       spi_0_sck_t => spi_0_sck_t,
-      spi_0_ss_i(8) => spi_0_ss_i_8(8),
-      spi_0_ss_i(7) => spi_0_ss_i_7(7),
-      spi_0_ss_i(6) => spi_0_ss_i_6(6),
-      spi_0_ss_i(5) => spi_0_ss_i_5(5),
-      spi_0_ss_i(4) => spi_0_ss_i_4(4),
       spi_0_ss_i(3) => spi_0_ss_i_3(3),
       spi_0_ss_i(2) => spi_0_ss_i_2(2),
       spi_0_ss_i(1) => spi_0_ss_i_1(1),
       spi_0_ss_i(0) => spi_0_ss_i_0(0),
-      spi_0_ss_o(8) => spi_0_ss_o_8(8),
-      spi_0_ss_o(7) => spi_0_ss_o_7(7),
-      spi_0_ss_o(6) => spi_0_ss_o_6(6),
-      spi_0_ss_o(5) => spi_0_ss_o_5(5),
-      spi_0_ss_o(4) => spi_0_ss_o_4(4),
       spi_0_ss_o(3) => spi_0_ss_o_3(3),
       spi_0_ss_o(2) => spi_0_ss_o_2(2),
       spi_0_ss_o(1) => spi_0_ss_o_1(1),
@@ -376,8 +363,16 @@ mb_subsystem_i: component mb_subsystem
       spi_1_sck_i => spi_1_sck_i,
       spi_1_sck_o => spi_1_sck_o,
       spi_1_sck_t => spi_1_sck_t,
+      spi_1_ss_i(5) => spi_1_ss_i_5(5),
+      spi_1_ss_i(4) => spi_1_ss_i_4(4),
+      spi_1_ss_i(3) => spi_1_ss_i_3(3),
+      spi_1_ss_i(2) => spi_1_ss_i_2(2),
       spi_1_ss_i(1) => spi_1_ss_i_1(1),
       spi_1_ss_i(0) => spi_1_ss_i_0(0),
+      spi_1_ss_o(5) => spi_1_ss_o_5(5),
+      spi_1_ss_o(4) => spi_1_ss_o_4(4),
+      spi_1_ss_o(3) => spi_1_ss_o_3(3),
+      spi_1_ss_o(2) => spi_1_ss_o_2(2),
       spi_1_ss_o(1) => spi_1_ss_o_1(1),
       spi_1_ss_o(0) => spi_1_ss_o_0(0),
       spi_1_ss_t => spi_1_ss_t,
@@ -448,41 +443,6 @@ spi_0_ss_iobuf_3: component IOBUF
       O => spi_0_ss_i_3(3),
       T => spi_0_ss_t
     );
-spi_0_ss_iobuf_4: component IOBUF
-     port map (
-      I => spi_0_ss_o_4(4),
-      IO => spi_0_ss_io(4),
-      O => spi_0_ss_i_4(4),
-      T => spi_0_ss_t
-    );
-spi_0_ss_iobuf_5: component IOBUF
-     port map (
-      I => spi_0_ss_o_5(5),
-      IO => spi_0_ss_io(5),
-      O => spi_0_ss_i_5(5),
-      T => spi_0_ss_t
-    );
-spi_0_ss_iobuf_6: component IOBUF
-     port map (
-      I => spi_0_ss_o_6(6),
-      IO => spi_0_ss_io(6),
-      O => spi_0_ss_i_6(6),
-      T => spi_0_ss_t
-    );
-spi_0_ss_iobuf_7: component IOBUF
-     port map (
-      I => spi_0_ss_o_7(7),
-      IO => spi_0_ss_io(7),
-      O => spi_0_ss_i_7(7),
-      T => spi_0_ss_t
-    );
-spi_0_ss_iobuf_8: component IOBUF
-     port map (
-      I => spi_0_ss_o_8(8),
-      IO => spi_0_ss_io(8),
-      O => spi_0_ss_i_8(8),
-      T => spi_0_ss_t
-    );
 spi_1_io0_iobuf: component IOBUF
      port map (
       I => spi_1_io0_o,
@@ -516,6 +476,34 @@ spi_1_ss_iobuf_1: component IOBUF
       I => spi_1_ss_o_1(1),
       IO => spi_1_ss_io(1),
       O => spi_1_ss_i_1(1),
+      T => spi_1_ss_t
+    );
+spi_1_ss_iobuf_2: component IOBUF
+     port map (
+      I => spi_1_ss_o_2(2),
+      IO => spi_1_ss_io(2),
+      O => spi_1_ss_i_2(2),
+      T => spi_1_ss_t
+    );
+spi_1_ss_iobuf_3: component IOBUF
+     port map (
+      I => spi_1_ss_o_3(3),
+      IO => spi_1_ss_io(3),
+      O => spi_1_ss_i_3(3),
+      T => spi_1_ss_t
+    );
+spi_1_ss_iobuf_4: component IOBUF
+     port map (
+      I => spi_1_ss_o_4(4),
+      IO => spi_1_ss_io(4),
+      O => spi_1_ss_i_4(4),
+      T => spi_1_ss_t
+    );
+spi_1_ss_iobuf_5: component IOBUF
+     port map (
+      I => spi_1_ss_o_5(5),
+      IO => spi_1_ss_io(5),
+      O => spi_1_ss_i_5(5),
       T => spi_1_ss_t
     );
 spi_2_io0_iobuf: component IOBUF

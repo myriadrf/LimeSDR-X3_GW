@@ -1,7 +1,7 @@
 --Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
---Date        : Tue Feb 18 10:26:03 2020
+--Date        : Mon Feb 24 16:06:19 2020
 --Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
 --Command     : generate_target mb_subsystem.bd
 --Design      : mb_subsystem
@@ -6214,8 +6214,8 @@ entity mb_subsystem is
     spi_0_sck_i : in STD_LOGIC;
     spi_0_sck_o : out STD_LOGIC;
     spi_0_sck_t : out STD_LOGIC;
-    spi_0_ss_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    spi_0_ss_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
+    spi_0_ss_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    spi_0_ss_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_0_ss_t : out STD_LOGIC;
     spi_1_io0_i : in STD_LOGIC;
     spi_1_io0_o : out STD_LOGIC;
@@ -6226,8 +6226,8 @@ entity mb_subsystem is
     spi_1_sck_i : in STD_LOGIC;
     spi_1_sck_o : out STD_LOGIC;
     spi_1_sck_t : out STD_LOGIC;
-    spi_1_ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    spi_1_ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    spi_1_ss_i : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    spi_1_ss_o : out STD_LOGIC_VECTOR ( 5 downto 0 );
     spi_1_ss_t : out STD_LOGIC;
     spi_2_io0_i : in STD_LOGIC;
     spi_2_io0_o : out STD_LOGIC;
@@ -6571,8 +6571,8 @@ architecture STRUCTURE of mb_subsystem is
     sck_i : in STD_LOGIC;
     sck_o : out STD_LOGIC;
     sck_t : out STD_LOGIC;
-    ss_i : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    ss_o : out STD_LOGIC_VECTOR ( 8 downto 0 );
+    ss_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    ss_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     ss_t : out STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC
   );
@@ -6608,8 +6608,8 @@ architecture STRUCTURE of mb_subsystem is
     sck_i : in STD_LOGIC;
     sck_o : out STD_LOGIC;
     sck_t : out STD_LOGIC;
-    ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    ss_i : in STD_LOGIC_VECTOR ( 5 downto 0 );
+    ss_o : out STD_LOGIC_VECTOR ( 5 downto 0 );
     ss_t : out STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC
   );
@@ -6887,8 +6887,8 @@ architecture STRUCTURE of mb_subsystem is
   signal axi_quad_spi_0_SPI_0_SCK_I : STD_LOGIC;
   signal axi_quad_spi_0_SPI_0_SCK_O : STD_LOGIC;
   signal axi_quad_spi_0_SPI_0_SCK_T : STD_LOGIC;
-  signal axi_quad_spi_0_SPI_0_SS_I : STD_LOGIC_VECTOR ( 8 downto 0 );
-  signal axi_quad_spi_0_SPI_0_SS_O : STD_LOGIC_VECTOR ( 8 downto 0 );
+  signal axi_quad_spi_0_SPI_0_SS_I : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal axi_quad_spi_0_SPI_0_SS_O : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_quad_spi_0_SPI_0_SS_T : STD_LOGIC;
   signal axi_quad_spi_0_ip2intc_irpt : STD_LOGIC;
   signal axi_quad_spi_1_SPI_0_IO0_I : STD_LOGIC;
@@ -6900,8 +6900,8 @@ architecture STRUCTURE of mb_subsystem is
   signal axi_quad_spi_1_SPI_0_SCK_I : STD_LOGIC;
   signal axi_quad_spi_1_SPI_0_SCK_O : STD_LOGIC;
   signal axi_quad_spi_1_SPI_0_SCK_T : STD_LOGIC;
-  signal axi_quad_spi_1_SPI_0_SS_I : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal axi_quad_spi_1_SPI_0_SS_O : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal axi_quad_spi_1_SPI_0_SS_I : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal axi_quad_spi_1_SPI_0_SS_O : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal axi_quad_spi_1_SPI_0_SS_T : STD_LOGIC;
   signal axi_quad_spi_2_SPI_0_IO0_I : STD_LOGIC;
   signal axi_quad_spi_2_SPI_0_IO0_O : STD_LOGIC;
@@ -7441,11 +7441,11 @@ begin
   axi_quad_spi_0_SPI_0_IO0_I <= spi_0_io0_i;
   axi_quad_spi_0_SPI_0_IO1_I <= spi_0_io1_i;
   axi_quad_spi_0_SPI_0_SCK_I <= spi_0_sck_i;
-  axi_quad_spi_0_SPI_0_SS_I(8 downto 0) <= spi_0_ss_i(8 downto 0);
+  axi_quad_spi_0_SPI_0_SS_I(3 downto 0) <= spi_0_ss_i(3 downto 0);
   axi_quad_spi_1_SPI_0_IO0_I <= spi_1_io0_i;
   axi_quad_spi_1_SPI_0_IO1_I <= spi_1_io1_i;
   axi_quad_spi_1_SPI_0_SCK_I <= spi_1_sck_i;
-  axi_quad_spi_1_SPI_0_SS_I(1 downto 0) <= spi_1_ss_i(1 downto 0);
+  axi_quad_spi_1_SPI_0_SS_I(5 downto 0) <= spi_1_ss_i(5 downto 0);
   axi_quad_spi_2_SPI_0_IO0_I <= spi_2_io0_i;
   axi_quad_spi_2_SPI_0_IO1_I <= spi_2_io1_i;
   axi_quad_spi_2_SPI_0_SCK_I <= spi_2_sck_i;
@@ -7497,7 +7497,7 @@ begin
   spi_0_io1_t <= axi_quad_spi_0_SPI_0_IO1_T;
   spi_0_sck_o <= axi_quad_spi_0_SPI_0_SCK_O;
   spi_0_sck_t <= axi_quad_spi_0_SPI_0_SCK_T;
-  spi_0_ss_o(8 downto 0) <= axi_quad_spi_0_SPI_0_SS_O(8 downto 0);
+  spi_0_ss_o(3 downto 0) <= axi_quad_spi_0_SPI_0_SS_O(3 downto 0);
   spi_0_ss_t <= axi_quad_spi_0_SPI_0_SS_T;
   spi_1_io0_o <= axi_quad_spi_1_SPI_0_IO0_O;
   spi_1_io0_t <= axi_quad_spi_1_SPI_0_IO0_T;
@@ -7505,7 +7505,7 @@ begin
   spi_1_io1_t <= axi_quad_spi_1_SPI_0_IO1_T;
   spi_1_sck_o <= axi_quad_spi_1_SPI_0_SCK_O;
   spi_1_sck_t <= axi_quad_spi_1_SPI_0_SCK_T;
-  spi_1_ss_o(1 downto 0) <= axi_quad_spi_1_SPI_0_SS_O(1 downto 0);
+  spi_1_ss_o(5 downto 0) <= axi_quad_spi_1_SPI_0_SS_O(5 downto 0);
   spi_1_ss_t <= axi_quad_spi_1_SPI_0_SS_T;
   spi_2_io0_o <= axi_quad_spi_2_SPI_0_IO0_O;
   spi_2_io0_t <= axi_quad_spi_2_SPI_0_IO0_T;
@@ -7734,8 +7734,8 @@ axi_quad_spi_0: component mb_subsystem_axi_quad_spi_0_1
       sck_i => axi_quad_spi_0_SPI_0_SCK_I,
       sck_o => axi_quad_spi_0_SPI_0_SCK_O,
       sck_t => axi_quad_spi_0_SPI_0_SCK_T,
-      ss_i(8 downto 0) => axi_quad_spi_0_SPI_0_SS_I(8 downto 0),
-      ss_o(8 downto 0) => axi_quad_spi_0_SPI_0_SS_O(8 downto 0),
+      ss_i(3 downto 0) => axi_quad_spi_0_SPI_0_SS_I(3 downto 0),
+      ss_o(3 downto 0) => axi_quad_spi_0_SPI_0_SS_O(3 downto 0),
       ss_t => axi_quad_spi_0_SPI_0_SS_T
     );
 axi_quad_spi_1: component mb_subsystem_axi_quad_spi_1_0
@@ -7770,8 +7770,8 @@ axi_quad_spi_1: component mb_subsystem_axi_quad_spi_1_0
       sck_i => axi_quad_spi_1_SPI_0_SCK_I,
       sck_o => axi_quad_spi_1_SPI_0_SCK_O,
       sck_t => axi_quad_spi_1_SPI_0_SCK_T,
-      ss_i(1 downto 0) => axi_quad_spi_1_SPI_0_SS_I(1 downto 0),
-      ss_o(1 downto 0) => axi_quad_spi_1_SPI_0_SS_O(1 downto 0),
+      ss_i(5 downto 0) => axi_quad_spi_1_SPI_0_SS_I(5 downto 0),
+      ss_o(5 downto 0) => axi_quad_spi_1_SPI_0_SS_O(5 downto 0),
       ss_t => axi_quad_spi_1_SPI_0_SS_T
     );
 axi_quad_spi_2: component mb_subsystem_axi_quad_spi_2_0

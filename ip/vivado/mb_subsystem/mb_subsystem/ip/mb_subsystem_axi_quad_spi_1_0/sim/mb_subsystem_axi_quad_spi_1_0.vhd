@@ -87,8 +87,8 @@ ENTITY mb_subsystem_axi_quad_spi_1_0 IS
     sck_i : IN STD_LOGIC;
     sck_o : OUT STD_LOGIC;
     sck_t : OUT STD_LOGIC;
-    ss_i : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-    ss_o : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    ss_i : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
     ss_t : OUT STD_LOGIC;
     ip2intc_irpt : OUT STD_LOGIC
   );
@@ -214,8 +214,8 @@ ARCHITECTURE mb_subsystem_axi_quad_spi_1_0_arch OF mb_subsystem_axi_quad_spi_1_0
       sck_i : IN STD_LOGIC;
       sck_o : OUT STD_LOGIC;
       sck_t : OUT STD_LOGIC;
-      ss_i : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
-      ss_o : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+      ss_i : IN STD_LOGIC_VECTOR(5 DOWNTO 0);
+      ss_o : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
       ss_t : OUT STD_LOGIC;
       ss_1_i : IN STD_LOGIC;
       ss_1_o : OUT STD_LOGIC;
@@ -292,7 +292,7 @@ BEGIN
       C_FIFO_DEPTH => 16,
       C_SCK_RATIO => 16,
       C_DUAL_QUAD_MODE => 0,
-      C_NUM_SS_BITS => 2,
+      C_NUM_SS_BITS => 6,
       C_NUM_TRANSFER_BITS => 8,
       C_NEW_SEQ_EN => 1,
       C_SPI_MODE => 0,
