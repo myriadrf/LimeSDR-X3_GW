@@ -1,13 +1,13 @@
 -- ----------------------------------------------------------------------------
--- FILE:          io_buff.vhd
--- DESCRIPTION:   IO buffers for PCIe_5GRadio
--- DATE:          12:14 PM Thursday, May 23, 2019
+-- FILE:          ADS4246_io.vhd
+-- DESCRIPTION:   ADS4246 IO buffers
+-- DATE:          2020/03/05
 -- AUTHOR(s):     Lime Microsystems
 -- REVISIONS:
 -- ----------------------------------------------------------------------------
 
 -- ----------------------------------------------------------------------------
---NOTES:
+-- NOTES: One delay controller (IDELAYCTRL) has to be instantiated for all instances   
 -- ----------------------------------------------------------------------------
 library ieee;
 use ieee.std_logic_1164.all;
@@ -22,31 +22,34 @@ use UNISIM.vcomponents.all;
 -- ----------------------------------------------------------------------------
 -- Entity declaration
 -- ----------------------------------------------------------------------------
-entity io_buff is
+entity ADS4246_io is
    port (
-      -- 14-bit ADC external ports
-      ADC_CLKOUT_P      : in     std_logic;
-      ADC_CLKOUT_N      : in     std_logic;
-      ADC_DA_P          : in     std_logic_vector(6 downto 0);
-      ADC_DA_N          : in     std_logic_vector(6 downto 0);
-      ADC_DB_P          : in     std_logic_vector(6 downto 0);
-      ADC_DB_N          : in     std_logic_vector(6 downto 0);
-      FPGA_ADC_RESET    : out    std_logic;
-      -- Internal ports 
-      adc_o             : out    t_FROM_ADC;
-      adc_i             : in     t_TO_ADC
+      -- Connect directly to ADS4246 ports
+      i_CLKOUT_P  : in     std_logic;
+      i_CLKOUT_N  : in     std_logic;
+      i_DA_P      : in     std_logic_vector(6 downto 0);
+      i_DA_N      : in     std_logic_vector(6 downto 0);
+      i_DB_P      : in     std_logic_vector(6 downto 0);
+      i_DB_N      : in     std_logic_vector(6 downto 0);
+      o_RESET     : out    std_logic;
+      -- Connect to FPGA logic
+      clkout_bufr : out    std_logic;  -- I/O clock
+      clkout_bufg : out    std_logic;  -- Logic clock
+      reset       : in     std_logic;
+      da          : out    std_logic_vector(6 downto 0);
+      db          : out    std_logic_vector(6 downto 0)
       );
-end io_buff;
+end ADS4246_io;
 
 -- ----------------------------------------------------------------------------
 -- Architecture
 -- ----------------------------------------------------------------------------
-architecture arch of io_buff is
+architecture arch of ADS4246_io is
 --declare signals,  components here
 
 signal adc_clkout_ibufds   : std_logic;
-signal adc_clkout_bufio    : std_logic;
 signal adc_clkout_bufr     : std_logic;
+signal adc_clkout_bufg     : std_logic;
 
 signal adc_da_ibufds       : std_logic_vector(6 downto 0);
 signal adc_da_idelay       : std_logic_vector(6 downto 0);
@@ -55,27 +58,22 @@ signal adc_db_ibufds       : std_logic_vector(6 downto 0);
 signal adc_db_idelay       : std_logic_vector(6 downto 0);
  
 begin
+
 -- ----------------------------------------------------------------------------
--- ADC buffers
+-- Clock
 -- ----------------------------------------------------------------------------
+
    -- Diffrential buffer for data clock from ADC
    inst0 : IBUFDS
       generic map (
-         DIFF_TERM      => TRUE,          -- Differential Termination 
-         IBUF_LOW_PWR   => FALSE,         -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
+         DIFF_TERM      => TRUE,       -- Differential Termination 
+         IBUF_LOW_PWR   => FALSE,      -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
          IOSTANDARD     => "LVDS_25")
       port map (
-         O  => adc_clkout_ibufds,         -- Buffer output
-         I  => ADC_CLKOUT_P,              -- Diff_p buffer input (connect directly to top-level port)
-         IB => ADC_CLKOUT_N               -- Diff_n buffer input (connect directly to top-level port)
+         O  => adc_clkout_ibufds,      -- Buffer output
+         I  => i_CLKOUT_P,             -- Diff_p buffer input (connect directly to top-level port)
+         IB => i_CLKOUT_N              -- Diff_n buffer input (connect directly to top-level port)
       );
-      
-   -- BUFIO: Local Clock Buffer for I/O
-   BUFIO_inst : BUFIO
-   port map (
-      O => adc_clkout_bufio, -- 1-bit output: Clock output (connect to I/O clock loads).
-      I => adc_clkout_ibufds  -- 1-bit input: Clock input (connect to an IBUF or BUFMR).
-   );
    
    -- BUFR: Regional Clock Buffer for I/O and Logic Resources within a Clock Region
    BUFR_inst : BUFR
@@ -89,7 +87,19 @@ begin
       CLR   => '0',              -- 1-bit input: Active high, asynchronous clear (Divided modes only)
       I     => adc_clkout_ibufds -- 1-bit input: Clock buffer input driven by an IBUF, MMCM or local interconnect
    );
-    
+   
+   -- BUFG: Global Clock Buffer for global Logic Resources 
+   BUFG_inst : BUFG
+   port map (
+      O => adc_clkout_bufg,   -- 1-bit output: Clock output
+      I => adc_clkout_ibufds  -- 1-bit input: Clock input
+   );
+   
+
+
+-- ----------------------------------------------------------------------------
+-- DATA A chanel 
+-- ----------------------------------------------------------------------------    
    -- Diferential DA (data A chanel) buffers
    DA_buff : for i in 0 to 6 generate
    IBUFDS_inst : IBUFDS
@@ -99,23 +109,24 @@ begin
          IOSTANDARD     => "LVDS_25")
       port map (
          O  => adc_da_ibufds(i),    -- Buffer output
-         I  => ADC_DA_P(i),         -- Diff_p buffer input (connect directly to top-level port)
-         IB => ADC_DA_N(i)          -- Diff_n buffer input (connect directly to top-level port)
+         I  => i_DA_P(i),           -- Diff_p buffer input (connect directly to top-level port)
+         IB => i_DA_N(i)            -- Diff_n buffer input (connect directly to top-level port)
       );
    end generate DA_buff;
    
+   -- Input delay logic
    gen_idelay_da : 
    for i in 0 to 6 generate
    IDELAYE2_inst_DA : IDELAYE2
    generic map (
-      CINVCTRL_SEL => "FALSE",          -- Enable dynamic clock inversion (FALSE, TRUE)
-      DELAY_SRC => "IDATAIN",           -- Delay input (IDATAIN, DATAIN)
-      HIGH_PERFORMANCE_MODE => "TRUE",  -- Reduced jitter ("TRUE"), Reduced power ("FALSE")
-      IDELAY_TYPE => "FIXED",           -- FIXED, VARIABLE, VAR_LOAD, VAR_LOAD_PIPE
-      IDELAY_VALUE => 17,               -- Input delay tap setting (0-31)
-      PIPE_SEL => "FALSE",              -- Select pipelined mode, FALSE, TRUE
-      REFCLK_FREQUENCY => 200.0,        -- IDELAYCTRL clock input frequency in MHz (190.0-210.0, 290.0-310.0).
-      SIGNAL_PATTERN => "DATA"          -- DATA, CLOCK input signal
+      CINVCTRL_SEL            => "FALSE",    -- Enable dynamic clock inversion (FALSE, TRUE)
+      DELAY_SRC               => "IDATAIN",  -- Delay input (IDATAIN, DATAIN)
+      HIGH_PERFORMANCE_MODE   => "TRUE",     -- Reduced jitter ("TRUE"), Reduced power ("FALSE")
+      IDELAY_TYPE             => "FIXED",    -- FIXED, VARIABLE, VAR_LOAD, VAR_LOAD_PIPE
+      IDELAY_VALUE            => 17,         -- Input delay tap setting (0-31)
+      PIPE_SEL                => "FALSE",    -- Select pipelined mode, FALSE, TRUE
+      REFCLK_FREQUENCY        => 200.0,      -- IDELAYCTRL clock input frequency in MHz (190.0-210.0, 290.0-310.0).
+      SIGNAL_PATTERN          => "DATA"      -- DATA, CLOCK input signal
    )
    port map (
       CNTVALUEOUT       => open,             -- 5-bit output: Counter value output
@@ -132,19 +143,38 @@ begin
       REGRST            => '0'               -- 1-bit input: Active-high reset tap-delay input
    );
    end generate gen_idelay_da;
-   
+
+
+-- ----------------------------------------------------------------------------
+-- DATA B chanel 
+-- ---------------------------------------------------------------------------- 
+   -- Diferential DB (data B chanel) buffers
+   DB_buff : for i in 0 to 6 generate
+   IBUFDS_inst : IBUFDS
+      generic map (
+         DIFF_TERM      => TRUE,    -- Differential Termination 
+         IBUF_LOW_PWR   => FALSE,   -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
+         IOSTANDARD     => "LVDS_25")
+      port map (
+         O  => adc_db_ibufds(i),    -- Buffer output
+         I  => i_DB_P(i),           -- Diff_p buffer input (connect directly to top-level port)
+         IB => i_DB_N(i)            -- Diff_n buffer input (connect directly to top-level port)
+      );
+   end generate DB_buff;
+
+   -- Input delay logic
    gen_idelay_db : 
    for i in 0 to 6 generate
    IDELAYE2_inst_DB : IDELAYE2
    generic map (
-      CINVCTRL_SEL => "FALSE",         -- Enable dynamic clock inversion (FALSE, TRUE)
-      DELAY_SRC => "IDATAIN",          -- Delay input (IDATAIN, DATAIN)
-      HIGH_PERFORMANCE_MODE => "TRUE", -- Reduced jitter ("TRUE"), Reduced power ("FALSE")
-      IDELAY_TYPE => "FIXED",          -- FIXED, VARIABLE, VAR_LOAD, VAR_LOAD_PIPE
-      IDELAY_VALUE => 17,              -- Input delay tap setting (0-31)
-      PIPE_SEL => "FALSE",             -- Select pipelined mode, FALSE, TRUE
-      REFCLK_FREQUENCY => 200.0,       -- IDELAYCTRL clock input frequency in MHz (190.0-210.0, 290.0-310.0).
-      SIGNAL_PATTERN => "DATA"         -- DATA, CLOCK input signal
+      CINVCTRL_SEL            => "FALSE",    -- Enable dynamic clock inversion (FALSE, TRUE)
+      DELAY_SRC               => "IDATAIN",  -- Delay input (IDATAIN, DATAIN)
+      HIGH_PERFORMANCE_MODE   => "TRUE",     -- Reduced jitter ("TRUE"), Reduced power ("FALSE")
+      IDELAY_TYPE             => "FIXED",    -- FIXED, VARIABLE, VAR_LOAD, VAR_LOAD_PIPE
+      IDELAY_VALUE            => 17,         -- Input delay tap setting (0-31)
+      PIPE_SEL                => "FALSE",    -- Select pipelined mode, FALSE, TRUE
+      REFCLK_FREQUENCY        => 200.0,      -- IDELAYCTRL clock input frequency in MHz (190.0-210.0, 290.0-310.0).
+      SIGNAL_PATTERN          => "DATA"      -- DATA, CLOCK input signal
    )
    port map (
       CNTVALUEOUT       => open,             -- 5-bit output: Counter value output
@@ -162,27 +192,16 @@ begin
    );
    end generate gen_idelay_db;
    
-   -- Diferential DB (data B chanel) buffers
-   DB_buff : for i in 0 to 6 generate
-   IBUFDS_inst : IBUFDS
-      generic map (
-         DIFF_TERM      => TRUE,    -- Differential Termination 
-         IBUF_LOW_PWR   => FALSE,   -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
-         IOSTANDARD     => "LVDS_25")
-      port map (
-         O  => adc_db_ibufds(i),    -- Buffer output
-         I  => ADC_DB_P(i),         -- Diff_p buffer input (connect directly to top-level port)
-         IB => ADC_DB_N(i)          -- Diff_n buffer input (connect directly to top-level port)
-      );
-   end generate DB_buff;
-   
+-- ----------------------------------------------------------------------------
+-- Output ports
+-- ----------------------------------------------------------------------------    
 
-   FPGA_ADC_RESET <= 'Z' when adc_i.RESET='1' else '0';
+   o_RESET <= 'Z' when reset='1' else '0';
    
-   adc_o.CLKOUT_IO      <= adc_clkout_bufr;
-   adc_o.CLKOUT_LOGIC   <= adc_clkout_bufr;
-   adc_o.DA             <= adc_da_idelay;
-   adc_o.DB             <= adc_db_idelay;
+   clkout_bufr <= adc_clkout_bufr;
+   clkout_bufg <= adc_clkout_bufg;
+   da          <= adc_da_idelay;
+   db          <= adc_db_idelay;
 
   
 end arch;   

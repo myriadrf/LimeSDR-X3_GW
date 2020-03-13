@@ -80,8 +80,9 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- Clock sources
          -- Reference clock, coming from LMK clock buffer.
-      LMK_CLK           : in     std_logic;
---         -- On-board oscillators
+      LMK1_CLK          : in     std_logic;
+      LMK2_CLK          : in     std_logic;     -- LMS PLL reference clock
+         -- On-board oscillators
       CLK100_FPGA_P     : in     std_logic;
       CLK100_FPGA_N     : in     std_logic;
          -- Clock generator
@@ -120,18 +121,18 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- PCIe
          -- Clock source
-      PCIE_REFCLK_P      : in     std_logic;
-      PCIE_REFCLK_N      : in     std_logic;
-         -- Control
-      PCIE_PERSTn        : in     std_logic;
-      PCIE_SMCLK         : inout  std_logic;
-      PCIE_SMDAT         : inout  std_logic;
-      PCIE_WAKEn         : in     std_logic;
-         -- DATA
-      PCIE_HSO_P         : in     std_logic_vector(3 downto 0);
-      PCIE_HSO_N         : in     std_logic_vector(3 downto 0);
-      PCIE_HSI_IC_P      : out    std_logic_vector(3 downto 0);
-      PCIE_HSI_IC_N      : out    std_logic_vector(3 downto 0);
+      PCIE_REFCLK_P     : in     std_logic;
+      PCIE_REFCLK_N     : in     std_logic;
+         -- Control     
+      PCIE_PERSTn       : in     std_logic;
+      PCIE_SMCLK        : inout  std_logic;
+      PCIE_SMDAT        : inout  std_logic;
+      PCIE_WAKEn        : in     std_logic;
+         -- DATA     
+      PCIE_HSO_P        : in     std_logic_vector(3 downto 0);
+      PCIE_HSO_N        : in     std_logic_vector(3 downto 0);
+      PCIE_HSI_IC_P     : out    std_logic_vector(3 downto 0);
+      PCIE_HSI_IC_N     : out    std_logic_vector(3 downto 0);
       -- ----------------------------------------------------------------------------
       -- 14-bit ADC#1 (Connected to LMS#2)
       LMS2_BB_ADC1_CLKOUT_P      : in     std_logic;
@@ -173,37 +174,42 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- Two 16-bit DAC
          --DAC #1
-      LMS2_BB_DAC1_REF_CLK_P       : in     std_logic;     -- Reference clock for DAC sampling rate
-      LMS2_BB_DAC1_REF_CLK_N       : in     std_logic;
-      LMS2_BB_DAC1_CLK_P           : out    std_logic;     --  Differential clock for DAC
-      LMS2_BB_DAC1_CLK_N           : out    std_logic;
-      LMS2_BB_DAC1_B_P             : out    std_logic_vector(15 downto 0);   -- DAC data bits
-      LMS2_BB_DAC1_B_N             : out    std_logic_vector(15 downto 0);
-      LMS2_BB_DAC1_SELIQ_P         : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
-      LMS2_BB_DAC1_SELIQ_N         : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC1_PD              : out    std_logic;     -- 1' -  power-down, 0 -  normal operation.
-      LMS2_BB_DAC1_TORB            : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
-      LMS2_BB_DAC1_XOR_P           : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
-      LMS2_BB_DAC1_XOR_N           : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
-         -- DAC #2
-      LMS2_BB_DAC2_REF_CLK_P       : in     std_logic;     -- Reference clock for DAC sampling rate
-      LMS2_BB_DAC2_REF_CLK_N       : in     std_logic;
-      LMS2_BB_DAC2_CLK_P           : out    std_logic;     --  Differential clock for DAC
-      LMS2_BB_DAC2_CLK_N           : out    std_logic;
-      LMS2_BB_DAC2_B_P             : out    std_logic_vector(15 downto 0);   -- DAC data bits
-      LMS2_BB_DAC2_B_N             : out    std_logic_vector(15 downto 0);
-      LMS2_BB_DAC2_SELIQ_P         : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
-      LMS2_BB_DAC2_SELIQ_N         : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC2_PD              : out    std_logic;     -- 1' -  power-down, 0 -  normal operation.   
-      LMS2_BB_DAC2_TORB            : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
-      LMS2_BB_DAC2_XOR_P           : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
-      LMS2_BB_DAC2_XOR_N           : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
+      CDCM2_LMS2_BB_DAC1_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
+      CDCM2_LMS2_BB_DAC1_REFC_N  : in     std_logic;
+      FPGA_LMS2_BB_DAC1_CLK_P    : out    std_logic;     --  Differential clock for DAC
+      FPGA_LMS2_BB_DAC1_CLK_N    : out    std_logic;
+      LMS2_BB_DAC1_B_P           : out    std_logic_vector(15 downto 0);   -- DAC data bits
+      LMS2_BB_DAC1_B_N           : out    std_logic_vector(15 downto 0);
+      LMS2_BB_DAC1_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
+      LMS2_BB_DAC1_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
+      LMS2_BB_DAC1_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.
+      LMS2_BB_DAC1_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
+      LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
+      LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
+         -- DAC #2   
+      CDCM2_LMS2_BB_DAC2_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
+      CDCM2_LMS2_BB_DAC2_REFC_N  : in     std_logic;
+      FPGA_LMS2_BB_DAC2_CLK_P    : out    std_logic;     --  Differential clock for DAC
+      FPGA_LMS2_BB_DAC2_CLK_N    : out    std_logic;
+      LMS2_BB_DAC2_B_P           : out    std_logic_vector(15 downto 0);   -- DAC data bits
+      LMS2_BB_DAC2_B_N           : out    std_logic_vector(15 downto 0);
+      LMS2_BB_DAC2_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
+      LMS2_BB_DAC2_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
+      LMS2_BB_DAC2_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.   
+      LMS2_BB_DAC2_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
+      LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
+      LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
       -- ----------------------------------------------------------------------------
       -- Clock generator
-      CDCM_RESET_N         : out std_logic;
-      CDCM_SYNCN           : out std_logic;
-      CDCM_STATUS0         : in  std_logic;
-      CDCM_STATUS1         : in  std_logic;
+      CDCM1_RESET_N        : out std_logic;
+      CDCM1_SYNCN          : out std_logic;
+      CDCM1_STATUS0        : in  std_logic;
+      CDCM1_STATUS1        : in  std_logic;
+                           
+      CDCM2_RESET_N        : out std_logic;
+      CDCM2_SYNCN          : out std_logic;
+      CDCM2_STATUS0        : in  std_logic;
+      CDCM2_STATUS1        : in  std_logic;
       -- ----------------------------------------------------------------------------
       -- RF control
       
@@ -238,30 +244,31 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- External communication interfaces
          -- FPGA_SPI0
-      FPGA_SPI0_SCLK       : out    std_logic;
-      FPGA_SPI0_MOSI       : out    std_logic;
-      FPGA_SPI0_MISO_LMS1  : in     std_logic;
-      FPGA_SPI0_MISO_LMS2  : in     std_logic;
-      FPGA_SPI0_MISO_LMS3  : in     std_logic;
-      FPGA_SPI0_LMS1_SS    : out    std_logic;
-      FPGA_SPI0_LMS2_SS    : out    std_logic;
-      FPGA_SPI0_LMS3_SS    : out    std_logic;
+      FPGA_SPI0_SCLK             : out    std_logic;
+      FPGA_SPI0_MOSI             : out    std_logic;
+      FPGA_SPI0_LMS1_MISO        : in     std_logic;
+      FPGA_SPI0_LMS2_MISO        : in     std_logic;
+      FPGA_SPI0_LMS3_MISO        : in     std_logic;
+      FPGA_SPI0_LMS1_SS          : out    std_logic;
+      FPGA_SPI0_LMS2_SS          : out    std_logic;
+      FPGA_SPI0_LMS3_SS          : out    std_logic;
          -- FPGA_SPI1
       FPGA_SPI1_SCLK             : out    std_logic;
       FPGA_SPI1_MOSI             : out    std_logic;
       FPGA_SPI1_MISO             : in     std_logic;
-      FPGA_SPI1_DAC_SS           : out    std_logic; 
+      FPGA_SPI1_MISO_BB_ADC      : in     std_logic;
       FPGA_SPI1_LMS2_BB_ADC1_SS  : out    std_logic; 
       FPGA_SPI1_LMS2_BB_ADC2_SS  : out    std_logic;
       FPGA_SPI1_LMS3_BB_ADC1_SS  : out    std_logic; 
       FPGA_SPI1_LMS3_BB_ADC2_SS  : out    std_logic;
+      FPGA_SPI1_CDCM1_SS         : out    std_logic; 
+      FPGA_SPI1_CDCM2_SS         : out    std_logic; 
          -- FPGA_SPI2
       FPGA_SPI2_SCLK             : out    std_logic;
       FPGA_SPI2_MOSI             : out    std_logic;
       FPGA_SPI2_MISO             : in     std_logic;
-      FPGA_SPI2_MISO_ADC         : in     std_logic;
-      FPGA_SPI2_BB_ADC_SS        : out    std_logic;       
-      FPGA_SPI2_CDCM_SS          : out    std_logic; 
+      FPGA_SPI2_XO_DAC_SS        : out    std_logic;
+      FPGA_SPI2_ADF_SS           : out    std_logic;
          -- FPGA I2C
       FPGA_I2C_SCL               : inout  std_logic;
       FPGA_I2C_SDA               : inout  std_logic;
@@ -296,6 +303,8 @@ entity lms7_trx_top is
       PPS_SELECT        : out    std_logic;
       PPS_IN_PREVIOUS   : out    std_logic;
       PPS_IN_EXT        : out    std_logic;
+         -- ADF 
+      ADF_MUXOUT        : in     std_logic;
          -- Bill Of material and hardware version 
       BOM_VER           : in     std_logic_vector(3 downto 0);
       HW_VER            : in     std_logic_vector(3 downto 0)
@@ -309,42 +318,63 @@ end lms7_trx_top;
 architecture arch of lms7_trx_top is
 --declare signals,  components here
 
-constant c_S0_DATA_WIDTH         : integer := 32;     -- Stream data width
-constant c_S1_DATA_WIDTH         : integer := 32;     -- Stream data width
-constant c_S2_DATA_WIDTH         : integer := 32;     -- Stream data width
-constant c_C0_DATA_WIDTH         : integer := 32;     -- Control data width
-constant c_H2F_S0_0_RWIDTH       : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
-constant c_H2F_S1_0_RWIDTH       : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
-constant c_H2F_S2_0_RWIDTH       : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
-constant c_H2F_S0_1_RWIDTH       : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1
-constant c_H2F_S1_1_RWIDTH       : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1 
-constant c_H2F_S2_1_RWIDTH       : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1  
-constant c_F2H_S0_WWIDTH         : integer := 64;     -- FPGA->Host stream, FIFO wr width
-constant c_F2H_S1_WWIDTH         : integer := 64;     -- FPGA->Host stream, FIFO wr width
-constant c_F2H_S2_WWIDTH         : integer := 64;     -- FPGA->Host stream, FIFO wr width
-constant c_H2F_C0_RWIDTH         : integer := 32;     -- Host->FPGA control, rd width
-constant c_F2H_C0_WWIDTH         : integer := 32;     -- FPGA->Host control, wr width 
+constant c_S0_DATA_WIDTH            : integer := 32;     -- Stream data width
+constant c_S1_DATA_WIDTH            : integer := 32;     -- Stream data width
+constant c_S2_DATA_WIDTH            : integer := 32;     -- Stream data width
+constant c_C0_DATA_WIDTH            : integer := 32;     -- Control data width
+constant c_H2F_S0_0_RWIDTH          : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
+constant c_H2F_S1_0_RWIDTH          : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
+constant c_H2F_S2_0_RWIDTH          : integer := 128;    -- Host->FPGA stream, FIFO rd width, FIFO number - 0
+constant c_H2F_S0_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1
+constant c_H2F_S1_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1 
+constant c_H2F_S2_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1  
+constant c_F2H_S0_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
+constant c_F2H_S1_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
+constant c_F2H_S2_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
+constant c_H2F_C0_RWIDTH            : integer := 32;     -- Host->FPGA control, rd width
+constant c_F2H_C0_WWIDTH            : integer := 32;     -- FPGA->Host control, wr width 
 
-constant c_SPI0_FPGA_SS_NR       : integer := 0;
-constant c_SPI0_LMS1_SS_NR       : integer := 1;
-constant c_SPI0_LMS2_SS_NR       : integer := 2;
+constant c_SPI0_FPGA_SS_NR          : integer := 0;
+constant c_SPI0_LMS1_SS_NR          : integer := 1;
+constant c_SPI0_LMS2_SS_NR          : integer := 2;
+constant c_SPI0_LMS3_SS_NR          : integer := 3;
+
+constant c_SPI1_LMS2_BB_ADC1_SS_NR  : integer := 0;
+constant c_SPI1_LMS2_BB_ADC2_SS_NR  : integer := 1;
+constant c_SPI1_LMS3_BB_ADC1_SS_NR  : integer := 2;
+constant c_SPI1_LMS3_BB_ADC2_SS_NR  : integer := 3;
+constant c_SPI1_CDCM1_SS_NR         : integer := 4;
+constant c_SPI1_CDCM2_SS_NR         : integer := 5; 
+
+constant c_SPI2_XO_DAC_SS_NR        : integer := 0;
+constant c_SPI2_ADF_SS_NR           : integer := 1;  
+
+     
 
 signal reset_n                   : std_logic;
 signal reset_n_lmk_clk           : std_logic;
 signal reset_n_clk100_fpga       : std_logic;
 signal reset_n_si_clk0           : std_logic;
 
-signal io_adc1_i                 : t_TO_ADC;
-signal io_adc1_o                 : t_FROM_ADC;
+signal lms2_bb_adc1_clkout       : std_logic;
+signal lms2_bb_adc1_clkout_global: std_logic;
+signal lms2_bb_adc1_da           : std_logic_vector(6 downto 0);
+signal lms2_bb_adc1_db           : std_logic_vector(6 downto 0);
 
-signal io_adc2_i                 : t_TO_ADC;
-signal io_adc2_o                 : t_FROM_ADC;
+signal lms2_bb_adc2_clkout       : std_logic;
+signal lms2_bb_adc2_clkout_global: std_logic;
+signal lms2_bb_adc2_da           : std_logic_vector(6 downto 0);
+signal lms2_bb_adc2_db           : std_logic_vector(6 downto 0);
 
-signal io_adc3_i                 : t_TO_ADC;
-signal io_adc3_o                 : t_FROM_ADC;
+signal lms3_bb_adc1_clkout       : std_logic;
+signal lms3_bb_adc1_clkout_global: std_logic;
+signal lms3_bb_adc1_da           : std_logic_vector(6 downto 0);
+signal lms3_bb_adc1_db           : std_logic_vector(6 downto 0);
 
-signal io_adc4_i                 : t_TO_ADC;
-signal io_adc4_o                 : t_FROM_ADC;
+signal lms3_bb_adc2_clkout       : std_logic;
+signal lms3_bb_adc2_clkout_global: std_logic;
+signal lms3_bb_adc2_da           : std_logic_vector(6 downto 0);
+signal lms3_bb_adc2_db           : std_logic_vector(6 downto 0);
 
 --inst0 (NIOS CPU instance)
 signal inst0_exfifo_if_rd        : std_logic;
@@ -356,10 +386,10 @@ signal inst0_lms_ctr_gpio        : std_logic_vector(3 downto 0);
 signal inst0_spi_0_MISO          : std_logic;
 signal inst0_spi_0_MOSI          : std_logic;
 signal inst0_spi_0_SCLK          : std_logic;
-signal inst0_spi_0_SS_n          : std_logic_vector(8 downto 0);
+signal inst0_spi_0_SS_n          : std_logic_vector(3 downto 0);
 signal inst0_spi_1_MOSI          : std_logic;
 signal inst0_spi_1_SCLK          : std_logic;
-signal inst0_spi_1_SS_n          : std_logic_vector(1 downto 0);
+signal inst0_spi_1_SS_n          : std_logic_vector(5 downto 0);
 signal inst0_spi_2_MISO          : std_logic;
 signal inst0_spi_2_MOSI          : std_logic;
 signal inst0_spi_2_SCLK          : std_logic;
@@ -415,7 +445,6 @@ signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
 signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
 signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
 signal inst0_smpl_cmp_sel        : std_logic_vector(0 downto 0);
-
 
 --test_out
 signal inst0_pll_c0              : std_logic;
@@ -607,6 +636,9 @@ signal inst10_adc4_tx_wrusedw       : std_logic_vector(8 downto 0);
 signal inst10_adc4_data_ch_a        : std_logic_vector(g_EXT_ADC_D_WIDTH-1 downto 0);
 signal inst10_adc4_data_ch_b        : std_logic_vector(g_EXT_ADC_D_WIDTH-1 downto 0);
 
+signal inst10_data                  : std_logic_vector(14*4-1 downto 0);
+signal inst10_data_valid            : std_logic;
+
 --inst11
 signal inst11_tx_pct_loss_flg        : std_logic;
 signal inst11_tx_txant_en            : std_logic;
@@ -624,6 +656,10 @@ signal inst11_wfm_in_pct_rdreq       : std_logic;
 signal inst11_wfm_phy_clk            : std_logic;
 signal inst11_tx_smpl_fifo_wrreq     : std_logic;
 signal inst11_tx_smpl_fifo_data      : std_logic_vector(127 downto 0);
+
+signal inst11_data                   : std_logic_vector(14*4-1 downto 0);
+signal inst11_data_valid             : std_logic;
+
 
 --inst12 
 signal inst12_sdout                    : std_logic;
@@ -667,20 +703,17 @@ signal inst20_wfm_0_outfifo_data       : std_logic_vector(127 downto 0);
 
 signal CLK100_FPGA                     : std_logic;
 signal FPGA_AUXCLK                     : std_logic;
-signal LMS2_BB_DAC2_REF_CLK            : std_logic;
+signal CDCM2_LMS2_BB_DAC2_REFC            : std_logic;
 
 
 attribute DONT_TOUCH : string;
 
-attribute DONT_TOUCH of IBUFDS_inst0      : label is "TRUE";
-attribute DONT_TOUCH of IBUFDS_inst1      : label is "TRUE";
+
 attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
---attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
---attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
---attribute DONT_TOUCH of inst8_lms7002_top : label is "TRUE";
---attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc_top    : label is "TRUE";
---attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
 signal gpio_o : std_logic_vector(15 downto 0);
 signal gpio_i : std_logic_vector(15 downto 0);
@@ -694,42 +727,24 @@ signal spi0_lms2_miso   : std_logic;
 
 begin
 
-   -- Diffrential buffer for data clock from ADC
-   IBUFDS_inst0 : IBUFDS
-      generic map (
-         DIFF_TERM      => FALSE, -- Differential Termination 
-         IBUF_LOW_PWR   => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
-         IOSTANDARD     => "LVDS_25")
-      port map (
-         O  => CLK100_FPGA,         -- Buffer output
-         I  => CLK100_FPGA_P,     -- Diff_p buffer input (connect directly to top-level port)
-         IB => CLK100_FPGA_N      -- Diff_n buffer input (connect directly to top-level port)
-      );
-      
-      -- Diffrential buffer for data clock from ADC
-   IBUFDS_inst1 : IBUFDS
-      generic map (
-         DIFF_TERM      => FALSE, -- Differential Termination 
-         IBUF_LOW_PWR   => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
-         IOSTANDARD     => "LVDS_25")
-      port map (
-         O  => FPGA_AUXCLK,       -- Buffer output
-         I  => FPGA_AUXCLK_P,     -- Diff_p buffer input (connect directly to top-level port)
-         IB => FPGA_AUXCLK_N      -- Diff_n buffer input (connect directly to top-level port)
-      );
-      
-    
-   IBUFDS_inst2 : IBUFDS
-      generic map (
-         DIFF_TERM      => TRUE, -- Differential Termination 
-         IBUF_LOW_PWR   => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
-         IOSTANDARD     => "LVDS_25")
-      port map (
-         O  => LMS2_BB_DAC2_REF_CLK,       -- Buffer output
-         I  => LMS2_BB_DAC2_REF_CLK_P,     -- Diff_p buffer input (connect directly to top-level port)
-         IB => LMS2_BB_DAC2_REF_CLK_N      -- Diff_n buffer input (connect directly to top-level port)
-      );
-      
+-- ----------------------------------------------------------------------------
+-- Input buffers
+-- ----------------------------------------------------------------------------
+   inst0_ibuf : entity work.ibufs
+   port map(
+
+      CLK100_FPGA_P  => CLK100_FPGA_P,
+      CLK100_FPGA_N  => CLK100_FPGA_N,
+      clk100_fpga    => CLK100_FPGA,
+                     
+      FPGA_AUXCLK_P  => FPGA_AUXCLK_P,
+      FPGA_AUXCLK_N  => FPGA_AUXCLK_N,
+      fpga_auxclk    => FPGA_AUXCLK
+   );
+   
+-- ----------------------------------------------------------------------------
+-- ADC IO 
+-- ----------------------------------------------------------------------------     
    -- Only one delay controller has to be instantiated   
    IDELAYCTRL_inst : IDELAYCTRL
    port map (
@@ -738,80 +753,81 @@ begin
       RST      => '0'               -- 1-bit input: Active high reset input
    );
    
-   -- ADC#1 IO
-   io_inst : entity work.io_buff
+   -- LMS2_RX1_BB_ADC1
+   inst0_LMS2_RX1_BB_ADC1 : entity work.ADS4246_io
    port map(
-      clk_200mhz        => inst1_pll_0_c0,
-      -- 14-bit ADC
-      ADC_CLK_P         => open,
-      ADC_CLK_N         => open,
-      ADC_CLKOUT_P      => LMS2_BB_ADC1_CLKOUT_P,
-      ADC_CLKOUT_N      => LMS2_BB_ADC1_CLKOUT_N,
-      ADC_DA_P          => LMS2_BB_ADC1_DA_P,
-      ADC_DA_N          => LMS2_BB_ADC1_DA_N,
-      ADC_DB_P          => LMS2_BB_ADC1_DB_P,
-      ADC_DB_N          => LMS2_BB_ADC1_DB_N,
-      FPGA_ADC_RESET    => FPGA_LMS2_BB_ADC1_RESET,
-      adc_o             => io_adc1_o,
-      adc_i             => io_adc1_i
+      -- Connect directly to ADS4246 ports
+      i_CLKOUT_P  => LMS2_BB_ADC1_CLKOUT_P,
+      i_CLKOUT_N  => LMS2_BB_ADC1_CLKOUT_N,
+      i_DA_P      => LMS2_BB_ADC1_DA_P,
+      i_DA_N      => LMS2_BB_ADC1_DA_N,
+      i_DB_P      => LMS2_BB_ADC1_DB_P,
+      i_DB_N      => LMS2_BB_ADC1_DB_N,
+      o_RESET     => FPGA_LMS2_BB_ADC1_RESET,
+      -- Connect to FPGA logic
+      clkout_bufr => lms2_bb_adc1_clkout,
+      clkout_bufg => lms2_bb_adc1_clkout_global,
+      reset       => inst0_gpo(0),
+      da          => lms2_bb_adc1_da,
+      db          => lms2_bb_adc1_db
+      );
+
+   -- LMS2_RX1_BB_ADC2
+   inst0_LMS2_RX1_BB_ADC2 : entity work.ADS4246_io
+   port map(
+      -- Connect directly to ADS4246 ports
+      i_CLKOUT_P  => LMS2_BB_ADC2_CLKOUT_P,
+      i_CLKOUT_N  => LMS2_BB_ADC2_CLKOUT_N,
+      i_DA_P      => LMS2_BB_ADC2_DA_P,
+      i_DA_N      => LMS2_BB_ADC2_DA_N,
+      i_DB_P      => LMS2_BB_ADC2_DB_P,
+      i_DB_N      => LMS2_BB_ADC2_DB_N,
+      o_RESET     => FPGA_LMS2_BB_ADC2_RESET,
+      -- Connect to FPGA logic
+      clkout_bufr => lms2_bb_adc2_clkout,
+      clkout_bufg => lms2_bb_adc2_clkout_global,
+      reset       => inst0_gpo(1),
+      da          => lms2_bb_adc2_da,
+      db          => lms2_bb_adc2_db
       );
       
-      io_adc1_i.RESET <= inst0_gpo(0);
-      
-      
-   -- ADC#2 IO
-   io_inst2 : entity work.io_buff
+   -- LMS3_RX1_BB_ADC1
+   inst0_LMS3_RX1_BB_ADC1 : entity work.ADS4246_io
    port map(
-      clk_200mhz        => inst1_pll_0_c0,
-      -- 14-bit ADC
-      ADC_CLK_P         => open,
-      ADC_CLK_N         => open,
-      ADC_CLKOUT_P      => LMS2_BB_ADC2_CLKOUT_P,
-      ADC_CLKOUT_N      => LMS2_BB_ADC2_CLKOUT_N,
-      ADC_DA_P          => LMS2_BB_ADC2_DA_P,
-      ADC_DA_N          => LMS2_BB_ADC2_DA_N,
-      ADC_DB_P          => LMS2_BB_ADC2_DB_P,
-      ADC_DB_N          => LMS2_BB_ADC2_DB_N,
-      FPGA_ADC_RESET    => FPGA_LMS2_BB_ADC2_RESET,
-      adc_o             => io_adc2_o,
-      adc_i             => io_adc2_i
-      ); 
+      -- Connect directly to ADS4246 ports
+      i_CLKOUT_P  => LMS3_BB_ADC1_CLKOUT_P,
+      i_CLKOUT_N  => LMS3_BB_ADC1_CLKOUT_N,
+      i_DA_P      => LMS3_BB_ADC1_DA_P,
+      i_DA_N      => LMS3_BB_ADC1_DA_N,
+      i_DB_P      => LMS3_BB_ADC1_DB_P,
+      i_DB_N      => LMS3_BB_ADC1_DB_N,
+      o_RESET     => FPGA_LMS2_BB_ADC1_RESET,
+      -- Connect to FPGA logic
+      clkout_bufr => lms3_bb_adc1_clkout,
+      clkout_bufg => lms3_bb_adc1_clkout_global,
+      reset       => inst0_gpo(2),
+      da          => lms3_bb_adc1_da,
+      db          => lms3_bb_adc1_db
+      );
       
-   -- ADC#3 IO
-   io_inst3 : entity work.io_buff
+      
+   -- LMS3_RX1_BB_ADC2
+   inst0_LMS3_RX1_BB_ADC2 : entity work.ADS4246_io
    port map(
-      clk_200mhz        => inst1_pll_0_c0,
-      -- 14-bit ADC
-      ADC_CLK_P         => open,
-      ADC_CLK_N         => open,
-      ADC_CLKOUT_P      => LMS3_BB_ADC1_CLKOUT_P,
-      ADC_CLKOUT_N      => LMS3_BB_ADC1_CLKOUT_N,
-      ADC_DA_P          => LMS3_BB_ADC1_DA_P,
-      ADC_DA_N          => LMS3_BB_ADC1_DA_N,
-      ADC_DB_P          => LMS3_BB_ADC1_DB_P,
-      ADC_DB_N          => LMS3_BB_ADC1_DB_N,
-      FPGA_ADC_RESET    => FPGA_LMS3_BB_ADC1_RESET,
-      adc_o             => io_adc3_o,
-      adc_i             => io_adc3_i
-      ); 
-      
-      
-    -- ADC#4 IO
-   io_inst4 : entity work.io_buff
-   port map(
-      clk_200mhz        => inst1_pll_0_c0,
-      -- 14-bit ADC
-      ADC_CLK_P         => open,
-      ADC_CLK_N         => open,
-      ADC_CLKOUT_P      => LMS3_BB_ADC2_CLKOUT_P,
-      ADC_CLKOUT_N      => LMS3_BB_ADC2_CLKOUT_N,
-      ADC_DA_P          => LMS3_BB_ADC2_DA_P,
-      ADC_DA_N          => LMS3_BB_ADC2_DA_N,
-      ADC_DB_P          => LMS3_BB_ADC2_DB_P,
-      ADC_DB_N          => LMS3_BB_ADC2_DB_N,
-      FPGA_ADC_RESET    => FPGA_LMS3_BB_ADC2_RESET,
-      adc_o             => io_adc4_o,
-      adc_i             => io_adc4_i
+      -- Connect directly to ADS4246 ports
+      i_CLKOUT_P  => LMS3_BB_ADC2_CLKOUT_P,
+      i_CLKOUT_N  => LMS3_BB_ADC2_CLKOUT_N,
+      i_DA_P      => LMS3_BB_ADC2_DA_P,
+      i_DA_N      => LMS3_BB_ADC2_DA_N,
+      i_DB_P      => LMS3_BB_ADC2_DB_P,
+      i_DB_N      => LMS3_BB_ADC2_DB_N,
+      o_RESET     => FPGA_LMS3_BB_ADC2_RESET,
+      -- Connect to FPGA logic
+      clkout_bufr => lms3_bb_adc2_clkout,
+      clkout_bufg => lms3_bb_adc2_clkout_global,
+      reset       => inst0_gpo(3),
+      da          => lms3_bb_adc2_da,
+      db          => lms3_bb_adc2_db
       );
       
       
@@ -821,7 +837,7 @@ begin
    -- Reset from FPGA pin. 
    reset_n <= not HW_VER(3);
    
---   -- Reset signal with synchronous removal to CLK100_FPGA clock domain, 
+   -- Reset signal with synchronous removal to CLK100_FPGA clock domain, 
    sync_reg0 : entity work.sync_reg 
    port map(CLK100_FPGA, reset_n, '1', reset_n_clk100_fpga);
    
@@ -831,7 +847,7 @@ begin
    
    -- Reset signal with synchronous removal to LMK_CLK clock domain, 
    sync_reg3 : entity work.sync_reg 
-   port map(LMK_CLK, reset_n, '1', reset_n_lmk_clk); 
+   port map(LMK2_CLK, reset_n, '1', reset_n_lmk_clk); 
    
      
 -- ----------------------------------------------------------------------------
@@ -867,12 +883,12 @@ begin
       spi_0_SCLK                 => inst0_spi_0_SCLK,
       spi_0_SS_n                 => inst0_spi_0_SS_n,
       -- SPI 1
-      spi_1_MISO                 => FPGA_SPI1_MISO,
+      spi_1_MISO                 => FPGA_SPI1_MISO OR FPGA_SPI1_MISO_BB_ADC,
       spi_1_MOSI                 => inst0_spi_1_MOSI,
       spi_1_SCLK                 => inst0_spi_1_SCLK,
       spi_1_SS_n                 => inst0_spi_1_SS_n,
       -- SPI 1
-      spi_2_MISO                 => inst0_spi_2_MISO,
+      spi_2_MISO                 => FPGA_SPI2_MISO,
       spi_2_MOSI                 => inst0_spi_2_MOSI,
       spi_2_SCLK                 => inst0_spi_2_SCLK,
       spi_2_SS_n                 => inst0_spi_2_SS_n,
@@ -961,8 +977,7 @@ begin
       smpl_cmp_sel               => inst0_smpl_cmp_sel,
       smpl_cmp_en                => inst0_smpl_cmp_en, 
       smpl_cmp_status            => inst0_smpl_cmp_status
-      
-      
+   
    );
    
    
@@ -995,47 +1010,13 @@ begin
 --   inst0_to_fpgacfg_0.BOM_VER   <= BOM_VER; 
 --   inst0_to_fpgacfg_0.PWR_SRC   <= '0';
                         
-   inst0_spi_0_MISO <= FPGA_SPI0_MISO_LMS1 OR FPGA_SPI0_MISO_LMS2 OR FPGA_SPI0_MISO_LMS3;
-
-   inst0_spi_2_MISO <= FPGA_SPI2_MISO_ADC when inst0_spi_2_SS_n(0) = '0' else FPGA_SPI2_MISO;
+   -- TODO: Check LMS MISO connection !!
+   inst0_spi_0_MISO <= FPGA_SPI0_LMS1_MISO OR FPGA_SPI0_LMS2_MISO OR FPGA_SPI0_LMS3_MISO;
    
 -- ----------------------------------------------------------------------------
 -- pll_top instance.
 -- Clock source for LMS#1, LMS#2 RX and TX logic
--- ----------------------------------------------------------------------------
---inst1 : entity work.pll_top_test
---   port map(
---      -- LMS#1 TX PLL ports
---      lms1_txpll_inclk              => LMS1_MCLK1,
---      lms1_txpll_logic_reset_n      => reset_n,
---      lms1_txpll_c0                 => LMS1_FCLK1,
---      lms1_txpll_c1                 => inst1_lms1_txpll_c1,
---      lms1_txpll_locked             => inst1_lms1_txpll_locked,
---      -- LMS#1 RX PLL ports
---      lms1_rxpll_inclk              => LMS1_MCLK2,
---      lms1_rxpll_logic_reset_n      => reset_n,
---      lms1_rxpll_c0                 => inst1_lms1_rxpll_c0, --LMS1_FCLK2,
---      lms1_rxpll_c1                 => inst1_lms1_rxpll_c1,
---      lms1_rxpll_locked             => inst1_lms1_rxpll_locked,
---      -- LMS#1 TX PLL ports
---      lms2_txpll_inclk              => LMS2_MCLK1,
---      lms2_txpll_logic_reset_n      => reset_n,
---      lms2_txpll_c0                 => LMS2_FCLK1,
---      lms2_txpll_c1                 => inst1_lms2_txpll_c1,
---      lms2_txpll_locked             => inst1_lms2_txpll_locked,
---      -- LMS#1 RX PLL ports
---      lms2_rxpll_inclk              => LMS2_MCLK2,
---      lms2_rxpll_logic_reset_n      => reset_n,
---      lms2_rxpll_c0                 => LMS2_FCLK2,
---      lms2_rxpll_c1                 => inst1_lms2_rxpll_c1,
---      lms2_rxpll_locked             => inst1_lms2_rxpll_locked,
---      -- ADC PLL ports
---      adcpll_inclk                  => LMK_CLK,
---      adcpll_logic_reset_n          => reset_n,
---      adcpll_c0                     => inst1_pll_0_c0,
---      adcpll_locked                 => inst1_pll_0_locked
---   );
-  
+-- ---------------------------------------------------------------------------- 
    inst1_pll_top : entity work.pll_top
    generic map(
       INTENDED_DEVICE_FAMILY  => g_DEV_FAMILY,
@@ -1120,8 +1101,8 @@ begin
       pll_0_c1                   => inst1_pll_0_c1,
       pll_0_locked               => inst1_pll_0_locked,
       
-      pll_1_inclk_p              => LMS2_BB_DAC1_REF_CLK_P, 
-      pll_1_inclk_n              => LMS2_BB_DAC1_REF_CLK_N, 
+      pll_1_inclk_p              => CDCM2_LMS2_BB_DAC1_REFC_P, 
+      pll_1_inclk_n              => CDCM2_LMS2_BB_DAC1_REFC_N, 
       pll_1_logic_reset_n        => not inst0_pll_rst(5),
       pll_1_c0                   => inst1_pll_1_c0,
       pll_1_c1                   => inst1_pll_1_c1,
@@ -1154,13 +1135,6 @@ begin
    
    LMS1_FCLK2 <= inst1_lms1_rxpll_c0;
    
-   
-   
-
-
-   
-
-   io_adc1_i.CLK <= inst1_pll_0_c1;
       
 -- ----------------------------------------------------------------------------
 -- pcie_top instance.
@@ -1231,28 +1205,28 @@ begin
      H2F_S0_1_rempty      => inst2_H2F_S0_1_rempty,
      H2F_S0_1_rdusedw     => inst2_H2F_S0_1_rdusedw,
 
-     H2F_S1_0_rdclk       => inst1_lms2_txpll_c1,
+     H2F_S1_0_rdclk       => inst1_pll_1_c1,
      H2F_S1_0_aclrn       => inst9_tx_in_pct_reset_n_req,
      H2F_S1_0_rd          => inst9_tx_in_pct_rdreq,
      H2F_S1_0_rdata       => inst2_H2F_S1_0_rdata,
      H2F_S1_0_rempty      => inst2_H2F_S1_0_rempty,
      H2F_S1_0_rdusedw     => inst2_H2F_S1_0_rdusedw,
   
-     H2F_S1_1_rdclk       => inst20_phy_clk,
+     H2F_S1_1_rdclk       => inst1_pll_1_c1,
      H2F_S1_1_aclrn       => inst0_from_fpgacfg_1.wfm_load,
      H2F_S1_1_rd          => inst20_wfm_0_infifo_rdreq,
      H2F_S1_1_rdata       => inst2_H2F_S1_1_rdata,
      H2F_S1_1_rempty      => inst2_H2F_S1_1_rempty,
      H2F_S1_1_rdusedw     => inst2_H2F_S1_1_rdusedw, 
 
-     H2F_S2_0_rdclk       => io_adc1_o.CLKOUT_LOGIC,
+     H2F_S2_0_rdclk       =>inst1_pll_1_c1,
      H2F_S2_0_aclrn       => inst11_tx_in_pct_reset_n_req,
      H2F_S2_0_rd          => inst11_tx_in_pct_rdreq,
      H2F_S2_0_rdata       => inst2_H2F_S2_0_rdata,
      H2F_S2_0_rempty      => inst2_H2F_S2_0_rempty,
      H2F_S2_0_rdusedw     => inst2_H2F_S2_0_rdusedw,
   
-     H2F_S2_1_rdclk       => io_adc1_o.CLKOUT_LOGIC,
+     H2F_S2_1_rdclk       => inst1_pll_1_c1,
      H2F_S2_1_aclrn       => inst0_from_fpgacfg_2.wfm_load,
      H2F_S2_1_rd          => inst11_wfm_in_pct_rdreq,
      H2F_S2_1_rdata       => inst2_H2F_S2_1_rdata,
@@ -1266,14 +1240,14 @@ begin
      F2H_S0_wfull         => inst2_F2H_S0_wfull,
      F2H_S0_wrusedw       => inst2_F2H_S0_wrusedw,
    
-     F2H_S1_wclk          => inst1_lms2_rxpll_c1,
+     F2H_S1_wclk          => lms2_bb_adc1_clkout_global,
      F2H_S1_aclrn         => inst9_rx_pct_fifo_aclrn_req,
      F2H_S1_wr            => inst9_rx_pct_fifo_wrreq,
      F2H_S1_wdata         => inst9_rx_pct_fifo_wdata,
      F2H_S1_wfull         => inst2_F2H_S1_wfull,
      F2H_S1_wrusedw       => inst2_F2H_S1_wrusedw,
    
-     F2H_S2_wclk          => io_adc1_o.CLKOUT_LOGIC,  -- !!!!!! change to ADC_CLKOUT,
+     F2H_S2_wclk          => lms3_bb_adc1_clkout_global,  -- !!!!!! change to ADC_CLKOUT,
      F2H_S2_aclrn         => inst11_rx_pct_fifo_aclrn_req,
      F2H_S2_wr            => inst11_rx_pct_fifo_wrreq,
      F2H_S2_wdata         => inst11_rx_pct_fifo_wdata,
@@ -1370,7 +1344,7 @@ begin
    )
    port map(
       -- General ports
-      clk                  => LMK_CLK,
+      clk                  => LMK2_CLK,
       reset_n              => reset_n_lmk_clk,
       -- configuration memory
       from_fpgacfg         => inst0_from_fpgacfg_0,
@@ -1384,10 +1358,10 @@ begin
       led1_g               => FPGA_LED1_G,
       led1_r               => FPGA_LED1_R,      
       --LED2 (TCXO control status)
-      led2_clk             => inst0_spi_1_SCLK,
-      led2_adf_muxout      => '0', -- ADF_MUXOUT
-      led2_dac_ss          => inst0_spi_0_SS_n(5),
-      led2_adf_ss          => inst0_spi_0_SS_n(2),
+      led2_clk             => inst0_spi_2_SCLK,
+      led2_adf_muxout      => ADF_MUXOUT,
+      led2_dac_ss          => inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR),
+      led2_adf_ss          => inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR),
       led2_ctrl            => inst0_from_fpgacfg_0.FPGA_LED2_CTRL,
       led2_g               => open,
       led2_r               => open,     
@@ -1499,7 +1473,7 @@ begin
             -- SPI for internal modules
       sdin                 => inst0_spi_0_MOSI,  -- Data in
       sclk                 => inst0_spi_0_SCLK,  -- Data clock
-      sen                  => inst0_spi_0_SS_n(6),  -- Enable signal (active low)
+      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
       sdout                => inst6_sdout  -- Data out   
    );
    
@@ -1574,12 +1548,12 @@ begin
       smpls_to_capture     => 4
       )
    port map(
-      clk               => io_adc1_o.CLKOUT_LOGIC,
-      clk_io            => io_adc1_o.CLKOUT_IO,
+      clk               => lms2_bb_adc1_clkout,
+      clk_io            => lms2_bb_adc1_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
-      ch_a              => io_adc1_o.DA,
-      ch_b              => io_adc1_o.DB,     
+      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en,      
+      ch_a              => lms2_bb_adc1_da,
+      ch_b              => lms2_bb_adc1_db,     
       --SDR parallel output data
       data_ch_a         => inst10_adc1_data_ch_a, 
       data_ch_b         => inst10_adc1_data_ch_b,  
@@ -1598,12 +1572,12 @@ begin
       smpls_to_capture     => 4
       )
    port map(
-      clk               => io_adc2_o.CLKOUT_LOGIC,
-      clk_io            => io_adc2_o.CLKOUT_IO,
+      clk               => lms2_bb_adc2_clkout,
+      clk_io            => lms2_bb_adc2_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
-      ch_a              => io_adc2_o.DA,
-      ch_b              => io_adc2_o.DB,     
+      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en,      
+      ch_a              => lms2_bb_adc2_da,
+      ch_b              => lms2_bb_adc2_db,     
       --SDR parallel output data
       data_ch_a         => inst10_adc2_data_ch_a, 
       data_ch_b         => inst10_adc2_data_ch_b,  
@@ -1614,74 +1588,32 @@ begin
       to_rxtspcfg       => open,
       from_rxtspcfg     => inst0_from_rxtspcfg
    );
-
-   --inst8_lms7002_top : entity work.lms7002_top
-   --generic map(
-   --   g_DEV_FAMILY            => g_DEV_FAMILY,
-   --   g_IQ_WIDTH              => g_LMS_DIQ_WIDTH,
-   --   g_INV_INPUT_CLK         => "ON",
-   --   g_TX_SMPL_FIFO_0_WRUSEDW  => 9,
-   --   g_TX_SMPL_FIFO_0_DATAW    => 128,
-   --   g_TX_SMPL_FIFO_1_WRUSEDW  => 9,
-   --   g_TX_SMPL_FIFO_1_DATAW    => 128
-   --) 
-   --port map(  
-   --   from_fpgacfg         => inst0_from_fpgacfg_mod_1,
-   --   from_tstcfg          => inst0_from_tstcfg,
-   --   from_memcfg          => inst0_from_memcfg,
-   --   -- Momory module reset
-   --   mem_reset_n          => reset_n,
-   --   -- PORT1 interface
-   --   MCLK1                => inst1_lms2_txpll_c1,
-   --   MCLK1_2x             => inst1_lms2_txpll_c2,
-   --   FCLK1                => open, 
-   --   DIQ1                 => LMS2_DIQ1_D,
-   --   ENABLE_IQSEL1        => LMS2_ENABLE_IQSEL1,
-   --   TXNRX1               => LMS2_TXNRX1,
-   --   -- PORT2 interface
-   --   MCLK2                => inst1_lms2_rxpll_c1,
-   --   FCLK2                => open, 
-   --   DIQ2                 => LMS2_DIQ2_D,
-   --   ENABLE_IQSEL2        => LMS2_ENABLE_IQSEL2,
-   --   TXNRX2               => LMS2_TXNRX2,
-   --   -- MISC
-   --   RESET                => LMS2_RESET, 
-   --   TXEN                 => LMS2_TXEN,
-   --   RXEN                 => LMS2_RXEN,
-   --   CORE_LDO_EN          => LMS2_CORE_LDO_EN,
-   --   -- Internal TX ports
-   --   tx_reset_n           => inst1_lms2_txpll_locked,
-   --   tx_fifo_0_wrclk      => inst1_lms2_txpll_c1,
-   --   tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_1.rx_en,
-   --   tx_fifo_0_wrreq      => inst9_tx_smpl_fifo_wrreq,
-   --   tx_fifo_0_data       => inst9_tx_smpl_fifo_data,
-   --   tx_fifo_0_wrfull     => inst8_tx_fifo_0_wrfull,
-   --   tx_fifo_0_wrusedw    => inst8_tx_fifo_0_wrusedw,
-   --   tx_fifo_1_wrclk      => inst20_phy_clk,
-   --   tx_fifo_1_reset_n    => inst20_wfm_0_outfifo_reset_n,
-   --   tx_fifo_1_wrreq      => inst20_wfm_0_outfifo_wrreq,
-   --   tx_fifo_1_data       => inst20_wfm_0_outfifo_data,
-   --   tx_fifo_1_wrfull     => inst8_tx_fifo_1_wrfull,
-   --   tx_fifo_1_wrusedw    => inst8_tx_fifo_1_wrusedw,
-   --   tx_ant_en            => inst8_tx_ant_en, 
-   --   -- Internal RX ports
-   --   rx_reset_n           => inst1_lms2_rxpll_locked,
-   --   rx_diq_h             => open, 
-   --   rx_diq_l             => open,
-   --   rx_data_valid        => inst8_rx_data_valid,
-   --   rx_data              => inst8_rx_data,
-   --   rx_smpl_cmp_start    => inst8_rx_smpl_cmp_start,               --inst1_lms2_smpl_cmp_en,
-   --   rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms2_smpl_cmp_cnt,
-   --   rx_smpl_cmp_done     => inst8_rx_smpl_cmp_done,
-   --   rx_smpl_cmp_err      => inst8_rx_smpl_cmp_err,
-   --   rx_smpl_cnt_en       => inst8_rx_smpl_cnt_en,
-   --         -- SPI for internal modules
-   --   sdin                 => inst0_spi_0_MOSI,  -- Data in
-   --   sclk                 => inst0_spi_0_SCLK,  -- Data clock
-   --   sen                  => inst0_spi_0_SS_n(6),  -- Enable signal (active low)
-   --   sdout                => inst8_sdout  -- Data out   
-   --);
    
+   inst10: entity work.chnl_combine
+   generic map(
+      diq_width   => 14
+   )
+   port map (
+      -- Combined channels
+      clk         => lms2_bb_adc1_clkout_global,
+      reset_n     => reset_n,
+      ch_en       => inst0_from_fpgacfg_mod_1.ch_en(1 downto 0),
+      data        => inst10_data,
+      data_valid  => inst10_data_valid,
+      -- A chanel
+      a_clk       => lms2_bb_adc1_clkout,
+      a_reset_n   => reset_n,
+      ai          => inst10_adc1_data_ch_a,
+      aq          => inst10_adc1_data_ch_b,
+      -- B chanel
+      b_clk       => lms2_bb_adc2_clkout,
+      b_reset_n   => reset_n,
+      bi          => inst10_adc2_data_ch_a,
+      bq          => inst10_adc2_data_ch_b
+      
+   );
+   
+
    inst9_rxtx_top : entity work.rxtx_top
    generic map(
       DEV_FAMILY              => g_DEV_FAMILY,
@@ -1704,8 +1636,8 @@ begin
       to_tstcfg_from_rxtx     => inst9_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
-      tx_clk                  => inst1_lms2_txpll_c1,
-      tx_clk_reset_n          => inst1_lms2_txpll_locked,     
+      tx_clk                  => inst1_pll_1_c1,
+      tx_clk_reset_n          => reset_n,     
       tx_pct_loss_flg         => inst9_tx_pct_loss_flg,
       tx_txant_en             => inst9_tx_txant_en,  
       --Tx interface data 
@@ -1720,11 +1652,11 @@ begin
       tx_in_pct_rdempty       => inst2_H2F_S1_0_rempty,
       tx_in_pct_rdusedw       => inst2_H2F_S1_0_rdusedw,     
       -- RX path
-      rx_clk                  => inst1_lms2_rxpll_c1,
-      rx_clk_reset_n          => inst1_lms2_rxpll_locked,
+      rx_clk                  => lms2_bb_adc1_clkout_global,
+      rx_clk_reset_n          => reset_n,
       --RX FIFO for IQ samples   
-      rx_smpl_fifo_wrreq      => inst10_adc1_rx_data_valid,
-      rx_smpl_fifo_data       => inst10_adc2_data_ch_a & inst10_adc2_data_ch_b & inst10_adc1_data_ch_a & inst10_adc1_data_ch_b,
+      rx_smpl_fifo_wrreq      => inst10_data_valid,
+      rx_smpl_fifo_data       => inst10_data,
       rx_smpl_fifo_wrfull     => open,
       --RX Packet FIFO ports
       rx_pct_fifo_aclrn_req   => inst9_rx_pct_fifo_aclrn_req,
@@ -1862,12 +1794,12 @@ begin
       smpls_to_capture     => 4
       )
    port map(
-      clk               => io_adc3_o.CLKOUT_LOGIC,
-      clk_io            => io_adc3_o.CLKOUT_IO,
+      clk               => lms3_bb_adc1_clkout,
+      clk_io            => lms3_bb_adc1_clkout,
       reset_n           => reset_n,
       en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
-      ch_a              => io_adc3_o.DA,
-      ch_b              => io_adc3_o.DB,     
+      ch_a              => lms3_bb_adc1_da,
+      ch_b              => lms3_bb_adc1_db,     
       --SDR parallel output data
       data_ch_a         => inst10_adc3_data_ch_a, 
       data_ch_b         => inst10_adc3_data_ch_b,  
@@ -1886,12 +1818,12 @@ begin
       smpls_to_capture     => 4
       )
    port map(
-      clk               => io_adc4_o.CLKOUT_LOGIC,
-      clk_io            => io_adc4_o.CLKOUT_IO,
+      clk               => lms3_bb_adc2_clkout,
+      clk_io            => lms3_bb_adc2_clkout,
       reset_n           => reset_n,
       en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
-      ch_a              => io_adc4_o.DA,
-      ch_b              => io_adc4_o.DB,     
+      ch_a              => lms3_bb_adc2_da,
+      ch_b              => lms3_bb_adc2_db,     
       --SDR parallel output data
       data_ch_a         => inst10_adc4_data_ch_a, 
       data_ch_b         => inst10_adc4_data_ch_b,  
@@ -1901,6 +1833,31 @@ begin
       test_out          => open,
       to_rxtspcfg       => open,
       from_rxtspcfg     => inst0_from_rxtspcfg
+   );
+   
+   
+   inst11: entity work.chnl_combine
+   generic map(
+      diq_width   => 14
+   )
+   port map (
+      -- Combined channels
+      clk         => lms3_bb_adc1_clkout_global,
+      reset_n     => reset_n,
+      ch_en       => inst0_from_fpgacfg_mod_2.ch_en(1 downto 0),
+      data        => inst11_data,
+      data_valid  => inst11_data_valid,
+      -- A chanel
+      a_clk       => lms3_bb_adc1_clkout,
+      a_reset_n   => reset_n,
+      ai          => inst10_adc3_data_ch_a,
+      aq          => inst10_adc3_data_ch_b,
+      -- B chanel
+      b_clk       => lms3_bb_adc2_clkout,
+      b_reset_n   => reset_n,
+      bi          => inst10_adc4_data_ch_a,
+      bq          => inst10_adc4_data_ch_b
+      
    );
    
  -- RX and TX module
@@ -1926,7 +1883,7 @@ begin
       to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
-      tx_clk                  => io_adc1_o.CLKOUT_LOGIC,
+      tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => reset_n,     
       tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
       tx_txant_en             => inst11_tx_txant_en,  
@@ -1942,11 +1899,11 @@ begin
       tx_in_pct_rdempty       => inst2_H2F_S2_0_rempty,
       tx_in_pct_rdusedw       => inst2_H2F_S2_0_rdusedw,     
       -- RX path
-      rx_clk                  => io_adc1_o.CLKOUT_LOGIC,
+      rx_clk                  => lms3_bb_adc1_clkout_global,
       rx_clk_reset_n          => reset_n,
       --RX FIFO for IQ samples   
-      rx_smpl_fifo_wrreq      => inst10_adc3_rx_data_valid,
-      rx_smpl_fifo_data       => inst10_adc4_data_ch_a & inst10_adc4_data_ch_b & inst10_adc3_data_ch_a & inst10_adc3_data_ch_b, --inst10_rx_data,
+      rx_smpl_fifo_wrreq      => inst11_data_valid,
+      rx_smpl_fifo_data       => inst11_data, --inst10_rx_data,
       rx_smpl_fifo_wrfull     => open,
       --RX Packet FIFO ports
       rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
@@ -1980,12 +1937,12 @@ begin
       -- Serial port IOs
       sdin              => inst0_spi_0_MOSI,    -- Data in
       sclk              => inst0_spi_0_SCLK,    -- Data clock
-      sen               => inst0_spi_0_SS_n(0), -- Enable signal (active low)
+      sen               => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR), -- Enable signal (active low)
       sdout             => inst12_sdout,        -- Data out 
       -- Signals coming from the pins or top level serial interface
       lreset            => reset_n,    -- Logic reset signal, resets logic cells only  (use only one reset)
       mreset            => reset_n,    -- Memory reset signal, resets configuration memory only (use only one reset)
-      vctcxo_clk        => LMK_CLK,    -- Clock from VCTCXO       
+      vctcxo_clk        => LMK2_CLK,    -- Clock from VCTCXO       
       --LimeGNSS-GPIO pins
       gnss_tx           => open,   
       gnss_rx           => GNSS_UART_TX,  
@@ -2030,8 +1987,8 @@ begin
       clkfwd               => inst1_pll_1_c2,
       reset_n              => '1',
       --DAC#1 Outputs
-      DAC1_CLK_P           => LMS2_BB_DAC1_CLK_P,
-      DAC1_CLK_N           => LMS2_BB_DAC1_CLK_N,
+      DAC1_CLK_P           => FPGA_LMS2_BB_DAC1_CLK_P,
+      DAC1_CLK_N           => FPGA_LMS2_BB_DAC1_CLK_N,
       DAC1_B_P             => LMS2_BB_DAC1_B_P,
       DAC1_B_N             => LMS2_BB_DAC1_B_N,
       DAC1_SELIQ_P         => LMS2_BB_DAC1_SELIQ_P, 
@@ -2041,8 +1998,8 @@ begin
       DAC1_XOR_P           => LMS2_BB_DAC1_XOR_P,
       DAC1_XOR_N           => LMS2_BB_DAC1_XOR_N,
       --DAC#2 Outputs
-      DAC2_CLK_P           => LMS2_BB_DAC2_CLK_P,
-      DAC2_CLK_N           => LMS2_BB_DAC2_CLK_N,
+      DAC2_CLK_P           => FPGA_LMS2_BB_DAC2_CLK_P,
+      DAC2_CLK_N           => FPGA_LMS2_BB_DAC2_CLK_N,
       DAC2_B_P             => LMS2_BB_DAC2_B_P,
       DAC2_B_N             => LMS2_BB_DAC2_B_N,
       DAC2_SELIQ_P         => LMS2_BB_DAC2_SELIQ_P, 
@@ -2173,23 +2130,26 @@ begin
    FPGA_SPI0_MOSI       <= inst0_spi_0_MOSI;
    FPGA_SPI0_LMS1_SS    <= inst0_spi_0_SS_n(c_SPI0_LMS1_SS_NR);
    FPGA_SPI0_LMS2_SS    <= inst0_spi_0_SS_n(c_SPI0_LMS2_SS_NR);
-   FPGA_SPI0_LMS3_SS    <= inst0_spi_0_SS_n(c_SPI0_LMS2_SS_NR);  -- !!!! Connect proper slave select !!!!
+   FPGA_SPI0_LMS3_SS    <= inst0_spi_0_SS_n(c_SPI0_LMS3_SS_NR);
    
    
    
    -- FPGA SPI 1
    FPGA_SPI1_SCLK             <= inst0_spi_1_SCLK;
    FPGA_SPI1_MOSI             <= inst0_spi_1_MOSI;
-   FPGA_SPI1_DAC_SS           <= inst0_spi_1_SS_n(0);
-   FPGA_SPI1_LMS2_BB_ADC1_SS  <= inst0_spi_1_SS_n(1); -- !!!! Connect proper slave select !!!!
-   FPGA_SPI1_LMS2_BB_ADC2_SS  <= inst0_spi_1_SS_n(1); -- !!!! Connect proper slave select !!!!
-   FPGA_SPI1_LMS3_BB_ADC1_SS  <= inst0_spi_1_SS_n(1); -- !!!! Connect proper slave select !!!!
-   FPGA_SPI1_LMS3_BB_ADC2_SS  <= inst0_spi_1_SS_n(1); -- !!!! Connect proper slave select !!!!
+   FPGA_SPI1_LMS2_BB_ADC1_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS2_BB_ADC1_SS_NR); 
+   FPGA_SPI1_LMS2_BB_ADC2_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS2_BB_ADC2_SS_NR); 
+   FPGA_SPI1_LMS3_BB_ADC1_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS3_BB_ADC1_SS_NR);
+   FPGA_SPI1_LMS3_BB_ADC2_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS3_BB_ADC2_SS_NR);
+   FPGA_SPI1_CDCM1_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM1_SS_NR);
+   FPGA_SPI1_CDCM2_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM2_SS_NR);
    
    FPGA_SPI2_MOSI       <= inst0_spi_2_MOSI;
    FPGA_SPI2_SCLK       <= inst0_spi_2_SCLK;
-   FPGA_SPI2_BB_ADC_SS  <= inst0_spi_2_SS_n(0);
-   FPGA_SPI2_CDCM_SS    <= inst0_spi_2_SS_n(1);
+   FPGA_SPI2_XO_DAC_SS  <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR);
+   FPGA_SPI2_ADF_SS     <= inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR);
+  
+   
    
    
    -- LMS1 PA power control (Active high, by default disabled)
@@ -2223,24 +2183,12 @@ begin
    RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
    
    
-   CDCM_RESET_N         <= '1';
-   CDCM_SYNCN           <= '1';
+   CDCM1_RESET_N         <= '1';
+   CDCM1_SYNCN           <= '1';
    
-                           
-                        
+   CDCM2_RESET_N         <= '1';
+   CDCM2_SYNCN           <= '1';   
    
-   
-   
-   
-                        
-   
-   
-   
-   
-   
-   
-
-
 
 end arch;   
 

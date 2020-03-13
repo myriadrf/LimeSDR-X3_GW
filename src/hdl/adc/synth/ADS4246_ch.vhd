@@ -11,9 +11,8 @@ use ieee.numeric_std.all;
 
 --LIBRARY altera_mf;
 --USE altera_mf.altera_mf_components.all;
-
-Library UNISIM; -- xilinx
-use UNISIM.all;
+Library UNISIM;
+use UNISIM.vcomponents.all;
 
 
 -- ----------------------------------------------------------------------------
@@ -48,24 +47,24 @@ signal data_l_reg          : std_logic_vector(6 downto 0);
 signal captured_data       : std_logic_vector(13 downto 0); 
 
 
-component IDDR 
-   generic (
-      DDR_CLK_EDGE :string     := "SAME_EDGE"; -- "OPPOSITE_EDGE", "SAME_EDGE" 
-                                                     -- or "SAME_EDGE_PIPELINED" 
-      INIT_Q1     : std_logic  :=  '0';              -- Initial value of Q1: '0' or '1'
-      INIT_Q2     : std_logic  :=  '0';              -- Initial value of Q2: '0' or '1'
-      SRTYPE      : string     := "SYNC"             -- Set/Reset type: "SYNC" or "ASYNC"
-      ); 
-   port (
-      Q1          : out std_logic ;  -- 1-bit output for positive edge of clock 
-      Q2          : out std_logic ;  -- 1-bit output for negative edge of clock
-      C           : in  std_logic ;  -- 1-bit clock input
-      CE          : in  std_logic ;  -- 1-bit clock enable input
-      D           : in  std_logic ;  -- 1-bit DDR data input
-      R           : in  std_logic ;  -- 1-bit reset
-      S           : in  std_logic    -- 1-bit set
-      );
-end component;
+--component IDDR 
+--   generic (
+--      DDR_CLK_EDGE :string     := "SAME_EDGE"; -- "OPPOSITE_EDGE", "SAME_EDGE" 
+--                                                     -- or "SAME_EDGE_PIPELINED" 
+--      INIT_Q1     : std_logic  :=  '0';              -- Initial value of Q1: '0' or '1'
+--      INIT_Q2     : std_logic  :=  '0';              -- Initial value of Q2: '0' or '1'
+--      SRTYPE      : string     := "SYNC"             -- Set/Reset type: "SYNC" or "ASYNC"
+--      ); 
+--   port (
+--      Q1          : out std_logic ;  -- 1-bit output for positive edge of clock 
+--      Q2          : out std_logic ;  -- 1-bit output for negative edge of clock
+--      C           : in  std_logic ;  -- 1-bit clock input
+--      CE          : in  std_logic ;  -- 1-bit clock enable input
+--      D           : in  std_logic ;  -- 1-bit DDR data input
+--      R           : in  std_logic ;  -- 1-bit reset
+--      S           : in  std_logic    -- 1-bit set
+--      );
+--end component;
 
 
 begin
