@@ -1,0 +1,70 @@
+# ----------------------------------------------------------------------------
+# FILE: 	top_timing.sdc
+# DESCRIPTION:	Timing constrains file for TimeQuest
+# DATE:	June 2, 2017
+# AUTHOR(s):	Lime Microsystems
+# REVISIONS:
+# ----------------------------------------------------------------------------
+# NOTES:
+#
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Time settings
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Timing parameters
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Base clocks
+# ----------------------------------------------------------------------------
+
+#LMK clk, 30.72MHz
+create_clock -period 32.550 -name LMK1_CLK [get_ports LMK1_CLK]
+create_clock -period 32.550 -name LMK2_CLK [get_ports LMK2_CLK]
+
+
+#CLK100_FPGA
+create_clock -period 10.000 -name CLK100_FPGA -waveform {0.000 5.000} [get_ports CLK100_FPGA_P]
+
+create_clock -period 10.000 -name PCIE_REFCLK -waveform {0.000 5.000} [get_ports PCIE_REFCLK_P]
+
+
+set_clock_groups -asynchronous   -group {CLK100_FPGA} \
+                                 -group {PCIE_REFCLK} \
+                                 -group {LMS2_BB_ADC1_CLKOUT LMS2_BB_ADC2_CLKOUT} \
+                                 -group {LMK1_CLK} \
+                                 -group {LMK2_CLK} \
+                                 -group {LMS3_BB_ADC1_CLKOUT LMS3_BB_ADC2_CLKOUT} \
+                                 -group {CDCM2_LMS2_BB_DAC1_REFC_P clk_out1_max5878_mmcm clk_out2_max5878_mmcm clk_out3_max5878_mmcm clkfbout_max5878_mmcm} \
+                                 -group {clk_out2_tx_pll} \
+                                 -group {clk_out2_rx_pll} \ 
+                                 -group {clk_out2_adc_pll}
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+                                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
