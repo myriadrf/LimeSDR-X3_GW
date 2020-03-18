@@ -76,7 +76,7 @@ entity lms7_trx_top is
    port (
       -- ----------------------------------------------------------------------------
       -- External GND pin for reset
-      EXT_GND           : in     std_logic;
+     -- EXT_GND           : in     std_logic;
       -- ----------------------------------------------------------------------------
       -- Clock sources
          -- Reference clock, coming from LMK clock buffer.
@@ -182,10 +182,10 @@ entity lms7_trx_top is
       LMS2_BB_DAC1_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC1_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC1_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC1_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.
-      LMS2_BB_DAC1_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
-      LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
-      LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
+      --LMS2_BB_DAC1_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.
+      --LMS2_BB_DAC1_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
+      --LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
+      --LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
          -- DAC #2   
       CDCM2_LMS2_BB_DAC2_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
       CDCM2_LMS2_BB_DAC2_REFC_N  : in     std_logic;
@@ -195,10 +195,10 @@ entity lms7_trx_top is
       LMS2_BB_DAC2_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC2_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC2_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC2_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.   
-      LMS2_BB_DAC2_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
-      LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
-      LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
+      --LMS2_BB_DAC2_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.   
+      --LMS2_BB_DAC2_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
+      --LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
+      --LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
       -- ----------------------------------------------------------------------------
       -- Clock generator
       CDCM1_RESET_N        : out std_logic;
@@ -213,33 +213,65 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- RF control
       
-      RFSW1_TRX1R_V1       : out    std_logic;
-      RFSW1_TRX2R_V1       : out    std_logic;
-      RFSW1_TRX2T_V1       : out    std_logic;
-      RFSW1_RX2_V1         : out    std_logic;
+      --RFSW1_TRX1R_V1       : out    std_logic;
+      --RFSW1_TRX2R_V1       : out    std_logic;
+      --RFSW1_TRX2T_V1       : out    std_logic;
+      --RFSW1_RX2_V1         : out    std_logic;
+      --
+      --RFSW2_TX1_V1         : out    std_logic;
+      --RFSW2_TRX1T_V1       : out    std_logic;
+      --RFSW2_TRX2R_V1       : out    std_logic;
+      --RFSW2_TRX2T_V1       : out    std_logic;
+      --
+      --LNA1_EN_M            : out    std_logic;
+      --LNA1_BP_M            : out    std_logic;
+      --LNA2_EN_M            : out    std_logic;
+      --LNA2_BP_M            : out    std_logic;
+      --
+      --RFSW1_TX1_V1         : out    std_logic;
+      --RFSW2_TRX1R_V1       : out    std_logic;
+      --RFSW1_TRX1T_V1       : out    std_logic;
+      --
+      ---- LMS1 PA power control (Active high, by default disabled)
+      --LMS1_TX1_1_EN        : out    std_logic := '0';
+      --LMS1_TX1_2_EN        : out    std_logic := '0';
+      --LMS1_TX2_1_EN        : out    std_logic := '0';
+      ---- LMS2 PA power control (Active high, by default disabled)
+      --LMS2_TX1_1_EN        : out    std_logic := '0';
+      --LMS2_TX1_2_EN        : out    std_logic := '0';
+      --LMS2_TX2_1_EN        : out    std_logic := '0';
       
-      RFSW2_TX1_V1         : out    std_logic;
-      RFSW2_TRX1T_V1       : out    std_logic;
-      RFSW2_TRX2R_V1       : out    std_logic;
-      RFSW2_TRX2T_V1       : out    std_logic;
+      LMS2_RX1_LNA_SD       : out    std_logic := '0';
+      LMS2_RX2_LNA_SD       : out    std_logic := '0';
+      LMS2_TX1_1_EN         : out    std_logic := '0';
+      LMS2_TX2_1_EN         : out    std_logic := '0';
+
       
-      LNA1_EN_M            : out    std_logic;
-      LNA1_BP_M            : out    std_logic;
-      LNA2_EN_M            : out    std_logic;
-      LNA2_BP_M            : out    std_logic;
       
-      RFSW1_TX1_V1         : out    std_logic;
-      RFSW2_TRX1R_V1       : out    std_logic;
-      RFSW1_TRX1T_V1       : out    std_logic;
       
-      -- LMS1 PA power control (Active high, by default disabled)
-      LMS1_TX1_1_EN        : out    std_logic := '0';
-      LMS1_TX1_2_EN        : out    std_logic := '0';
-      LMS1_TX2_1_EN        : out    std_logic := '0';
-      -- LMS2 PA power control (Active high, by default disabled)
-      LMS2_TX1_1_EN        : out    std_logic := '0';
-      LMS2_TX1_2_EN        : out    std_logic := '0';
-      LMS2_TX2_1_EN        : out    std_logic := '0';
+      
+      PD_LMS2_BB_ADC1_DRV   : out    std_logic := '0';
+      PD_LMS2_BB_ADC2_DRV   : out    std_logic := '0';
+      PD_LMS3_BB_ADC1_DRV   : out    std_logic := '0';
+      PD_LMS3_BB_ADC2_DRV   : out    std_logic := '0';
+      
+      RFSW_LMS1_RX1_V1      : out    std_logic := '0';
+      RFSW_LMS1_RX2_V1      : out    std_logic := '0';
+      RFSW_LMS1_TX1_V1      : out    std_logic := '0';
+      RFSW_LMS1_TX2_V1      : out    std_logic := '0';
+      
+      RFSW_LMS2_RX1C_V1     : out    std_logic := '0';
+      RFSW_LMS2_RX2IN_V1    : out    std_logic := '0';
+      RFSW_LMS2_TRX1_V1     : out    std_logic := '0';
+      RFSW_LMS2_TRX1T_V1    : out    std_logic := '0';
+      
+      RFSW_LMS2_RX1IN_V1    : out    std_logic := '0';
+      RFSW_LMS2_RX2C_V1     : out    std_logic := '0';
+      RFSW_LMS2_TRX2_V1     : out    std_logic := '0';
+      RFSW_LMS2_TRX2T_V1    : out    std_logic := '0';
+      
+      RFSW1_LMS3_RX1_V1     : out    std_logic := '0';
+      RFSW1_LMS3_RX2_V1     : out    std_logic := '0';
       
       -- ----------------------------------------------------------------------------
       -- External communication interfaces
@@ -266,7 +298,6 @@ entity lms7_trx_top is
          -- FPGA_SPI2
       FPGA_SPI2_SCLK             : out    std_logic;
       FPGA_SPI2_MOSI             : out    std_logic;
-      FPGA_SPI2_MISO             : in     std_logic;
       FPGA_SPI2_XO_DAC_SS        : out    std_logic;
       FPGA_SPI2_ADF_SS           : out    std_logic;
          -- FPGA I2C
@@ -276,7 +307,7 @@ entity lms7_trx_top is
       -- General periphery
          -- Switch
       FPGA_SW           : in     std_logic_vector(3 downto 0);
-      FPGA_GPIO         : inout  std_logic_vector(7 downto 0);
+      FPGA_GPIO         : inout  std_logic_vector(15 downto 0);
          -- LEDs          
       FPGA_LED1_R       : out    std_logic;
       FPGA_LED1_G       : out    std_logic;
@@ -291,7 +322,7 @@ entity lms7_trx_top is
          -- Fan control 
       FAN_CTRL          : out    std_logic := '1';
          -- XO tune
-      XO_TUNE_FPGA      : out    std_logic;
+      --XO_TUNE_FPGA      : out    std_logic;
          --GNSS
       GNSS_UART_TX      : in     std_logic;
       GNSS_UART_RX      : out    std_logic := '1';
@@ -306,8 +337,8 @@ entity lms7_trx_top is
          -- ADF 
       ADF_MUXOUT        : in     std_logic;
          -- Bill Of material and hardware version 
-      BOM_VER           : in     std_logic_vector(3 downto 0);
-      HW_VER            : in     std_logic_vector(3 downto 0)
+      BOM_VER           : in     std_logic_vector(3 downto 0)
+      --HW_VER            : in     std_logic_vector(3 downto 0)
 
    );
 end lms7_trx_top;
@@ -835,7 +866,7 @@ begin
 -- Reset logic
 -- ----------------------------------------------------------------------------  
    -- Reset from FPGA pin. 
-   reset_n <= not HW_VER(3);
+   reset_n <= not BOM_VER(3);
    
    -- Reset signal with synchronous removal to CLK100_FPGA clock domain, 
    sync_reg0 : entity work.sync_reg 
@@ -888,7 +919,7 @@ begin
       spi_1_SCLK                 => inst0_spi_1_SCLK,
       spi_1_SS_n                 => inst0_spi_1_SS_n,
       -- SPI 1
-      spi_2_MISO                 => FPGA_SPI2_MISO,
+      spi_2_MISO                 => '0',
       spi_2_MOSI                 => inst0_spi_2_MOSI,
       spi_2_SCLK                 => inst0_spi_2_SCLK,
       spi_2_SS_n                 => inst0_spi_2_SS_n,
@@ -1993,10 +2024,10 @@ begin
       DAC1_B_N             => LMS2_BB_DAC1_B_N,
       DAC1_SELIQ_P         => LMS2_BB_DAC1_SELIQ_P, 
       DAC1_SELIQ_N         => LMS2_BB_DAC1_SELIQ_N,     
-      DAC1_PD              => LMS2_BB_DAC1_PD,
-      DAC1_TORB            => LMS2_BB_DAC1_TORB,
-      DAC1_XOR_P           => LMS2_BB_DAC1_XOR_P,
-      DAC1_XOR_N           => LMS2_BB_DAC1_XOR_N,
+      DAC1_PD              => open, --LMS2_BB_DAC1_PD,
+      DAC1_TORB            => open, --LMS2_BB_DAC1_TORB,
+      DAC1_XOR_P           => open, --LMS2_BB_DAC1_XOR_P,
+      DAC1_XOR_N           => open, --LMS2_BB_DAC1_XOR_N,
       --DAC#2 Outputs
       DAC2_CLK_P           => FPGA_LMS2_BB_DAC2_CLK_P,
       DAC2_CLK_N           => FPGA_LMS2_BB_DAC2_CLK_N,
@@ -2004,10 +2035,10 @@ begin
       DAC2_B_N             => LMS2_BB_DAC2_B_N,
       DAC2_SELIQ_P         => LMS2_BB_DAC2_SELIQ_P, 
       DAC2_SELIQ_N         => LMS2_BB_DAC2_SELIQ_N,   
-      DAC2_PD              => LMS2_BB_DAC2_PD,
-      DAC2_TORB            => LMS2_BB_DAC2_TORB,
-      DAC2_XOR_P           => LMS2_BB_DAC2_XOR_P,
-      DAC2_XOR_N           => LMS2_BB_DAC2_XOR_N,
+      DAC2_PD              => open, --LMS2_BB_DAC2_PD,
+      DAC2_TORB            => open, --LMS2_BB_DAC2_TORB,
+      DAC2_XOR_P           => open, --LMS2_BB_DAC2_XOR_P,
+      DAC2_XOR_N           => open, --LMS2_BB_DAC2_XOR_N,
       -- Internal TX ports
       tx_reset_n           => inst1_pll_0_locked,
       tx_src_sel           => inst12_tx_src_sel,
@@ -2075,7 +2106,7 @@ begin
 --   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
 --   PMOD_A_PIN4 <= inst8_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5); 
 
-   gen_gpio : for i in 0 to 7 generate 
+   gen_gpio : for i in 0 to 15 generate 
       IOBUF_GPIO : IOBUF
       generic map (
          DRIVE       => 4,
@@ -2099,14 +2130,14 @@ begin
    gpio_t( 5) <= '0';
    gpio_t( 6) <= '0';
    gpio_t( 7) <= '0';
-   --gpio_t( 8) <= '0';
-   --gpio_t( 9) <= '0';
-   --gpio_t(10) <= '0';
-   --gpio_t(11) <= '0';
-   --gpio_t(12) <= '0';
-   --gpio_t(13) <= '0';
-   --gpio_t(14) <= '0';
-   --gpio_t(15) <= '0';
+   gpio_t( 8) <= '0';
+   gpio_t( 9) <= '0';
+   gpio_t(10) <= '0';
+   gpio_t(11) <= '0';
+   gpio_t(12) <= '0';
+   gpio_t(13) <= '0';
+   gpio_t(14) <= '0';
+   gpio_t(15) <= '0';
    
    gpio_i( 0) <= inst0_spi_1_SCLK;         
    gpio_i( 1) <= inst0_spi_1_MOSI;
@@ -2116,14 +2147,14 @@ begin
    gpio_i( 5) <= '0';
    gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
-   --gpio_i( 8) <= inst1_pll_0_locked;
-   --gpio_i( 9) <= GNSS_PPS;
-   --gpio_i(10) <= GNSS_UART_TX;
-   --gpio_i(11) <= inst12_uart_tx;
-   --gpio_i(12) <= inst0_spi_2_SCLK;
-   --gpio_i(13) <= FPGA_SPI2_MISO_ADC;
-   --gpio_i(14) <= inst0_spi_2_MOSI;
-   --gpio_i(15) <= inst0_spi_2_SS_n(0);
+   gpio_i( 8) <= inst1_pll_0_locked;
+   gpio_i( 9) <= GNSS_PPS;
+   gpio_i(10) <= GNSS_UART_TX;
+   gpio_i(11) <= inst12_uart_tx;
+   gpio_i(12) <= inst0_spi_2_SCLK;
+   gpio_i(13) <= '0';
+   gpio_i(14) <= inst0_spi_2_MOSI;
+   gpio_i(15) <= inst0_spi_2_SS_n(0);
    
 
    FPGA_SPI0_SCLK       <= inst0_spi_0_SCLK;
@@ -2152,35 +2183,35 @@ begin
    
    
    
-   -- LMS1 PA power control (Active high, by default disabled)
-   LMS1_TX1_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(0) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default 
-   LMS1_TX1_2_EN        <= inst0_from_fpgacfg_mod_0.GPIO(1) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
-   LMS1_TX2_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(2) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
-   -- RF Switch LMS1 port 1
-   RFSW1_TX1_V1         <= inst0_from_fpgacfg_mod_0.GPIO(4); -- 0 default
-   RFSW1_TRX1T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(5) when inst0_from_fpgacfg_mod_0.GPIO(7) = '0' else NOT inst6_tx_ant_en; -- 0 default 
-   RFSW1_TRX1R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(6); -- 1 default
-   LNA1_EN_M            <= inst0_from_fpgacfg_mod_0.GPIO(8); -- 1 default 
-   LNA1_BP_M            <= inst0_from_fpgacfg_mod_0.GPIO(9); -- 1 default 
-   -- RF Switch LMS1 port 2
-   RFSW1_TRX2T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(12) when inst0_from_fpgacfg_mod_0.GPIO(15) = '0' else NOT inst6_tx_ant_en; -- 0 default
-   RFSW1_TRX2R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(13);-- 1 default 
-   RFSW1_RX2_V1         <= inst0_from_fpgacfg_mod_0.GPIO(14);-- 0 default 
-   
-   
-   -- LMS2 PA power control (Active high, by default disabled)
-   LMS2_TX1_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(0) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
-   LMS2_TX1_2_EN        <= inst0_from_fpgacfg_mod_1.GPIO(1) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
-   LMS2_TX2_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(2) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
-   -- RF Switch LMS2 port 1
-   RFSW2_TX1_V1         <= inst0_from_fpgacfg_mod_1.GPIO(4); -- 0 default
-   RFSW2_TRX1T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(5) when inst0_from_fpgacfg_mod_1.GPIO(7) = '0' else NOT inst8_tx_ant_en; -- 0 default
-   RFSW2_TRX1R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(6); -- 1 default                 
-   LNA2_EN_M            <= inst0_from_fpgacfg_mod_1.GPIO(8); -- 1 default
-   LNA2_BP_M            <= inst0_from_fpgacfg_mod_1.GPIO(9); -- 1 default
-   -- RF Switch LMS2 port 2
-   RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
-   RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
+   ---- LMS1 PA power control (Active high, by default disabled)
+   --LMS1_TX1_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(0) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default 
+   ----LMS1_TX1_2_EN        <= inst0_from_fpgacfg_mod_0.GPIO(1) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
+   --LMS1_TX2_1_EN        <= inst0_from_fpgacfg_mod_0.GPIO(2) when inst0_from_fpgacfg_mod_0.GPIO(3) = '0' else inst6_tx_ant_en; -- 0 default
+   ---- RF Switch LMS1 port 1
+   --RFSW1_TX1_V1         <= inst0_from_fpgacfg_mod_0.GPIO(4); -- 0 default
+   --RFSW1_TRX1T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(5) when inst0_from_fpgacfg_mod_0.GPIO(7) = '0' else NOT inst6_tx_ant_en; -- 0 default 
+   --RFSW1_TRX1R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(6); -- 1 default
+   --LNA1_EN_M            <= inst0_from_fpgacfg_mod_0.GPIO(8); -- 1 default 
+   --LNA1_BP_M            <= inst0_from_fpgacfg_mod_0.GPIO(9); -- 1 default 
+   ---- RF Switch LMS1 port 2
+   --RFSW1_TRX2T_V1       <= inst0_from_fpgacfg_mod_0.GPIO(12) when inst0_from_fpgacfg_mod_0.GPIO(15) = '0' else NOT inst6_tx_ant_en; -- 0 default
+   --RFSW1_TRX2R_V1       <= inst0_from_fpgacfg_mod_0.GPIO(13);-- 1 default 
+   --RFSW1_RX2_V1         <= inst0_from_fpgacfg_mod_0.GPIO(14);-- 0 default 
+   --
+   --
+   ---- LMS2 PA power control (Active high, by default disabled)
+   --LMS2_TX1_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(0) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
+   --LMS2_TX1_2_EN        <= inst0_from_fpgacfg_mod_1.GPIO(1) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
+   --LMS2_TX2_1_EN        <= inst0_from_fpgacfg_mod_1.GPIO(2) when inst0_from_fpgacfg_mod_1.GPIO(3) = '0' else inst8_tx_ant_en;  -- 0 default
+   ---- RF Switch LMS2 port 1
+   --RFSW2_TX1_V1         <= inst0_from_fpgacfg_mod_1.GPIO(4); -- 0 default
+   --RFSW2_TRX1T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(5) when inst0_from_fpgacfg_mod_1.GPIO(7) = '0' else NOT inst8_tx_ant_en; -- 0 default
+   --RFSW2_TRX1R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(6); -- 1 default                 
+   --LNA2_EN_M            <= inst0_from_fpgacfg_mod_1.GPIO(8); -- 1 default
+   --LNA2_BP_M            <= inst0_from_fpgacfg_mod_1.GPIO(9); -- 1 default
+   ---- RF Switch LMS2 port 2
+   --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
+   --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
    
    
    CDCM1_RESET_N         <= '1';

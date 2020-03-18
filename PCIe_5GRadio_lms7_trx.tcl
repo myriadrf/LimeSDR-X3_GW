@@ -269,7 +269,6 @@
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/src/hdl/pcie/two_fifo_inst.vhd"
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/src/hdl/tx_path_top/bit_unpack/synth/unpack_64_to_56.vhd"
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/src/hdl/tx_path_top/handshake_sync/synth/handshake_sync.vhd"
-#    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/src/hdl/top/synth/lms7_trx_top_pinplan.vhd"
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/src/hdl/adc/synth/chnl_combine.vhd"
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm.xci"
 #    "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/adc_pll/adc_pll.xci"
@@ -681,7 +680,6 @@ set files [list \
  [file normalize "${origin_dir}/src/hdl/pcie/two_fifo_inst.vhd"] \
  [file normalize "${origin_dir}/src/hdl/tx_path_top/bit_unpack/synth/unpack_64_to_56.vhd"] \
  [file normalize "${origin_dir}/src/hdl/tx_path_top/handshake_sync/synth/handshake_sync.vhd"] \
- [file normalize "${origin_dir}/src/hdl/top/synth/lms7_trx_top_pinplan.vhd"] \
  [file normalize "${origin_dir}/src/hdl/adc/synth/chnl_combine.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
@@ -3633,18 +3631,6 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 set_property -name "is_enabled" -value "1" -objects $file_obj
-set_property -name "is_global_include" -value "0" -objects $file_obj
-set_property -name "library" -value "work" -objects $file_obj
-set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
-set_property -name "used_in" -value "synthesis simulation" -objects $file_obj
-set_property -name "used_in_simulation" -value "1" -objects $file_obj
-set_property -name "used_in_synthesis" -value "1" -objects $file_obj
-
-set file "$origin_dir/src/hdl/top/synth/lms7_trx_top_pinplan.vhd"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
-set_property -name "is_enabled" -value "0" -objects $file_obj
 set_property -name "is_global_include" -value "0" -objects $file_obj
 set_property -name "library" -value "work" -objects $file_obj
 set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
