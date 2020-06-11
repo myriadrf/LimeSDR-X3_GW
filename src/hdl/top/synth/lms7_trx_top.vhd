@@ -124,10 +124,10 @@ entity lms7_trx_top is
       PCIE_REFCLK_P     : in     std_logic;
       PCIE_REFCLK_N     : in     std_logic;
          -- Control     
-      PCIE_PERSTn       : in     std_logic;
+      PCIE_PERSTN       : in     std_logic;
       PCIE_SMCLK        : inout  std_logic;
       PCIE_SMDAT        : inout  std_logic;
-      PCIE_WAKEn        : in     std_logic;
+      PCIE_WAKEN        : in     std_logic;
          -- DATA     
       PCIE_HSO_P        : in     std_logic_vector(3 downto 0);
       PCIE_HSO_N        : in     std_logic_vector(3 downto 0);
@@ -182,7 +182,7 @@ entity lms7_trx_top is
       LMS2_BB_DAC1_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC1_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC1_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      --LMS2_BB_DAC1_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.
+      LMS2_BB_DAC1_PD            : out    std_logic := '0';-- '1' -  power-down, 0 -  normal operation.
       --LMS2_BB_DAC1_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
       --LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
@@ -195,7 +195,7 @@ entity lms7_trx_top is
       LMS2_BB_DAC2_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC2_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC2_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      --LMS2_BB_DAC2_PD            : out    std_logic;     -- '1' -  power-down, 0 -  normal operation.   
+      LMS2_BB_DAC2_PD            : out    std_logic:= '0'; -- '1' -  power-down, 0 -  normal operation.   
       --LMS2_BB_DAC2_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
       --LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
@@ -322,7 +322,7 @@ entity lms7_trx_top is
          -- Fan control 
       FAN_CTRL          : out    std_logic := '1';
          -- XO tune
-      --XO_TUNE_FPGA      : out    std_logic;
+      XO_VC_FPGA        : out    std_logic := '0';
          --GNSS
       GNSS_UART_TX      : in     std_logic;
       GNSS_UART_RX      : out    std_logic := '1';
