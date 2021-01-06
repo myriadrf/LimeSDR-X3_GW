@@ -684,11 +684,6 @@ set files [list \
 ]
 add_files -norecurse -fileset $obj $files
 
-# Import local files from the original project
-set files [list \
- [file normalize "${origin_dir}/vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/Debug/mbfw.elf" ]\
-]
-set imported_files [import_files -fileset sources_1 $files]
 
 # Set 'sources_1' fileset file properties for remote files
 set file "$origin_dir/ip/vivado/mb_subsystem/mb_subsystem/mb_subsystem.bd"
@@ -3651,18 +3646,6 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 
-# Set 'sources_1' fileset file properties for local files
-set file "Debug/mbfw.elf"
-set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
-set_property -name "is_enabled" -value "1" -objects $file_obj
-set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
-set_property -name "scoped_to_cells" -value "microblaze_0" -objects $file_obj
-set_property -name "scoped_to_ref" -value "mb_subsystem" -objects $file_obj
-set_property -name "used_in" -value "implementation" -objects $file_obj
-set_property -name "used_in_implementation" -value "1" -objects $file_obj
-set_property -name "used_in_simulation" -value "0" -objects $file_obj
-
-
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
 set_property -name "design_mode" -value "RTL" -objects $obj
@@ -4062,11 +4045,6 @@ set files [list \
 ]
 add_files -norecurse -fileset $obj $files
 
-# Import local files from the original project
-set files [list \
- [file normalize "${origin_dir}/vivado/PCIe_5GRadio_lms7_trx.srcs/utils_1/imports/synth_1/lms7_trx_top.dcp"]\
-]
-set imported_files [import_files -fileset utils_1 $files]
 
 # Set 'utils_1' fileset file properties for remote files
 set file "$origin_dir/src/constrs/io_warning.tcl"
@@ -4085,19 +4063,6 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
-
-# Set 'utils_1' fileset file properties for local files
-set file "synth_1/lms7_trx_top.dcp"
-set file_obj [get_files -of_objects [get_filesets utils_1] [list "*$file"]]
-set_property -name "is_enabled" -value "1" -objects $file_obj
-set_property -name "is_global_include" -value "0" -objects $file_obj
-set_property -name "library" -value "work" -objects $file_obj
-set_property -name "netlist_only" -value "0" -objects $file_obj
-set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
-set_property -name "scoped_to_cells" -value "" -objects $file_obj
-set_property -name "used_in" -value "synthesis implementation" -objects $file_obj
-set_property -name "used_in_implementation" -value "1" -objects $file_obj
-set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 
 # Set 'utils_1' fileset properties
