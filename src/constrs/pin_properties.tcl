@@ -515,6 +515,6 @@ set_property PACKAGE_PIN M20  [get_ports PD_LMS3_BB_ADC2_DRV  ]
 
 
 set_property PACKAGE_PIN N26  [get_ports XO_VC_FPGA           ]
-#set_property PACKAGE_PIN N24  [get_ports LMS2_BB_DAC2_PD      ]
-#set_property PACKAGE_PIN M26  [get_ports LMS2_BB_DAC1_PD      ]
+set_property PACKAGE_PIN N24  [get_ports LMS2_BB_DAC2_PD      ]
+set_property PACKAGE_PIN M26  [get_ports LMS2_BB_DAC1_PD      ]
 
