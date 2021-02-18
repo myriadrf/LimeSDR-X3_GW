@@ -21,5 +21,5 @@ set output_path "[file normalize "$script_path/PCIe_5GRadio_lms7_trx.tcl"]"
 puts $output_path
 
 # Generate project build script
-write_project_tcl -all_properties -use_bd_files -force $output_path
+write_project_tcl -all_properties -force $output_path
 
