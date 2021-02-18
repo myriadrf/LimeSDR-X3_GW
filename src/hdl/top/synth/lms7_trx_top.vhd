@@ -517,7 +517,6 @@ signal inst1_pll_1_c0                  : std_logic;
 signal inst1_pll_1_c1                  : std_logic;
 signal inst1_pll_1_c2                  : std_logic;
 signal inst1_pll_1_locked              : std_logic;
-
 signal inst1_rcnfg_0_mgmt_read         : std_logic;
 signal inst1_rcnfg_0_mgmt_write        : std_logic;
 signal inst1_rcnfg_0_mgmt_address      : std_logic_vector(8 downto 0);
@@ -738,13 +737,19 @@ signal CDCM2_LMS2_BB_DAC2_REFC            : std_logic;
 
 
 attribute DONT_TOUCH : string;
+attribute KEEP_HIERARCHY : string;
 
 
 attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
+
+attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
+attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
+attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
+attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
 
 signal gpio_o : std_logic_vector(15 downto 0);
 signal gpio_i : std_logic_vector(15 downto 0);
@@ -776,7 +781,7 @@ begin
 -- ----------------------------------------------------------------------------
 -- ADC IO 
 -- ----------------------------------------------------------------------------     
-   -- Only one delay controller has to be instantiated   
+   -- Only one delay controller has to be instantiated   `
    IDELAYCTRL_inst : IDELAYCTRL
    port map (
       RDY      => open,             -- 1-bit output: Ready output
@@ -1401,9 +1406,9 @@ begin
       led4_in              => not inst1_lms1_rxpll_locked,
       led5_in              => not inst1_lms2_txpll_locked,
       led6_in              => not inst1_lms2_rxpll_locked,
-      led3_out             => FPGA_LED2_R, --FPGA_LED1,
-      led4_out             => FPGA_LED2_G, --FPGA_LED2,
-      led5_out             => FPGA_LED3_R, --FPGA_LED3,
+      led3_out             => open,--FPGA_LED2_R, --FPGA_LED1,
+      led4_out             => open,--FPGA_LED2_G, --FPGA_LED2,
+      led5_out             => open,--FPGA_LED3_R, --FPGA_LED3,
       led6_out             => FPGA_LED3_G, --FPGA_LED4,    
       --GPIO
       gpio_dir             => (others=>'1'),
@@ -1414,6 +1419,37 @@ begin
       fan_sens_in          => LM75_OS,
       fan_ctrl_out         => FAN_CTRL
    );
+   
+   
+   
+   process(CLK100_FPGA)
+   variable counter : unsigned(26 downto 0);
+   begin
+   if(rising_edge(CLK100_FPGA)) then
+        counter := counter +1 ;
+        FPGA_LED2_R <= counter(25);
+   end if;
+   end process;
+   
+   process(inst1_lms1_rxpll_c1)
+   variable counter : unsigned(26 downto 0);
+   begin
+   if(rising_edge(inst1_lms1_rxpll_c1)) then
+        counter := counter +1 ;
+        FPGA_LED3_R <= counter(25);
+   end if;
+   end process;
+   
+   
+   process(LMS1_MCLK2)
+   variable counter : unsigned(26 downto 0);
+   begin
+   if(rising_edge(LMS1_MCLK2)) then
+        counter := counter +1 ;
+        FPGA_LED4_R <= counter(25);
+   end if;
+   end process;
+   
    
 ----   inst5_busy_delay : entity work.busy_delay
 ----   generic map(
@@ -1697,6 +1733,8 @@ begin
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst8_rx_smpl_cnt_en   
    );   
+
+
 ----   --Module for LMS7002 IC
 ----   inst8_lms7002_top : entity work.lms7002_top
 ----   generic map(
@@ -1890,7 +1928,8 @@ begin
       bq          => inst10_adc4_data_ch_b
       
    );
-   
+
+
  -- RX and TX module
    inst11_rxtx_top : entity work.rxtx_top
    generic map(
@@ -2139,9 +2178,9 @@ begin
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= inst0_spi_1_SCLK;         
-   gpio_i( 1) <= inst0_spi_1_MOSI;
-   gpio_i( 2) <= inst6_tx_ant_en;
+   gpio_i( 0) <= inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
+   gpio_i( 1) <= CLK100_FPGA;--inst0_spi_1_MOSI;
+   gpio_i( 2) <= LMS1_MCLK2;--inst6_tx_ant_en;
    gpio_i( 3) <= FPGA_SPI1_MISO;
    gpio_i( 4) <= inst0_spi_1_SS_n(1);
    gpio_i( 5) <= '0';
@@ -2220,6 +2259,7 @@ begin
    CDCM2_RESET_N         <= '1';
    CDCM2_SYNCN           <= '1';   
    
+   PPS_OUT <= inst1_lms1_rxpll_c1;
 
 end arch;   
 
