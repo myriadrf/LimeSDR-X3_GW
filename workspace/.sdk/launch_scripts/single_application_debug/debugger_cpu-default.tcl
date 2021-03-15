@@ -9,4 +9,5 @@ rst -system
 after 3000
 targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
 dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
-bpadd -addr &main
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con

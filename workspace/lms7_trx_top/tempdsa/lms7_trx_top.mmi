@@ -13,82 +13,82 @@
     <AddressSpace Name="inst0_cpu_inst0_mb_cpu_microblaze_0.inst0_cpu_inst0_mb_cpu_microblaze_0_local_memory_dlmb_bram_if_cntlr" Begin="0" End="65535">
       <AddressSpaceRange Name="inst0_cpu_inst0_mb_cpu_microblaze_0.inst0_cpu_inst0_mb_cpu_microblaze_0_local_memory_dlmb_bram_if_cntlr" Begin="0" End="65535">
         <BusBlock>
-          <BitLane MemType="RAMB36" Placement="X1Y14">
+          <BitLane MemType="RAMB36" Placement="X7Y15">
             <DataWidth MSB="7" LSB="6"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y15">
+          <BitLane MemType="RAMB36" Placement="X7Y16">
             <DataWidth MSB="5" LSB="4"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y16">
+          <BitLane MemType="RAMB36" Placement="X7Y19">
             <DataWidth MSB="3" LSB="2"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y17">
+          <BitLane MemType="RAMB36" Placement="X8Y19">
             <DataWidth MSB="1" LSB="0"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y12">
+          <BitLane MemType="RAMB36" Placement="X7Y14">
             <DataWidth MSB="15" LSB="14"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y12">
+          <BitLane MemType="RAMB36" Placement="X8Y14">
             <DataWidth MSB="13" LSB="12"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X2Y14">
+          <BitLane MemType="RAMB36" Placement="X8Y17">
             <DataWidth MSB="11" LSB="10"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y17">
+          <BitLane MemType="RAMB36" Placement="X7Y17">
             <DataWidth MSB="9" LSB="8"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y13">
+          <BitLane MemType="RAMB36" Placement="X7Y12">
             <DataWidth MSB="23" LSB="22"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y14">
+          <BitLane MemType="RAMB36" Placement="X7Y13">
             <DataWidth MSB="21" LSB="20"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y13">
+          <BitLane MemType="RAMB36" Placement="X8Y13">
             <DataWidth MSB="19" LSB="18"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y16">
+          <BitLane MemType="RAMB36" Placement="X8Y12">
             <DataWidth MSB="17" LSB="16"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y18">
+          <BitLane MemType="RAMB36" Placement="X8Y15">
             <DataWidth MSB="31" LSB="30"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X1Y15">
+          <BitLane MemType="RAMB36" Placement="X8Y16">
             <DataWidth MSB="29" LSB="28"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X2Y15">
+          <BitLane MemType="RAMB36" Placement="X7Y18">
             <DataWidth MSB="27" LSB="26"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
           </BitLane>
-          <BitLane MemType="RAMB36" Placement="X0Y18">
+          <BitLane MemType="RAMB36" Placement="X8Y18">
             <DataWidth MSB="25" LSB="24"/>
             <AddressRange Begin="0" End="16383"/>
             <Parity ON="false" NumBits="0"/>
@@ -97,9 +97,79 @@
       </AddressSpaceRange>
     </AddressSpace>
   </Processor>
+  <MemoryArray InstPath="inst9_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst9_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X4Y36" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d64"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst9_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst2_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst9_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst2_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X3Y29" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="71" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p8_d64"/>
+        <DataWidth_PortB MSB="71" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p8_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst9_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst9_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X3Y34" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="71" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p8_d64"/>
+        <DataWidth_PortB MSB="71" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p8_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X3Y36" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="127" LSB="72"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d56"/>
+        <DataWidth_PortB MSB="127" LSB="72"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d56"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst9_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst9_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="56" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X0Y47" Read_Width_A="36" Read_Width_B="36">
+        <DataWidth_PortA MSB="35" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="1023"/>
+        <BitLayout_PortA pattern="p4_d32"/>
+        <DataWidth_PortB MSB="35" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="1023"/>
+        <BitLayout_PortB pattern="p4_d32"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X0Y48" Read_Width_A="36" Read_Width_B="36">
+        <DataWidth_PortA MSB="55" LSB="36"/>
+        <AddressRange_PortA Begin="0" End="1023"/>
+        <BitLayout_PortA pattern="p0_d20"/>
+        <DataWidth_PortB MSB="55" LSB="36"/>
+        <AddressRange_PortB Begin="0" End="1023"/>
+        <BitLayout_PortB pattern="p0_d20"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y36" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X6Y37" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -112,7 +182,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[3].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[3].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y27" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y31" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -121,7 +191,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y31" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y38" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -134,7 +204,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[2].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[2].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y25" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y32" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -143,7 +213,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y30" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y36" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -156,7 +226,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[1].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[1].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y24" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y29" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -165,7 +235,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y28" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y37" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -178,7 +248,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[0].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[0].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y26" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y30" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -187,7 +257,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y29" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y35" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -213,7 +283,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst7_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X6Y31" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X6Y33" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="71" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p8_d64"/>
@@ -222,7 +292,7 @@
         <BitLayout_PortB pattern="p8_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X6Y33" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X6Y35" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="72"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d56"/>
@@ -235,7 +305,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst7_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst7_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="48" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X6Y35" Read_Width_A="36" Read_Width_B="36">
+      <BRAM MemType="RAMB36" Placement="X2Y30" Read_Width_A="36" Read_Width_B="36">
         <DataWidth_PortA MSB="35" LSB="0"/>
         <AddressRange_PortA Begin="0" End="1023"/>
         <BitLayout_PortA pattern="p4_d32"/>
@@ -244,7 +314,7 @@
         <BitLayout_PortB pattern="p4_d32"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB18" Placement="X6Y68" Read_Width_A="18" Read_Width_B="18">
+      <BRAM MemType="RAMB18" Placement="X2Y58" Read_Width_A="18" Read_Width_B="18">
         <DataWidth_PortA MSB="47" LSB="36"/>
         <AddressRange_PortA Begin="0" End="1023"/>
         <BitLayout_PortA pattern="p0_d12"/>
@@ -257,7 +327,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst6_lms7002_top/inst1_lms7002_tx/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst6_lms7002_top/inst1_lms7002_tx/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y33" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X8Y32" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -266,7 +336,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y32" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X8Y33" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -279,7 +349,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst6_lms7002_top/inst1_lms7002_tx/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst6_lms7002_top/inst1_lms7002_tx/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X7Y34" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y33" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -288,7 +358,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X7Y35" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y34" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -301,7 +371,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst9_rd_control_buff/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst2_pcie_top/inst9_rd_control_buff/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="32" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB18" Placement="X1Y68" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB18" Placement="X3Y64" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -314,7 +384,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst8_F2H_S2_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst2_pcie_top/inst8_F2H_S2_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X0Y35" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X0Y26" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -323,7 +393,7 @@
         <BitLayout_PortB pattern="p0_d32"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X0Y38" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X0Y23" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="64"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -336,7 +406,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst7_F2H_S1_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst2_pcie_top/inst7_F2H_S1_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X0Y45" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X0Y34" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -345,7 +415,7 @@
         <BitLayout_PortB pattern="p0_d32"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X0Y47" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X0Y33" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="64"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -358,7 +428,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst6_F2H_S0_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst2_pcie_top/inst6_F2H_S0_FIFO/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X2Y35" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X1Y26" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -367,7 +437,7 @@
         <BitLayout_PortB pattern="p0_d32"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X2Y36" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X1Y32" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="64"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d64"/>
@@ -380,7 +450,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst5_H2F_C0_FIFO/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst2_pcie_top/inst5_H2F_C0_FIFO/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="32" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB18" Placement="X0Y68" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB18" Placement="X6Y68" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -393,7 +463,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst4_H2F_S2_FIFO/inst2_1_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst2_pcie_top/inst4_H2F_S2_FIFO/inst2_1_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X8Y38" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X6Y39" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -402,7 +472,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X8Y37" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X6Y38" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -415,7 +485,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst4_H2F_S2_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst2_pcie_top/inst4_H2F_S2_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X8Y40" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y41" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="71" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p8_d64"/>
@@ -424,7 +494,7 @@
         <BitLayout_PortB pattern="p8_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X8Y34" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X7Y39" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="72"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d56"/>
@@ -437,7 +507,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst3_H2F_S1_FIFO/inst2_1_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
     <MemoryLayout Name="inst2_pcie_top/inst3_H2F_S1_FIFO/inst2_1_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X8Y45" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X2Y33" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="31" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -446,7 +516,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X8Y43" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X2Y34" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -459,7 +529,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst3_H2F_S1_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst2_pcie_top/inst3_H2F_S1_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X8Y44" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X2Y32" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="71" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p8_d64"/>
@@ -468,7 +538,7 @@
         <BitLayout_PortB pattern="p8_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X8Y42" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X3Y35" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="72"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d56"/>
@@ -490,7 +560,7 @@
         <BitLayout_PortB pattern="p0_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X4Y33" Read_Width_A="36" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X4Y32" Read_Width_A="36" Read_Width_B="0">
         <DataWidth_PortA MSB="63" LSB="32"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d32"/>
@@ -503,7 +573,7 @@
   </MemoryArray>
   <MemoryArray InstPath="inst2_pcie_top/inst2_H2F_S0_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
     <MemoryLayout Name="inst2_pcie_top/inst2_H2F_S0_FIFO/inst0_0_FIFO/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
-      <BRAM MemType="RAMB36" Placement="X5Y31" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X5Y32" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="71" LSB="0"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p8_d64"/>
@@ -512,13 +582,245 @@
         <BitLayout_PortB pattern="p8_d64"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
-      <BRAM MemType="RAMB36" Placement="X5Y33" Read_Width_A="72" Read_Width_B="0">
+      <BRAM MemType="RAMB36" Placement="X5Y34" Read_Width_A="72" Read_Width_B="0">
         <DataWidth_PortA MSB="127" LSB="72"/>
         <AddressRange_PortA Begin="0" End="511"/>
         <BitLayout_PortA pattern="p0_d56"/>
         <DataWidth_PortB MSB="127" LSB="72"/>
         <AddressRange_PortB Begin="0" End="511"/>
         <BitLayout_PortB pattern="p0_d56"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst12_max5878_top/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
+    <MemoryLayout Name="inst12_max5878_top/inst0_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X8Y38" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="31" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X8Y39" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="32"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="127" LSB="64"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/sync_fifo_rw_inst/fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="64" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X7Y40" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d64"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[3].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[3].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X8Y45" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="31" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X8Y42" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="32"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="127" LSB="64"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[2].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[2].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X8Y44" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="31" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X8Y40" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="32"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="127" LSB="64"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[1].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[1].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X7Y45" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="31" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X8Y43" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="32"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="127" LSB="64"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[0].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="asymmetrical">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/packets2data_top_inst0/packets2data_inst0/gen_fifo[0].fifo_inst_isntx/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X8Y46" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="31" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="63" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X8Y41" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="63" LSB="32"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d32"/>
+        <DataWidth_PortB MSB="127" LSB="64"/>
+        <AddressRange_PortB Begin="0" End="255"/>
+        <BitLayout_PortB pattern="p0_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst2_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst2_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X7Y44" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="71" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p8_d64"/>
+        <DataWidth_PortB MSB="71" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p8_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11_rxtx_top/tx_path_top_inst1/inst0_one_pct_fifo/inst1_fifo_inst/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="128" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X7Y42" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="71" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p8_d64"/>
+        <DataWidth_PortB MSB="71" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p8_d64"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X7Y43" Read_Width_A="72" Read_Width_B="0">
+        <DataWidth_PortA MSB="127" LSB="72"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d56"/>
+        <DataWidth_PortB MSB="127" LSB="72"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d56"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11_rxtx_top/rx_path_top_inst5/smpl_fifo_inst1/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="56" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB36" Placement="X0Y21" Read_Width_A="36" Read_Width_B="36">
+        <DataWidth_PortA MSB="35" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="1023"/>
+        <BitLayout_PortA pattern="p4_d32"/>
+        <DataWidth_PortB MSB="35" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="1023"/>
+        <BitLayout_PortB pattern="p4_d32"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+      <BRAM MemType="RAMB36" Placement="X0Y20" Read_Width_A="36" Read_Width_B="36">
+        <DataWidth_PortA MSB="55" LSB="36"/>
+        <AddressRange_PortA Begin="0" End="1023"/>
+        <BitLayout_PortA pattern="p0_d20"/>
+        <DataWidth_PortB MSB="55" LSB="36"/>
+        <AddressRange_PortB Begin="0" End="1023"/>
+        <BitLayout_PortB pattern="p0_d20"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11/inst1_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11/inst1_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="28" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB18" Placement="X0Y38" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="27" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d28"/>
+        <DataWidth_PortB MSB="27" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d28"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst11/inst0_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst11/inst0_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="28" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB18" Placement="X0Y18" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="27" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d28"/>
+        <DataWidth_PortB MSB="27" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d28"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst10/inst1_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst10/inst1_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="28" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB18" Placement="X0Y78" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="27" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d28"/>
+        <DataWidth_PortB MSB="27" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d28"/>
+        <Parity ON="false" NumBits="0"/>
+      </BRAM>
+    </MemoryLayout>
+  </MemoryArray>
+  <MemoryArray InstPath="inst10/inst0_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" MemoryPrimitive="block" MemoryConfiguration="enabled_configuration">
+    <MemoryLayout Name="inst10/inst0_fifo/FIFO_XIL.xpm_fifo_async_inst/gnuram_async_fifo.xpm_fifo_base_inst/gen_sdpram.xpm_memory_base_inst" CoreMemory_Width="28" MemoryType="RAM_SDP">
+      <BRAM MemType="RAMB18" Placement="X0Y90" Read_Width_A="36" Read_Width_B="0">
+        <DataWidth_PortA MSB="27" LSB="0"/>
+        <AddressRange_PortA Begin="0" End="511"/>
+        <BitLayout_PortA pattern="p0_d28"/>
+        <DataWidth_PortB MSB="27" LSB="0"/>
+        <AddressRange_PortB Begin="0" End="511"/>
+        <BitLayout_PortB pattern="p0_d28"/>
         <Parity ON="false" NumBits="0"/>
       </BRAM>
     </MemoryLayout>

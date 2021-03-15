@@ -1,2 +1,6 @@
-2021-02-17T11:18:07.131502000-Nothing to build in platform 'lms7_trx_top'
+2021-03-15T15:23:36.16635300255-15:23:36 **** Incremental Build of project lms7_trx_top ****
+000-buildplatform.sh 42467 lms7_trx_top no_domain_build 
+000-XSDB Server Channel: tcfchan#2
+00255-
+15:23:40 Build Finished (took 4s.519ms)
 

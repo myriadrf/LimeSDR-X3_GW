@@ -1,0 +1,45 @@
+﻿#define reg_0_data 	        0x01b1
+#define reg_1_data 	        0x0000
+#define reg_2_data 	        0x0018
+#define reg_3_data 	        0x00f0
+#define reg_4_data 	        0x2074
+#define reg_5_data 	        0x0022
+#define reg_6_data 	        0x0018
+#define reg_7_data 	        0x0022
+#define reg_8_data 	        0x0018
+#define reg_9_data 	        0x0002
+#define reg_10_data 	    0x0180
+#define reg_11_data 	    0x0000
+#define reg_12_data 	    0x0002
+#define reg_13_data 	    0x0180
+#define reg_14_data 	    0x0000
+#define reg_15_data 	    0x0002
+#define reg_16_data 	    0x0180
+#define reg_17_data 	    0x0000
+#define reg_18_data 	    0x0002
+#define reg_19_data 	    0x0180
+#define reg_20_data 	    0x0000
+
+
+
+#define reg_0_data 	     0x0231
+#define reg_1_data 	     0x0000
+#define reg_2_data 	     0x0018
+#define reg_3_data 	     0x00F0
+#define reg_4_data 	     0x30AF
+#define reg_5_data 	     0x0001
+#define reg_6_data 	     0x0018
+#define reg_7_data 	     0x0003
+#define reg_8_data 	     0x0018
+#define reg_9_data 	     0x4003
+#define reg_10_data 	 0x0000
+#define reg_11_data 	 0x0000
+#define reg_12_data 	 0x0001
+#define reg_13_data 	 0x0000
+#define reg_14_data 	 0x0000
+#define reg_15_data 	 0x0001
+#define reg_16_data 	 0x0000
+#define reg_17_data 	 0x0000
+#define reg_18_data 	 0x0001
+#define reg_19_data 	 0x0000
+#define reg_20_data 	 0x0000

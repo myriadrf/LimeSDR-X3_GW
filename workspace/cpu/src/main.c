@@ -843,6 +843,7 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 {
 	uint8_t wr_buf[4];
 	uint8_t rd_buf[4];
+	uint8_t debug_val;
 	int spirez;
 
 	uint8_t D_BYP, M_BYP, C0_BYP, C1_BYP, C2_BYP, C3_BYP, C4_BYP, C5_BYP, C6_BYP;
@@ -879,7 +880,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2A;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		pll_cfg->DIVCLK_DIVIDE	= rd_buf[2] + rd_buf[3];
+		debug_val = rd_buf[2] + rd_buf[3];
+		if(debug_val > 64)
+			debug_val = 64;
+		pll_cfg->DIVCLK_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
 	}
 
 	/* Read Multiply value */
@@ -891,7 +895,11 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2B;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		pll_cfg->CLKFBOUT_MULT	=rd_buf[2] + rd_buf[3];
+		debug_val = rd_buf[2] + rd_buf[3];
+		if(debug_val > 64)
+			debug_val = 64;
+		pll_cfg->CLKFBOUT_MULT	= debug_val;
+//		pll_cfg->CLKFBOUT_MULT	=rd_buf[2] + rd_buf[3];
 	}
 
 	/* Read Fractional multiply part*/
@@ -918,7 +926,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2E;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		pll_cfg->CLKOUT0_DIVIDE	= rd_buf[2] + rd_buf[3];
+		debug_val = rd_buf[2] + rd_buf[3];
+		if(debug_val > 64)
+			debug_val = 64;
+		pll_cfg->CLKOUT0_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
 	}
 
 
@@ -935,7 +946,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2F;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		pll_cfg->CLKOUT1_DIVIDE	= rd_buf[2] + rd_buf[3];
+		debug_val = rd_buf[2] + rd_buf[3];
+		if(debug_val > 64)
+			debug_val = 64;
+		pll_cfg->CLKOUT1_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
 	}
 
 	pll_cfg->CLKOUT1_PHASE   =0*1000;
@@ -1310,7 +1324,7 @@ uint8_t AutoUpdatePHCFG(void)
 	pllcfgrez = start_XReconfig(XPAR_EXTM_0_AXI_BASEADDR);
 
 	for (int i=0; i<360; i++){
-
+		i+=4;
 
 		timeout = 0;
 		do
@@ -1319,11 +1333,6 @@ uint8_t AutoUpdatePHCFG(void)
 		  	if (timeout++ > PLLCFG_TIMEOUT) return PHCFG_ERROR;
 		}
 		while (!(lock_status & 0x01));
-
-
-		 usleep(1000);
-		 usleep(1000);
-		 usleep(1000);
 
 		cmp_status 	= CheckSamples(cmp_sel);
 		debug_ph_stat[debug_nr%50][i] = cmp_status;
