@@ -741,10 +741,10 @@ attribute KEEP_HIERARCHY : string;
 
 
 attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
+attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
 attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
 attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
@@ -2178,10 +2178,10 @@ begin
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
-   gpio_i( 1) <= CLK100_FPGA;--inst0_spi_1_MOSI;
-   gpio_i( 2) <= LMS1_MCLK2;--inst6_tx_ant_en;
-   gpio_i( 3) <= FPGA_SPI1_MISO;
+   gpio_i( 0) <= lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
+   gpio_i( 1) <= lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
+   gpio_i( 2) <= lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
+   gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;
    gpio_i( 4) <= inst0_spi_1_SS_n(1);
    gpio_i( 5) <= '0';
    gpio_i( 6) <= inst8_tx_ant_en;
