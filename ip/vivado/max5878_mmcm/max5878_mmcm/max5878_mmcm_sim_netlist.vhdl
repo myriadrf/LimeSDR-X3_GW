@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Thu Mar 12 11:10:15 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Thu Feb 25 12:12:30 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top max5878_mmcm -prefix
+--               max5878_mmcm_ max5878_mmcm_sim_netlist.vhdl
 -- Design      : max5878_mmcm
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,8 +22,6 @@ entity max5878_mmcm_max5878_mmcm_clk_wiz is
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of max5878_mmcm_max5878_mmcm_clk_wiz : entity is "max5878_mmcm_clk_wiz";
 end max5878_mmcm_max5878_mmcm_clk_wiz;
 
 architecture STRUCTURE of max5878_mmcm_max5878_mmcm_clk_wiz is

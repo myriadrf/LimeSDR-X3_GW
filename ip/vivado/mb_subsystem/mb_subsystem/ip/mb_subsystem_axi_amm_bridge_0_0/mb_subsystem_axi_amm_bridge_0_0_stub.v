@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Feb 18 10:32:24 2020
-// Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Fri Feb 26 15:55:25 2021
+// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top mb_subsystem_axi_amm_bridge_0_0 -prefix
 //               mb_subsystem_axi_amm_bridge_0_0_ mb_subsystem_axi_amm_bridge_0_0_stub.v
 // Design      : mb_subsystem_axi_amm_bridge_0_0
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "axi_amm_bridge_v1_0_9_top,Vivado 2019.1" *)
+(* X_CORE_INFO = "axi_amm_bridge_v1_0_11_top,Vivado 2020.1" *)
 module mb_subsystem_axi_amm_bridge_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr, 
   s_axi_awvalid, s_axi_awready, s_axi_wdata, s_axi_wstrb, s_axi_wvalid, s_axi_wready, 
   s_axi_bresp, s_axi_bvalid, s_axi_bready, s_axi_araddr, s_axi_arvalid, s_axi_arready, 

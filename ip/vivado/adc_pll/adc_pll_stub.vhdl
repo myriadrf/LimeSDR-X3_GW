@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:50:53 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/adc_pll/adc_pll_stub.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Thu Feb 25 12:14:05 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode synth_stub -rename_top adc_pll -prefix
+--               adc_pll_ adc_pll_stub.vhdl
 -- Design      : adc_pll
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a200tfbg676-2

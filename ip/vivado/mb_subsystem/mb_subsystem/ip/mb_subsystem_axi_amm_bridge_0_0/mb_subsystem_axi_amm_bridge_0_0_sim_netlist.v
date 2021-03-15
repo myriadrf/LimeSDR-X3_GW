@@ -1,8 +1,8 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Feb 18 10:32:24 2020
-// Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Fri Feb 26 15:55:25 2021
+// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_axi_amm_bridge_0_0 -prefix
 //               mb_subsystem_axi_amm_bridge_0_0_ mb_subsystem_axi_amm_bridge_0_0_sim_netlist.v
 // Design      : mb_subsystem_axi_amm_bridge_0_0
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
+module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite
    (s_axi_rdata,
     avm_address,
     avm_byteenable,
@@ -196,7 +196,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
   wire \tout_counter[8]_i_3_n_0 ;
   wire [8:0]tout_counter_reg;
 
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hFF808080)) 
     \FSM_onehot_current_state[0]_i_1 
@@ -216,7 +216,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(avm_waitrequest),
         .I5(\FSM_onehot_current_state_reg_n_0_[0] ),
         .O(\FSM_onehot_current_state[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h0EFE0000)) 
     \FSM_onehot_current_state[1]_i_2 
@@ -226,7 +226,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I3(s_axi_rready),
         .I4(\FSM_onehot_current_state_reg_n_0_[1] ),
         .O(\FSM_onehot_current_state[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT3 #(
     .INIT(8'h08)) 
     \FSM_onehot_current_state[2]_i_1 
@@ -234,7 +234,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I1(avm_waitrequest),
         .I2(\avm_address[31]_i_3_n_0 ),
         .O(\FSM_onehot_current_state[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'hFFFF0700)) 
     \FSM_onehot_current_state[3]_i_1 
@@ -254,7 +254,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(\FSM_onehot_current_state_reg_n_0_[5] ),
         .I5(p_1_in_0),
         .O(\FSM_onehot_current_state[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \FSM_onehot_current_state[3]_i_3 
@@ -934,7 +934,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .D(\avm_address[9]_i_1_n_0 ),
         .Q(avm_address[9]),
         .R(s_axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
     .INIT(16'hEA00)) 
     avm_beginbursttransfer_i_1
@@ -1048,7 +1048,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(\FSM_onehot_current_state_reg_n_0_[7] ),
         .I5(avm_write),
         .O(avm_write_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT2 #(
     .INIT(4'h8)) 
     avm_write_i_2
@@ -1080,7 +1080,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(s_axi_aresetn),
         .I5(\FSM_onehot_current_state_reg_n_0_[7] ),
         .O(\avm_writedata[31]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h08000000)) 
     \avm_writedata[31]_i_3 
@@ -1362,7 +1362,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
        (.I0(s_axi_rready),
         .I1(s_axi_rvalid_reg_0),
         .O(\s_axi_bresp[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'h8F)) 
     \s_axi_bresp[1]_i_3 
@@ -1954,7 +1954,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .D(\s_axi_rresp[1]_i_1_n_0 ),
         .Q(s_axi_rresp),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'hFF747474)) 
     s_axi_rvalid_i_1
@@ -1996,7 +1996,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(start),
         .I5(start_reg_n_0),
         .O(start_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hA8FFA8A8)) 
     start_i_2
@@ -2024,7 +2024,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
         .I4(\FSM_onehot_current_state_reg_n_0_[3] ),
         .I5(\FSM_onehot_current_state_reg_n_0_[1] ),
         .O(start));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT2 #(
     .INIT(4'hE)) 
     start_i_5
@@ -2042,14 +2042,14 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
     \tout_counter[0]_i_1 
        (.I0(tout_counter_reg[0]),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \tout_counter[1]_i_1 
        (.I0(tout_counter_reg[0]),
         .I1(tout_counter_reg[1]),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \tout_counter[2]_i_1 
@@ -2190,7 +2190,7 @@ endmodule
 (* C_NUM_OUTSTANDING = "2" *) (* C_PROTOCOL = "0" *) (* C_READ_LATENCY = "1" *) 
 (* C_S_AXI_ADDR_WIDTH = "32" *) (* C_S_AXI_DATA_WIDTH = "32" *) (* C_S_AXI_ID_WIDTH = "4" *) 
 (* C_USE_WSTRB = "0" *) (* DowngradeIPIdentifiedWarnings = "yes" *) 
-module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top
+module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top
    (s_axi_aclk,
     s_axi_aresetn,
     s_axi_awid,
@@ -2323,7 +2323,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top
   assign s_axi_rlast = \<const0> ;
   assign s_axi_rresp[1] = \^s_axi_rresp [1];
   assign s_axi_rresp[0] = \<const0> ;
-  mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite \AXI_LITE.I_AVA_MASTER_LITE 
+  mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite \AXI_LITE.I_AVA_MASTER_LITE 
        (.avm_address(avm_address),
         .avm_beginbursttransfer(avm_beginbursttransfer),
         .avm_byteenable(avm_byteenable),
@@ -2358,7 +2358,7 @@ module mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top
        (.P(\<const1> ));
 endmodule
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_9_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_amm_bridge_v1_0_9_top,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_11_top,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "axi_amm_bridge_v1_0_11_top,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module mb_subsystem_axi_amm_bridge_0_0
    (s_axi_aclk,
@@ -2387,7 +2387,7 @@ module mb_subsystem_axi_amm_bridge_0_0
     avm_readdata,
     avm_readdatavalid,
     avm_waitrequest);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *) input s_axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *) input s_axi_aclk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 s_axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s_axi_aresetn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR" *) input [31:0]s_axi_awaddr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID" *) input s_axi_awvalid;
@@ -2476,7 +2476,7 @@ module mb_subsystem_axi_amm_bridge_0_0
   (* C_S_AXI_ID_WIDTH = "4" *) 
   (* C_USE_WSTRB = "0" *) 
   (* DowngradeIPIdentifiedWarnings = "yes" *) 
-  mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top inst
+  mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top inst
        (.avm_address(avm_address),
         .avm_beginbursttransfer(NLW_inst_avm_beginbursttransfer_UNCONNECTED),
         .avm_burstcount(NLW_inst_avm_burstcount_UNCONNECTED[0]),
@@ -2529,12 +2529,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -2547,6 +2550,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -2574,6 +2578,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -2587,6 +2592,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

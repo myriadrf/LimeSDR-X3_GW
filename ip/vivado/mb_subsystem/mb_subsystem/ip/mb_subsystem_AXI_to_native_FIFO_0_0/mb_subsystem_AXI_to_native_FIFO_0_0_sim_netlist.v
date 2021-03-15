@@ -1,10 +1,10 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Feb 18 10:29:57 2020
-// Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_AXI_to_native_FIFO_0_0/mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.v
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Fri Feb 26 15:53:36 2021
+// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_AXI_to_native_FIFO_0_0 -prefix
+//               mb_subsystem_AXI_to_native_FIFO_0_0_ mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.v
 // Design      : mb_subsystem_AXI_to_native_FIFO_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,135 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_AXI_to_native_FIFO_0_0,AXI_to_native_FIFO_v1_0,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "AXI_to_native_FIFO_v1_0,Vivado 2019.1" *) 
-(* NotValidForBitStream *)
-module mb_subsystem_AXI_to_native_FIFO_0_0
-   (M_NATIVE_READ_EMPTY,
-    M_NATIVE_READ_AEMPTY,
-    M_NATIVE_READ_DOUT,
-    M_NATIVE_READ_RD_EN,
-    M_NATIVE_WRITE_ACLR,
-    M_NATIVE_WRITE_FULL,
-    M_NATIVE_WRITE_AFULL,
-    M_NATIVE_WRITE_DIN,
-    M_NATIVE_WRITE_WR_EN,
-    s00_axi_awaddr,
-    s00_axi_awprot,
-    s00_axi_awvalid,
-    s00_axi_awready,
-    s00_axi_wdata,
-    s00_axi_wstrb,
-    s00_axi_wvalid,
-    s00_axi_wready,
-    s00_axi_bresp,
-    s00_axi_bvalid,
-    s00_axi_bready,
-    s00_axi_araddr,
-    s00_axi_arprot,
-    s00_axi_arvalid,
-    s00_axi_arready,
-    s00_axi_rdata,
-    s00_axi_rresp,
-    s00_axi_rvalid,
-    s00_axi_rready,
-    s00_axi_aclk,
-    s00_axi_aresetn);
-  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ EMPTY" *) input M_NATIVE_READ_EMPTY;
-  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ ALMOST_EMPTY" *) input M_NATIVE_READ_AEMPTY;
-  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ RD_DATA" *) input [31:0]M_NATIVE_READ_DOUT;
-  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ RD_EN" *) output M_NATIVE_READ_RD_EN;
-  output M_NATIVE_WRITE_ACLR;
-  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE FULL" *) input M_NATIVE_WRITE_FULL;
-  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE ALMOST_FULL" *) input M_NATIVE_WRITE_AFULL;
-  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE WR_DATA" *) output [31:0]M_NATIVE_WRITE_DIN;
-  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE WR_EN" *) output M_NATIVE_WRITE_WR_EN;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input [3:0]s00_axi_awaddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [3:0]s00_axi_araddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) input s00_axi_rready;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *) input s00_axi_aclk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
-
-  wire M_NATIVE_READ_AEMPTY;
-  wire [31:0]M_NATIVE_READ_DOUT;
-  wire M_NATIVE_READ_EMPTY;
-  wire M_NATIVE_READ_RD_EN;
-  wire M_NATIVE_WRITE_ACLR;
-  wire M_NATIVE_WRITE_AFULL;
-  wire [31:0]M_NATIVE_WRITE_DIN;
-  wire M_NATIVE_WRITE_FULL;
-  wire M_NATIVE_WRITE_WR_EN;
-  wire s00_axi_aclk;
-  wire [3:0]s00_axi_araddr;
-  wire s00_axi_aresetn;
-  wire [2:0]s00_axi_arprot;
-  wire s00_axi_arready;
-  wire s00_axi_arvalid;
-  wire [3:0]s00_axi_awaddr;
-  wire [2:0]s00_axi_awprot;
-  wire s00_axi_awready;
-  wire s00_axi_awvalid;
-  wire s00_axi_bready;
-  wire [1:0]s00_axi_bresp;
-  wire s00_axi_bvalid;
-  wire [31:0]s00_axi_rdata;
-  wire s00_axi_rready;
-  wire [1:0]s00_axi_rresp;
-  wire s00_axi_rvalid;
-  wire [31:0]s00_axi_wdata;
-  wire s00_axi_wready;
-  wire [3:0]s00_axi_wstrb;
-  wire s00_axi_wvalid;
-
-  mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 U0
-       (.M_NATIVE_READ_AEMPTY(M_NATIVE_READ_AEMPTY),
-        .M_NATIVE_READ_DOUT(M_NATIVE_READ_DOUT),
-        .M_NATIVE_READ_EMPTY(M_NATIVE_READ_EMPTY),
-        .M_NATIVE_READ_RD_EN(M_NATIVE_READ_RD_EN),
-        .M_NATIVE_WRITE_ACLR(M_NATIVE_WRITE_ACLR),
-        .M_NATIVE_WRITE_AFULL(M_NATIVE_WRITE_AFULL),
-        .M_NATIVE_WRITE_DIN(M_NATIVE_WRITE_DIN),
-        .M_NATIVE_WRITE_FULL(M_NATIVE_WRITE_FULL),
-        .M_NATIVE_WRITE_WR_EN(M_NATIVE_WRITE_WR_EN),
-        .s00_axi_aclk(s00_axi_aclk),
-        .s00_axi_araddr(s00_axi_araddr),
-        .s00_axi_aresetn(s00_axi_aresetn),
-        .s00_axi_arprot(s00_axi_arprot),
-        .s00_axi_arready(s00_axi_arready),
-        .s00_axi_arvalid(s00_axi_arvalid),
-        .s00_axi_awaddr(s00_axi_awaddr),
-        .s00_axi_awprot(s00_axi_awprot),
-        .s00_axi_awready(s00_axi_awready),
-        .s00_axi_awvalid(s00_axi_awvalid),
-        .s00_axi_bready(s00_axi_bready),
-        .s00_axi_bresp(s00_axi_bresp),
-        .s00_axi_bvalid(s00_axi_bvalid),
-        .s00_axi_rdata(s00_axi_rdata),
-        .s00_axi_rready(s00_axi_rready),
-        .s00_axi_rresp(s00_axi_rresp),
-        .s00_axi_rvalid(s00_axi_rvalid),
-        .s00_axi_wdata(s00_axi_wdata),
-        .s00_axi_wready(s00_axi_wready),
-        .s00_axi_wstrb(s00_axi_wstrb),
-        .s00_axi_wvalid(s00_axi_wvalid));
-endmodule
-
-(* ORIG_REF_NAME = "AXI_to_native_FIFO_v1_0" *) 
 module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
    (M_NATIVE_READ_RD_EN,
     M_NATIVE_WRITE_ACLR,
@@ -148,11 +19,9 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
     M_NATIVE_WRITE_WR_EN,
     s00_axi_awready,
     s00_axi_wready,
-    s00_axi_bresp,
     s00_axi_bvalid,
     s00_axi_arready,
     s00_axi_rdata,
-    s00_axi_rresp,
     s00_axi_rvalid,
     M_NATIVE_READ_EMPTY,
     M_NATIVE_READ_AEMPTY,
@@ -162,14 +31,12 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
     s00_axi_aclk,
     s00_axi_aresetn,
     s00_axi_awaddr,
-    s00_axi_awprot,
     s00_axi_awvalid,
     s00_axi_wdata,
     s00_axi_wstrb,
     s00_axi_wvalid,
     s00_axi_bready,
     s00_axi_araddr,
-    s00_axi_arprot,
     s00_axi_arvalid,
     s00_axi_rready);
   output M_NATIVE_READ_RD_EN;
@@ -178,11 +45,9 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
   output M_NATIVE_WRITE_WR_EN;
   output s00_axi_awready;
   output s00_axi_wready;
-  output [1:0]s00_axi_bresp;
   output s00_axi_bvalid;
   output s00_axi_arready;
   output [31:0]s00_axi_rdata;
-  output [1:0]s00_axi_rresp;
   output s00_axi_rvalid;
   input M_NATIVE_READ_EMPTY;
   input M_NATIVE_READ_AEMPTY;
@@ -191,15 +56,13 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
   input M_NATIVE_WRITE_AFULL;
   input s00_axi_aclk;
   input s00_axi_aresetn;
-  input [3:0]s00_axi_awaddr;
-  input [2:0]s00_axi_awprot;
+  input [1:0]s00_axi_awaddr;
   input s00_axi_awvalid;
   input [31:0]s00_axi_wdata;
   input [3:0]s00_axi_wstrb;
   input s00_axi_wvalid;
   input s00_axi_bready;
-  input [3:0]s00_axi_araddr;
-  input [2:0]s00_axi_arprot;
+  input [1:0]s00_axi_araddr;
   input s00_axi_arvalid;
   input s00_axi_rready;
 
@@ -213,30 +76,29 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
   wire M_NATIVE_WRITE_FULL;
   wire M_NATIVE_WRITE_WR_EN;
   wire s00_axi_aclk;
-  wire [3:0]s00_axi_araddr;
+  wire [1:0]s00_axi_araddr;
   wire s00_axi_aresetn;
-  wire [2:0]s00_axi_arprot;
   wire s00_axi_arready;
   wire s00_axi_arvalid;
-  wire [3:0]s00_axi_awaddr;
-  wire [2:0]s00_axi_awprot;
+  wire [1:0]s00_axi_awaddr;
   wire s00_axi_awready;
   wire s00_axi_awvalid;
   wire s00_axi_bready;
-  wire [1:0]s00_axi_bresp;
   wire s00_axi_bvalid;
   wire [31:0]s00_axi_rdata;
   wire s00_axi_rready;
-  wire [1:0]s00_axi_rresp;
   wire s00_axi_rvalid;
   wire [31:0]s00_axi_wdata;
   wire s00_axi_wready;
   wire [3:0]s00_axi_wstrb;
   wire s00_axi_wvalid;
+  wire [1:0]NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_BRESP_UNCONNECTED;
+  wire [1:0]NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_RRESP_UNCONNECTED;
 
   (* C_M00_NATIVE_DATA_WIDTH = "32" *) 
   (* C_S_AXI_ADDR_WIDTH = "4" *) 
   (* C_S_AXI_DATA_WIDTH = "32" *) 
+  (* KEEP_HIERARCHY = "soft" *) 
   mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI AXI_to_native_FIFO_v1_0_S00_AXI_inst
        (.M_NATIVE_READ_AEMPTY(M_NATIVE_READ_AEMPTY),
         .M_NATIVE_READ_DOUT(M_NATIVE_READ_DOUT),
@@ -248,21 +110,21 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
         .M_NATIVE_WRITE_FULL(M_NATIVE_WRITE_FULL),
         .M_NATIVE_WRITE_WR_EN(M_NATIVE_WRITE_WR_EN),
         .S_AXI_ACLK(s00_axi_aclk),
-        .S_AXI_ARADDR(s00_axi_araddr),
+        .S_AXI_ARADDR({s00_axi_araddr,1'b0,1'b0}),
         .S_AXI_ARESETN(s00_axi_aresetn),
-        .S_AXI_ARPROT(s00_axi_arprot),
+        .S_AXI_ARPROT({1'b0,1'b0,1'b0}),
         .S_AXI_ARREADY(s00_axi_arready),
         .S_AXI_ARVALID(s00_axi_arvalid),
-        .S_AXI_AWADDR(s00_axi_awaddr),
-        .S_AXI_AWPROT(s00_axi_awprot),
+        .S_AXI_AWADDR({s00_axi_awaddr,1'b0,1'b0}),
+        .S_AXI_AWPROT({1'b0,1'b0,1'b0}),
         .S_AXI_AWREADY(s00_axi_awready),
         .S_AXI_AWVALID(s00_axi_awvalid),
         .S_AXI_BREADY(s00_axi_bready),
-        .S_AXI_BRESP(s00_axi_bresp),
+        .S_AXI_BRESP(NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_BRESP_UNCONNECTED[1:0]),
         .S_AXI_BVALID(s00_axi_bvalid),
         .S_AXI_RDATA(s00_axi_rdata),
         .S_AXI_RREADY(s00_axi_rready),
-        .S_AXI_RRESP(s00_axi_rresp),
+        .S_AXI_RRESP(NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_RRESP_UNCONNECTED[1:0]),
         .S_AXI_RVALID(s00_axi_rvalid),
         .S_AXI_WDATA(s00_axi_wdata),
         .S_AXI_WREADY(s00_axi_wready),
@@ -271,7 +133,7 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
 endmodule
 
 (* C_M00_NATIVE_DATA_WIDTH = "32" *) (* C_S_AXI_ADDR_WIDTH = "4" *) (* C_S_AXI_DATA_WIDTH = "32" *) 
-(* ORIG_REF_NAME = "AXI_to_native_FIFO_v1_0_S00_AXI" *) 
+(* keep_hierarchy = "soft" *) 
 module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI
    (M_NATIVE_READ_EMPTY,
     M_NATIVE_READ_AEMPTY,
@@ -3623,6 +3485,133 @@ module mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI
         .I3(S_AXI_AWVALID),
         .O(slv_reg_wren));
 endmodule
+
+(* CHECK_LICENSE_TYPE = "mb_subsystem_AXI_to_native_FIFO_0_0,AXI_to_native_FIFO_v1_0,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "AXI_to_native_FIFO_v1_0,Vivado 2020.1" *) 
+(* NotValidForBitStream *)
+module mb_subsystem_AXI_to_native_FIFO_0_0
+   (M_NATIVE_READ_EMPTY,
+    M_NATIVE_READ_AEMPTY,
+    M_NATIVE_READ_DOUT,
+    M_NATIVE_READ_RD_EN,
+    M_NATIVE_WRITE_ACLR,
+    M_NATIVE_WRITE_FULL,
+    M_NATIVE_WRITE_AFULL,
+    M_NATIVE_WRITE_DIN,
+    M_NATIVE_WRITE_WR_EN,
+    s00_axi_awaddr,
+    s00_axi_awprot,
+    s00_axi_awvalid,
+    s00_axi_awready,
+    s00_axi_wdata,
+    s00_axi_wstrb,
+    s00_axi_wvalid,
+    s00_axi_wready,
+    s00_axi_bresp,
+    s00_axi_bvalid,
+    s00_axi_bready,
+    s00_axi_araddr,
+    s00_axi_arprot,
+    s00_axi_arvalid,
+    s00_axi_arready,
+    s00_axi_rdata,
+    s00_axi_rresp,
+    s00_axi_rvalid,
+    s00_axi_rready,
+    s00_axi_aclk,
+    s00_axi_aresetn);
+  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ EMPTY" *) input M_NATIVE_READ_EMPTY;
+  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ ALMOST_EMPTY" *) input M_NATIVE_READ_AEMPTY;
+  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ RD_DATA" *) input [31:0]M_NATIVE_READ_DOUT;
+  (* x_interface_info = "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ RD_EN" *) output M_NATIVE_READ_RD_EN;
+  output M_NATIVE_WRITE_ACLR;
+  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE FULL" *) input M_NATIVE_WRITE_FULL;
+  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE ALMOST_FULL" *) input M_NATIVE_WRITE_AFULL;
+  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE WR_DATA" *) output [31:0]M_NATIVE_WRITE_DIN;
+  (* x_interface_info = "xilinx.com:interface:fifo_write:1.0 M00_NATIVE_WRITE WR_EN" *) output M_NATIVE_WRITE_WR_EN;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) input [3:0]s00_axi_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWPROT" *) input [2:0]s00_axi_awprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWVALID" *) input s00_axi_awvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI AWREADY" *) output s00_axi_awready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WDATA" *) input [31:0]s00_axi_wdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB" *) input [3:0]s00_axi_wstrb;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WVALID" *) input s00_axi_wvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI WREADY" *) output s00_axi_wready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BRESP" *) output [1:0]s00_axi_bresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BVALID" *) output s00_axi_bvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI BREADY" *) input s00_axi_bready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARADDR" *) input [3:0]s00_axi_araddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARPROT" *) input [2:0]s00_axi_arprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARVALID" *) input s00_axi_arvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI ARREADY" *) output s00_axi_arready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RDATA" *) output [31:0]s00_axi_rdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RRESP" *) output [1:0]s00_axi_rresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RVALID" *) output s00_axi_rvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S00_AXI RREADY" *) input s00_axi_rready;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *) input s00_axi_aclk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 S00_AXI_RST RST" *) (* x_interface_parameter = "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input s00_axi_aresetn;
+
+  wire \<const0> ;
+  wire M_NATIVE_READ_AEMPTY;
+  wire [31:0]M_NATIVE_READ_DOUT;
+  wire M_NATIVE_READ_EMPTY;
+  wire M_NATIVE_READ_RD_EN;
+  wire M_NATIVE_WRITE_ACLR;
+  wire M_NATIVE_WRITE_AFULL;
+  wire [31:0]M_NATIVE_WRITE_DIN;
+  wire M_NATIVE_WRITE_FULL;
+  wire M_NATIVE_WRITE_WR_EN;
+  wire s00_axi_aclk;
+  wire [3:0]s00_axi_araddr;
+  wire s00_axi_aresetn;
+  wire s00_axi_arready;
+  wire s00_axi_arvalid;
+  wire [3:0]s00_axi_awaddr;
+  wire s00_axi_awready;
+  wire s00_axi_awvalid;
+  wire s00_axi_bready;
+  wire s00_axi_bvalid;
+  wire [31:0]s00_axi_rdata;
+  wire s00_axi_rready;
+  wire s00_axi_rvalid;
+  wire [31:0]s00_axi_wdata;
+  wire s00_axi_wready;
+  wire [3:0]s00_axi_wstrb;
+  wire s00_axi_wvalid;
+
+  assign s00_axi_bresp[1] = \<const0> ;
+  assign s00_axi_bresp[0] = \<const0> ;
+  assign s00_axi_rresp[1] = \<const0> ;
+  assign s00_axi_rresp[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 U0
+       (.M_NATIVE_READ_AEMPTY(M_NATIVE_READ_AEMPTY),
+        .M_NATIVE_READ_DOUT(M_NATIVE_READ_DOUT),
+        .M_NATIVE_READ_EMPTY(M_NATIVE_READ_EMPTY),
+        .M_NATIVE_READ_RD_EN(M_NATIVE_READ_RD_EN),
+        .M_NATIVE_WRITE_ACLR(M_NATIVE_WRITE_ACLR),
+        .M_NATIVE_WRITE_AFULL(M_NATIVE_WRITE_AFULL),
+        .M_NATIVE_WRITE_DIN(M_NATIVE_WRITE_DIN),
+        .M_NATIVE_WRITE_FULL(M_NATIVE_WRITE_FULL),
+        .M_NATIVE_WRITE_WR_EN(M_NATIVE_WRITE_WR_EN),
+        .s00_axi_aclk(s00_axi_aclk),
+        .s00_axi_araddr(s00_axi_araddr[3:2]),
+        .s00_axi_aresetn(s00_axi_aresetn),
+        .s00_axi_arready(s00_axi_arready),
+        .s00_axi_arvalid(s00_axi_arvalid),
+        .s00_axi_awaddr(s00_axi_awaddr[3:2]),
+        .s00_axi_awready(s00_axi_awready),
+        .s00_axi_awvalid(s00_axi_awvalid),
+        .s00_axi_bready(s00_axi_bready),
+        .s00_axi_bvalid(s00_axi_bvalid),
+        .s00_axi_rdata(s00_axi_rdata),
+        .s00_axi_rready(s00_axi_rready),
+        .s00_axi_rvalid(s00_axi_rvalid),
+        .s00_axi_wdata(s00_axi_wdata),
+        .s00_axi_wready(s00_axi_wready),
+        .s00_axi_wstrb(s00_axi_wstrb),
+        .s00_axi_wvalid(s00_axi_wvalid));
+endmodule
 `ifndef GLBL
 `define GLBL
 `timescale  1 ps / 1 ps
@@ -3631,12 +3620,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -3649,6 +3641,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -3676,6 +3669,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -3689,6 +3683,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

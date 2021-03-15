@@ -489,7 +489,8 @@ module adc_pll_mmcm_drp
       ram[45] <= {7'h4F, 16'h666F, 
                 S2_DIGITAL_FILT[5], 2'h0, S2_DIGITAL_FILT[4:3], 2'h0,
                 S2_DIGITAL_FILT[2:1], 2'h0, S2_DIGITAL_FILT[0], 4'h0 };
-      for(ii = 46; ii < 64; ii = ii +1) begin
+      ram[46] <= {7'h28,32'h0000_0000};
+      for(ii = 47; ii < 64; ii = ii +1) begin
 
          ram[ii] <= 0;
    end

@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:27:25 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_dlmb_bram_if_cntlr_7/mb_subsystem_dlmb_bram_if_cntlr_7_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:52:44 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_dlmb_bram_if_cntlr_7 -prefix
+--               mb_subsystem_dlmb_bram_if_cntlr_7_ mb_subsystem_dlmb_bram_if_cntlr_7_sim_netlist.vhdl
 -- Design      : mb_subsystem_dlmb_bram_if_cntlr_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -120,6 +120,8 @@ entity mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
   attribute C_LMB_AWIDTH of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 32;
   attribute C_LMB_DWIDTH : integer;
   attribute C_LMB_DWIDTH of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 32;
+  attribute C_LMB_PROTOCOL : integer;
+  attribute C_LMB_PROTOCOL of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 0;
   attribute C_MASK : string;
   attribute C_MASK of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is "64'b0000000000000000000000000000000001000000000000000000000000000000";
   attribute C_MASK1 : string;
@@ -142,8 +144,6 @@ entity mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
   attribute C_UE_FAILING_REGISTERS of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 0;
   attribute C_WRITE_ACCESS : integer;
   attribute C_WRITE_ACCESS of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is 2;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr : entity is "lmb_bram_if_cntlr";
 end mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr;
 
 architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7_lmb_bram_if_cntlr is
@@ -333,12 +333,12 @@ begin
   \^lmb_writedbus\(0 to 31) <= LMB_WriteDBus(0 to 31);
 \BRAM_WEN_A[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"20"
+      INIT => X"40"
     )
         port map (
-      I0 => LMB_BE(0),
-      I1 => \^lmb_abus\(1),
-      I2 => LMB_WriteStrobe,
+      I0 => \^lmb_abus\(1),
+      I1 => LMB_WriteStrobe,
+      I2 => LMB_BE(0),
       O => BRAM_WEN_A(0)
     );
 \BRAM_WEN_A[1]_INST_0\: unisim.vcomponents.LUT3
@@ -414,8 +414,8 @@ Sl_Ready_INST_0: unisim.vcomponents.LUT2
       INIT => X"8"
     )
         port map (
-      I0 => Sl_Rdy,
-      I1 => lmb_as,
+      I0 => lmb_as,
+      I1 => Sl_Rdy,
       O => Sl_Ready
     );
 end STRUCTURE;
@@ -453,7 +453,7 @@ entity mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_dlmb_bram_if_cntlr_7 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of mb_subsystem_dlmb_bram_if_cntlr_7 : entity is "lmb_bram_if_cntlr,Vivado 2019.1";
+  attribute x_core_info of mb_subsystem_dlmb_bram_if_cntlr_7 : entity is "lmb_bram_if_cntlr,Vivado 2020.1";
 end mb_subsystem_dlmb_bram_if_cntlr_7;
 
 architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
@@ -511,6 +511,8 @@ architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute C_LMB_AWIDTH of U0 : label is 32;
   attribute C_LMB_DWIDTH : integer;
   attribute C_LMB_DWIDTH of U0 : label is 32;
+  attribute C_LMB_PROTOCOL : integer;
+  attribute C_LMB_PROTOCOL of U0 : label is 0;
   attribute C_MASK : string;
   attribute C_MASK of U0 : label is "64'b0000000000000000000000000000000001000000000000000000000000000000";
   attribute C_MASK1 : string;
@@ -541,7 +543,7 @@ architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute x_interface_parameter of BRAM_Rst_A : signal is "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 65536, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_LATENCY 1";
   attribute x_interface_info of LMB_AddrStrobe : signal is "xilinx.com:interface:lmb:1.0 SLMB ADDRSTROBE";
   attribute x_interface_info of LMB_Clk : signal is "xilinx.com:signal:clock:1.0 CLK.LMB_Clk CLK";
-  attribute x_interface_parameter of LMB_Clk : signal is "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
+  attribute x_interface_parameter of LMB_Clk : signal is "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
   attribute x_interface_info of LMB_ReadStrobe : signal is "xilinx.com:interface:lmb:1.0 SLMB READSTROBE";
   attribute x_interface_info of LMB_Rst : signal is "xilinx.com:signal:reset:1.0 RST.LMB_Rst RST";
   attribute x_interface_parameter of LMB_Rst : signal is "XIL_INTERFACENAME RST.LMB_Rst, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT, INSERT_VIP 0";
@@ -555,7 +557,7 @@ architecture STRUCTURE of mb_subsystem_dlmb_bram_if_cntlr_7 is
   attribute x_interface_info of BRAM_Dout_A : signal is "xilinx.com:interface:bram:1.0 BRAM_PORT DIN";
   attribute x_interface_info of BRAM_WEN_A : signal is "xilinx.com:interface:bram:1.0 BRAM_PORT WE";
   attribute x_interface_info of LMB_ABus : signal is "xilinx.com:interface:lmb:1.0 SLMB ABUS";
-  attribute x_interface_parameter of LMB_ABus : signal is "XIL_INTERFACENAME SLMB, ADDR_WIDTH 32, DATA_WIDTH 32, READ_WRITE_MODE READ_WRITE";
+  attribute x_interface_parameter of LMB_ABus : signal is "XIL_INTERFACENAME SLMB, ADDR_WIDTH 32, DATA_WIDTH 32, READ_WRITE_MODE READ_WRITE, PROTOCOL STANDARD";
   attribute x_interface_info of LMB_BE : signal is "xilinx.com:interface:lmb:1.0 SLMB BE";
   attribute x_interface_info of LMB_WriteDBus : signal is "xilinx.com:interface:lmb:1.0 SLMB WRITEDBUS";
   attribute x_interface_info of Sl_DBus : signal is "xilinx.com:interface:lmb:1.0 SLMB READDBUS";

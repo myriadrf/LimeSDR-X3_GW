@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:axi_iic:2.0
--- IP Revision: 22
+-- IP Revision: 24
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY axi_iic_v2_0_22;
-USE axi_iic_v2_0_22.axi_iic;
+LIBRARY axi_iic_v2_0_24;
+USE axi_iic_v2_0_24.axi_iic;
 
 ENTITY mb_subsystem_axi_iic_0_1 IS
   PORT (
@@ -104,6 +104,9 @@ ARCHITECTURE mb_subsystem_axi_iic_0_1_arch OF mb_subsystem_axi_iic_0_1 IS
       C_SDA_INERTIAL_DELAY : INTEGER;
       C_SDA_LEVEL : INTEGER;
       C_SMBUS_PMBUS_HOST : INTEGER;
+      C_DISABLE_SETUP_VIOLATION_CHECK : INTEGER;
+      C_STATIC_TIMING_REG_WIDTH : INTEGER;
+      C_TIMING_REG_WIDTH : INTEGER;
       C_DEFAULT_VALUE : STD_LOGIC_VECTOR(7 DOWNTO 0)
     );
     PORT (
@@ -137,11 +140,12 @@ ARCHITECTURE mb_subsystem_axi_iic_0_1_arch OF mb_subsystem_axi_iic_0_1 IS
     );
   END COMPONENT axi_iic;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF mb_subsystem_axi_iic_0_1_arch: ARCHITECTURE IS "axi_iic,Vivado 2019.1";
+  ATTRIBUTE X_CORE_INFO OF mb_subsystem_axi_iic_0_1_arch: ARCHITECTURE IS "axi_iic,Vivado 2020.1";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF mb_subsystem_axi_iic_0_1_arch : ARCHITECTURE IS "mb_subsystem_axi_iic_0_1,axi_iic,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF mb_subsystem_axi_iic_0_1_arch: ARCHITECTURE IS "mb_subsystem_axi_iic_0_1,axi_iic,{x_ipProduct=Vivado 2019.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_iic,x_ipVersion=2.0,x_ipCoreRevision=22,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=artix7,C_S_AXI_ADDR_WIDTH=9,C_S_AXI_DATA_WIDTH=32,C_IIC_FREQ=100000,C_TEN_BIT_ADR=0,C_GPO_WIDTH=1,C_S_AXI_ACLK_FREQ_HZ=100000000,C_SCL_INERTIAL_DELAY=0,C_SDA_INERTIAL_DELAY=0,C_SDA_LEVEL=1,C_SMBUS_PMBUS_HOST=0,C_DEFAULT_VALUE=0x00}";
+  ATTRIBUTE CORE_GENERATION_INFO OF mb_subsystem_axi_iic_0_1_arch: ARCHITECTURE IS "mb_subsystem_axi_iic_0_1,axi_iic,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_iic,x_ipVersion=2.0,x_ipCoreRevision=24,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=artix7,C_S_AXI_ADDR_WIDTH=9,C_S_AXI_DATA_WIDTH=32,C_IIC_FREQ=100000,C_TEN_BIT_ADR=0,C_GPO_WIDTH=1,C_S_AXI_ACLK_FREQ_HZ=100000000,C_SCL_INERTIAL_DELAY=0,C_SDA_INERTIAL_DELAY=0,C_SDA_LEVEL=1,C_SMBUS_PMBUS_HOST=0,C_DISABLE_SETUP_VIOLATION_CHECK=0,C_STATIC_TIMING_REG_WIDTH=0,C_TIMING_REG_WIDTH=32,C_DEFAU" & 
+"LT_VALUE=0x00}";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF scl_t: SIGNAL IS "xilinx.com:interface:iic:1.0 IIC SCL_T";
@@ -174,7 +178,7 @@ ARCHITECTURE mb_subsystem_axi_iic_0_1_arch OF mb_subsystem_axi_iic_0_1 IS
   ATTRIBUTE X_INTERFACE_INFO OF iic2intc_irpt: SIGNAL IS "xilinx.com:signal:interrupt:1.0 INTERRUPT INTERRUPT";
   ATTRIBUTE X_INTERFACE_PARAMETER OF s_axi_aresetn: SIGNAL IS "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_aresetn: SIGNAL IS "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST";
-  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axi_aclk: SIGNAL IS "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axi_aclk: SIGNAL IS "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF s_axi_aclk: SIGNAL IS "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK";
 BEGIN
   U0 : axi_iic
@@ -190,6 +194,9 @@ BEGIN
       C_SDA_INERTIAL_DELAY => 0,
       C_SDA_LEVEL => 1,
       C_SMBUS_PMBUS_HOST => 0,
+      C_DISABLE_SETUP_VIOLATION_CHECK => 0,
+      C_STATIC_TIMING_REG_WIDTH => 0,
+      C_TIMING_REG_WIDTH => 32,
       C_DEFAULT_VALUE => X"00"
     )
     PORT MAP (

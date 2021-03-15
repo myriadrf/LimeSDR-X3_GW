@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:29:57 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_AXI_to_native_FIFO_0_0/mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:53:36 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_AXI_to_native_FIFO_0_0 -prefix
+--               mb_subsystem_AXI_to_native_FIFO_0_0_ mb_subsystem_AXI_to_native_FIFO_0_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_AXI_to_native_FIFO_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -53,8 +53,8 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI is
   attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is 4;
   attribute C_S_AXI_DATA_WIDTH : integer;
   attribute C_S_AXI_DATA_WIDTH of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is 32;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is "AXI_to_native_FIFO_v1_0_S00_AXI";
+  attribute keep_hierarchy : string;
+  attribute keep_hierarchy of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI : entity is "soft";
 end mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI;
 
 architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI is
@@ -4304,11 +4304,9 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 is
     M_NATIVE_WRITE_WR_EN : out STD_LOGIC;
     s00_axi_awready : out STD_LOGIC;
     s00_axi_wready : out STD_LOGIC;
-    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s00_axi_bvalid : out STD_LOGIC;
     s00_axi_arready : out STD_LOGIC;
     s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s00_axi_rvalid : out STD_LOGIC;
     M_NATIVE_READ_EMPTY : in STD_LOGIC;
     M_NATIVE_READ_AEMPTY : in STD_LOGIC;
@@ -4317,29 +4315,29 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 is
     M_NATIVE_WRITE_AFULL : in STD_LOGIC;
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC;
-    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s00_axi_awvalid : in STD_LOGIC;
     s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s00_axi_wvalid : in STD_LOGIC;
     s00_axi_bready : in STD_LOGIC;
-    s00_axi_araddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s00_axi_arvalid : in STD_LOGIC;
     s00_axi_rready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 : entity is "AXI_to_native_FIFO_v1_0";
 end mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0;
 
 architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0 is
+  signal NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_BRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_RRESP_UNCONNECTED : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute C_M00_NATIVE_DATA_WIDTH : integer;
   attribute C_M00_NATIVE_DATA_WIDTH of AXI_to_native_FIFO_v1_0_S00_AXI_inst : label is 32;
   attribute C_S_AXI_ADDR_WIDTH : integer;
   attribute C_S_AXI_ADDR_WIDTH of AXI_to_native_FIFO_v1_0_S00_AXI_inst : label is 4;
   attribute C_S_AXI_DATA_WIDTH : integer;
   attribute C_S_AXI_DATA_WIDTH of AXI_to_native_FIFO_v1_0_S00_AXI_inst : label is 32;
+  attribute KEEP_HIERARCHY : string;
+  attribute KEEP_HIERARCHY of AXI_to_native_FIFO_v1_0_S00_AXI_inst : label is "soft";
 begin
 AXI_to_native_FIFO_v1_0_S00_AXI_inst: entity work.mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0_S00_AXI
      port map (
@@ -4353,21 +4351,23 @@ AXI_to_native_FIFO_v1_0_S00_AXI_inst: entity work.mb_subsystem_AXI_to_native_FIF
       M_NATIVE_WRITE_FULL => M_NATIVE_WRITE_FULL,
       M_NATIVE_WRITE_WR_EN => M_NATIVE_WRITE_WR_EN,
       S_AXI_ACLK => s00_axi_aclk,
-      S_AXI_ARADDR(3 downto 0) => s00_axi_araddr(3 downto 0),
+      S_AXI_ARADDR(3 downto 2) => s00_axi_araddr(1 downto 0),
+      S_AXI_ARADDR(1 downto 0) => B"00",
       S_AXI_ARESETN => s00_axi_aresetn,
-      S_AXI_ARPROT(2 downto 0) => s00_axi_arprot(2 downto 0),
+      S_AXI_ARPROT(2 downto 0) => B"000",
       S_AXI_ARREADY => s00_axi_arready,
       S_AXI_ARVALID => s00_axi_arvalid,
-      S_AXI_AWADDR(3 downto 0) => s00_axi_awaddr(3 downto 0),
-      S_AXI_AWPROT(2 downto 0) => s00_axi_awprot(2 downto 0),
+      S_AXI_AWADDR(3 downto 2) => s00_axi_awaddr(1 downto 0),
+      S_AXI_AWADDR(1 downto 0) => B"00",
+      S_AXI_AWPROT(2 downto 0) => B"000",
       S_AXI_AWREADY => s00_axi_awready,
       S_AXI_AWVALID => s00_axi_awvalid,
       S_AXI_BREADY => s00_axi_bready,
-      S_AXI_BRESP(1 downto 0) => s00_axi_bresp(1 downto 0),
+      S_AXI_BRESP(1 downto 0) => NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_BRESP_UNCONNECTED(1 downto 0),
       S_AXI_BVALID => s00_axi_bvalid,
       S_AXI_RDATA(31 downto 0) => s00_axi_rdata(31 downto 0),
       S_AXI_RREADY => s00_axi_rready,
-      S_AXI_RRESP(1 downto 0) => s00_axi_rresp(1 downto 0),
+      S_AXI_RRESP(1 downto 0) => NLW_AXI_to_native_FIFO_v1_0_S00_AXI_inst_S_AXI_RRESP_UNCONNECTED(1 downto 0),
       S_AXI_RVALID => s00_axi_rvalid,
       S_AXI_WDATA(31 downto 0) => s00_axi_wdata(31 downto 0),
       S_AXI_WREADY => s00_axi_wready,
@@ -4419,10 +4419,11 @@ entity mb_subsystem_AXI_to_native_FIFO_0_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_AXI_to_native_FIFO_0_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of mb_subsystem_AXI_to_native_FIFO_0_0 : entity is "AXI_to_native_FIFO_v1_0,Vivado 2019.1";
+  attribute x_core_info of mb_subsystem_AXI_to_native_FIFO_0_0 : entity is "AXI_to_native_FIFO_v1_0,Vivado 2020.1";
 end mb_subsystem_AXI_to_native_FIFO_0_0;
 
 architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0 is
+  signal \<const0>\ : STD_LOGIC;
   attribute x_interface_info : string;
   attribute x_interface_info of M_NATIVE_READ_AEMPTY : signal is "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ ALMOST_EMPTY";
   attribute x_interface_info of M_NATIVE_READ_EMPTY : signal is "xilinx.com:interface:fifo_read:1.0 M00_NATIVE_READ EMPTY";
@@ -4458,6 +4459,14 @@ architecture STRUCTURE of mb_subsystem_AXI_to_native_FIFO_0_0 is
   attribute x_interface_info of s00_axi_wdata : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WDATA";
   attribute x_interface_info of s00_axi_wstrb : signal is "xilinx.com:interface:aximm:1.0 S00_AXI WSTRB";
 begin
+  s00_axi_bresp(1) <= \<const0>\;
+  s00_axi_bresp(0) <= \<const0>\;
+  s00_axi_rresp(1) <= \<const0>\;
+  s00_axi_rresp(0) <= \<const0>\;
+GND: unisim.vcomponents.GND
+     port map (
+      G => \<const0>\
+    );
 U0: entity work.mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
      port map (
       M_NATIVE_READ_AEMPTY => M_NATIVE_READ_AEMPTY,
@@ -4470,21 +4479,17 @@ U0: entity work.mb_subsystem_AXI_to_native_FIFO_0_0_AXI_to_native_FIFO_v1_0
       M_NATIVE_WRITE_FULL => M_NATIVE_WRITE_FULL,
       M_NATIVE_WRITE_WR_EN => M_NATIVE_WRITE_WR_EN,
       s00_axi_aclk => s00_axi_aclk,
-      s00_axi_araddr(3 downto 0) => s00_axi_araddr(3 downto 0),
+      s00_axi_araddr(1 downto 0) => s00_axi_araddr(3 downto 2),
       s00_axi_aresetn => s00_axi_aresetn,
-      s00_axi_arprot(2 downto 0) => s00_axi_arprot(2 downto 0),
       s00_axi_arready => s00_axi_arready,
       s00_axi_arvalid => s00_axi_arvalid,
-      s00_axi_awaddr(3 downto 0) => s00_axi_awaddr(3 downto 0),
-      s00_axi_awprot(2 downto 0) => s00_axi_awprot(2 downto 0),
+      s00_axi_awaddr(1 downto 0) => s00_axi_awaddr(3 downto 2),
       s00_axi_awready => s00_axi_awready,
       s00_axi_awvalid => s00_axi_awvalid,
       s00_axi_bready => s00_axi_bready,
-      s00_axi_bresp(1 downto 0) => s00_axi_bresp(1 downto 0),
       s00_axi_bvalid => s00_axi_bvalid,
       s00_axi_rdata(31 downto 0) => s00_axi_rdata(31 downto 0),
       s00_axi_rready => s00_axi_rready,
-      s00_axi_rresp(1 downto 0) => s00_axi_rresp(1 downto 0),
       s00_axi_rvalid => s00_axi_rvalid,
       s00_axi_wdata(31 downto 0) => s00_axi_wdata(31 downto 0),
       s00_axi_wready => s00_axi_wready,

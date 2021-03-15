@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:29:41 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_lmb_bram_7/mb_subsystem_lmb_bram_7_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:55:08 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_lmb_bram_7 -prefix
+--               mb_subsystem_lmb_bram_7_ mb_subsystem_lmb_bram_7_sim_netlist.vhdl
 -- Design      : mb_subsystem_lmb_bram_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -31,8 +31,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper : entity is "blk_mem_gen_prim_wrapper";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper is
@@ -4387,8 +4385,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width is
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     web : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width : entity is "blk_mem_gen_prim_width";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width is
@@ -5343,8 +5339,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr is
@@ -5655,8 +5649,6 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_top is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_top : entity is "blk_mem_gen_top";
 end mb_subsystem_lmb_bram_7_blk_mem_gen_top;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_top is
@@ -5685,7 +5677,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth is
+entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth is
   port (
     douta : out STD_LOGIC_VECTOR ( 31 downto 0 );
     doutb : out STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -5704,11 +5696,9 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth is
     rstb : in STD_LOGIC;
     enb : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth : entity is "blk_mem_gen_v8_4_3_synth";
-end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth;
+end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth;
 
-architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth is
+architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth is
 begin
 \gnbram.gnative_mem_map_bmg.native_mem_map_blk_mem_gen\: entity work.mb_subsystem_lmb_bram_7_blk_mem_gen_top
      port map (
@@ -5734,7 +5724,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 is
+entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 is
   port (
     clka : in STD_LOGIC;
     rsta : in STD_LOGIC;
@@ -5801,162 +5791,160 @@ entity mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 is
     s_axi_rdaddrecc : out STD_LOGIC_VECTOR ( 31 downto 0 )
   );
   attribute C_ADDRA_WIDTH : integer;
-  attribute C_ADDRA_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_ADDRA_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_ADDRB_WIDTH : integer;
-  attribute C_ADDRB_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_ADDRB_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_ALGORITHM : integer;
-  attribute C_ALGORITHM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_ALGORITHM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_AXI_ID_WIDTH : integer;
-  attribute C_AXI_ID_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 4;
+  attribute C_AXI_ID_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 4;
   attribute C_AXI_SLAVE_TYPE : integer;
-  attribute C_AXI_SLAVE_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_AXI_SLAVE_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_AXI_TYPE : integer;
-  attribute C_AXI_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_AXI_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_BYTE_SIZE : integer;
-  attribute C_BYTE_SIZE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 8;
+  attribute C_BYTE_SIZE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 8;
   attribute C_COMMON_CLK : integer;
-  attribute C_COMMON_CLK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_COMMON_CLK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_COUNT_18K_BRAM : string;
-  attribute C_COUNT_18K_BRAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "0";
+  attribute C_COUNT_18K_BRAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "0";
   attribute C_COUNT_36K_BRAM : string;
-  attribute C_COUNT_36K_BRAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "16";
+  attribute C_COUNT_36K_BRAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "16";
   attribute C_CTRL_ECC_ALGO : string;
-  attribute C_CTRL_ECC_ALGO of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "NONE";
+  attribute C_CTRL_ECC_ALGO of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "NONE";
   attribute C_DEFAULT_DATA : string;
-  attribute C_DEFAULT_DATA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "0";
+  attribute C_DEFAULT_DATA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "0";
   attribute C_DISABLE_WARN_BHV_COLL : integer;
-  attribute C_DISABLE_WARN_BHV_COLL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_DISABLE_WARN_BHV_COLL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_DISABLE_WARN_BHV_RANGE : integer;
-  attribute C_DISABLE_WARN_BHV_RANGE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_DISABLE_WARN_BHV_RANGE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_ELABORATION_DIR : string;
-  attribute C_ELABORATION_DIR of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "./";
+  attribute C_ELABORATION_DIR of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "./";
   attribute C_ENABLE_32BIT_ADDRESS : integer;
-  attribute C_ENABLE_32BIT_ADDRESS of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_ENABLE_32BIT_ADDRESS of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_EN_DEEPSLEEP_PIN : integer;
-  attribute C_EN_DEEPSLEEP_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_DEEPSLEEP_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EN_ECC_PIPE : integer;
-  attribute C_EN_ECC_PIPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_ECC_PIPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EN_RDADDRA_CHG : integer;
-  attribute C_EN_RDADDRA_CHG of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_RDADDRA_CHG of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EN_RDADDRB_CHG : integer;
-  attribute C_EN_RDADDRB_CHG of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_RDADDRB_CHG of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EN_SAFETY_CKT : integer;
-  attribute C_EN_SAFETY_CKT of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_EN_SAFETY_CKT of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_EN_SHUTDOWN_PIN : integer;
-  attribute C_EN_SHUTDOWN_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_SHUTDOWN_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EN_SLEEP_PIN : integer;
-  attribute C_EN_SLEEP_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_EN_SLEEP_PIN of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "Estimated Power for IP     :     20.388 mW";
+  attribute C_EST_POWER_SUMMARY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "Estimated Power for IP     :     20.388 mW";
   attribute C_FAMILY : string;
-  attribute C_FAMILY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "artix7";
+  attribute C_FAMILY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "artix7";
   attribute C_HAS_AXI_ID : integer;
-  attribute C_HAS_AXI_ID of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_AXI_ID of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_ENA : integer;
-  attribute C_HAS_ENA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_HAS_ENA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_ENB : integer;
-  attribute C_HAS_ENB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_HAS_ENB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_INJECTERR : integer;
-  attribute C_HAS_INJECTERR of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_INJECTERR of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_MEM_OUTPUT_REGS_A : integer;
-  attribute C_HAS_MEM_OUTPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_MEM_OUTPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_MEM_OUTPUT_REGS_B : integer;
-  attribute C_HAS_MEM_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_MEM_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_A : integer;
-  attribute C_HAS_MUX_OUTPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_MUX_OUTPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_MUX_OUTPUT_REGS_B : integer;
-  attribute C_HAS_MUX_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_MUX_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_REGCEA : integer;
-  attribute C_HAS_REGCEA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_REGCEA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_REGCEB : integer;
-  attribute C_HAS_REGCEB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_REGCEB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_RSTA : integer;
-  attribute C_HAS_RSTA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_HAS_RSTA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_RSTB : integer;
-  attribute C_HAS_RSTB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_HAS_RSTB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_SOFTECC_INPUT_REGS_A : integer;
-  attribute C_HAS_SOFTECC_INPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_SOFTECC_INPUT_REGS_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_SOFTECC_OUTPUT_REGS_B : integer;
-  attribute C_HAS_SOFTECC_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_HAS_SOFTECC_OUTPUT_REGS_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_INITA_VAL : string;
-  attribute C_INITA_VAL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "0";
+  attribute C_INITA_VAL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "0";
   attribute C_INITB_VAL : string;
-  attribute C_INITB_VAL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "0";
+  attribute C_INITB_VAL of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "0";
   attribute C_INIT_FILE : string;
-  attribute C_INIT_FILE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "mb_subsystem_lmb_bram_7.mem";
+  attribute C_INIT_FILE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "mb_subsystem_lmb_bram_7.mem";
   attribute C_INIT_FILE_NAME : string;
-  attribute C_INIT_FILE_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "no_coe_file_loaded";
+  attribute C_INIT_FILE_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "no_coe_file_loaded";
   attribute C_INTERFACE_TYPE : integer;
-  attribute C_INTERFACE_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_INTERFACE_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_LOAD_INIT_FILE : integer;
-  attribute C_LOAD_INIT_FILE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_LOAD_INIT_FILE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_MEM_TYPE : integer;
-  attribute C_MEM_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 2;
+  attribute C_MEM_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 2;
   attribute C_MUX_PIPELINE_STAGES : integer;
-  attribute C_MUX_PIPELINE_STAGES of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_MUX_PIPELINE_STAGES of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_PRIM_TYPE : integer;
-  attribute C_PRIM_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_PRIM_TYPE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_READ_DEPTH_A : integer;
-  attribute C_READ_DEPTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 16384;
+  attribute C_READ_DEPTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 16384;
   attribute C_READ_DEPTH_B : integer;
-  attribute C_READ_DEPTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 16384;
+  attribute C_READ_DEPTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 16384;
   attribute C_READ_LATENCY_A : integer;
-  attribute C_READ_LATENCY_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_READ_LATENCY_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_READ_LATENCY_B : integer;
-  attribute C_READ_LATENCY_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_READ_LATENCY_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_READ_WIDTH_A : integer;
-  attribute C_READ_WIDTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_READ_WIDTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_READ_WIDTH_B : integer;
-  attribute C_READ_WIDTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_READ_WIDTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_RSTRAM_A : integer;
-  attribute C_RSTRAM_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_RSTRAM_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_RSTRAM_B : integer;
-  attribute C_RSTRAM_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_RSTRAM_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_RST_PRIORITY_A : string;
-  attribute C_RST_PRIORITY_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "CE";
+  attribute C_RST_PRIORITY_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "CE";
   attribute C_RST_PRIORITY_B : string;
-  attribute C_RST_PRIORITY_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "CE";
+  attribute C_RST_PRIORITY_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "CE";
   attribute C_SIM_COLLISION_CHECK : string;
-  attribute C_SIM_COLLISION_CHECK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "ALL";
+  attribute C_SIM_COLLISION_CHECK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "ALL";
   attribute C_USE_BRAM_BLOCK : integer;
-  attribute C_USE_BRAM_BLOCK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_USE_BRAM_BLOCK of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_USE_BYTE_WEA : integer;
-  attribute C_USE_BYTE_WEA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_USE_BYTE_WEA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_USE_BYTE_WEB : integer;
-  attribute C_USE_BYTE_WEB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 1;
+  attribute C_USE_BYTE_WEB of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_USE_DEFAULT_DATA : integer;
-  attribute C_USE_DEFAULT_DATA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_USE_DEFAULT_DATA of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_USE_ECC : integer;
-  attribute C_USE_ECC of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_USE_ECC of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_USE_SOFTECC : integer;
-  attribute C_USE_SOFTECC of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_USE_SOFTECC of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_USE_URAM : integer;
-  attribute C_USE_URAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 0;
+  attribute C_USE_URAM of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_WEA_WIDTH : integer;
-  attribute C_WEA_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 4;
+  attribute C_WEA_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 4;
   attribute C_WEB_WIDTH : integer;
-  attribute C_WEB_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 4;
+  attribute C_WEB_WIDTH of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 4;
   attribute C_WRITE_DEPTH_A : integer;
-  attribute C_WRITE_DEPTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 16384;
+  attribute C_WRITE_DEPTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 16384;
   attribute C_WRITE_DEPTH_B : integer;
-  attribute C_WRITE_DEPTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 16384;
+  attribute C_WRITE_DEPTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 16384;
   attribute C_WRITE_MODE_A : string;
-  attribute C_WRITE_MODE_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "WRITE_FIRST";
+  attribute C_WRITE_MODE_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "WRITE_FIRST";
   attribute C_WRITE_MODE_B : string;
-  attribute C_WRITE_MODE_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "WRITE_FIRST";
+  attribute C_WRITE_MODE_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "WRITE_FIRST";
   attribute C_WRITE_WIDTH_A : integer;
-  attribute C_WRITE_WIDTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_WRITE_WIDTH_A of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_WRITE_WIDTH_B : integer;
-  attribute C_WRITE_WIDTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is 32;
+  attribute C_WRITE_WIDTH_B of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "artix7";
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
+  attribute C_XDEVICEFAMILY of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "artix7";
   attribute downgradeipidentifiedwarnings : string;
-  attribute downgradeipidentifiedwarnings of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 : entity is "yes";
-end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3;
+  attribute downgradeipidentifiedwarnings of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 : entity is "yes";
+end mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4;
 
-architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 is
+architecture STRUCTURE of mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 is
   signal \<const0>\ : STD_LOGIC;
 begin
   dbiterr <= \<const0>\;
@@ -6081,7 +6069,7 @@ GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
-inst_blk_mem_gen: entity work.mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth
+inst_blk_mem_gen: entity work.mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth
      port map (
       addra(13 downto 0) => addra(15 downto 2),
       addrb(13 downto 0) => addrb(15 downto 2),
@@ -6127,11 +6115,11 @@ entity mb_subsystem_lmb_bram_7 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of mb_subsystem_lmb_bram_7 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of mb_subsystem_lmb_bram_7 : entity is "mb_subsystem_lmb_bram_7,blk_mem_gen_v8_4_3,{}";
+  attribute CHECK_LICENSE_TYPE of mb_subsystem_lmb_bram_7 : entity is "mb_subsystem_lmb_bram_7,blk_mem_gen_v8_4_4,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_lmb_bram_7 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of mb_subsystem_lmb_bram_7 : entity is "blk_mem_gen_v8_4_3,Vivado 2019.1";
+  attribute x_core_info of mb_subsystem_lmb_bram_7 : entity is "blk_mem_gen_v8_4_4,Vivado 2020.1";
 end mb_subsystem_lmb_bram_7;
 
 architecture STRUCTURE of mb_subsystem_lmb_bram_7 is
@@ -6302,6 +6290,8 @@ architecture STRUCTURE of mb_subsystem_lmb_bram_7 is
   attribute C_WRITE_WIDTH_B of U0 : label is 32;
   attribute C_XDEVICEFAMILY : string;
   attribute C_XDEVICEFAMILY of U0 : label is "artix7";
+  attribute KEEP_HIERARCHY : string;
+  attribute KEEP_HIERARCHY of U0 : label is "soft";
   attribute downgradeipidentifiedwarnings of U0 : label is "yes";
   attribute x_interface_info : string;
   attribute x_interface_info of clka : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK";
@@ -6322,7 +6312,7 @@ architecture STRUCTURE of mb_subsystem_lmb_bram_7 is
   attribute x_interface_info of wea : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA WE";
   attribute x_interface_info of web : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTB WE";
 begin
-U0: entity work.mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3
+U0: entity work.mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4
      port map (
       addra(31 downto 0) => addra(31 downto 0),
       addrb(31 downto 0) => addrb(31 downto 0),

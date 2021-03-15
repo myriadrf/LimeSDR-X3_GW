@@ -1,8 +1,8 @@
---Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+--Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
---Date        : Mon Feb 24 16:06:20 2020
---Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
+--Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+--Date        : Mon Mar 15 13:47:57 2021
+--Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
 --Command     : generate_target mb_subsystem_wrapper.bd
 --Design      : mb_subsystem_wrapper
 --Purpose     : IP block netlist
@@ -127,7 +127,6 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     fifo_read_0_empty : in STD_LOGIC;
     smpl_cmp_sel_tri_o : out STD_LOGIC_VECTOR ( 0 to 0 );
     pllcfg_stat_tri_o : out STD_LOGIC_VECTOR ( 11 downto 0 );
-    pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
     spi_1_io0_i : in STD_LOGIC;
     spi_1_io0_o : out STD_LOGIC;
     spi_1_io0_t : out STD_LOGIC;
@@ -140,6 +139,7 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_1_ss_i : in STD_LOGIC_VECTOR ( 5 downto 0 );
     spi_1_ss_o : out STD_LOGIC_VECTOR ( 5 downto 0 );
     spi_1_ss_t : out STD_LOGIC;
+    pll_rst_tri_o : out STD_LOGIC_VECTOR ( 31 downto 0 );
     smpl_cmp_en_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     fifo_write_0_wr_data : out STD_LOGIC_VECTOR ( 31 downto 0 );
     fifo_write_0_almost_full : in STD_LOGIC;
@@ -167,8 +167,6 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_0_ss_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_0_ss_t : out STD_LOGIC;
     gpio_1_tri_o : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    vctcxo_tamer_0_ctrl_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     spi_2_io0_i : in STD_LOGIC;
     spi_2_io0_o : out STD_LOGIC;
     spi_2_io0_t : out STD_LOGIC;
@@ -180,7 +178,9 @@ architecture STRUCTURE of mb_subsystem_wrapper is
     spi_2_sck_t : out STD_LOGIC;
     spi_2_ss_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
     spi_2_ss_o : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    spi_2_ss_t : out STD_LOGIC
+    spi_2_ss_t : out STD_LOGIC;
+    pllcfg_cmd_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    vctcxo_tamer_0_ctrl_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   end component mb_subsystem;
   component IOBUF is

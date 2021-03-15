@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -48,12 +48,12 @@
 
 
 // IP VLNV: xilinx.com:ip:axi_amm_bridge:1.0
-// IP Revision: 9
+// IP Revision: 11
 
-(* X_CORE_INFO = "axi_amm_bridge_v1_0_9_top,Vivado 2019.1" *)
-(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_9_top,{}" *)
-(* CORE_GENERATION_INFO = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_9_top,{x_ipProduct=Vivado 2019.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_amm_bridge,x_ipVersion=1.0,x_ipCoreRevision=9,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_ADDRESS_MODE=0,C_HAS_FIXED_WAIT=0,C_HAS_RESPONSE=0,C_FIXED_WRITE_WAIT=1,C_FIXED_READ_WAIT=1,C_HAS_FIXED_READ_LATENCY=0,C_READ_LATENCY=1,C_S_AXI_DATA_WIDTH=32,C_S_AXI_ID_WIDTH=4,C_S_AXI_ADDR_WIDTH=32,C_USE_WSTRB=0,C_AVM_BURST_WIDTH=1,C_AXI_LOCK_WIDTH=1,C_BURST_LENGTH=4,C_DPHASE\
-_TIMEOUT=256,C_NUM_ADDRESS_RANGES=0,C_NUM_OUTSTANDING=2,C_PROTOCOL=0,C_BASE1_ADDR=0x0000000000000000,C_BASE2_ADDR=0x0000000000000004,C_BASE3_ADDR=0x0000000000000008,C_BASE4_ADDR=0x000000000000000C,C_HIGH1_ADDR=0x0000000000000003,C_HIGH2_ADDR=0x0000000000000005,C_HIGH3_ADDR=0x0000000000000009,C_HIGH4_ADDR=0x000000000000000F,C_FAMILY=artix7}" *)
+(* X_CORE_INFO = "axi_amm_bridge_v1_0_11_top,Vivado 2020.1" *)
+(* CHECK_LICENSE_TYPE = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_11_top,{}" *)
+(* CORE_GENERATION_INFO = "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_11_top,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_amm_bridge,x_ipVersion=1.0,x_ipCoreRevision=11,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_ADDRESS_MODE=0,C_HAS_FIXED_WAIT=0,C_HAS_RESPONSE=0,C_FIXED_WRITE_WAIT=1,C_FIXED_READ_WAIT=1,C_HAS_FIXED_READ_LATENCY=0,C_READ_LATENCY=1,C_S_AXI_DATA_WIDTH=32,C_S_AXI_ID_WIDTH=4,C_S_AXI_ADDR_WIDTH=32,C_USE_WSTRB=0,C_AVM_BURST_WIDTH=1,C_AXI_LOCK_WIDTH=1,C_BURST_LENGTH=4,C_DPHA\
+SE_TIMEOUT=256,C_NUM_ADDRESS_RANGES=0,C_NUM_OUTSTANDING=2,C_PROTOCOL=0,C_BASE1_ADDR=0x0000000000000000,C_BASE2_ADDR=0x0000000000000004,C_BASE3_ADDR=0x0000000000000008,C_BASE4_ADDR=0x000000000000000C,C_HIGH1_ADDR=0x0000000000000003,C_HIGH2_ADDR=0x0000000000000005,C_HIGH3_ADDR=0x0000000000000009,C_HIGH4_ADDR=0x000000000000000F,C_FAMILY=artix7}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module mb_subsystem_axi_amm_bridge_0_0 (
   s_axi_aclk,
@@ -84,7 +84,7 @@ module mb_subsystem_axi_amm_bridge_0_0 (
   avm_waitrequest
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 s_axi_aclk CLK" *)
 input wire s_axi_aclk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME s_axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -141,7 +141,7 @@ input wire avm_readdatavalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:avalon:1.0 M_AVALON WAITREQUEST" *)
 input wire avm_waitrequest;
 
-  axi_amm_bridge_v1_0_9_top #(
+  axi_amm_bridge_v1_0_11_top #(
     .C_ADDRESS_MODE(0),
     .C_HAS_FIXED_WAIT(0),
     .C_HAS_RESPONSE(0),

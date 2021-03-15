@@ -1,10 +1,10 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Feb 18 10:29:41 2020
-// Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_lmb_bram_7/mb_subsystem_lmb_bram_7_sim_netlist.v
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Fri Feb 26 15:55:08 2021
+// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+// Command     : write_verilog -force -mode funcsim -rename_top mb_subsystem_lmb_bram_7 -prefix
+//               mb_subsystem_lmb_bram_7_ mb_subsystem_lmb_bram_7_sim_netlist.v
 // Design      : mb_subsystem_lmb_bram_7
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "mb_subsystem_lmb_bram_7,blk_mem_gen_v8_4_3,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "blk_mem_gen_v8_4_3,Vivado 2019.1" *) 
+(* CHECK_LICENSE_TYPE = "mb_subsystem_lmb_bram_7,blk_mem_gen_v8_4_4,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "blk_mem_gen_v8_4_4,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module mb_subsystem_lmb_bram_7
    (clka,
@@ -157,8 +157,9 @@ module mb_subsystem_lmb_bram_7
   (* C_WRITE_WIDTH_A = "32" *) 
   (* C_WRITE_WIDTH_B = "32" *) 
   (* C_XDEVICEFAMILY = "artix7" *) 
+  (* KEEP_HIERARCHY = "soft" *) 
   (* downgradeipidentifiedwarnings = "yes" *) 
-  mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3 U0
+  mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4 U0
        (.addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -224,7 +225,6 @@ module mb_subsystem_lmb_bram_7
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr
    (douta,
     doutb,
@@ -528,7 +528,6 @@ module mb_subsystem_lmb_bram_7_blk_mem_gen_generic_cstr
         .web(web[2]));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
 module mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width
    (douta,
     doutb,
@@ -1724,7 +1723,6 @@ module mb_subsystem_lmb_bram_7_blk_mem_gen_prim_width__parameterized9
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
 module mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper
    (douta,
     doutb,
@@ -6076,7 +6074,6 @@ module mb_subsystem_lmb_bram_7_blk_mem_gen_prim_wrapper__parameterized9
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web,web,web,web}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module mb_subsystem_lmb_bram_7_blk_mem_gen_top
    (douta,
     doutb,
@@ -6172,8 +6169,8 @@ endmodule
 (* C_WEA_WIDTH = "4" *) (* C_WEB_WIDTH = "4" *) (* C_WRITE_DEPTH_A = "16384" *) 
 (* C_WRITE_DEPTH_B = "16384" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "32" *) (* C_WRITE_WIDTH_B = "32" *) (* C_XDEVICEFAMILY = "artix7" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
-module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3
+(* downgradeipidentifiedwarnings = "yes" *) 
+module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4
    (clka,
     rsta,
     ena,
@@ -6439,7 +6436,7 @@ module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3
   assign sbiterr = \<const0> ;
   GND GND
        (.G(\<const0> ));
-  mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth inst_blk_mem_gen
+  mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth inst_blk_mem_gen
        (.addra(addra[15:2]),
         .addrb(addrb[15:2]),
         .clka(clka),
@@ -6458,8 +6455,7 @@ module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
-module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_3_synth
+module mb_subsystem_lmb_bram_7_blk_mem_gen_v8_4_4_synth
    (douta,
     doutb,
     rsta_busy,
@@ -6536,12 +6532,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -6554,6 +6553,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -6581,6 +6581,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -6594,6 +6595,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

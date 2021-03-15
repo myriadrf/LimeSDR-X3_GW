@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:mdm:3.2
--- IP Revision: 16
+-- IP Revision: 18
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY mdm_v3_2_16;
-USE mdm_v3_2_16.MDM;
+LIBRARY mdm_v3_2_18;
+USE mdm_v3_2_18.MDM;
 
 ENTITY mb_subsystem_mdm_1_6 IS
   PORT (
@@ -105,6 +105,7 @@ ARCHITECTURE mb_subsystem_mdm_1_6_arch OF mb_subsystem_mdm_1_6 IS
       C_M_AXI_THREAD_ID_WIDTH : INTEGER;
       C_ADDR_SIZE : INTEGER;
       C_DATA_SIZE : INTEGER;
+      C_LMB_PROTOCOL : INTEGER;
       C_M_AXIS_DATA_WIDTH : INTEGER;
       C_M_AXIS_ID_WIDTH : INTEGER
     );
@@ -1618,6 +1619,7 @@ ARCHITECTURE mb_subsystem_mdm_1_6_arch OF mb_subsystem_mdm_1_6 IS
       bscan_ext_drck : IN STD_LOGIC;
       bscan_ext_tdo : OUT STD_LOGIC;
       bscan_ext_tck : IN STD_LOGIC;
+      bscan_ext_tms : IN STD_LOGIC;
       bscan_ext_bscanid_en : IN STD_LOGIC;
       Ext_JTAG_DRCK : OUT STD_LOGIC;
       Ext_JTAG_RESET : OUT STD_LOGIC;
@@ -1674,6 +1676,7 @@ BEGIN
       C_M_AXI_THREAD_ID_WIDTH => 1,
       C_ADDR_SIZE => 32,
       C_DATA_SIZE => 32,
+      C_LMB_PROTOCOL => 0,
       C_M_AXIS_DATA_WIDTH => 32,
       C_M_AXIS_ID_WIDTH => 7
     )
@@ -2311,6 +2314,7 @@ BEGIN
       bscan_ext_sel => '0',
       bscan_ext_drck => '0',
       bscan_ext_tck => '0',
+      bscan_ext_tms => '0',
       bscan_ext_bscanid_en => '0',
       Ext_JTAG_TDO => '0'
     );

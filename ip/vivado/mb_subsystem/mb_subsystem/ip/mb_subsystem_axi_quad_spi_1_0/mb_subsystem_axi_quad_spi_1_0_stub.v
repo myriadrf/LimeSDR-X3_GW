@@ -1,10 +1,10 @@
-// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Mon Feb 24 16:07:53 2020
-// Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_axi_quad_spi_1_0/mb_subsystem_axi_quad_spi_1_0_stub.v
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Fri Feb 26 15:54:10 2021
+// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+// Command     : write_verilog -force -mode synth_stub -rename_top mb_subsystem_axi_quad_spi_1_0 -prefix
+//               mb_subsystem_axi_quad_spi_1_0_ mb_subsystem_axi_quad_spi_1_0_stub.v
 // Design      : mb_subsystem_axi_quad_spi_1_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tfbg676-2
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "axi_quad_spi,Vivado 2019.1" *)
+(* x_core_info = "axi_quad_spi,Vivado 2020.1" *)
 module mb_subsystem_axi_quad_spi_1_0(ext_spi_clk, s_axi_aclk, s_axi_aresetn, 
   s_axi_awaddr, s_axi_awvalid, s_axi_awready, s_axi_wdata, s_axi_wstrb, s_axi_wvalid, 
   s_axi_wready, s_axi_bresp, s_axi_bvalid, s_axi_bready, s_axi_araddr, s_axi_arvalid, 

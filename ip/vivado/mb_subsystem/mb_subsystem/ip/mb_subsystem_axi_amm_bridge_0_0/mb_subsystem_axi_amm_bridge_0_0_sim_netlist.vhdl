@@ -1,8 +1,8 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:32:24 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:55:25 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_axi_amm_bridge_0_0 -prefix
 --               mb_subsystem_axi_amm_bridge_0_0_ mb_subsystem_axi_amm_bridge_0_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_axi_amm_bridge_0_0
@@ -14,7 +14,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite is
+entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite is
   port (
     s_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     avm_address : out STD_LOGIC_VECTOR ( 31 downto 0 );
@@ -45,9 +45,9 @@ entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite;
+end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite;
 
-architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite is
+architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite is
   signal \FSM_onehot_current_state[0]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_current_state[1]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_onehot_current_state[1]_i_2_n_0\ : STD_LOGIC;
@@ -155,11 +155,11 @@ architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_
   signal \tout_counter[8]_i_3_n_0\ : STD_LOGIC;
   signal tout_counter_reg : STD_LOGIC_VECTOR ( 8 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_onehot_current_state[0]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \FSM_onehot_current_state[1]_i_2\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \FSM_onehot_current_state[2]_i_1\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \FSM_onehot_current_state[3]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \FSM_onehot_current_state[3]_i_3\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \FSM_onehot_current_state[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_onehot_current_state[1]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \FSM_onehot_current_state[2]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_onehot_current_state[3]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_onehot_current_state[3]_i_3\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of \FSM_onehot_current_state[4]_i_2\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \FSM_onehot_current_state[5]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \FSM_onehot_current_state[6]_i_1\ : label is "soft_lutpair8";
@@ -173,18 +173,18 @@ architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_
   attribute FSM_ENCODED_STATES of \FSM_onehot_current_state_reg[6]\ : label is "READ_ADDRESS:000000001,READ_DATA:000000010,WRITE_RESP:000100000,WRITE_AD_DATA:010000000,IDLE:000001000,INV_WRITE_DATA:001000000,INV_READ_ADDRESS:000000100,INV_READ_DATA:000010000,INV_WRITE_ADDRESS:100000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_current_state_reg[7]\ : label is "READ_ADDRESS:000000001,READ_DATA:000000010,WRITE_RESP:000100000,WRITE_AD_DATA:010000000,IDLE:000001000,INV_WRITE_DATA:001000000,INV_READ_ADDRESS:000000100,INV_READ_DATA:000010000,INV_WRITE_ADDRESS:100000000";
   attribute FSM_ENCODED_STATES of \FSM_onehot_current_state_reg[8]\ : label is "READ_ADDRESS:000000001,READ_DATA:000000010,WRITE_RESP:000100000,WRITE_AD_DATA:010000000,IDLE:000001000,INV_WRITE_DATA:001000000,INV_READ_ADDRESS:000000100,INV_READ_DATA:000010000,INV_WRITE_ADDRESS:100000000";
-  attribute SOFT_HLUTNM of avm_beginbursttransfer_i_1 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of avm_write_i_2 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \avm_writedata[31]_i_3\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of avm_beginbursttransfer_i_1 : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of avm_write_i_2 : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \avm_writedata[31]_i_3\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \s_axi_bresp[1]_i_2\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \s_axi_bresp[1]_i_3\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \s_axi_bresp[1]_i_3\ : label is "soft_lutpair9";
   attribute SOFT_HLUTNM of s_axi_bvalid_i_1 : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of s_axi_rvalid_i_1 : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of start_i_2 : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of s_axi_rvalid_i_1 : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of start_i_2 : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of start_i_3 : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of start_i_5 : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \tout_counter[1]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \tout_counter[2]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of start_i_5 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \tout_counter[1]_i_1\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \tout_counter[2]_i_1\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \tout_counter[3]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \tout_counter[4]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \tout_counter[7]_i_1\ : label is "soft_lutpair7";
@@ -2795,7 +2795,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top is
+entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top is
   port (
     s_axi_aclk : in STD_LOGIC;
     s_axi_aresetn : in STD_LOGIC;
@@ -2842,66 +2842,66 @@ entity mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top is
     avm_waitrequest : in STD_LOGIC
   );
   attribute All_zero : string;
-  attribute All_zero of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "1'b0";
+  attribute All_zero of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "1'b0";
   attribute C_ADDRESS_MODE : integer;
-  attribute C_ADDRESS_MODE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_ADDRESS_MODE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_AVM_BURST_WIDTH : integer;
-  attribute C_AVM_BURST_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 1;
+  attribute C_AVM_BURST_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 1;
   attribute C_AXI_LOCK_WIDTH : integer;
-  attribute C_AXI_LOCK_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 1;
+  attribute C_AXI_LOCK_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 1;
   attribute C_BASE1_ADDR : string;
-  attribute C_BASE1_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000000";
+  attribute C_BASE1_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000000";
   attribute C_BASE2_ADDR : string;
-  attribute C_BASE2_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000100";
+  attribute C_BASE2_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000100";
   attribute C_BASE3_ADDR : string;
-  attribute C_BASE3_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001000";
+  attribute C_BASE3_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001000";
   attribute C_BASE4_ADDR : string;
-  attribute C_BASE4_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001100";
+  attribute C_BASE4_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001100";
   attribute C_BURST_LENGTH : integer;
-  attribute C_BURST_LENGTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 4;
+  attribute C_BURST_LENGTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 4;
   attribute C_DPHASE_TIMEOUT : integer;
-  attribute C_DPHASE_TIMEOUT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 256;
+  attribute C_DPHASE_TIMEOUT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 256;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "artix7";
+  attribute C_FAMILY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "artix7";
   attribute C_FIXED_READ_WAIT : integer;
-  attribute C_FIXED_READ_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 1;
+  attribute C_FIXED_READ_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 1;
   attribute C_FIXED_WRITE_WAIT : integer;
-  attribute C_FIXED_WRITE_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 1;
+  attribute C_FIXED_WRITE_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 1;
   attribute C_HAS_FIXED_READ_LATENCY : integer;
-  attribute C_HAS_FIXED_READ_LATENCY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_HAS_FIXED_READ_LATENCY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_HAS_FIXED_WAIT : integer;
-  attribute C_HAS_FIXED_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_HAS_FIXED_WAIT of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_HAS_RESPONSE : integer;
-  attribute C_HAS_RESPONSE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_HAS_RESPONSE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_HIGH1_ADDR : string;
-  attribute C_HIGH1_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000011";
+  attribute C_HIGH1_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000011";
   attribute C_HIGH2_ADDR : string;
-  attribute C_HIGH2_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000101";
+  attribute C_HIGH2_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000000101";
   attribute C_HIGH3_ADDR : string;
-  attribute C_HIGH3_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001001";
+  attribute C_HIGH3_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001001";
   attribute C_HIGH4_ADDR : string;
-  attribute C_HIGH4_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001111";
+  attribute C_HIGH4_ADDR of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "64'b0000000000000000000000000000000000000000000000000000000000001111";
   attribute C_NUM_ADDRESS_RANGES : integer;
-  attribute C_NUM_ADDRESS_RANGES of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_NUM_ADDRESS_RANGES of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_NUM_OUTSTANDING : integer;
-  attribute C_NUM_OUTSTANDING of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 2;
+  attribute C_NUM_OUTSTANDING of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 2;
   attribute C_PROTOCOL : integer;
-  attribute C_PROTOCOL of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_PROTOCOL of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute C_READ_LATENCY : integer;
-  attribute C_READ_LATENCY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 1;
+  attribute C_READ_LATENCY of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 1;
   attribute C_S_AXI_ADDR_WIDTH : integer;
-  attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 32;
+  attribute C_S_AXI_ADDR_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 32;
   attribute C_S_AXI_DATA_WIDTH : integer;
-  attribute C_S_AXI_DATA_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 32;
+  attribute C_S_AXI_DATA_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 32;
   attribute C_S_AXI_ID_WIDTH : integer;
-  attribute C_S_AXI_ID_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 4;
+  attribute C_S_AXI_ID_WIDTH of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 4;
   attribute C_USE_WSTRB : integer;
-  attribute C_USE_WSTRB of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is 0;
+  attribute C_USE_WSTRB of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is 0;
   attribute DowngradeIPIdentifiedWarnings : string;
-  attribute DowngradeIPIdentifiedWarnings of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top : entity is "yes";
-end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top;
+  attribute DowngradeIPIdentifiedWarnings of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top : entity is "yes";
+end mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top;
 
-architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top is
+architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
   signal \^s_axi_bresp\ : STD_LOGIC_VECTOR ( 1 to 1 );
@@ -2921,7 +2921,7 @@ begin
   s_axi_rlast <= \<const0>\;
   s_axi_rresp(1) <= \^s_axi_rresp\(1);
   s_axi_rresp(0) <= \<const0>\;
-\AXI_LITE.I_AVA_MASTER_LITE\: entity work.mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_lite
+\AXI_LITE.I_AVA_MASTER_LITE\: entity work.mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_lite
      port map (
       avm_address(31 downto 0) => avm_address(31 downto 0),
       avm_beginbursttransfer => avm_beginbursttransfer,
@@ -2997,11 +2997,11 @@ entity mb_subsystem_axi_amm_bridge_0_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of mb_subsystem_axi_amm_bridge_0_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of mb_subsystem_axi_amm_bridge_0_0 : entity is "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_9_top,{}";
+  attribute CHECK_LICENSE_TYPE of mb_subsystem_axi_amm_bridge_0_0 : entity is "mb_subsystem_axi_amm_bridge_0_0,axi_amm_bridge_v1_0_11_top,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of mb_subsystem_axi_amm_bridge_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of mb_subsystem_axi_amm_bridge_0_0 : entity is "axi_amm_bridge_v1_0_9_top,Vivado 2019.1";
+  attribute X_CORE_INFO of mb_subsystem_axi_amm_bridge_0_0 : entity is "axi_amm_bridge_v1_0_11_top,Vivado 2020.1";
 end mb_subsystem_axi_amm_bridge_0_0;
 
 architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0 is
@@ -3075,7 +3075,7 @@ architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0 is
   attribute X_INTERFACE_INFO of avm_write : signal is "xilinx.com:interface:avalon:1.0 M_AVALON WRITE";
   attribute X_INTERFACE_INFO of s_axi_aclk : signal is "xilinx.com:signal:clock:1.0 s_axi_aclk CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of s_axi_aclk : signal is "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of s_axi_aclk : signal is "XIL_INTERFACENAME s_axi_aclk, ASSOCIATED_BUSIF S_AXI_LITE:S_AXI_FULL:M_AVALON, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 s_axi_aresetn RST";
   attribute X_INTERFACE_PARAMETER of s_axi_aresetn : signal is "XIL_INTERFACENAME s_axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axi_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY";
@@ -3100,7 +3100,7 @@ architecture STRUCTURE of mb_subsystem_axi_amm_bridge_0_0 is
   attribute X_INTERFACE_INFO of s_axi_wdata : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA";
   attribute X_INTERFACE_INFO of s_axi_wstrb : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WSTRB";
 begin
-inst: entity work.mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_9_top
+inst: entity work.mb_subsystem_axi_amm_bridge_0_0_axi_amm_bridge_v1_0_11_top
      port map (
       avm_address(31 downto 0) => avm_address(31 downto 0),
       avm_beginbursttransfer => NLW_inst_avm_beginbursttransfer_UNCONNECTED,

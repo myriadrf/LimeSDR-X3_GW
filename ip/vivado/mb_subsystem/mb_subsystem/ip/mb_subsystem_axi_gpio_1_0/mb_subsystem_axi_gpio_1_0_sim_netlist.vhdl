@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:30:33 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_axi_gpio_1_0/mb_subsystem_axi_gpio_1_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:54:10 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode funcsim -rename_top mb_subsystem_axi_gpio_1_0 -prefix
+--               mb_subsystem_axi_gpio_1_0_ mb_subsystem_axi_gpio_1_0_sim_netlist.vhdl
 -- Design      : mb_subsystem_axi_gpio_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -34,8 +34,6 @@ entity mb_subsystem_axi_gpio_1_0_GPIO_Core is
     Bus_RNW_reg : in STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[3].ce_out_i_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_GPIO_Core : entity is "GPIO_Core";
 end mb_subsystem_axi_gpio_1_0_GPIO_Core;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_GPIO_Core is
@@ -643,8 +641,6 @@ entity mb_subsystem_axi_gpio_1_0_pselect_f is
     ce_expnd_i_3 : out STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg[0]\ : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_pselect_f : entity is "pselect_f";
 end mb_subsystem_axi_gpio_1_0_pselect_f;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_pselect_f is
@@ -713,8 +709,6 @@ entity mb_subsystem_axi_gpio_1_0_address_decoder is
     s_axi_wready : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_address_decoder : entity is "address_decoder";
 end mb_subsystem_axi_gpio_1_0_address_decoder;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_address_decoder is
@@ -733,8 +727,8 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_address_decoder is
   attribute SOFT_HLUTNM of \GEN_BKEND_CE_REGISTERS[1].ce_out_i[1]_i_1\ : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of \GEN_BKEND_CE_REGISTERS[3].ce_out_i[3]_i_2\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \Not_Dual.gpio_Data_Out[0]_i_1\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \Not_Dual.gpio_Data_Out[6]_i_1\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \Not_Dual.gpio_Data_Out[9]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \Not_Dual.gpio_Data_Out[10]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \Not_Dual.gpio_Data_Out[11]_i_1\ : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of \Not_Dual.gpio_OE[0]_i_1\ : label is "soft_lutpair0";
 begin
   Bus_RNW_reg <= \^bus_rnw_reg\;
@@ -1068,8 +1062,6 @@ entity mb_subsystem_axi_gpio_1_0_slave_attachment is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_slave_attachment : entity is "slave_attachment";
 end mb_subsystem_axi_gpio_1_0_slave_attachment;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_slave_attachment is
@@ -1082,10 +1074,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_slave_attachment is
   signal \INCLUDE_DPHASE_TIMER.dpto_cnt_reg\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \^sr\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal bus2ip_addr : STD_LOGIC_VECTOR ( 0 to 6 );
-  signal \bus2ip_addr_i[2]_i_1_n_0\ : STD_LOGIC;
-  signal \bus2ip_addr_i[3]_i_1_n_0\ : STD_LOGIC;
   signal \bus2ip_addr_i[8]_i_1_n_0\ : STD_LOGIC;
-  signal \bus2ip_addr_i[8]_i_2_n_0\ : STD_LOGIC;
   signal \^bus2ip_rnw_i_reg_0\ : STD_LOGIC;
   signal clear : STD_LOGIC;
   signal \^ip2bus_rdack_i_d1_reg\ : STD_LOGIC;
@@ -1097,6 +1086,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_slave_attachment is
   signal is_write_reg_n_0 : STD_LOGIC;
   signal p_0_in : STD_LOGIC;
   signal p_0_out : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal p_1_in : STD_LOGIC_VECTOR ( 8 downto 2 );
   signal p_5_in : STD_LOGIC;
   signal plusOp : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal s_axi_bresp_i : STD_LOGIC;
@@ -1119,7 +1109,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_slave_attachment is
   attribute SOFT_HLUTNM of \INCLUDE_DPHASE_TIMER.dpto_cnt[1]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \INCLUDE_DPHASE_TIMER.dpto_cnt[2]_i_1\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \INCLUDE_DPHASE_TIMER.dpto_cnt[3]_i_2\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \bus2ip_addr_i[2]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \bus2ip_addr_i[3]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \bus2ip_addr_i[8]_i_2\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of start2_i_1 : label is "soft_lutpair3";
   attribute SOFT_HLUTNM of \state[1]_i_2\ : label is "soft_lutpair3";
@@ -1349,7 +1339,7 @@ I_DECODER: entity work.mb_subsystem_axi_gpio_1_0_address_decoder
       I0 => s_axi_araddr(0),
       I1 => s_axi_awaddr(0),
       I2 => s_axi_arvalid,
-      O => \bus2ip_addr_i[2]_i_1_n_0\
+      O => p_1_in(2)
     );
 \bus2ip_addr_i[3]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -1359,7 +1349,7 @@ I_DECODER: entity work.mb_subsystem_axi_gpio_1_0_address_decoder
       I0 => s_axi_araddr(1),
       I1 => s_axi_awaddr(1),
       I2 => s_axi_arvalid,
-      O => \bus2ip_addr_i[3]_i_1_n_0\
+      O => p_1_in(3)
     );
 \bus2ip_addr_i[8]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -1381,13 +1371,13 @@ I_DECODER: entity work.mb_subsystem_axi_gpio_1_0_address_decoder
       I0 => s_axi_araddr(2),
       I1 => s_axi_awaddr(2),
       I2 => s_axi_arvalid,
-      O => \bus2ip_addr_i[8]_i_2_n_0\
+      O => p_1_in(8)
     );
 \bus2ip_addr_i_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => \bus2ip_addr_i[8]_i_1_n_0\,
-      D => \bus2ip_addr_i[2]_i_1_n_0\,
+      D => p_1_in(2),
       Q => bus2ip_addr(6),
       R => \^sr\(0)
     );
@@ -1395,7 +1385,7 @@ I_DECODER: entity work.mb_subsystem_axi_gpio_1_0_address_decoder
      port map (
       C => s_axi_aclk,
       CE => \bus2ip_addr_i[8]_i_1_n_0\,
-      D => \bus2ip_addr_i[3]_i_1_n_0\,
+      D => p_1_in(3),
       Q => bus2ip_addr(5),
       R => \^sr\(0)
     );
@@ -1403,7 +1393,7 @@ I_DECODER: entity work.mb_subsystem_axi_gpio_1_0_address_decoder
      port map (
       C => s_axi_aclk,
       CE => \bus2ip_addr_i[8]_i_1_n_0\,
-      D => \bus2ip_addr_i[8]_i_2_n_0\,
+      D => p_1_in(8),
       Q => bus2ip_addr(0),
       R => \^sr\(0)
     );
@@ -1781,8 +1771,6 @@ entity mb_subsystem_axi_gpio_1_0_axi_lite_ipif is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_axi_lite_ipif : entity is "axi_lite_ipif";
 end mb_subsystem_axi_gpio_1_0_axi_lite_ipif;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0_axi_lite_ipif is
@@ -1883,8 +1871,6 @@ entity mb_subsystem_axi_gpio_1_0_axi_gpio is
   attribute C_TRI_DEFAULT of mb_subsystem_axi_gpio_1_0_axi_gpio : entity is -1;
   attribute C_TRI_DEFAULT_2 : integer;
   attribute C_TRI_DEFAULT_2 of mb_subsystem_axi_gpio_1_0_axi_gpio : entity is -1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of mb_subsystem_axi_gpio_1_0_axi_gpio : entity is "axi_gpio";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_axi_gpio_1_0_axi_gpio : entity is "yes";
   attribute ip_group : string;
@@ -2275,7 +2261,7 @@ entity mb_subsystem_axi_gpio_1_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of mb_subsystem_axi_gpio_1_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of mb_subsystem_axi_gpio_1_0 : entity is "axi_gpio,Vivado 2019.1";
+  attribute x_core_info of mb_subsystem_axi_gpio_1_0 : entity is "axi_gpio,Vivado 2020.1";
 end mb_subsystem_axi_gpio_1_0;
 
 architecture STRUCTURE of mb_subsystem_axi_gpio_1_0 is
@@ -2319,7 +2305,7 @@ architecture STRUCTURE of mb_subsystem_axi_gpio_1_0 is
   attribute x_interface_info : string;
   attribute x_interface_info of s_axi_aclk : signal is "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of s_axi_aclk : signal is "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
+  attribute x_interface_parameter of s_axi_aclk : signal is "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN mb_subsystem_Clk, INSERT_VIP 0";
   attribute x_interface_info of s_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST";
   attribute x_interface_parameter of s_axi_aresetn : signal is "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute x_interface_info of s_axi_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARREADY";

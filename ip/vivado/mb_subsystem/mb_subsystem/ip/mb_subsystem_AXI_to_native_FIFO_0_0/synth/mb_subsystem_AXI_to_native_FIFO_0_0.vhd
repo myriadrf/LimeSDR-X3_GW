@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -131,11 +131,11 @@ ARCHITECTURE mb_subsystem_AXI_to_native_FIFO_0_0_arch OF mb_subsystem_AXI_to_nat
     );
   END COMPONENT AXI_to_native_FIFO_v1_0;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF mb_subsystem_AXI_to_native_FIFO_0_0_arch: ARCHITECTURE IS "AXI_to_native_FIFO_v1_0,Vivado 2019.1";
+  ATTRIBUTE X_CORE_INFO OF mb_subsystem_AXI_to_native_FIFO_0_0_arch: ARCHITECTURE IS "AXI_to_native_FIFO_v1_0,Vivado 2020.1";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF mb_subsystem_AXI_to_native_FIFO_0_0_arch : ARCHITECTURE IS "mb_subsystem_AXI_to_native_FIFO_0_0,AXI_to_native_FIFO_v1_0,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF mb_subsystem_AXI_to_native_FIFO_0_0_arch: ARCHITECTURE IS "mb_subsystem_AXI_to_native_FIFO_0_0,AXI_to_native_FIFO_v1_0,{x_ipProduct=Vivado 2019.1,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=AXI_to_native_FIFO,x_ipVersion=1.0,x_ipCoreRevision=12,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,C_M00_NATIVE_DATA_WIDTH=32}";
+  ATTRIBUTE CORE_GENERATION_INFO OF mb_subsystem_AXI_to_native_FIFO_0_0_arch: ARCHITECTURE IS "mb_subsystem_AXI_to_native_FIFO_0_0,AXI_to_native_FIFO_v1_0,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=user,x_ipName=AXI_to_native_FIFO,x_ipVersion=1.0,x_ipCoreRevision=12,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_S00_AXI_DATA_WIDTH=32,C_S00_AXI_ADDR_WIDTH=4,C_M00_NATIVE_DATA_WIDTH=32}";
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_PARAMETER OF s00_axi_aresetn: SIGNAL IS "XIL_INTERFACENAME S00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0";

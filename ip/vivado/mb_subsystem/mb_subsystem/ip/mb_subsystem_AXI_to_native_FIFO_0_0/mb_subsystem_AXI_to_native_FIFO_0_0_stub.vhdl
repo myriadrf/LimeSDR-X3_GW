@@ -1,10 +1,10 @@
--- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
--- Date        : Tue Feb 18 10:29:57 2020
--- Host        : DESKTOP-FOO3KS1 running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               G:/working_dir/xil/PCIe_5GRadio/lms7_trx/ip/vivado/mb_subsystem/mb_subsystem/ip/mb_subsystem_AXI_to_native_FIFO_0_0/mb_subsystem_AXI_to_native_FIFO_0_0_stub.vhdl
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Fri Feb 26 15:53:36 2021
+-- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+-- Command     : write_vhdl -force -mode synth_stub -rename_top mb_subsystem_AXI_to_native_FIFO_0_0 -prefix
+--               mb_subsystem_AXI_to_native_FIFO_0_0_ mb_subsystem_AXI_to_native_FIFO_0_0_stub.vhdl
 -- Design      : mb_subsystem_AXI_to_native_FIFO_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7a200tfbg676-2
@@ -54,6 +54,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "M_NATIVE_READ_EMPTY,M_NATIVE_READ_AEMPTY,M_NATIVE_READ_DOUT[31:0],M_NATIVE_READ_RD_EN,M_NATIVE_WRITE_ACLR,M_NATIVE_WRITE_FULL,M_NATIVE_WRITE_AFULL,M_NATIVE_WRITE_DIN[31:0],M_NATIVE_WRITE_WR_EN,s00_axi_awaddr[3:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[3:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready,s00_axi_aclk,s00_axi_aresetn";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "AXI_to_native_FIFO_v1_0,Vivado 2019.1";
+attribute x_core_info of stub : architecture is "AXI_to_native_FIFO_v1_0,Vivado 2020.1";
 begin
 end;
