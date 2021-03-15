@@ -30,6 +30,10 @@ vivado/PCIe_5GRadio_lms7_trx.sdk/.sdk
 vivado/PCIe_5GRadio_lms7_trx.sdk/RemoteSystemsTempFiles
 vivado/PCIe_5GRadio_lms7_trx.sdk/webtalk
 vivado/PCIe_5GRadio_lms7_trx.sdk/SDK.log
+PCIe_5GRadio_lms7_trx/*
+.Xil
+.Xiltemp
+vivado/*
 
 # --------------
 # src
