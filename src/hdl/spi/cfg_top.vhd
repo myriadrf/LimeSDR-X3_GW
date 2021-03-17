@@ -21,6 +21,7 @@ use work.periphcfg_pkg.all;
 use work.tamercfg_pkg.all;
 use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
+use work.cdcmcfg_pkg.all;
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -36,6 +37,8 @@ entity cfg_top is
       PERIPHCFG_START_ADDR : integer := 192;
       TAMERCFG_START_ADDR  : integer := 224;
       GNSSCFG_START_ADDR   : integer := 256;
+      CDCMCFG1_START_ADDR  : integer := 288;
+      CDCMCFG2_START_ADDR  : integer := 320;
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -356,6 +359,98 @@ begin
    );
    
 -- ----------------------------------------------------------------------------
+-- cdcmcfg1 instance
+-- ----------------------------------------------------------------------------    
+   inst7_cdcmcfg1 : entity work.cdcmcfg
+   generic map(
+    CDCM_REG_0_DEFAULT  => x"01b1",
+    CDCM_REG_1_DEFAULT  => x"0000",
+    CDCM_REG_2_DEFAULT  => x"0018",
+    CDCM_REG_3_DEFAULT  => x"00f0",
+    CDCM_REG_4_DEFAULT  => x"30af",
+    CDCM_REG_5_DEFAULT  => x"0023",
+    CDCM_REG_6_DEFAULT  => x"0018",
+    CDCM_REG_7_DEFAULT  => x"0023",
+    CDCM_REG_8_DEFAULT  => x"0018",
+    CDCM_REG_9_DEFAULT  => x"0003",
+    CDCM_REG_10_DEFAULT => x"0180",
+    CDCM_REG_11_DEFAULT => x"0000",
+    CDCM_REG_12_DEFAULT => x"0003",
+    CDCM_REG_13_DEFAULT => x"0180",
+    CDCM_REG_14_DEFAULT => x"0000",
+    CDCM_REG_15_DEFAULT => x"0003",
+    CDCM_REG_16_DEFAULT => x"0180",
+    CDCM_REG_17_DEFAULT => x"0000",
+    CDCM_REG_18_DEFAULT => x"0013",
+    CDCM_REG_19_DEFAULT => x"0180",
+    CDCM_REG_20_DEFAULT => x"0000"
+   )
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress    => std_logic_vector(to_unsigned(CDCMCFG1_START_ADDR/32,10)),
+      mimo_en     => '1',   
+      -- Serial port IOs
+      sdin        => sdin,
+      sclk        => sclk,
+      sen         => sen,
+      sdout       => inst7_sdout,  
+      -- Signals coming from the pins or top level serial interface
+      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+      oen         => open,
+      stateo      => open
+--      to_cdcmcfg   => to_cdcmcfg1,
+--      from_cdcmcfg => from_cdcmcfg1
+   );
+   
+-- ----------------------------------------------------------------------------
+-- cdcmcfg1 instance
+-- ----------------------------------------------------------------------------    
+   inst8_cdcmcfg2 : entity work.cdcmcfg
+   generic map(
+    CDCM_REG_0_DEFAULT  => x"01b1",
+    CDCM_REG_1_DEFAULT  => x"0000",
+    CDCM_REG_2_DEFAULT  => x"0018",
+    CDCM_REG_3_DEFAULT  => x"00f0",
+    CDCM_REG_4_DEFAULT  => x"2077",
+    CDCM_REG_5_DEFAULT  => x"0023",
+    CDCM_REG_6_DEFAULT  => x"0018",
+    CDCM_REG_7_DEFAULT  => x"0023",
+    CDCM_REG_8_DEFAULT  => x"0018",
+    CDCM_REG_9_DEFAULT  => x"0003",
+    CDCM_REG_10_DEFAULT => x"0180",
+    CDCM_REG_11_DEFAULT => x"0000",
+    CDCM_REG_12_DEFAULT => x"0003",
+    CDCM_REG_13_DEFAULT => x"0180",
+    CDCM_REG_14_DEFAULT => x"0000",
+    CDCM_REG_15_DEFAULT => x"0003",
+    CDCM_REG_16_DEFAULT => x"0180",
+    CDCM_REG_17_DEFAULT => x"0000",
+    CDCM_REG_18_DEFAULT => x"0003",
+    CDCM_REG_19_DEFAULT => x"0180",
+    CDCM_REG_20_DEFAULT => x"0000"
+   )
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress    => std_logic_vector(to_unsigned(CDCMCFG2_START_ADDR/32,10)),
+      mimo_en     => '1',   
+      -- Serial port IOs
+      sdin        => sdin,
+      sclk        => sclk,
+      sen         => sen,
+      sdout       => inst8_sdout,  
+      -- Signals coming from the pins or top level serial interface
+      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+      oen         => open,
+      stateo      => open
+--      to_cdcmcfg   => to_cdcmcfg1,
+--      from_cdcmcfg => from_cdcmcfg1
+   );
+   
+-- ----------------------------------------------------------------------------
 -- tamercfg instance
 -- ----------------------------------------------------------------------------    
 --  inst7_tamercfg : entity work.tamercfg
@@ -428,7 +523,7 @@ begin
 -- ----------------------------------------------------------------------------    
    sdout <= inst0_0_sdout OR inst0_1_sdout OR inst0_2_sdout OR inst1_sdoutA OR 
             inst3_sdout OR inst4_0_sdout OR inst4_1_sdout OR inst5_sdout OR 
-            inst6_sdout OR inst8_sdout OR inst255_sdout;
+            inst6_sdout OR inst7_sdout OR inst8_sdout OR inst255_sdout;
             
             
       inst255_to_memcfg <= to_memcfg;
