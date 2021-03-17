@@ -13,6 +13,7 @@
 #include <xclk_wiz.h>
 
 #include "CDCM6208_ini.h" /* CDCM6208 initialization registers*/
+#include "cdcm6208.h"
 #include "LMS64C_protocol.h"
 #include "PCIe_5GRadio_brd.h"
 #include "pll_rcfg.h"
@@ -88,6 +89,9 @@
 #define CLK_WIZ_RECONFIG_OUTPUT		DYNAMIC_OUTPUT_FREQ
 #define CLK_FRAC_EN			1
 
+#define CDCM1_CFG_BASE 288
+#define CDCM2_CFG_BASE 320
+
 uint16_t dac_val = 30714;		//TCXO DAC value
 signed short int converted_val = 300;	//Temperature
 
@@ -130,111 +134,7 @@ unsigned char Check_many_blocks (unsigned char block_size)
 	return 1;
 }
 
-void Write_to_CDCM(uint16_t Address, uint16_t Value, char CDCM_NR)
-{
-	int spi_status;
-	uint8_t data[4];
-	data[0] = (Address >>8);
-	data[1] = (Address & 0xFF);
-	data[2] = (Value >> 8);
-	data[3] = (Value & 0xFF);
 
-	switch(CDCM_NR) {
-	case 2:
-		/*
-		 * Select the CDCM device,  so that it can be
-		 * read and written using the SPI bus.
-		 */
-		spi_status = XSpi_SetSlaveSelect(&Spi1, SPI1_CDCM2_SS);
-
-		/*
-		 * Write to CDCM device
-		 */
-		spi_status = XSpi_Transfer(&Spi1, data, NULL, 4);
-		break;
-	default:
-		/*
-		 * Select the CDCM device,  so that it can be
-		 * read and written using the SPI bus.
-		 */
-		spi_status = XSpi_SetSlaveSelect(&Spi1, SPI1_CDCM1_SS);
-
-		/*
-		 * Write to CDCM device
-		 */
-		spi_status = XSpi_Transfer(&Spi1, data, NULL, 4);
-		break;
-
-
-	}
-
-}
-
-void Init_CDCM(XSpi *InstancePtr, char CDCM_NR)
-{
-	int spi_status;
-
-	/* Set SPI 0 0 mode*/
-	spi_status = XSpi_SetOptions(InstancePtr, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
-
-	switch (CDCM_NR) {
-		case 2:
-			// CDCM 2 Configuration (External DAC and ADC clocks)
-		    Write_to_CDCM( 0,reg_0_data, CDCM_NR);
-		    Write_to_CDCM( 1,reg_1_data, CDCM_NR);
-		    Write_to_CDCM( 2,reg_2_data, CDCM_NR);
-		    Write_to_CDCM( 3,reg_3_data, CDCM_NR);
-		    Write_to_CDCM( 4,reg_4_data, CDCM_NR);
-		    Write_to_CDCM( 5,reg_5_data, CDCM_NR);
-		    Write_to_CDCM( 6,reg_6_data, CDCM_NR);
-		    Write_to_CDCM( 7,reg_7_data, CDCM_NR);
-		    Write_to_CDCM( 8,reg_8_data, CDCM_NR);
-		    Write_to_CDCM( 9,reg_9_data, CDCM_NR);
-		    Write_to_CDCM(10,reg_10_data, CDCM_NR);
-		    Write_to_CDCM(11,reg_11_data, CDCM_NR);
-		    Write_to_CDCM(12,reg_12_data, CDCM_NR);
-		    Write_to_CDCM(13,reg_13_data, CDCM_NR);
-		    Write_to_CDCM(14,reg_14_data, CDCM_NR);
-		    Write_to_CDCM(15,reg_15_data, CDCM_NR);
-		    Write_to_CDCM(16,reg_16_data, CDCM_NR);
-		    Write_to_CDCM(17,reg_17_data, CDCM_NR);
-		    Write_to_CDCM(18,reg_18_data, CDCM_NR);
-		    Write_to_CDCM(19,reg_19_data, CDCM_NR);
-		    Write_to_CDCM(20,reg_20_data, CDCM_NR);
-		    Write_to_CDCM(21,0x0000, CDCM_NR);
-		    Write_to_CDCM(40,0x0000, CDCM_NR);
-		    break;
-		default :
-			// TODO: Replace with correct register values
-			// CDCM 1 Configuration
-		    Write_to_CDCM( 0,0x0231, CDCM_NR);
-		    Write_to_CDCM( 1,0x0000, CDCM_NR);
-		    Write_to_CDCM( 2,0x0018, CDCM_NR);
-		    Write_to_CDCM( 3,0x00F0, CDCM_NR);
-		    Write_to_CDCM( 4,0x30AF, CDCM_NR);
-		    Write_to_CDCM( 5,0x0001, CDCM_NR);
-		    Write_to_CDCM( 6,0x0018, CDCM_NR);
-		    Write_to_CDCM( 7,0x0003, CDCM_NR);
-		    Write_to_CDCM( 8,0x0018, CDCM_NR);
-		    Write_to_CDCM( 9,0x4003, CDCM_NR);
-		    Write_to_CDCM(10,0x0000, CDCM_NR);
-		    Write_to_CDCM(11,0x0000, CDCM_NR);
-		    Write_to_CDCM(12,0x0001, CDCM_NR);
-		    Write_to_CDCM(13,0x0000, CDCM_NR);
-		    Write_to_CDCM(14,0x0000, CDCM_NR);
-		    Write_to_CDCM(15,0x0001, CDCM_NR);
-		    Write_to_CDCM(16,0x0000, CDCM_NR);
-		    Write_to_CDCM(17,0x0000, CDCM_NR);
-		    Write_to_CDCM(18,0x0001, CDCM_NR);
-		    Write_to_CDCM(19,0x0000, CDCM_NR);
-		    Write_to_CDCM(20,0x0000, CDCM_NR);
-		    Write_to_CDCM(21,0x0000, CDCM_NR);
-		    Write_to_CDCM(40,0x0000, CDCM_NR);
-			break;
-
-	}
-
-}
 
 void Init_SPI(u16 DeviceId, XSpi *InstancePtr, u32 Options)
 {
@@ -1771,10 +1671,12 @@ tXPLL_CFG pll_cfg = {0};
     Init_SPI(SPI1_DEVICE_ID, &Spi1, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
     Init_SPI(SPI2_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_CLK_PHASE_1_OPTION | XSP_MANUAL_SSELECT_OPTION);
 
+    // Default config
+    config_CDCM(&Spi1, SPI1_CDCM1_SS, &Spi0, SPI0_FPGA_SS,CDCM1_CFG_BASE);
+    config_CDCM(&Spi1, SPI1_CDCM2_SS, &Spi0, SPI0_FPGA_SS,CDCM2_CFG_BASE);
 
-    // TODO: implement different configurations
-    Init_CDCM(&Spi1, 1);
-    Init_CDCM(&Spi1, 2);
+
+
 
     Control_TCXO_ADF (0, NULL);		//set ADF4002 CP to three-state
 	dac_val = 30714;
@@ -1814,6 +1716,8 @@ tXPLL_CFG pll_cfg = {0};
 
     while (1)
     {
+        Check_CDCM_Update(&Spi1, SPI1_CDCM1_SS, &Spi0, SPI0_FPGA_SS,CDCM1_CFG_BASE,5);
+        Check_CDCM_Update(&Spi1, SPI1_CDCM2_SS, &Spi0, SPI0_FPGA_SS,CDCM2_CFG_BASE,5);
     	vctcxo_tamer_irq = (XGpio_DiscreteRead(&vctcxo_tamer_ctrl, 1) & 0x02);
 	    // Clear VCTCXO tamer interrupt
 	    if(vctcxo_tamer_irq != 0)
