@@ -1,0 +1,15 @@
+/*
+ * cdcm6208.h
+ *
+ * Functions for interacting with cdcm6208 chip
+ *
+ *
+ *  Created on: Mar 17, 2021
+ *      Author: tservenikas
+ */
+
+#include "xspi.h"		/* SPI device driver */
+#include <stdint.h>
+
+void Write_to_CDCM(XSpi *InstancePtr, u32 slave_mask, uint16_t Address, uint16_t Value, char CDCM_NR)
+void config_CDCM(XSpi *InstancePtr, uint32_t slave_mask, uint16_t cdcmcfg_base)

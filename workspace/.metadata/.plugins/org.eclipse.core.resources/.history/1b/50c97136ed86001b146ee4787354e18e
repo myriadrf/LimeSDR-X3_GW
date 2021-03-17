@@ -1,0 +1,152 @@
+/*
+ * cdcm6208.c
+ *
+ *  Created on: Mar 17, 2021
+ *      Author: tservenikas
+ */
+
+
+
+#include "cdcm6208.h"
+
+void Write_to_CDCM(XSpi *InstancePtr, u32 slave_mask, uint16_t Address, uint16_t Value, char CDCM_NR)
+{
+	int spi_status;
+	uint8_t data[4];
+	data[0] = (Address >>8);
+	data[1] = (Address & 0xFF);
+	data[2] = (Value >> 8);
+	data[3] = (Value & 0xFF);
+
+	switch(CDCM_NR) {
+	case 2:
+		/*
+		 * Select the CDCM device,  so that it can be
+		 * read and written using the SPI bus.
+		 */
+		spi_status = XSpi_SetSlaveSelect(&Spi1, SPI1_CDCM2_SS);
+
+		/*
+		 * Write to CDCM device
+		 */
+		spi_status = XSpi_Transfer(&Spi1, data, NULL, 4);
+		break;
+	default:
+		/*
+		 * Select the CDCM device,  so that it can be
+		 * read and written using the SPI bus.
+		 */
+		spi_status = XSpi_SetSlaveSelect(&Spi1, SPI1_CDCM1_SS);
+
+		/*
+		 * Write to CDCM device
+		 */
+		spi_status = XSpi_Transfer(&Spi1, data, NULL, 4);
+		break;
+
+
+	}
+}
+
+void config_CDCM(XSpi *InstancePtr, char CDCM_NR)
+{
+	uint16_t cdcmcfg_base;
+
+	if (CDCM_NR == 1)
+		cdcmcfg_base = 288;
+	else if (CDCM_NR == 2)
+		cdcmcfg_base = 320;
+
+	// copy reg values to cdcm
+
+	uint8_t wr_buf[4]={0};
+	uint8_t rd_buf[4]={0};
+	XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
+
+	uint16_t address;
+	uint16_t cdcm_data;
+	uint8_t* data_pointer;
+	data_pointer = (uint8_t*)&cdcm_data;
+
+	for(uint8_t i = 0; i<21; i++)
+	{
+		//add appropriate cdcmcfg base
+		address = cdcmcfg_base + i;
+		//flip address bytes
+		wr_buf[0] = *((uint8_t*)&address+1);
+		wr_buf[1] = *((uint8_t*)&address);
+		//read spi register
+		XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
+		//flip data bytes
+		data_pointer[0]=rd_buf[3];
+		data_pointer[1]=rd_buf[2];
+		//Write to cdcm
+		Write_to_CDCM(i,cdcm_data,CDCM_NR);
+	}
+}
+
+//void Init_CDCM(XSpi *InstancePtr, char CDCM_NR)
+//{
+//	int spi_status;
+//
+//	/* Set SPI 0 0 mode*/
+//	spi_status = XSpi_SetOptions(InstancePtr, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
+//
+//	switch (CDCM_NR) {
+//		case 2:
+//			// CDCM 2 Configuration (External DAC and ADC clocks)
+//		    Write_to_CDCM( 0,reg_0_data, CDCM_NR);
+//		    Write_to_CDCM( 1,reg_1_data, CDCM_NR);
+//		    Write_to_CDCM( 2,reg_2_data, CDCM_NR);
+//		    Write_to_CDCM( 3,reg_3_data, CDCM_NR);
+//		    Write_to_CDCM( 4,reg_4_data, CDCM_NR);
+//		    Write_to_CDCM( 5,reg_5_data, CDCM_NR);
+//		    Write_to_CDCM( 6,reg_6_data, CDCM_NR);
+//		    Write_to_CDCM( 7,reg_7_data, CDCM_NR);
+//		    Write_to_CDCM( 8,reg_8_data, CDCM_NR);
+//		    Write_to_CDCM( 9,reg_9_data, CDCM_NR);
+//		    Write_to_CDCM(10,reg_10_data, CDCM_NR);
+//		    Write_to_CDCM(11,reg_11_data, CDCM_NR);
+//		    Write_to_CDCM(12,reg_12_data, CDCM_NR);
+//		    Write_to_CDCM(13,reg_13_data, CDCM_NR);
+//		    Write_to_CDCM(14,reg_14_data, CDCM_NR);
+//		    Write_to_CDCM(15,reg_15_data, CDCM_NR);
+//		    Write_to_CDCM(16,reg_16_data, CDCM_NR);
+//		    Write_to_CDCM(17,reg_17_data, CDCM_NR);
+//		    Write_to_CDCM(18,reg_18_data, CDCM_NR);
+//		    Write_to_CDCM(19,reg_19_data, CDCM_NR);
+//		    Write_to_CDCM(20,reg_20_data, CDCM_NR);
+//		    Write_to_CDCM(21,0x0000, CDCM_NR);
+//		    Write_to_CDCM(40,0x0000, CDCM_NR);
+//		    break;
+//		default :
+//			// TODO: Replace with correct register values
+//			// CDCM 1 Configuration
+//		    Write_to_CDCM( 0,0x0231, CDCM_NR);
+//		    Write_to_CDCM( 1,0x0000, CDCM_NR);
+//		    Write_to_CDCM( 2,0x0018, CDCM_NR);
+//		    Write_to_CDCM( 3,0x00F0, CDCM_NR);
+//		    Write_to_CDCM( 4,0x30AF, CDCM_NR);
+//		    Write_to_CDCM( 5,0x0001, CDCM_NR);
+//		    Write_to_CDCM( 6,0x0018, CDCM_NR);
+//		    Write_to_CDCM( 7,0x0003, CDCM_NR);
+//		    Write_to_CDCM( 8,0x0018, CDCM_NR);
+//		    Write_to_CDCM( 9,0x4003, CDCM_NR);
+//		    Write_to_CDCM(10,0x0000, CDCM_NR);
+//		    Write_to_CDCM(11,0x0000, CDCM_NR);
+//		    Write_to_CDCM(12,0x0001, CDCM_NR);
+//		    Write_to_CDCM(13,0x0000, CDCM_NR);
+//		    Write_to_CDCM(14,0x0000, CDCM_NR);
+//		    Write_to_CDCM(15,0x0001, CDCM_NR);
+//		    Write_to_CDCM(16,0x0000, CDCM_NR);
+//		    Write_to_CDCM(17,0x0000, CDCM_NR);
+//		    Write_to_CDCM(18,0x0001, CDCM_NR);
+//		    Write_to_CDCM(19,0x0000, CDCM_NR);
+//		    Write_to_CDCM(20,0x0000, CDCM_NR);
+//		    Write_to_CDCM(21,0x0000, CDCM_NR);
+//		    Write_to_CDCM(40,0x0000, CDCM_NR);
+//			break;
+//
+//	}
+//
+//}

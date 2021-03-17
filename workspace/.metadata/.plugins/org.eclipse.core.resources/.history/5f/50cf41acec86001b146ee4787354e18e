@@ -1,0 +1,4 @@
+
+
+void Write_to_CDCM(uint16_t Address, uint16_t Value, char CDCM_NR)
+void config_CDCM(XSpi *InstancePtr, char CDCM_NR)
