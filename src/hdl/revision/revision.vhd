@@ -21,5 +21,5 @@ package revisions is
 	constant COMPILE_HOUR_STAMP : INTEGER := 15;
 	
 	constant MAGIC_NUM : STD_LOGIC_VECTOR(31 downto 0) := X"D8A5F009";
-   constant BOARD_ID : STD_LOGIC_VECTOR(15 downto 0) := X"0010"; -- LimeSDR-QPCIe
+   constant BOARD_ID : STD_LOGIC_VECTOR(15 downto 0) := X"0019"; -- 5G Radio
 end revisions;
