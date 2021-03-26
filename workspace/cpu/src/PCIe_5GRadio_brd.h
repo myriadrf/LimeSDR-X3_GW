@@ -18,10 +18,10 @@
 #define   LM75_I2C_ADDR		0x48
 
 //GET INFO
-#define DEV_TYPE			LMS_DEV_QSPARK
+#define DEV_TYPE			LMS_5GRADIO
 #define HW_VER				0
 #define EXP_BOARD			EXP_BOARD_UNSUPPORTED
 
-#define MAX_ID_LMS7		1
+#define MAX_ID_LMS7		2
 
 #endif
