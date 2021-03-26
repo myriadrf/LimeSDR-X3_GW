@@ -22,6 +22,7 @@ use work.periphcfg_pkg.all;
 use work.tamercfg_pkg.all;
 use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
+use work.cdcmcfg_pkg.all;
 use work.FIFO_PACK.all;
 use work.io_buff_pkg.all;
 use work.axi_pkg.all;
@@ -470,6 +471,8 @@ signal inst0_from_gnsscfg        : t_FROM_GNSSCFG;
 signal inst0_to_gnsscfg          : t_TO_GNSSCFG;
 signal inst0_to_memcfg           : t_TO_MEMCFG;
 signal inst0_from_memcfg         : t_FROM_MEMCFG;
+signal inst0_from_cdcmcfg1       : t_FROM_CDCMCFG;
+signal inst0_from_cdcmcfg2       : t_FROM_CDCMCFG;
 signal inst0_pll_from_axim       : t_FROM_AXIM_32x32;
 signal inst0_pll_axi_sel         : std_logic_vector(3 downto 0);
 signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
@@ -982,6 +985,8 @@ begin
       avmm_m0_clk_clk            => inst0_avmm_m0_clk_clk,
       avmm_m0_reset_reset        => inst0_avmm_m0_reset_reset,
       -- Configuration registers
+      from_cdcmcfg1              => inst0_from_cdcmcfg1,
+      from_cdcmcfg2              => inst0_from_cdcmcfg2,
       from_fpgacfg_0             => inst0_from_fpgacfg_0,
       to_fpgacfg_0               => inst0_to_fpgacfg_0,
       from_fpgacfg_1             => inst0_from_fpgacfg_1,
@@ -2182,7 +2187,7 @@ begin
    gpio_i( 1) <= lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
    gpio_i( 2) <= lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
    gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;
-   gpio_i( 4) <= inst0_spi_1_SS_n(1);
+   gpio_i( 4) <= inst1_pll_1_c1;--inst0_spi_1_SS_n(1);
    gpio_i( 5) <= '0';
    gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
@@ -2252,12 +2257,11 @@ begin
    --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
    
+   CDCM1_RESET_N         <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--'1';
+   CDCM1_SYNCN           <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
    
-   CDCM1_RESET_N         <= '1';
-   CDCM1_SYNCN           <= '1';
-   
-   CDCM2_RESET_N         <= '1';
-   CDCM2_SYNCN           <= '1';   
+   CDCM2_RESET_N         <= not inst0_from_cdcmcfg2.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM2_SS;--'1';
+   CDCM2_SYNCN           <= not inst0_from_cdcmcfg2.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM2_SS;--'1';   
    
    PPS_OUT <= inst1_lms1_rxpll_c1;
 

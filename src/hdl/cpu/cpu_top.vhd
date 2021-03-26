@@ -23,6 +23,7 @@ use work.tamercfg_pkg.all;
 use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
 use work.axi_pkg.all;
+use work.cdcmcfg_pkg.all;
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -150,6 +151,8 @@ entity cpu_top is
       from_gnsscfg         : out    t_FROM_GNSSCFG;
       to_memcfg            : in     t_TO_MEMCFG;
       from_memcfg          : out    t_FROM_MEMCFG;
+      from_cdcmcfg1        : out    t_FROM_CDCMCFG;     
+      from_cdcmcfg2        : out    t_FROM_CDCMCFG;     
       -- testing
       pll_c0               : out    std_logic;
       pll_c1               : out    std_logic;
@@ -535,7 +538,9 @@ begin
       to_gnsscfg           => to_gnsscfg,
       from_gnsscfg         => from_gnsscfg,
       to_memcfg            => to_memcfg,
-      from_memcfg          => from_memcfg
+      from_memcfg          => from_memcfg,
+      from_cdcmcfg1        =>from_cdcmcfg1,
+      from_cdcmcfg2        =>from_cdcmcfg2              
    );
    
 -- ----------------------------------------------------------------------------

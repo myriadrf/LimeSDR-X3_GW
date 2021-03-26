@@ -80,7 +80,9 @@ entity cfg_top is
       to_gnsscfg           : in  t_TO_GNSSCFG;
       from_gnsscfg         : out t_FROM_GNSSCFG;
       to_memcfg            : in  t_TO_MEMCFG;
-      from_memcfg          : out t_FROM_MEMCFG
+      from_memcfg          : out t_FROM_MEMCFG;
+      from_cdcmcfg1        : out t_FROM_CDCMCFG;
+      from_cdcmcfg2        : out t_FROM_CDCMCFG      
    );
 end cfg_top;
 
@@ -399,9 +401,9 @@ begin
       lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
       mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
       oen         => open,
-      stateo      => open
+      stateo      => open,
 --      to_cdcmcfg   => to_cdcmcfg1,
---      from_cdcmcfg => from_cdcmcfg1
+      from_cdcmcfg => from_cdcmcfg1
    );
    
 -- ----------------------------------------------------------------------------
@@ -445,9 +447,9 @@ begin
       lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
       mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
       oen         => open,
-      stateo      => open
+      stateo      => open,
 --      to_cdcmcfg   => to_cdcmcfg1,
---      from_cdcmcfg => from_cdcmcfg1
+      from_cdcmcfg => from_cdcmcfg2
    );
    
 -- ----------------------------------------------------------------------------

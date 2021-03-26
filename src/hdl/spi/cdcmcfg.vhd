@@ -57,10 +57,10 @@ entity cdcmcfg is
       mreset      : in  std_logic;  -- Memory reset signal, resets configuration memory only (use only one reset)
       
       oen         : out std_logic;  --nc
-      stateo      : out std_logic_vector(5 downto 0)
+      stateo      : out std_logic_vector(5 downto 0);
 --      stateo      : out std_logic_vector(5 downto 0);
 --      to_cdcmcfg  : in  t_TO_CDCMCFG;
---      from_cdcmcfg: out t_FROM_CDCMCFG
+      from_cdcmcfg: out t_FROM_CDCMCFG
       
       
    );
@@ -197,9 +197,9 @@ begin
          mem(19)  <= CDCM_REG_19_DEFAULT;  -- 00 free, CDCM_REG_19
          mem(20)  <= CDCM_REG_20_DEFAULT;  -- 00 free, CDCM_REG_20
          mem(21)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED(15:3), CDCM_CONFIG_ERROR ,CDCM_CONFIG_DONE, CDCM_CONFIG_START
-         mem(22)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
-         mem(23)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
-         mem(24)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
+         mem(22)  <= "0000000000000000";  -- 00 free, CDCM_REG_21 (RO)
+         mem(23)  <= "0000000000000000";  -- 00 free, CDCM_REG_40 (RO)
+         mem(24)  <= "0000000000000000";  -- 00 free, CDCM_READ_DONE, CDCM_READ_START
          mem(25)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
          mem(26)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
          mem(27)  <= "0000000000000000";  -- 00 free, UNUSED/RESERVED
@@ -225,8 +225,8 @@ begin
    -- ---------------------------------------------------------------------------------------------
    -- Decoding logic
    -- ---------------------------------------------------------------------------------------------
-
---empty
-
+   
+      from_cdcmcfg.CDCM_RECONFIG_START <=  mem(21)(0);
+      from_cdcmcfg.CDCM_RECONFIG_DONE  <=  mem(21)(0);
 
 end cdcmcfg_arch;
