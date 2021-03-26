@@ -2,12 +2,17 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="data_pointer" key="selection"/>
+		<item value="MAX_ID_LMS7" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="in"/>
+			<item value="MAX_ID_LMS7"/>
+			<item value="Check_Periph_ID"/>
+			<item value="LMS"/>
+			<item value="G"/>
 			<item value="data_pointer"/>
 			<item value="write"/>
 			<item value="CDCM"/>

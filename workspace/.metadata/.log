@@ -14799,3 +14799,1304 @@ Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-22: Launc
 
 !ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 16:33:56.566
 !MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-22: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.517
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.519
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.519
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.520
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:10:52.520
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.521
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:10:52.521
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-34: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.814
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.816
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.816
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.817
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:11:02.818
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.818
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:11:02.818
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:27.399
+!MESSAGE XSCT Command: [disconnect tcfchan#13], Thread: Thread-813
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:27.401
+!MESSAGE XSCT command with result: [disconnect tcfchan#13], Result: [null, ]. Thread: Thread-813
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.402
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.407
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#14]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.407
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.416
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.416
+!MESSAGE XSCT Command: [version -server], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.416
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.416
+!MESSAGE XSCT Command: [version], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.417
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.417
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.422
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.422
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.435
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.435
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.439
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (closed)]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:28.439
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (closed)" && level==1}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:31.451
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (closed)" && level==1}], Result: [null, ]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:34.451
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (closed)" && level==1}], Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:37.471
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (closed)" && level==1}], Result: [null, ]. Thread: Worker-40: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.681
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.682
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#14]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.682
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.689
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.690
+!MESSAGE XSCT Command: [version -server], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.690
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.690
+!MESSAGE XSCT Command: [version], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.691
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.691
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.694
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.694
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.706
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.706
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.709
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.709
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.720
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.721
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.724
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.725
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.736
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.736
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.740
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.740
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.751
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.751
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.755
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.755
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.766
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.766
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.778
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.778
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.779
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.789
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.797
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.797
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.809
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.810
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.837
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:39.837
+!MESSAGE XSCT Command: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.372
+!MESSAGE XSCT command with result: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.385
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.400
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.400
+!MESSAGE XSCT Command: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.421
+!MESSAGE XSCT command with result: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Result: [null, lms7_trx_top_18]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.422
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.422
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.423
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.438
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.439
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.441
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:45.441
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.444
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.445
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.459
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.459
+!MESSAGE XSCT Command: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.647
+!MESSAGE XSCT command with result: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.657
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.673
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.674
+!MESSAGE XSCT Command: [con], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:18:48.695
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:47.562
+!MESSAGE XSCT Command: [disconnect tcfchan#14], Thread: Thread-862
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:47.564
+!MESSAGE XSCT command with result: [disconnect tcfchan#14], Result: [null, ]. Thread: Thread-862
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.564
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.569
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#15]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.569
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.579
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.579
+!MESSAGE XSCT Command: [version -server], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.580
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.580
+!MESSAGE XSCT Command: [version], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.580
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.580
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.585
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.586
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.597
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.597
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.603
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.603
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.617
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.617
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.620
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.620
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.631
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.631
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.637
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.638
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.651
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.651
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.654
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.654
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.665
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.665
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.676
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.677
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.677
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.687
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.694
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.694
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.707
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.707
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.736
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:48.737
+!MESSAGE XSCT Command: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:55.363
+!MESSAGE XSCT command with result: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Result: [{Format=fpga configuration failed. DONE PIN is not HIGH, Time=1616775595363, Code=1}, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.886
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.887
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#15]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.888
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.896
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.896
+!MESSAGE XSCT Command: [version -server], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.897
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.897
+!MESSAGE XSCT Command: [version], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.897
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.897
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.903
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.903
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.914
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.914
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.918
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.918
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.930
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.930
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.933
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.933
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.945
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.945
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.948
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.949
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.960
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.960
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.963
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.964
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.975
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.975
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.986
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.986
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.987
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:58.998
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.004
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.005
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.019
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.020
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.041
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:19:59.042
+!MESSAGE XSCT Command: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.577
+!MESSAGE XSCT command with result: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.587
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.604
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.604
+!MESSAGE XSCT Command: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.619
+!MESSAGE XSCT command with result: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Result: [null, lms7_trx_top_18]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.619
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.620
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.620
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.636
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.636
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.638
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:04.638
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.642
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.643
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.659
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.659
+!MESSAGE XSCT Command: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.846
+!MESSAGE XSCT command with result: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.858
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.874
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.875
+!MESSAGE XSCT Command: [con], Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:20:07.892
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-39: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.103
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.105
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.105
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.106
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:26:53.106
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.107
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:53.107
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:57.491
+!MESSAGE XSCT Command: [disconnect tcfchan#15], Thread: Thread-930
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:57.493
+!MESSAGE XSCT command with result: [disconnect tcfchan#15], Result: [null, ]. Thread: Thread-930
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.493
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.498
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#16]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.498
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.508
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.509
+!MESSAGE XSCT Command: [version -server], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.510
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.510
+!MESSAGE XSCT Command: [version], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.510
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.510
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.514
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:26:58.514
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:27:01.532
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:27:04.533
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:27:07.552
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-35: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.322
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.323
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#16]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.323
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.329
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.330
+!MESSAGE XSCT Command: [version -server], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.330
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.330
+!MESSAGE XSCT Command: [version], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.331
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.331
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.338
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:22.338
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:25.359
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:28.359
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:31.381
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.263
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.264
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#16]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.264
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.270
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.270
+!MESSAGE XSCT Command: [version -server], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.271
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.271
+!MESSAGE XSCT Command: [version], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.272
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.272
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.277
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:38.277
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:41.298
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:44.299
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:47.320
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA (error DR shift through all zeroes)" && level==1}], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.149
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.150
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#16]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.151
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.158
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.158
+!MESSAGE XSCT Command: [version -server], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.159
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.159
+!MESSAGE XSCT Command: [version], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.159
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.159
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.166
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.166
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.179
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.179
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.183
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.183
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.194
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.194
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.198
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.198
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.209
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.209
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.213
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.213
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.225
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.225
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.228
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.229
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.240
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.240
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.251
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.251
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.252
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.262
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.268
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.268
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.280
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.280
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.306
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:50.306
+!MESSAGE XSCT Command: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.842
+!MESSAGE XSCT command with result: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.855
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.875
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.875
+!MESSAGE XSCT Command: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.893
+!MESSAGE XSCT command with result: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Result: [null, lms7_trx_top_18]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.893
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.894
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.894
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.914
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.914
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.916
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:55.916
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:58.920
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:58.920
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:58.936
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:58.936
+!MESSAGE XSCT Command: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:59.126
+!MESSAGE XSCT command with result: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:59.136
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:59.150
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:59.150
+!MESSAGE XSCT Command: [con], Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:28:59.170
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-41: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:06.505
+!MESSAGE XSCT Command: [disconnect tcfchan#16], Thread: Thread-991
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:06.508
+!MESSAGE XSCT command with result: [disconnect tcfchan#16], Result: [null, ]. Thread: Thread-991
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.508
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.512
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#17]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.513
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.523
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.523
+!MESSAGE XSCT Command: [version -server], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.524
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.524
+!MESSAGE XSCT Command: [version], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.524
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.524
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.528
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.528
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.540
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.540
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.547
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:07.547
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:08.536
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6)]. Thread: Worker-37: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.780
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.781
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#17]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.782
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.789
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.789
+!MESSAGE XSCT Command: [version -server], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.790
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2020.1]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.790
+!MESSAGE XSCT Command: [version], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.790
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2020.1
+SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.790
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.796
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.796
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.810
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.811
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.814
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.814
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.832
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.832
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.835
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.836
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.847
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.847
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.850
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.851
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.862
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.862
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.866
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.866
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.877
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.877
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.889
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Digilent JTAG-HS3 210299ABBEBA" && level == 0}], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.889
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.889
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.899
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.906
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Digilent JTAG-HS3 210299ABBEBA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.906
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.920
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==1}], Result: [null,      2  xc7a200t (idcode 13636093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.921
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.943
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:12.943
+!MESSAGE XSCT Command: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.481
+!MESSAGE XSCT command with result: [fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.491
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.508
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.508
+!MESSAGE XSCT Command: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.529
+!MESSAGE XSCT command with result: [loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs], Result: [null, lms7_trx_top_18]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.529
+!MESSAGE XSCT Command: [configparams mdm-detect-bscan-mask 2], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.531
+!MESSAGE XSCT command with result: [configparams mdm-detect-bscan-mask 2], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.531
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.548
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.548
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.550
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:18.550
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.553
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.554
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.572
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.572
+!MESSAGE XSCT Command: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.759
+!MESSAGE XSCT command with result: [dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.769
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.786
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.786
+!MESSAGE XSCT Command: [con], Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:29:21.805
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-42: Launching Debugger_cpu-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.762
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.763
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.764
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.765
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:31:01.765
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.765
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:01.766
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.372
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.373
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.373
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.374
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:31:21.374
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.374
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:21.375
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-46: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.697
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.699
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ], Result: [null, ]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.700
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.701
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, {"procname": "microblaze_0",
+"osname": "standalone",
+"osver": "7.2",
+}]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2021-03-26 18:31:23.701
+!MESSAGE Generating MD5 hash for file: /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.702
+!MESSAGE XSCT Command: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:23.702
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/sw/lms7_trx_top/domain_microblaze_0/system.mss], Result: [null, ]. Thread: Worker-42: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:31.037
+!MESSAGE XSCT Command: [disconnect tcfchan#17], Thread: Thread-1062
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:31:31.040
+!MESSAGE XSCT command with result: [disconnect tcfchan#17], Result: [null, ]. Thread: Thread-1062
+!SESSION 2021-03-26 18:35:21.407 -----------------------------------------------
+eclipse.buildId=2020.1
+java.version=9.0.4
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.ui 4 4 2021-03-26 18:35:26.658
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.412
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.412
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-8
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.414
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.414
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-8
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.415
+!MESSAGE XSCT Command: [setws /home/servenikas/git/pcie_5gradio_gw/workspace], Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:30.415
+!MESSAGE XSCT command with result: [setws /home/servenikas/git/pcie_5gradio_gw/workspace], Result: [null, ]. Thread: Thread-15
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:31.210
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:31.597
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:31.597
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-1: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2021-03-26 18:35:31.598
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /home/servenikas/Xilinx/Vitis/2020.1/data]. Thread: Worker-1: Initializing s/w repositories
