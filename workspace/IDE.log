@@ -4449,3 +4449,746 @@ con
 15:10:32 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
 15:10:47 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
 15:10:51 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+17:47:45 ERROR : (XSDB Server)Terminated
+
+17:47:45 WARN  : Unexpected exception occurred.
+java.io.IOException: Command [C 46291 xsdb eval "disconnect tcfchan#18"] aborted
+	at org.eclipse.tcf.core.AbstractChannel$9.run(AbstractChannel.java:840)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:96)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Connection reset
+	at java.base/java.net.SocketInputStream.read(Unknown Source)
+	at java.base/java.net.SocketInputStream.read(Unknown Source)
+	at java.base/java.io.BufferedInputStream.read1(Unknown Source)
+	at java.base/java.io.BufferedInputStream.read(Unknown Source)
+	at java.base/java.io.FilterInputStream.read(Unknown Source)
+	at org.eclipse.tcf.core.ChannelTCP.get(ChannelTCP.java:186)
+	at org.eclipse.tcf.core.StreamChannel.read(StreamChannel.java:85)
+	at org.eclipse.tcf.core.AbstractChannel$1.run(AbstractChannel.java:329)
+11:58:06 INFO  : Launching XSCT server: xsct -n  -interactive /home/servenikas/git/pcie_5gradio_gw/workspace/temp_xsdb_launch_script.tcl
+11:58:08 INFO  : XSCT server has started successfully.
+11:58:08 INFO  : Successfully done setting XSCT server connection channel  
+11:58:08 INFO  : plnx-install-location is set to ''
+11:58:08 INFO  : Successfully done setting workspace for the tool. 
+11:58:09 INFO  : Platform repository initialization has completed.
+11:58:09 INFO  : Registering command handlers for Vitis TCF services
+11:58:09 INFO  : Successfully done query RDI_DATADIR 
+12:21:19 ERROR : (XSDB Server)Terminated
+
+22:30:24 INFO  : Launching XSCT server: xsct -n  -interactive /home/servenikas/git/pcie_5gradio_gw/workspace/temp_xsdb_launch_script.tcl
+22:30:26 INFO  : XSCT server has started successfully.
+22:30:26 INFO  : Successfully done setting XSCT server connection channel  
+22:30:26 INFO  : plnx-install-location is set to ''
+22:30:26 INFO  : Successfully done setting workspace for the tool. 
+22:30:26 INFO  : Platform repository initialization has completed.
+22:30:27 INFO  : Registering command handlers for Vitis TCF services
+22:30:27 INFO  : Successfully done query RDI_DATADIR 
+22:55:24 INFO  : Result from executing command 'getProjects': lms7_trx_top
+22:55:24 INFO  : Result from executing command 'getPlatforms': lms7_trx_top|/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/lms7_trx_top.xpfm
+22:55:27 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:55:44 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:56:43 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:57:17 INFO  : Launching XSCT server: xsct -n  -interactive /home/servenikas/git/pcie_5gradio_gw/workspace/temp_xsdb_launch_script.tcl
+22:57:19 INFO  : XSCT server has started successfully.
+22:57:19 INFO  : Successfully done setting XSCT server connection channel  
+22:57:19 INFO  : plnx-install-location is set to ''
+22:57:19 INFO  : Successfully done setting workspace for the tool. 
+22:57:20 INFO  : Platform repository initialization has completed.
+22:57:20 INFO  : Registering command handlers for Vitis TCF services
+22:57:20 INFO  : Successfully done query RDI_DATADIR 
+22:57:24 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:57:32 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:57:36 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:58:02 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+22:58:08 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:58:18 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+22:58:18 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+22:58:58 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:58:58 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+22:58:58 INFO  : 'jtag frequency' command is executed.
+22:58:58 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+22:59:04 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+22:59:04 INFO  : Context for processor 'microblaze_0' is selected.
+22:59:04 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+22:59:04 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+22:59:04 INFO  : Context for processor 'microblaze_0' is selected.
+22:59:04 INFO  : System reset is completed.
+22:59:07 INFO  : 'after 3000' command is executed.
+22:59:07 INFO  : Context for processor 'microblaze_0' is selected.
+22:59:07 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+22:59:07 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+22:59:07 INFO  : Context for processor 'microblaze_0' is selected.
+22:59:07 INFO  : 'con' command is executed.
+22:59:07 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+22:59:07 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+23:04:03 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+23:04:09 INFO  : Disconnected from the channel tcfchan#1.
+23:04:10 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:04:10 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+23:04:10 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+23:04:19 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:04:19 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+23:04:19 INFO  : 'jtag frequency' command is executed.
+23:04:19 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+23:04:24 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+23:04:24 INFO  : Context for processor 'microblaze_0' is selected.
+23:04:25 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+23:04:25 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+23:04:25 INFO  : Context for processor 'microblaze_0' is selected.
+23:04:25 INFO  : System reset is completed.
+23:04:28 INFO  : 'after 3000' command is executed.
+23:04:28 INFO  : Context for processor 'microblaze_0' is selected.
+23:04:28 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+23:04:28 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+23:04:28 INFO  : Context for processor 'microblaze_0' is selected.
+23:04:28 INFO  : 'con' command is executed.
+23:04:28 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+23:04:28 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+23:08:58 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+23:09:04 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+23:09:06 INFO  : Disconnected from the channel tcfchan#2.
+23:09:07 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:09:09 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+23:09:09 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+23:09:21 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:09:21 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+23:09:21 INFO  : 'jtag frequency' command is executed.
+23:09:21 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+23:09:26 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+23:09:26 INFO  : Context for processor 'microblaze_0' is selected.
+23:09:27 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+23:09:27 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+23:09:27 INFO  : Context for processor 'microblaze_0' is selected.
+23:09:27 INFO  : System reset is completed.
+23:09:30 INFO  : 'after 3000' command is executed.
+23:09:30 INFO  : Context for processor 'microblaze_0' is selected.
+23:09:30 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+23:09:30 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+23:09:30 INFO  : Context for processor 'microblaze_0' is selected.
+23:09:30 INFO  : 'con' command is executed.
+23:09:30 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+23:09:30 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+23:16:54 INFO  : Disconnected from the channel tcfchan#3.
+23:16:55 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:17:04 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+23:17:04 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+23:18:02 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+23:18:02 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+23:18:02 INFO  : 'jtag frequency' command is executed.
+23:18:02 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+23:18:08 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+23:18:08 INFO  : Context for processor 'microblaze_0' is selected.
+23:18:08 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+23:18:08 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+23:18:08 INFO  : Context for processor 'microblaze_0' is selected.
+23:18:08 INFO  : System reset is completed.
+23:18:11 INFO  : 'after 3000' command is executed.
+23:18:11 INFO  : Context for processor 'microblaze_0' is selected.
+23:18:11 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+23:18:11 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+23:18:12 INFO  : Context for processor 'microblaze_0' is selected.
+23:18:12 INFO  : 'con' command is executed.
+23:18:12 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+23:18:12 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+11:12:08 INFO  : Launching XSCT server: xsct -n  -interactive /home/servenikas/git/pcie_5gradio_gw/workspace/temp_xsdb_launch_script.tcl
+11:12:10 INFO  : XSCT server has started successfully.
+11:12:10 INFO  : Successfully done setting XSCT server connection channel  
+11:12:10 INFO  : plnx-install-location is set to ''
+11:12:10 INFO  : Successfully done setting workspace for the tool. 
+11:12:11 INFO  : Platform repository initialization has completed.
+11:12:12 INFO  : Registering command handlers for Vitis TCF services
+11:12:12 INFO  : Successfully done query RDI_DATADIR 
+11:13:31 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+11:13:34 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+11:13:35 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+11:13:35 INFO  : 'jtag frequency' command is executed.
+11:13:35 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+11:13:40 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+11:13:40 INFO  : Context for processor 'microblaze_0' is selected.
+11:13:41 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+11:13:41 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+11:13:41 INFO  : Context for processor 'microblaze_0' is selected.
+11:13:41 INFO  : System reset is completed.
+11:13:44 INFO  : 'after 3000' command is executed.
+11:13:44 INFO  : Context for processor 'microblaze_0' is selected.
+11:13:44 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+11:13:44 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+11:13:44 INFO  : Context for processor 'microblaze_0' is selected.
+11:13:44 INFO  : 'con' command is executed.
+11:13:44 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+11:13:44 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+11:19:03 INFO  : Disconnected from the channel tcfchan#1.
+11:19:04 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+11:19:06 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+11:19:06 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+11:19:11 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+11:19:11 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+11:19:11 INFO  : 'jtag frequency' command is executed.
+11:19:11 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+11:19:17 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+11:19:17 INFO  : Context for processor 'microblaze_0' is selected.
+11:19:17 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+11:19:17 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+11:19:17 INFO  : Context for processor 'microblaze_0' is selected.
+11:19:17 INFO  : System reset is completed.
+11:19:20 INFO  : 'after 3000' command is executed.
+11:19:20 INFO  : Context for processor 'microblaze_0' is selected.
+11:19:20 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+11:19:20 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+11:19:20 INFO  : Context for processor 'microblaze_0' is selected.
+11:19:20 INFO  : 'con' command is executed.
+11:19:20 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+11:19:20 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+12:19:35 INFO  : Disconnected from the channel tcfchan#2.
+12:19:36 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:19:37 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+12:19:37 INFO  : 'jtag frequency' command is executed.
+12:19:37 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+12:19:42 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+12:19:42 INFO  : Context for processor 'microblaze_0' is selected.
+12:19:42 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+12:19:42 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+12:19:42 INFO  : Context for processor 'microblaze_0' is selected.
+12:19:42 INFO  : System reset is completed.
+12:19:45 INFO  : 'after 3000' command is executed.
+12:19:45 INFO  : Context for processor 'microblaze_0' is selected.
+12:19:46 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+12:19:46 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+12:19:46 INFO  : Context for processor 'microblaze_0' is selected.
+12:19:46 INFO  : 'con' command is executed.
+12:19:46 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+12:19:46 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+12:27:53 INFO  : Disconnected from the channel tcfchan#3.
+12:27:54 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:28:03 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+12:28:03 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+12:28:08 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:28:08 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+12:28:08 INFO  : 'jtag frequency' command is executed.
+12:28:08 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+12:28:13 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+12:28:13 INFO  : Context for processor 'microblaze_0' is selected.
+12:28:14 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+12:28:14 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+12:28:14 INFO  : Context for processor 'microblaze_0' is selected.
+12:28:14 INFO  : System reset is completed.
+12:28:17 INFO  : 'after 3000' command is executed.
+12:28:17 INFO  : Context for processor 'microblaze_0' is selected.
+12:28:17 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+12:28:17 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+12:28:17 INFO  : Context for processor 'microblaze_0' is selected.
+12:28:17 INFO  : 'con' command is executed.
+12:28:17 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+12:28:17 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+12:38:03 INFO  : Disconnected from the channel tcfchan#4.
+12:38:04 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:38:13 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+12:38:13 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+12:39:46 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:39:46 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+12:39:46 INFO  : 'jtag frequency' command is executed.
+12:39:46 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+12:39:52 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+12:39:52 INFO  : Context for processor 'microblaze_0' is selected.
+12:39:52 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+12:39:52 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+12:39:52 INFO  : Context for processor 'microblaze_0' is selected.
+12:39:52 INFO  : System reset is completed.
+12:39:55 INFO  : 'after 3000' command is executed.
+12:39:55 INFO  : Context for processor 'microblaze_0' is selected.
+12:39:55 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+12:39:55 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+12:39:55 INFO  : Context for processor 'microblaze_0' is selected.
+12:39:55 INFO  : 'con' command is executed.
+12:39:55 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+12:39:55 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+12:42:15 INFO  : Disconnected from the channel tcfchan#5.
+12:42:16 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:42:25 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+12:42:25 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+12:42:33 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:42:33 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+12:42:33 INFO  : 'jtag frequency' command is executed.
+12:42:33 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+12:42:39 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+12:42:39 INFO  : Context for processor 'microblaze_0' is selected.
+12:42:39 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+12:42:39 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+12:42:39 INFO  : Context for processor 'microblaze_0' is selected.
+12:42:39 INFO  : System reset is completed.
+12:42:42 INFO  : 'after 3000' command is executed.
+12:42:42 INFO  : Context for processor 'microblaze_0' is selected.
+12:42:42 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+12:42:42 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+12:42:42 INFO  : Context for processor 'microblaze_0' is selected.
+12:42:42 INFO  : 'con' command is executed.
+12:42:42 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+12:42:42 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+12:44:39 INFO  : Disconnected from the channel tcfchan#6.
+12:44:40 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:44:50 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+12:44:50 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+12:45:20 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+12:45:20 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+12:45:20 INFO  : 'jtag frequency' command is executed.
+12:45:20 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+12:45:25 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+12:45:25 INFO  : Context for processor 'microblaze_0' is selected.
+12:45:26 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+12:45:26 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+12:45:26 INFO  : Context for processor 'microblaze_0' is selected.
+12:45:26 INFO  : System reset is completed.
+12:45:29 INFO  : 'after 3000' command is executed.
+12:45:29 INFO  : Context for processor 'microblaze_0' is selected.
+12:45:29 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+12:45:29 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+12:45:29 INFO  : Context for processor 'microblaze_0' is selected.
+12:45:29 INFO  : 'con' command is executed.
+12:45:29 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+12:45:29 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+14:02:56 INFO  : Disconnected from the channel tcfchan#7.
+14:02:57 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+14:02:58 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+14:02:58 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+14:03:00 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+14:03:01 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+14:03:01 INFO  : 'jtag frequency' command is executed.
+14:03:01 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+14:03:06 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+14:03:06 INFO  : Context for processor 'microblaze_0' is selected.
+14:03:06 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+14:03:06 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+14:03:06 INFO  : Context for processor 'microblaze_0' is selected.
+14:03:06 INFO  : System reset is completed.
+14:03:09 INFO  : 'after 3000' command is executed.
+14:03:09 INFO  : Context for processor 'microblaze_0' is selected.
+14:03:10 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+14:03:10 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+14:03:10 INFO  : Context for processor 'microblaze_0' is selected.
+14:03:10 INFO  : 'con' command is executed.
+14:03:10 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+14:03:10 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+15:55:09 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+15:55:16 INFO  : Hardware specification for platform project 'lms7_trx_top' is updated.
+15:55:23 INFO  : Result from executing command 'getProjects': lms7_trx_top
+15:55:23 INFO  : Result from executing command 'getPlatforms': lms7_trx_top|/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/lms7_trx_top.xpfm
+15:55:26 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+15:55:27 INFO  : The hardware specfication used by project 'cpu' is out of sync with the platform. Resource files extracted from the hardware specfiication will be updated.
+15:55:27 INFO  : The file '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.mmi' stored in project is removed.
+15:55:27 INFO  : The file '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit' stored in project is removed.
+15:55:27 INFO  : The updated bitstream files are copied from platform to folder '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream' in project 'cpu'.
+15:55:32 INFO  : Disconnected from the channel tcfchan#8.
+15:55:33 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:55:42 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+15:55:42 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+15:57:28 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:57:37 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+15:57:37 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+15:57:40 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:57:49 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+----------------End of Script----------------
+
+15:57:49 ERROR : Could not find FPGA device on the board for connection 'Local'.
+
+
+Troubleshooting hints:
+1. Check whether board is connected to system properly.
+2. In case of zynq board, check whether Digilent/Xilinx cable switch settings are correct.
+3. If you are using Xilinx Platform Cable USB, ensure that status LED is green.
+15:58:02 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:58:02 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+15:58:02 INFO  : 'jtag frequency' command is executed.
+15:58:02 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+15:58:07 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+15:58:07 INFO  : Context for processor 'microblaze_0' is selected.
+15:58:07 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+15:58:07 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+15:58:07 INFO  : Context for processor 'microblaze_0' is selected.
+15:58:07 INFO  : System reset is completed.
+15:58:10 INFO  : 'after 3000' command is executed.
+15:58:10 INFO  : Context for processor 'microblaze_0' is selected.
+15:58:11 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+15:58:11 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+15:58:11 INFO  : Context for processor 'microblaze_0' is selected.
+15:58:11 INFO  : 'con' command is executed.
+15:58:11 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+15:58:11 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'
+16:33:05 INFO  : Hardware specification for platform project 'lms7_trx_top' is updated.
+16:33:14 INFO  : Result from executing command 'getProjects': lms7_trx_top
+16:33:14 INFO  : Result from executing command 'getPlatforms': lms7_trx_top|/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/lms7_trx_top.xpfm
+16:33:17 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+16:33:18 INFO  : The hardware specfication used by project 'cpu' is out of sync with the platform. Resource files extracted from the hardware specfiication will be updated.
+16:33:18 INFO  : The file '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.mmi' stored in project is removed.
+16:33:18 INFO  : The file '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit' stored in project is removed.
+16:33:18 INFO  : The updated bitstream files are copied from platform to folder '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream' in project 'cpu'.
+16:33:27 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+16:33:33 INFO  : Hardware specification for platform project 'lms7_trx_top' is updated.
+16:33:38 INFO  : Result from executing command 'getProjects': lms7_trx_top
+16:33:38 INFO  : Result from executing command 'getPlatforms': lms7_trx_top|/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/lms7_trx_top.xpfm
+16:33:41 INFO  : Checking for BSP changes to sync application flags for project 'cpu'...
+16:33:46 INFO  : Disconnected from the channel tcfchan#10.
+16:33:47 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+16:33:47 INFO  : Jtag cable 'Digilent JTAG-HS3 210299ABBEBA' is selected.
+16:33:47 INFO  : 'jtag frequency' command is executed.
+16:33:47 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}' command is executed.
+16:33:53 INFO  : FPGA configured successfully with bitstream "/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit"
+16:33:53 INFO  : Context for processor 'microblaze_0' is selected.
+16:33:53 INFO  : Hardware design and registers information is loaded from '/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa'.
+16:33:53 INFO  : 'configparams mdm-detect-bscan-mask 2' command is executed.
+16:33:53 INFO  : Context for processor 'microblaze_0' is selected.
+16:33:53 INFO  : System reset is completed.
+16:33:56 INFO  : 'after 3000' command is executed.
+16:33:56 INFO  : Context for processor 'microblaze_0' is selected.
+16:33:56 INFO  : The application '/home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf' is downloaded to processor 'microblaze_0'.
+16:33:56 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS3 210299ABBEBA" && level==0 && jtag_device_ctx=="jsn-JTAG-HS3-210299ABBEBA-13636093-0"}
+fpga -file /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/_ide/bitstream/lms7_trx_top.bit
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+loadhw -hw /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/export/lms7_trx_top/hw/lms7_trx_top.xsa -regs
+configparams mdm-detect-bscan-mask 2
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+rst -system
+after 3000
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+dow /home/servenikas/git/pcie_5gradio_gw/workspace/cpu/Debug/cpu.elf
+----------------End of Script----------------
+
+16:33:56 INFO  : Context for processor 'microblaze_0' is selected.
+16:33:56 INFO  : 'con' command is executed.
+16:33:56 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
+con
+----------------End of Script----------------
+
+16:33:56 INFO  : Launch script is exported to file '/home/servenikas/git/pcie_5gradio_gw/workspace/.sdk/launch_scripts/single_application_debug/debugger_cpu-default.tcl'

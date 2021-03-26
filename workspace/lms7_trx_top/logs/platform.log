@@ -14096,3 +14096,1379 @@ TRACE::2021-03-17.12:39:21::SCWMssOS::Checking the sw design at  /home/servenika
 TRACE::2021-03-17.12:39:21::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
 
 TRACE::2021-03-17.12:39:21::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:17::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:17::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:17::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened new HwDB with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWReader::Active system found as  lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWReader::Handling sysconfig lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWDomain::checking for install qemu data   : 
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::DEBUG:  swdes dump  
+TRACE::2021-03-25.22:55:19::SCWMssOS::No sw design opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::mss exists loading the mss file  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::Opened the sw design from mss  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::Adding the swdes entry /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-25.22:55:19::SCWMssOS::updating the scw layer about changes
+TRACE::2021-03-25.22:55:19::SCWMssOS::Opened the sw design.  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-25.22:55:19::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-25.22:55:19::SCWMssOS::Commit changes completed.
+TRACE::2021-03-25.22:55:19::SCWReader::Adding prebuilt librarypaths as   
+TRACE::2021-03-25.22:55:19::SCWReader::Adding prebuilt incpaths  as   
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWReader::No isolation master present  
+LOG::2021-03-25.22:55:19::SCWPlatform::Started generating the artifacts platform lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Sanity checking of platform is completed
+LOG::2021-03-25.22:55:19::SCWPlatform::Started generating the artifacts for system configuration lms7_trx_top
+LOG::2021-03-25.22:55:19::SCWSystem::Checking the domain domain_microblaze_0
+LOG::2021-03-25.22:55:19::SCWSystem::Not a boot domain 
+LOG::2021-03-25.22:55:19::SCWSystem::Started Processing the domain domain_microblaze_0
+TRACE::2021-03-25.22:55:19::SCWDomain::Generating domain artifcats
+TRACE::2021-03-25.22:55:19::SCWMssOS::Generating standalone artifcats
+TRACE::2021-03-25.22:55:19::SCWMssOS:: Copying the user libraries. 
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:19::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:19::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::Completed writing the mss file at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp
+TRACE::2021-03-25.22:55:19::SCWMssOS::Mss edits present, copying mssfile into export location /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:19::SCWMssOS::bsp generated is upto date with the mss file. Skipping bsp generation.
+TRACE::2021-03-25.22:55:19::SCWMssOS::BSP is already built. skipping the bsp build ... 
+TRACE::2021-03-25.22:55:19::SCWDomain::Building the domain as part of full build :  domain_microblaze_0
+TRACE::2021-03-25.22:55:19::SCWMssOS::doing bsp build ... 
+TRACE::2021-03-25.22:55:19::SCWMssOS::System Command Ran  cd  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp ; bash -c "make  " 
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/gpio_v4_6/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/gpio_v4_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2021-03-25.22:55:19::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
+TRACE::2021-03-25.22:55:19::SCWMssOS::all -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/standalone_v7_2/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/standalone_v7_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar
+TRACE::2021-03-25.22:55:19::SCWMssOS::" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-secti
+TRACE::2021-03-25.22:55:19::SCWMssOS::ons -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/clk_wiz_v1_3/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/clk_wiz_v1_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
+TRACE::2021-03-25.22:55:19::SCWMssOS::COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
+TRACE::2021-03-25.22:55:19::SCWMssOS:: -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/cpu_v2_11/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/cpu_v2_11/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2021-03-25.22:55:19::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
+TRACE::2021-03-25.22:55:19::SCWMssOS::all -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/intc_v3_11/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/intc_v3_11/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
+TRACE::2021-03-25.22:55:19::SCWMssOS::MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
+TRACE::2021-03-25.22:55:19::SCWMssOS::Wall -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/uartlite_v3_4/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/uartlite_v3_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" 
+TRACE::2021-03-25.22:55:19::SCWMssOS::"COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-section
+TRACE::2021-03-25.22:55:19::SCWMssOS::s -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/bram_v4_4/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/bram_v4_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2021-03-25.22:55:19::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
+TRACE::2021-03-25.22:55:19::SCWMssOS::all -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/iic_v3_6/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/iic_v3_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMP
+TRACE::2021-03-25.22:55:19::SCWMssOS::ILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wa
+TRACE::2021-03-25.22:55:19::SCWMssOS::ll -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/AXI_to_native_FIFO_v1_0/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/AXI_to_native_FIFO_v1_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIV
+TRACE::2021-03-25.22:55:19::SCWMssOS::ER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fda
+TRACE::2021-03-25.22:55:19::SCWMssOS::ta-sections -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make include in microblaze_0/libsrc/spi_v4_6/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/spi_v4_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMP
+TRACE::2021-03-25.22:55:19::SCWMssOS::ILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wa
+TRACE::2021-03-25.22:55:19::SCWMssOS::ll -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Running Make libs in microblaze_0/libsrc/gpio_v4_6/src
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::make -C microblaze_0/libsrc/gpio_v4_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+TRACE::2021-03-25.22:55:19::SCWMssOS::ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
+TRACE::2021-03-25.22:55:19::SCWMssOS:: -Wextra"
+
+TRACE::2021-03-25.22:55:19::SCWMssOS::Compiling gpio
+
+TRACE::2021-03-25.22:55:20::SCWMssOS::Running Make libs in microblaze_0/libsrc/standalone_v7_2/src
+
+TRACE::2021-03-25.22:55:20::SCWMssOS::make -C microblaze_0/libsrc/standalone_v7_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "
+TRACE::2021-03-25.22:55:20::SCWMssOS::COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections
+TRACE::2021-03-25.22:55:20::SCWMssOS:: -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:20::SCWMssOS::Compiling standalone
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Running Make libs in microblaze_0/libsrc/clk_wiz_v1_3/src
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::make -C microblaze_0/libsrc/clk_wiz_v1_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COM
+TRACE::2021-03-25.22:55:21::SCWMssOS::PILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -W
+TRACE::2021-03-25.22:55:21::SCWMssOS::all -Wextra"
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Compiling Clkocking Wizard
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Running Make libs in microblaze_0/libsrc/cpu_v2_11/src
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::make -C microblaze_0/libsrc/cpu_v2_11/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+TRACE::2021-03-25.22:55:21::SCWMssOS::ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
+TRACE::2021-03-25.22:55:21::SCWMssOS:: -Wextra"
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Compiling cpu
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Running Make libs in microblaze_0/libsrc/intc_v3_11/src
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::make -C microblaze_0/libsrc/intc_v3_11/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPI
+TRACE::2021-03-25.22:55:21::SCWMssOS::LER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wal
+TRACE::2021-03-25.22:55:21::SCWMssOS::l -Wextra"
+
+TRACE::2021-03-25.22:55:21::SCWMssOS::Compiling intc
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Running Make libs in microblaze_0/libsrc/uartlite_v3_4/src
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::make -C microblaze_0/libsrc/uartlite_v3_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "CO
+TRACE::2021-03-25.22:55:22::SCWMssOS::MPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -
+TRACE::2021-03-25.22:55:22::SCWMssOS::Wall -Wextra"
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Compiling uartlite
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Running Make libs in microblaze_0/libsrc/bram_v4_4/src
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::make -C microblaze_0/libsrc/bram_v4_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPIL
+TRACE::2021-03-25.22:55:22::SCWMssOS::ER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall
+TRACE::2021-03-25.22:55:22::SCWMssOS:: -Wextra"
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Compiling bram
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Running Make libs in microblaze_0/libsrc/iic_v3_6/src
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::make -C microblaze_0/libsrc/iic_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPILE
+TRACE::2021-03-25.22:55:22::SCWMssOS::R_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall 
+TRACE::2021-03-25.22:55:22::SCWMssOS::-Wextra"
+
+TRACE::2021-03-25.22:55:22::SCWMssOS::Compiling iic
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::Running Make libs in microblaze_0/libsrc/AXI_to_native_FIFO_v1_0/src
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::make -C microblaze_0/libsrc/AXI_to_native_FIFO_v1_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=
+TRACE::2021-03-25.22:55:23::SCWMssOS::mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-
+TRACE::2021-03-25.22:55:23::SCWMssOS::sections -Wall -Wextra"
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::Compiling AXI_to_native_FIFO...
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::Running Make libs in microblaze_0/libsrc/spi_v4_6/src
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::make -C microblaze_0/libsrc/spi_v4_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ASSEMBLER=mb-as" "ARCHIVER=mb-ar" "COMPILE
+TRACE::2021-03-25.22:55:23::SCWMssOS::R_FLAGS=  -O2 -c -mcpu=v11.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-g -ffunction-sections -fdata-sections -Wall 
+TRACE::2021-03-25.22:55:23::SCWMssOS::-Wextra"
+
+TRACE::2021-03-25.22:55:23::SCWMssOS::Compiling spi
+
+TRACE::2021-03-25.22:55:24::SCWMssOS::Finished building libraries
+
+TRACE::2021-03-25.22:55:24::SCWMssOS::Copying to export directory.
+TRACE::2021-03-25.22:55:24::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2021-03-25.22:55:24::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2021-03-25.22:55:24::SCWSystem::Completed Processing the domain domain_microblaze_0
+LOG::2021-03-25.22:55:24::SCWSystem::Completed Processing the sysconfig lms7_trx_top
+LOG::2021-03-25.22:55:24::SCWPlatform::Completed generating the artifacts for system configuration lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWPlatform::Started preparing the platform 
+TRACE::2021-03-25.22:55:24::SCWSystem::Writing the bif file for system config lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWSystem::dir created 
+TRACE::2021-03-25.22:55:24::SCWSystem::Writing the bif 
+TRACE::2021-03-25.22:55:24::SCWPlatform::Started writing the spfm file 
+TRACE::2021-03-25.22:55:24::SCWPlatform::Started writing the xpfm file 
+TRACE::2021-03-25.22:55:24::SCWPlatform::Completed generating the platform
+TRACE::2021-03-25.22:55:24::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:24::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-25.22:55:24::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-25.22:55:24::SCWMssOS::Commit changes completed.
+TRACE::2021-03-25.22:55:24::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:24::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:24::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:24::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:24::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-25.22:55:24::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:24::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2021-03-25.22:55:24::SCWPlatform::updated the xpfm file.
+TRACE::2021-03-25.22:55:24::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-25.22:55:24::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-25.22:55:24::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-25.22:55:24::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWPlatform::Opened existing hwdb lms7_trx_top
+TRACE::2021-03-25.22:55:24::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-25.22:55:24::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-25.22:55:24::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-25.22:55:24::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:12::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:12::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:12::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened new HwDB with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWReader::Active system found as  lms7_trx_top
+TRACE::2021-03-26.15:55:14::SCWReader::Handling sysconfig lms7_trx_top
+TRACE::2021-03-26.15:55:14::SCWDomain::checking for install qemu data   : 
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:14::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::DEBUG:  swdes dump  
+TRACE::2021-03-26.15:55:14::SCWMssOS::No sw design opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::mss exists loading the mss file  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::Opened the sw design from mss  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::Adding the swdes entry /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.15:55:14::SCWMssOS::updating the scw layer about changes
+TRACE::2021-03-26.15:55:14::SCWMssOS::Opened the sw design.  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.15:55:14::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.15:55:14::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.15:55:14::SCWReader::Adding prebuilt librarypaths as   
+TRACE::2021-03-26.15:55:14::SCWReader::Adding prebuilt incpaths  as   
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:14::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:14::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:14::SCWReader::No isolation master present  
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform location is /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWMssOS::Doing hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Opened existing hwdb lms7_trx_top_7
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:16::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::update - Opened existing hwdb lms7_trx_top_8
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.15:55:16::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.15:55:16::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.15:55:16::SCWMssOS::Completed hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.15:55:16::SCWMssOS::Removing the swdes entry for  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.15:55:16::SCWPlatform::Opened new HwDB with name lms7_trx_top_9
+TRACE::2021-03-26.15:55:16::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWMssOS::Adding the swdes entry, mss present, able to open swdb /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.15:55:16::SCWMssOS::Writing the mss file completed /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:16::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:16::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_9
+TRACE::2021-03-26.15:55:16::SCWPlatform::Opened existing hwdb lms7_trx_top_9
+TRACE::2021-03-26.15:55:16::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:16::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:16::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:16::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+LOG::2021-03-26.15:55:23::SCWPlatform::Started generating the artifacts platform lms7_trx_top
+TRACE::2021-03-26.15:55:23::SCWPlatform::Sanity checking of platform is completed
+LOG::2021-03-26.15:55:23::SCWPlatform::Started generating the artifacts for system configuration lms7_trx_top
+LOG::2021-03-26.15:55:23::SCWSystem::Checking the domain domain_microblaze_0
+LOG::2021-03-26.15:55:23::SCWSystem::Not a boot domain 
+LOG::2021-03-26.15:55:23::SCWSystem::Started Processing the domain domain_microblaze_0
+TRACE::2021-03-26.15:55:23::SCWDomain::Generating domain artifcats
+TRACE::2021-03-26.15:55:23::SCWMssOS::Generating standalone artifcats
+TRACE::2021-03-26.15:55:23::SCWMssOS:: Copying the user libraries. 
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Opened existing hwdb lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:23::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:23::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::Completed writing the mss file at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp
+TRACE::2021-03-26.15:55:23::SCWMssOS::Mss edits present, copying mssfile into export location /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::bsp generated is upto date with the mss file. Skipping bsp generation.
+TRACE::2021-03-26.15:55:23::SCWMssOS::BSP is already built. skipping the bsp build ... 
+TRACE::2021-03-26.15:55:23::SCWDomain::Skipping the build for domain :  domain_microblaze_0
+TRACE::2021-03-26.15:55:23::SCWMssOS::skipping the bsp build ... 
+TRACE::2021-03-26.15:55:23::SCWMssOS::Copying to export directory.
+TRACE::2021-03-26.15:55:23::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2021-03-26.15:55:23::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2021-03-26.15:55:23::SCWSystem::Completed Processing the domain domain_microblaze_0
+LOG::2021-03-26.15:55:23::SCWSystem::Completed Processing the sysconfig lms7_trx_top
+LOG::2021-03-26.15:55:23::SCWPlatform::Completed generating the artifacts for system configuration lms7_trx_top
+TRACE::2021-03-26.15:55:23::SCWPlatform::Started preparing the platform 
+TRACE::2021-03-26.15:55:23::SCWSystem::Writing the bif file for system config lms7_trx_top
+TRACE::2021-03-26.15:55:23::SCWSystem::dir created 
+TRACE::2021-03-26.15:55:23::SCWSystem::Writing the bif 
+TRACE::2021-03-26.15:55:23::SCWPlatform::Started writing the spfm file 
+TRACE::2021-03-26.15:55:23::SCWPlatform::Started writing the xpfm file 
+TRACE::2021-03-26.15:55:23::SCWPlatform::Completed generating the platform
+TRACE::2021-03-26.15:55:23::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.15:55:23::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.15:55:23::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Opened existing hwdb lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:23::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:23::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2021-03-26.15:55:23::SCWPlatform::updated the xpfm file.
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.15:55:23::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.15:55:23::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Opened existing hwdb lms7_trx_top_9
+TRACE::2021-03-26.15:55:23::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.15:55:23::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.15:55:23::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.15:55:23::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWPlatform::Clearing the existing platform
+TRACE::2021-03-26.16:33:02::SCWSystem::Clearing the existing sysconfig
+TRACE::2021-03-26.16:33:02::SCWMssOS::Removing the swdes entry for  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWSystem::Clearing the domains completed.
+TRACE::2021-03-26.16:33:02::SCWPlatform::Clearing the opened hw db.
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform location is /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Removing the HwDB with name /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened new HwDB with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWReader::Active system found as  lms7_trx_top
+TRACE::2021-03-26.16:33:02::SCWReader::Handling sysconfig lms7_trx_top
+TRACE::2021-03-26.16:33:02::SCWDomain::checking for install qemu data   : 
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:02::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::DEBUG:  swdes dump  
+TRACE::2021-03-26.16:33:02::SCWMssOS::No sw design opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::mss exists loading the mss file  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::Opened the sw design from mss  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::Adding the swdes entry /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.16:33:02::SCWMssOS::updating the scw layer about changes
+TRACE::2021-03-26.16:33:02::SCWMssOS::Opened the sw design.  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:02::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:02::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:02::SCWReader::Adding prebuilt librarypaths as   
+TRACE::2021-03-26.16:33:02::SCWReader::Adding prebuilt incpaths  as   
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:02::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:02::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:02::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:02::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:02::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:02::SCWReader::No isolation master present  
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform location is /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWMssOS::Doing hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Opened existing hwdb lms7_trx_top_11
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:05::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::update - Opened existing hwdb lms7_trx_top_12
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:05::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:05::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:05::SCWMssOS::Completed hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.16:33:05::SCWMssOS::Removing the swdes entry for  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.16:33:05::SCWPlatform::Opened new HwDB with name lms7_trx_top_13
+TRACE::2021-03-26.16:33:05::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWMssOS::Adding the swdes entry, mss present, able to open swdb /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.16:33:05::SCWMssOS::Writing the mss file completed /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:05::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:05::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_13
+TRACE::2021-03-26.16:33:05::SCWPlatform::Opened existing hwdb lms7_trx_top_13
+TRACE::2021-03-26.16:33:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:05::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:05::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:05::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+LOG::2021-03-26.16:33:13::SCWPlatform::Started generating the artifacts platform lms7_trx_top
+TRACE::2021-03-26.16:33:13::SCWPlatform::Sanity checking of platform is completed
+LOG::2021-03-26.16:33:13::SCWPlatform::Started generating the artifacts for system configuration lms7_trx_top
+LOG::2021-03-26.16:33:13::SCWSystem::Checking the domain domain_microblaze_0
+LOG::2021-03-26.16:33:13::SCWSystem::Not a boot domain 
+LOG::2021-03-26.16:33:13::SCWSystem::Started Processing the domain domain_microblaze_0
+TRACE::2021-03-26.16:33:13::SCWDomain::Generating domain artifcats
+TRACE::2021-03-26.16:33:13::SCWMssOS::Generating standalone artifcats
+TRACE::2021-03-26.16:33:13::SCWMssOS:: Copying the user libraries. 
+TRACE::2021-03-26.16:33:13::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:13::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:13::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_13
+TRACE::2021-03-26.16:33:13::SCWPlatform::Opened existing hwdb lms7_trx_top_13
+TRACE::2021-03-26.16:33:13::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:13::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:13::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWMssOS::Completed writing the mss file at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp
+TRACE::2021-03-26.16:33:13::SCWMssOS::Mss edits present, copying mssfile into export location /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWMssOS::bsp generated is upto date with the mss file. Skipping bsp generation.
+TRACE::2021-03-26.16:33:13::SCWMssOS::BSP is already built. skipping the bsp build ... 
+TRACE::2021-03-26.16:33:13::SCWDomain::Skipping the build for domain :  domain_microblaze_0
+TRACE::2021-03-26.16:33:13::SCWMssOS::skipping the bsp build ... 
+TRACE::2021-03-26.16:33:13::SCWMssOS::Copying to export directory.
+TRACE::2021-03-26.16:33:13::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2021-03-26.16:33:13::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2021-03-26.16:33:13::SCWSystem::Completed Processing the domain domain_microblaze_0
+LOG::2021-03-26.16:33:13::SCWSystem::Completed Processing the sysconfig lms7_trx_top
+LOG::2021-03-26.16:33:13::SCWPlatform::Completed generating the artifacts for system configuration lms7_trx_top
+TRACE::2021-03-26.16:33:13::SCWPlatform::Started preparing the platform 
+TRACE::2021-03-26.16:33:13::SCWSystem::Writing the bif file for system config lms7_trx_top
+TRACE::2021-03-26.16:33:13::SCWSystem::dir created 
+TRACE::2021-03-26.16:33:13::SCWSystem::Writing the bif 
+TRACE::2021-03-26.16:33:13::SCWPlatform::Started writing the spfm file 
+TRACE::2021-03-26.16:33:13::SCWPlatform::Started writing the xpfm file 
+TRACE::2021-03-26.16:33:13::SCWPlatform::Completed generating the platform
+TRACE::2021-03-26.16:33:13::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:13::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:13::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:13::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:13::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:13::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:13::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_13
+TRACE::2021-03-26.16:33:13::SCWPlatform::Opened existing hwdb lms7_trx_top_13
+TRACE::2021-03-26.16:33:13::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:13::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:13::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:13::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2021-03-26.16:33:13::SCWPlatform::updated the xpfm file.
+TRACE::2021-03-26.16:33:14::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:14::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:14::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:14::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:14::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:14::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:14::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_13
+TRACE::2021-03-26.16:33:14::SCWPlatform::Opened existing hwdb lms7_trx_top_13
+TRACE::2021-03-26.16:33:14::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:14::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:14::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:14::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWPlatform::Clearing the existing platform
+TRACE::2021-03-26.16:33:31::SCWSystem::Clearing the existing sysconfig
+TRACE::2021-03-26.16:33:31::SCWMssOS::Removing the swdes entry for  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWSystem::Clearing the domains completed.
+TRACE::2021-03-26.16:33:31::SCWPlatform::Clearing the opened hw db.
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform location is /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Removing the HwDB with name /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened new HwDB with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWReader::Active system found as  lms7_trx_top
+TRACE::2021-03-26.16:33:31::SCWReader::Handling sysconfig lms7_trx_top
+TRACE::2021-03-26.16:33:31::SCWDomain::checking for install qemu data   : 
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:31::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::DEBUG:  swdes dump  
+TRACE::2021-03-26.16:33:31::SCWMssOS::No sw design opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::mss exists loading the mss file  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::Opened the sw design from mss  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::Adding the swdes entry /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.16:33:31::SCWMssOS::updating the scw layer about changes
+TRACE::2021-03-26.16:33:31::SCWMssOS::Opened the sw design.  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:31::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:31::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:31::SCWReader::Adding prebuilt librarypaths as   
+TRACE::2021-03-26.16:33:31::SCWReader::Adding prebuilt incpaths  as   
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:31::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:31::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:31::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:31::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:31::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:31::SCWReader::No isolation master present  
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform location is /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWMssOS::Doing hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Opened existing hwdb lms7_trx_top_15
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:33::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/tempdsa/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::update - Opened existing hwdb lms7_trx_top_16
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:33::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:33::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:33::SCWMssOS::Completed hw sync for the mss in domain: domain_microblaze_0
+TRACE::2021-03-26.16:33:33::SCWMssOS::Removing the swdes entry for  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Do not have an existing db opened. 
+TRACE::2021-03-26.16:33:33::SCWPlatform::Opened new HwDB with name lms7_trx_top_17
+TRACE::2021-03-26.16:33:33::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWMssOS::Adding the swdes entry, mss present, able to open swdb /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss with des name system
+TRACE::2021-03-26.16:33:33::SCWMssOS::Writing the mss file completed /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:33::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:33::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_17
+TRACE::2021-03-26.16:33:33::SCWPlatform::Opened existing hwdb lms7_trx_top_17
+TRACE::2021-03-26.16:33:33::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:33::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:33::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:33::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+LOG::2021-03-26.16:33:38::SCWPlatform::Started generating the artifacts platform lms7_trx_top
+TRACE::2021-03-26.16:33:38::SCWPlatform::Sanity checking of platform is completed
+LOG::2021-03-26.16:33:38::SCWPlatform::Started generating the artifacts for system configuration lms7_trx_top
+LOG::2021-03-26.16:33:38::SCWSystem::Checking the domain domain_microblaze_0
+LOG::2021-03-26.16:33:38::SCWSystem::Not a boot domain 
+LOG::2021-03-26.16:33:38::SCWSystem::Started Processing the domain domain_microblaze_0
+TRACE::2021-03-26.16:33:38::SCWDomain::Generating domain artifcats
+TRACE::2021-03-26.16:33:38::SCWMssOS::Generating standalone artifcats
+TRACE::2021-03-26.16:33:38::SCWMssOS:: Copying the user libraries. 
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Opened existing hwdb lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:38::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:38::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::Completed writing the mss file at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp
+TRACE::2021-03-26.16:33:38::SCWMssOS::Mss edits present, copying mssfile into export location /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::bsp generated is upto date with the mss file. Skipping bsp generation.
+TRACE::2021-03-26.16:33:38::SCWMssOS::BSP is already built. skipping the bsp build ... 
+TRACE::2021-03-26.16:33:38::SCWDomain::Skipping the build for domain :  domain_microblaze_0
+TRACE::2021-03-26.16:33:38::SCWMssOS::skipping the bsp build ... 
+TRACE::2021-03-26.16:33:38::SCWMssOS::Copying to export directory.
+TRACE::2021-03-26.16:33:38::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2021-03-26.16:33:38::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2021-03-26.16:33:38::SCWSystem::Completed Processing the domain domain_microblaze_0
+LOG::2021-03-26.16:33:38::SCWSystem::Completed Processing the sysconfig lms7_trx_top
+LOG::2021-03-26.16:33:38::SCWPlatform::Completed generating the artifacts for system configuration lms7_trx_top
+TRACE::2021-03-26.16:33:38::SCWPlatform::Started preparing the platform 
+TRACE::2021-03-26.16:33:38::SCWSystem::Writing the bif file for system config lms7_trx_top
+TRACE::2021-03-26.16:33:38::SCWSystem::dir created 
+TRACE::2021-03-26.16:33:38::SCWSystem::Writing the bif 
+TRACE::2021-03-26.16:33:38::SCWPlatform::Started writing the spfm file 
+TRACE::2021-03-26.16:33:38::SCWPlatform::Started writing the xpfm file 
+TRACE::2021-03-26.16:33:38::SCWPlatform::Completed generating the platform
+TRACE::2021-03-26.16:33:38::SCWMssOS::Saving the mss changes /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::Found a swdesign opened with the mssfile.
+TRACE::2021-03-26.16:33:38::SCWMssOS::Completed writemss as part of save.
+TRACE::2021-03-26.16:33:38::SCWMssOS::Commit changes completed.
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Opened existing hwdb lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:38::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:38::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWWriter::formatted JSON is {
+	"platformName":	"lms7_trx_top",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"lms7_trx_top",
+	"platHandOff":	"/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/lms7_trx_top.xsa",
+	"platIntHandOff":	"<platformDir>/hw/lms7_trx_top.xsa",
+	"deviceType":	"FPGA",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"lms7_trx_top",
+	"systems":	[{
+			"systemName":	"lms7_trx_top",
+			"systemDesc":	"lms7_trx_top",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"lms7_trx_top",
+			"sysActiveDom":	"domain_microblaze_0",
+			"sysDefaultDom":	"domain_microblaze_0",
+			"domains":	[{
+					"domainName":	"domain_microblaze_0",
+					"domainDispName":	"domain_microblaze_0",
+					"domainDesc":	"domain_microblaze_0",
+					"processors":	"microblaze_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.2",
+					"mssFile":	"",
+					"md5Digest":	"9105f208d3af5887ea34d6de6d767df1",
+					"compatibleApp":	"",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2021-03-26.16:33:38::SCWPlatform::updated the xpfm file.
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to open the hw design at /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA given /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA absoulate path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform::DSA directory /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Platform Path /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/hw/lms7_trx_top.xsa
+TRACE::2021-03-26.16:33:38::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2021-03-26.16:33:38::SCWPlatform::Trying to set the existing hwdb with name lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Opened existing hwdb lms7_trx_top_17
+TRACE::2021-03-26.16:33:38::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2021-03-26.16:33:38::SCWMssOS::Checking the sw design at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss
+TRACE::2021-03-26.16:33:38::SCWMssOS::DEBUG:  swdes dump  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss|system||
+
+TRACE::2021-03-26.16:33:38::SCWMssOS::Sw design exists and opened at  /home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top/microblaze_0/domain_microblaze_0/bsp/system.mss

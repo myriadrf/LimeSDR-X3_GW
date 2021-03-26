@@ -1,9 +1,0 @@
-/*
- * cdcm6208.c
- *
- *  Created on: Mar 17, 2021
- *      Author: tservenikas
- */
-
-void Write_to_CDCM(uint16_t Address, uint16_t Value, char CDCM_NR);
-void config_CDCM(XSpi *InstancePtr, char CDCM_NR);
