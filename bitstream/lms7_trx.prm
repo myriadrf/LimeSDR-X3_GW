@@ -8,4 +8,4 @@ Start Address      0x00000000
 End Address        0x01FFFFFF
 
 Addr1         Addr2         Date                    File(s)
-0x00000000    0x00947A5B    Mar 17 15:12:12 2021    /home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
+0x00000000    0x00947A5B    Mar 26 18:52:56 2021    /home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
