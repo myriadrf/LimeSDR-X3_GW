@@ -1718,6 +1718,9 @@ tXPLL_CFG pll_cfg = {0};
     {
         Check_CDCM_Update(&Spi1, SPI1_CDCM1_SS, &Spi0, SPI0_FPGA_SS,CDCM1_CFG_BASE,5);
         Check_CDCM_Update(&Spi1, SPI1_CDCM2_SS, &Spi0, SPI0_FPGA_SS,CDCM2_CFG_BASE,5);
+        //Checks if CDCM register read is requested
+        ReadALLCDCM_Registers(&Spi1, SPI1_CDCM1_SS, &Spi0, SPI0_FPGA_SS,CDCM1_CFG_BASE);
+		ReadALLCDCM_Registers(&Spi1, SPI1_CDCM2_SS, &Spi0, SPI0_FPGA_SS,CDCM2_CFG_BASE);
     	vctcxo_tamer_irq = (XGpio_DiscreteRead(&vctcxo_tamer_ctrl, 1) & 0x02);
 	    // Clear VCTCXO tamer interrupt
 	    if(vctcxo_tamer_irq != 0)
