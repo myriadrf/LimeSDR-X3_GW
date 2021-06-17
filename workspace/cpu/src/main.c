@@ -20,6 +20,7 @@
 #include "vctcxo_tamer.h"
 #include "ads4246_reg.h"
 #include "sleep.h"
+#include "utility_functions.h"
 
 /************************** Constant Definitions *****************************/
 /*
@@ -60,8 +61,12 @@
 #define BRD_SPI_REG_LMS1_LMS2_CTRL  0x13
 #define LMS1_SS			0
 #define LMS1_RESET		1
-#define LMS2_SS			8
-#define LMS2_RESET		9
+#define MEMORY_MAP_REG_MSB 0xFF
+#define MEMORY_MAP_REG_LSB 0xFF
+#define MEMOR_MAP_BIT 0x0
+//LEGACY DEFINES
+//#define LMS2_SS			8
+//#define LMS2_RESET		9
 
 /*
 * The following constants are part of clock dynamic reconfiguration
@@ -92,6 +97,9 @@
 #define CDCM1_CFG_BASE 288
 #define CDCM2_CFG_BASE 320
 
+uint8_t temp_buffer0[4];
+uint8_t temp_buffer1[4];
+uint16_t pa_dac_val[2] = {0};
 uint16_t dac_val = 30714;		//TCXO DAC value
 signed short int converted_val = 300;	//Temperature
 
@@ -634,11 +642,46 @@ void Modify_BRDSPI16_Reg_bits (unsigned short int SPI_reg_addr, unsigned char MS
  */
 void Control_TCXO_DAC (unsigned char oe, uint16_t *data) //controls DAC (AD5601)
 {
+	Control_SPI2_DAC(oe, data, SPI2_TCXO_DAC_SS);
+//	volatile int spirez;
+//	unsigned char DAC_data[3];
+//
+//	Init_SPI(SPI2_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_CLK_PHASE_1_OPTION | XSP_MANUAL_SSELECT_OPTION);
+//	spirez = XSpi_SetSlaveSelect(&Spi2, SPI2_TCXO_DAC_SS);
+//
+//
+//
+//	if (oe == 0) //set DAC out to three-state
+//	{
+//		DAC_data[0] = 0x03; //POWER-DOWN MODE = THREE-STATE (PD[1:0]([17:16]) = 11)
+//		DAC_data[1] = 0x00;
+//		DAC_data[2] = 0x00; //LSB data
+//
+//		//spirez = alt_avalon_spi_command(DAC_SPI1_BASE, SPI_NR_TCXO_DAC, 3, DAC_data, 0, NULL, 0);
+//		spirez = XSpi_Transfer(&Spi1, DAC_data, NULL,3);
+//
+//	}
+//	else //enable DAC output, set new val
+//	{
+//		DAC_data[0] = 0; //POWER-DOWN MODE = NORMAL OPERATION PD[1:0]([17:16]) = 00)
+//		DAC_data[1] = ((*data) >>8) & 0xFF;
+//		DAC_data[2] = ((*data) >>0) & 0xFF;
+//
+//	    /* Update cached value of trim DAC setting */
+//	    vctcxo_trim_dac_value = (uint16_t) *data;
+//		//spirez = alt_avalon_spi_command(DAC_SPI1_BASE, SPI_NR_TCXO_DAC, 3, DAC_data, 0, NULL, 0);
+//		spirez = XSpi_Transfer(&Spi1, DAC_data, NULL,3);
+//	}
+}
+
+//general function for spi2dac ctrl
+void Control_SPI2_DAC (unsigned char oe, uint16_t *data, unsigned char dev_num) //controls DAC (AD5662)
+{
 	volatile int spirez;
 	unsigned char DAC_data[3];
 
 	Init_SPI(SPI2_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_CLK_PHASE_1_OPTION | XSP_MANUAL_SSELECT_OPTION);
-	spirez = XSpi_SetSlaveSelect(&Spi2, SPI2_TCXO_DAC_SS);
+	spirez = XSpi_SetSlaveSelect(&Spi2, dev_num);
 
 
 
@@ -743,7 +786,7 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 {
 	uint8_t wr_buf[4];
 	uint8_t rd_buf[4];
-	uint8_t debug_val;
+	uint8_t value_cap;
 	int spirez;
 
 	uint8_t D_BYP, M_BYP, C0_BYP, C1_BYP, C2_BYP, C3_BYP, C4_BYP, C5_BYP, C6_BYP;
@@ -780,10 +823,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2A;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		debug_val = rd_buf[2] + rd_buf[3];
-		if(debug_val > 64)
-			debug_val = 64;
-		pll_cfg->DIVCLK_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
+		value_cap = rd_buf[2] + rd_buf[3];
+		if(value_cap > 64)
+			value_cap = 64;
+		pll_cfg->DIVCLK_DIVIDE	= value_cap;//rd_buf[2] + rd_buf[3];
 	}
 
 	/* Read Multiply value */
@@ -795,10 +838,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2B;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		debug_val = rd_buf[2] + rd_buf[3];
-		if(debug_val > 64)
-			debug_val = 64;
-		pll_cfg->CLKFBOUT_MULT	= debug_val;
+		value_cap = rd_buf[2] + rd_buf[3];
+		if(value_cap > 64)
+			value_cap = 64;
+		pll_cfg->CLKFBOUT_MULT	= value_cap;
 //		pll_cfg->CLKFBOUT_MULT	=rd_buf[2] + rd_buf[3];
 	}
 
@@ -826,10 +869,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2E;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		debug_val = rd_buf[2] + rd_buf[3];
-		if(debug_val > 64)
-			debug_val = 64;
-		pll_cfg->CLKOUT0_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
+		value_cap = rd_buf[2] + rd_buf[3];
+		if(value_cap > 64)
+			value_cap = 64;
+		pll_cfg->CLKOUT0_DIVIDE	= value_cap;//rd_buf[2] + rd_buf[3];
 	}
 
 
@@ -846,10 +889,10 @@ void RdPLLCFG(tXPLL_CFG *pll_cfg)
 		wr_buf[1] = 0x2F;	// Command and Address
 		spirez = XSpi_SetSlaveSelect(&Spi0, SPI0_FPGA_SS);
 		spirez = XSpi_Transfer(&Spi0, wr_buf, rd_buf, 4);
-		debug_val = rd_buf[2] + rd_buf[3];
-		if(debug_val > 64)
-			debug_val = 64;
-		pll_cfg->CLKOUT1_DIVIDE	= debug_val;//rd_buf[2] + rd_buf[3];
+		value_cap = rd_buf[2] + rd_buf[3];
+		if(value_cap > 64)
+			value_cap = 64;
+		pll_cfg->CLKOUT1_DIVIDE	= value_cap;//rd_buf[2] + rd_buf[3];
 	}
 
 	pll_cfg->CLKOUT1_PHASE   =0*1000;
@@ -1153,9 +1196,6 @@ uint8_t AutoUpdatePHCFG(void)
 	int cmp_sel= 0;
 	int timeout;
 	int lock_status;
-	static uint8_t debug_ph_stat[50][360] = {0};
-	static uint8_t debug_nr = -1;
-	debug_nr++;
 
 	/* State machine for VCTCXO tuning */
 	typedef enum state {
@@ -1235,7 +1275,6 @@ uint8_t AutoUpdatePHCFG(void)
 		while (!(lock_status & 0x01));
 
 		cmp_status 	= CheckSamples(cmp_sel);
-		debug_ph_stat[debug_nr%50][i] = cmp_status;
 
 		switch(phase_state) {
 		case PHASE_MIN:
@@ -1647,6 +1686,7 @@ tXPLL_CFG pll_cfg = {0};
 	u8 Iic_ReadBuffer[2];
 	int ByteCount;
 
+
     init_platform();
 
     //initialize XGpio variable
@@ -1984,62 +2024,58 @@ tXPLL_CFG pll_cfg = {0};
 
  				case CMD_LMS_RST:
 
- 					if(!Check_Periph_ID(MAX_ID_LMS7, LMS_Ctrl_Packet_Rx->Header.Periph_ID)) break;
+					if (!Check_Periph_ID(MAX_ID_LMS7, LMS_Ctrl_Packet_Rx->Header.Periph_ID))
+						break;
 
- 					switch (LMS_Ctrl_Packet_Rx->Data_field[0])
- 					{
+					// Store memory map address in buffer
+					temp_buffer0[0] = MEMORY_MAP_REG_MSB;
+					temp_buffer0[1] = MEMORY_MAP_REG_LSB;
+					// Read current memory map value (for restoring it later)
+					// The current value is stored in temp_buffer1[3-4]
+					Board_SPI_Read(temp_buffer0, temp_buffer1, &Spi0, SPI0_FPGA_SS);
+
+	 				switch(LMS_Ctrl_Packet_Rx->Header.Periph_ID)
+	 				{
+						 // Set memory map value
+						 // temp_buffer0 still contains the memory map address
+	 					case 0:
+							temp_buffer0[3] = 1;
+							break;
+	 					case 1:
+						 	temp_buffer0[3] = 2;
+	 						break;
+	 					case 2:
+						 	temp_buffer0[3] = 4;
+		 					break;
+	 					default:
+	 						cmd_errors++;
+	 					break;
+	 				}
+					 //Write new memory map value
+					Board_SPI_Write(temp_buffer0,&Spi0, SPI0_FPGA_SS);
+					//Do the reset
+					switch (LMS_Ctrl_Packet_Rx->Data_field[0])
+					{
  						case LMS_RST_DEACTIVATE:
-
- 		 					switch(LMS_Ctrl_Packet_Rx->Header.Periph_ID)
- 		 					{
- 		 						default:
- 		 						case 0:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 1); //high level
+ 		 						Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 1); //high level
  		 						break;
- 		 						case 1:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS2_RESET, LMS2_RESET, 1); //high level
- 		 						break;
- 		 					}
-
- 						break;
-
  						case LMS_RST_ACTIVATE:
-
- 		 					switch(LMS_Ctrl_Packet_Rx->Header.Periph_ID)
- 		 					{
- 		 						default:
- 		 						case 0:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 0); //low level
+ 		 						Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 0); //low level
  		 						break;
- 		 						case 1:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS2_RESET, LMS2_RESET, 0); //low level
- 		 						break;
- 		 					}
-
- 						break;
 
  						case LMS_RST_PULSE:
- 		 					switch(LMS_Ctrl_Packet_Rx->Header.Periph_ID)
- 		 					{
- 		 						default:
- 		 						case 0:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 0); //low level
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 1); //high level
+ 		 						Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 0); //low level
+ 		 						Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS1_RESET, LMS1_RESET, 1); //high level
  		 						break;
- 		 						case 1:
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS2_RESET, LMS2_RESET, 0); //low level
- 		 							Modify_BRDSPI16_Reg_bits (BRD_SPI_REG_LMS1_LMS2_CTRL, LMS2_RESET, LMS2_RESET, 1); //high level
- 		 						break;
- 		 					}
-
- 						break;
-
  						default:
  							cmd_errors++;
  						break;
  					}
+					 // Restore old memory map value
+					temp_buffer0[2] = temp_buffer1[2];
+					temp_buffer0[3] = temp_buffer1[3];
 
- 					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
 
  				case CMD_LMS7002_WR:
@@ -2201,6 +2237,22 @@ tXPLL_CFG pll_cfg = {0};
 								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = wiper_pos[1] & 0xFF; //signed val, LSB byte
 							break;
 							*/
+							case 2://dac val
+
+								LMS_Ctrl_Packet_Tx->Data_field[0 + (block * 4)] = LMS_Ctrl_Packet_Rx->Data_field[block]; //ch
+								LMS_Ctrl_Packet_Tx->Data_field[1 + (block * 4)] = 0x00; //RAW //unit, power
+								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa_dac_val[0] >> 8) & 0xFF; //unsigned val, MSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa_dac_val[0] & 0xFF; //unsigned val, LSB byte
+
+							break;
+							case 3://dac val
+
+								LMS_Ctrl_Packet_Tx->Data_field[0 + (block * 4)] = LMS_Ctrl_Packet_Rx->Data_field[block]; //ch
+								LMS_Ctrl_Packet_Tx->Data_field[1 + (block * 4)] = 0x00; //RAW //unit, power
+								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa_dac_val[1] >> 8) & 0xFF; //unsigned val, MSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa_dac_val[1] & 0xFF; //unsigned val, LSB byte
+
+							break;
 
 							default:
 								cmd_errors++;
@@ -2211,6 +2263,9 @@ tXPLL_CFG pll_cfg = {0};
 					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
 
 				break;
+
+//				pa_dac_val;
+//				Control_SPI2_DAC(oe, data, SPI2_TCXO_DAC_SS);
 
 				case CMD_ANALOG_VAL_WR:
 					if(Check_many_blocks (4)) break;
@@ -2230,7 +2285,22 @@ tXPLL_CFG pll_cfg = {0};
 									Control_TCXO_DAC(1, &dac_val); //enable DAC output, set new val
 								}
 								else cmd_errors++;
-
+							break;
+							case 2: //TCXO DAC
+								if (LMS_Ctrl_Packet_Rx->Data_field[1 + (block * 4)] == 0) //RAW units?
+								{
+									pa_dac_val[0] = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
+									Control_SPI2_DAC(1, &pa_dac_val[0], 3); //enable DAC output, set new val
+								}
+								else cmd_errors++;
+							break;
+							case 3: //TCXO DAC
+								if (LMS_Ctrl_Packet_Rx->Data_field[1 + (block * 4)] == 0) //RAW units?
+								{
+									pa_dac_val[1] = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
+									Control_SPI2_DAC(1, &pa_dac_val[1], 4); //enable DAC output, set new val
+								}
+								else cmd_errors++;
 							break;
 
 							default:
