@@ -8,6 +8,7 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="pll"/>
 			<item value="in"/>
 			<item value="MAX_ID_LMS7"/>
 			<item value="Check_Periph_ID"/>
