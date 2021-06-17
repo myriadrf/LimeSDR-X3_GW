@@ -62,19 +62,19 @@ signal header_0            : std_logic_vector(63 downto 0);
 signal header_1            : std_logic_vector(63 downto 0);
 signal header_valid_reg    : std_logic;
 
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of current_state: signal is "TRUE";
-attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
-attribute MARK_DEBUG of infifo_data     : signal is "TRUE";
-attribute MARK_DEBUG of infifo_rdempty  : signal is "TRUE";
-attribute MARK_DEBUG of pct_wrreq       : signal is "TRUE";
-attribute MARK_DEBUG of pct_data        : signal is "TRUE";
-attribute MARK_DEBUG of pct_wrempty     : signal is "TRUE";
-attribute MARK_DEBUG of pct_header      : signal is "TRUE";
-attribute MARK_DEBUG of pct_header_valid: signal is "TRUE";
-attribute MARK_DEBUG of rd_cnt          : signal is "TRUE";
-attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
-attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
+--attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of current_state: signal is "TRUE";
+--attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
+--attribute MARK_DEBUG of infifo_data     : signal is "TRUE";
+--attribute MARK_DEBUG of infifo_rdempty  : signal is "TRUE";
+--attribute MARK_DEBUG of pct_wrreq       : signal is "TRUE";
+--attribute MARK_DEBUG of pct_data        : signal is "TRUE";
+--attribute MARK_DEBUG of pct_wrempty     : signal is "TRUE";
+--attribute MARK_DEBUG of pct_header      : signal is "TRUE";
+--attribute MARK_DEBUG of pct_header_valid: signal is "TRUE";
+--attribute MARK_DEBUG of rd_cnt          : signal is "TRUE";
+--attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
+--attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
 
 
 

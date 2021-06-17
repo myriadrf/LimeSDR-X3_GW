@@ -71,7 +71,7 @@ entity cpu_top is
       spi_2_MISO           : in     std_logic;
       spi_2_MOSI           : out    std_logic;
       spi_2_SCLK           : out    std_logic;
-      spi_2_SS_n           : out    std_logic_vector(1 downto 0); 
+      spi_2_SS_n           : out    std_logic_vector(3 downto 0); 
       -- I2C
       i2c_scl              : inout  std_logic;
       i2c_sda              : inout  std_logic;
@@ -190,7 +190,7 @@ architecture arch of cpu_top is
    signal inst0_spi_2_MISO          : std_logic;
    signal inst0_spi_2_MOSI          : std_logic;
    signal inst0_spi_2_SCLK          : std_logic;
-   signal inst0_spi_2_SS_n          : std_logic_vector(1 downto 0);
+   signal inst0_spi_2_SS_n          : std_logic_vector(3 downto 0);
    
    signal inst0_iic_0_scl_o         : std_logic;
    signal inst0_iic_0_scl_t         : std_logic;
@@ -227,7 +227,7 @@ architecture arch of cpu_top is
    
    signal vctcxo_tamer_0_irq_out_irq   : std_logic;
    signal vctcxo_tamer_0_ctrl_export   : std_logic_vector(3 downto 0);
-    
+       
    component mb_subsystem is
    port (
       clk                        : in std_logic;
@@ -292,8 +292,8 @@ architecture arch of cpu_top is
       spi_2_sck_i                : in std_logic;
       spi_2_sck_o                : out std_logic;
       spi_2_sck_t                : out std_logic;
-      spi_2_ss_i                 : in std_logic_vector ( 1 downto 0 );
-      spi_2_ss_o                 : out std_logic_vector ( 1 downto 0 );
+      spi_2_ss_i                 : in std_logic_vector ( 3 downto 0 );
+      spi_2_ss_o                 : out std_logic_vector ( 3 downto 0 );
       spi_2_ss_t                 : out std_logic;
       uart_0_rxd                 : in std_logic;
       uart_0_txd                 : out std_logic;
@@ -331,6 +331,8 @@ architecture arch of cpu_top is
    
 
 begin
+
+
 -- ----------------------------------------------------------------------------
 -- Synchronization registers
 -- ---------------------------------------------------------------------------- 

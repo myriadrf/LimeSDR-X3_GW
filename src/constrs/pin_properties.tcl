@@ -360,6 +360,8 @@ set_property PACKAGE_PIN P26  [get_ports FPGA_SPI2_ADF_SS     ]
 set_property PACKAGE_PIN T25  [get_ports FPGA_SPI2_MOSI       ]
 set_property PACKAGE_PIN T24  [get_ports FPGA_SPI2_SCLK       ]
 set_property PACKAGE_PIN R26  [get_ports FPGA_SPI2_XO_DAC_SS  ]
+set_property PACKAGE_PIN R16  [get_ports FPGA_SPI2_LMS1_TX1DAC_SS]
+set_property PACKAGE_PIN R17  [get_ports FPGA_SPI2_LMS1_TX2DAC_SS]
 
 # FPGA_I2C
 create_interface FPGA_I2C
@@ -412,6 +414,9 @@ set_property PACKAGE_PIN V6  [get_ports LMS1_TXEN               ]
 set_property PACKAGE_PIN AF4 [get_ports LMS1_TXNRX1             ]
 set_property PACKAGE_PIN AF3 [get_ports LMS1_TXNRX2             ]
 
+set_property PACKAGE_PIN J23 [get_ports LMS1_TX1_EN             ]
+set_property PACKAGE_PIN H23 [get_ports LMS1_TX2_EN             ]
+
 # LMS RF SW
 create_interface LMS_RF_SW
 set_property INTERFACE LMS_RF_SW [get_ports {LMS2_TX* LNA* RFSW* }]
@@ -459,6 +464,11 @@ set_property IOSTANDARD LVCMOS25 [get_ports {CDCM*_RESET_N CDCM*_STATUS0 CDCM*_S
 set_property IOSTANDARD LVCMOS25 [get_ports {HW_VER[*] BOM_VER[*] EXT_GND LM75_OS FAN_CTRL}                         ]
 set_property IOSTANDARD LVDS_25  [get_ports {CDCM2_LMS2_BB_DAC1_REFC_* CDCM2_LMS2_BB_DAC2_REFC_*}                   ]
 
+set_property PACKAGE_PIN V24 [get_ports {HW_VER[2]}]
+set_property PACKAGE_PIN Y22 [get_ports {HW_VER[1]}]
+set_property PACKAGE_PIN W18 [get_ports {HW_VER[0]}]
+set_property PACKAGE_PIN L19 [get_ports {HW_VER[3]}]
+
 set_property PACKAGE_PIN U24  [get_ports LM75_OS              ]
 set_property PACKAGE_PIN U4   [get_ports FAN_CTRL             ]
 set_property PACKAGE_PIN M19  [get_ports ADF_MUXOUT           ]
@@ -502,11 +512,6 @@ set_property PACKAGE_PIN H16  [get_ports RFSW_LMS2_TRX1_V1   ]
 set_property PACKAGE_PIN G19  [get_ports RFSW_LMS2_TRX1T_V1  ]
 
 #set_property PACKAGE_PIN R3  [get_ports EMCCLK  		     ]
-
-
-
-
-
 
 set_property PACKAGE_PIN N18  [get_ports PD_LMS2_BB_ADC1_DRV  ]
 set_property PACKAGE_PIN K25  [get_ports PD_LMS2_BB_ADC2_DRV  ]

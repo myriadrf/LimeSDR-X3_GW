@@ -156,16 +156,16 @@ begin
    begin
       -- Defaults
       if mreset = '0' then	
-         mem(0)	<= "1111111111111111"; --  0 free, BOARD_GPIO_OVRD[15:0]
-         mem(1)	<= "0000000000000000"; --  0 free, Reserved
-         mem(2)	<= "0000000000000000"; --  0 free, BOARD_GPIO_RD[15:0]
-         mem(3)	<= "0000000000000000"; --  0 free, Reserved
+         mem(0)	    <= "1111111111111111"; --  0 free, BOARD_GPIO_OVRD[15:0]
+         mem(1)	    <= "0000000000000000"; --  0 free, Reserved
+         mem(2)	    <= "0000000000000000"; --  0 free, BOARD_GPIO_RD[15:0]
+         mem(3)	    <= "0000000000000000"; --  0 free, Reserved
          mem(4) 	<= "0000000000000000"; --  0 free, BOARD_GPIO_DIR[15:0]
-         mem(5)	<= "0000000000000000"; --  0 free, Reserved
-         mem(6) 	<= "0000000000000000"; --  0 free, BOARD_GPIO_VAL[15:0]
-         mem(7)	<= "0000000000000000"; --  0 free, Reserved
-         mem(8)	<= "0000000000000000"; --  0 free, PERIPH_INPUT_RD_0
-         mem(9)	<= "0000000000000000"; --  0 free, PERIPH_INPUT_RD_1
+         mem(5)	    <= "0000000000000000"; --  0 free, Reserved
+         mem(6)  	<= "0000000000000000"; --  0 free, BOARD_GPIO_VAL[15:0]
+         mem(7)	    <= "0000000000000000"; --  0 free, Reserved
+         mem(8)	    <= "0000000000000000"; --  0 free, PERIPH_INPUT_RD_0
+         mem(9)	    <= "0000000000000000"; --  0 free, PERIPH_INPUT_RD_1
          mem(10)	<= "0000000000000000"; --  0 free, Reserved
          mem(11)	<= "0000000000000000"; --  0 free, Reserved			
          mem(12)	<= "0000000000000001"; --  0 free, PERIPH_OUTPUT_OVRD_0
@@ -173,10 +173,10 @@ begin
          mem(14)	<= "0000000000000000"; --  0 free, PERIPH_OUTPUT_OVRD_1
          mem(15)	<= "0000000000000000"; --  0 free, PERIPH_OUTPUT_VAL_1
          mem(16)	<= "0000000000000000"; --  0 free, Reserved
-         mem(17)	<= "0000000000000000"; --  0 free, Reserved
-         mem(18)	<= "0000000000000000"; --  0 free, Reserved
-         mem(19)	<= "0000000000000000"; --  0 free, Reserved
-         mem(20)	<= "0000000000000000"; --  0 free, Reserved
+         mem(17)	<= "0000000000000000"; --  0 free, Reserved(15:14), RF switches (LMS1 : TX1,TX2,RX1,RX2 | LMS2 : TRX2T, TRX2, TRX1T, TRX1, RX2IN, RX2C, RX1IN, RX1C | LMS3 : RX2, RX1)
+         mem(18)	<= "0000000000111100"; --  0 free, Reserved(15:6), LMS1_TX1_PA_EN, LMS1_TX2_PA_EN, LMS2_TX1_PA_EN, LMS2_TX2_PA_EN, LMS2_RX1_LNA_SD, LMS2_RX2_LNA_SD
+         mem(19)	<= "0000000000000000"; --  0 free, Reserved STORAGE FOR LMS1 PA LEVEL
+         mem(20)	<= "0000000000000000"; --  0 free, Reserved STORAGE FOR LMS1 PA LEVEL
          mem(21)	<= "0000000000000000"; --  0 free, Reserved
          mem(22)	<= "0000000000000000"; --  0 free, Reserved
          mem(23)	<= "0000000000000000"; --  0 free, Reserved
@@ -214,5 +214,7 @@ begin
       from_periphcfg.PERIPH_OUTPUT_VAL_0  <= mem(13) (15 downto 0);
       from_periphcfg.PERIPH_OUTPUT_OVRD_1 <= mem(14) (15 downto 0);
       from_periphcfg.PERIPH_OUTPUT_VAL_1  <= mem(15) (15 downto 0);
+      from_periphcfg.RF_SWITCHES          <= mem(17) (13 downto 0); 
+      from_periphcfg.RF_AMP_CTRL          <= mem(18) (5  downto 0);
 
 end periphcfg_arch;

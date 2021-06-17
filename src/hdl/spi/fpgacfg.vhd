@@ -72,6 +72,9 @@ architecture fpgacfg_arch of fpgacfg is
    attribute noprune of MAJOR_REV_reg     : signal is true;
    attribute noprune of COMPILE_REV_reg   : signal is true;
    
+   
+				
+   
    -- Components
    use work.mcfg_components.mcfg32wm_fsm;
    for all: mcfg32wm_fsm use entity work.mcfg32wm_fsm(mcfg32wm_fsm_arch);

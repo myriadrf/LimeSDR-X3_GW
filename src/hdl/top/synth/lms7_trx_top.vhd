@@ -107,6 +107,8 @@ entity lms7_trx_top is
       LMS1_RESET        : out    std_logic;
       LMS1_TXEN         : out    std_logic;
       LMS1_RXEN         : out    std_logic;
+      LMS1_TX1_EN       : out    std_logic;
+      LMS1_TX2_EN       : out    std_logic;
       
       -- LMS7002 #2 (With external DACs and ADCs, No LML interface)  
          --MISC
@@ -183,7 +185,7 @@ entity lms7_trx_top is
       LMS2_BB_DAC1_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC1_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC1_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC1_PD            : out    std_logic := '0';-- '1' -  power-down, 0 -  normal operation.
+      LMS2_BB_DAC1_PD            : out    std_logic;-- := '0';-- '1' -  power-down, 0 -  normal operation.
       --LMS2_BB_DAC1_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
       --LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
@@ -196,7 +198,7 @@ entity lms7_trx_top is
       LMS2_BB_DAC2_B_N           : out    std_logic_vector(15 downto 0);
       LMS2_BB_DAC2_SELIQ_P       : out    std_logic;     -- SELIQN low and SELIQP high -  data to the I-DAC outputs
       LMS2_BB_DAC2_SELIQ_N       : out    std_logic;     -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
-      LMS2_BB_DAC2_PD            : out    std_logic:= '0'; -- '1' -  power-down, 0 -  normal operation.   
+      LMS2_BB_DAC2_PD            : out    std_logic;--:= '0'; -- '1' -  power-down, 0 -  normal operation.   
       --LMS2_BB_DAC2_TORB          : out    std_logic;     -- '1' - complement input format,  '0' - binary input format
       --LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
@@ -242,37 +244,37 @@ entity lms7_trx_top is
       --LMS2_TX1_2_EN        : out    std_logic := '0';
       --LMS2_TX2_1_EN        : out    std_logic := '0';
       
-      LMS2_RX1_LNA_SD       : out    std_logic := '0';
-      LMS2_RX2_LNA_SD       : out    std_logic := '0';
-      LMS2_TX1_1_EN         : out    std_logic := '0';
-      LMS2_TX2_1_EN         : out    std_logic := '0';
+      LMS2_RX1_LNA_SD       : out    std_logic;-- := '0';
+      LMS2_RX2_LNA_SD       : out    std_logic;-- := '0';
+      LMS2_TX1_1_EN         : out    std_logic;-- := '0';
+      LMS2_TX2_1_EN         : out    std_logic;-- := '0';
 
       
       
       
       
-      PD_LMS2_BB_ADC1_DRV   : out    std_logic := '0';
-      PD_LMS2_BB_ADC2_DRV   : out    std_logic := '0';
-      PD_LMS3_BB_ADC1_DRV   : out    std_logic := '0';
-      PD_LMS3_BB_ADC2_DRV   : out    std_logic := '0';
+      PD_LMS2_BB_ADC1_DRV   : out    std_logic;-- := '0';
+      PD_LMS2_BB_ADC2_DRV   : out    std_logic;-- := '0';
+      PD_LMS3_BB_ADC1_DRV   : out    std_logic;-- := '0';
+      PD_LMS3_BB_ADC2_DRV   : out    std_logic;-- := '0';
       
-      RFSW_LMS1_RX1_V1      : out    std_logic := '0';
-      RFSW_LMS1_RX2_V1      : out    std_logic := '0';
-      RFSW_LMS1_TX1_V1      : out    std_logic := '0';
-      RFSW_LMS1_TX2_V1      : out    std_logic := '0';
+      RFSW_LMS1_RX1_V1      : out    std_logic;
+      RFSW_LMS1_RX2_V1      : out    std_logic;
+      RFSW_LMS1_TX1_V1      : out    std_logic;
+      RFSW_LMS1_TX2_V1      : out    std_logic;
       
-      RFSW_LMS2_RX1C_V1     : out    std_logic := '0';
-      RFSW_LMS2_RX2IN_V1    : out    std_logic := '0';
-      RFSW_LMS2_TRX1_V1     : out    std_logic := '0';
-      RFSW_LMS2_TRX1T_V1    : out    std_logic := '0';
+      RFSW_LMS2_RX1C_V1     : out    std_logic;
+      RFSW_LMS2_RX2IN_V1    : out    std_logic;
+      RFSW_LMS2_TRX1_V1     : out    std_logic;
+      RFSW_LMS2_TRX1T_V1    : out    std_logic;
       
-      RFSW_LMS2_RX1IN_V1    : out    std_logic := '0';
-      RFSW_LMS2_RX2C_V1     : out    std_logic := '0';
-      RFSW_LMS2_TRX2_V1     : out    std_logic := '0';
-      RFSW_LMS2_TRX2T_V1    : out    std_logic := '0';
+      RFSW_LMS2_RX1IN_V1    : out    std_logic;
+      RFSW_LMS2_RX2C_V1     : out    std_logic;
+      RFSW_LMS2_TRX2_V1     : out    std_logic;
+      RFSW_LMS2_TRX2T_V1    : out    std_logic;
       
-      RFSW1_LMS3_RX1_V1     : out    std_logic := '0';
-      RFSW1_LMS3_RX2_V1     : out    std_logic := '0';
+      RFSW1_LMS3_RX1_V1     : out    std_logic;
+      RFSW1_LMS3_RX2_V1     : out    std_logic;
       
       -- ----------------------------------------------------------------------------
       -- External communication interfaces
@@ -301,6 +303,8 @@ entity lms7_trx_top is
       FPGA_SPI2_MOSI             : out    std_logic;
       FPGA_SPI2_XO_DAC_SS        : out    std_logic;
       FPGA_SPI2_ADF_SS           : out    std_logic;
+      FPGA_SPI2_LMS1_TX1DAC_SS   : out    std_logic;
+      FPGA_SPI2_LMS1_TX2DAC_SS   : out    std_logic;
          -- FPGA I2C
       FPGA_I2C_SCL               : inout  std_logic;
       FPGA_I2C_SDA               : inout  std_logic;
@@ -338,8 +342,8 @@ entity lms7_trx_top is
          -- ADF 
       ADF_MUXOUT        : in     std_logic;
          -- Bill Of material and hardware version 
-      BOM_VER           : in     std_logic_vector(3 downto 0)
-      --HW_VER            : in     std_logic_vector(3 downto 0)
+      BOM_VER           : in     std_logic_vector(3 downto 0);
+      HW_VER            : in     std_logic_vector(3 downto 0)
 
    );
 end lms7_trx_top;
@@ -380,6 +384,8 @@ constant c_SPI1_CDCM2_SS_NR         : integer := 5;
 
 constant c_SPI2_XO_DAC_SS_NR        : integer := 0;
 constant c_SPI2_ADF_SS_NR           : integer := 1;  
+constant c_SPI2_TX1_DAC             : integer := 2;
+constant c_SPI2_TX2_DAC             : integer := 3;
 
      
 
@@ -425,7 +431,7 @@ signal inst0_spi_1_SS_n          : std_logic_vector(5 downto 0);
 signal inst0_spi_2_MISO          : std_logic;
 signal inst0_spi_2_MOSI          : std_logic;
 signal inst0_spi_2_SCLK          : std_logic;
-signal inst0_spi_2_SS_n          : std_logic_vector(1 downto 0);
+signal inst0_spi_2_SS_n          : std_logic_vector(3 downto 0);
 signal inst0_pll_stat            : std_logic_vector(9 downto 0);
 signal inst0_pll_rst             : std_logic_vector(31 downto 0);
 signal inst0_pll_rcfg_to_pll_0   : std_logic_vector(63 downto 0);
@@ -744,15 +750,21 @@ attribute KEEP_HIERARCHY : string;
 
 
 attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
+attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
+attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
+--attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
+--attribute KEEP_HIERARCHY of inst6_lms7002_top : label is "TRUE";
+
 attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
 attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
 attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
 attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
 attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
-attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
-attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
-attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
+
+--attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
+--attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
+
 
 signal gpio_o : std_logic_vector(15 downto 0);
 signal gpio_i : std_logic_vector(15 downto 0);
@@ -1260,12 +1272,12 @@ begin
      H2F_S1_1_rempty      => inst2_H2F_S1_1_rempty,
      H2F_S1_1_rdusedw     => inst2_H2F_S1_1_rdusedw, 
 
-     H2F_S2_0_rdclk       =>inst1_pll_1_c1,
-     H2F_S2_0_aclrn       => inst11_tx_in_pct_reset_n_req,
-     H2F_S2_0_rd          => inst11_tx_in_pct_rdreq,
-     H2F_S2_0_rdata       => inst2_H2F_S2_0_rdata,
-     H2F_S2_0_rempty      => inst2_H2F_S2_0_rempty,
-     H2F_S2_0_rdusedw     => inst2_H2F_S2_0_rdusedw,
+     H2F_S2_0_rdclk       => '0',--inst1_pll_1_c1,
+     H2F_S2_0_aclrn       => '1',--inst11_tx_in_pct_reset_n_req,
+     H2F_S2_0_rd          => '0',--inst11_tx_in_pct_rdreq,
+     H2F_S2_0_rdata       => open,--inst2_H2F_S2_0_rdata,
+     H2F_S2_0_rempty      => open,--inst2_H2F_S2_0_rempty,
+     H2F_S2_0_rdusedw     => open,--inst2_H2F_S2_0_rdusedw,
   
      H2F_S2_1_rdclk       => inst1_pll_1_c1,
      H2F_S2_1_aclrn       => inst0_from_fpgacfg_2.wfm_load,
@@ -1710,13 +1722,13 @@ begin
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => reset_n,     
-      tx_pct_loss_flg         => inst9_tx_pct_loss_flg,
-      tx_txant_en             => inst9_tx_txant_en,  
+      tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
+      tx_txant_en             => inst11_tx_txant_en,  
       --Tx interface data 
-      tx_smpl_fifo_wrreq      => inst9_tx_smpl_fifo_wrreq,
-      tx_smpl_fifo_wrfull     => inst8_tx_fifo_0_wrfull,
-      tx_smpl_fifo_wrusedw    => inst8_tx_fifo_0_wrusedw,
-      tx_smpl_fifo_data       => inst9_tx_smpl_fifo_data,
+      tx_smpl_fifo_wrreq      => inst11_tx_smpl_fifo_wrreq,
+      tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
+      tx_smpl_fifo_wrusedw    => inst12_tx0_wrusedw,
+      tx_smpl_fifo_data       => inst11_tx_smpl_fifo_data,
       --TX packet FIFO ports
       tx_in_pct_reset_n_req   => inst9_tx_in_pct_reset_n_req,
       tx_in_pct_rdreq         => inst9_tx_in_pct_rdreq,
@@ -1959,27 +1971,27 @@ begin
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
-      tx_clk_reset_n          => reset_n,     
-      tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
-      tx_txant_en             => inst11_tx_txant_en,  
+      tx_clk_reset_n          => '0',--reset_n,     
+      tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
+      tx_txant_en             => open,--inst11_tx_txant_en,  
       --Tx interface data 
-      tx_smpl_fifo_wrreq      => inst11_tx_smpl_fifo_wrreq,
-      tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
-      tx_smpl_fifo_wrusedw    => inst12_tx0_wrusedw,
-      tx_smpl_fifo_data       => inst11_tx_smpl_fifo_data,
+      tx_smpl_fifo_wrreq      => open,--inst11_tx_smpl_fifo_wrreq,
+      tx_smpl_fifo_wrfull     => '1',--inst12_tx0_wrfull,
+      tx_smpl_fifo_wrusedw    => (others => '1'),--inst12_tx0_wrusedw,
+      tx_smpl_fifo_data       => open,--inst11_tx_smpl_fifo_data,
       --TX packet FIFO ports
-      tx_in_pct_reset_n_req   => inst11_tx_in_pct_reset_n_req,
-      tx_in_pct_rdreq         => inst11_tx_in_pct_rdreq,
-      tx_in_pct_data          => inst2_H2F_S2_0_rdata,
-      tx_in_pct_rdempty       => inst2_H2F_S2_0_rempty,
-      tx_in_pct_rdusedw       => inst2_H2F_S2_0_rdusedw,     
+      tx_in_pct_reset_n_req   => open,--inst11_tx_in_pct_reset_n_req,
+      tx_in_pct_rdreq         => open,--inst11_tx_in_pct_rdreq,
+      tx_in_pct_data          => (others => '0'),--inst2_H2F_S2_0_rdata,
+      tx_in_pct_rdempty       => '0',--inst2_H2F_S2_0_rempty,
+      tx_in_pct_rdusedw       => (others => '1'),--inst2_H2F_S2_0_rdusedw,     
       -- RX path
       rx_clk                  => lms3_bb_adc1_clkout_global,
       rx_clk_reset_n          => reset_n,
       --RX FIFO for IQ samples   
       rx_smpl_fifo_wrreq      => inst11_data_valid,
       rx_smpl_fifo_data       => inst11_data, --inst10_rx_data,
-      rx_smpl_fifo_wrfull     => open,
+      rx_smpl_fifo_wrfull     => inst2_F2H_S2_wfull,--open,
       --RX Packet FIFO ports
       rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
       rx_pct_fifo_wusedw      => inst2_F2H_S2_wrusedw,
@@ -1996,55 +2008,55 @@ begin
                         "01" when inst0_from_fpgacfg_mod_2.dlb_en = '1' else 
                         "10";
 
-   inst12_limegnss_gpio_top : entity work.limegnss_gpio_top
-   generic map( 
-      UART_BAUD_RATE          => 9600,
-      VCTCXO_CLOCK_FREQUENCY  => 30720000,
-      MM_CLOCK_FREQUENCY      => 100000000
-   )
-   port map(
-      areset_n          => reset_n,
-      -- SPI interface
-      -- Address and location of SPI memory module
-      -- Will be hard wired at the top level
-      tamercfg_maddress => "0000000111",
-      gnsscfg_maddress  => "0000001000",
-      -- Serial port IOs
-      sdin              => inst0_spi_0_MOSI,    -- Data in
-      sclk              => inst0_spi_0_SCLK,    -- Data clock
-      sen               => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR), -- Enable signal (active low)
-      sdout             => inst12_sdout,        -- Data out 
-      -- Signals coming from the pins or top level serial interface
-      lreset            => reset_n,    -- Logic reset signal, resets logic cells only  (use only one reset)
-      mreset            => reset_n,    -- Memory reset signal, resets configuration memory only (use only one reset)
-      vctcxo_clk        => LMK2_CLK,    -- Clock from VCTCXO       
-      --LimeGNSS-GPIO pins
-      gnss_tx           => open,   
-      gnss_rx           => GNSS_UART_TX,  
-      gnss_tpulse       => GNSS_PPS,   
-      gnss_fix          => '0',           
-      fpga_led_g        => inst12_fpga_led_g,
-      fpga_led_r        => inst12_fpga_led_r, 
-      -- NIOS PIO
-      en                => inst12_en,     
-      -- NIOs  Avalon-MM Interface (External master)
-      mm_clock          => inst0_avmm_m0_clk_clk,
-      mm_reset          => inst0_avmm_m0_reset_reset,
-      mm_rd_req         => inst0_avmm_m0_read,
-      mm_wr_req         => inst0_avmm_m0_write,
-      mm_addr           => inst0_avmm_m0_address,
-      mm_wr_data        => inst0_avmm_m0_writedata,
-      mm_rd_data        => inst12_mm_rd_data,
-      mm_rd_datav       => inst12_mm_rd_datav,
-      mm_wait_req       => inst12_mm_wait_req,
-      -- Avalon Interrupts
-      mm_irq            => inst12_mm_irq,
+--   inst12_limegnss_gpio_top : entity work.limegnss_gpio_top
+--   generic map( 
+--      UART_BAUD_RATE          => 9600,
+--      VCTCXO_CLOCK_FREQUENCY  => 30720000,
+--      MM_CLOCK_FREQUENCY      => 100000000
+--   )
+--   port map(
+--      areset_n          => reset_n,
+--      -- SPI interface
+--      -- Address and location of SPI memory module
+--      -- Will be hard wired at the top level
+--      tamercfg_maddress => "0000000111",
+--      gnsscfg_maddress  => "0000001000",
+--      -- Serial port IOs
+--      sdin              => inst0_spi_0_MOSI,    -- Data in
+--      sclk              => inst0_spi_0_SCLK,    -- Data clock
+--      sen               => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR), -- Enable signal (active low)
+--      sdout             => inst12_sdout,        -- Data out 
+--      -- Signals coming from the pins or top level serial interface
+--      lreset            => reset_n,    -- Logic reset signal, resets logic cells only  (use only one reset)
+--      mreset            => reset_n,    -- Memory reset signal, resets configuration memory only (use only one reset)
+--      vctcxo_clk        => LMK2_CLK,    -- Clock from VCTCXO       
+--      --LimeGNSS-GPIO pins
+--      gnss_tx           => open,   
+--      gnss_rx           => GNSS_UART_TX,  
+--      gnss_tpulse       => GNSS_PPS,   
+--      gnss_fix          => '0',           
+--      fpga_led_g        => inst12_fpga_led_g,
+--      fpga_led_r        => inst12_fpga_led_r, 
+--      -- NIOS PIO
+--      en                => inst12_en,     
+--      -- NIOs  Avalon-MM Interface (External master)
+--      mm_clock          => inst0_avmm_m0_clk_clk,
+--      mm_reset          => inst0_avmm_m0_reset_reset,
+--      mm_rd_req         => inst0_avmm_m0_read,
+--      mm_wr_req         => inst0_avmm_m0_write,
+--      mm_addr           => inst0_avmm_m0_address,
+--      mm_wr_data        => inst0_avmm_m0_writedata,
+--      mm_rd_data        => inst12_mm_rd_data,
+--      mm_rd_datav       => inst12_mm_rd_datav,
+--      mm_wait_req       => inst12_mm_wait_req,
+--      -- Avalon Interrupts
+--      mm_irq            => inst12_mm_irq,
       
-      -- Testing (UART logger)
-      fan_ctrl_in       => '0',
-      uart_tx           => inst12_uart_tx
+--      -- Testing (UART logger)
+--      fan_ctrl_in       => '0',
+--      uart_tx           => inst12_uart_tx
       
-   );
+--   );
    
    -- DAC module
    inst12_max5878_top : entity work.max5878_top
@@ -2091,10 +2103,10 @@ begin
       tx0_reset_n          => inst1_pll_0_locked,
       tx0_wrfull           => inst12_tx0_wrfull,
       tx0_wrusedw          => inst12_tx0_wrusedw,
-      tx0_wrreq            => inst11_tx_smpl_fifo_wrreq,
-      tx0_data             => inst11_tx_smpl_fifo_data,
+      tx0_wrreq            => inst9_tx_smpl_fifo_wrreq,
+      tx0_data             => inst9_tx_smpl_fifo_data,
       -- Configuration data
-      from_fpgacfg         => inst0_from_fpgacfg_2,
+      from_fpgacfg         => inst0_from_fpgacfg_1,
       from_txtspcfg_0      => inst0_from_txtspcfg_0,
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
@@ -2183,8 +2195,8 @@ begin
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
-   gpio_i( 1) <= lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
+   gpio_i( 0) <= inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
+   gpio_i( 1) <= LMS1_MCLK2;--CLK100_FPGA;--lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
    gpio_i( 2) <= lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
    gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;
    gpio_i( 4) <= inst1_pll_1_c1;--inst0_spi_1_SS_n(1);
@@ -2219,11 +2231,13 @@ begin
    FPGA_SPI1_CDCM1_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM1_SS_NR);
    FPGA_SPI1_CDCM2_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM2_SS_NR);
    
-   FPGA_SPI2_MOSI       <= inst0_spi_2_MOSI;
-   FPGA_SPI2_SCLK       <= inst0_spi_2_SCLK;
-   FPGA_SPI2_XO_DAC_SS  <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR);
-   FPGA_SPI2_ADF_SS     <= inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR);
-  
+   FPGA_SPI2_MOSI          <= inst0_spi_2_MOSI;
+   FPGA_SPI2_SCLK          <= inst0_spi_2_SCLK;
+   FPGA_SPI2_XO_DAC_SS     <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR);
+   FPGA_SPI2_ADF_SS        <= inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR);
+   FPGA_SPI2_LMS1_TX1DAC_SS<= inst0_spi_2_SS_n(c_SPI2_TX1_DAC);
+   FPGA_SPI2_LMS1_TX2DAC_SS<= inst0_spi_2_SS_n(c_SPI2_TX2_DAC);
+     
    
    
    
@@ -2256,7 +2270,33 @@ begin
    ---- RF Switch LMS2 port 2
    --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
+
+   RFSW_LMS1_RX1_V1   <= inst0_from_periphcfg.RF_SWITCHES(11);
+   RFSW_LMS1_RX2_V1   <= inst0_from_periphcfg.RF_SWITCHES(10);
+   RFSW_LMS1_TX1_V1   <= inst0_from_periphcfg.RF_SWITCHES(13);
+   RFSW_LMS1_TX2_V1   <= inst0_from_periphcfg.RF_SWITCHES(12);
+         
+   RFSW_LMS2_RX1C_V1  <= inst0_from_periphcfg.RF_SWITCHES(2);
+   RFSW_LMS2_RX2IN_V1 <= inst0_from_periphcfg.RF_SWITCHES(5);
+   RFSW_LMS2_TRX1_V1  <= inst0_from_periphcfg.RF_SWITCHES(6);
+   RFSW_LMS2_TRX1T_V1 <= inst0_from_periphcfg.RF_SWITCHES(7);
+         
+   RFSW_LMS2_RX1IN_V1 <= inst0_from_periphcfg.RF_SWITCHES(3);
+   RFSW_LMS2_RX2C_V1  <= inst0_from_periphcfg.RF_SWITCHES(4);
+   RFSW_LMS2_TRX2_V1  <= inst0_from_periphcfg.RF_SWITCHES(8);
+   RFSW_LMS2_TRX2T_V1 <= inst0_from_periphcfg.RF_SWITCHES(9);
+         
+   RFSW1_LMS3_RX1_V1  <= inst0_from_periphcfg.RF_SWITCHES(0);
+   RFSW1_LMS3_RX2_V1  <= inst0_from_periphcfg.RF_SWITCHES(1);
    
+   LMS1_TX1_EN     <= inst0_from_periphcfg.RF_AMP_CTRL(5);
+   LMS1_TX2_EN     <= inst0_from_periphcfg.RF_AMP_CTRL(4);
+   LMS2_TX1_1_EN   <= inst0_from_periphcfg.RF_AMP_CTRL(3);
+   LMS2_TX2_1_EN   <= inst0_from_periphcfg.RF_AMP_CTRL(2);
+   LMS2_RX1_LNA_SD <= inst0_from_periphcfg.RF_AMP_CTRL(1);
+   LMS2_RX2_LNA_SD <= inst0_from_periphcfg.RF_AMP_CTRL(0);
+   
+
    CDCM1_RESET_N         <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--'1';
    CDCM1_SYNCN           <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
    
@@ -2264,6 +2304,9 @@ begin
    CDCM2_SYNCN           <= not inst0_from_cdcmcfg2.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM2_SS;--'1';   
    
    PPS_OUT <= inst1_lms1_rxpll_c1;
+   
+   LMS2_RESET <= inst0_from_fpgacfg_1.LMS1_RESET;
+   LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
 
 end arch;   
 

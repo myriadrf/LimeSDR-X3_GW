@@ -1,1 +1,1 @@
-write_cfgmem  -format mcs -force -size 32 -interface SPIx4 -loadbit {up 0x00000000 "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/vivado/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit" } -file "G:/working_dir/xil/PCIe_5GRadio/lms7_trx/bitstream/lms7_trx.mcs"
+write_cfgmem  -format mcs -force -size 16 -interface SPIx4 -loadbit {up 0x00000000 "/home/servenikas/git/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit" } -file "/home/servenikas/git/pcie_5gradio_gw/bitstream/lms7_trx.mcs"
