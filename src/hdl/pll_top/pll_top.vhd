@@ -576,6 +576,7 @@ begin
    
    inst7 : entity work.max5878_mmcm
    port map ( 
+      locked   => pll_1_locked,
       -- Clock out ports  
       clk_out1 => pll_1_c0,
       clk_out2 => pll_1_c1,

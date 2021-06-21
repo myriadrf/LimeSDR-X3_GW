@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Feb 25 12:12:30 2021
+-- Date        : Thu Jun 17 16:53:22 2021
 -- Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top max5878_mmcm -prefix
---               max5878_mmcm_ max5878_mmcm_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/servenikas/git/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.vhdl
 -- Design      : max5878_mmcm
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -19,9 +19,12 @@ entity max5878_mmcm_max5878_mmcm_clk_wiz is
     clk_out1 : out STD_LOGIC;
     clk_out2 : out STD_LOGIC;
     clk_out3 : out STD_LOGIC;
+    locked : out STD_LOGIC;
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of max5878_mmcm_max5878_mmcm_clk_wiz : entity is "max5878_mmcm_clk_wiz";
 end max5878_mmcm_max5878_mmcm_clk_wiz;
 
 architecture STRUCTURE of max5878_mmcm_max5878_mmcm_clk_wiz is
@@ -43,7 +46,6 @@ architecture STRUCTURE of max5878_mmcm_max5878_mmcm_clk_wiz is
   signal NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_DRDY_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_LOCKED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_PSDONE_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_DO_UNCONNECTED : STD_LOGIC_VECTOR ( 15 downto 0 );
   attribute BOX_TYPE : string;
@@ -167,7 +169,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       DO(15 downto 0) => NLW_mmcm_adv_inst_DO_UNCONNECTED(15 downto 0),
       DRDY => NLW_mmcm_adv_inst_DRDY_UNCONNECTED,
       DWE => '0',
-      LOCKED => NLW_mmcm_adv_inst_LOCKED_UNCONNECTED,
+      LOCKED => locked,
       PSCLK => '0',
       PSDONE => NLW_mmcm_adv_inst_PSDONE_UNCONNECTED,
       PSEN => '0',
@@ -185,6 +187,7 @@ entity max5878_mmcm is
     clk_out1 : out STD_LOGIC;
     clk_out2 : out STD_LOGIC;
     clk_out3 : out STD_LOGIC;
+    locked : out STD_LOGIC;
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
   );
@@ -200,6 +203,7 @@ inst: entity work.max5878_mmcm_max5878_mmcm_clk_wiz
       clk_in1_p => clk_in1_p,
       clk_out1 => clk_out1,
       clk_out2 => clk_out2,
-      clk_out3 => clk_out3
+      clk_out3 => clk_out3,
+      locked => locked
     );
 end STRUCTURE;

@@ -114,6 +114,7 @@ signal inst0_wrusedw             : std_logic_vector(c_INST0_WRUSEDW_WITDTH-1 dow
 signal inst0_q                   : std_logic_vector(c_INST0_RDWIDTH-1 downto 0);
 signal inst0_rdempty             : std_logic;
 signal inst0_rdreq               : std_logic;
+signal inst0_rdusedw             : std_logic_vector(c_INST0_RDUSEDW_WIDTH-1 downto 0);
 
 --inst1
 constant c_INST1_WRUSEDW_WITDTH  : integer := g_TX1_FIFO_WRUSEDW;
@@ -237,7 +238,7 @@ begin
       rdreq       => inst0_rdreq,
       q           => inst0_q,
       rdempty     => inst0_rdempty,
-      rdusedw     => open   
+      rdusedw     => inst0_rdusedw   
    );
    
    inst0_rdreq <= inst3_fifo_rdreq;
@@ -281,7 +282,7 @@ inst3_txiq_par : entity work.txiq_par
       fifo_q         => inst3_fifo_q
    );
    
-   inst3_fifo_rdempty <=   inst0_rdempty;
+   inst3_fifo_rdempty <= inst0_rdempty;
    
 -- ----------------------------------------------------------------------------
 -- Internal MUX1

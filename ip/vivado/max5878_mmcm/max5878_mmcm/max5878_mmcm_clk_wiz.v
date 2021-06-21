@@ -74,6 +74,8 @@ module max5878_mmcm_clk_wiz
   output        clk_out1,
   output        clk_out2,
   output        clk_out3,
+  // Status and control signals
+  output        locked,
   input         clk_in1_p,
   input         clk_in1_n
  );
@@ -186,6 +188,7 @@ wire clk_in2_max5878_mmcm;
     .PWRDWN              (1'b0),
     .RST                 (1'b0));
 
+  assign locked = locked_int;
 // Clock Monitor clock assigning
 //--------------------------------------
  // Output buffering

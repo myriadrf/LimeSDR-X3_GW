@@ -74,6 +74,8 @@ port
   clk_out1          : out    std_logic;
   clk_out2          : out    std_logic;
   clk_out3          : out    std_logic;
+  -- Status and control signals
+  locked            : out    std_logic;
   clk_in1_p         : in     std_logic;
   clk_in1_n         : in     std_logic
  );
@@ -89,6 +91,8 @@ your_instance_name : max5878_mmcm
    clk_out1 => clk_out1,
    clk_out2 => clk_out2,
    clk_out3 => clk_out3,
+  -- Status and control signals                
+   locked => locked,
    -- Clock in ports
    clk_in1_p => clk_in1_p,
    clk_in1_n => clk_in1_n

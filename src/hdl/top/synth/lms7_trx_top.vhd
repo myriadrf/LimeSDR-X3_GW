@@ -749,18 +749,18 @@ attribute DONT_TOUCH : string;
 attribute KEEP_HIERARCHY : string;
 
 
-attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
-attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
-attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
+--attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
+--attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
+--attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
 --attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
 --attribute KEEP_HIERARCHY of inst6_lms7002_top : label is "TRUE";
 
-attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
-attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
-attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
+--attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
 
 --attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
 --attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
@@ -773,8 +773,16 @@ signal gpio_t : std_logic_vector(15 downto 0);
 signal spi0_lms1_miso   : std_logic;
 signal spi0_lms2_miso   : std_logic;
 
+--attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
+--attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
+--attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
 
+--attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
+--attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
+--attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
 
 begin
 
@@ -1273,18 +1281,18 @@ begin
      H2F_S1_1_rdusedw     => inst2_H2F_S1_1_rdusedw, 
 
      H2F_S2_0_rdclk       => '0',--inst1_pll_1_c1,
-     H2F_S2_0_aclrn       => '1',--inst11_tx_in_pct_reset_n_req,
+     H2F_S2_0_aclrn       => '0',--inst11_tx_in_pct_reset_n_req,
      H2F_S2_0_rd          => '0',--inst11_tx_in_pct_rdreq,
      H2F_S2_0_rdata       => open,--inst2_H2F_S2_0_rdata,
      H2F_S2_0_rempty      => open,--inst2_H2F_S2_0_rempty,
      H2F_S2_0_rdusedw     => open,--inst2_H2F_S2_0_rdusedw,
   
-     H2F_S2_1_rdclk       => inst1_pll_1_c1,
-     H2F_S2_1_aclrn       => inst0_from_fpgacfg_2.wfm_load,
-     H2F_S2_1_rd          => inst11_wfm_in_pct_rdreq,
-     H2F_S2_1_rdata       => inst2_H2F_S2_1_rdata,
-     H2F_S2_1_rempty      => inst2_H2F_S2_1_rempty,
-     H2F_S2_1_rdusedw     => inst2_H2F_S2_1_rdusedw,       
+     H2F_S2_1_rdclk       => '0',--inst1_pll_1_c1,
+     H2F_S2_1_aclrn       => '0',--inst0_from_fpgacfg_2.wfm_load,
+     H2F_S2_1_rd          => '0',--inst11_wfm_in_pct_rdreq,
+     H2F_S2_1_rdata       => open,--inst2_H2F_S2_1_rdata,
+     H2F_S2_1_rempty      => open,--inst2_H2F_S2_1_rempty,
+     H2F_S2_1_rdusedw     => open,--inst2_H2F_S2_1_rdusedw,       
      --Stream endpoint FIFO (FPGA->Host)
      F2H_S0_wclk          => inst1_lms1_rxpll_c1,
      F2H_S0_aclrn         => inst7_rx_pct_fifo_aclrn_req,
@@ -1725,10 +1733,10 @@ begin
       tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
       tx_txant_en             => inst11_tx_txant_en,  
       --Tx interface data 
-      tx_smpl_fifo_wrreq      => inst11_tx_smpl_fifo_wrreq,
+      tx_smpl_fifo_wrreq      => inst9_tx_smpl_fifo_wrreq,
       tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
       tx_smpl_fifo_wrusedw    => inst12_tx0_wrusedw,
-      tx_smpl_fifo_data       => inst11_tx_smpl_fifo_data,
+      tx_smpl_fifo_data       => inst9_tx_smpl_fifo_data,
       --TX packet FIFO ports
       tx_in_pct_reset_n_req   => inst9_tx_in_pct_reset_n_req,
       tx_in_pct_rdreq         => inst9_tx_in_pct_rdreq,
@@ -2072,7 +2080,7 @@ begin
       clk                  => inst1_pll_1_c1,
       clk2x                => inst1_pll_1_c0,
       clkfwd               => inst1_pll_1_c2,
-      reset_n              => '1',
+      reset_n              => reset_n and inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en,
       --DAC#1 Outputs
       DAC1_CLK_P           => FPGA_LMS2_BB_DAC1_CLK_P,
       DAC1_CLK_N           => FPGA_LMS2_BB_DAC1_CLK_N,
@@ -2096,11 +2104,11 @@ begin
       DAC2_XOR_P           => open, --LMS2_BB_DAC2_XOR_P,
       DAC2_XOR_N           => open, --LMS2_BB_DAC2_XOR_N,
       -- Internal TX ports
-      tx_reset_n           => inst1_pll_0_locked,
+      tx_reset_n           => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
       tx_src_sel           => inst12_tx_src_sel,
       -- tx0 source for DAC
-      tx0_wrclk            => inst1_pll_0_c1,
-      tx0_reset_n          => inst1_pll_0_locked,
+      tx0_wrclk            => inst1_pll_1_c1,--inst1_pll_0_c1,
+      tx0_reset_n          => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
       tx0_wrfull           => inst12_tx0_wrfull,
       tx0_wrusedw          => inst12_tx0_wrusedw,
       tx0_wrreq            => inst9_tx_smpl_fifo_wrreq,

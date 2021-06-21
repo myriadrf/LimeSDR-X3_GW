@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Feb 25 12:12:30 2021
+// Date        : Thu Jun 17 16:53:22 2021
 // Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top max5878_mmcm -prefix
-//               max5878_mmcm_ max5878_mmcm_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/servenikas/git/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.v
 // Design      : max5878_mmcm
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -17,11 +17,13 @@ module max5878_mmcm
    (clk_out1,
     clk_out2,
     clk_out3,
+    locked,
     clk_in1_p,
     clk_in1_n);
   output clk_out1;
   output clk_out2;
   output clk_out3;
+  output locked;
   input clk_in1_p;
   input clk_in1_n;
 
@@ -30,24 +32,29 @@ module max5878_mmcm
   wire clk_out1;
   wire clk_out2;
   wire clk_out3;
+  wire locked;
 
   max5878_mmcm_max5878_mmcm_clk_wiz inst
        (.clk_in1_n(clk_in1_n),
         .clk_in1_p(clk_in1_p),
         .clk_out1(clk_out1),
         .clk_out2(clk_out2),
-        .clk_out3(clk_out3));
+        .clk_out3(clk_out3),
+        .locked(locked));
 endmodule
 
+(* ORIG_REF_NAME = "max5878_mmcm_clk_wiz" *) 
 module max5878_mmcm_max5878_mmcm_clk_wiz
    (clk_out1,
     clk_out2,
     clk_out3,
+    locked,
     clk_in1_p,
     clk_in1_n);
   output clk_out1;
   output clk_out2;
   output clk_out3;
+  output locked;
   input clk_in1_p;
   input clk_in1_n;
 
@@ -62,6 +69,7 @@ module max5878_mmcm_max5878_mmcm_clk_wiz
   wire clk_out3_max5878_mmcm;
   wire clkfbout_buf_max5878_mmcm;
   wire clkfbout_max5878_mmcm;
+  wire locked;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
@@ -74,7 +82,6 @@ module max5878_mmcm_max5878_mmcm_clk_wiz
   wire NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED;
   wire NLW_mmcm_adv_inst_DRDY_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_LOCKED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_PSDONE_UNCONNECTED;
   wire [15:0]NLW_mmcm_adv_inst_DO_UNCONNECTED;
 
@@ -181,7 +188,7 @@ module max5878_mmcm_max5878_mmcm_clk_wiz
         .DO(NLW_mmcm_adv_inst_DO_UNCONNECTED[15:0]),
         .DRDY(NLW_mmcm_adv_inst_DRDY_UNCONNECTED),
         .DWE(1'b0),
-        .LOCKED(NLW_mmcm_adv_inst_LOCKED_UNCONNECTED),
+        .LOCKED(locked),
         .PSCLK(1'b0),
         .PSDONE(NLW_mmcm_adv_inst_PSDONE_UNCONNECTED),
         .PSEN(1'b0),

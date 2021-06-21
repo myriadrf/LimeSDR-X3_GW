@@ -114,7 +114,15 @@ signal pct_sync_num_of_rdy_packets  : unsigned(2 downto 0);
 signal pct_rdy_combined_vect        : std_logic_vector(g_BUFF_COUNT downto 0);
 
 
-
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of smpl_fifo_wrreq: signal is "TRUE";
+attribute MARK_DEBUG of smpl_fifo_wrfull: signal is "TRUE";
+attribute MARK_DEBUG of smpl_fifo_wrusedw: signal is "TRUE";
+attribute MARK_DEBUG of in_pct_rdreq: signal is "TRUE";
+attribute MARK_DEBUG of in_pct_rdempty: signal is "TRUE";
+attribute MARK_DEBUG of ch_en: signal is "TRUE";
+attribute MARK_DEBUG of ddr_en: signal is "TRUE";
+attribute MARK_DEBUG of en: signal is "TRUE";
 
 
 
