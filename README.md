@@ -7,20 +7,14 @@ The gateware can be built with the free version of the Xilinx Vivado v2019.1 (64
 ## Project building
 
 * Open Vivado;
-* Use "Tcl console" to change working directory to where this project resides;
-* Use "Tcl console" and type "source PCIe_5GRadio_lms7_trx.tcl" command;
+* Select Tools->Run Tcl script.. 
+* Move into the gateware directory and execute "Generate_Project.tcl"
 
 ## Changing project settings or adding new src files
 
 * Open PCIe_5GRadio_lms7_trx project with Vivado;
-* Use "Tcl console" to change working directory to where "write_proj_script.tcl" resides;
-* Use "Tcl console" and type "source write_proj_script.tcl" command;
-* Open generated PCIe_5GRadio_lms7_trx.tcl file and change line:  
-    set origin_dir "."
-    
-    to
-    
-    set origin_dir [file dirname [info script]]
+* Select Tools->Run Tcl script.. 
+* Move into the gateware directory and execute "write_proj_script.tcl"
 
 ## Branches
 
