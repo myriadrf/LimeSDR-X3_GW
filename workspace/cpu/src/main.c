@@ -51,6 +51,8 @@
 
 #define SPI2_TCXO_DAC_SS	0x01
 #define SPI2_ADF_SS         0x02
+#define SPI2_PA1_SS			0x04
+#define SPI2_PA2_SS			0x08
 #define SPI1_ADC_SS			0x02
 
 
@@ -99,7 +101,9 @@
 
 uint8_t temp_buffer0[4];
 uint8_t temp_buffer1[4];
-uint16_t pa_dac_val[2] = {0};
+// storage for dac values
+uint16_t pa1_dac_val = 0;
+uint16_t pa2_dac_val = 0;
 uint16_t dac_val = 30714;		//TCXO DAC value
 signed short int converted_val = 300;	//Temperature
 
@@ -156,6 +160,11 @@ void Init_SPI(u16 DeviceId, XSpi *InstancePtr, u32 Options)
 	if (ConfigPtr == NULL) {
 		//return XST_DEVICE_NOT_FOUND;
 	}
+	//ATTENTION DIRTY OVERRIDE FOR SPI2. VITIS DOESNT SEEM TO
+	//CORRECTLY IMPORT SPI2 NUMBER OF SLAVES FROM HW DEFINITION
+	//TODO: FIGURE OUT WHY. FOR NOW THIS WORKS FINE
+	if (DeviceId == 0x02)
+			ConfigPtr->NumSlaveBits = 4;
 
 	spi_status = XSpi_CfgInitialize(InstancePtr, ConfigPtr,
 				  ConfigPtr->BaseAddress);
@@ -414,7 +423,8 @@ void init_ADC(XSpi *InstancePtr, u32 SlaveMask)
 	// 0x42
 	wr_buf[0] = 0x42;	//Address
 	//wr_buf[1] = 0x08;	//Data
-	wr_buf[1] = 0x00;	//Data
+//	wr_buf[1] = 0x00;	//Data
+	wr_buf[1] = 0xf8;	//Data
 	//spirez = alt_avalon_spi_command(SPI_2_BASE, SPI_2_NR_EXTADC, 2, wr_buf, 0, NULL, 0);
 	spirez = XSpi_Transfer(InstancePtr, wr_buf, NULL, 2);
 
@@ -692,7 +702,7 @@ void Control_SPI2_DAC (unsigned char oe, uint16_t *data, unsigned char dev_num) 
 		DAC_data[2] = 0x00; //LSB data
 
 		//spirez = alt_avalon_spi_command(DAC_SPI1_BASE, SPI_NR_TCXO_DAC, 3, DAC_data, 0, NULL, 0);
-		spirez = XSpi_Transfer(&Spi1, DAC_data, NULL,3);
+		spirez = XSpi_Transfer(&Spi2, DAC_data, NULL,3);
 
 	}
 	else //enable DAC output, set new val
@@ -704,8 +714,9 @@ void Control_SPI2_DAC (unsigned char oe, uint16_t *data, unsigned char dev_num) 
 	    /* Update cached value of trim DAC setting */
 	    vctcxo_trim_dac_value = (uint16_t) *data;
 		//spirez = alt_avalon_spi_command(DAC_SPI1_BASE, SPI_NR_TCXO_DAC, 3, DAC_data, 0, NULL, 0);
-		spirez = XSpi_Transfer(&Spi1, DAC_data, NULL,3);
+		spirez = XSpi_Transfer(&Spi2, DAC_data, NULL,3);
 	}
+	spirez = XSpi_SetSlaveSelect(&Spi2, 0);
 }
 
 /**
@@ -718,8 +729,8 @@ void Control_TCXO_ADF (unsigned char oe, unsigned char *data) //controls ADF4002
 	volatile int spirez;
 	unsigned char ADF_data[12], ADF_block;
 
-	Init_SPI(SPI1_DEVICE_ID, &Spi1, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
-	spirez = XSpi_SetSlaveSelect(&Spi1, SPI2_ADF_SS);
+	Init_SPI(SPI1_DEVICE_ID, &Spi2, XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
+	spirez = XSpi_SetSlaveSelect(&Spi2, SPI2_ADF_SS);
 
 	if (oe == 0) //set ADF4002 CP to three-state and MUX_OUT to DGND
 	{
@@ -742,14 +753,15 @@ void Control_TCXO_ADF (unsigned char oe, unsigned char *data) //controls ADF4002
 		for(ADF_block = 0; ADF_block < 4; ADF_block++)
 		{
 			//spirez = alt_avalon_spi_command(SPI_1_ADF_BASE, SPI_NR_ADF4002, 3, &ADF_data[ADF_block*3], 0, NULL, 0);
-			spirez = XSpi_Transfer(&Spi1, &ADF_data[ADF_block*3], NULL,3);
+			spirez = XSpi_Transfer(&Spi2, &ADF_data[ADF_block*3], NULL,3);
 		}
 	}
 	else //set PLL parameters, 4 blocks must be written
 	{
 		//spirez = alt_avalon_spi_command(SPI_1_ADF_BASE, SPI_NR_ADF4002, 3, data, 0, NULL, 0);
-		spirez = XSpi_Transfer(&Spi1, data, NULL,3);
+		spirez = XSpi_Transfer(&Spi2, data, NULL,3);
 	}
+	spirez = XSpi_SetSlaveSelect(&Spi2, 0);
 }
 
 void ResetPLL(void)
@@ -2022,6 +2034,8 @@ tXPLL_CFG pll_cfg = {0};
  					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
 
+// COMMAND LMS RESET
+
  				case CMD_LMS_RST:
 
 					if (!Check_Periph_ID(MAX_ID_LMS7, LMS_Ctrl_Packet_Rx->Header.Periph_ID))
@@ -2078,6 +2092,8 @@ tXPLL_CFG pll_cfg = {0};
 					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
 
+// COMMAND LMS WRITE
+
  				case CMD_LMS7002_WR:
  					if(!Check_Periph_ID(MAX_ID_LMS7, LMS_Ctrl_Packet_Rx->Header.Periph_ID)) break;
  					if(Check_many_blocks (4)) break;
@@ -2104,6 +2120,8 @@ tXPLL_CFG pll_cfg = {0};
 
  					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
+
+// COMMAND LMS READ
 
  				case CMD_LMS7002_RD:
  					if(Check_many_blocks (4)) break;
@@ -2134,6 +2152,8 @@ tXPLL_CFG pll_cfg = {0};
  					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
 
+// COMMAND BOARD SPI WRITE
+
  	 			case CMD_BRDSPI16_WR:
  	 				if(Check_many_blocks (4)) break;
 
@@ -2149,6 +2169,8 @@ tXPLL_CFG pll_cfg = {0};
 
  	 				LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  	 			break;
+
+// COMMAND BOARD SPI READ
 
  				case CMD_BRDSPI16_RD:
  					if(Check_many_blocks (4)) break;
@@ -2170,6 +2192,8 @@ tXPLL_CFG pll_cfg = {0};
 
  					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
  				break;
+
+// COMMAND ANALOG VALUE READ
 
 				case CMD_ANALOG_VAL_RD:
 
@@ -2237,20 +2261,20 @@ tXPLL_CFG pll_cfg = {0};
 								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = wiper_pos[1] & 0xFF; //signed val, LSB byte
 							break;
 							*/
-							case 2://dac val
+							case 2:// LMS1_TX1 dac val
 
 								LMS_Ctrl_Packet_Tx->Data_field[0 + (block * 4)] = LMS_Ctrl_Packet_Rx->Data_field[block]; //ch
 								LMS_Ctrl_Packet_Tx->Data_field[1 + (block * 4)] = 0x00; //RAW //unit, power
-								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa_dac_val[0] >> 8) & 0xFF; //unsigned val, MSB byte
-								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa_dac_val[0] & 0xFF; //unsigned val, LSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa1_dac_val >> 8) & 0xFF; //unsigned val, MSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa1_dac_val & 0xFF; //unsigned val, LSB byte
 
 							break;
-							case 3://dac val
+							case 3:// LMS1_TX2 dac val
 
 								LMS_Ctrl_Packet_Tx->Data_field[0 + (block * 4)] = LMS_Ctrl_Packet_Rx->Data_field[block]; //ch
 								LMS_Ctrl_Packet_Tx->Data_field[1 + (block * 4)] = 0x00; //RAW //unit, power
-								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa_dac_val[1] >> 8) & 0xFF; //unsigned val, MSB byte
-								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa_dac_val[1] & 0xFF; //unsigned val, LSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[2 + (block * 4)] = (pa2_dac_val >> 8) & 0xFF; //unsigned val, MSB byte
+								LMS_Ctrl_Packet_Tx->Data_field[3 + (block * 4)] = pa2_dac_val & 0xFF; //unsigned val, LSB byte
 
 							break;
 
@@ -2260,12 +2284,14 @@ tXPLL_CFG pll_cfg = {0};
 						}
 					}
 
-					LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+					if(cmd_errors)
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_ERROR_CMD;
+					else
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
 
 				break;
 
-//				pa_dac_val;
-//				Control_SPI2_DAC(oe, data, SPI2_TCXO_DAC_SS);
+// COMMAND ANALOG VALUE WRITE
 
 				case CMD_ANALOG_VAL_WR:
 					if(Check_many_blocks (4)) break;
@@ -2289,16 +2315,16 @@ tXPLL_CFG pll_cfg = {0};
 							case 2: //TCXO DAC
 								if (LMS_Ctrl_Packet_Rx->Data_field[1 + (block * 4)] == 0) //RAW units?
 								{
-									pa_dac_val[0] = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
-									Control_SPI2_DAC(1, &pa_dac_val[0], 3); //enable DAC output, set new val
+									pa1_dac_val = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
+									Control_SPI2_DAC(1, &pa1_dac_val, SPI2_PA1_SS); //enable DAC output, set new val
 								}
 								else cmd_errors++;
 							break;
 							case 3: //TCXO DAC
 								if (LMS_Ctrl_Packet_Rx->Data_field[1 + (block * 4)] == 0) //RAW units?
 								{
-									pa_dac_val[1] = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
-									Control_SPI2_DAC(1, &pa_dac_val[1], 4); //enable DAC output, set new val
+									pa2_dac_val = (LMS_Ctrl_Packet_Rx->Data_field[2 + (block * 4)] << 8 ) + LMS_Ctrl_Packet_Rx->Data_field[3 + (block * 4)];
+									Control_SPI2_DAC(1, &pa2_dac_val, SPI2_PA2_SS); //enable DAC output, set new val
 								}
 								else cmd_errors++;
 							break;
@@ -2309,8 +2335,39 @@ tXPLL_CFG pll_cfg = {0};
 						}
 					}
 
-					if(cmd_errors) LMS_Ctrl_Packet_Tx->Header.Status = STATUS_ERROR_CMD;
-					else LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+					if(cmd_errors)
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_ERROR_CMD;
+					else
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+
+					break;
+
+// COMMAND MEMORY WRITE
+
+				case CMD_MEMORY_WR:
+					//PLACEHOLDER
+					cmd_errors++;
+
+					if(cmd_errors)
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_ERROR_CMD;
+					else
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+
+					break;
+
+// COMMAND MEMORY READ
+
+				case CMD_MEMORY_RD:
+					//PLACEHOLDER
+					cmd_errors++;
+
+					if(cmd_errors)
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_ERROR_CMD;
+					else
+						LMS_Ctrl_Packet_Tx->Header.Status = STATUS_COMPLETED_CMD;
+
+					break;
+
 
 				break;
 
