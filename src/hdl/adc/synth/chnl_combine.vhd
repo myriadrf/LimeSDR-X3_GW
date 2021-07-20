@@ -368,12 +368,12 @@ begin
          data_valid  <= '0';
       elsif rising_edge(clk) then 
          if ch_en = "01" then
-            data(2*diq_width-1 downto 0)           <= std_logic_vector(a_reg(0));
-            data(4*diq_width-1 downto 2*diq_width) <= std_logic_vector(a_reg(1));
+            data(2*diq_width-1 downto 0)           <= std_logic_vector(a_reg(1));
+            data(4*diq_width-1 downto 2*diq_width) <= std_logic_vector(a_reg(0));
             data_valid     <= a_reg_valid;
          elsif ch_en = "10" then
-            data(2*diq_width-1 downto 0)           <= std_logic_vector(b_reg(0));
-            data(4*diq_width-1 downto 2*diq_width) <= std_logic_vector(b_reg(1));
+            data(2*diq_width-1 downto 0)           <= std_logic_vector(b_reg(1));
+            data(4*diq_width-1 downto 2*diq_width) <= std_logic_vector(b_reg(0));
             data_valid     <= b_reg_valid;
          else 
             data(2*diq_width-1 downto 0)           <= std_logic_vector(ab_reg(0));

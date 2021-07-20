@@ -36,7 +36,8 @@ entity max5878_top is
       g_TX1_FIFO_WRUSEDW      : integer := 9;
       g_TX1_FIFO_DATAW        : integer := 128;
       g_TX2_FIFO_WRUSEDW      : integer := 9;
-      g_TX2_FIFO_DATAW        : integer := 128
+      g_TX2_FIFO_DATAW        : integer := 128;
+      g_INV_IQSEL             : integer := 0
       
    );
    port (
@@ -179,8 +180,9 @@ signal inst6_dataout             : std_logic_vector(g_IQ_WIDTH*4-1 downto 0);
 
    component max5878_io
    generic ( 
-      SYS_W : integer := 16;
-      DEV_W : integer := 32
+      SYS_W     : integer := 16;
+      INV_IQSEL : integer := g_INV_IQSEL;
+      DEV_W     : integer := 32
    );
    port (
       clk                  : in std_logic;
@@ -348,8 +350,9 @@ inst3_txiq_par : entity work.txiq_par
 -- ----------------------------------------------------------------------------   
    io_inst0 : max5878_io
    generic map( 
-      SYS_W =>  16,
-      DEV_W =>  32
+      SYS_W     =>  16,
+      INV_IQSEL =>  g_INV_IQSEL,
+      DEV_W     =>  32
    )
    port map(
       clk                  => clk2x,
@@ -362,14 +365,15 @@ inst3_txiq_par : entity work.txiq_par
       seliq_to_pins_n      => DAC1_SELIQ_N,
       clk_to_pins_p        => DAC1_CLK_P,
       clk_to_pins_n        => DAC1_CLK_N,
-      clk_reset            => '0',
-      io_reset             => '0'
+      clk_reset            => not tx_reset_n,--'0',
+      io_reset             => not tx_reset_n--'0'
       );
       
    io_inst1 : max5878_io
    generic map( 
-      SYS_W =>  16,
-      DEV_W =>  32
+      SYS_W     =>  16,
+      INV_IQSEL =>  g_INV_IQSEL,
+      DEV_W     =>  32
    )
    port map(
       clk                  => clk2x,
@@ -382,8 +386,8 @@ inst3_txiq_par : entity work.txiq_par
       seliq_to_pins_n      => DAC2_SELIQ_N,
       clk_to_pins_p        => DAC2_CLK_P,
       clk_to_pins_n        => DAC2_CLK_N,
-      clk_reset            => '0',
-      io_reset             => '0'
+      clk_reset            => not tx_reset_n,--'0',
+      io_reset             => not tx_reset_n--'0'
       );
    
 -- ----------------------------------------------------------------------------

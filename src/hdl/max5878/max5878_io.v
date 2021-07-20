@@ -55,6 +55,8 @@
 module max5878_io
    // width of the data for the system
  #(parameter SYS_W = 16,
+   // IQSEL signal invert
+   parameter INV_IQSEL = 0,
    // width of the data for the device
    parameter DEV_W = 32)
  (
@@ -179,8 +181,8 @@ module max5878_io
          .TRISTATE_WIDTH (1),
          .SERDES_MODE    ("MASTER"))
        oserdese2_master (
-         .D1             (1'b1),
-         .D2             (1'b0),
+         .D1             (!INV_IQSEL),//1'b1),
+         .D2             (INV_IQSEL),//1'b0),
          .D3             (1'b0),
          .D4             (1'b0),
          .D5             (1'b0),
