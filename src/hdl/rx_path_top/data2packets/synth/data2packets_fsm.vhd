@@ -44,7 +44,7 @@ signal smpl_buff_rd_done         : std_logic;
 signal smpl_buff_rd_cnt          : unsigned(11 downto 0);
 signal smpl_buff_rd_cnt_max      : unsigned(11 downto 0);
 signal pct_buff_wr_dis_sig       : std_logic;
-  
+
 begin
 
 

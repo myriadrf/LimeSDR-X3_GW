@@ -18,7 +18,9 @@ entity rx_path_top is
       iq_width             : integer := 12;
       invert_input_clocks  : string := "OFF";
       smpl_buff_rdusedw_w  : integer := 11; --bus width in bits 
-      pct_buff_wrusedw_w   : integer := 12  --bus width in bits 
+      pct_buff_wrusedw_w   : integer := 12;  --bus width in bits 
+      outbus_width         : integer := 64;
+      G_DISABLE_14BIT      : boolean := false -- generic to disable 14 bit packing modules
       );
    port (
       clk                  : in std_logic;
@@ -39,7 +41,7 @@ entity rx_path_top is
       --Packet FIFO ports 
       pct_fifo_wusedw      : in std_logic_vector(pct_buff_wrusedw_w-1 downto 0);
       pct_fifo_wrreq       : out std_logic;
-      pct_fifo_wdata       : out std_logic_vector(63 downto 0);
+      pct_fifo_wdata       : out std_logic_vector(outbus_width-1 downto 0);
       pct_hdr_cap          : out std_logic;
       --sample nr
       clr_smpl_nr          : in std_logic;
@@ -81,13 +83,13 @@ signal inst0_fifo_wdata       : std_logic_vector(iq_width*4-1 downto 0);
 
 --inst1
 signal inst1_wrfull           : std_logic;
-signal inst1_q                : std_logic_vector(iq_width*4-1 downto 0);
+signal inst1_q                : std_logic_vector(iq_width*(outbus_width/16)-1 downto 0);
 signal inst1_rdusedw          : std_logic_vector(smpl_buff_rdusedw_w-1 downto 0);
 --inst2
 signal inst2_pct_hdr_0        : std_logic_vector(63 downto 0);
 signal inst2_pct_hdr_1        : std_logic_vector(63 downto 0);
 signal inst2_smpl_buff_rdreq  : std_logic;
-signal inst2_smpl_buff_rddata : std_logic_vector(63 downto 0);
+signal inst2_smpl_buff_rddata : std_logic_vector(outbus_width-1 downto 0);
 --inst3
 signal inst3_q                : std_logic_vector(63 downto 0);
 
@@ -145,13 +147,70 @@ bus_sync_reg2 : entity work.bus_sync_reg
 generic map (64)
 port map(clk, '1', smpl_nr_in, smpl_nr_in_sync);
 
+
+ 
+--samples are placed to MSb LSb ar filled with zeros 
+--inst2_smpl_buff_rddata <=  inst1_q(47 downto 36) & "0000" & 
+--                           inst1_q(35 downto 24) & "0000" & 
+--                           inst1_q(23 downto 12) & "0000" & 
+--                           inst1_q(11 downto 0) & "0000";
+doublebus : if outbus_width = 128 generate
 ----------------------------------------------------------------------------
 -- FIFO for storing samples
 -- ----------------------------------------------------------------------------       
 smpl_fifo_inst1 : entity work.fifo_inst
   generic map(
       dev_family      => dev_family, 
-      wrwidth         => (iq_width*4),
+      wrwidth         => (iq_width*4), 
+      wrusedw_witdth  => smpl_buff_rdusedw_w,
+      rdwidth         => iq_width*8, 
+      rdusedw_width   => smpl_buff_rdusedw_w-1, 
+      show_ahead      => "OFF"
+  ) 
+
+  port map(
+      --input ports 
+      reset_n        => reset_n_sync,
+      wrclk          => clk,
+      wrreq          => smpl_fifo_wrreq,
+      data           => smpl_fifo_data,
+      wrfull         => smpl_fifo_wrfull,
+      wrempty        => open,
+      wrusedw        => open,
+      rdclk          => clk,
+      rdreq          => inst2_smpl_buff_rdreq,
+      q              => inst1_q,
+      rdempty        => open,
+      rdusedw        => inst1_rdusedw(inst1_rdusedw'LEFT-1 downto 0)  
+        );
+      inst1_rdusedw(inst1_rdusedw'LEFT) <= '0';
+
+
+
+    long_gen: for I in 1 to 8 generate
+        code_block : block
+            constant up_lim : integer := (16*I);
+            constant lo_lim : integer := (16*I-1);
+        begin
+            -- this simply assigns samples from inst1_q to inst2_smpl_buff_rddata and pads unused bits
+            -- e.g. if iq_width is 12
+            -- inst2_smpl_buff_rddata(15 downto 4) <= inst1_q(11 downto 0);
+            -- inst2_smpl_buff_rddata(3  downto 0) <= (others => '0');
+            inst2_smpl_buff_rddata(up_lim-1 downto up_lim-iq_width) <= inst1_q(iq_width*I-1 downto iq_width*(I-1));
+            inst2_smpl_buff_rddata(up_lim-iq_width-1 downto lo_lim) <= (others => '0');
+        end block;    
+    end generate;
+end generate;
+
+singlebus : if outbus_width = 64 generate
+
+----------------------------------------------------------------------------
+-- FIFO for storing samples
+-- ----------------------------------------------------------------------------       
+smpl_fifo_inst1 : entity work.fifo_inst
+  generic map(
+      dev_family      => dev_family, 
+      wrwidth         => (iq_width*4), 
       wrusedw_witdth  => smpl_buff_rdusedw_w,
       rdwidth         => (iq_width*4),
       rdusedw_width   => smpl_buff_rdusedw_w,
@@ -173,24 +232,21 @@ smpl_fifo_inst1 : entity work.fifo_inst
       rdempty        => open,
       rdusedw        => inst1_rdusedw  
         );
- 
---samples are placed to MSb LSb ar filled with zeros 
---inst2_smpl_buff_rddata <=  inst1_q(47 downto 36) & "0000" & 
---                           inst1_q(35 downto 24) & "0000" & 
---                           inst1_q(23 downto 12) & "0000" & 
---                           inst1_q(11 downto 0) & "0000";
-                           
-inst2_smpl_buff_rddata(63 downto 64-iq_width) <= inst1_q(iq_width*4-1 downto iq_width*3);
-inst2_smpl_buff_rddata(64-iq_width-1 downto 48) <= (others=>'0');
-
-inst2_smpl_buff_rddata(47 downto 48-iq_width) <= inst1_q(iq_width*3-1 downto iq_width*2);
-inst2_smpl_buff_rddata(48-iq_width-1 downto 32) <= (others=>'0');
-
-inst2_smpl_buff_rddata(31 downto 32-iq_width) <= inst1_q(iq_width*2-1 downto iq_width);
-inst2_smpl_buff_rddata(32-iq_width-1 downto 16) <= (others=>'0');
-
-inst2_smpl_buff_rddata(15 downto 16-iq_width) <= inst1_q(iq_width-1 downto 0);
-inst2_smpl_buff_rddata(16-iq_width-1 downto 0) <= (others=>'0');    
+        
+    long_gen: for I in 1 to 4 generate
+        code_block : block
+            constant up_lim : integer := (16*I);
+            constant lo_lim : integer := (16*I-1);
+        begin
+            -- this simply assigns samples from inst1_q to inst2_smpl_buff_rddata and pads unused bits
+            -- e.g. if iq_width is 12
+            -- inst2_smpl_buff_rddata(15 downto 4) <= inst1_q(11 downto 0);
+            -- inst2_smpl_buff_rddata(3  downto 0) <= (others => '0');
+            inst2_smpl_buff_rddata(up_lim-1 downto up_lim-iq_width) <= inst1_q(iq_width*I-1 downto iq_width*(I-1));
+            inst2_smpl_buff_rddata(up_lim-iq_width-1 downto lo_lim) <= (others => '0');
+        end block;    
+    end generate;
+end generate;
     
 --packet reserved bits  
   inst2_pct_hdr_0(15 downto 0)   <="000000000000" & tx_pct_loss_sync & pct_fifo_wusedw(pct_buff_wrusedw_w-1 downto pct_buff_wrusedw_w-3);
@@ -204,8 +260,11 @@ inst2_smpl_buff_rddata(16-iq_width-1 downto 0) <= (others=>'0');
 -- ----------------------------------------------------------------------------       
 data2packets_top_inst2 : entity work.data2packets_top
    generic map(
+      dev_family          => dev_family,
       smpl_buff_rdusedw_w => smpl_buff_rdusedw_w,  --bus width in bits 
-      pct_buff_wrusedw_w  => pct_buff_wrusedw_w    --bus width in bits            
+      pct_buff_wrusedw_w  => pct_buff_wrusedw_w,   --bus width in bits            
+      outbus_width        => outbus_width,          --output bus width (valid values are 64 and 128) 
+      G_DISABLE_14BIT     => G_DISABLE_14BIT       -- generic to disable 14bit sample packing modules
    )
    port map(
       clk               => clk,
@@ -227,6 +286,7 @@ data2packets_top_inst2 : entity work.data2packets_top
 -- ----------------------------------------------------------------------------        
 smpl_cnt_inst3 : entity work.smpl_cnt
    generic map(
+      G_DOUBLEBUS => (outbus_width = 128),
       cnt_width   => 64
    )
    port map(
@@ -250,6 +310,7 @@ smpl_cnt_inst3 : entity work.smpl_cnt
 -- ----------------------------------------------------------------------------        
 smpl_cnt_inst4 : entity work.iq_smpl_cnt
    generic map(
+      G_DOUBLEBUS => (outbus_width = 128),
       cnt_width   => 64
    )
    port map(

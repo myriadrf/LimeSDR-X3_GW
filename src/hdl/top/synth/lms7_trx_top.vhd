@@ -44,6 +44,10 @@ entity lms7_trx_top is
       g_LMS_DIQ_WIDTH         : integer := 12;
       g_EXT_ADC_D_WIDTH       : integer := 14;
       g_EXT_DAC_D_WIDTH       : integer := 16;
+      -- Resource saving
+      g_DISABLE_BITPACKING_14B: boolean := true;  -- 14bit samples are incompatible with 4kB packets, as such
+                                                   -- this function remains unused and may be disabled to save resources
+                                                   -- SET THIS TO TRUE, IF 128BIT bus is used for RX
       -- Host related
       g_HOST2FPGA_S0_0_SIZE   : integer := 4096;   -- Stream, Host->FPGA, TX FIFO size in bytes, 
       g_HOST2FPGA_S0_1_SIZE   : integer := 4096;   -- Stream, Host->FPGA, WFM FIFO size in bytes
@@ -365,8 +369,8 @@ constant c_H2F_S0_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, F
 constant c_H2F_S1_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1 
 constant c_H2F_S2_1_RWIDTH          : integer := 64;     -- Host->FPGA stream, FIFO rd width, FIFO number - 1  
 constant c_F2H_S0_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
-constant c_F2H_S1_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
-constant c_F2H_S2_WWIDTH            : integer := 64;     -- FPGA->Host stream, FIFO wr width
+constant c_F2H_S1_WWIDTH            : integer := 128;     -- FPGA->Host stream, FIFO wr width
+constant c_F2H_S2_WWIDTH            : integer := 128;     -- FPGA->Host stream, FIFO wr width
 constant c_H2F_C0_RWIDTH            : integer := 32;     -- Host->FPGA control, rd width
 constant c_F2H_C0_WWIDTH            : integer := 32;     -- FPGA->Host control, wr width 
 
@@ -635,7 +639,7 @@ signal inst9_tx_pct_loss_flg        : std_logic;
 signal inst9_tx_txant_en            : std_logic;
 signal inst9_tx_in_pct_full         : std_logic;
 signal inst9_rx_pct_fifo_wrreq      : std_logic;
-signal inst9_rx_pct_fifo_wdata      : std_logic_vector(63 downto 0);
+signal inst9_rx_pct_fifo_wdata      : std_logic_vector(c_F2H_S1_WWIDTH-1 downto 0);
 signal inst9_to_tstcfg_from_rxtx    : t_TO_TSTCFG_FROM_RXTX;
 signal inst9_rx_pct_fifo_aclrn_req  : std_logic;
 signal inst9_tx_in_pct_rdreq        : std_logic;
@@ -683,7 +687,7 @@ signal inst11_tx_pct_loss_flg        : std_logic;
 signal inst11_tx_txant_en            : std_logic;
 signal inst11_tx_in_pct_full         : std_logic;
 signal inst11_rx_pct_fifo_wrreq      : std_logic;
-signal inst11_rx_pct_fifo_wdata      : std_logic_vector(63 downto 0);
+signal inst11_rx_pct_fifo_wdata      : std_logic_vector(c_F2H_S2_WWIDTH-1 downto 0);
 signal inst11_rx_smpl_cmp_done       : std_logic;
 signal inst11_rx_smpl_cmp_err        : std_logic;
 signal inst11_to_tstcfg_from_rxtx    : t_TO_TSTCFG_FROM_RXTX;
@@ -1581,6 +1585,7 @@ begin
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S0_0_RDUSEDW_WIDTH,
       
       -- RX parameters
+      RX_DATABUS_WIDTH        => c_F2H_S0_WWIDTH,
       RX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
       RX_INVERT_INPUT_CLOCKS  => "ON",
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S0_WRUSEDW_WIDTH --bus width in bits 
@@ -1718,6 +1723,7 @@ begin
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S1_0_RDUSEDW_WIDTH,
       
       -- RX parameters
+      RX_DATABUS_WIDTH        => c_F2H_S1_WWIDTH,
       RX_IQ_WIDTH             => 14,
       RX_INVERT_INPUT_CLOCKS  => "ON",
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S1_WRUSEDW_WIDTH --bus width in bits 
@@ -1852,7 +1858,7 @@ begin
 ----      tx_smpl_fifo_wrusedw    => inst8_tx_wrusedw,
 ----      tx_smpl_fifo_data       => inst9_tx_smpl_fifo_data,
 ----      --TX packet FIFO ports
-----      tx_in_pct_reset_n_req   => inst9_tx_in_pct_reset_n_req,
+----      tx_in_pct_reset_n_req   => inst9_tx_in_pct_reset_n_req,LMS2_
 ----      tx_in_pct_rdreq         => inst9_tx_in_pct_rdreq,
 ----      tx_in_pct_data          => inst2_H2F_S1_0_rdata,
 ----      tx_in_pct_rdempty       => inst2_H2F_S1_0_rempty,
@@ -1968,6 +1974,7 @@ begin
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
       
       -- RX parameters
+      RX_DATABUS_WIDTH        => c_F2H_S2_WWIDTH,
       RX_IQ_WIDTH             => 14,
       RX_INVERT_INPUT_CLOCKS  => "ON",
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
@@ -2074,7 +2081,8 @@ begin
       g_TX0_FIFO_WRUSEDW      => 9,
       g_TX0_FIFO_DATAW        => 128,
       g_TX1_FIFO_WRUSEDW      => 9,
-      g_TX1_FIFO_DATAW        => 2*g_EXT_ADC_D_WIDTH
+      g_TX1_FIFO_DATAW        => 2*g_EXT_ADC_D_WIDTH,
+      g_INV_IQSEL             => 1 --Inverting IQSEL signal to compensate for schematic design error
    )
    port map(
       clk                  => inst1_pll_1_c1,

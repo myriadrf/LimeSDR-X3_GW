@@ -223,11 +223,11 @@ begin
    begin
       if rising_edge(clk) then
          if inst0_q_valid = '1' then 
-            ab_reg(1) <= inst0_q;
+            ab_reg(0) <= inst0_q;
          end if;
          
          if inst1_q_valid = '1' then 
-            ab_reg(0) <= inst1_q;
+            ab_reg(1) <= inst1_q;
          end if;
       end if;
    end process;

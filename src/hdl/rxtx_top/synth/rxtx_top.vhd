@@ -21,22 +21,24 @@ use work.tstcfg_pkg.all;
 -- ----------------------------------------------------------------------------
 entity rxtx_top is
    generic(
-      DEV_FAMILY              : string := "Cyclone IV E";
+      DEV_FAMILY                   : string := "Cyclone IV E";
       -- TX parameters
-      TX_IQ_WIDTH             : integer := 12;
-      TX_N_BUFF               : integer := 4; -- 2,4 valid values
-      TX_IN_PCT_SIZE          : integer := 4096; -- TX packet size in bytes
-      TX_IN_PCT_HDR_SIZE      : integer := 16;
-      TX_IN_PCT_DATA_W        : integer := 128;
-      TX_IN_PCT_RDUSEDW_W     : integer := 11;
-      TX_OUT_PCT_DATA_W       : integer := 64;
-      TX_SMPL_FIFO_WRUSEDW_W  : integer := 9;
+      TX_IQ_WIDTH                  : integer := 12;
+      TX_N_BUFF                    : integer := 4; -- 2,4 valid values
+      TX_IN_PCT_SIZE               : integer := 4096; -- TX packet size in bytes
+      TX_IN_PCT_HDR_SIZE           : integer := 16;
+      TX_IN_PCT_DATA_W             : integer := 128;
+      TX_IN_PCT_RDUSEDW_W          : integer := 11;
+      TX_OUT_PCT_DATA_W            : integer := 64;
+      TX_SMPL_FIFO_WRUSEDW_W       : integer := 9;
       
       -- RX parameters
-      RX_IQ_WIDTH             : integer := 12;
-      RX_INVERT_INPUT_CLOCKS  : string := "OFF";
-      RX_SMPL_BUFF_RDUSEDW_W  : integer := 11; --bus width in bits 
-      RX_PCT_BUFF_WRUSEDW_W   : integer := 12  --bus width in bits 
+      RX_DATABUS_WIDTH             : integer := 64;
+      RX_IQ_WIDTH                  : integer := 12;
+      RX_INVERT_INPUT_CLOCKS       : string := "OFF";
+      RX_SMPL_BUFF_RDUSEDW_W       : integer := 11; --bus width in bits 
+      RX_PCT_BUFF_WRUSEDW_W        : integer := 12;  --bus width in bits 
+      RX_DISABLE_14B_SAMPLEPACKING : boolean := false
       
    );
    port (
@@ -71,7 +73,7 @@ entity rxtx_top is
       rx_pct_fifo_aclrn_req   : out    std_logic;
       rx_pct_fifo_wusedw      : in     std_logic_vector(RX_PCT_BUFF_WRUSEDW_W-1 downto 0);
       rx_pct_fifo_wrreq       : out    std_logic;
-      rx_pct_fifo_wdata       : out    std_logic_vector(63 downto 0);
+      rx_pct_fifo_wdata       : out    std_logic_vector(RX_DATABUS_WIDTH-1 downto 0);
          -- RX sample nr count enable
       rx_smpl_nr_cnt_en       : in     std_logic
       );
@@ -212,7 +214,9 @@ begin
       iq_width             => RX_IQ_WIDTH,
       invert_input_clocks  => RX_INVERT_INPUT_CLOCKS,
       smpl_buff_rdusedw_w  => 11, 
-      pct_buff_wrusedw_w   => RX_PCT_BUFF_WRUSEDW_W
+      pct_buff_wrusedw_w   => RX_PCT_BUFF_WRUSEDW_W,
+      outbus_width         => RX_DATABUS_WIDTH,
+      G_DISABLE_14BIT      => RX_DISABLE_14B_SAMPLEPACKING -- generic to disable generating 14bit sample packing modules
    )
    port map(
       clk                  => rx_clk,

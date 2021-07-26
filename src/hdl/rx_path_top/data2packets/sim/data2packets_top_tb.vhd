@@ -22,6 +22,8 @@ end data2packets_top_tb;
 architecture tb_behave of data2packets_top_tb is
 constant clk0_period          : time := 10 ns;
 constant clk1_period          : time := 10 ns; 
+constant iq_width             : integer := 12;
+constant C_outbus_width       : integer := 128;
    --signals
 signal clk0,clk1		         : std_logic;
 signal reset_n                : std_logic; 
@@ -31,7 +33,7 @@ signal dut0_sample_width      : std_logic_vector(1 downto 0) := "10"; --"10"-12b
 signal dut0_pct_hdr_0         : std_logic_vector(63 downto 0) := (others=>'1');
 signal dut0_pct_hdr_1         : std_logic_vector(63 downto 0);         
 signal dut0_pct_buff_wrreq    : std_logic;
-signal dut0_pct_buff_wrdata   : std_logic_vector(63 downto 0);
+signal dut0_pct_buff_wrdata   : std_logic_vector(C_outbus_width-1 downto 0);
 signal dut0_smpl_buff_rdreq   : std_logic;
 
 signal smpl_fifo_size         : integer := 11;
@@ -39,13 +41,18 @@ signal pct_fifo_size          : integer := 12;
 
 --inst1
 signal inst1_wrreq            : std_logic;
-signal inst1_data             : std_logic_vector(47 downto 0);
-signal inst1_q                : std_logic_vector(47 downto 0);
+signal inst1_data             : std_logic_vector(iq_width*4-1 downto 0):= (others => '0');
+signal sample_data            : signed(11 downto 0):= (others => '0');
+signal inst1_q                : std_logic_vector(iq_width*4-1 downto 0);
 signal inst1_rdusedw          : std_logic_vector(10 downto 0);
 
 --inst2 
 signal inst2_wrusedw          : std_logic_vector(11 downto 0);
+signal inst2_smpl_buff_rddata : std_logic_vector(128-1 downto 0);
 
+signal outfifo_rdempty        : std_logic;
+signal outfifo_rddata         : std_logic_vector(63 downto 0);
+signal counter_64             : integer;
  
 
 begin 
@@ -67,8 +74,28 @@ begin
 		reset_n <= '0'; wait for 20 ns;
 		reset_n <= '1'; wait;
 	end process res;
-   
-   
+	
+	
+	datagen : process(clk0) is
+	begin
+	   if rising_edge(clk0) then
+	       if inst1_wrreq = '1' then
+               if sample_data > 5000 then
+                   sample_data <= (others => '0');
+               else
+                   sample_data <= sample_data + 16;
+               end if;
+	       end if;
+	   end if;
+	end process;
+	
+	sampl16 : if iq_width = 16 generate
+	   inst1_data <= std_logic_vector(sample_data) &"0000" & std_logic_vector(sample_data) &"0000" & std_logic_vector(sample_data) &"0000" & std_logic_vector(sample_data) &"0000";
+	end generate;
+	
+	sampl12 : if iq_width = 12 generate
+        inst1_data <= std_logic_vector(sample_data) & std_logic_vector(sample_data) & std_logic_vector(sample_data) & std_logic_vector(sample_data);
+    end generate;
    
  process(clk0, reset_n)
    begin
@@ -83,11 +110,22 @@ begin
       end if;
    end process;
    
-   
+inst2_smpl_buff_rddata(63 downto 64-iq_width) <= inst1_q(iq_width*4-1 downto iq_width*3);
+inst2_smpl_buff_rddata(64-iq_width-1 downto 48) <= (others=>'0');
+
+inst2_smpl_buff_rddata(47 downto 48-iq_width) <= inst1_q(iq_width*3-1 downto iq_width*2);
+inst2_smpl_buff_rddata(48-iq_width-1 downto 32) <= (others=>'0');
+
+inst2_smpl_buff_rddata(31 downto 32-iq_width) <= inst1_q(iq_width*2-1 downto iq_width);
+inst2_smpl_buff_rddata(32-iq_width-1 downto 16) <= (others=>'0');
+
+inst2_smpl_buff_rddata(15 downto 16-iq_width) <= inst1_q(iq_width-1 downto 0);
+inst2_smpl_buff_rddata(16-iq_width-1 downto 0) <= (others=>'0');       
 
   
   dut0 : entity work.data2packets_top 
    generic map (
+      outbus_width        => C_outbus_width,
       smpl_buff_rdusedw_w => 11, --bus width in bits 
       pct_buff_wrusedw_w  => 12 --bus width in bits  
    )
@@ -102,7 +140,7 @@ begin
       pct_buff_wrdata   => dut0_pct_buff_wrdata,
       smpl_buff_rdusedw => inst1_rdusedw,
       smpl_buff_rdreq   => dut0_smpl_buff_rdreq,
-      smpl_buff_rddata  => (others=>'0')
+      smpl_buff_rddata  => inst2_smpl_buff_rddata--(others=>'0')
       );
       
       
@@ -119,9 +157,9 @@ begin
 fifo_inst_inst1 : entity work.fifo_inst
   generic map (
       dev_family	    => "Cyclone IV E",
-      wrwidth         => 48,
+      wrwidth         => iq_width*4,
       wrusedw_witdth  => 11, --12=2048 words 
-      rdwidth         => 48,
+      rdwidth         => iq_width*4,
       rdusedw_width   => 11,
       show_ahead      => "OFF"
   ) 
@@ -145,7 +183,7 @@ fifo_inst_inst1 : entity work.fifo_inst
 fifo_inst_inst2 : entity work.fifo_inst
   generic map (
       dev_family	    => "Cyclone IV E",
-      wrwidth         => 64,
+      wrwidth         => C_outbus_width,
       wrusedw_witdth  => 12, --12=2048 words 
       rdwidth         => 64,
       rdusedw_width   => 12,
@@ -161,15 +199,30 @@ fifo_inst_inst2 : entity work.fifo_inst
 		wrempty		  => open,
       wrusedw       => inst2_wrusedw,
       rdclk 	     => clk0,
-      rdreq         => '0',
-      q             => open,
-      rdempty       => open,
+      rdreq         => not outfifo_rdempty,
+      q             => outfifo_rddata,
+      rdempty       => outfifo_rdempty,
       rdusedw       => open
         );
 	
+	  
+counting : process(clk0,outfifo_rdempty)
+    variable counter : integer := 0;
+begin
+    if rising_edge(clk0) then
+        if (outfifo_rddata = "1111111111111111111111111111111111111111111111111111111111111111") then
+            counter := 0;
+        elsif (outfifo_rdempty='0') then
+            counter := counter + 1;
+        end if;
+    end if;
+    counter_64 <= counter;
+end process;
+  
+	
+	
 	end tb_behave;
-  
-  
+
 
 
   

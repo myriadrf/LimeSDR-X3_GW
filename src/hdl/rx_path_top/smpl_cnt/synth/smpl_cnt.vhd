@@ -14,6 +14,7 @@ use ieee.numeric_std.all;
 -- ----------------------------------------------------------------------------
 entity smpl_cnt is
    generic(
+      G_DOUBLEBUS : boolean := false;
       cnt_width   : integer := 64
    );
    port (
@@ -71,6 +72,7 @@ one_ch <= ch_en(1) XOR ch_en(0);
     
 lpm_cnt_inst_inst0 : entity work.lpm_cnt_inst
    generic map (
+      plus_two    => G_DOUBLEBUS,
       cnt_width   =>  64
    )
    port map(

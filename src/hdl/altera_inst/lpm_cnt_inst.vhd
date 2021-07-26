@@ -19,7 +19,8 @@ USE lpm.all;
 -- ----------------------------------------------------------------------------
 entity lpm_cnt_inst is
    generic(
-      cnt_width   : integer := 64
+      cnt_width   : integer := 64;
+      plus_two    : boolean := false
    );
    port (
 
@@ -60,7 +61,11 @@ begin
       elsif sload='1' then
          counter <= data;
       elsif cin='1' and cnt_en='1' then
-         counter <= std_logic_vector(unsigned(counter) + 1);
+         if plus_two then
+            counter <= std_logic_vector(unsigned(counter) + 2);
+         elsif plus_two = false then
+            counter <= std_logic_vector(unsigned(counter) + 1);
+         end if;
       end if; 
    end if;
 end process;
