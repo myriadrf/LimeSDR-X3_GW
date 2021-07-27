@@ -714,6 +714,7 @@ signal inst12_mm_rd_datav              : std_logic;
 signal inst12_mm_wait_req              : std_logic;
 signal inst12_mm_irq                   : std_logic;
 signal inst12_uart_tx                  : std_logic;
+signal inst12_smpl_cnt_en              : std_logic;
 
 
 
@@ -1762,7 +1763,7 @@ begin
       rx_pct_fifo_wrreq       => inst9_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => inst8_rx_smpl_cnt_en   
+      rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en   
    );   
 
 
@@ -2126,7 +2127,8 @@ begin
       from_txtspcfg_0      => inst0_from_txtspcfg_0,
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
-      to_txtspcfg_1        => inst0_to_txtspcfg_1
+      to_txtspcfg_1        => inst0_to_txtspcfg_1,
+      smpl_cnt_en          => inst12_smpl_cnt_en
    );
    
    
@@ -2211,7 +2213,7 @@ begin
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
+   gpio_i( 0) <= LMK1_CLK;--inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
    gpio_i( 1) <= LMS1_MCLK2;--CLK100_FPGA;--lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
    gpio_i( 2) <= lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
    gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;

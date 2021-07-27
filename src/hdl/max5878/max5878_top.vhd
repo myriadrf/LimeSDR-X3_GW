@@ -79,6 +79,8 @@ entity max5878_top is
       tx0_wrusedw       : out std_logic_vector(g_TX0_FIFO_WRUSEDW-1 downto 0);
       tx0_wrreq         : in  std_logic;
       tx0_data          : in  std_logic_vector(g_TX0_FIFO_DATAW-1 downto 0);
+      -- misc
+      smpl_cnt_en       : out std_logic;
       -- Configuration data
       from_fpgacfg      : in  t_FROM_FPGACFG;
       from_txtspcfg_0   : in  t_FROM_TXTSPCFG;
@@ -178,6 +180,8 @@ signal DAC2_DB_unsigned          : std_logic_vector(g_IQ_WIDTH-1 downto 0);
 
 signal inst6_dataout             : std_logic_vector(g_IQ_WIDTH*4-1 downto 0);
 
+signal smpl_cnt_en_reg  : std_logic;
+
    component max5878_io
    generic ( 
       SYS_W     : integer := 16;
@@ -204,6 +208,21 @@ signal inst6_dataout             : std_logic_vector(g_IQ_WIDTH*4-1 downto 0);
 
 
 begin
+
+
+   process(clk, reset_n)
+   begin 
+      if reset_n = '0' then 
+         smpl_cnt_en_reg <= '0';
+      elsif rising_edge(clk) then 
+         if from_fpgacfg.mimo_int_en = '0' AND from_fpgacfg.ddr_en = '1' then 
+            smpl_cnt_en_reg <= '1';
+         else 
+            smpl_cnt_en_reg <= not smpl_cnt_en_reg;
+         end if;
+      end if;
+   end process;
+   smpl_cnt_en <= smpl_cnt_en_reg;
    
    --DAC1_SLEEP <= '0'; -- 0 - Normal operation, 1 - power down
    --DAC2_SLEEP <= '0';
