@@ -291,7 +291,23 @@ begin
       from_fpgacfg.LMS2_TXEN           <= mem(19)(13);
       from_fpgacfg.LMS2_RXEN           <= mem(19)(14);
       from_fpgacfg.LMS_TXRXEN_INV      <= mem(19)(15);
-      from_fpgacfg.GPIO                <= mem(23)(15 downto 0);
+      from_fpgacfg.GPIO                <= mem(23)(15 downto  0);
+      
+      from_fpgacfg.tx_0_dly_sel        <= mem(24)( 1 downto  0);
+      from_fpgacfg.tx_1_dly_sel        <= mem(24)( 3 downto  2);
+      from_fpgacfg.tx_2_dly_sel        <= mem(24)( 5 downto  4);
+      from_fpgacfg.tx_3_dly_sel        <= mem(24)( 7 downto  6);
+      from_fpgacfg.tx_4_dly_sel        <= mem(24)( 9 downto  8);
+      from_fpgacfg.tx_5_dly_sel        <= mem(24)(11 downto 10);
+      from_fpgacfg.tx_6_dly_sel        <= mem(24)(13 downto 12);
+      
+      from_fpgacfg.tx_7_dly_sel        <= mem(25)( 1 downto  0);
+      from_fpgacfg.tx_8_dly_sel        <= mem(25)( 3 downto  2);
+      from_fpgacfg.tx_9_dly_sel        <= mem(25)( 5 downto  4);
+      from_fpgacfg.tx_10_dly_sel       <= mem(25)( 7 downto  6);
+      from_fpgacfg.tx_11_dly_sel       <= mem(25)( 9 downto  8);
+      from_fpgacfg.tx_12_dly_sel       <= mem(25)(11 downto 10);
+      
       from_fpgacfg.FPGA_LED1_CTRL      <= mem(26)(2 downto 0);
       from_fpgacfg.FPGA_LED2_CTRL      <= mem(26)(6 downto 4);
       from_fpgacfg.FPGA_LED3_CTRL      <= mem(26)(10 downto 8);

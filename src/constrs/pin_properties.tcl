@@ -376,6 +376,17 @@ create_interface LMS1
 set_property INTERFACE LMS1 [get_ports LMS1* ]
 set_property IOSTANDARD LVCMOS25 [get_ports LMS1* ]
 
+set_property SLEW FAST       [get_ports LMS1_DIQ1_D[*]          ]
+set_property SLEW FAST       [get_ports LMS1_DIQ1_D[11]         ]
+set_property SLEW FAST       [get_ports LMS1_ENABLE_IQSEL1      ]
+set_property SLEW FAST       [get_ports LMS1_FCLK1              ]
+
+set_property DRIVE 16        [get_ports {LMS1_DIQ1_D[*]}        ]
+set_property DRIVE 16        [get_ports LMS1_DIQ1_D[11]         ]
+set_property DRIVE 16        [get_ports LMS1_ENABLE_IQSEL1      ]
+set_property DRIVE 16        [get_ports LMS1_FCLK1              ]
+
+
 set_property PACKAGE_PIN V4  [get_ports LMS1_DIQ1_D[0 ]         ]    
 set_property PACKAGE_PIN W5  [get_ports LMS1_DIQ1_D[1 ]         ]
 set_property PACKAGE_PIN AC6 [get_ports LMS1_DIQ1_D[2 ]         ]
@@ -388,6 +399,9 @@ set_property PACKAGE_PIN AE5 [get_ports LMS1_DIQ1_D[8 ]         ]
 set_property PACKAGE_PIN AD5 [get_ports LMS1_DIQ1_D[9 ]         ]
 set_property PACKAGE_PIN AC4 [get_ports LMS1_DIQ1_D[10]         ]
 set_property PACKAGE_PIN AF5 [get_ports LMS1_DIQ1_D[11]         ]
+
+set_property IOSTANDARD LVCMOS25 [get_ports DUMMY_PIN ]
+set_property PACKAGE_PIN V9  [get_ports DUMMY_PIN               ]
 
 set_property PACKAGE_PIN V2  [get_ports LMS1_DIQ2_D[0 ]         ]
 set_property PACKAGE_PIN V3  [get_ports LMS1_DIQ2_D[1 ]         ]

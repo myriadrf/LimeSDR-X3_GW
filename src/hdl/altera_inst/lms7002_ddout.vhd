@@ -9,6 +9,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use work.fpgacfg_pkg.all;
 
 LIBRARY altera_mf;
 USE altera_mf.all;
@@ -20,11 +21,12 @@ use UNISIM.vcomponents.all;
 -- ----------------------------------------------------------------------------
 entity lms7002_ddout is
    generic(
-      vendor        : string := "XILINX"; -- valid vals are "ALTERA" or "XILINX"
+      vendor        : string := "GENERIC"; -- valid vals are "ALTERA", "XILINX", "GENERIC"
       dev_family    : string := "Cyclone IV E";
-      iq_width      : integer:=12
+      iq_width      : integer:= 12
    );
    port (
+      from_fpgacfg  : in  t_FROM_FPGACFG;
       --input ports 
       clk           : in std_logic;
       reset_n       : in std_logic;
@@ -42,8 +44,13 @@ end lms7002_ddout;
 -- ----------------------------------------------------------------------------
 architecture arch of lms7002_ddout is
 --declare signals,  components here
-signal aclr     : std_logic;
-signal datout   : std_logic_vector(iq_width downto 0);
+
+signal aclr            : std_logic;
+signal datout          : std_logic_vector(iq_width downto 0);
+signal dataout_delayed : std_logic_vector(iq_width-1 downto 0);
+type sel_array_type is array (0 to 11) of std_logic_vector(1 downto 0);
+signal dly_sel_array :  sel_array_type;
+
 
 COMPONENT ALTDDIO_OUT
 GENERIC(
@@ -88,7 +95,6 @@ END COMPONENT;
 --S   : in  std_Logic
 --);
 --END COMPONENT;
-
 
 
 begin
@@ -140,8 +146,43 @@ begin
       end generate;
    end generate;
    
-   txiq      <=datout(11 downto 0);
-   txiqsel   <=datout(12);
+   GENERIC_DDR_OUT : if vendor = "GENERIC" generate
+      GENERIC_DDR_OUT_REG : for i in 0 to iq_width generate
+         ODDR_inst : entity work.generic_oddr
+         port map (
+            aclr     => aclr,
+            datain_h => data_in_h(i),
+            datain_l => data_in_l(i),
+            outclk   => clk, 
+            dataout	=> datout(i)
+         );
+      end generate;
+   end generate;
+   
+   dly_sel_array( 0) <= from_fpgacfg.tx_0_dly_sel;
+   dly_sel_array( 1) <= from_fpgacfg.tx_1_dly_sel;
+   dly_sel_array( 2) <= from_fpgacfg.tx_2_dly_sel;
+   dly_sel_array( 3) <= from_fpgacfg.tx_3_dly_sel;
+   dly_sel_array( 4) <= from_fpgacfg.tx_4_dly_sel;
+   dly_sel_array( 5) <= from_fpgacfg.tx_5_dly_sel;
+   dly_sel_array( 6) <= from_fpgacfg.tx_6_dly_sel;
+   dly_sel_array( 7) <= from_fpgacfg.tx_7_dly_sel;
+   dly_sel_array( 8) <= from_fpgacfg.tx_8_dly_sel;
+   dly_sel_array( 9) <= from_fpgacfg.tx_9_dly_sel;
+   dly_sel_array(10) <= from_fpgacfg.tx_10_dly_sel;
+   dly_sel_array(11) <= from_fpgacfg.tx_11_dly_sel;
+ 
+   DLY_INST_GEN : for i in 0 to iq_width-1 generate
+      DLY_inst : entity work.lut_delay
+      port map (
+         d   => datout(i),
+         q   => dataout_delayed(i),
+         sel => dly_sel_array(i)
+      );
+   end generate;
+ 
+   txiq      <= dataout_delayed;
+   txiqsel   <= datout(12);
    
   
 end arch;   

@@ -347,7 +347,8 @@ entity lms7_trx_top is
       ADF_MUXOUT        : in     std_logic;
          -- Bill Of material and hardware version 
       BOM_VER           : in     std_logic_vector(3 downto 0);
-      HW_VER            : in     std_logic_vector(3 downto 0)
+      HW_VER            : in     std_logic_vector(3 downto 0);
+      DUMMY_PIN         : inout  std_logic
 
    );
 end lms7_trx_top;
@@ -602,6 +603,8 @@ signal inst6_sdout                  : std_logic;
 signal inst6_tx_ant_en              : std_logic; 
 signal inst6_rx_smpl_cnt_en         : std_logic;
 signal inst6_rx_smpl_cmp_start      : std_logic;
+signal LMS1_DIQ1_INT                : std_logic_vector(g_LMS_DIQ_WIDTH-1 downto 0);
+signal LMS1_DIQ1_11_DELAYED         : std_logic;
 
 --inst7
 --constant c_WFM_INFIFO_SIZE          : integer := FIFO_WORDS_TO_Nbits(g_WFM_INFIFO_SIZE/(c_S0_DATA_WIDTH/8),true);
@@ -1527,6 +1530,7 @@ begin
       MCLK1                => inst1_lms1_txpll_c1,
       MCLK1_2x             => inst1_lms1_txpll_c2,
       FCLK1                => open, 
+      --DIQ1                 => LMS1_DIQ1_INT,
       DIQ1                 => LMS1_DIQ1_D,
       ENABLE_IQSEL1        => LMS1_ENABLE_IQSEL1,
       TXNRX1               => LMS1_TXNRX1,
@@ -1573,6 +1577,22 @@ begin
       sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
       sdout                => inst6_sdout  -- Data out   
    );
+   
+   --Trying to add additional delay for LMS1_DIQ1(11)  
+   IOBUF_LMS_DIQ11 : IOBUF
+      generic map (
+         DRIVE       => 16,
+         IOSTANDARD  => "LVCMOS25",
+         SLEW        => "FAST"
+         )
+      port map (
+         O           => LMS1_DIQ1_11_DELAYED,   -- Buffer output
+         IO          => DUMMY_PIN,              -- Buffer inout port (connect directly to top-level port)
+         I           => LMS1_DIQ1_INT(11),      -- Buffer input
+         T           => '0'                     -- 3-state enable input, high=input, low=output 
+         );
+   
+   --LMS1_DIQ1_D <= LMS1_DIQ1_11_DELAYED & LMS1_DIQ1_INT(10 downto 0);
    
    inst7_rxtx_top : entity work.rxtx_top
    generic map(

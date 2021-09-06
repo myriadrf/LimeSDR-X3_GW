@@ -15,6 +15,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.FIFO_PACK.all;
+use work.fpgacfg_pkg.all;
 use work.memcfg_pkg.all;
 
 -- ----------------------------------------------------------------------------
@@ -36,6 +37,7 @@ entity lms7002_tx is
       clk_2x_reset_n       : in  std_logic;      
       mem_reset_n          : in  std_logic;
       from_memcfg          : in  t_FROM_MEMCFG;
+      from_fpgacfg         : in  t_FROM_FPGACFG;
       --Mode settings
       mode                 : in  std_logic; -- JESD207: 1; TRXIQ: 0
       trxiqpulse           : in  std_logic; -- trxiqpulse on: 1; trxiqpulse off: 0
@@ -266,6 +268,7 @@ begin
       iq_width       => g_IQ_WIDTH
    )
    port map(
+      from_fpgacfg   => from_fpgacfg,
       --input ports 
       clk            => clk,
       reset_n        => reset_n,
