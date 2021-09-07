@@ -404,13 +404,6 @@ set_property -name "pr_flow" -value "0" -objects $obj
 set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_user_files" -objects $obj
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "sim.use_ip_compiled_libs" -value "1" -objects $obj
-set_property -name "simulator.activehdl_install_dir" -value "" -objects $obj
-set_property -name "simulator.ies_install_dir" -value "" -objects $obj
-set_property -name "simulator.modelsim_install_dir" -value "" -objects $obj
-set_property -name "simulator.questa_install_dir" -value "" -objects $obj
-set_property -name "simulator.riviera_install_dir" -value "" -objects $obj
-set_property -name "simulator.vcs_install_dir" -value "" -objects $obj
-set_property -name "simulator.xcelium_install_dir" -value "" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "source_mgmt_mode" -value "DisplayOnly" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
