@@ -101,19 +101,19 @@ begin
 end process;
 
         
-inst0_lms7002_dout : entity work.lms7002_ddout
-   generic map( 
-      dev_family  => dev_family,
-      iq_width    => iq_width
-   )
-   port map(
-      clk         => clk,
-      reset_n     => reset_n,
-      data_in_h   => inst0_DIQ_h,
-      data_in_l   => inst0_DIQ_l,
-      txiq        => DIQ,
-      txiqsel     => fsync
-      );
+--inst0_lms7002_dout : entity work.lms7002_ddout
+--   generic map( 
+--      dev_family  => dev_family,
+--      iq_width    => iq_width
+--   )
+--   port map(
+--      clk         => clk,
+--      reset_n     => reset_n,
+--      data_in_h   => inst0_DIQ_h,
+--      data_in_l   => inst0_DIQ_l,
+--      txiq        => DIQ,
+--      txiqsel     => fsync
+--      );
         
         
  inst1_txiq : entity work.txiq

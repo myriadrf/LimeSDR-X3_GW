@@ -156,19 +156,19 @@ port map(
       end if;
     end process;
     
-lms7002_ddout_i3 : entity work.lms7002_ddout
-	generic map(
-      dev_family	=> dev_family,
-      iq_width		=> diq_width
-	)
-	port map(
-      clk       	=> tx_clk,
-      reset_n   	=> tx_reset_n,
-		data_in_h	=> mux1_diq_h,
-		data_in_l	=> mux1_diq_l,
-		txiq		 	=> diq,
-		txiqsel	 	=> diq_iqsel
-      );
+--lms7002_ddout_i3 : entity work.lms7002_ddout
+--	generic map(
+--      dev_family	=> dev_family,
+--      iq_width		=> diq_width
+--	)
+--	port map(
+--      clk       	=> tx_clk,
+--      reset_n   	=> tx_reset_n,
+--		data_in_h	=> mux1_diq_h,
+--		data_in_l	=> mux1_diq_l,
+--		txiq		 	=> diq,
+--		txiqsel	 	=> diq_iqsel
+--      );
   
 end arch;   
 

@@ -121,14 +121,19 @@ signal lms_rxen_int        : std_logic;
 
 signal tx_fifo_1_cnt       : unsigned(63 downto 0);
 signal tx_fifo_1_error     : std_logic;
+signal debug_tx_ptrn_en    : std_logic;
 
    attribute noprune : boolean;
    attribute noprune of tx_fifo_1_cnt     : signal is true;
    attribute noprune of tx_fifo_1_error   : signal is true;
 
+attribute mark_debug    : string;
+attribute keep          : string;
+attribute mark_debug of debug_tx_ptrn_en     : signal is "true";
 
   
 begin
+
 
    sync_reg0 : entity work.sync_reg 
    port map(MCLK2, rx_reset_n, from_fpgacfg.rx_en, inst0_reset_n);
@@ -145,8 +150,9 @@ begin
    -- clk_2x is held in reset only when both fifos are in reset
    sync_reg4 : entity work.sync_reg 
    port map(MCLK1_2x, (inst1_fifo_0_reset_n OR inst1_fifo_1_reset_n), '1', inst1_clk_2x_reset_n);
-   
-   
+
+   sync_reg5 : entity work.sync_reg 
+   port map(MCLK2, inst0_reset_n, from_fpgacfg.tx_ptrn_en, debug_tx_ptrn_en);
    
    
    
@@ -251,6 +257,7 @@ inst1_lms7002_tx : entity work.lms7002_tx
       clk_2x_reset_n       => inst1_clk_2x_reset_n,
       mem_reset_n          => mem_reset_n,
       from_memcfg          => from_memcfg,
+      from_fpgacfg         => from_fpgacfg,
       
       --Mode settings
       mode                 => int_mode,      -- JESD207: 1; TRXIQ: 0

@@ -56,8 +56,6 @@ set_clock_groups -asynchronous   -group [get_clocks -include_generated_clocks {C
                                  -group [get_clocks -include_generated_clocks {clk_out2_adc_pll}]
                                  
                                  
-                                 [get_clocks -include_generated_clocks 
-                                 
 
 
 
