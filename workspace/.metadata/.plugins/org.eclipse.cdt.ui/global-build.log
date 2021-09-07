@@ -1,0 +1,8 @@
+Nothing to build in platform 'lms7_trx_top'
+
+19:12:29 **** Incremental Build of configuration Debug for project cpu ****
+make all 
+make: Nothing to be done for 'all'.
+19:12:29 **** Incremental Build of configuration Debug for project cpu_system ****
+make all 
+Skipping SD card image generation. Reason: The system project only has applications for microblaze processors.

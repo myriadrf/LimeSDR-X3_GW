@@ -1,0 +1,54 @@
+# ----------------------------------------------------------------------------
+# FILE:          .gitignore
+# DESCRIPTION:   GIT ignore file for Vivado project src control
+# DATE:          02:00 PM Thursday, August 29, 2019
+# AUTHOR(s):     Lime Microsystems
+# REVISIONS:
+# ----------------------------------------------------------------------------
+
+!.gitignore
+# ----------------------------------------------------------------------------
+# VIVADO project
+# ----------------------------------------------------------------------------
+vivado/constraints
+vivado/incremental
+vivado/PCIe_5GRadio_lms7_trx.cache
+vivado/PCIe_5GRadio_lms7_trx.hw
+vivado/PCIe_5GRadio_lms7_trx.ip_user_files
+vivado/PCIe_5GRadio_lms7_trx.runs
+vivado/PCIe_5GRadio_lms7_trx.sim
+vivado/PCIe_5GRadio_lms7_trx.srcs
+vivado/mb_subsystem.tcl
+vivado/PCIe_5GRadio_lms7_trx.xpr
+vivado/PCIe_5GRadio_lms7_trx.sdk/.metadata
+vivado/PCIe_5GRadio_lms7_trx.sdk/.sdk
+#vivado/PCIe_5GRadio_lms7_trx.sdk/lms7_trx_top_hw_platform_0
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/Debug
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.cproject
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw/.project
+#vivado/PCIe_5GRadio_lms7_trx.sdk/mbfw_bsp
+vivado/PCIe_5GRadio_lms7_trx.sdk/RemoteSystemsTempFiles
+vivado/PCIe_5GRadio_lms7_trx.sdk/webtalk
+vivado/PCIe_5GRadio_lms7_trx.sdk/SDK.log
+PCIe_5GRadio_lms7_trx/*
+.Xil
+.Xiltemp
+vivado/*
+
+# --------------
+# src
+# --------------
+*.bak
+src/**/source_library
+# --------------
+# ip
+# --------------
+
+# --------------
+# bitstream
+# --------------
+
+
+# ----------------------------------------------------------------------------
+# OTHER
+# ----------------------------------------------------------------------------
