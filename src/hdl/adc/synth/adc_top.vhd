@@ -114,11 +114,17 @@ rx_chain_inst1 : entity work.rx_chain
    );
 
 --for testing rx_chain is bypassed
---inst1_RYI <= inst1_RXI;
---inst1_RYQ <= inst1_RXQ;
+-- with this it is OK
+inst1_RYI <= inst1_RXI;
+inst1_RYQ <= inst1_RXQ;
 
-RYI <= inst1_RYI(17 downto 2);  -- B.J.
-RYQ <= inst1_RYQ(17 downto 2);  -- B.J.
+
+-- with this enabled it's not OK
+-- when rx_chain is included
+-- some clock releated problem occurs
+
+--RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
+--RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
 
         
 -- ----------------------------------------------------------------------------
