@@ -39,9 +39,12 @@ entity adc_top is
       data_ch_ab_valid  : out std_logic;
       test_out          : out std_logic_vector(55 downto 0);
       to_rxtspcfg       : out t_TO_RXTSPCFG;
-      from_rxtspcfg     : in  t_FROM_RXTSPCFG
+      from_rxtspcfg     : in  t_FROM_RXTSPCFG;
 
-        );
+      RYI        : out std_logic_vector (15 downto 0); -- B.J.
+      RYQ        : out std_logic_vector (15 downto 0) -- B.J.
+
+   );
 end adc_top;
 
 -- ----------------------------------------------------------------------------
@@ -91,7 +94,9 @@ port map(clk, reset_n, en, reset_n_sync);
 
 
 inst1_RXI <= inst0_data_ch_a & "0000";
-inst1_RXQ <= inst0_data_ch_b & "0000";       
+inst1_RXQ <= inst0_data_ch_b & "0000";  
+
+
         
 rx_chain_inst1 : entity work.rx_chain 
    port map
@@ -111,6 +116,9 @@ rx_chain_inst1 : entity work.rx_chain
 --for testing rx_chain is bypassed
 --inst1_RYI <= inst1_RXI;
 --inst1_RYQ <= inst1_RXQ;
+
+RYI <= inst1_RYI(17 downto 2);  -- B.J.
+RYQ <= inst1_RYQ(17 downto 2);  -- B.J.
 
         
 -- ----------------------------------------------------------------------------
@@ -166,8 +174,9 @@ end process;
 -- ----------------------------------------------------------------------------
 -- Output ports
 -- ----------------------------------------------------------------------------        
-data_ch_a <= inst0_data_ch_a;
-data_ch_b <= inst0_data_ch_b;
+-- B.J.
+data_ch_a <=  inst1_RYI(17 downto 4); --inst0_data_ch_a; --
+data_ch_b <=  inst1_RYQ(17 downto 4); --inst0_data_ch_b;  --
 
   
 end arch;   

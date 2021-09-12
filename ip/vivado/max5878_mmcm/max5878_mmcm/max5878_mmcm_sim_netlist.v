@@ -1,10 +1,10 @@
-// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Jun 17 16:53:22 2021
-// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+// Date        : Wed Sep  8 14:17:44 2021
+// Host        : LimeNet1 running 64-bit Ubuntu 18.04.5 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/servenikas/git/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.v
+//               /home/limenet1/Work/OriginalProjects/pcie_5Gradio/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_sim_netlist.v
 // Design      : max5878_mmcm
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -204,15 +204,12 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
-    parameter GRES_WIDTH = 10000;
-    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
-    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -225,7 +222,6 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
-    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -253,7 +249,6 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
-    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -267,14 +262,6 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
-    end
-
-    initial begin 
-	GRESTORE_int = 1'b0;
-	#(GRES_START);
-	GRESTORE_int = 1'b1;
-	#(GRES_WIDTH);
-	GRESTORE_int = 1'b0;
     end
 
 endmodule

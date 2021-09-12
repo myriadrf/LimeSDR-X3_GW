@@ -307,6 +307,10 @@ begin
    inv_c0                     => '0',
    c0                         => lms1_txpll_c0, --muxed clock output
    c1                         => lms1_txpll_c1, --muxed clock output
+
+   c2                         => lms1_txpll_c2, -- B.J.
+
+   
    pll_locked                 => inst0_pll_locked,
    --Bypass control
    clk_ena                    => lms1_txpll_clk_ena,       --clock output enable

@@ -39,6 +39,9 @@ entity cpu_top is
       PERIPHCFG_START_ADDR : integer := 192;
       TAMERCFG_START_ADDR  : integer := 224;
       GNSSCFG_START_ADDR   : integer := 256;
+
+      RXTSPCFG_START_ADDR_3  : integer := 352; -- B.J.
+
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -159,7 +162,12 @@ entity cpu_top is
       pll_locked           : out    std_logic;
       smpl_cmp_en          : out    std_logic_vector ( 3 downto 0 );
       smpl_cmp_status      : in     std_logic_vector ( 1 downto 0 );
-      smpl_cmp_sel         : out    std_logic_vector (0 downto 0)
+      smpl_cmp_sel         : out    std_logic_vector (0 downto 0);
+
+      to_rxtspcfg_3a       : in  t_TO_RXTSPCFG;    -- B.J.
+      from_rxtspcfg_3a     : out t_FROM_RXTSPCFG;  -- B.J.
+      to_rxtspcfg_3b       : in  t_TO_RXTSPCFG;    -- B.J.
+      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG   -- B.J.
       
 
    );
@@ -501,7 +509,10 @@ begin
       RXTSPCFG_START_ADDR  => RXTSPCFG_START_ADDR,
       PERIPHCFG_START_ADDR => PERIPHCFG_START_ADDR,
       TAMERCFG_START_ADDR  => TAMERCFG_START_ADDR,
-      GNSSCFG_START_ADDR   => GNSSCFG_START_ADDR
+      GNSSCFG_START_ADDR   => GNSSCFG_START_ADDR,
+
+      RXTSPCFG_START_ADDR_3  => RXTSPCFG_START_ADDR_3  -- B.J.
+
       )
    port map(
       -- Serial port IOs
@@ -542,7 +553,13 @@ begin
       to_memcfg            => to_memcfg,
       from_memcfg          => from_memcfg,
       from_cdcmcfg1        =>from_cdcmcfg1,
-      from_cdcmcfg2        =>from_cdcmcfg2              
+      from_cdcmcfg2        =>from_cdcmcfg2,
+
+      to_rxtspcfg_3a          => to_rxtspcfg_3a,   -- B.J.
+      from_rxtspcfg_3a        => from_rxtspcfg_3a, -- B.J.
+      to_rxtspcfg_3b          => to_rxtspcfg_3b,   -- B.J.
+      from_rxtspcfg_3b        => from_rxtspcfg_3b  -- B.J.
+
    );
    
 -- ----------------------------------------------------------------------------

@@ -109,27 +109,27 @@ end component;
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : adc_pll
    port map ( 
-   s_axi_aclk                => s_axi_aclk,           
-   s_axi_aresetn             => s_axi_aresetn,        
+   s_axi_aclk                => s_axi_aclk,           -- in
+   s_axi_aresetn             => s_axi_aresetn,        -- in
 
-   s_axi_awaddr              => s_axi_awaddr,         
-   s_axi_awvalid             => s_axi_awvalid,        
-   s_axi_awready             => s_axi_awready,        
-   s_axi_wdata               => s_axi_wdata,          
-   s_axi_wstrb               => s_axi_wstrb,          
-   s_axi_wvalid              => s_axi_wvalid,         
-   s_axi_wready              => s_axi_wready,         
-   s_axi_bresp               => s_axi_bresp,          
-   s_axi_bvalid              => s_axi_bvalid,         
-   s_axi_bready              => s_axi_bready,         
+   s_axi_awaddr              => s_axi_awaddr,         -- in
+   s_axi_awvalid             => s_axi_awvalid,        -- in
+   s_axi_awready             => s_axi_awready,        -- out
+   s_axi_wdata               => s_axi_wdata,          -- in
+   s_axi_wstrb               => s_axi_wstrb,          -- in
+   s_axi_wvalid              => s_axi_wvalid,         -- in
+   s_axi_wready              => s_axi_wready,         -- out
+   s_axi_bresp               => s_axi_bresp,          -- out
+   s_axi_bvalid              => s_axi_bvalid,         -- out
+   s_axi_bready              => s_axi_bready,         -- in
    
-   s_axi_araddr              => s_axi_araddr,         
-   s_axi_arvalid             => s_axi_arvalid,        
-   s_axi_arready             => s_axi_arready,        
-   s_axi_rdata               => s_axi_rdata,          
-   s_axi_rresp               => s_axi_rresp,          
-   s_axi_rvalid              => s_axi_rvalid,         
-   s_axi_rready              => s_axi_rready,         
+   s_axi_araddr              => s_axi_araddr,         -- in
+   s_axi_arvalid             => s_axi_arvalid,        -- in
+   s_axi_arready             => s_axi_arready,        -- out
+   s_axi_rdata               => s_axi_rdata,          -- out
+   s_axi_rresp               => s_axi_rresp,          -- out
+   s_axi_rvalid              => s_axi_rvalid,         -- out
+   s_axi_rready              => s_axi_rready,         -- in
   -- Clock out ports  
    clk_out1 => clk_out1,
    clk_out2 => clk_out2,

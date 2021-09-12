@@ -27,6 +27,8 @@ use work.FIFO_PACK.all;
 use work.io_buff_pkg.all;
 use work.axi_pkg.all;
 
+use work.litepcie_pkg.all; -- B.J.
+
 --library altera; 
 --use altera.altera_primitives_components.all;
 
@@ -74,9 +76,19 @@ entity lms7_trx_top is
       g_PERIPHCFG_START_ADDR  : integer := 192;
       g_TAMERCFG_START_ADDR   : integer := 224;
       g_GNSSCFG_START_ADDR    : integer := 256;
+
+      g_RXTSPCFG_START_ADDR_3   : integer := 352; -- B.J.
+      g_ADPDCFG_START_ADDR   : integer := 416;  -- B.J.
+      g_CFR0CFG_START_ADDR   : integer := 448;  -- B.J.
+      g_CFR1CFG_START_ADDR   : integer := 512;  -- B.J.
+      g_FIR0CFG_START_ADDR   : integer := 576;  -- B.J.
+      g_FIR1CFG_START_ADDR   : integer := 640;  -- B.J.
+
       g_MEMCFG_START_ADDR     : integer := 65504;
       -- External periphery
-      g_GPIO_N                : integer := 16
+      g_GPIO_N                : integer := 16;
+
+      DPD_enable : INTEGER := 1  -- B.J.
    );
    port (
       -- ----------------------------------------------------------------------------
@@ -792,6 +804,77 @@ signal spi0_lms2_miso   : std_logic;
 --attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
 --attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
 
+
+-- B.J.
+component data_cap_buffer is
+	port (
+		
+	   --
+      -- sample rate 61.44 MSps
+        wclk0 : IN STD_LOGIC;  -- clk for xp_a,  clock is 122.88 MHz
+		wclk1 : IN STD_LOGIC;  -- clk for yp_a,  clock is 122.88 MHz
+		wclk2 : IN STD_LOGIC;  -- clk for x_a (from ext. ADC - 61.44 MHz)
+		wclk3 : IN STD_LOGIC;  -- clk for xp_b,  clock is 122.88 MHz
+		wclk4 : IN STD_LOGIC;  -- clk for yp_b,  clock is 122.88 MHz
+		wclk5 : IN STD_LOGIC;  -- clk for x_b (from ext. ADC - 61.44 MHz)
+		rdclk : IN STD_LOGIC;  
+		clk : IN STD_LOGIC;
+		reset_n : IN STD_LOGIC;
+		--capture data
+		xp_a_valid : IN STD_LOGIC;
+		xp_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		xp_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		
+		yp_a_valid : IN STD_LOGIC;
+		yp_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		yp_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+		x_a_valid : IN STD_LOGIC;
+		x_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		x_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		
+		xp_b_valid : IN STD_LOGIC;
+		xp_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		xp_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		
+		yp_b_valid : IN STD_LOGIC;
+		yp_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		yp_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+		x_b_valid : IN STD_LOGIC;
+		x_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		x_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+		--capture control signals
+		cap_en : IN STD_LOGIC;
+		cap_cont_en : IN STD_LOGIC;
+		cap_size : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		cap_done : OUT STD_LOGIC;		
+
+		to_dma_reader         : out t_TO_DMA_READER;
+		from_dma_reader       : in t_FROM_DMA_READER;
+
+		test_data_en : IN STD_LOGIC := '0'
+	);
+end component data_cap_buffer;
+
+signal xp_ai, xp_aq, xp_bi, xp_bq, x_ai, x_aq : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal yp_ai, yp_aq, yp_bi, yp_bq, x_bi, x_bq : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal xp_data_valid : STD_LOGIC;
+signal cap_en, cap_cont_en : STD_LOGIC;
+signal cap_size : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal DPD_to_dma_reader  : t_TO_DMA_READER;
+signal DPD_from_dma_reader  : t_FROM_DMA_READER;
+signal pcie_bus_clk: std_logic;
+signal x_a_valid, x_b_valid: std_logic;
+signal inst0_to_rxtspcfg_3a : t_TO_RXTSPCFG;    -- B.J.
+signal inst0_from_rxtspcfg_3a : t_FROM_RXTSPCFG;  -- B.J.
+signal inst0_to_rxtspcfg_3b : t_TO_RXTSPCFG;    -- B.J.
+signal inst0_from_rxtspcfg_3b : t_FROM_RXTSPCFG;   -- B.J.  
+signal dpd_tx_en, dpd_capture_en: std_logic; --B.J.
+      
+-- end B.J.
+
 begin
 
 -- ----------------------------------------------------------------------------
@@ -931,7 +1014,8 @@ begin
       PERIPHCFG_START_ADDR => g_PERIPHCFG_START_ADDR,
       TAMERCFG_START_ADDR  => g_TAMERCFG_START_ADDR,
       GNSSCFG_START_ADDR   => g_GNSSCFG_START_ADDR,
-      MEMCFG_START_ADDR    => g_MEMCFG_START_ADDR
+      MEMCFG_START_ADDR    => g_MEMCFG_START_ADDR,
+      RXTSPCFG_START_ADDR_3  => g_RXTSPCFG_START_ADDR_3 -- B.J.
    )
    port map(
       clk                        => CLK100_FPGA,
@@ -1045,7 +1129,12 @@ begin
       pll_locked                 => inst0_pll_locked,
       smpl_cmp_sel               => inst0_smpl_cmp_sel,
       smpl_cmp_en                => inst0_smpl_cmp_en, 
-      smpl_cmp_status            => inst0_smpl_cmp_status
+      smpl_cmp_status            => inst0_smpl_cmp_status,
+      
+      to_rxtspcfg_3a          => inst0_to_rxtspcfg_3a,   -- B.J.
+      from_rxtspcfg_3a        => inst0_from_rxtspcfg_3a, -- B.J.
+      to_rxtspcfg_3b          => inst0_to_rxtspcfg_3b,   -- B.J.
+      from_rxtspcfg_3b        => inst0_from_rxtspcfg_3b  -- B.J.
    
    );
    
@@ -1114,7 +1203,7 @@ begin
       lms1_txpll_drct_clk_en     => inst0_from_fpgacfg_0.drct_clk_en(0) & inst0_from_fpgacfg_0.drct_clk_en(0),
       lms1_txpll_c0              => LMS1_FCLK1,
       lms1_txpll_c1              => inst1_lms1_txpll_c1,
-      lms1_txpll_c2              => inst1_lms1_txpll_c2,
+      lms1_txpll_c2              => inst1_lms1_txpll_c2, -- B.J.
       lms1_txpll_locked          => inst1_lms1_txpll_locked,
       -- LMS#1 RX PLL ports
       lms1_rxpll_inclk           => LMS1_MCLK2,
@@ -1202,7 +1291,7 @@ begin
       to_pllcfg                  => inst0_to_pllcfg
    );
    
-   LMS1_FCLK2 <= inst1_lms1_rxpll_c0;
+   LMS1_FCLK2 <= inst1_lms1_rxpll_c0;  -- 122.88 MHz
    
       
 -- ----------------------------------------------------------------------------
@@ -1254,7 +1343,9 @@ begin
      pcie_rx_n            => PCIE_HSO_N,
      pcie_tx_p            => PCIE_HSI_IC_P,
      pcie_tx_n            => PCIE_HSI_IC_N,
-     pcie_bus_clk         => open,  -- PCIe data clock output
+     
+     pcie_bus_clk         => pcie_bus_clk,  -- B.J. 
+     -- PCIe data clock output
    
      H2F_S0_sel           => inst0_from_fpgacfg_0.wfm_load,
      H2F_S1_sel           => inst0_from_fpgacfg_1.wfm_load,
@@ -1339,7 +1430,11 @@ begin
      S2_rx_en             => inst0_from_fpgacfg_2.rx_en,
      F2H_S0_open          => inst2_F2H_S0_open,
      F2H_S1_open          => inst2_F2H_S1_open, 
-     F2H_S2_open          => inst2_F2H_S2_open
+     F2H_S2_open          => inst2_F2H_S2_open,
+
+     to_dma_reader   => DPD_to_dma_reader, -- B.J.
+     from_dma_reader  => DPD_from_dma_reader, -- B.J.
+     dpd_capture_en => dpd_capture_en -- B.J.   
      );
 
 --xilinx_pcie_2_1_ep_7x_inst : entity work.xilinx_pcie_2_1_ep_7x
@@ -1510,7 +1605,13 @@ begin
    end process;
    
 --   --Module for LMS7002 IC
-   inst6_lms7002_top : entity work.lms7002_top
+--   inst6_lms7002_top : entity work.lms7002_top
+
+-- Module for LMS7002 IC
+-- added by B.J. 
+-- LMS#1 has two CFR+FIR+DPD chains for both transmitting channels.
+--	for trasmit only LMS#1 is used: both channels A and B are active
+inst6_lms7002_top : entity work.lms7002_top_DPD
    generic map(
       g_DEV_FAMILY            => g_DEV_FAMILY,
       g_IQ_WIDTH              => g_LMS_DIQ_WIDTH,
@@ -1518,7 +1619,13 @@ begin
       g_TX_SMPL_FIFO_0_WRUSEDW  => 9,
       g_TX_SMPL_FIFO_0_DATAW    => 128,
       g_TX_SMPL_FIFO_1_WRUSEDW  => 9,
-      g_TX_SMPL_FIFO_1_DATAW    => 128
+      g_TX_SMPL_FIFO_1_DATAW    => 128,
+
+      g_ADPDCFG_START_ADDR   => g_ADPDCFG_START_ADDR, -- B.J.
+      g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
+      g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
+      g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
+      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR  -- B.J.
    ) 
    port map(  
       from_fpgacfg         => inst0_from_fpgacfg_mod_0,
@@ -1527,8 +1634,8 @@ begin
       -- Momory module reset
       mem_reset_n          => reset_n,
       -- PORT1 interface
-      MCLK1                => inst1_lms1_txpll_c1,
-      MCLK1_2x             => inst1_lms1_txpll_c2,
+      MCLK1                => inst1_lms1_txpll_c1, --  61.44
+      MCLK1_2x             => inst1_lms1_txpll_c2, -- 122.88
       FCLK1                => open, 
       --DIQ1                 => LMS1_DIQ1_INT,
       DIQ1                 => LMS1_DIQ1_D,
@@ -1548,7 +1655,10 @@ begin
       -- Internal TX ports
       tx_reset_n           => inst1_lms1_txpll_locked,
       tx_fifo_0_wrclk      => inst1_lms1_txpll_c1,
-      tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_0.rx_en,
+      
+      --tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_0.rx_en,
+      tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_0.rx_en or dpd_tx_en,  -- B.J.
+
       tx_fifo_0_wrreq      => inst7_tx_smpl_fifo_wrreq,
       tx_fifo_0_data       => inst7_tx_smpl_fifo_data,
       tx_fifo_0_wrfull     => inst6_tx_fifo_0_wrfull,
@@ -1575,8 +1685,76 @@ begin
       sdin                 => inst0_spi_0_MOSI,  -- Data in
       sclk                 => inst0_spi_0_SCLK,  -- Data clock
       sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
-      sdout                => inst6_sdout  -- Data out   
+      sdout                => inst6_sdout,  -- Data out  
+      
+       -- B.J. 
+       xp_ai                => xp_ai, 
+       xp_aq                => xp_aq,
+       xp_bi                => xp_bi, 
+       xp_bq                => xp_bq,
+       yp_ai                => yp_ai, 
+       yp_aq                => yp_aq,
+       yp_bi                => yp_bi,
+       yp_bq                => yp_bq,
+       xp_data_valid        => xp_data_valid,
+       cap_en               => cap_en, 
+       cap_cont_en          => cap_cont_en,
+       cap_size             => cap_size,
+       tx_en => dpd_tx_en,
+       capture_en => dpd_capture_en
    );
+
+
+   inst_data_cap_buffer: data_cap_buffer
+      port map (
+         
+         wclk0 => inst1_lms1_txpll_c2,   -- clk for xp_a (122.88)
+         wclk1 => inst1_lms1_txpll_c2,   -- clk for yp_a (122.88)
+         wclk2 => lms3_bb_adc1_clkout_global,   -- clk for x_a  (61.44 ???)
+        
+         wclk3 => inst1_lms1_txpll_c2,   -- clk for xp_b (122.88)
+         wclk4 => inst1_lms1_txpll_c2,   -- clk for yp_b (122.88)
+         wclk5 => lms3_bb_adc2_clkout_global,   -- clk for x_b  (61.44 ???)
+         
+         rdclk => pcie_bus_clk,   
+         clk => inst1_lms1_txpll_c2, -- inst1_lms1_txpll_c2
+         reset_n => cap_en, 
+         
+         xp_a_valid => xp_data_valid, 
+         xp_ai => xp_ai, 
+         xp_aq => xp_aq,          
+         
+         yp_a_valid => xp_data_valid, 
+         yp_ai =>  yp_ai, 
+         yp_aq =>  yp_aq,    
+         
+         x_a_valid => x_a_valid, 
+         x_ai => x_ai, 
+         x_aq => x_aq, 
+         
+         xp_b_valid => xp_data_valid, 
+         xp_bi => xp_bi, 
+         xp_bq => xp_bq,          
+         
+         yp_b_valid => xp_data_valid, 
+         yp_bi => yp_bi, 
+         yp_bq => yp_bq,   
+         
+         x_b_valid => x_b_valid, 
+         x_bi => x_bi, 
+         x_bq => x_bq,         
+         
+         cap_en => cap_en, 
+         cap_cont_en => cap_cont_en, 
+         cap_size => cap_size, 
+         cap_done => OPEN,    
+         
+         to_dma_reader   => DPD_to_dma_reader, 
+         from_dma_reader  => DPD_from_dma_reader,   
+         
+         test_data_en =>  '0'
+      );
+  
    
    --Trying to add additional delay for LMS1_DIQ1(11)  
    IOBUF_LMS_DIQ11 : IOBUF
@@ -1645,7 +1823,9 @@ begin
       rx_pct_fifo_wrreq       => inst7_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en  
+      rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en,
+      
+      ext_rx_en => dpd_tx_en   -- B.J.
    );   
 	
 ---- ----------------------------------------------------------------------------
@@ -1680,7 +1860,10 @@ begin
       data_ch_ab_valid  => inst10_adc1_rx_data_valid,
       test_out          => open,
       to_rxtspcfg       => inst0_to_rxtspcfg,
-      from_rxtspcfg     => inst0_from_rxtspcfg
+      from_rxtspcfg     => inst0_from_rxtspcfg,
+      
+      RYI  => open,  -- B.J.
+      RYQ  => open
    );
    
    inst10_adc2_top : entity work.adc_top
@@ -1704,7 +1887,10 @@ begin
       data_ch_ab_valid  => inst10_adc2_rx_data_valid,
       test_out          => open,
       to_rxtspcfg       => open,
-      from_rxtspcfg     => inst0_from_rxtspcfg
+      from_rxtspcfg     => inst0_from_rxtspcfg,
+      
+      RYI  => open, -- B.J.
+      RYQ  => open
    );
    
    inst10: entity work.chnl_combine
@@ -1783,7 +1969,9 @@ begin
       rx_pct_fifo_wrreq       => inst9_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en   
+      rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en,
+
+      ext_rx_en => '0'  -- B.J.     
    );   
 
 
@@ -1928,8 +2116,13 @@ begin
       data_ch_ab        => inst10_adc3_rx_data,
       data_ch_ab_valid  => inst10_adc3_rx_data_valid,
       test_out          => open,
-      to_rxtspcfg       => inst0_to_rxtspcfg,
-      from_rxtspcfg     => inst0_from_rxtspcfg
+      
+      --to_rxtspcfg       => inst0_to_rxtspcfg,
+      --from_rxtspcfg     => inst0_from_rxtspcfg
+      to_rxtspcfg       => inst0_to_rxtspcfg_3a, -- B.J.
+      from_rxtspcfg     => inst0_from_rxtspcfg_3a, -- B.J.
+      RYI  => x_ai, -- B.J.
+      RYQ  => x_aq  -- B.J.
    );
    
    inst10_adc4_top : entity work.adc_top
@@ -1952,9 +2145,16 @@ begin
       data_ch_ab        => inst10_adc4_rx_data,
       data_ch_ab_valid  => inst10_adc4_rx_data_valid,
       test_out          => open,
-      to_rxtspcfg       => open,
-      from_rxtspcfg     => inst0_from_rxtspcfg
+      
+      --to_rxtspcfg       => open,
+      --from_rxtspcfg     => inst0_from_rxtspcfg
+      to_rxtspcfg       => inst0_to_rxtspcfg_3b, -- B.J.
+      from_rxtspcfg     => inst0_from_rxtspcfg_3b,  -- B.J.     
+      RYI  => x_bi, -- B.J.
+      RYQ  => x_bq  -- B.J.
    );
+
+   x_b_valid <= '1'; -- B.J.
    
    
    inst11: entity work.chnl_combine
@@ -2034,7 +2234,10 @@ begin
       rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => '1'
+      rx_smpl_nr_cnt_en       => '1',
+
+      ext_rx_en => '0'  -- B.J. 
+   
    );
  
    inst12_tx1_data   <= inst10_adc1_data_ch_b & inst10_adc1_data_ch_a;

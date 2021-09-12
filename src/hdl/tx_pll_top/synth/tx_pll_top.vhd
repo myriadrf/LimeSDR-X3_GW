@@ -55,6 +55,9 @@ entity tx_pll_top is
    inv_c0            : in std_logic;
    c0                : out std_logic; --muxed clock output
    c1                : out std_logic; --muxed clock output
+
+   c2                : out std_logic; -- B.J.
+
    pll_locked        : out std_logic;
    --Bypass control
    clk_ena           : in std_logic_vector(1 downto 0); --clock output enable
@@ -320,6 +323,9 @@ inst1_pll_scanclk <= rcnfg_clk;
       --reset          => inst1_pll_areset_in,
       clk_out1       => inst3_clk(0),
       clk_out2       => inst3_clk(1),
+
+      clk_out3       => inst3_clk(2), -- B.J.
+
       locked         => inst3_locked,
       s_axi_aclk     => rcnfg_axi_clk,           -- in
       s_axi_aresetn  => rcfig_axi_reset_n,        -- in
@@ -736,6 +742,8 @@ end generate;
 c0             <= inst5_dataout(0);
 --c1           <= c1_global;
 c1             <= inst3_clk(1);
+
+c2             <= inst3_clk(2); -- B.J.
 
 pll_locked     <= locked_mux;
 rcnfig_status  <= inst4_rcfig_complete;

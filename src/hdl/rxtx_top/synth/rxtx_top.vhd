@@ -75,7 +75,9 @@ entity rxtx_top is
       rx_pct_fifo_wrreq       : out    std_logic;
       rx_pct_fifo_wdata       : out    std_logic_vector(RX_DATABUS_WIDTH-1 downto 0);
          -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       : in     std_logic
+      rx_smpl_nr_cnt_en       : in     std_logic;
+
+      ext_rx_en: in std_logic  -- B.J.
       );
 end rxtx_top;
 
@@ -125,7 +127,8 @@ begin
    
    -- Reset signal for inst0 with synchronous removal to tx_pct_clk clock domain, 
    sync_reg0 : entity work.sync_reg 
-   port map(tx_clk, from_fpgacfg.rx_en, '1', inst0_reset_n);
+   --port map(tx_clk, from_fpgacfg.rx_en, '1', inst0_reset_n);
+   port map(tx_clk, from_fpgacfg.rx_en or ext_rx_en, '1', inst0_reset_n);  -- B.J.
    
    tx_in_pct_reset_n_req   <= inst0_reset_n AND inst1_in_pct_reset_n_req;   
    inst1_reset_n           <= inst0_reset_n;

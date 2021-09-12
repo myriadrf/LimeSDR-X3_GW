@@ -1,10 +1,10 @@
-// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Jun 17 16:53:22 2021
-// Host        : servenikas-MS-7B86 running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
+// Date        : Wed Sep  8 14:17:44 2021
+// Host        : LimeNet1 running 64-bit Ubuntu 18.04.5 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               /home/servenikas/git/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_stub.v
+//               /home/limenet1/Work/OriginalProjects/pcie_5Gradio/pcie_5gradio_gw/ip/vivado/max5878_mmcm/max5878_mmcm/max5878_mmcm_stub.v
 // Design      : max5878_mmcm
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a200tfbg676-2

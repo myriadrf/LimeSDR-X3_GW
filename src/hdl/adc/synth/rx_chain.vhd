@@ -179,15 +179,12 @@ signal gcq_sync        : std_logic_vector(10 DOWNTO 0);
 signal iqcorrctr_sync  : std_logic_vector(11 DOWNTO 0);
 
 
-
-
-
-
-
 BEGIN 
 
 sync_reg0 : entity work.sync_reg 
-port map(clk, '1', mod_en, mod_en_sync);
+   port map(clk, '1', mod_en, mod_en_sync);
+
+--mod_en_sync <= '1'; -- B.J.
 
 sync_reg1 : entity work.sync_reg 
 port map(clk, '1', gc_byp, gc_byp_sync);
@@ -269,10 +266,6 @@ PORT MAP(clk => clk,
 		 gc => gcq_sync,
 		 x => RXQ,
 		 y => q_iqcorr);
-
-
-
-
 
 b2v_inst2 : iqcorr
 PORT MAP(clk => clk,

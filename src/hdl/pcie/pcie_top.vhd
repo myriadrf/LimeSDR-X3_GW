@@ -153,7 +153,13 @@ entity pcie_top is
       S2_rx_en             : in std_logic;
       F2H_S0_open          : out std_logic;
       F2H_S1_open          : out std_logic;
-      F2H_S2_open          : out std_logic
+      F2H_S2_open          : out std_logic;
+
+      -- B.J.
+      to_dma_reader         : in t_TO_DMA_READER;
+      from_dma_reader       : out t_FROM_DMA_READER;
+      dpd_capture_en : in std_logic   -- B.J.
+      -- end B.J.
       
    );
 end pcie_top;
@@ -226,6 +232,8 @@ architecture arch of pcie_top is
    signal inst1_cntrl_writer_valid     : std_logic := '0';  
    signal inst1_cntrl_reader_data      : std_logic_vector(511 downto 0); 
    signal inst1_cntrl_reader_valid     : std_logic; 
+
+   signal inst1_to_dma_reader2_inst8: t_TO_DMA_READER; -- B.J.
    
 begin
 -- ----------------------------------------------------------------------------
@@ -575,7 +583,8 @@ begin
       clk               => clk,
       reset_n           => inst1_from_dma_reader2.enable,
       --DMA 
-      to_dma_reader     => inst1_to_dma_reader2,
+      -- to_dma_reader     => inst1_to_dma_reader2,
+      to_dma_reader     => inst1_to_dma_reader2_inst8, -- B.J.
       from_dma_reader   => inst1_from_dma_reader2,
       --Buffer
       buff_wrclk        => F2H_S2_wclk,
@@ -585,6 +594,10 @@ begin
       buff_wrfull       => F2H_S2_wfull,
       buff_wrusedw      => F2H_S2_wrusedw
    );
+
+-- external control for DPD
+inst1_to_dma_reader2 <= to_dma_reader when (dpd_capture_en = '1') else inst1_to_dma_reader2_inst8; -- B.J.
+from_dma_reader <= inst1_from_dma_reader2; -- B.J.
    
 -- ----------------------------------------------------------------------------
 -- For C0 control endpoint, FPGA->Host

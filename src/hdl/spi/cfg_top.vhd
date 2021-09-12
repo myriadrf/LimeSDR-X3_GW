@@ -39,6 +39,9 @@ entity cfg_top is
       GNSSCFG_START_ADDR   : integer := 256;
       CDCMCFG1_START_ADDR  : integer := 288;
       CDCMCFG2_START_ADDR  : integer := 320;
+
+      RXTSPCFG_START_ADDR_3  : integer := 352; -- B.J.
+
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -82,7 +85,12 @@ entity cfg_top is
       to_memcfg            : in  t_TO_MEMCFG;
       from_memcfg          : out t_FROM_MEMCFG;
       from_cdcmcfg1        : out t_FROM_CDCMCFG;
-      from_cdcmcfg2        : out t_FROM_CDCMCFG      
+      from_cdcmcfg2        : out t_FROM_CDCMCFG;
+      
+      to_rxtspcfg_3a       : in  t_TO_RXTSPCFG;    -- B.J.
+      from_rxtspcfg_3a     : out t_FROM_RXTSPCFG;  -- B.J.
+      to_rxtspcfg_3b       : in  t_TO_RXTSPCFG;    -- B.J.
+      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG   -- B.J.
    );
 end cfg_top;
 
@@ -134,6 +142,8 @@ signal inst8_sdout   : std_logic;
 signal inst255_sdout         : std_logic;
 signal inst255_to_memcfg     : t_TO_MEMCFG;
 signal inst255_from_memcfg   : t_FROM_MEMCFG;
+
+signal inst9_sen, inst9_sdout, inst10_sen, inst10_sdout : std_logic;  -- B.J.
 
 begin
 
@@ -520,12 +530,66 @@ begin
       to_memcfg   => inst255_to_memcfg,
       from_memcfg => inst255_from_memcfg
    );
+
+-----  B.J. 
+-- ----------------------------------------------------------------------------
+-- rxtspcfg instance
+-- ---------------------------------------------------------------------------- 
+inst9_sen <= sen when inst255_from_memcfg.mac(0)='1' else '1';
+   
+inst9_rxtspcfg : entity work.rxtspcfg
+port map(
+   -- Address and location of this module
+   -- Will be hard wired at the top level
+   maddress             => std_logic_vector(to_unsigned(RXTSPCFG_START_ADDR_3/32,10)),
+   mimo_en              => '1',   
+   -- Serial port IOs
+   sdin                 => sdin,
+   sclk                 => sclk,
+   sen                  => inst9_sen,
+   sdout                => inst9_sdout,  
+   -- Signals coming from the pins or top level serial interface
+   lreset               => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+   mreset               => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+   oen                  => open,
+   stateo               => open,    
+   to_rxtspcfg          => to_rxtspcfg_3a,
+   from_rxtspcfg        => from_rxtspcfg_3a
+);
+
+-- ----------------------------------------------------------------------------
+-- rxtspcfg instance
+-- ---------------------------------------------------------------------------- 
+inst10_sen <= sen when inst255_from_memcfg.mac(1)='1' else '1';
+   
+inst10_rxtspcfg : entity work.rxtspcfg
+port map(
+   -- Address and location of this module
+   -- Will be hard wired at the top level
+   maddress             => std_logic_vector(to_unsigned(RXTSPCFG_START_ADDR_3/32,10)),
+   mimo_en              => '1',   
+   -- Serial port IOs
+   sdin                 => sdin,
+   sclk                 => sclk,
+   sen                  => inst10_sen,
+   sdout                => inst10_sdout,  
+   -- Signals coming from the pins or top level serial interface
+   lreset               => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+   mreset               => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+   oen                  => open,
+   stateo               => open,    
+   to_rxtspcfg          => to_rxtspcfg_3b,
+   from_rxtspcfg        => from_rxtspcfg_3b
+);
+----- end B.J.
+
 -- ----------------------------------------------------------------------------
 -- Output ports
 -- ----------------------------------------------------------------------------    
    sdout <= inst0_0_sdout OR inst0_1_sdout OR inst0_2_sdout OR inst1_sdoutA OR 
             inst3_sdout OR inst4_0_sdout OR inst4_1_sdout OR inst5_sdout OR 
-            inst6_sdout OR inst7_sdout OR inst8_sdout OR inst255_sdout;
+            inst6_sdout OR inst7_sdout OR inst8_sdout OR inst255_sdout
+            OR inst9_sdout OR inst10_sdout;  -- B.J.
             
             
       inst255_to_memcfg <= to_memcfg;
