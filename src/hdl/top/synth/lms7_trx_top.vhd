@@ -2125,6 +2125,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       RYQ  => x_aq  -- B.J.
    );
    
+   x_a_valid <= '1'; -- B.J.
+   
    inst10_adc4_top : entity work.adc_top
    generic map( 
       dev_family           => g_DEV_FAMILY,

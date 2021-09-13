@@ -115,16 +115,16 @@ rx_chain_inst1 : entity work.rx_chain
 
 --for testing rx_chain is bypassed
 -- with this it is OK
-inst1_RYI <= inst1_RXI;
-inst1_RYQ <= inst1_RXQ;
+--inst1_RYI <= inst1_RXI;
+--inst1_RYQ <= inst1_RXQ;
 
 
 -- with this enabled it's not OK
 -- when rx_chain is included
 -- some clock releated problem occurs
 
---RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
---RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
+RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
+RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
 
         
 -- ----------------------------------------------------------------------------
@@ -181,8 +181,8 @@ end process;
 -- Output ports
 -- ----------------------------------------------------------------------------        
 -- B.J.
-data_ch_a <=  inst1_RYI(17 downto 4); --inst0_data_ch_a; --
-data_ch_b <=  inst1_RYQ(17 downto 4); --inst0_data_ch_b;  --
+data_ch_a <=  inst0_data_ch_a;  --inst1_RYI(17 downto 4); 
+data_ch_b <=  inst0_data_ch_b;  --inst1_RYQ(17 downto 4);
 
   
 end arch;   
