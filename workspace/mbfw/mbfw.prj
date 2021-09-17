@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="mbfw" location="/home/servenikas/git/pcie_5gradio_gw/workspace/mbfw" platform="/home/servenikas/git/pcie_5gradio_gw/workspace/lms7_trx_top_platform_0_1/export/lms7_trx_top_platform_0_1/lms7_trx_top_platform_0_1.xpfm" platformUID="" systemProject="mbfw_system" sysConfig="lms7_trx_top_platform_0_1" runtime="C/C++" cpu="mbfw_bsp_domain" cpuInstance="microblaze_0" os="standalone">
-  <configuration name="Debug" id="xilinx.gnu.mb.exe.debug.598933607">
-    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
-  </configuration>
-  <configuration name="Release" id="xilinx.gnu.mb.exe.release.552950702">
-    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
-  </configuration>
-</sdkproject:SdkProject>
