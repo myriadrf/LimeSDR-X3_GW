@@ -69,8 +69,18 @@ signal valid_cnt        : unsigned(7 downto 0);
 signal valid_cnt_ovrfl  : std_logic;
 
 signal reset_n_sync     : std_logic;
+signal debug : std_Logic;
+
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of inst1_RYI: signal is "TRUE";
+attribute MARK_DEBUG of inst1_RYQ: signal is "TRUE";
+attribute MARK_DEBUG of inst1_RXI: signal is "TRUE";
+attribute MARK_DEBUG of inst1_RXQ: signal is "TRUE";
+attribute MARK_DEBUG of debug: signal is "TRUE";
   
 begin
+
+debug <= from_rxtspcfg.debug_ctrl;
 
 sync_reg0 : entity work.sync_reg 
 port map(clk, reset_n, en, reset_n_sync);
@@ -91,7 +101,6 @@ port map(clk, reset_n, en, reset_n_sync);
       data_ch_a   => inst0_data_ch_a,
       data_ch_b   => inst0_data_ch_b  
         );
-
 
 inst1_RXI <= inst0_data_ch_a & "0000";
 inst1_RXQ <= inst0_data_ch_b & "0000";  
@@ -120,13 +129,14 @@ rx_chain_inst1 : entity work.rx_chain
 
 
 -- with this enabled it's not OK
--- when rx_chain is included
+-- when rx_chain is included/
 -- some clock releated problem occurs
 
-RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
-RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
+--RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
+--RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
 
-        
+RYI <= inst1_RYI(17 downto 2) when debug = '1' else inst1_RXI(17 downto 2);
+RYQ <= inst1_RYQ(17 downto 2) when debug = '1' else inst1_RXQ(17 downto 2);
 -- ----------------------------------------------------------------------------
 -- Chain of registers for storing samples
 -- ----------------------------------------------------------------------------
@@ -181,8 +191,10 @@ end process;
 -- Output ports
 -- ----------------------------------------------------------------------------        
 -- B.J.
-data_ch_a <=  inst0_data_ch_a;  --inst1_RYI(17 downto 4); 
-data_ch_b <=  inst0_data_ch_b;  --inst1_RYQ(17 downto 4);
+--data_ch_a <=  inst0_data_ch_a;  --inst1_RYI(17 downto 4); 
+--data_ch_b <=  inst0_data_ch_b;  --inst1_RYQ(17 downto 4);
+data_ch_a <=  inst1_RYI(17 downto 4)  when debug = '1' else inst1_RXI(17 downto 4);
+data_ch_b <=  inst1_RYQ(17 downto 4)  when debug = '1' else inst1_RXQ(17 downto 4);
 
   
 end arch;   

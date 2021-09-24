@@ -63,6 +63,7 @@ set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -clock_fall -min -add_delay 
 #Output constraints
 # ----------------------------------------------------------------------------
 #LMS1
+# commented out output delays, because vivado gets confused by the delay elements (should find a more proper solution later)
 set_output_delay -clock [get_clocks LMS1_FCLK1] -max 1.000 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
 
 set_output_delay -clock [get_clocks LMS1_FCLK1] -min -0.800 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
@@ -71,8 +72,17 @@ set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -max -add_delay 1.00
 
 set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -min -add_delay -0.800 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
 
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -max 16.000 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
+
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -min -0.8 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
+
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -max -add_delay 16 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
+
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -min -add_delay -0.8 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
+
 set_false_path -to [get_ports LMS1_FCLK1]
 #set_false_path -to [get_ports LMS1_FCLK2]
+
 
 
 

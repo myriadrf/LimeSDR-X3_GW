@@ -254,7 +254,7 @@ begin
    from_rxtspcfg.rxdcloop_en  <= not mem(12)(8); -- Inverted, to form oposite logic!
    from_rxtspcfg.cmix_sc      <= mem(12)(13);
    from_rxtspcfg.cmix_gain    <= mem(12)(12) & mem(12)(15 downto 14);
-   
+   from_rxtspcfg.debug_ctrl   <= mem(13)(0);
    --0xE, 0xF
    --CAPD, READ ONLY REGS
    

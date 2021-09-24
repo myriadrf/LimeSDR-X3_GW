@@ -60,6 +60,7 @@ package rxtspcfg_pkg is
       hbd_dly     : std_logic_vector(2 downto 0);   
       rssi_mode   : std_logic_vector(1 downto 0);
       rxdcloop_en : std_logic;
+      debug_ctrl  : std_logic;
    end record t_FROM_RXTSPCFG;
   
    -- Inputs to the .
