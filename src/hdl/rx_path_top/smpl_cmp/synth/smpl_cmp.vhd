@@ -88,8 +88,8 @@ attribute mark_debug of BQ_err              : signal is "true";
 attribute mark_debug of IQ_SEL_err          : signal is "true";
 attribute mark_debug of smpl_err            : signal is "true";
 attribute mark_debug of cmp_start           : signal is "true";
-
-
+attribute mark_debug of cmp_done_reg        : signal is "true";
+attribute mark_debug of cmp_error_reg       : signal is "true";
 
   
 begin

@@ -164,7 +164,7 @@ begin
 			mem(10)	<= "0000000000000000"; --  9 free, RSSI_MODE[1:0], AGC_MODE[1:0], UNUSED[8:0], AGC_AVG[2:0]			(Word Layout: xxMMAAAA AAAAAAAA)
 			mem(11)	<= "0000000000000000"; --  0 free, DC_REG[15:0]
 			mem(12)	<= "0000000000000000"; --  3 free, CMIX_GAIN[1:0], CMIX_SC, CMIX_GAIN[2], UNUSED[2:0], DCLOOP_BYP, CMIX_BYP, AGC_BYP, GFIR3_BYP, GFIR2_BYP, GFIR1_BYP, DC_BYP, GC_BYP, PH_BYP
-			mem(13)	<= "0000000000000000"; -- 16 free, UNUSED[15:0]
+			mem(13)	<= "0000000000000001"; -- 16 free, UNUSED[15:0]
 			mem(14)	<= "0000000000000000"; --  0 free, CAPD[15:0]								(Read only register)
 			mem(15)	<= "0000000000000000"; --  0 free, CAPD[31:16]							(Read only register)
 		elsif sclk'event and sclk = '1' then
@@ -254,7 +254,7 @@ begin
    from_rxtspcfg.rxdcloop_en  <= not mem(12)(8); -- Inverted, to form oposite logic!
    from_rxtspcfg.cmix_sc      <= mem(12)(13);
    from_rxtspcfg.cmix_gain    <= mem(12)(12) & mem(12)(15 downto 14);
-   
+   from_rxtspcfg.debug_ctrl   <= mem(13)(0);
    --0xE, 0xF
    --CAPD, READ ONLY REGS
    

@@ -29,8 +29,8 @@ create_clock -period 4.069 -name CDCM2_LMS2_BB_DAC2_REFC [get_ports CDCM2_LMS2_B
 #Generated clocks
 #-----------------------------------------------------------------------
 
-create_generated_clock -name FPGA_LMS2_BB_DAC1_CLK -source [get_pins {inst12_max5878_top/io_inst0/ODDR_inst/C}] -multiply_by 1 [get_ports {FPGA_LMS2_BB_DAC1_CLK_P}]
-create_generated_clock -name FPGA_LMS2_BB_DAC2_CLK -source [get_pins {inst12_max5878_top/io_inst1/ODDR_inst/C}] -multiply_by 1 [get_ports {FPGA_LMS2_BB_DAC2_CLK_P}]
+create_generated_clock -name FPGA_LMS2_BB_DAC1_CLK -source [get_pins inst12_max5878_top/io_inst0/ODDR_inst/C] -multiply_by 1 [get_ports FPGA_LMS2_BB_DAC1_CLK_P]
+create_generated_clock -name FPGA_LMS2_BB_DAC2_CLK -source [get_pins inst12_max5878_top/io_inst1/ODDR_inst/C] -multiply_by 1 [get_ports FPGA_LMS2_BB_DAC2_CLK_P]
 
 
 #-----------------------------------------------------------------------
@@ -41,10 +41,10 @@ create_generated_clock -name FPGA_LMS2_BB_DAC2_CLK -source [get_pins {inst12_max
 #set_output_delay -clock [get_clocks {dac_clk}] -min -add_delay -2.0 [get_ports {dac_d_n[*]}]
 #set_output_delay -clock [get_clocks {dac_clk}] -max -add_delay -1.2 [get_ports {dac_d_n[*]}]
 
-set_output_delay -clock [get_clocks {FPGA_LMS2_BB_DAC1_CLK}] -max -add_delay 0.8 [get_ports {LMS2_BB_DAC1_B_P[*] LMS2_BB_DAC1_SELIQ_P}]
-set_output_delay -clock [get_clocks {FPGA_LMS2_BB_DAC1_CLK}] -min -add_delay 0.0 [get_ports {LMS2_BB_DAC1_B_P[*] LMS2_BB_DAC1_SELIQ_P}]
-set_output_delay -clock [get_clocks {FPGA_LMS2_BB_DAC2_CLK}] -max -add_delay 0.8 [get_ports {LMS2_BB_DAC2_B_P[*] LMS2_BB_DAC2_SELIQ_P}]
-set_output_delay -clock [get_clocks {FPGA_LMS2_BB_DAC2_CLK}] -min -add_delay 0.0 [get_ports {LMS2_BB_DAC2_B_P[*] LMS2_BB_DAC2_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -max -add_delay 0.800 [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -min -add_delay 0.000 [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -max -add_delay 0.800 [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -min -add_delay 0.000 [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
 
 
 
@@ -76,3 +76,8 @@ set_output_delay -clock [get_clocks {FPGA_LMS2_BB_DAC2_CLK}] -min -add_delay 0.0
 
 #Clock groups
 #Clock groups are set in top .sdc file
+
+
+
+
+
