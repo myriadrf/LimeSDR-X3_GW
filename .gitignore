@@ -55,3 +55,4 @@ src/**/source_library
 *.log
 *.str
 *.mif
+workspace/*

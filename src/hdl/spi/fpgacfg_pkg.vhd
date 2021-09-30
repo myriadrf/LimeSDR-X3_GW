@@ -82,19 +82,7 @@ package fpgacfg_pkg is
       sync_size         : std_logic_vector(15 downto 0);
       txant_pre         : std_logic_vector(15 downto 0);
       txant_post        : std_logic_vector(15 downto 0);
-      tx_0_dly_sel      : std_logic_vector(1 downto 0);
-      tx_1_dly_sel      : std_logic_vector(1 downto 0);
-      tx_2_dly_sel      : std_logic_vector(1 downto 0);
-      tx_3_dly_sel      : std_logic_vector(1 downto 0);
-      tx_4_dly_sel      : std_logic_vector(1 downto 0);
-      tx_5_dly_sel      : std_logic_vector(1 downto 0);
-      tx_6_dly_sel      : std_logic_vector(1 downto 0);
-      tx_7_dly_sel      : std_logic_vector(1 downto 0);
-      tx_8_dly_sel      : std_logic_vector(1 downto 0);
-      tx_9_dly_sel      : std_logic_vector(1 downto 0);
-      tx_10_dly_sel     : std_logic_vector(1 downto 0);
-      tx_11_dly_sel     : std_logic_vector(1 downto 0);
-      tx_12_dly_sel     : std_logic_vector(1 downto 0);
+      TX_HI_FREQ_MODE   : std_logic;
    end record t_FROM_FPGACFG;
   
    -- Inputs to the fpgacfg.
