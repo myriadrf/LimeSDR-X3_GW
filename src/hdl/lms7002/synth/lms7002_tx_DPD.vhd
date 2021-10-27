@@ -88,9 +88,9 @@ entity lms7002_tx_DPD is
       xp_ai, xp_aq, xp_bi, xp_bq : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       yp_ai, yp_aq, yp_bi, yp_bq : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       xp_data_valid : OUT STD_LOGIC;
-      cap_en, cap_cont_en : OUT STD_LOGIC;
+      cap_en, cap_cont_en, cap_resetn : OUT STD_LOGIC;
       cap_size : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-      tx_en, capture_en: out std_logic
+      tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
    );
 end lms7002_tx_DPD;
 
@@ -257,10 +257,13 @@ begin
          yp_bq => yp_bq,
          cap_en => cap_en,
          cap_cont_en => cap_cont_en,
+         cap_resetn => cap_resetn,
          cap_size => cap_size,
          reset_n_soft => reset_n_soft,
          tx_en => tx_en,
-         capture_en =>capture_en
+         capture_en =>capture_en,
+         reset_n_software => reset_n_software,
+         lms3_monitoring => lms3_monitoring
       );
 
    xp_data_valid <= inst2_data_valid; -- 61.44 MHz

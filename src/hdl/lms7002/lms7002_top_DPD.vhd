@@ -22,6 +22,10 @@ use work.memcfg_pkg.all;
 -- ----------------------------------------------------------------------------
 entity lms7002_top_DPD is
    generic(
+      
+      -- added by B.J.
+      DPDTopWrapper_enable : INTEGER := 1;
+
       g_DEV_FAMILY               : string := "Cyclone IV E";
       g_IQ_WIDTH                 : integer := 12;
       g_INV_INPUT_CLK            : string := "ON";
@@ -98,10 +102,11 @@ entity lms7002_top_DPD is
       -- collected signals from transmit paths LMS#1 for DPD, both transmit channels 
       xp_ai, xp_aq, xp_bi, xp_bq : out STD_LOGIC_VECTOR(15 DOWNTO 0);
       yp_ai, yp_aq, yp_bi, yp_bq : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-      xp_data_valid : out STD_LOGIC;
-      cap_en, cap_cont_en : out STD_LOGIC;
+      x_ai, x_aq, x_bi, x_bq: out STD_LOGIC_VECTOR(15 DOWNTO 0);
+      xp_data_valid, x_data_valid : out STD_LOGIC;
+      cap_en, cap_cont_en, cap_resetn : out STD_LOGIC;
       cap_size : out STD_LOGIC_VECTOR(15 DOWNTO 0);
-      tx_en, capture_en: out std_logic
+      tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
    );
 end lms7002_top_DPD;
 
@@ -145,9 +150,31 @@ signal debug_tx_ptrn_en    : std_logic;
    attribute mark_debug    : string;
    attribute keep          : string;
    attribute mark_debug of debug_tx_ptrn_en     : signal is "true";
-   
 
-  
+     --added by B.J.
+   SIGNAL x_ai_p, x_aq_p, x_bi_p, x_bq_p : STD_LOGIC_VECTOR(11 DOWNTO 0);
+   SIGNAL inst2_diq_out_h : STD_LOGIC_VECTOR (g_IQ_WIDTH DOWNTO 0);
+   SIGNAL inst2_diq_out_l : STD_LOGIC_VECTOR (g_IQ_WIDTH DOWNTO 0); 
+   signal tx_reset_n1 : std_logic;
+   
+  component ddr2rxiq is
+  port(
+		reset_n 	: in std_logic;       ---input reset active low
+		clk				: in std_logic;		
+		dil				: in std_logic_vector(12 downto 0);
+		dih				: in std_logic_vector(12 downto 0);
+		rxiqsel		: out std_logic;
+		rxdA			: out std_logic_vector(11 downto 0);
+		rxdB			: out std_logic_vector(11 downto 0);		
+		AI			: out std_logic_vector(11 downto 0);
+		AQ			: out std_logic_vector(11 downto 0);
+		BI			: out std_logic_vector(11 downto 0);
+		BQ			: out std_logic_vector(11 downto 0)
+
+   );
+   end component ddr2rxiq;
+
+
 begin
 
 
@@ -170,7 +197,9 @@ begin
    sync_reg5 : entity work.sync_reg 
    port map(MCLK2, inst0_reset_n, from_fpgacfg.tx_ptrn_en, debug_tx_ptrn_en);
       
-   
+    -- added by B.J.
+   sync_reg6 : ENTITY work.sync_reg
+   PORT MAP(MCLK2, tx_reset_n, '1', tx_reset_n1);  -- B.J.
    
    process(tx_fifo_1_wrclk, tx_fifo_1_reset_n) 
    begin 
@@ -196,11 +225,7 @@ begin
             tx_fifo_1_cnt     <= tx_fifo_1_cnt;
             tx_fifo_1_error   <= tx_fifo_1_error;
          end if;
-         
-         
-         
-         
-      end if;
+        end if;
    end process;
    
     
@@ -209,6 +234,8 @@ begin
 -- ----------------------------------------------------------------------------
 inst0_diq2fifo : entity work.diq2fifo
    generic map( 
+      -- added by B.J. 	
+      DPDTopWrapper_enable => DPDTopWrapper_enable,
       dev_family           => g_DEV_FAMILY,
       iq_width             => g_IQ_WIDTH,
       invert_input_clocks  => g_INV_INPUT_CLK
@@ -216,6 +243,9 @@ inst0_diq2fifo : entity work.diq2fifo
    port map(
       clk            => MCLK2,
       reset_n        => inst0_reset_n,
+      -- added  by B.J.
+      cap_en => tx_reset_n1,  -- B.J.
+      
       test_ptrn_en   => from_fpgacfg.rx_ptrn_en,
       --Mode settings
       mode           => from_fpgacfg.mode,         -- JESD207: 1; TRXIQ: 0
@@ -237,8 +267,34 @@ inst0_diq2fifo : entity work.diq2fifo
       smpl_cmp_done  => rx_smpl_cmp_done,
       smpl_cmp_err   => rx_smpl_cmp_err,
       -- sample counter enable
-      smpl_cnt_en    => rx_smpl_cnt_en
+      smpl_cnt_en    => rx_smpl_cnt_en,
+
+       -- added by B.J.
+       diq_h => inst2_diq_out_h,
+       diq_l => inst2_diq_out_l
    );
+
+    -- added by B.J.
+    inst3_ddr2rxiq : ddr2rxiq
+    PORT MAP(
+       reset_n => '1', --'1', was inst2_reset_n
+       clk => MCLK2,
+       dil => inst2_diq_out_l,
+       dih => inst2_diq_out_h,
+       rxiqsel => x_data_valid,
+       rxdA => OPEN,
+       rxdB => OPEN,
+       AI => x_ai_p, -- CH A, # LMS1, I,Q
+       AQ => x_aq_p,
+       BI => x_bi_p, -- CH B, # LMS1, I,Q
+       BQ => x_bq_p
+    );
+ 
+    x_ai <= x_ai_p & "0000";
+    x_aq <= x_aq_p & "0000";
+    x_bi <= x_bi_p & "0000";
+    x_bq <= x_bq_p & "0000";
+
    
 -- ----------------------------------------------------------------------------
 -- TX interface
@@ -334,8 +390,11 @@ inst1_lms7002_tx : entity work.lms7002_tx_DPD
       cap_en               => cap_en, 
       cap_cont_en          => cap_cont_en,
       cap_size             => cap_size,
+      cap_resetn => cap_resetn,
       tx_en => tx_en,
-      capture_en =>capture_en     
+      capture_en => capture_en,     
+      reset_n_software => reset_n_software,
+      lms3_monitoring => lms3_monitoring
    );
       
 -- ----------------------------------------------------------------------------

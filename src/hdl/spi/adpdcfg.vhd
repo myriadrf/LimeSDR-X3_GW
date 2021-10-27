@@ -29,7 +29,7 @@ entity adpdcfg is
 		stateo: out std_logic_vector(5 downto 0);		
 		ADPD_BUFF_SIZE 	: out std_logic_vector(15 downto 0);
 		ADPD_CONT_CAP_EN	: out std_logic;
-		ADPD_CAP_EN			: out std_logic;		
+		ADPD_CAP_EN, ADPD_CAP_RESETN: out std_logic;		
 		adpd_config0, adpd_config1, adpd_data: out std_logic_vector(15 downto 0);
 		-- CFR
 		cfr0_bypass, cfr0_sleep, cfr1_bypass, cfr1_sleep, cfr0_odd, cfr1_odd : OUT STD_LOGIC;
@@ -47,7 +47,7 @@ entity adpdcfg is
 		PAEN0, PAEN1, DCEN0, DCEN1, reset_n_soft : OUT STD_LOGIC;
 		rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		
-		tx_en, capture_en: out std_logic
+		tx_en, capture_en, lms3_monitoring: out std_logic
 	);
 end adpdcfg;
 
@@ -163,7 +163,7 @@ begin
 		if mreset = '0' then	
 			--Read only registers
 			mem(0)	<= "0100000000000000"; -- ADPD_BUFF_SIZE
-			mem(1)  <= "0000111000000000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
+			mem(1)  <= "0000111000100000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
 			mem(2)	<= "0000000000000000"; -- adpd_config0(15:0) 
 			mem(3)	<= "0000000000000000"; -- adpd_config1(15:0)
 			mem(4)	<= "0000000000000000"; -- adpd_data(15:0)
@@ -209,14 +209,18 @@ begin
 		PAEN0 <= mem(1)(2); -- PA amplifier enable  channel A
 	    PAEN1 <= mem(1)(3); -- PA amplifier enable  channel B
 
-	    rf_sw <= mem(1)(6 DOWNTO 4); -- RF_SW control		
+	    --rf_sw <= mem(1)(6 DOWNTO 4); -- RF_SW control
+	    -- not used on this board
+	    rf_sw <= (others=>'0');	
+	    
+	    ADPD_CAP_RESETN	<= mem(1)(4);
+		lms3_monitoring <= mem(1)(5);	
 
 	    DCEN0 <= mem(1)(7); -- DC-DC enable  channel A
 	    DCEN1 <= mem(1)(8); -- DC-DC enable  channel B
 	
 	    tx_en <= mem(1)(9);
 	    capture_en <= mem(1)(10);
-
 	    reset_n_soft <= mem(1)(11);
 
 	    cfr0_interpolation <= mem(1)(13 DOWNTO 12);

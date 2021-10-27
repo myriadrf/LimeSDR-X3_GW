@@ -40,12 +40,12 @@ ENTITY DPDTop IS
       xp_ai, xp_aq, xp_bi, xp_bq : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       yp_ai, yp_aq, yp_bi, yp_bq : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       xen, yen : OUT STD_LOGIC;
-      cap_en, cap_cont_en : OUT STD_LOGIC;
+      cap_en, cap_cont_en, cap_resetn : OUT STD_LOGIC;
       cap_size : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
       PAEN0, PAEN1, DCEN0, DCEN1 : OUT STD_LOGIC;
       rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
       reset_n2 : OUT STD_LOGIC;
-      tx_en, capture_en: out std_logic
+      tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
    );
 END DPDTop;
 
@@ -65,7 +65,7 @@ ARCHITECTURE struct OF DPDTop IS
          stateo : OUT STD_LOGIC_VECTOR(5 DOWNTO 0);
          ADPD_BUFF_SIZE : OUT STD_LOGIC_VECTOR(15 DOWNTO 0); --ADPD
          ADPD_CONT_CAP_EN : OUT STD_LOGIC;
-         ADPD_CAP_EN : OUT STD_LOGIC;
+         ADPD_CAP_EN, ADPD_CAP_RESETN : OUT STD_LOGIC;
          -- DPD
          adpd_config0, adpd_config1, adpd_data : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
          -- CFR
@@ -82,7 +82,7 @@ ARCHITECTURE struct OF DPDTop IS
          gfir0_byp, gfir0_sleep, gfir0_odd, gfir1_byp, gfir1_sleep, gfir1_odd : OUT STD_LOGIC;
          PAEN0, PAEN1, DCEN0, DCEN1, reset_n_soft : OUT STD_LOGIC;
          rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-         tx_en, capture_en: out std_logic
+         tx_en, capture_en, lms3_monitoring: out std_logic
       );
    END COMPONENT adpdcfg;
 
@@ -248,6 +248,7 @@ ARCHITECTURE struct OF DPDTop IS
 BEGIN
 
    sdout <= inst0_sdout OR inst1_sdout OR inst2_sdout OR inst5_sdout OR inst6_sdout;
+   reset_n_software <= reset_n_soft;
    
    inst0_adpdcfg : adpdcfg
    PORT MAP(
@@ -264,6 +265,7 @@ BEGIN
       ADPD_BUFF_SIZE => cap_size,
       ADPD_CONT_CAP_EN => cap_cont_en,
       ADPD_CAP_EN => cap_en,
+      ADPD_CAP_RESETN => cap_resetn,
       PAEN0 => PAEN0,
       PAEN1 => PAEN1,
       DCEN0 => DCEN0,
@@ -298,7 +300,8 @@ BEGIN
       gfir1_odd => inst0_gfir1_odd,
       rf_sw => rf_sw,
       tx_en => tx_en,
-      capture_en =>capture_en
+      capture_en =>capture_en,
+      lms3_monitoring => lms3_monitoring
    );
 
    reset_n1 <= reset_n AND reset_n_soft;

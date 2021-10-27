@@ -807,43 +807,46 @@ signal spi0_lms2_miso   : std_logic;
 
 -- B.J.
 component data_cap_buffer is
-	port (
-		
+	port (	
 	   --
       -- sample rate 61.44 MSps
-        wclk0 : IN STD_LOGIC;  -- clk for xp_a,  clock is 122.88 MHz
+      wclk0 : IN STD_LOGIC;  -- clk for xp_a,  clock is 122.88 MHz
 		wclk1 : IN STD_LOGIC;  -- clk for yp_a,  clock is 122.88 MHz
 		wclk2 : IN STD_LOGIC;  -- clk for x_a (from ext. ADC - 61.44 MHz)
 		wclk3 : IN STD_LOGIC;  -- clk for xp_b,  clock is 122.88 MHz
 		wclk4 : IN STD_LOGIC;  -- clk for yp_b,  clock is 122.88 MHz
 		wclk5 : IN STD_LOGIC;  -- clk for x_b (from ext. ADC - 61.44 MHz)
+      wclk6 : IN STD_LOGIC;  -- clk for x_a (from LMS#1)
+		wclk7 : IN STD_LOGIC;  -- clk for x_b (from LMS#1)
 		rdclk : IN STD_LOGIC;  
 		clk : IN STD_LOGIC;
 		reset_n : IN STD_LOGIC;
+		
 		--capture data
-		xp_a_valid : IN STD_LOGIC;
-		xp_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		xp_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		
-		yp_a_valid : IN STD_LOGIC;
-		yp_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		yp_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-
-		x_a_valid : IN STD_LOGIC;
-		x_ai : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		x_aq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		
-		xp_b_valid : IN STD_LOGIC;
-		xp_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		xp_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		
-		yp_b_valid : IN STD_LOGIC;
-		yp_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		yp_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-
-		x_b_valid : IN STD_LOGIC;
-		x_bi : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-		x_bq : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+		ch_0_valid : IN STD_LOGIC; -- xp_a_valid 
+		ch_0_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --xp_ai
+		ch_0_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --xp_aq		
+		ch_1_valid : IN STD_LOGIC;  --yp_a_valid
+		ch_1_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --yp_ai
+		ch_1_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --yp_aq
+		ch_2_valid : IN STD_LOGIC;  --x_a_valid 
+		ch_2_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_ai (LMS#3)
+		ch_2_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_aq (LMS#3)
+		ch_3_valid : IN STD_LOGIC;  --xp_b_valid
+		ch_3_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --xp_bi
+		ch_3_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --xp_bq		
+		ch_4_valid : IN STD_LOGIC;  --yp_b_valid
+		ch_4_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --yp_bi
+		ch_4_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --yp_bq
+		ch_5_valid : IN STD_LOGIC;  --x_b_valid
+		ch_5_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_bi (LMS#3)
+		ch_5_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_bq (LMS#3)
+		ch_6_valid : IN STD_LOGIC;
+		ch_6_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_ai (LMS#1) 
+		ch_6_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_aq (LMS#1)
+		ch_7_valid : IN STD_LOGIC;
+		ch_7_i : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_bi (LMS#1) 
+		ch_7_q : IN STD_LOGIC_VECTOR(15 DOWNTO 0);  --x_bq (LMS#1)
 
 		--capture control signals
 		cap_en : IN STD_LOGIC;
@@ -854,24 +857,24 @@ component data_cap_buffer is
 		to_dma_reader         : out t_TO_DMA_READER;
 		from_dma_reader       : in t_FROM_DMA_READER;
 
-		test_data_en : IN STD_LOGIC := '0'
+		test_data_en : IN STD_LOGIC := '0';
+      lms3_monitoring : IN STD_LOGIC:= '1'
 	);
 end component data_cap_buffer;
 
-signal xp_ai, xp_aq, xp_bi, xp_bq, x_ai, x_aq : STD_LOGIC_VECTOR(15 DOWNTO 0);
-signal yp_ai, yp_aq, yp_bi, yp_bq, x_bi, x_bq : STD_LOGIC_VECTOR(15 DOWNTO 0);
-signal xp_data_valid : STD_LOGIC;
-signal cap_en, cap_cont_en : STD_LOGIC;
+signal xp_ai, xp_aq, xp_bi, xp_bq, x_ai_lms1, x_aq_lms1, x_ai_lms3, x_aq_lms3 : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal yp_ai, yp_aq, yp_bi, yp_bq, x_bi_lms1, x_bq_lms1, x_bi_lms3, x_bq_lms3 : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal xp_data_valid, x_data_valid_lms1, lms3_monitoring : STD_LOGIC;
+signal cap_en, cap_cont_en, cap_resetn : STD_LOGIC;
 signal cap_size : STD_LOGIC_VECTOR(15 DOWNTO 0);
 signal DPD_to_dma_reader  : t_TO_DMA_READER;
 signal DPD_from_dma_reader  : t_FROM_DMA_READER;
 signal pcie_bus_clk: std_logic;
-signal x_a_valid, x_b_valid: std_logic;
 signal inst0_to_rxtspcfg_3a : t_TO_RXTSPCFG;    -- B.J.
 signal inst0_from_rxtspcfg_3a : t_FROM_RXTSPCFG;  -- B.J.
 signal inst0_to_rxtspcfg_3b : t_TO_RXTSPCFG;    -- B.J.
 signal inst0_from_rxtspcfg_3b : t_FROM_RXTSPCFG;   -- B.J.  
-signal dpd_tx_en, dpd_capture_en: std_logic; --B.J.
+signal dpd_tx_en, dpd_capture_en, reset_n_soft: std_logic; --B.J.
       
 -- end B.J.
 
@@ -1434,7 +1437,7 @@ begin
 
      to_dma_reader   => DPD_to_dma_reader, -- B.J.
      from_dma_reader  => DPD_from_dma_reader, -- B.J.
-     dpd_capture_en => dpd_capture_en -- B.J.   
+     dpd_capture_en => dpd_capture_en -- B.J.    
      );
 
 --xilinx_pcie_2_1_ep_7x_inst : entity work.xilinx_pcie_2_1_ep_7x
@@ -1613,6 +1616,7 @@ begin
 --	for trasmit only LMS#1 is used: both channels A and B are active
 inst6_lms7002_top : entity work.lms7002_top_DPD
    generic map(
+      DPDTopWrapper_enable    => 1,
       g_DEV_FAMILY            => g_DEV_FAMILY,
       g_IQ_WIDTH              => g_LMS_DIQ_WIDTH,
       g_INV_INPUT_CLK         => "ON",
@@ -1696,12 +1700,22 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
        yp_aq                => yp_aq,
        yp_bi                => yp_bi,
        yp_bq                => yp_bq,
+       x_ai                 => x_ai_lms1,
+       x_aq                 => x_aq_lms1,
+       x_bi                 => x_bi_lms1,
+       x_bq                 => x_bq_lms1,
+
        xp_data_valid        => xp_data_valid,
+       x_data_valid         => x_data_valid_lms1,
+
        cap_en               => cap_en, 
        cap_cont_en          => cap_cont_en,
+       cap_resetn           => cap_resetn,  -- reset signal for dpd capture buffer
        cap_size             => cap_size,
        tx_en => dpd_tx_en,
-       capture_en => dpd_capture_en
+       capture_en => dpd_capture_en,  -- enables DPD capture (1) or LMS#3 streaming (0) going to PCIe 
+       reset_n_software => reset_n_soft,  -- not used 
+       lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
    );
 
 
@@ -1710,39 +1724,49 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          
          wclk0 => inst1_lms1_txpll_c2,   -- clk for xp_a (122.88)
          wclk1 => inst1_lms1_txpll_c2,   -- clk for yp_a (122.88)
-         wclk2 => lms3_bb_adc1_clkout_global,   -- clk for x_a  (61.44 ???)
-        
+         wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
          wclk3 => inst1_lms1_txpll_c2,   -- clk for xp_b (122.88)
          wclk4 => inst1_lms1_txpll_c2,   -- clk for yp_b (122.88)
-         wclk5 => lms3_bb_adc2_clkout_global,   -- clk for x_b  (61.44 ???)
-         
+         wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
+         wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
+         wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
+    
          rdclk => pcie_bus_clk,   
-         clk => inst1_lms1_txpll_c2, -- inst1_lms1_txpll_c2
-         reset_n => cap_en, 
+         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
          
-         xp_a_valid => xp_data_valid, 
-         xp_ai => xp_ai, 
-         xp_aq => xp_aq,          
+         reset_n => cap_resetn, -- reset signal for dpd capture buffer
          
-         yp_a_valid => xp_data_valid, 
-         yp_ai =>  yp_ai, 
-         yp_aq =>  yp_aq,    
+         ch_0_valid => xp_data_valid, 
+         ch_0_i => xp_ai, 
+         ch_0_q => xp_aq,          
          
-         x_a_valid => x_a_valid, 
-         x_ai => x_ai, 
-         x_aq => x_aq, 
+         ch_1_valid => xp_data_valid, 
+         ch_1_i =>  yp_ai, 
+         ch_1_q =>  yp_aq,    
          
-         xp_b_valid => xp_data_valid, 
-         xp_bi => xp_bi, 
-         xp_bq => xp_bq,          
+         ch_2_valid => '1', 
+         ch_2_i => x_aq_lms3, --x_ai, lms#3
+         ch_2_q => x_ai_lms3, --x_aq, lms#3
          
-         yp_b_valid => xp_data_valid, 
-         yp_bi => yp_bi, 
-         yp_bq => yp_bq,   
+         ch_3_valid => xp_data_valid, 
+         ch_3_i => xp_bi, 
+         ch_3_q => xp_bq,          
          
-         x_b_valid => x_b_valid, 
-         x_bi => x_bi, 
-         x_bq => x_bq,         
+         ch_4_valid => xp_data_valid, 
+         ch_4_i => yp_bi, 
+         ch_4_q => yp_bq,   
+         
+         ch_5_valid => '1', 
+         ch_5_i => x_bq_lms3, --x_bi, lms#3
+         ch_5_q => x_bi_lms3, --x_bq, lms#3 
+         
+         ch_6_valid => x_data_valid_lms1, 
+         ch_6_i => x_aq_lms1, --x_ai 
+         ch_6_q => x_ai_lms1, --x_aq, lms#1
+
+         ch_7_valid => not x_data_valid_lms1, 
+         ch_7_i => x_bq_lms1, --x_bi, lms#1
+         ch_7_q => x_bi_lms1, --x_bq, lms#1 
          
          cap_en => cap_en, 
          cap_cont_en => cap_cont_en, 
@@ -1752,7 +1776,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          to_dma_reader   => DPD_to_dma_reader, 
          from_dma_reader  => DPD_from_dma_reader,   
          
-         test_data_en =>  '0'
+         test_data_en =>  '0',
+         lms3_monitoring => lms3_monitoring -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
       );
   
    
@@ -2106,7 +2131,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       clk               => lms3_bb_adc1_clkout,
       clk_io            => lms3_bb_adc1_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
+      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en 
+                                                                                or dpd_tx_en,  -- B.J.    
       ch_a              => lms3_bb_adc1_da,
       ch_b              => lms3_bb_adc1_db,     
       --SDR parallel output data
@@ -2121,11 +2147,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       --from_rxtspcfg     => inst0_from_rxtspcfg
       to_rxtspcfg       => inst0_to_rxtspcfg_3a, -- B.J.
       from_rxtspcfg     => inst0_from_rxtspcfg_3a, -- B.J.
-      RYI  => x_ai, -- B.J.
-      RYQ  => x_aq  -- B.J.
+      RYI  => x_ai_lms3, -- B.J.
+      RYQ  => x_aq_lms3  -- B.J.
    );
-   
-   x_a_valid <= '1'; -- B.J.
    
    inst10_adc4_top : entity work.adc_top
    generic map( 
@@ -2137,7 +2161,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       clk               => lms3_bb_adc2_clkout,
       clk_io            => lms3_bb_adc2_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en,      
+      en                => inst0_from_fpgacfg_mod_2.rx_en OR inst0_from_fpgacfg_mod_2.dlb_en
+                                                                                   or dpd_tx_en,  -- B.J.       
       ch_a              => lms3_bb_adc2_da,
       ch_b              => lms3_bb_adc2_db,     
       --SDR parallel output data
@@ -2152,13 +2177,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       --from_rxtspcfg     => inst0_from_rxtspcfg
       to_rxtspcfg       => inst0_to_rxtspcfg_3b, -- B.J.
       from_rxtspcfg     => inst0_from_rxtspcfg_3b,  -- B.J.     
-      RYI  => x_bi, -- B.J.
-      RYQ  => x_bq  -- B.J.
+      RYI  => x_bi_lms3, -- B.J.
+      RYQ  => x_bq_lms3  -- B.J.
    );
-
-   x_b_valid <= '1'; -- B.J.
-   
-   
+  
    inst11: entity work.chnl_combine
    generic map(
       diq_width   => 14

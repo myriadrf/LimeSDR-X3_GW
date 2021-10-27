@@ -242,6 +242,7 @@ begin
    --0xB
    from_rxtspcfg.dc_reg       <= mem(11);
    
+   
    --0xC
    from_rxtspcfg.ph_byp       <= mem(12)(0);
    from_rxtspcfg.gc_byp       <= mem(12)(1);

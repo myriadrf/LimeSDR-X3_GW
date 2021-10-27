@@ -46,12 +46,12 @@ ENTITY DPDTopWrapper IS
       xp_ai, xp_aq, xp_bi, xp_bq : OUT std_logic_vector(15 DOWNTO 0);
       yp_ai, yp_aq, yp_bi, yp_bq : OUT std_logic_vector(15 DOWNTO 0);
 
-      cap_en, cap_cont_en : OUT std_logic;
+      cap_en, cap_cont_en, cap_resetn : OUT std_logic;
       cap_size : OUT std_logic_vector(15 DOWNTO 0);
       PAEN0, PAEN1, DCEN0, DCEN1 : OUT std_logic;
       rf_sw : OUT std_logic_vector(2 DOWNTO 0);
-	  reset_n_soft: out std_logic;
-	  tx_en, capture_en: out std_logic
+	   reset_n_soft: out std_logic;
+	   tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
    );
 END DPDTopWrapper;
 
@@ -83,12 +83,12 @@ ARCHITECTURE arch OF DPDTopWrapper IS
          xp_ai, xp_aq, xp_bi, xp_bq : OUT std_logic_vector(15 DOWNTO 0);
          yp_ai, yp_aq, yp_bi, yp_bq : OUT std_logic_vector(15 DOWNTO 0);
          xen, yen : OUT std_logic;
-         cap_en, cap_cont_en : OUT std_logic;
+         cap_en, cap_cont_en, cap_resetn : OUT std_logic;
          cap_size : OUT std_logic_vector(15 DOWNTO 0);
          PAEN0, PAEN1, DCEN0, DCEN1 : OUT std_logic;
          rf_sw : OUT std_logic_vector(2 DOWNTO 0);
 		 reset_n2: out std_logic;
-	     tx_en, capture_en: out std_logic
+	     tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
       );
    END COMPONENT DPDTop;
 
@@ -155,8 +155,16 @@ BEGIN
       diq_in(16 * 3 - 1 DOWNTO 16 * 2);
    aq_in <= diq_in(16 * 2 - 1 DOWNTO 16 * 1) WHEN aiq_in_sel = '0' ELSE
       diq_in(16 * 4 - 1 DOWNTO 16 * 3);
+   
+   
+   -- ovo je proba
+   -- posle obavezno vratiti !!!!
+   
    bi_in <= diq_in(16 * 3 - 1 DOWNTO 16 * 2);
    bq_in <= diq_in(16 * 4 - 1 DOWNTO 16 * 3);
+   
+   --bi_in <= ai_in;
+   --bq_in <= aq_in;
    -- ----------------------------------------------------------------------------
    -- DPDTop
    -- ----------------------------------------------------------------------------   
@@ -196,6 +204,7 @@ BEGIN
       cap_en => cap_en,
       cap_cont_en => cap_cont_en,
       cap_size => cap_size,
+      cap_resetn => cap_resetn,
       PAEN0 => PAEN0,
       PAEN1 => PAEN1,
       DCEN0 => DCEN0,
@@ -203,7 +212,9 @@ BEGIN
       rf_sw => rf_sw,
 	  reset_n2=> reset_n2,
       tx_en => tx_en,
-      capture_en =>capture_en
+      capture_en =>capture_en,
+      reset_n_software => reset_n_software,
+      lms3_monitoring => lms3_monitoring
    );
 
    -- for input
