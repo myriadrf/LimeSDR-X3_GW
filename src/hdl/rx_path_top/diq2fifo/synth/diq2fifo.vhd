@@ -14,6 +14,10 @@ use ieee.numeric_std.all;
 -- ----------------------------------------------------------------------------
 entity diq2fifo is
    generic( 
+
+      -- added by B.J.
+      DPDTopWrapper_enable : INTEGER := 1; -- B.J.
+
       dev_family           : string := "Cyclone IV E";
       iq_width             : integer := 12;
       invert_input_clocks  : string := "ON"
@@ -42,7 +46,12 @@ entity diq2fifo is
       smpl_cmp_done  : out std_logic;
       smpl_cmp_err   : out std_logic;
       -- sample counter enable
-      smpl_cnt_en    : out std_logic
+      smpl_cnt_en    : out std_logic;
+
+       --added by B.J. 
+       diq_h : OUT STD_LOGIC_VECTOR (iq_width DOWNTO 0);
+       diq_l : OUT STD_LOGIC_VECTOR (iq_width DOWNTO 0);
+       cap_en : IN STD_LOGIC
 
         );
 end diq2fifo;
@@ -71,7 +80,19 @@ signal smpl_cnt_en_reg  : std_logic;
   
 begin
 
-inst0_reset_n <= reset_n when smpl_cmp_start = '0' else '1';
+ -- added by B.J.
+ diq_h <= inst0_diq_out_h;
+ diq_l <= inst0_diq_out_l;
+ --inst0_reset_n <= reset_n when smpl_cmp_start = '0' else '1';
+
+lab0: if  DPDTopWrapper_enable=1 generate
+ inst0_reset_n <= cap_en when smpl_cmp_start = '0' else '1';  
+end generate;     
+
+lab1: if  DPDTopWrapper_enable=0 generate
+ inst0_reset_n <= reset_n when smpl_cmp_start = '0' else '1';   
+end generate;
+
 
 inst0_lms7002_ddin : entity work.lms7002_ddin
    generic map( 

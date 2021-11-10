@@ -32,7 +32,8 @@ ENTITY QADPD IS
 	PORT (
 		clk, sclk : IN STD_LOGIC;
 		reset_n : IN STD_LOGIC;
-		reset_mem_n : IN STD_LOGIC;
+
+		reset_mem_n : IN STD_LOGIC; -- reset coefficients
 		data_valid : IN STD_LOGIC;
 		xpi : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
 		xpq : IN STD_LOGIC_VECTOR(13 DOWNTO 0);
@@ -57,7 +58,7 @@ ARCHITECTURE structure OF QADPD IS
 		GENERIC (
 			res_n : NATURAL := 18;
 			op_n : NATURAL := 18;
-			addi : NATURAL := 1);
+			addi : NATURAL := 1); -- addition addi==1
 		PORT (
 			dataa : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
 			datab : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
@@ -93,18 +94,32 @@ ARCHITECTURE structure OF QADPD IS
 	SIGNAL YpI_s2, YpQ_s2 : STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
 	SIGNAL a, ap, b, bp, mul5a, mul5b, mul6a, mul6b : matr;
 	CONSTANT zer : STD_LOGIC_VECTOR(mul_n - 17 DOWNTO 0) := (OTHERS => '0');
-	CONSTANT all_zeros : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0) := (OTHERS => '0');
-	CONSTANT all_ones : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0) := (OTHERS => '1');
-	SIGNAL sigI, sigQ : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0);
+
+	CONSTANT all_zeros : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0) := (OTHERS => '0'); --[-16, 16]
+	CONSTANT all_ones : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0) := (OTHERS => '1'); --[-16, 16]
+	SIGNAL sigI, sigQ : STD_LOGIC_VECTOR(mul_n - 5 DOWNTO 0); --[-16, 16]
+
 	SIGNAL ypi_s, ypq_s : STD_LOGIC_VECTOR(17 DOWNTO 0);
 	SIGNAL address_i, address_j : STD_LOGIC_VECTOR(4 DOWNTO 0);
+	TYPE short_cols IS ARRAY (0 DOWNTO 0) OF STD_LOGIC_VECTOR(mul_n - 1 DOWNTO 0);
+	TYPE short_matr IS ARRAY (N DOWNTO 0) OF short_cols;
+	SIGNAL c, d, cp, dp, mul7a, mul7b, mul8a, mul8b : short_matr;
+
+	TYPE short_cols2 IS ARRAY (0 DOWNTO 0) OF STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
+	TYPE short_matr2 IS ARRAY (N DOWNTO 0) OF short_cols2;
+	SIGNAL res5, res6, res7, res8, iIQpI, iIQpQ, iIQpI_s, iIQpQ_s : short_matr2;
+
+	TYPE short_cols3 IS ARRAY (0 DOWNTO 0) OF STD_LOGIC_VECTOR(mul_n + 12 DOWNTO 0);
+	TYPE short_matr3 IS ARRAY (N DOWNTO 0) OF short_cols3;
+
+	SIGNAL res5_s, res6_s, res6_sprim, res7_s, res8_s, res8_sprim : short_matr3;
 
 BEGIN
 
 	address_i <= '0' & spi_ctrl(7 DOWNTO 4);
 	address_j <= '0' & spi_ctrl(3 DOWNTO 0);
 
-	PROCESS (reset_mem_n, sclk) IS
+	PROCESS (reset_mem_n, sclk) IS -- was  reset_n
 	BEGIN
 		IF reset_mem_n = '0' THEN
 			FOR i IN 0 TO n LOOP
@@ -114,21 +129,36 @@ BEGIN
 					b(i)(j) <= (OTHERS => '0');
 					bp(i)(j) <= (OTHERS => '0');
 				END LOOP;
+
+				FOR j IN 0 TO 0 LOOP
+					c(i)(j) <= (OTHERS => '0');
+					d(i)(j) <= (OTHERS => '0');
+					cp(i)(j) <= (OTHERS => '0');
+					dp(i)(j) <= (OTHERS => '0');
+				END LOOP;
 			END LOOP;
 
-			a(0)(0) <= x"0800" & zer;
+			a(0)(0) <= x"0800" & zer; -- [-16, 16]
 			ap(0)(0) <= x"0800" & zer;
 
 		ELSIF (sclk'event AND sclk = '1') THEN
-			IF (spi_ctrl(15 DOWNTO 12) = "0001") THEN
+			IF (spi_ctrl(15 DOWNTO 12) = "0001") THEN -- a coeff
 				ap(CONV_INTEGER(address_i))(CONV_INTEGER(address_j)) <= spi_data & spi_ctrl(9 DOWNTO 8);
-			ELSIF (spi_ctrl(15 DOWNTO 12) = "0010") THEN
+			ELSIF (spi_ctrl(15 DOWNTO 12) = "0010") THEN -- b coeff
 				bp(CONV_INTEGER(address_i))(CONV_INTEGER(address_j)) <= spi_data & spi_ctrl(9 DOWNTO 8);
-			ELSIF (spi_ctrl(15 DOWNTO 12) = "1111") THEN
+			ELSIF (spi_ctrl(15 DOWNTO 12) = "0011") THEN -- c coeff				
+				cp(CONV_INTEGER(address_i))(0) <= spi_data & spi_ctrl(9 DOWNTO 8);
+			ELSIF (spi_ctrl(15 DOWNTO 12) = "0100") THEN -- d coeff					
+				dp(CONV_INTEGER(address_i))(0) <= spi_data & spi_ctrl(9 DOWNTO 8);
+			ELSIF (spi_ctrl(15 DOWNTO 12) = "1111") THEN -- update a and b coeff
 				FOR i IN 0 TO n LOOP
 					FOR j IN 0 TO m LOOP
 						a(i)(j) <= ap(i)(j);
 						b(i)(j) <= bp(i)(j);
+					END LOOP;
+					FOR j IN 0 TO 0 LOOP
+						c(i)(j) <= cp(i)(j);
+						d(i)(j) <= dp(i)(j);
 					END LOOP;
 				END LOOP;
 			END IF;
@@ -140,7 +170,7 @@ BEGIN
 		IF reset_n = '0' THEN
 			ypi <= (OTHERS => '0');
 			ypq <= (OTHERS => '0');
-		ELSIF (clk'event AND clk = '1') THEN
+		ELSIF (clk'event AND clk = '1') THEN -- pipeline
 			IF (data_valid = '1') THEN
 				ypi <= ypi_s;
 				ypq <= ypq_s;
@@ -155,7 +185,7 @@ BEGIN
 			XQp <= (OTHERS => '0');
 		ELSIF (clk'event AND clk = '1') THEN
 			IF data_valid = '1' THEN
-				XIp <= xpi(13) & xpi(13) & xpi(13) & xpi & extens;
+				XIp <= xpi(13) & xpi(13) & xpi(13) & xpi & extens; --xpi,xpq 14-bits [-8191,8192]
 				XQp <= xpq(13) & xpq(13) & xpq(13) & xpq & extens;
 			END IF;
 		END IF;
@@ -163,11 +193,11 @@ BEGIN
 
 	Mult1 : multiplier2
 	PORT MAP(dataa => XIp, datab => XIp, result => sig1);
-	sig3(mul_n - 1 DOWNTO 0) <= sig1(2 * mul_n - 5 DOWNTO mul_n - 4);
+	sig3(mul_n - 1 DOWNTO 0) <= sig1(2 * mul_n - 5 DOWNTO mul_n - 4); -- FS
 
 	Mult2 : multiplier2
 	PORT MAP(dataa => XQp, datab => XQp, result => sig2);
-	sig4(mul_n - 1 DOWNTO 0) <= sig2(2 * mul_n - 5 DOWNTO mul_n - 4);
+	sig4(mul_n - 1 DOWNTO 0) <= sig2(2 * mul_n - 5 DOWNTO mul_n - 4); -- FS
 
 	Adder1 : adder GENERIC MAP(res_n => mul_n, op_n => mul_n, addi => 1)
 	PORT MAP(dataa => sig3, datab => sig4, res => ep);
@@ -228,7 +258,7 @@ BEGIN
 		END GENERATE;
 	END GENERATE;
 
-	labX3 : FOR j IN 0 TO M GENERATE
+	labX3 : FOR j IN 0 TO M GENERATE -- nonlinearity
 		xIep(0)(j) <= xIep_z(M)(j);
 		xQep(0)(j) <= xQep_z(M)(j);
 	END GENERATE;
@@ -253,6 +283,9 @@ BEGIN
 	lab7 : FOR i IN 0 TO N GENERATE
 		lab8 : FOR j IN 0 TO M GENERATE
 
+			--    YpI  += a[i][j]* xIep[i][j] - b[i][j]* xQep[i][j]; 
+			--    YpQ  += a[i][j]* xQep[i][j] + b[i][j]* xIep[i][j]; 
+
 			mul5a(i)(j) <= a(i)(j) WHEN data_valid = '1' ELSE
 			b(i)(j);
 			mul5b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
@@ -267,16 +300,18 @@ BEGIN
 					res2_sprim(i)(j) <= (OTHERS => '0');
 				ELSIF (clk'event AND clk = '1') THEN
 					IF (data_valid = '1') THEN
-						res1_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j);
+						res1_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  a(i)(j)*xIep(i)(j)
 						res2_sprim(i)(j) <= res2_s(i)(j);
 					ELSE
-						res2_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j);
+						res2_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	b(i)(j)*xQep(i)(j)
 					END IF;
 				END IF;
 			END PROCESS;
 
-			Adder2 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 0)
+			Adder2 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 0) -- subtraction
 			PORT MAP(dataa => res1_s(i)(j), datab => res2_sprim(i)(j), res => ijYpI(i)(j));
+
+			--  a(i)(j)*xIep(i)(j) - b(i)(j)*x Qep(i)(j)
 
 			mul6a(i)(j) <= a(i)(j) WHEN data_valid = '1' ELSE
 			b(i)(j);
@@ -289,25 +324,29 @@ BEGIN
 				IF reset_n = '0' THEN
 					res3_s(i)(j) <= (OTHERS => '0');
 					res4_s(i)(j) <= (OTHERS => '0');
+
 					res4_sprim(i)(j) <= (OTHERS => '0');
-				ELSIF (clk'event AND clk = '1') THEN
+				ELSIF (clk'event AND clk = '1') THEN -- pipeline
 					IF (data_valid = '1') THEN
-						res3_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j);
+
+						res3_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --a(i)(j)*xQep(i)(j)
 						res4_sprim(i)(j) <= res4_s(i)(j);
 					ELSE
-						res4_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j);
+						res4_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --b(i)(j)*xIep(i)(j)
 					END IF;
 				END IF;
 			END PROCESS;
 			Adder3 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 1) -- addition
 			PORT MAP(dataa => res3_s(i)(j), datab => res4_sprim(i)(j), res => ijYpQ(i)(j));
 
+			--a(i)(j)*xQep(i)(j)+b(i)(j)*xIep(i)(j)
+
 			lab9 : PROCESS (clk, reset_n) IS
 			BEGIN
 				IF reset_n = '0' THEN
 					ijYpI_s(i)(j) <= (OTHERS => '0');
 					ijYpQ_s(i)(j) <= (OTHERS => '0');
-				ELSIF (clk'event AND clk = '1') THEN
+				ELSIF (clk'event AND clk = '1') THEN -- pipeline
 					IF (data_valid = '1') THEN
 						ijYpI_s(i)(j) <= ijYpI(i)(j);
 						ijYpQ_s(i)(j) <= ijYpQ(i)(j);
@@ -315,6 +354,69 @@ BEGIN
 				END IF;
 			END PROCESS;
 		END GENERATE;
+
+		----------------------------------
+		-- complex part		
+
+		labX3 : FOR j IN 0 TO 0 GENERATE -- nonlinearity		
+
+			mul7a(i)(j) <= c(i)(j) WHEN data_valid = '1' ELSE
+			d(i)(j);
+			mul7b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
+			xQep(i)(j);
+			Mult7 : multiplier2 PORT MAP(dataa => mul7a(i)(j), datab => mul7b(i)(j), result => res5(i)(j));
+
+			mul8a(i)(j) <= d(i)(j) WHEN data_valid = '1' ELSE
+			c(i)(j);
+			mul8b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
+			xQep(i)(j);
+			Mult8 : multiplier2 PORT MAP(dataa => mul8a(i)(j), datab => mul8b(i)(j), result => res7(i)(j));
+
+			labX1 : PROCESS (clk, reset_n) IS
+			BEGIN
+				IF reset_n = '0' THEN
+					res5_s(i)(j) <= (OTHERS => '0');
+					res6_s(i)(j) <= (OTHERS => '0');
+					res7_s(i)(j) <= (OTHERS => '0');
+					res8_s(i)(j) <= (OTHERS => '0');
+					res6_sprim(i)(j) <= (OTHERS => '0');
+					res8_sprim(i)(j) <= (OTHERS => '0');
+
+				ELSIF (clk'event AND clk = '1') THEN -- pipeline
+
+					IF (data_valid = '1') THEN
+						res5_s(i)(j) <= res5(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  c[i][j])* xIep[i][j]
+						res7_s(i)(j) <= res7(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  d[i][j])* xIep[i][j]
+						res6_sprim(i)(j) <= res6_s(i)(j);
+						res8_sprim(i)(j) <= res8_s(i)(j);
+					ELSE
+						res6_s(i)(j) <= res5(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	d[i][j])* xQep[i][j]
+						res8_s(i)(j) <= res7(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	c[i][j])* xQep[i][j]						
+					END IF;
+				END IF;
+			END PROCESS;
+
+			AdderX1 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 1) -- addition 
+			PORT MAP(dataa => res5_s(i)(j), datab => res6_sprim(i)(j), res => iIQpI(i)(j));
+			------- c[i][j])* xIep[i][j] + d[i][j])* xQep[i][j]
+			AdderX2 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 0) -- subtraction 
+			PORT MAP(dataa => res7_s(i)(j), datab => res8_sprim(i)(j), res => iIQpQ(i)(j));
+			------- d[i][j])* xIep[i][j] - c[i][j])* xQep[i][j]
+			labX2 : PROCESS (clk, reset_n) IS
+			BEGIN
+				IF reset_n = '0' THEN
+					iIQpI_s(i)(j) <= (OTHERS => '0');
+					iIQpQ_s(i)(j) <= (OTHERS => '0');
+				ELSIF (clk'event AND clk = '1') THEN
+					IF (data_valid = '1') THEN
+						iIQpI_s(i)(j) <= iIQpI(i)(j);
+						iIQpQ_s(i)(j) <= iIQpQ(i)(j);
+					END IF;
+				END IF;
+			END PROCESS;
+
+		END GENERATE; -- end of labX3: 
+		----------------------------------
 
 		lab10 : PROCESS (clk, reset_n) IS
 			VARIABLE iYpI_s, iYpQ_s : STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
@@ -324,12 +426,15 @@ BEGIN
 				iYpQ_s := (OTHERS => '0');
 			ELSIF (clk'event AND clk = '1') THEN
 				IF (data_valid = '1') THEN
-					iYpI_s := (OTHERS => '0');
+					iYpI_s := (OTHERS => '0'); -- init.
 					iYpQ_s := (OTHERS => '0');
-					FOR j IN 0 TO M LOOP
+					FOR j IN 0 TO M LOOP -- nonlinearity 0, 1, 2
 						iYpI_s := iYpI_s + ijYpI_s(i)(j);
 						iYpQ_s := iYpQ_s + ijYpQ_s(i)(j);
 					END LOOP;
+					iYpI_s := iYpI_s + iIQpI_s(i)(0); -- added
+					iYpQ_s := iYpQ_s + iIQpQ_s(i)(0); -- added complex part
+
 				END IF;
 			END IF;
 			iYpI(i) <= iYpI_s;
@@ -346,7 +451,7 @@ BEGIN
 		ELSIF (clk'event AND clk = '1') THEN
 			IF (data_valid = '1') THEN
 				YpI_s := (OTHERS => '0');
-				YpQ_s := (OTHERS => '0');
+				YpQ_s := (OTHERS => '0'); -- memory	
 				FOR i IN 0 TO N LOOP
 					YpI_s := YpI_s + iYpI(i);
 					YpQ_s := YpQ_s + iYpQ(i);
@@ -357,16 +462,16 @@ BEGIN
 		YpQ_s2 <= YpQ_s;
 	END PROCESS;
 
-	sigI <= YpI_s2(2 * mul_n - 1 DOWNTO mul_n + 4);
+	sigI <= YpI_s2(2 * mul_n - 1 DOWNTO mul_n + 4); -- [-16, 16]
 	sigQ <= YpQ_s2(2 * mul_n - 1 DOWNTO mul_n + 4);
 
 	comp_I : PROCESS (YpI_s2, sigI)IS
 	BEGIN
 		IF (sigI = all_zeros) THEN
-			ypi_s <= YpI_s2(mul_n + 4 DOWNTO mul_n - 13);
+			ypi_s <= YpI_s2(mul_n + 4 DOWNTO mul_n - 13); -- [-16, 16]
 		ELSIF (sigI = all_ones) THEN
-			ypi_s <= YpI_s2(mul_n + 4 DOWNTO mul_n - 13);
-		ELSIF sigI(mul_n - 5) = '0' THEN
+			ypi_s <= YpI_s2(mul_n + 4 DOWNTO mul_n - 13); -- [-16, 16]
+		ELSIF sigI(mul_n - 5) = '0' THEN -- [-16, 16]
 			ypi_s <= (17 => '0', OTHERS => '1');
 		ELSE
 			ypi_s <= (17 => '1', OTHERS => '0');
@@ -376,10 +481,10 @@ BEGIN
 	comp_Q : PROCESS (YpQ_s2, sigQ)IS
 	BEGIN
 		IF (sigQ = all_zeros) THEN
-			ypq_s <= YpQ_s2(mul_n + 4 DOWNTO mul_n - 13);
+			ypq_s <= YpQ_s2(mul_n + 4 DOWNTO mul_n - 13); -- [-16, 16]
 		ELSIF (sigQ = all_ones) THEN
-			ypq_s <= YpQ_s2(mul_n + 4 DOWNTO mul_n - 13);
-		ELSIF sigQ(mul_n - 5) = '0' THEN
+			ypq_s <= YpQ_s2(mul_n + 4 DOWNTO mul_n - 13); -- [-16, 16]
+		ELSIF sigQ(mul_n - 5) = '0' THEN -- [-16, 16]
 			ypq_s <= (17 => '0', OTHERS => '1');
 		ELSE
 			ypq_s <= (17 => '1', OTHERS => '0');

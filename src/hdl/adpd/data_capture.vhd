@@ -99,8 +99,8 @@ end process;
 -- ----------------------------------------------------------------------------
 -- capture done
 -- ----------------------------------------------------------------------------
-process(current_state,cap_done_int)begin
-	if(current_state = capture_done OR current_state = wait_cap_en_low )then
+process(current_state) begin --cap_done_int
+	if(current_state = capture_done OR current_state = wait_cap_en_low ) then   -- OR current_state = idle
 		cap_done_int <= '1';
 	else 
 		cap_done_int <= '0';
@@ -148,7 +148,11 @@ fsm : process(current_state, cap_en_reg(1), cap_cont_en_reg(1), cap_cnt, cap_siz
 			
 		when capture_data =>				--capture certain amount of samples
 			if data_valid = '1' then 
-				if cap_cnt < unsigned(cap_size_reg1)-1 then 
+			
+			-- bilo je manje ili jednako
+			-- promenio sam u manje
+			-- B. J.
+				if cap_cnt < (unsigned(cap_size_reg1)-1) then 
 					next_state <= capture_data;
 				else 
 					next_state <= capture_done;

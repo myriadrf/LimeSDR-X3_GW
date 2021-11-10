@@ -45,7 +45,13 @@ create_clock -period 8.138 -name LMS1_MCLK2_VIRT
 # ----------------------------------------------------------------------------
 
 create_generated_clock -name LMS1_FCLK1 -source [get_pins inst1_pll_top/inst0_tx_pll_top_cyc5/XILINX_PLL_DDIO.XILINX_PLL_DDIO/C] -multiply_by 1 [get_ports LMS1_FCLK1]
-#create_generated_clock -name LMS1_FCLK2 -source [get_pins inst1_pll_top/inst1_rx_pll_top_cyc5/XILINX_PLL_DDIO.XILINX_PLL_DDIO/C] -multiply_by 1 [get_ports LMS1_FCLK2]
+
+##  B.J.
+##  clock problems at LMS#1 receive channel B at 122.88 MHz
+##create_generated_clock -name LMS1_FCLK2 -source [get_pins inst1_pll_top/inst1_rx_pll_top_cyc5/XILINX_PLL_DDIO.XILINX_PLL_DDIO/C] -multiply_by 1 -phase 90 [get_ports LMS1_FCLK2]
+##create_generated_clock -name LMS1_MCLK2 -source [get_pins inst1_pll_top/inst1_rx_pll_top_cyc5/XILINX_PLL_DDIO.XILINX_PLL_DDIO/C] -multiply_by 1 [get_ports LMS1_MCLK2]
+
+
 # ----------------------------------------------------------------------------
 #Input constraints
 # ----------------------------------------------------------------------------
