@@ -56,3 +56,4 @@ src/**/source_library
 *.str
 *.mif
 workspace/*
+*.jou
