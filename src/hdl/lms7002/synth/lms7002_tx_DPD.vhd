@@ -120,7 +120,7 @@ signal inst0_inst1_q_mux   : std_logic_vector(63 downto 0);
 signal inst2_diq_in        : std_logic_vector(63 downto 0);
 signal inst2_diq_out       : std_logic_vector(63 downto 0);
 signal inst2_data_req      : std_logic;
-signal inst2_data_valid    : std_logic;
+signal inst2_data_valid, inst2_data_valid1, inst2_data_valid_orig : std_logic;
 signal inst2_sleep         : std_logic;  -- B.J.
 
 --inst3
@@ -140,7 +140,15 @@ signal inst4_rdempty       : std_logic;
 signal inst5_diq_h         : std_logic_vector(g_IQ_WIDTH downto 0);
 signal inst5_diq_l         : std_logic_vector(g_IQ_WIDTH downto 0);
 
-signal reset_n_DPDTOP, reset_n_soft, reset_n_temp : std_logic; -- B.J.
+signal reset_n_DPDTOP, reset_n_soft, reset_n_temp, inst2_data_req_orig, mimo_enable, inst2_data_req1: std_logic; -- B.J.
+
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of fifo_0_wrclk: signal is "TRUE";
+attribute MARK_DEBUG of fifo_0_wrreq: signal is "TRUE";
+attribute MARK_DEBUG of fifo_0_wrfull: signal is "TRUE";
+attribute MARK_DEBUG of inst0_rdreq: signal is "TRUE";
+attribute MARK_DEBUG of inst0_q: signal is "TRUE";
+attribute MARK_DEBUG of inst0_rdempty: signal is "TRUE";
  
 begin
 
@@ -174,7 +182,9 @@ begin
    );
    
    -- inst0_rdreq <= inst4_fifo_rdreq AND (NOT tx_src_sel);  
-   inst0_rdreq <= inst2_data_req AND (NOT inst0_rdempty) AND (NOT tx_src_sel); -- B.J.
+   -- inst0_rdreq <= inst2_data_req AND (NOT inst0_rdempty) AND (NOT tx_src_sel); -- B.J.
+   
+   inst0_rdreq <= inst2_data_req AND (NOT tx_src_sel); -- B.J.
    -- 30.72 MSps at input
 
 -- FIFO_1
@@ -204,7 +214,8 @@ begin
    );   
    
    -- inst1_rdreq <= inst4_fifo_rdreq AND tx_src_sel;
-   inst1_rdreq <= inst2_data_req AND (NOT inst1_rdempty) AND tx_src_sel; -- B.J.
+   --inst1_rdreq <= inst2_data_req AND (NOT inst1_rdempty) AND tx_src_sel; -- B.J.
+   inst1_rdreq <= inst2_data_req AND tx_src_sel; -- B.J.
    -- 30.72 MSps at input
 
 -- ----------------------------------------------------------------------------
@@ -219,8 +230,25 @@ begin
    inst2_diq_in <= inst0_q when tx_src_sel = '0' else inst1_q;
    inst2_sleep <=  inst0_rdempty when tx_src_sel = '0' else inst1_rdempty;
    reset_n_DPDTOP <= clk_2x_reset_n AND reset_n;
-   reset_n_temp <= reset_n_DPDTOP and reset_n_soft;   
-
+   reset_n_temp <= reset_n_DPDTOP and reset_n_soft; 
+   
+    --- nije pomoglo
+   process (clk_2x, reset_n_temp) is
+   begin
+    
+    if reset_n_temp='0' then
+       inst2_data_req1 <='0';
+    elsif clk_2x'event and clk_2x='1' then
+       if (inst2_data_req_orig='1') then
+           inst2_data_req1 <= not inst2_data_req1;
+       end if;  
+   end if;
+   end process;
+   
+   --- nije pomoglo
+   --inst2_data_req<=inst2_data_req_orig and inst2_data_req1;
+   inst2_data_req <= inst2_data_req_orig;
+   
    inst2_DPDTopWrapper : entity work.DPDTopWrapper
 
       generic map (
@@ -243,8 +271,8 @@ begin
          sclk => sclk, -- Data clock
          sen => sen, -- Enable signal (active low)
          sdout => sdout, -- Data out
-         data_req => inst2_data_req,
-         data_valid => inst2_data_valid,
+         data_req => inst2_data_req_orig,  -- problematican signal  (inst2_data_req)
+         data_valid => inst2_data_valid_orig,
          diq_in => inst2_diq_in,
          diq_out => inst2_diq_out,
          xp_ai => xp_ai,
@@ -266,13 +294,29 @@ begin
          lms3_monitoring => lms3_monitoring
       );
 
-   xp_data_valid <= inst2_data_valid; -- 61.44 MHz
+   xp_data_valid <= inst2_data_valid_orig; -- 61.44 MHz
 -------  B.J.  end
 ----------------
 
 -- ----------------------------------------------------------------------------
    -- FIFO for storing TX samples
 -- ----------------------------------------------------------------------------    
+   process (clk_2x, reset_n_temp) is
+   begin
+    
+    if reset_n_temp='0' then
+       inst2_data_valid1 <='0';
+    elsif clk_2x'event and clk_2x='1' then
+       if (inst2_data_valid_orig='1') then
+           inst2_data_valid1 <= not inst2_data_valid1;
+       end if;  
+   end if;
+   end process; 
+   
+   mimo_enable <= ch_en(1) AND ch_en(1);
+   inst2_data_valid <= inst2_data_valid_orig when (mimo_enable='1') 
+        else (inst2_data_valid1 and inst2_data_valid_orig);  -- 30.72
+   
    inst3_fifo_inst : ENTITY work.fifo_inst
       GENERIC MAP(
          dev_family => g_DEV_FAMILY,
@@ -285,7 +329,7 @@ begin
       PORT MAP(
          reset_n  => reset_n_temp, -- modified by B.J.
          wrclk => clk_2x,
-         wrreq => inst2_data_valid AND (NOT inst3_wrfull),
+         wrreq => inst2_data_valid  AND (NOT inst3_wrfull), --inst2_data_valid 
          data => inst2_diq_out,
          wrfull => inst3_wrfull,
          wrempty => OPEN,

@@ -45,7 +45,7 @@ ENTITY DPDTop IS
       PAEN0, PAEN1, DCEN0, DCEN1 : OUT STD_LOGIC;
       rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
       reset_n2 : OUT STD_LOGIC;
-      tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
+      tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo: out std_logic
    );
 END DPDTop;
 
@@ -82,7 +82,7 @@ ARCHITECTURE struct OF DPDTop IS
          gfir0_byp, gfir0_sleep, gfir0_odd, gfir1_byp, gfir1_sleep, gfir1_odd : OUT STD_LOGIC;
          PAEN0, PAEN1, DCEN0, DCEN1, reset_n_soft : OUT STD_LOGIC;
          rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-         tx_en, capture_en, lms3_monitoring: out std_logic
+         tx_en, capture_en, lms3_monitoring, fix_mimo: out std_logic
       );
    END COMPONENT adpdcfg;
 
@@ -301,7 +301,8 @@ BEGIN
       rf_sw => rf_sw,
       tx_en => tx_en,
       capture_en =>capture_en,
-      lms3_monitoring => lms3_monitoring
+      lms3_monitoring => lms3_monitoring,
+      fix_mimo => fix_mimo
    );
 
    reset_n1 <= reset_n AND reset_n_soft;

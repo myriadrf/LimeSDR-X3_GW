@@ -88,7 +88,7 @@ ARCHITECTURE arch OF DPDTopWrapper IS
          PAEN0, PAEN1, DCEN0, DCEN1 : OUT std_logic;
          rf_sw : OUT std_logic_vector(2 DOWNTO 0);
 		 reset_n2: out std_logic;
-	     tx_en, capture_en, reset_n_software, lms3_monitoring: out std_logic
+	     tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo: out std_logic
       );
    END COMPONENT DPDTop;
 
@@ -116,7 +116,14 @@ ARCHITECTURE arch OF DPDTopWrapper IS
    SIGNAL xen_reg1 : std_logic;
    SIGNAL inst1_xen, inst9_data_valid, inst1_xen_reg0, inst1_xen_reg1 : std_logic;
    SIGNAL yp_ai_reg, yp_aq_reg, yp_ai_prim, yp_aq_prim, yp_bi_prim, yp_bq_prim : std_logic_vector(15 DOWNTO 0);
-	signal reset_n2: std_logic;
+   signal reset_n2, fix_mimo: std_logic;
+	
+	attribute MARK_DEBUG : string;
+	attribute MARK_DEBUG of ai_in: signal is "TRUE";
+    attribute MARK_DEBUG of aq_in: signal is "TRUE";
+    attribute MARK_DEBUG of bi_in: signal is "TRUE";
+    attribute MARK_DEBUG of bq_in: signal is "TRUE";
+    attribute MARK_DEBUG of xen: signal is "TRUE";
 
 BEGIN
    -- ----------------------------------------------------------------------------
@@ -140,7 +147,7 @@ BEGIN
    mimo_en <= ch_en(1) AND ch_en(1);
 
    -- Select signal for A channels sample MUX
-   aiq_in_sel <= '0' WHEN mimo_en = '1' ELSE
+   aiq_in_sel <= '0' WHEN ((mimo_en = '1') and (fix_mimo='0')) ELSE
       data_req_dis;
 
    -- diq_in bus contains samples in following order: 
@@ -156,15 +163,8 @@ BEGIN
    aq_in <= diq_in(16 * 2 - 1 DOWNTO 16 * 1) WHEN aiq_in_sel = '0' ELSE
       diq_in(16 * 4 - 1 DOWNTO 16 * 3);
    
-   
-   -- ovo je proba
-   -- posle obavezno vratiti !!!!
-   
-   bi_in <= diq_in(16 * 3 - 1 DOWNTO 16 * 2);
-   bq_in <= diq_in(16 * 4 - 1 DOWNTO 16 * 3);
-   
-   --bi_in <= ai_in;
-   --bq_in <= aq_in;
+   bi_in <= diq_in(16 * 3 - 1 DOWNTO 16 * 2) when (fix_mimo='0') else  ai_in;
+   bq_in <= diq_in(16 * 4 - 1 DOWNTO 16 * 3) when (fix_mimo='0') else  aq_in;
    -- ----------------------------------------------------------------------------
    -- DPDTop
    -- ----------------------------------------------------------------------------   
@@ -214,7 +214,8 @@ BEGIN
       tx_en => tx_en,
       capture_en =>capture_en,
       reset_n_software => reset_n_software,
-      lms3_monitoring => lms3_monitoring
+      lms3_monitoring => lms3_monitoring,
+      fix_mimo => fix_mimo
    );
 
    -- for input
@@ -253,7 +254,7 @@ BEGIN
 
    xen_mimo <= inst1_xen;
    xen_siso <= inst1_xen AND data_req_dis_o;
-   xen <= xen_mimo WHEN mimo_en = '1' ELSE
+   xen <= xen_mimo WHEN ((mimo_en = '1') and (fix_mimo='0')) ELSE
       xen_siso;
 
    -- In MIMO mode samples from A and B channels are concatenated into one 64bit bus
@@ -266,7 +267,10 @@ BEGIN
    -- Output ports
    -- ----------------------------------------------------------------------------
    -- for input
+   -- B.J. 17.11.2021
+   -- I want to slow down request in MIMO 2X
    data_req <= xen;
+   --data_req <= xen_siso;
 
    -- for output
    data_valid <= inst9_data_valid;
