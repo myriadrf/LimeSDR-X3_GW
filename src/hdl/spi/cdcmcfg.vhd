@@ -227,6 +227,7 @@ begin
    -- ---------------------------------------------------------------------------------------------
    
       from_cdcmcfg.CDCM_RECONFIG_START <=  mem(21)(0);
-      from_cdcmcfg.CDCM_RECONFIG_DONE  <=  mem(21)(0);
+      from_cdcmcfg.CDCM_RECONFIG_DONE  <=  mem(21)(1);
+      from_cdcmcfg.CDCM_READ_START     <=  mem(24)(0);
 
 end cdcmcfg_arch;

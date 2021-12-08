@@ -2460,9 +2460,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    gpio_t(14) <= '0';
    gpio_t(15) <= '0';
    
-   gpio_i( 0) <= LMK1_CLK;--inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
-   gpio_i( 1) <= LMS1_MCLK2;--CLK100_FPGA;--lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
-   gpio_i( 2) <= lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
+   gpio_i( 0) <= inst0_spi_0_SCLK;--LMK1_CLK;--inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
+   gpio_i( 1) <= '0';--inst0_spi_1_SCLK;--LMS1_MCLK2;--CLK100_FPGA;--lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
+   gpio_i( 2) <= '0';--inst0_spi_2_SCLK;--lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
    gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;
    gpio_i( 4) <= inst1_pll_1_c1;--inst0_spi_1_SS_n(1);
    gpio_i( 5) <= '0';

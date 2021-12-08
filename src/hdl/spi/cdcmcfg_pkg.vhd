@@ -22,6 +22,7 @@ package cdcmcfg_pkg is
    type t_FROM_CDCMCFG is record
       CDCM_RECONFIG_START : std_logic;
       CDCM_RECONFIG_DONE : std_logic;
+      CDCM_READ_START    : std_logic;
    end record t_FROM_CDCMCFG;
   
    -- Inputs to the fpgacfg.
