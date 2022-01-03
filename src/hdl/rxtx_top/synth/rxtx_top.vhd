@@ -77,7 +77,8 @@ entity rxtx_top is
          -- RX sample nr count enable
       rx_smpl_nr_cnt_en       : in     std_logic;
 
-      ext_rx_en: in std_logic  -- B.J.
+      ext_rx_en: in std_logic;  -- B.J.;
+      tx_dma_en: in std_logic
       );
 end rxtx_top;
 
@@ -88,6 +89,8 @@ architecture arch of rxtx_top is
 --declare signals,  components here
      
 --inst0
+signal tx_dma_en_sync            : std_logic;
+signal inst0_reset_n_in          : std_logic;
 signal inst0_reset_n             : std_logic;
 signal inst0_fifo_wrreq          : std_logic;
 signal inst0_fifo_data           : std_logic_vector(TX_IN_PCT_DATA_W-1 downto 0);
@@ -124,14 +127,17 @@ signal inst6_reset_n             : std_logic;
 signal inst6_pulse               : std_logic;
 
 begin
-   
+ 
+    inst0_reset_n_in <= from_fpgacfg.rx_en or ext_rx_en;  
    -- Reset signal for inst0 with synchronous removal to tx_pct_clk clock domain, 
-   sync_reg0 : entity work.sync_reg 
-   --port map(tx_clk, from_fpgacfg.rx_en, '1', inst0_reset_n);
-   port map(tx_clk, from_fpgacfg.rx_en or ext_rx_en, '1', inst0_reset_n);  -- B.J.
+   sync_reg0_0 : entity work.sync_reg 
+   port map(tx_clk, inst0_reset_n_in, '1', inst0_reset_n);  -- B.J.
+   
+   sync_reg0_1 : entity work.sync_reg 
+   port map(tx_clk, tx_dma_en, '1', tx_dma_en_sync);  -- B.J.
    
    tx_in_pct_reset_n_req   <= inst0_reset_n AND inst1_in_pct_reset_n_req;   
-   inst1_reset_n           <= inst0_reset_n;
+   inst1_reset_n           <= inst0_reset_n and tx_dma_en_sync;
    inst6_reset_n           <= inst0_reset_n;  
    inst5_reset_n           <= inst0_reset_n;
    

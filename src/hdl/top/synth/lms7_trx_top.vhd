@@ -577,18 +577,21 @@ signal inst2_F2H_S2_wrusedw      : std_logic_vector(c_F2H_S2_WRUSEDW_WIDTH-1 dow
 signal inst2_H2F_C0_rdata        : std_logic_vector(c_H2F_C0_RWIDTH-1 downto 0);
 signal inst2_H2F_C0_rempty       : std_logic;
 signal inst2_F2H_C0_wfull        : std_logic;
+signal inst2_s0_dma_en           : std_logic;
 signal inst2_H2F_S0_0_rdata      : std_logic_vector(c_H2F_S0_0_RWIDTH-1 downto 0);
 signal inst2_H2F_S0_0_rempty     : std_logic;
 signal inst2_H2F_S0_0_rdusedw    : std_logic_vector(c_H2F_S0_0_RDUSEDW_WIDTH-1 downto 0);
 signal inst2_H2F_S0_1_rdata      : std_logic_vector(c_H2F_S0_1_RWIDTH-1 downto 0);
 signal inst2_H2F_S0_1_rempty     : std_logic;
 signal inst2_H2F_S0_1_rdusedw    : std_logic_vector(c_H2F_S0_1_RDUSEDW_WIDTH-1 downto 0);
+signal inst2_s1_dma_en           : std_logic;
 signal inst2_H2F_S1_0_rdata      : std_logic_vector(c_H2F_S1_0_RWIDTH-1 downto 0);
 signal inst2_H2F_S1_0_rempty     : std_logic;
 signal inst2_H2F_S1_0_rdusedw    : std_logic_vector(c_H2F_S1_0_RDUSEDW_WIDTH-1 downto 0);
 signal inst2_H2F_S1_1_rdata      : std_logic_vector(c_H2F_S1_1_RWIDTH-1 downto 0);
 signal inst2_H2F_S1_1_rempty     : std_logic;
 signal inst2_H2F_S1_1_rdusedw    : std_logic_vector(c_H2F_S1_1_RDUSEDW_WIDTH-1 downto 0);
+signal inst2_s2_dma_en           : std_logic;
 signal inst2_H2F_S2_0_rdata      : std_logic_vector(c_H2F_S2_0_RWIDTH-1 downto 0);
 signal inst2_H2F_S2_0_rempty     : std_logic;
 signal inst2_H2F_S2_0_rdusedw    : std_logic_vector(c_H2F_S2_0_RDUSEDW_WIDTH-1 downto 0);
@@ -598,6 +601,9 @@ signal inst2_H2F_S2_1_rdusedw    : std_logic_vector(c_H2F_S2_1_RDUSEDW_WIDTH-1 d
 signal inst2_F2H_S0_open         : std_logic;
 signal inst2_F2H_S1_open         : std_logic;
 signal inst2_F2H_S2_open         : std_logic;
+
+
+				
 
 --inst5
 signal inst5_busy : std_logic;
@@ -780,7 +786,7 @@ attribute KEEP_HIERARCHY : string;
 --attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
 --attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
---attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
+attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
 
 --attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
 --attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
@@ -1354,6 +1360,7 @@ begin
      H2F_S1_sel           => inst0_from_fpgacfg_1.wfm_load,
      H2F_S2_sel           => inst0_from_fpgacfg_2.wfm_load,
      --Stream endpoint FIFO (Host->FPGA) 
+     H2F_S0_dma_en        => inst2_s0_dma_en,
      H2F_S0_0_rdclk       => inst1_lms1_txpll_c1,
      H2F_S0_0_aclrn       => inst7_tx_in_pct_reset_n_req,
      H2F_S0_0_rd          => inst7_tx_in_pct_rdreq,
@@ -1368,6 +1375,7 @@ begin
      H2F_S0_1_rempty      => inst2_H2F_S0_1_rempty,
      H2F_S0_1_rdusedw     => inst2_H2F_S0_1_rdusedw,
 
+     H2F_S1_dma_en        => inst2_s1_dma_en,
      H2F_S1_0_rdclk       => inst1_pll_1_c1,
      H2F_S1_0_aclrn       => inst9_tx_in_pct_reset_n_req,
      H2F_S1_0_rd          => inst9_tx_in_pct_rdreq,
@@ -1382,6 +1390,7 @@ begin
      H2F_S1_1_rempty      => inst2_H2F_S1_1_rempty,
      H2F_S1_1_rdusedw     => inst2_H2F_S1_1_rdusedw, 
 
+     H2F_S2_dma_en        => inst2_s2_dma_en,
      H2F_S2_0_rdclk       => '0',--inst1_pll_1_c1,
      H2F_S2_0_aclrn       => '0',--inst11_tx_in_pct_reset_n_req,
      H2F_S2_0_rd          => '0',--inst11_tx_in_pct_rdreq,
@@ -1718,7 +1727,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
        lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
    );
 
-
    inst_data_cap_buffer: data_cap_buffer
       port map (
          
@@ -1821,7 +1829,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
       tx_clk                  => inst1_lms1_txpll_c1,
-      tx_clk_reset_n          => inst1_lms1_txpll_locked,     
+      tx_clk_reset_n          => inst1_lms1_txpll_locked,
       tx_pct_loss_flg         => inst7_tx_pct_loss_flg,
       tx_txant_en             => inst7_tx_txant_en,  
       --Tx interface data 
@@ -1850,7 +1858,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en,
       
-      ext_rx_en => dpd_tx_en   -- B.J.
+      ext_rx_en => dpd_tx_en,   
+      tx_dma_en => inst2_s0_dma_en
    );   
 	
 ---- ----------------------------------------------------------------------------
@@ -1996,7 +2005,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en,
 
-      ext_rx_en => '0'  -- B.J.     
+      ext_rx_en => '0',
+      tx_dma_en => inst2_s1_dma_en  
    );   
 
 
@@ -2260,7 +2270,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => '1',
 
-      ext_rx_en => '0'  -- B.J. 
+      ext_rx_en =>  '0',
+      tx_dma_en => inst2_s2_dma_en   
    
    );
  

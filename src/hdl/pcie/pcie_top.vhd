@@ -73,6 +73,7 @@ entity pcie_top is
       H2F_S1_sel           : in std_logic;   -- 0 - S1_0, 1 - S1_1
       H2F_S2_sel           : in std_logic;   -- 0 - S2_0, 1 - S2_1
       --Stream 0 endpoint FIFO 0 (Host->FPGA) 
+      H2F_S0_dma_en        : out std_logic;
       H2F_S0_0_rdclk       : in std_logic;
       H2F_S0_0_aclrn       : in std_logic;
       H2F_S0_0_rd          : in std_logic;
@@ -87,6 +88,7 @@ entity pcie_top is
       H2F_S0_1_rempty      : out std_logic;
       H2F_S0_1_rdusedw     : out std_logic_vector(g_H2F_S0_1_RDUSEDW_WIDTH-1 downto 0);
       --Stream 1 endpoint FIFO 0 (Host->FPGA) 
+      H2F_S1_dma_en        : out std_logic;
       H2F_S1_0_rdclk       : in std_logic;
       H2F_S1_0_aclrn       : in std_logic;
       H2F_S1_0_rd          : in std_logic;
@@ -101,6 +103,7 @@ entity pcie_top is
       H2F_S1_1_rempty      : out std_logic;
       H2F_S1_1_rdusedw     : out std_logic_vector(g_H2F_S1_1_RDUSEDW_WIDTH-1 downto 0);
       --Stream 2 endpoint FIFO 0 (Host->FPGA) 
+      H2F_S2_dma_en        : out std_logic;
       H2F_S2_0_rdclk       : in std_logic;
       H2F_S2_0_aclrn       : in std_logic;
       H2F_S2_0_rd          : in std_logic;
@@ -629,5 +632,8 @@ from_dma_reader <= inst1_from_dma_reader2; -- B.J.
    F2H_S0_open <= inst1_from_dma_reader0.enable;
    F2H_S1_open <= inst1_from_dma_reader1.enable;
    F2H_S2_open <= inst1_from_dma_reader2.enable;
+   H2F_S0_dma_en <= inst1_from_dma_writer0.enable;
+   H2F_S1_dma_en <= inst1_from_dma_writer1.enable;
+   H2F_S2_dma_en <= inst1_from_dma_writer2.enable;
    
 end arch;
