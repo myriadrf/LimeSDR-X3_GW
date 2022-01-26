@@ -97,6 +97,8 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- Clock sources
          -- Reference clock, coming from LMK clock buffer.
+      LMK1_SEL          : out    std_logic;
+      LMK2_SEL          : out    std_logic;
       LMK1_CLK          : in     std_logic;
       LMK2_CLK          : in     std_logic;     -- LMS PLL reference clock
          -- On-board oscillators
@@ -2583,6 +2585,11 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    
    LMS2_RESET <= inst0_from_fpgacfg_1.LMS1_RESET;
    LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
+
+    -- LMK1_SEL 0 = VCTCXO, 1 = External clock
+   LMK1_SEL <= '0';
+    -- LMS2_SEL 0 = LMK1  , 1 = FPGA source
+   LMK2_SEL <= '0';
 
 end arch;   
 

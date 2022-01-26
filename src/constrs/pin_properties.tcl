@@ -542,7 +542,10 @@ set_property PACKAGE_PIN N26 [get_ports XO_VC_FPGA]
 set_property PACKAGE_PIN N24 [get_ports LMS2_BB_DAC2_PD]
 set_property PACKAGE_PIN M26 [get_ports LMS2_BB_DAC1_PD]
 
-
+set_property PACKAGE_PIN K15 [get_ports LMK1_SEL]
+set_property PACKAGE_PIN H21 [get_ports LMK2_SEL]
+set_property IOSTANDARD LVCMOS25 [get_ports LMK1_SEL]
+set_property IOSTANDARD LVCMOS25 [get_ports LMK2_SEL]
 
 
 
