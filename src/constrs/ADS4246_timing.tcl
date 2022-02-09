@@ -108,3 +108,4 @@ set_input_delay -clock [get_clocks LMS3_BB_ADC2_CLKOUT] -max -add_delay 1.250 [g
 
 
 
+
