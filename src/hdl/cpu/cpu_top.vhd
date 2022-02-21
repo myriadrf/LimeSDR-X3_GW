@@ -154,8 +154,7 @@ entity cpu_top is
       from_gnsscfg         : out    t_FROM_GNSSCFG;
       to_memcfg            : in     t_TO_MEMCFG;
       from_memcfg          : out    t_FROM_MEMCFG;
-      from_cdcmcfg1        : out    t_FROM_CDCMCFG;     
-      from_cdcmcfg2        : out    t_FROM_CDCMCFG;     
+      from_cdcmcfg         : out    t_FROM_CDCMCFG;     
       -- testing
       pll_c0               : out    std_logic;
       pll_c1               : out    std_logic;
@@ -330,8 +329,8 @@ architecture arch of cpu_top is
       smpl_cmp_status_tri_i      : in STD_LOGIC_VECTOR ( 1 downto 0 );
       smpl_cmp_sel_tri_o         : out STD_LOGIC_VECTOR ( 0 to 0 );
       vctcxo_tamer_0_ctrl_tri_i  : in STD_LOGIC_VECTOR ( 3 downto 0 );
-      cdcm_read_start_tri_i      : in STD_LOGIC_VECTOR ( 1 downto 0 );
-      cdcm_cfg_start_tri_i       : in STD_LOGIC_VECTOR ( 1 downto 0 );
+      cdcm_read_start_tri_i      : in STD_LOGIC_VECTOR ( 0 downto 0 );
+      cdcm_cfg_start_tri_i       : in STD_LOGIC_VECTOR ( 0 downto 0 );
       
       
       pll_c0                     : out STD_LOGIC;
@@ -474,8 +473,8 @@ begin
       smpl_cmp_status_tri_i    => smpl_cmp_status_sync,
       smpl_cmp_sel_tri_o       => smpl_cmp_sel,
       
-      cdcm_read_start_tri_i    => from_cdcmcfg2.CDCM_READ_START & from_cdcmcfg1.CDCM_READ_START,
-      cdcm_cfg_start_tri_i     => from_cdcmcfg2.CDCM_RECONFIG_START & from_cdcmcfg1.CDCM_RECONFIG_START
+      cdcm_read_start_tri_i(0) => from_cdcmcfg.CDCM_READ_START,
+      cdcm_cfg_start_tri_i(0)  => from_cdcmcfg.CDCM_RECONFIG_START
    );
    
    avmm_m0_clk_clk                     <= clk;
@@ -558,8 +557,7 @@ begin
       from_gnsscfg         => from_gnsscfg,
       to_memcfg            => to_memcfg,
       from_memcfg          => from_memcfg,
-      from_cdcmcfg1        =>from_cdcmcfg1,
-      from_cdcmcfg2        =>from_cdcmcfg2,
+      from_cdcmcfg         => from_cdcmcfg,
 
       to_rxtspcfg_3a          => to_rxtspcfg_3a,   -- B.J.
       from_rxtspcfg_3a        => from_rxtspcfg_3a, -- B.J.

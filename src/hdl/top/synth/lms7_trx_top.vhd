@@ -99,8 +99,9 @@ entity lms7_trx_top is
          -- Reference clock, coming from LMK clock buffer.
       LMK1_SEL          : out    std_logic;
       LMK2_SEL          : out    std_logic;
-      LMK1_CLK          : in     std_logic;
-      LMK2_CLK          : in     std_logic;     -- LMS PLL reference clock
+      LMK1_CLK1         : in     std_logic;
+      LMK1_CLK2         : in     std_logic;
+      LMK2_CLKIN1       : out    std_logic;
          -- On-board oscillators
       CLK100_FPGA_P     : in     std_logic;
       CLK100_FPGA_N     : in     std_logic;
@@ -195,8 +196,8 @@ entity lms7_trx_top is
       -- ----------------------------------------------------------------------------
       -- Two 16-bit DAC
          --DAC #1
-      CDCM2_LMS2_BB_DAC1_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
-      CDCM2_LMS2_BB_DAC1_REFC_N  : in     std_logic;
+      CDCM_LMS2_BB_DAC1_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
+      CDCM_LMS2_BB_DAC1_REFC_N  : in     std_logic;
       FPGA_LMS2_BB_DAC1_CLK_P    : out    std_logic;     --  Differential clock for DAC
       FPGA_LMS2_BB_DAC1_CLK_N    : out    std_logic;
       LMS2_BB_DAC1_B_P           : out    std_logic_vector(15 downto 0);   -- DAC data bits
@@ -208,8 +209,8 @@ entity lms7_trx_top is
       --LMS2_BB_DAC1_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC1_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
          -- DAC #2   
-      CDCM2_LMS2_BB_DAC2_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
-      CDCM2_LMS2_BB_DAC2_REFC_N  : in     std_logic;
+      CDCM_LMS2_BB_DAC2_REFC_P  : in     std_logic;     -- Reference clock for DAC sampling rate
+      CDCM_LMS2_BB_DAC2_REFC_N  : in     std_logic;
       FPGA_LMS2_BB_DAC2_CLK_P    : out    std_logic;     --  Differential clock for DAC
       FPGA_LMS2_BB_DAC2_CLK_N    : out    std_logic;
       LMS2_BB_DAC2_B_P           : out    std_logic_vector(15 downto 0);   -- DAC data bits
@@ -222,55 +223,16 @@ entity lms7_trx_top is
       --LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
       -- ----------------------------------------------------------------------------
       -- Clock generator
-      CDCM1_RESET_N        : out std_logic;
-      CDCM1_SYNCN          : out std_logic;
-      CDCM1_STATUS0        : in  std_logic;
-      CDCM1_STATUS1        : in  std_logic;
-                           
-      CDCM2_RESET_N        : out std_logic;
-      CDCM2_SYNCN          : out std_logic;
-      CDCM2_STATUS0        : in  std_logic;
-      CDCM2_STATUS1        : in  std_logic;
-      -- ----------------------------------------------------------------------------
-      -- RF control
-      
-      --RFSW1_TRX1R_V1       : out    std_logic;
-      --RFSW1_TRX2R_V1       : out    std_logic;
-      --RFSW1_TRX2T_V1       : out    std_logic;
-      --RFSW1_RX2_V1         : out    std_logic;
-      --
-      --RFSW2_TX1_V1         : out    std_logic;
-      --RFSW2_TRX1T_V1       : out    std_logic;
-      --RFSW2_TRX2R_V1       : out    std_logic;
-      --RFSW2_TRX2T_V1       : out    std_logic;
-      --
-      --LNA1_EN_M            : out    std_logic;
-      --LNA1_BP_M            : out    std_logic;
-      --LNA2_EN_M            : out    std_logic;
-      --LNA2_BP_M            : out    std_logic;
-      --
-      --RFSW1_TX1_V1         : out    std_logic;
-      --RFSW2_TRX1R_V1       : out    std_logic;
-      --RFSW1_TRX1T_V1       : out    std_logic;
-      --
-      ---- LMS1 PA power control (Active high, by default disabled)
-      --LMS1_TX1_1_EN        : out    std_logic := '0';
-      --LMS1_TX1_2_EN        : out    std_logic := '0';
-      --LMS1_TX2_1_EN        : out    std_logic := '0';
-      ---- LMS2 PA power control (Active high, by default disabled)
-      --LMS2_TX1_1_EN        : out    std_logic := '0';
-      --LMS2_TX1_2_EN        : out    std_logic := '0';
-      --LMS2_TX2_1_EN        : out    std_logic := '0';
+      CDCM_RESET_N        : out std_logic;
+      CDCM_SYNCN          : out std_logic;
+      CDCM_STATUS0        : in  std_logic;
+      CDCM_STATUS1        : in  std_logic;
       
       LMS2_RX1_LNA_SD       : out    std_logic;-- := '0';
       LMS2_RX2_LNA_SD       : out    std_logic;-- := '0';
       LMS2_TX1_1_EN         : out    std_logic;-- := '0';
       LMS2_TX2_1_EN         : out    std_logic;-- := '0';
 
-      
-      
-      
-      
       PD_LMS2_BB_ADC1_DRV   : out    std_logic;-- := '0';
       PD_LMS2_BB_ADC2_DRV   : out    std_logic;-- := '0';
       PD_LMS3_BB_ADC1_DRV   : out    std_logic;-- := '0';
@@ -314,8 +276,7 @@ entity lms7_trx_top is
       FPGA_SPI1_LMS2_BB_ADC2_SS  : out    std_logic;
       FPGA_SPI1_LMS3_BB_ADC1_SS  : out    std_logic; 
       FPGA_SPI1_LMS3_BB_ADC2_SS  : out    std_logic;
-      FPGA_SPI1_CDCM1_SS         : out    std_logic; 
-      FPGA_SPI1_CDCM2_SS         : out    std_logic; 
+      FPGA_SPI1_CDCM_SS          : out    std_logic; 
          -- FPGA_SPI2
       FPGA_SPI2_SCLK             : out    std_logic;
       FPGA_SPI2_MOSI             : out    std_logic;
@@ -323,6 +284,8 @@ entity lms7_trx_top is
       FPGA_SPI2_ADF_SS           : out    std_logic;
       FPGA_SPI2_LMS1_TX1DAC_SS   : out    std_logic;
       FPGA_SPI2_LMS1_TX2DAC_SS   : out    std_logic;
+      FPGA_SPI2_XO_25_DAC_SS     : out    std_logic;
+      FPGA_SPI2_XO_20_DAC_SS     : out    std_logic;
          -- FPGA I2C
       FPGA_I2C_SCL               : inout  std_logic;
       FPGA_I2C_SDA               : inout  std_logic;
@@ -330,7 +293,6 @@ entity lms7_trx_top is
       -- General periphery
          -- Switch
       FPGA_SW           : in     std_logic_vector(3 downto 0);
-      FPGA_GPIO         : inout  std_logic_vector(15 downto 0);
          -- LEDs          
       FPGA_LED1_R       : out    std_logic;
       FPGA_LED1_G       : out    std_logic;
@@ -349,16 +311,36 @@ entity lms7_trx_top is
          --GNSS
       GNSS_UART_TX      : in     std_logic;
       GNSS_UART_RX      : out    std_logic := '1';
-      GNSS_LCKIND       : in     std_logic;
-      GNSS_RESET_N      : out    std_logic := '1';
-      GNSS_PPS          : in     std_logic;
+      GNSS_TPULSE       : in     std_logic;
          -- PPS
       PPS_OUT           : out    std_logic;
-      PPS_SELECT        : out    std_logic;
-      PPS_IN_PREVIOUS   : out    std_logic;
       PPS_IN_EXT        : out    std_logic;
+      -- EXT SYNC
+      EXT_SYNC_OUT      : out    std_logic;
+      EXT_SYNC_IN       : in     std_logic;
          -- ADF 
       ADF_MUXOUT        : in     std_logic;
+         -- PMODs
+       PMOD_B_PIN1      : inout std_logic;
+       PMOD_B_PIN2      : inout std_logic;
+       PMOD_B_PIN3      : inout std_logic;
+       PMOD_B_PIN4      : inout std_logic;
+                        
+       PMOD_B_PIN7      : inout std_logic;
+       PMOD_B_PIN8      : inout std_logic;
+       PMOD_B_PIN9      : inout std_logic;
+       PMOD_B_PIN10     : inout std_logic;
+                        
+       PMOD_A_PIN1      : inout std_logic;
+       PMOD_A_PIN2      : inout std_logic;
+       PMOD_A_PIN3      : inout std_logic;
+       PMOD_A_PIN4      : inout std_logic;
+                        
+       PMOD_A_PIN7      : inout std_logic;
+       PMOD_A_PIN8      : inout std_logic;
+       PMOD_A_PIN9      : inout std_logic;
+       PMOD_A_PIN10     : inout std_logic; 
+       
          -- Bill Of material and hardware version 
       BOM_VER           : in     std_logic_vector(3 downto 0);
       HW_VER            : in     std_logic_vector(3 downto 0);
@@ -398,8 +380,7 @@ constant c_SPI1_LMS2_BB_ADC1_SS_NR  : integer := 0;
 constant c_SPI1_LMS2_BB_ADC2_SS_NR  : integer := 1;
 constant c_SPI1_LMS3_BB_ADC1_SS_NR  : integer := 2;
 constant c_SPI1_LMS3_BB_ADC2_SS_NR  : integer := 3;
-constant c_SPI1_CDCM1_SS_NR         : integer := 4;
-constant c_SPI1_CDCM2_SS_NR         : integer := 5; 
+constant c_SPI1_CDCM_SS_NR          : integer := 4;
 
 constant c_SPI2_XO_DAC_SS_NR        : integer := 0;
 constant c_SPI2_ADF_SS_NR           : integer := 1;  
@@ -496,8 +477,7 @@ signal inst0_from_gnsscfg        : t_FROM_GNSSCFG;
 signal inst0_to_gnsscfg          : t_TO_GNSSCFG;
 signal inst0_to_memcfg           : t_TO_MEMCFG;
 signal inst0_from_memcfg         : t_FROM_MEMCFG;
-signal inst0_from_cdcmcfg1       : t_FROM_CDCMCFG;
-signal inst0_from_cdcmcfg2       : t_FROM_CDCMCFG;
+signal inst0_from_cdcmcfg        : t_FROM_CDCMCFG;
 signal inst0_pll_from_axim       : t_FROM_AXIM_32x32;
 signal inst0_pll_axi_sel         : std_logic_vector(3 downto 0);
 signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
@@ -770,7 +750,7 @@ signal inst20_wfm_0_outfifo_data       : std_logic_vector(127 downto 0);
 
 signal CLK100_FPGA                     : std_logic;
 signal FPGA_AUXCLK                     : std_logic;
-signal CDCM2_LMS2_BB_DAC2_REFC            : std_logic;
+signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 
 
 attribute DONT_TOUCH : string;
@@ -1008,7 +988,7 @@ begin
    
    -- Reset signal with synchronous removal to LMK_CLK clock domain, 
    sync_reg3 : entity work.sync_reg 
-   port map(LMK2_CLK, reset_n, '1', reset_n_lmk_clk); 
+   port map(LMK1_CLK1, reset_n, '1', reset_n_lmk_clk); 
    
      
 -- ----------------------------------------------------------------------------
@@ -1108,8 +1088,7 @@ begin
       avmm_m0_clk_clk            => inst0_avmm_m0_clk_clk,
       avmm_m0_reset_reset        => inst0_avmm_m0_reset_reset,
       -- Configuration registers
-      from_cdcmcfg1              => inst0_from_cdcmcfg1,
-      from_cdcmcfg2              => inst0_from_cdcmcfg2,
+      from_cdcmcfg               => inst0_from_cdcmcfg,
       from_fpgacfg_0             => inst0_from_fpgacfg_0,
       to_fpgacfg_0               => inst0_to_fpgacfg_0,
       from_fpgacfg_1             => inst0_from_fpgacfg_1,
@@ -1270,8 +1249,8 @@ begin
       pll_0_c1                   => inst1_pll_0_c1,
       pll_0_locked               => inst1_pll_0_locked,
       
-      pll_1_inclk_p              => CDCM2_LMS2_BB_DAC1_REFC_P, 
-      pll_1_inclk_n              => CDCM2_LMS2_BB_DAC1_REFC_N, 
+      pll_1_inclk_p              => CDCM_LMS2_BB_DAC1_REFC_P, 
+      pll_1_inclk_n              => CDCM_LMS2_BB_DAC1_REFC_N, 
       pll_1_logic_reset_n        => not inst0_pll_rst(5),
       pll_1_c0                   => inst1_pll_1_c0,
       pll_1_c1                   => inst1_pll_1_c1,
@@ -1522,7 +1501,7 @@ begin
    )
    port map(
       -- General ports
-      clk                  => LMK2_CLK,
+      clk                  => LMK1_CLK1,
       reset_n              => reset_n_lmk_clk,
       -- configuration memory
       from_fpgacfg         => inst0_from_fpgacfg_0,
@@ -1583,10 +1562,10 @@ begin
    end process;
    
    
-   process(LMS1_MCLK2)
+   process(inst1_pll_1_c1)
    variable counter : unsigned(26 downto 0);
    begin
-   if(rising_edge(LMS1_MCLK2)) then
+   if(rising_edge(inst1_pll_1_c1)) then
         counter := counter +1 ;
         FPGA_LED4_R <= counter(25);
    end if;
@@ -2440,20 +2419,20 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 --   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
 --   PMOD_A_PIN4 <= inst8_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5); 
 
-   gen_gpio : for i in 0 to 15 generate 
-      IOBUF_GPIO : IOBUF
-      generic map (
-         DRIVE       => 4,
-         IOSTANDARD  => "LVCMOS33",
-         SLEW        => "SLOW"
-         )
-      port map (
-         O           => gpio_o(i),     -- Buffer output
-         IO          => FPGA_GPIO(i),  -- Buffer inout port (connect directly to top-level port)
-         I           => gpio_i(i),     -- Buffer input
-         T           => gpio_t(i)      -- 3-state enable input, high=input, low=output 
-         );
-   end generate gen_gpio;
+--   gen_gpio : for i in 0 to 15 generate 
+--      IOBUF_GPIO : IOBUF
+--      generic map (
+--         DRIVE       => 4,
+--         IOSTANDARD  => "LVCMOS33",
+--         SLEW        => "SLOW"
+--         )
+--      port map (
+--         O           => gpio_o(i),     -- Buffer output
+--         IO          => FPGA_GPIO(i),  -- Buffer inout port (connect directly to top-level port)
+--         I           => gpio_i(i),     -- Buffer input
+--         T           => gpio_t(i)      -- 3-state enable input, high=input, low=output 
+--         );
+--   end generate gen_gpio;
    
    
    gpio_t( 0) <= '0';
@@ -2482,7 +2461,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    gpio_i( 6) <= inst8_tx_ant_en;
    gpio_i( 7) <= '0';
    gpio_i( 8) <= inst1_pll_0_locked;
-   gpio_i( 9) <= GNSS_PPS;
+   gpio_i( 9) <= GNSS_TPULSE;
    gpio_i(10) <= GNSS_UART_TX;
    gpio_i(11) <= inst12_uart_tx;
    gpio_i(12) <= inst0_spi_2_SCLK;
@@ -2506,8 +2485,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    FPGA_SPI1_LMS2_BB_ADC2_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS2_BB_ADC2_SS_NR); 
    FPGA_SPI1_LMS3_BB_ADC1_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS3_BB_ADC1_SS_NR);
    FPGA_SPI1_LMS3_BB_ADC2_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS3_BB_ADC2_SS_NR);
-   FPGA_SPI1_CDCM1_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM1_SS_NR);
-   FPGA_SPI1_CDCM2_SS         <= inst0_spi_1_SS_n(c_SPI1_CDCM2_SS_NR);
+   FPGA_SPI1_CDCM_SS          <= inst0_spi_1_SS_n(c_SPI1_CDCM_SS_NR);
    
    FPGA_SPI2_MOSI          <= inst0_spi_2_MOSI;
    FPGA_SPI2_SCLK          <= inst0_spi_2_SCLK;
@@ -2575,11 +2553,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    LMS2_RX2_LNA_SD <= inst0_from_periphcfg.RF_AMP_CTRL(0);
    
 
-   CDCM1_RESET_N         <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--'1';
-   CDCM1_SYNCN           <= not inst0_from_cdcmcfg1.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
-   
-   CDCM2_RESET_N         <= not inst0_from_cdcmcfg2.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM2_SS;--'1';
-   CDCM2_SYNCN           <= not inst0_from_cdcmcfg2.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM2_SS;--'1';   
+   CDCM_RESET_N         <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
+   CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
    
    PPS_OUT <= inst1_lms1_rxpll_c1;
    

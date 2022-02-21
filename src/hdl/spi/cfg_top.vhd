@@ -37,11 +37,8 @@ entity cfg_top is
       PERIPHCFG_START_ADDR : integer := 192;
       TAMERCFG_START_ADDR  : integer := 224;
       GNSSCFG_START_ADDR   : integer := 256;
-      CDCMCFG1_START_ADDR  : integer := 288;
-      CDCMCFG2_START_ADDR  : integer := 320;
-
+      CDCMCFG_START_ADDR   : integer := 320;
       RXTSPCFG_START_ADDR_3  : integer := 352; -- B.J.
-
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -84,8 +81,7 @@ entity cfg_top is
       from_gnsscfg         : out t_FROM_GNSSCFG;
       to_memcfg            : in  t_TO_MEMCFG;
       from_memcfg          : out t_FROM_MEMCFG;
-      from_cdcmcfg1        : out t_FROM_CDCMCFG;
-      from_cdcmcfg2        : out t_FROM_CDCMCFG;
+      from_cdcmcfg         : out t_FROM_CDCMCFG;
       
       to_rxtspcfg_3a       : in  t_TO_RXTSPCFG;    -- B.J.
       from_rxtspcfg_3a     : out t_FROM_RXTSPCFG;  -- B.J.
@@ -400,7 +396,7 @@ begin
    port map(
       -- Address and location of this module
       -- Will be hard wired at the top level
-      maddress    => std_logic_vector(to_unsigned(CDCMCFG1_START_ADDR/32,10)),
+      maddress    => std_logic_vector(to_unsigned(CDCMCFG_START_ADDR/32,10)),
       mimo_en     => '1',   
       -- Serial port IOs
       sdin        => sdin,
@@ -413,53 +409,7 @@ begin
       oen         => open,
       stateo      => open,
 --      to_cdcmcfg   => to_cdcmcfg1,
-      from_cdcmcfg => from_cdcmcfg1
-   );
-   
--- ----------------------------------------------------------------------------
--- cdcmcfg1 instance
--- ----------------------------------------------------------------------------    
-   inst8_cdcmcfg2 : entity work.cdcmcfg
-   generic map(
-    CDCM_REG_0_DEFAULT  => x"01b1",
-    CDCM_REG_1_DEFAULT  => x"0000",
-    CDCM_REG_2_DEFAULT  => x"0018",
-    CDCM_REG_3_DEFAULT  => x"00f0",
-    CDCM_REG_4_DEFAULT  => x"2077",
-    CDCM_REG_5_DEFAULT  => x"0023",
-    CDCM_REG_6_DEFAULT  => x"0018",
-    CDCM_REG_7_DEFAULT  => x"0023",
-    CDCM_REG_8_DEFAULT  => x"0018",
-    CDCM_REG_9_DEFAULT  => x"0003",
-    CDCM_REG_10_DEFAULT => x"0180",
-    CDCM_REG_11_DEFAULT => x"0000",
-    CDCM_REG_12_DEFAULT => x"0003",
-    CDCM_REG_13_DEFAULT => x"0180",
-    CDCM_REG_14_DEFAULT => x"0000",
-    CDCM_REG_15_DEFAULT => x"0003",
-    CDCM_REG_16_DEFAULT => x"0180",
-    CDCM_REG_17_DEFAULT => x"0000",
-    CDCM_REG_18_DEFAULT => x"0003",
-    CDCM_REG_19_DEFAULT => x"0180",
-    CDCM_REG_20_DEFAULT => x"0000"
-   )
-   port map(
-      -- Address and location of this module
-      -- Will be hard wired at the top level
-      maddress    => std_logic_vector(to_unsigned(CDCMCFG2_START_ADDR/32,10)),
-      mimo_en     => '1',   
-      -- Serial port IOs
-      sdin        => sdin,
-      sclk        => sclk,
-      sen         => sen,
-      sdout       => inst8_sdout,  
-      -- Signals coming from the pins or top level serial interface
-      lreset      => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
-      mreset      => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
-      oen         => open,
-      stateo      => open,
---      to_cdcmcfg   => to_cdcmcfg1,
-      from_cdcmcfg => from_cdcmcfg2
+      from_cdcmcfg => from_cdcmcfg
    );
    
 -- ----------------------------------------------------------------------------

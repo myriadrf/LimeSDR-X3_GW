@@ -18,7 +18,7 @@
 # CDCM2_LMS2_BB_DAC1_REFC clock is automaticaly created by instantiating MMCM
 # create_clock -period 4.069 -name CDCM2_LMS2_BB_DAC1_REFC [get_ports CDCM2_LMS2_BB_DAC1_REFC_P]
 
-create_clock -period 4.069 -name CDCM2_LMS2_BB_DAC2_REFC [get_ports CDCM2_LMS2_BB_DAC2_REFC_P]
+create_clock -period 4.069 -name CDCM_LMS2_BB_DAC2_REFC [get_ports CDCM_LMS2_BB_DAC2_REFC_P]
 
 #-----------------------------------------------------------------------
 #Virtual clocks
@@ -76,6 +76,7 @@ set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -min -add_delay 0.000
 
 #Clock groups
 #Clock groups are set in top .sdc file
+
 
 
 

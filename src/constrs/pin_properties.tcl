@@ -2,41 +2,20 @@
 
 # Clock
 create_interface CLOCK
-set_property INTERFACE CLOCK [get_ports { CLK100_FPGA_N CLK100_FPGA_P LMK1_CLK LMK2_CLK FPGA_AUXCLK_N FPGA_AUXCLK_P }]
+set_property INTERFACE CLOCK [get_ports { CLK100_FPGA_N CLK100_FPGA_P LMK1_CLK1 LMK1_CLK2 LMK2_CLKIN1 FPGA_AUXCLK_N FPGA_AUXCLK_P }]
 
-set_property IOSTANDARD LVCMOS25 [get_ports LMK1_CLK]
-set_property IOSTANDARD LVCMOS33 [get_ports LMK2_CLK]
+set_property IOSTANDARD LVCMOS25 [get_ports LMK*]
 
 set_property PACKAGE_PIN U21 [get_ports CLK100_FPGA_P]
 set_property PACKAGE_PIN V21 [get_ports CLK100_FPGA_N]
-set_property PACKAGE_PIN P4 [get_ports LMK1_CLK]
-set_property PACKAGE_PIN M21 [get_ports LMK2_CLK]
 set_property PACKAGE_PIN AA19 [get_ports FPGA_AUXCLK_P]
 set_property PACKAGE_PIN AB19 [get_ports FPGA_AUXCLK_N]
 
-
-
-# GPIO
-create_interface FPGA_GPIO
-set_property INTERFACE FPGA_GPIO [get_ports { FPGA_GPIO[15] FPGA_GPIO[14] FPGA_GPIO[13] FPGA_GPIO[12] FPGA_GPIO[11] FPGA_GPIO[10] FPGA_GPIO[9] FPGA_GPIO[8] FPGA_GPIO[7] FPGA_GPIO[6] FPGA_GPIO[5] FPGA_GPIO[4] FPGA_GPIO[3] FPGA_GPIO[2] FPGA_GPIO[1] FPGA_GPIO[0] }]
-set_property IOSTANDARD LVCMOS33 [get_ports {FPGA_GPIO[*]}]
-
-set_property PACKAGE_PIN R25 [get_ports {FPGA_GPIO[0]}]
-set_property PACKAGE_PIN R20 [get_ports {FPGA_GPIO[1]}]
-set_property PACKAGE_PIN P23 [get_ports {FPGA_GPIO[2]}]
-set_property PACKAGE_PIN R21 [get_ports {FPGA_GPIO[3]}]
-set_property PACKAGE_PIN P21 [get_ports {FPGA_GPIO[4]}]
-set_property PACKAGE_PIN P15 [get_ports {FPGA_GPIO[5]}]
-set_property PACKAGE_PIN P19 [get_ports {FPGA_GPIO[6]}]
-set_property PACKAGE_PIN P16 [get_ports {FPGA_GPIO[7]}]
-set_property PACKAGE_PIN L23 [get_ports {FPGA_GPIO[8]}]
-set_property PACKAGE_PIN N19 [get_ports {FPGA_GPIO[9]}]
-set_property PACKAGE_PIN L22 [get_ports {FPGA_GPIO[10]}]
-set_property PACKAGE_PIN P24 [get_ports {FPGA_GPIO[11]}]
-set_property PACKAGE_PIN M22 [get_ports {FPGA_GPIO[12]}]
-set_property PACKAGE_PIN P25 [get_ports {FPGA_GPIO[13]}]
-set_property PACKAGE_PIN N22 [get_ports {FPGA_GPIO[14]}]
-set_property PACKAGE_PIN N23 [get_ports {FPGA_GPIO[15]}]
+set_property PACKAGE_PIN K15 [get_ports LMK1_SEL]
+set_property PACKAGE_PIN H21 [get_ports LMK2_SEL]
+set_property PACKAGE_PIN W21 [get_ports LMK1_CLK1]
+set_property PACKAGE_PIN R3 [get_ports LMK1_CLK2]
+set_property PACKAGE_PIN P4 [get_ports LMK2_CLKIN1]
 
 # LED
 create_interface FPGA_LED
@@ -216,8 +195,8 @@ set_property INTERFACE LMS2_BB_DAC1 [get_ports { LMS2_BB_DAC1_B_N[15] LMS2_BB_DA
 #set_property IOSTANDARD LVCMOS33 [get_ports {LMS2_BB_DAC1_PD  LMS2_BB_DAC1_TORB}]
 set_property IOSTANDARD LVCMOS33 [get_ports LMS2_BB_DAC1_PD]
 
-set_property PACKAGE_PIN N3 [get_ports CDCM2_LMS2_BB_DAC1_REFC_P]
-set_property PACKAGE_PIN N2 [get_ports CDCM2_LMS2_BB_DAC1_REFC_N]
+set_property PACKAGE_PIN N3 [get_ports CDCM_LMS2_BB_DAC1_REFC_P]
+set_property PACKAGE_PIN N2 [get_ports CDCM_LMS2_BB_DAC1_REFC_N]
 set_property PACKAGE_PIN M2 [get_ports FPGA_LMS2_BB_DAC1_CLK_P]
 set_property PACKAGE_PIN L2 [get_ports FPGA_LMS2_BB_DAC1_CLK_N]
 set_property PACKAGE_PIN N1 [get_ports {LMS2_BB_DAC1_B_P[0]}]
@@ -261,8 +240,8 @@ set_property INTERFACE LMS2_BB_DAC2 [get_ports { LMS2_BB_DAC2_B_N[15] LMS2_BB_DA
 #set_property IOSTANDARD LVCMOS33 [get_ports {LMS2_BB_DAC2_PD  LMS2_BB_DAC2_TORB}]
 set_property IOSTANDARD LVCMOS33 [get_ports LMS2_BB_DAC2_PD]
 
-set_property PACKAGE_PIN F5 [get_ports CDCM2_LMS2_BB_DAC2_REFC_N]
-set_property PACKAGE_PIN G5 [get_ports CDCM2_LMS2_BB_DAC2_REFC_P]
+set_property PACKAGE_PIN F5 [get_ports CDCM_LMS2_BB_DAC2_REFC_N]
+set_property PACKAGE_PIN G5 [get_ports CDCM_LMS2_BB_DAC2_REFC_P]
 set_property PACKAGE_PIN E5 [get_ports FPGA_LMS2_BB_DAC2_CLK_P]
 set_property PACKAGE_PIN D5 [get_ports FPGA_LMS2_BB_DAC2_CLK_N]
 set_property PACKAGE_PIN E6 [get_ports {LMS2_BB_DAC2_B_P[0]}]
@@ -302,22 +281,18 @@ set_property PACKAGE_PIN K8 [get_ports LMS2_BB_DAC2_SELIQ_N]
 
 #GNSS
 create_interface GNSS
-set_property INTERFACE GNSS [get_ports { GNSS_LCKIND GNSS_PPS GNSS_RESET_N GNSS_UART_RX GNSS_UART_TX PPS_IN_EXT PPS_IN_PREVIOUS PPS_OUT PPS_SELECT }]
+set_property INTERFACE GNSS [get_ports { GNSS_UART_RX GNSS_UART_TX PPS_IN_EXT PPS_OUT }]
 set_property IOSTANDARD LVCMOS33 [get_ports GNSS*]
 set_property IOSTANDARD LVCMOS33 [get_ports PPS_IN_EXT]
-set_property IOSTANDARD LVCMOS33 [get_ports PPS_IN_PREVIOUS]
 set_property IOSTANDARD LVCMOS33 [get_ports PPS_OUT]
-set_property IOSTANDARD LVCMOS25 [get_ports PPS_SELECT]
 
-set_property PACKAGE_PIN M24 [get_ports GNSS_LCKIND]
-set_property PACKAGE_PIN L20 [get_ports GNSS_PPS]
-set_property PACKAGE_PIN M25 [get_ports GNSS_RESET_N]
 set_property PACKAGE_PIN L25 [get_ports GNSS_UART_RX]
 set_property PACKAGE_PIN L24 [get_ports GNSS_UART_TX]
 set_property PACKAGE_PIN N21 [get_ports PPS_IN_EXT]
-set_property PACKAGE_PIN P20 [get_ports PPS_IN_PREVIOUS]
 set_property PACKAGE_PIN T22 [get_ports PPS_OUT]
-set_property PACKAGE_PIN AD18 [get_ports PPS_SELECT]
+set_property PACKAGE_PIN M25 [get_ports EXT_SYNC_OUT]
+set_property PACKAGE_PIN P20 [get_ports EXT_SYNC_IN]
+set_property IOSTANDARD LVCMOS33 [get_ports EXT_SYNC_*]
 
 # SPI0
 create_interface FPGA_SPI0
@@ -335,15 +310,14 @@ set_property PACKAGE_PIN Y6 [get_ports FPGA_SPI0_SCLK]
 
 # SPI1
 create_interface FPGA_SPI1
-set_property INTERFACE FPGA_SPI1 [get_ports { FPGA_SPI1_CDCM1_SS FPGA_SPI1_CDCM2_SS FPGA_SPI1_LMS2_BB_ADC1_SS FPGA_SPI1_LMS2_BB_ADC2_SS FPGA_SPI1_LMS3_BB_ADC1_SS FPGA_SPI1_LMS3_BB_ADC2_SS FPGA_SPI1_MISO FPGA_SPI1_MISO_BB_ADC FPGA_SPI1_MOSI FPGA_SPI1_SCLK }]
+set_property INTERFACE FPGA_SPI1 [get_ports { FPGA_SPI1_CDCM_SS FPGA_SPI1_LMS2_BB_ADC1_SS FPGA_SPI1_LMS2_BB_ADC2_SS FPGA_SPI1_LMS3_BB_ADC1_SS FPGA_SPI1_LMS3_BB_ADC2_SS FPGA_SPI1_MISO FPGA_SPI1_MISO_BB_ADC FPGA_SPI1_MOSI FPGA_SPI1_SCLK }]
 set_property IOSTANDARD LVCMOS25 [get_ports FPGA_SPI1*]
 
 set_property PACKAGE_PIN C22 [get_ports FPGA_SPI1_LMS2_BB_ADC1_SS]
 set_property PACKAGE_PIN F20 [get_ports FPGA_SPI1_LMS3_BB_ADC1_SS]
 set_property PACKAGE_PIN E20 [get_ports FPGA_SPI1_LMS3_BB_ADC2_SS]
 set_property PACKAGE_PIN E22 [get_ports FPGA_SPI1_MISO_BB_ADC]
-set_property PACKAGE_PIN AA17 [get_ports FPGA_SPI1_CDCM1_SS]
-set_property PACKAGE_PIN AB22 [get_ports FPGA_SPI1_CDCM2_SS]
+set_property PACKAGE_PIN AB22 [get_ports FPGA_SPI1_CDCM_SS]
 set_property PACKAGE_PIN K22 [get_ports FPGA_SPI1_LMS2_BB_ADC2_SS]
 set_property PACKAGE_PIN L14 [get_ports FPGA_SPI1_MISO]
 set_property PACKAGE_PIN M14 [get_ports FPGA_SPI1_MOSI]
@@ -353,14 +327,16 @@ set_property PACKAGE_PIN M16 [get_ports FPGA_SPI1_SCLK]
 # SPI2
 create_interface FPGA_SPI2
 set_property INTERFACE FPGA_SPI2 [get_ports { FPGA_SPI2_ADF_SS FPGA_SPI2_LMS1_TX1DAC_SS FPGA_SPI2_LMS1_TX2DAC_SS FPGA_SPI2_MOSI FPGA_SPI2_SCLK FPGA_SPI2_XO_DAC_SS }]
-set_property IOSTANDARD LVCMOS33 [get_ports FPGA_SPI2*]
+set_property IOSTANDARD LVCMOS25 [get_ports FPGA_SPI2*]
 
-set_property PACKAGE_PIN P26 [get_ports FPGA_SPI2_ADF_SS]
-set_property PACKAGE_PIN T25 [get_ports FPGA_SPI2_MOSI]
-set_property PACKAGE_PIN T24 [get_ports FPGA_SPI2_SCLK]
-set_property PACKAGE_PIN R26 [get_ports FPGA_SPI2_XO_DAC_SS]
-set_property PACKAGE_PIN R16 [get_ports FPGA_SPI2_LMS1_TX1DAC_SS]
-set_property PACKAGE_PIN R17 [get_ports FPGA_SPI2_LMS1_TX2DAC_SS]
+set_property PACKAGE_PIN J5 [get_ports FPGA_SPI2_ADF_SS]
+set_property PACKAGE_PIN B2 [get_ports FPGA_SPI2_MOSI]
+set_property PACKAGE_PIN C2 [get_ports FPGA_SPI2_SCLK]
+set_property PACKAGE_PIN J6 [get_ports FPGA_SPI2_XO_DAC_SS]
+set_property PACKAGE_PIN AA17 [get_ports FPGA_SPI2_LMS1_TX1DAC_SS]
+set_property PACKAGE_PIN AB17 [get_ports FPGA_SPI2_LMS1_TX2DAC_SS]
+set_property PACKAGE_PIN N6 [get_ports FPGA_SPI2_XO_25_DAC_SS]
+set_property PACKAGE_PIN N7 [get_ports FPGA_SPI2_XO_20_DAC_SS]
 
 # FPGA_I2C
 create_interface FPGA_I2C
@@ -375,19 +351,19 @@ create_interface LMS1
 set_property INTERFACE LMS1 [get_ports { LMS1_DIQ1_D[11] LMS1_DIQ1_D[10] LMS1_DIQ1_D[9] LMS1_DIQ1_D[8] LMS1_DIQ1_D[7] LMS1_DIQ1_D[6] LMS1_DIQ1_D[5] LMS1_DIQ1_D[4] LMS1_DIQ1_D[3] LMS1_DIQ1_D[2] LMS1_DIQ1_D[1] LMS1_DIQ1_D[0] LMS1_DIQ2_D[11] LMS1_DIQ2_D[10] LMS1_DIQ2_D[9] LMS1_DIQ2_D[8] LMS1_DIQ2_D[7] LMS1_DIQ2_D[6] LMS1_DIQ2_D[5] LMS1_DIQ2_D[4] LMS1_DIQ2_D[3] LMS1_DIQ2_D[2] LMS1_DIQ2_D[1] LMS1_DIQ2_D[0] LMS1_ENABLE_IQSEL1 LMS1_ENABLE_IQSEL2 LMS1_FCLK1 LMS1_FCLK2 LMS1_MCLK1 LMS1_MCLK2 LMS1_RESET LMS1_RXEN LMS1_TX1_EN LMS1_TX2_EN LMS1_TXEN LMS1_TXNRX1 LMS1_TXNRX2 }]
 set_property IOSTANDARD LVCMOS25 [get_ports LMS1*]
 
-set_property SLEW FAST       [get_ports LMS1_DIQ1_D[*]          ]
+set_property SLEW FAST [get_ports {LMS1_DIQ1_D[*]}]
 #set_property SLEW FAST       [get_ports LMS1_DIQ1_D[10]         ]
 #set_property SLEW FAST       [get_ports LMS1_DIQ1_D[11]         ]
-set_property SLEW FAST       [get_ports LMS1_ENABLE_IQSEL1      ]
-set_property SLEW FAST       [get_ports LMS1_FCLK1              ]
+set_property SLEW FAST [get_ports LMS1_ENABLE_IQSEL1]
+set_property SLEW FAST [get_ports LMS1_FCLK1]
 
-set_property DRIVE 16        [get_ports {LMS1_DIQ1_D[*]}        ]
+set_property DRIVE 16 [get_ports {LMS1_DIQ1_D[*]}]
 #set_property DRIVE 12        [get_ports LMS1_DIQ1_D[ 3]         ]
 #set_property DRIVE 12        [get_ports LMS1_DIQ1_D[ 9]         ]
 #set_property DRIVE 12        [get_ports LMS1_DIQ1_D[10]         ]
 #set_property DRIVE 16        [get_ports LMS1_DIQ1_D[1]          ]
-set_property DRIVE 16        [get_ports LMS1_ENABLE_IQSEL1      ]
-set_property DRIVE 16        [get_ports LMS1_FCLK1              ]
+set_property DRIVE 16 [get_ports LMS1_ENABLE_IQSEL1]
+set_property DRIVE 16 [get_ports LMS1_FCLK1]
 
 
 set_property PACKAGE_PIN V4 [get_ports {LMS1_DIQ1_D[0]}]
@@ -477,11 +453,17 @@ set_property IOSTANDARD LVCMOS33 [get_ports PCIE_WAKEN]
 
 # MISC
 create_interface MISC
-set_property INTERFACE MISC [get_ports { HW_VER[3] HW_VER[2] HW_VER[1] HW_VER[0] BOM_VER[3] BOM_VER[2] BOM_VER[1] BOM_VER[0] ADF_MUXOUT CDCM1_RESET_N CDCM1_STATUS0 CDCM1_STATUS1 CDCM1_SYNCN CDCM2_LMS2_BB_DAC1_REFC_N CDCM2_LMS2_BB_DAC1_REFC_P CDCM2_LMS2_BB_DAC2_REFC_N CDCM2_LMS2_BB_DAC2_REFC_P CDCM2_RESET_N CDCM2_STATUS0 CDCM2_STATUS1 CDCM2_SYNCN FAN_CTRL LM75_OS XO_VC_FPGA }]
-set_property IOSTANDARD LVCMOS33 [get_ports {ADF_MUXOUT XO_VC_FPGA PD_LMS*}]
-set_property IOSTANDARD LVCMOS25 [get_ports {CDCM*_RESET_N CDCM*_STATUS0 CDCM*_STATUS1 CDCM*_SYNCN LMS2_RX*}]
+set_property INTERFACE MISC [get_ports { HW_VER[3] HW_VER[2] HW_VER[1] HW_VER[0] BOM_VER[3] BOM_VER[2] BOM_VER[1] BOM_VER[0] ADF_MUXOUT CDCM_LMS2_BB_DAC1_REFC_N CDCM_LMS2_BB_DAC1_REFC_P CDCM_LMS2_BB_DAC2_REFC_N CDCM_LMS2_BB_DAC2_REFC_P CDCM_RESET_N CDCM_STATUS0 CDCM_STATUS1 CDCM_SYNCN FAN_CTRL LM75_OS XO_VC_FPGA }]
+set_property IOSTANDARD LVCMOS33 [get_ports ADF_MUXOUT]
+set_property IOSTANDARD LVCMOS33 [get_ports XO_VC_FPGA]
+set_property IOSTANDARD LVCMOS25 [get_ports {CDCM_RESET_N CDCM_STATUS0 CDCM_STATUS1 CDCM_SYNCN LMS2_RX*}]
 set_property IOSTANDARD LVCMOS25 [get_ports {{HW_VER[*]} {BOM_VER[*]} EXT_GND LM75_OS FAN_CTRL}]
-set_property IOSTANDARD LVDS_25 [get_ports {CDCM2_LMS2_BB_DAC1_REFC_* CDCM2_LMS2_BB_DAC2_REFC_*}]
+set_property IOSTANDARD LVCMOS25 [get_ports PD_LMS*]
+set_property IOSTANDARD LVDS_25 [get_ports {CDCM_LMS2_BB_DAC1_REFC_* CDCM_LMS2_BB_DAC2_REFC_*}]
+set_property PACKAGE_PIN AA15 [get_ports CDCM_SYNCN]
+set_property PACKAGE_PIN AC18 [get_ports CDCM_RESET_N]
+set_property PACKAGE_PIN AB16 [get_ports CDCM_STATUS0]
+set_property PACKAGE_PIN AC16 [get_ports CDCM_STATUS1]
 
 set_property PACKAGE_PIN V24 [get_ports {HW_VER[2]}]
 set_property PACKAGE_PIN Y22 [get_ports {HW_VER[1]}]
@@ -491,20 +473,10 @@ set_property PACKAGE_PIN L19 [get_ports {HW_VER[3]}]
 set_property PACKAGE_PIN U24 [get_ports LM75_OS]
 set_property PACKAGE_PIN U4 [get_ports FAN_CTRL]
 set_property PACKAGE_PIN M19 [get_ports ADF_MUXOUT]
-set_property PACKAGE_PIN W21 [get_ports {BOM_VER[0]}]
+set_property PACKAGE_PIN K2 [get_ports {BOM_VER[0]}]
 set_property PACKAGE_PIN Y23 [get_ports {BOM_VER[1]}]
 set_property PACKAGE_PIN W24 [get_ports {BOM_VER[2]}]
 set_property PACKAGE_PIN N8 [get_ports {BOM_VER[3]}]
-
-
-set_property PACKAGE_PIN AB17 [get_ports CDCM1_RESET_N]
-set_property PACKAGE_PIN W14 [get_ports CDCM1_STATUS0]
-set_property PACKAGE_PIN W15 [get_ports CDCM1_STATUS1]
-set_property PACKAGE_PIN W16 [get_ports CDCM1_SYNCN]
-set_property PACKAGE_PIN AC18 [get_ports CDCM2_RESET_N]
-set_property PACKAGE_PIN AB16 [get_ports CDCM2_STATUS0]
-set_property PACKAGE_PIN AC16 [get_ports CDCM2_STATUS1]
-set_property PACKAGE_PIN AA15 [get_ports CDCM2_SYNCN]
 
 #place_ports LMS2_TX1_1_EN LMS2_TX1_2_EN LMS2_TX2_1_EN RFSW2_TX1_V1 LNA1_BP_M LNA1_EN_M LNA2_BP_M LNA2_EN_M RFSW1_RX2_V1 RFSW1_TRX1R_V1 RFSW1_TRX1T_V1 RFSW1_TRX2R_V1 RFSW1_TRX2T_V1 RFSW1_TX1_V1 RFSW2_TRX1R_V1 RFSW2_TRX1T_V1 RFSW2_TRX2R_V1 RFSW2_TRX2T_V1
 
@@ -512,40 +484,96 @@ set_property PACKAGE_PIN AA15 [get_ports CDCM2_SYNCN]
 set_property PACKAGE_PIN AD23 [get_ports LMS2_RX1_LNA_SD]
 set_property PACKAGE_PIN AD24 [get_ports LMS2_RX2_LNA_SD]
 set_property PACKAGE_PIN L15 [get_ports LMS2_TX1_1_EN]
-set_property PACKAGE_PIN J14 [get_ports LMS2_TX2_1_EN]
+set_property PACKAGE_PIN H14 [get_ports LMS2_TX2_1_EN]
 
-set_property PACKAGE_PIN G15 [get_ports RFSW_LMS2_RX1IN_V1]
-set_property PACKAGE_PIN D19 [get_ports RFSW_LMS2_RX2C_V1]
+set_property PACKAGE_PIN D19 [get_ports RFSW_LMS2_RX1IN_V1]
+set_property PACKAGE_PIN J16 [get_ports RFSW_LMS2_RX2C_V1]
 set_property PACKAGE_PIN H17 [get_ports RFSW_LMS2_TRX2_V1]
-set_property PACKAGE_PIN H14 [get_ports RFSW_LMS2_TRX2T_V1]
+set_property PACKAGE_PIN K18 [get_ports RFSW_LMS2_TRX2T_V1]
 
 set_property PACKAGE_PIN E17 [get_ports RFSW1_LMS3_RX1_V1]
 set_property PACKAGE_PIN E18 [get_ports RFSW1_LMS3_RX2_V1]
-set_property PACKAGE_PIN K18 [get_ports RFSW_LMS1_RX1_V1]
-set_property PACKAGE_PIN J16 [get_ports RFSW_LMS1_RX2_V1]
-set_property PACKAGE_PIN J15 [get_ports RFSW_LMS1_TX1_V1]
-set_property PACKAGE_PIN M15 [get_ports RFSW_LMS1_TX2_V1]
-set_property PACKAGE_PIN F15 [get_ports RFSW_LMS2_RX1C_V1]
-set_property PACKAGE_PIN H15 [get_ports RFSW_LMS2_RX2IN_V1]
-set_property PACKAGE_PIN H16 [get_ports RFSW_LMS2_TRX1_V1]
-set_property PACKAGE_PIN G19 [get_ports RFSW_LMS2_TRX1T_V1]
+set_property PACKAGE_PIN F15 [get_ports RFSW_LMS1_RX1_V1]
+set_property PACKAGE_PIN G15 [get_ports RFSW_LMS1_RX2_V1]
+set_property PACKAGE_PIN G19 [get_ports RFSW_LMS1_TX1_V1]
+set_property PACKAGE_PIN H16 [get_ports RFSW_LMS1_TX2_V1]
+set_property PACKAGE_PIN H15 [get_ports RFSW_LMS2_RX1C_V1]
+set_property PACKAGE_PIN M15 [get_ports RFSW_LMS2_RX2IN_V1]
+set_property PACKAGE_PIN J14 [get_ports RFSW_LMS2_TRX1_V1]
+set_property PACKAGE_PIN J15 [get_ports RFSW_LMS2_TRX1T_V1]
 
 #set_property PACKAGE_PIN R3  [get_ports EMCCLK  		     ]
 
-set_property PACKAGE_PIN N18 [get_ports PD_LMS2_BB_ADC1_DRV]
-set_property PACKAGE_PIN K25 [get_ports PD_LMS2_BB_ADC2_DRV]
-set_property PACKAGE_PIN K26 [get_ports PD_LMS3_BB_ADC1_DRV]
-set_property PACKAGE_PIN M20 [get_ports PD_LMS3_BB_ADC2_DRV]
+set_property PACKAGE_PIN W14 [get_ports PD_LMS2_BB_ADC1_DRV]
+set_property PACKAGE_PIN W15 [get_ports PD_LMS2_BB_ADC2_DRV]
+set_property PACKAGE_PIN W16 [get_ports PD_LMS3_BB_ADC1_DRV]
+set_property PACKAGE_PIN AD18 [get_ports PD_LMS3_BB_ADC2_DRV]
 
 
 set_property PACKAGE_PIN N26 [get_ports XO_VC_FPGA]
 set_property PACKAGE_PIN N24 [get_ports LMS2_BB_DAC2_PD]
 set_property PACKAGE_PIN M26 [get_ports LMS2_BB_DAC1_PD]
 
-set_property PACKAGE_PIN K15 [get_ports LMK1_SEL]
-set_property PACKAGE_PIN H21 [get_ports LMK2_SEL]
-set_property IOSTANDARD LVCMOS25 [get_ports LMK1_SEL]
-set_property IOSTANDARD LVCMOS25 [get_ports LMK2_SEL]
+
+#WR gtp ports
+set_property PACKAGE_PIN AA13 [get_ports WR_PTP_CLK0_125_IC_P]
+set_property PACKAGE_PIN AB13 [get_ports WR_PTP_CLK0_125_IC_N]
+set_property PACKAGE_PIN AC12 [get_ports WR_PTP_SFP_RD_P]
+set_property PACKAGE_PIN AD12 [get_ports WR_PTP_SFP_RD_N]
+set_property PACKAGE_PIN AC10 [get_ports WR_PTP_SFP_TD_P]
+set_property PACKAGE_PIN AD10 [get_ports WR_PTP_SFP_TD_N]
+#WR 2.5 PORTS
+set_property PACKAGE_PIN AB21    [get_ports WR_PTP_CLK1_125_P]
+set_property PACKAGE_PIN AC21    [get_ports WR_PTP_CLK1_125_N]
+set_property PACKAGE_PIN F4      [get_ports WR_PTP_CLK2_125_N]
+set_property PACKAGE_PIN G4      [get_ports WR_PTP_CLK2_125_P]
+set_property PACKAGE_PIN C4      [get_ports WR_PTP_CLK3_125_N]
+set_property PACKAGE_PIN D4      [get_ports WR_PTP_CLK3_125_P]
+set_property IOSTANDARD LVDS_25  [get_ports {WR_PTP_CLK1* WR_PTP_CLK2* WR_PTP_CLK3*}]
+set_property PACKAGE_PIN AA19    [get_ports WR_PTP_CLK0_20]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_CLK0_20]
+#WR 3.3 PORTS
+set_property PACKAGE_PIN N18  [get_ports WR_PTP_SFP_MOD_DEF2]
+set_property PACKAGE_PIN K25  [get_ports WR_PTP_SFP_MOD_DEF1]
+set_property PACKAGE_PIN K26  [get_ports WR_PTP_SFP_MOD_DEF0]
+set_property PACKAGE_PIN L22  [get_ports WR_PTP_CLK1_20]
+set_property PACKAGE_PIN M20  [get_ports WR_PTP_SFP_RATE_SEL]
+set_property PACKAGE_PIN R16  [get_ports WR_PTP_SFP_TX_FAULT]
+set_property PACKAGE_PIN R17  [get_ports WR_PTP_SFP_TX_DISABLE]
+set_property PACKAGE_PIN T24  [get_ports WR_PTP_SFP_LOS]
+set_property PACKAGE_PIN P26  [get_ports PTP_CLK3_OUT]
+set_property PACKAGE_PIN R26  [get_ports PTP_CLK2_OUT]
+set_property PACKAGE_PIN T25  [get_ports PTP_CLK1_OUT]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_SFP_MOD_DEF*]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_CLK1_20]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_SFP_RATE_SEL]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_SFP_TX_FAULT]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_SFP_TX_DISABLE]
+set_property IOSTANDARD LVCMOS25 [get_ports WR_PTP_SFP_LOS]
+set_property IOSTANDARD LVCMOS25 [get_ports PTP_CLK3_OUT]
+set_property IOSTANDARD LVCMOS25 [get_ports PTP_CLK2_OUT]
+set_property IOSTANDARD LVCMOS25 [get_ports PTP_CLK1_OUT]
 
 
+#PMODS
+set_property PACKAGE_PIN L23 [get_ports PMOD_B_PIN1]
+set_property PACKAGE_PIN M24 [get_ports PMOD_B_PIN2]
+set_property PACKAGE_PIN M22 [get_ports PMOD_B_PIN3]
+set_property PACKAGE_PIN N22 [get_ports PMOD_B_PIN4]
+
+set_property PACKAGE_PIN N19 [get_ports PMOD_B_PIN7]
+set_property PACKAGE_PIN P24 [get_ports PMOD_B_PIN8]
+set_property PACKAGE_PIN P25 [get_ports PMOD_B_PIN9]
+set_property PACKAGE_PIN N23 [get_ports PMOD_B_PIN10]
+
+set_property PACKAGE_PIN R25 [get_ports PMOD_A_PIN1]
+set_property PACKAGE_PIN P23 [get_ports PMOD_A_PIN2]
+set_property PACKAGE_PIN P21 [get_ports PMOD_A_PIN3]
+set_property PACKAGE_PIN P19 [get_ports PMOD_A_PIN4]
+
+set_property PACKAGE_PIN R20 [get_ports PMOD_A_PIN7]
+set_property PACKAGE_PIN R21 [get_ports PMOD_A_PIN8]
+set_property PACKAGE_PIN P15 [get_ports PMOD_A_PIN9]
+set_property PACKAGE_PIN P16 [get_ports PMOD_A_PIN10]
+set_property IOSTANDARD LVCMOS33 [get_ports PMOD*]
 
