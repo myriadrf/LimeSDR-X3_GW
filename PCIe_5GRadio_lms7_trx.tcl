@@ -457,14 +457,6 @@ set_property -name "pr_flow" -value "0" -objects $obj
 set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_user_files" -objects $obj
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "sim.use_ip_compiled_libs" -value "1" -objects $obj
-set_property -name "simulator.activehdl_install_dir" -value "" -objects $obj
-set_property -name "simulator.ies_install_dir" -value "" -objects $obj
-set_property -name "simulator.modelsim_install_dir" -value "" -objects $obj
-set_property -name "simulator.questa_install_dir" -value "" -objects $obj
-set_property -name "simulator.riviera_install_dir" -value "" -objects $obj
-set_property -name "simulator.vcs_install_dir" -value "" -objects $obj
-set_property -name "simulator.xcelium_install_dir" -value "" -objects $obj
-set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "source_mgmt_mode" -value "DisplayOnly" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
 set_property -name "target_simulator" -value "XSim" -objects $obj
@@ -4860,7 +4852,7 @@ proc cr_bd_mb_subsystem { parentCell } {
   ##################################################################
   set bCheckIPs 1
   if { $bCheckIPs == 1 } {
-     set list_check_ips "\ 
+     set list_check_ips "\
   xilinx.com:user:AXI_to_native_FIFO:1.0\
   xilinx.com:ip:axi_gpio:2.0\
   xilinx.com:ip:axi_amm_bridge:1.0\
@@ -4900,7 +4892,7 @@ proc cr_bd_mb_subsystem { parentCell } {
     return 3
   }
 
-  
+
 # Hierarchical cell: microblaze_0_local_memory
 proc create_hier_cell_microblaze_0_local_memory { parentCell nameHier } {
 
@@ -4990,7 +4982,7 @@ proc create_hier_cell_microblaze_0_local_memory { parentCell nameHier } {
   # Restore current instance
   current_bd_instance $oldCurInst
 }
-  
+
 # Hierarchical cell: CDCM_GPIO
 proc create_hier_cell_CDCM_GPIO { parentCell nameHier } {
 
@@ -5431,24 +5423,24 @@ proc create_hier_cell_CDCM_GPIO { parentCell nameHier } {
 
   validate_bd_design
   save_bd_design
-  close_bd_design $design_name 
+  close_bd_design $design_name
 }
 # End of cr_bd_mb_subsystem()
 cr_bd_mb_subsystem ""
-set_property EXCLUDE_DEBUG_LOGIC "0" [get_files mb_subsystem.bd ] 
-set_property GENERATE_SYNTH_CHECKPOINT "1" [get_files mb_subsystem.bd ] 
-set_property IS_ENABLED "1" [get_files mb_subsystem.bd ] 
-set_property IS_GLOBAL_INCLUDE "0" [get_files mb_subsystem.bd ] 
-set_property IS_LOCKED "0" [get_files mb_subsystem.bd ] 
-set_property LIBRARY "work" [get_files mb_subsystem.bd ] 
-set_property PATH_MODE "RelativeFirst" [get_files mb_subsystem.bd ] 
-set_property PFM_NAME "" [get_files mb_subsystem.bd ] 
-set_property REGISTERED_WITH_MANAGER "1" [get_files mb_subsystem.bd ] 
-set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files mb_subsystem.bd ] 
-set_property USED_IN "synthesis implementation simulation" [get_files mb_subsystem.bd ] 
-set_property USED_IN_IMPLEMENTATION "1" [get_files mb_subsystem.bd ] 
-set_property USED_IN_SIMULATION "1" [get_files mb_subsystem.bd ] 
-set_property USED_IN_SYNTHESIS "1" [get_files mb_subsystem.bd ] 
+set_property EXCLUDE_DEBUG_LOGIC "0" [get_files mb_subsystem.bd ]
+set_property GENERATE_SYNTH_CHECKPOINT "1" [get_files mb_subsystem.bd ]
+set_property IS_ENABLED "1" [get_files mb_subsystem.bd ]
+set_property IS_GLOBAL_INCLUDE "0" [get_files mb_subsystem.bd ]
+set_property IS_LOCKED "0" [get_files mb_subsystem.bd ]
+set_property LIBRARY "work" [get_files mb_subsystem.bd ]
+set_property PATH_MODE "RelativeFirst" [get_files mb_subsystem.bd ]
+set_property PFM_NAME "" [get_files mb_subsystem.bd ]
+set_property REGISTERED_WITH_MANAGER "1" [get_files mb_subsystem.bd ]
+set_property SYNTH_CHECKPOINT_MODE "Hierarchical" [get_files mb_subsystem.bd ]
+set_property USED_IN "synthesis implementation simulation" [get_files mb_subsystem.bd ]
+set_property USED_IN_IMPLEMENTATION "1" [get_files mb_subsystem.bd ]
+set_property USED_IN_SIMULATION "1" [get_files mb_subsystem.bd ]
+set_property USED_IN_SYNTHESIS "1" [get_files mb_subsystem.bd ]
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
