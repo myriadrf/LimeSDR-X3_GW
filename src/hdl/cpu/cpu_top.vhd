@@ -24,6 +24,7 @@ use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
 use work.axi_pkg.all;
 use work.cdcmcfg_pkg.all;
+use work.fircfg_pkg.all;  --B.J.
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -39,9 +40,10 @@ entity cpu_top is
       PERIPHCFG_START_ADDR : integer := 192;
       TAMERCFG_START_ADDR  : integer := 224;
       GNSSCFG_START_ADDR   : integer := 256;
-
+      FIRCFG_START_ADDRR   : integer := 288; -- B.J.
       RXTSPCFG_START_ADDR_3  : integer := 352; -- B.J.
-
+      FIRCFG_TX    : integer := 704;  -- B.J. (for Transmitter equaliser)
+      FIRCFG_RX    : integer := 704+32; -- B.J. (for Receiver equaliser)
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -144,8 +146,15 @@ entity cpu_top is
       from_txtspcfg_0      : out    t_FROM_TXTSPCFG;
       to_txtspcfg_1        : in     t_TO_TXTSPCFG;
       from_txtspcfg_1      : out    t_FROM_TXTSPCFG;
-      to_rxtspcfg          : in     t_TO_RXTSPCFG;
-      from_rxtspcfg        : out    t_FROM_RXTSPCFG;
+
+      --to_rxtspcfg          : in     t_TO_RXTSPCFG;
+      --from_rxtspcfg        : out    t_FROM_RXTSPCFG;
+
+      to_rxtspcfg_2a          : in     t_TO_RXTSPCFG;  -- B.J.
+      from_rxtspcfg_2a        : out    t_FROM_RXTSPCFG; -- B.J.
+      to_rxtspcfg_2b          : in     t_TO_RXTSPCFG; -- B.J.
+      from_rxtspcfg_2b        : out    t_FROM_RXTSPCFG; -- B.J.
+
       to_periphcfg         : in     t_TO_PERIPHCFG;
       from_periphcfg       : out    t_FROM_PERIPHCFG;
       to_tamercfg          : in     t_TO_TAMERCFG;
@@ -166,9 +175,12 @@ entity cpu_top is
       to_rxtspcfg_3a       : in  t_TO_RXTSPCFG;    -- B.J.
       from_rxtspcfg_3a     : out t_FROM_RXTSPCFG;  -- B.J.
       to_rxtspcfg_3b       : in  t_TO_RXTSPCFG;    -- B.J.
-      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG   -- B.J.
-      
+      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG;   -- B.J.
 
+      from_fircfg_tx_a     : out    t_FROM_FIRCFG; -- B.J.
+      from_fircfg_tx_b     : out    t_FROM_FIRCFG; -- B.J.
+      from_fircfg_rx_a     : out    t_FROM_FIRCFG; -- B.J.
+      from_fircfg_rx_b     : out    t_FROM_FIRCFG  -- B.J.
    );
 end cpu_top;
 
@@ -516,8 +528,9 @@ begin
       TAMERCFG_START_ADDR  => TAMERCFG_START_ADDR,
       GNSSCFG_START_ADDR   => GNSSCFG_START_ADDR,
 
-      RXTSPCFG_START_ADDR_3  => RXTSPCFG_START_ADDR_3  -- B.J.
-
+      RXTSPCFG_START_ADDR_3  => RXTSPCFG_START_ADDR_3,  -- B.J.
+      FIRCFG_TX    =>  FIRCFG_TX,  -- B.J. (for Transmitter)
+      FIRCFG_RX    =>  FIRCFG_RX -- B.J. (for Receiver)
       )
    port map(
       -- Serial port IOs
@@ -547,8 +560,15 @@ begin
       from_txtspcfg_0      => from_txtspcfg_0,
       to_txtspcfg_1        => to_txtspcfg_1,
       from_txtspcfg_1      => from_txtspcfg_1,
-      to_rxtspcfg          => to_rxtspcfg,
-      from_rxtspcfg        => from_rxtspcfg,
+      
+      -- to_rxtspcfg          => to_rxtspcfg,
+      -- from_rxtspcfg        => from_rxtspcfg,
+
+      to_rxtspcfg_2a          => to_rxtspcfg_2a, -- B.J.
+      from_rxtspcfg_2a        => from_rxtspcfg_2a, -- B.J.
+      to_rxtspcfg_2b          => to_rxtspcfg_2b, -- B.J.
+      from_rxtspcfg_2b        => from_rxtspcfg_2b, -- B.J.
+   
       to_periphcfg         => to_periphcfg,
       from_periphcfg       => from_periphcfg,
       to_tamercfg          => to_tamercfg,
@@ -562,7 +582,12 @@ begin
       to_rxtspcfg_3a          => to_rxtspcfg_3a,   -- B.J.
       from_rxtspcfg_3a        => from_rxtspcfg_3a, -- B.J.
       to_rxtspcfg_3b          => to_rxtspcfg_3b,   -- B.J.
-      from_rxtspcfg_3b        => from_rxtspcfg_3b  -- B.J.
+      from_rxtspcfg_3b        => from_rxtspcfg_3b,  -- B.J.
+
+      from_fircfg_tx_a        => from_fircfg_tx_a, -- B.J.
+      from_fircfg_tx_b        => from_fircfg_tx_b, -- B.J.
+      from_fircfg_rx_a        => from_fircfg_rx_a, -- B.J.
+      from_fircfg_rx_b        => from_fircfg_rx_b  -- B.J.
 
    );
    

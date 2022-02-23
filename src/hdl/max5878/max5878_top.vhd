@@ -19,6 +19,7 @@ LIBRARY altera_mf;
 use work.FIFO_PACK.all;
 use work.fpgacfg_pkg.all;
 use work.txtspcfg_pkg.all;
+USE work.fircfg_pkg.ALL; -- B.J.
 
 Library UNISIM;
 use UNISIM.vcomponents.all;
@@ -86,7 +87,10 @@ entity max5878_top is
       from_txtspcfg_0   : in  t_FROM_TXTSPCFG;
       to_txtspcfg_0     : out t_TO_TXTSPCFG;
       from_txtspcfg_1   : in  t_FROM_TXTSPCFG;
-      to_txtspcfg_1     : out t_TO_TXTSPCFG
+      to_txtspcfg_1     : out t_TO_TXTSPCFG;
+
+      from_fircfg_a : IN t_FROM_FIRCFG;  -- B.J.
+      from_fircfg_b : IN t_FROM_FIRCFG   -- B.J. 
 
    );
 end max5878_top;
@@ -205,6 +209,22 @@ signal smpl_cnt_en_reg  : std_logic;
       io_reset             : in std_logic
       );
    end component;
+
+   COMPONENT invsinc26 IS
+   PORT (
+      clk : IN STD_LOGIC; -- Clock
+      reset : IN STD_LOGIC; -- Reset
+      en : IN STD_LOGIC; -- Sleep mode control
+      x1 : IN STD_LOGIC_VECTOR(17 DOWNTO 0); -- Input
+      y1 : OUT STD_LOGIC_VECTOR(17 DOWNTO 0) -- Output
+   );
+   END COMPONENT invsinc26;
+
+   SIGNAL inst4_TYI_1, inst4_TYI_2, inst4_TYQ_1, inst4_TYQ_2, inst5_TYI_1, inst5_TYI_2, inst5_TYQ_1, inst5_TYQ_2 : STD_LOGIC_VECTOR(17 DOWNTO 0);
+   SIGNAL fir_out_ai, fir_out_aq, fir_out_bi, fir_out_bq : STD_LOGIC_VECTOR(21 DOWNTO 0);
+   SIGNAL inst1_AI, inst1_AQ, inst1_BI, inst1_BQ : STD_LOGIC_VECTOR(13 DOWNTO 0);
+   SIGNAL fir_out_ai_p, fir_out_aq_p, fir_out_bi_p, fir_out_bq_p : STD_LOGIC_VECTOR(15 DOWNTO 0);
+   SIGNAL fir_out_ai_dc, fir_out_aq_dc, fir_out_bi_dc, fir_out_bq_dc : STD_LOGIC_VECTOR(15 DOWNTO 0);
 
 
 begin
@@ -326,43 +346,177 @@ inst3_txiq_par : entity work.txiq_par
       nrst           => reset_n,
       TXI            => mux1_dac1_da & "00",
       TXQ            => mux1_dac1_db & "00",
-      TYI            => inst4_TYI,
+      TYI            => inst4_TYI, -- 16 bit
       TYQ            => inst4_TYQ,
       from_txtspcfg  => from_txtspcfg_0,
       to_txtspcfg    => to_txtspcfg_0
    );
+
+   inst4_TYI_1 <= inst4_TYI & "00"; -- 18 bit
+   inst4_TYQ_1 <= inst4_TYQ & "00"; -- 18 bit	
+
+   lab0 : invsinc26 PORT MAP(
+      clk => clk,
+      reset => reset_n,
+      en => '1',
+      x1 => inst4_TYI_1, 
+      y1 => inst4_TYI_2); -- 18 bit
+
+   lab1 : invsinc26 PORT MAP(
+      clk => clk,
+      reset => reset_n,
+      en => '1',
+      x1 => inst4_TYQ_1,
+      y1 => inst4_TYQ_2); -- 18 bit
+
+   -- ----------------------------------------------------------------------------
+   -- Ch A filters
+   -- ----------------------------------------------------------------------------
+   inst1_AI <= inst4_TYI_2(17 DOWNTO 4) when from_txtspcfg_0.isinc_byp='0' else inst4_TYI_1(17 DOWNTO 4); -- to 14 bit
+   inst1_AQ <= inst4_TYQ_2(17 DOWNTO 4) when from_txtspcfg_0.isinc_byp='0' else inst4_TYQ_1(17 DOWNTO 4);
+
+   AI_fir : ENTITY work.firfilt
+      GENERIC MAP(
+         g_IN_WIDTH => 14, -- Input data width
+         g_OUT_WIDTH => 22, -- Output data width
+         g_COEF_WIDTH => 18, -- Filter coeficients width      
+         g_N_TAP => 16 -- Filter order
+      )
+      PORT MAP(
+         clk => clk,
+         reset_n => reset_n,
+         en => reset_n,
+         from_fircfg => from_fircfg_a,
+         d => inst1_AI,
+         q => fir_out_ai,
+         q_valid => OPEN,
+         chI => '1'
+      );
+
+   -- 16 bit
+   fir_out_ai_p <= fir_out_ai(21 DOWNTO 6) when from_txtspcfg_0.gfir3_byp='0' else (inst1_AI&"00");
+   fir_out_ai_dc <= fir_out_ai_p;
    
+   AQ_fir : ENTITY work.firfilt
+   GENERIC MAP(
+      g_IN_WIDTH => 14, -- Input data width
+      g_OUT_WIDTH => 22, -- Output data width
+      g_COEF_WIDTH => 18, -- Filter coeficients width      
+      g_N_TAP => 16 -- Filter order
+   )
+   PORT MAP(
+      clk => clk,
+      reset_n => reset_n,
+      en => reset_n,
+      from_fircfg => from_fircfg_a,
+      d => inst1_AQ,
+      q => fir_out_aq,
+      q_valid => OPEN,
+      chI => '0'
+   );
+
+   -- 16 bit
+   fir_out_aq_p <= fir_out_aq(21 DOWNTO 6) when from_txtspcfg_0.gfir3_byp='0' else (inst1_AQ&"00");
+   fir_out_aq_dc <= fir_out_aq_p;
+   
+   ---------------   
    -- DAC2 (CH.B)
    inst5_tx_chain : entity work.tx_chain
    port map
    (
       clk            => clk,
       nrst           => reset_n,
-      TXI            => mux1_dac2_da & "00",
+      TXI            => mux1_dac2_da & "00", -- 18 bit
       TXQ            => mux1_dac2_db & "00",
-      TYI            => inst5_TYI,
+      TYI            => inst5_TYI, -- 16 bit
       TYQ            => inst5_TYQ,
       from_txtspcfg  => from_txtspcfg_1,
       to_txtspcfg    => to_txtspcfg_1
    );
-   
+
+   inst5_TYI_1 <= inst5_TYI & "00"; -- 18 bit
+   inst5_TYQ_1 <= inst5_TYQ & "00"; -- 18 bit
+
+   lab2 : invsinc26 PORT MAP(
+      clk => clk,
+      reset => reset_n,
+      en => '1',
+      x1 => inst5_TYI_1, 
+      y1 => inst5_TYI_2); -- 18 bit
+
+   lab3 : invsinc26 PORT MAP(
+      clk => clk,
+      reset => reset_n,
+      en => '1',
+      x1 => inst5_TYQ_1,
+      y1 => inst5_TYQ_2); -- 18 bit
+ -- ----------------------------------------------------------------------------
+   -- Ch B filters
+   -- ----------------------------------------------------------------------------
+   inst1_BI <= inst5_TYI_2(17 DOWNTO 4) when from_txtspcfg_1.isinc_byp='0' else inst5_TYI_1(17 DOWNTO 4); -- to 14 bits
+   inst1_BQ <= inst5_TYQ_2(17 DOWNTO 4) when from_txtspcfg_1.isinc_byp='0' else inst5_TYQ_1(17 DOWNTO 4);
+
+   BI_fir : ENTITY work.firfilt
+      GENERIC MAP(
+         g_IN_WIDTH => 14, -- Input data width
+         g_OUT_WIDTH => 22, -- Output data width
+         g_COEF_WIDTH => 18, -- Filter coeficients width       
+         g_N_TAP => 16 -- Filter order
+      )
+      PORT MAP(
+         clk => clk,
+         reset_n => reset_n,
+         en => reset_n,
+         from_fircfg => from_fircfg_b,
+         d => inst1_BI,
+         q => fir_out_bi,
+         q_valid => OPEN,
+         chI => '1'
+      );
+
+   -- 16 bit
+   fir_out_bi_p <= fir_out_bi(21 DOWNTO 6) when from_txtspcfg_1.gfir3_byp='0' else (inst1_BI&"00");
+   fir_out_bi_dc <= fir_out_bi_p;
+
+   BQ_fir : ENTITY work.firfilt
+   GENERIC MAP(
+      g_IN_WIDTH => 14, -- Input data width
+      g_OUT_WIDTH => 22, -- Output data width
+      g_COEF_WIDTH => 18, -- Filter coeficients width      
+      g_N_TAP => 16 -- Filter order
+   )
+   PORT MAP(
+      clk => clk,
+      reset_n => reset_n,
+      en => reset_n,
+      from_fircfg => from_fircfg_b,
+      d => inst1_BQ,
+      q => fir_out_bq,
+      q_valid => OPEN,
+      chI => '0'
+   );
+
+-- 16 bit
+fir_out_bq_p <= fir_out_bq(21 DOWNTO 6) when from_txtspcfg_1.gfir3_byp='0' else (inst1_BQ&"00");
+fir_out_bq_dc <= fir_out_bq_p;
+     
 -- ----------------------------------------------------------------------------
 -- Converting signed to unsigned samples
 -- ---------------------------------------------------------------------------- 
-   to_unsigned_proc : process(clk, reset_n)
-   begin
-      if reset_n = '0' then 
-         DAC1_DA_unsigned <= (others => '0');
-         DAC1_DB_unsigned <= (others => '0');
-         DAC2_DA_unsigned <= (others => '0');
-         DAC2_DB_unsigned <= (others => '0');
-      elsif (clk'event AND clk='1') then 
-         DAC1_DA_unsigned <= std_logic_vector(signed(inst4_TYI)+8192);
-         DAC1_DB_unsigned <= std_logic_vector(signed(inst4_TYQ)+8192);
-         DAC2_DA_unsigned <= std_logic_vector(signed(inst5_TYI)+8192);
-         DAC2_DB_unsigned <= std_logic_vector(signed(inst5_TYQ)+8192);
-      end if;
-   end process;
+ --  to_unsigned_proc : process(clk, reset_n)
+ --  begin
+ --     if reset_n = '0' then 
+ --        DAC1_DA_unsigned <= (others => '0');
+ --        DAC1_DB_unsigned <= (others => '0');
+ --        DAC2_DA_unsigned <= (others => '0');
+ --        DAC2_DB_unsigned <= (others => '0');
+ --    elsif (clk'event AND clk='1') then 
+ --        DAC1_DA_unsigned <= std_logic_vector(signed(inst4_TYI)+8192);
+ --        DAC1_DB_unsigned <= std_logic_vector(signed(inst4_TYQ)+8192);
+ --        DAC2_DA_unsigned <= std_logic_vector(signed(inst5_TYI)+8192);
+ --        DAC2_DB_unsigned <= std_logic_vector(signed(inst5_TYQ)+8192);
+ --    end if;
+ --  end process;
    
 -- ----------------------------------------------------------------------------
 -- DAC IO modules
@@ -377,7 +531,8 @@ inst3_txiq_par : entity work.txiq_par
       clk                  => clk2x,
       clk_div              => clk,
       clk_fwd              => clkfwd,
-      data_out_from_device => inst4_TYQ & inst4_TYI,
+      -- data_out_from_device => inst4_TYQ & inst4_TYI,
+      data_out_from_device => fir_out_aq_dc & fir_out_ai_dc, -- B.J.
       data_out_to_pins_p   => DAC1_B_P,
       data_out_to_pins_n   => DAC1_B_N,
       seliq_to_pins_p      => DAC1_SELIQ_P,
@@ -398,7 +553,8 @@ inst3_txiq_par : entity work.txiq_par
       clk                  => clk2x,
       clk_div              => clk,
       clk_fwd              => clkfwd,
-      data_out_from_device => inst5_TYQ & inst5_TYI,
+      -- data_out_from_device => inst5_TYQ & inst5_TYI,
+      data_out_from_device => fir_out_bq_dc & fir_out_bi_dc, -- B.J.
       data_out_to_pins_p   => DAC2_B_P,
       data_out_to_pins_n   => DAC2_B_N,
       seliq_to_pins_p      => DAC2_SELIQ_P,

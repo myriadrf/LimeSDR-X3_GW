@@ -20,7 +20,9 @@ port
 		en		: in std_logic;
 		byp	: in std_logic;
 		x		: in std_logic_vector (15 downto 0);
-		dc		: in std_logic_vector (7 downto 0);
+		-- dc		: in std_logic_vector (7 downto 0);
+		-- B.J.
+		dc		: in std_logic_vector (15 downto 0);
 		y		: out std_logic_vector (15 downto 0)
 	);
 end dccorr;

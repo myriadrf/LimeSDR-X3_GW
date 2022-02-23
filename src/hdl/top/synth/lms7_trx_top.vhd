@@ -28,6 +28,7 @@ use work.io_buff_pkg.all;
 use work.axi_pkg.all;
 
 use work.litepcie_pkg.all; -- B.J.
+use work.fircfg_pkg.all; -- B.J.
 
 --library altera; 
 --use altera.altera_primitives_components.all;
@@ -83,6 +84,9 @@ entity lms7_trx_top is
       g_CFR1CFG_START_ADDR   : integer := 512;  -- B.J.
       g_FIR0CFG_START_ADDR   : integer := 576;  -- B.J.
       g_FIR1CFG_START_ADDR   : integer := 640;  -- B.J.
+
+      g_FIRCFG_TX_START_ADDR    : integer := 704;  -- B.J. (LMS#2 equaliser, for Transmitter)
+      g_FIRCFG_RX_START_ADDR    : integer := 704+32; -- B.J. (LMS#2 equaliser, for Receiver)
 
       g_MEMCFG_START_ADDR     : integer := 65504;
       -- External periphery
@@ -467,8 +471,11 @@ signal inst0_from_txtspcfg_0     : t_FROM_TXTSPCFG;
 signal inst0_to_txtspcfg_0       : t_TO_TXTSPCFG;
 signal inst0_from_txtspcfg_1     : t_FROM_TXTSPCFG;
 signal inst0_to_txtspcfg_1       : t_TO_TXTSPCFG;
-signal inst0_from_rxtspcfg       : t_FROM_RXTSPCFG;
-signal inst0_to_rxtspcfg         : t_TO_RXTSPCFG;
+--signal inst0_from_rxtspcfg       : t_FROM_RXTSPCFG;
+--signal inst0_to_rxtspcfg         : t_TO_RXTSPCFG;
+signal inst0_from_rxtspcfg_2a, inst0_from_rxtspcfg_2b : t_FROM_RXTSPCFG; -- B.J.
+signal inst0_to_rxtspcfg_2a, inst0_to_rxtspcfg_2b : t_TO_RXTSPCFG; -- B.J.
+
 signal inst0_from_periphcfg      : t_FROM_PERIPHCFG;
 signal inst0_to_periphcfg        : t_TO_PERIPHCFG;
 signal inst0_from_tamercfg       : t_FROM_TAMERCFG;
@@ -863,6 +870,10 @@ signal inst0_from_rxtspcfg_3a : t_FROM_RXTSPCFG;  -- B.J.
 signal inst0_to_rxtspcfg_3b : t_TO_RXTSPCFG;    -- B.J.
 signal inst0_from_rxtspcfg_3b : t_FROM_RXTSPCFG;   -- B.J.  
 signal dpd_tx_en, dpd_capture_en, reset_n_soft: std_logic; --B.J.
+signal inst0_from_fircfg_tx_a       : t_FROM_FIRCFG; -- B.J.
+signal inst0_from_fircfg_tx_b       : t_FROM_FIRCFG; -- B.J.
+signal inst0_from_fircfg_rx_a       : t_FROM_FIRCFG; -- B.J.
+signal inst0_from_fircfg_rx_b       : t_FROM_FIRCFG; -- B.J.
       
 -- end B.J.
 
@@ -1006,7 +1017,9 @@ begin
       TAMERCFG_START_ADDR  => g_TAMERCFG_START_ADDR,
       GNSSCFG_START_ADDR   => g_GNSSCFG_START_ADDR,
       MEMCFG_START_ADDR    => g_MEMCFG_START_ADDR,
-      RXTSPCFG_START_ADDR_3  => g_RXTSPCFG_START_ADDR_3 -- B.J.
+      RXTSPCFG_START_ADDR_3  => g_RXTSPCFG_START_ADDR_3, -- B.J.
+      FIRCFG_TX => g_FIRCFG_TX_START_ADDR,  -- B.J. (for Transmitter side equaliser)
+      FIRCFG_RX => g_FIRCFG_RX_START_ADDR   -- B.J. (for Receiver side equaliser)
    )
    port map(
       clk                        => CLK100_FPGA,
@@ -1104,8 +1117,14 @@ begin
       to_txtspcfg_0              => inst0_to_txtspcfg_0, 
       from_txtspcfg_1            => inst0_from_txtspcfg_1,
       to_txtspcfg_1              => inst0_to_txtspcfg_1, 
-      from_rxtspcfg              => inst0_from_rxtspcfg,
-      to_rxtspcfg                => inst0_to_rxtspcfg,      
+
+      --from_rxtspcfg              => inst0_from_rxtspcfg,
+      --to_rxtspcfg                => inst0_to_rxtspcfg,
+      from_rxtspcfg_2a              => inst0_from_rxtspcfg_2a, -- B.J.
+      to_rxtspcfg_2a                => inst0_to_rxtspcfg_2a,
+      from_rxtspcfg_2b              => inst0_from_rxtspcfg_2b,
+      to_rxtspcfg_2b                => inst0_to_rxtspcfg_2b,          
+      
       from_periphcfg             => inst0_from_periphcfg,
       to_periphcfg               => inst0_to_periphcfg,
       from_tamercfg              => inst0_from_tamercfg,
@@ -1124,8 +1143,11 @@ begin
       to_rxtspcfg_3a          => inst0_to_rxtspcfg_3a,   -- B.J.
       from_rxtspcfg_3a        => inst0_from_rxtspcfg_3a, -- B.J.
       to_rxtspcfg_3b          => inst0_to_rxtspcfg_3b,   -- B.J.
-      from_rxtspcfg_3b        => inst0_from_rxtspcfg_3b  -- B.J.
-   
+      from_rxtspcfg_3b        => inst0_from_rxtspcfg_3b, -- B.J.
+      from_fircfg_tx_a        => inst0_from_fircfg_tx_a, -- B.J.
+      from_fircfg_tx_b        => inst0_from_fircfg_tx_b, -- B.J.
+      from_fircfg_rx_a        => inst0_from_fircfg_rx_a, -- B.J.
+      from_fircfg_rx_b        => inst0_from_fircfg_rx_b  -- B.J.    
    );
    
    
@@ -1854,7 +1876,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       inst0_from_fpgacfg_mod_1.rx_en  <= inst0_from_fpgacfg_1.rx_en AND inst2_F2H_S1_open;
    end process;
    
-   inst10_adc1_top : entity work.adc_top
+   --inst10_adc1_top : entity work.adc_top
+   inst10_adc1_top : entity work.adc_top_equaliser
    generic map( 
       dev_family           => g_DEV_FAMILY,
       data_width           => 7,
@@ -1864,7 +1887,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       clk               => lms2_bb_adc1_clkout,
       clk_io            => lms2_bb_adc1_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en,      
+      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en
+                                 OR dpd_tx_en,  -- B.J.           
       ch_a              => lms2_bb_adc1_da,
       ch_b              => lms2_bb_adc1_db,     
       --SDR parallel output data
@@ -1874,14 +1898,13 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       data_ch_ab        => inst10_adc1_rx_data,
       data_ch_ab_valid  => inst10_adc1_rx_data_valid,
       test_out          => open,
-      to_rxtspcfg       => inst0_to_rxtspcfg,
-      from_rxtspcfg     => inst0_from_rxtspcfg,
-      
-      RYI  => open,  -- B.J.
-      RYQ  => open
+      to_rxtspcfg       => inst0_to_rxtspcfg_2a,
+      from_rxtspcfg     => inst0_from_rxtspcfg_2a,
+      from_fircfg       => inst0_from_fircfg_rx_a -- B.J.
    );
    
-   inst10_adc2_top : entity work.adc_top
+   --inst10_adc2_top : entity work.adc_top
+   inst10_adc2_top : entity work.adc_top_equaliser
    generic map( 
       dev_family           => g_DEV_FAMILY,
       data_width           => 7,
@@ -1891,7 +1914,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       clk               => lms2_bb_adc2_clkout,
       clk_io            => lms2_bb_adc2_clkout,
       reset_n           => reset_n,
-      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en,      
+      en                => inst0_from_fpgacfg_mod_1.rx_en OR inst0_from_fpgacfg_mod_1.dlb_en
+                                       OR dpd_tx_en,  -- B.J      
       ch_a              => lms2_bb_adc2_da,
       ch_b              => lms2_bb_adc2_db,     
       --SDR parallel output data
@@ -1901,11 +1925,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       data_ch_ab        => inst10_adc2_rx_data,
       data_ch_ab_valid  => inst10_adc2_rx_data_valid,
       test_out          => open,
-      to_rxtspcfg       => open,
-      from_rxtspcfg     => inst0_from_rxtspcfg,
-      
-      RYI  => open, -- B.J.
-      RYQ  => open
+      to_rxtspcfg       => inst0_to_rxtspcfg_2b,
+      from_rxtspcfg     => inst0_from_rxtspcfg_2b,
+      from_fircfg       => inst0_from_fircfg_rx_b -- B.J.
    );
    
    inst10: entity work.chnl_combine
@@ -1986,8 +2008,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en,
 
-      ext_rx_en => '0',
-      tx_dma_en => inst2_s1_dma_en  
+       -- ext_rx_en => '0',
+       ext_rx_en => dpd_tx_en,  -- B.J.      
+
+       tx_dma_en => inst2_s1_dma_en  
    );   
 
 
@@ -2251,7 +2275,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => '1',
 
-      ext_rx_en =>  '0',
+      --ext_rx_en =>  '0',
+      ext_rx_en =>  '0', -- not for now: dpd_tx_en,  -- B.J.
+
       tx_dma_en => inst2_s2_dma_en   
    
    );
@@ -2328,7 +2354,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       clk                  => inst1_pll_1_c1,
       clk2x                => inst1_pll_1_c0,
       clkfwd               => inst1_pll_1_c2,
-      reset_n              => reset_n and inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en,
+      --reset_n              => reset_n and inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en,
+      reset_n              => reset_n and inst1_pll_1_locked and (inst0_from_fpgacfg_mod_1.rx_en 
+                                                             OR dpd_tx_en), --B.J.
       --DAC#1 Outputs
       DAC1_CLK_P           => FPGA_LMS2_BB_DAC1_CLK_P,
       DAC1_CLK_N           => FPGA_LMS2_BB_DAC1_CLK_N,
@@ -2352,11 +2380,17 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       DAC2_XOR_P           => open, --LMS2_BB_DAC2_XOR_P,
       DAC2_XOR_N           => open, --LMS2_BB_DAC2_XOR_N,
       -- Internal TX ports
-      tx_reset_n           => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
+      --tx_reset_n           => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
+      tx_reset_n           => inst1_pll_1_locked and (inst0_from_fpgacfg_mod_1.rx_en 
+                                                   OR dpd_tx_en), -- B.J.
+   
       tx_src_sel           => inst12_tx_src_sel,
       -- tx0 source for DAC
       tx0_wrclk            => inst1_pll_1_c1,--inst1_pll_0_c1,
-      tx0_reset_n          => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
+      -- tx0_reset_n          => inst1_pll_1_locked and inst0_from_fpgacfg_mod_1.rx_en, --inst1_pll_0_locked and 
+      tx0_reset_n          => inst1_pll_1_locked and (inst0_from_fpgacfg_mod_1.rx_en 
+                                                OR dpd_tx_en), -- B.J.
+  
       tx0_wrfull           => inst12_tx0_wrfull,
       tx0_wrusedw          => inst12_tx0_wrusedw,
       tx0_wrreq            => inst9_tx_smpl_fifo_wrreq,
@@ -2367,7 +2401,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
       to_txtspcfg_1        => inst0_to_txtspcfg_1,
-      smpl_cnt_en          => inst12_smpl_cnt_en
+      smpl_cnt_en          => inst12_smpl_cnt_en,
+            
+      from_fircfg_a        => inst0_from_fircfg_tx_a,  -- B.J.
+      from_fircfg_b        => inst0_from_fircfg_tx_b   -- B.J.
    );
    
    

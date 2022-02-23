@@ -37,8 +37,10 @@ signal sen_int : std_logic;
    
 --inst0 signals
 signal inst0_dc_byp     : std_logic;
-signal inst0_dccorri    : std_logic_vector(7 downto 0);
-signal inst0_dccorrq    : std_logic_vector(7 downto 0);
+--signal inst0_dccorri    : std_logic_vector(7 downto 0);
+--signal inst0_dccorrq    : std_logic_vector(7 downto 0);
+signal inst0_dccorri    : std_logic_vector(15 downto 0); -- B.J.
+signal inst0_dccorrq    : std_logic_vector(15 downto 0); -- B.J.
 signal inst0_gc_byp     : std_logic;
 signal inst0_gcorri     : std_logic_vector(10 downto 0);
 signal inst0_gcorrq     : std_logic_vector(10 downto 0);
@@ -123,72 +125,74 @@ component dccorr
       nrst  : in std_logic;
       en    : in std_logic;
       byp   : in std_logic;
-      dc    : in std_logic_vector(7 downto 0);
+      -- dc   : in std_logic_vector(7 downto 0);
+      -- B.J.
+      dc    : in std_logic_vector(15 downto 0);
       x     : in std_logic_vector(15 downto 0);
       y     : out std_logic_vector(15 downto 0)
    );
 end component;
 
-component pulse_gen
-   port(
-      clk         : in std_logic;
-      reset_n     : in std_logic;
-      n           : in std_logic_vector(7 downto 0);
-      pulse_out   : out std_logic
-   );
-end component;
+--component pulse_gen
+--   port(
+--      clk         : in std_logic;
+--      reset_n     : in std_logic;
+--      n           : in std_logic_vector(7 downto 0);
+--      pulse_out   : out std_logic
+--   );
+--end component;
 
-component txtspcfg
-   port(
-      mimo_en     : in std_logic;
-      sdin        : in std_logic;
-      sclk        : in std_logic;
-      sen         : in std_logic;
-      lreset      : in std_logic;
-      mreset      : in std_logic;
-      txen        : in std_logic;
-      bstate      : in std_logic;
-      bsigi       : in std_logic_vector(22 downto 0);
-      bsigq       : in std_logic_vector(22 downto 0);
-      maddress    : in std_logic_vector(9 downto 0);
-      sdout       : out std_logic;
-      oen         : out std_logic;
-      en          : out std_logic;
-      insel       : out std_logic;
-      ph_byp      : out std_logic;
-      gc_byp      : out std_logic;
-      gfir1_byp   : out std_logic;
-      gfir2_byp   : out std_logic;
-      gfir3_byp   : out std_logic;
-      dc_byp      : out std_logic;
-      isinc_byp   : out std_logic;
-      cmix_sc     : out std_logic;
-      cmix_byp    : out std_logic;
-      bstart      : out std_logic;
-      tsgdcldq    : out std_logic;
-      tsgdcldi    : out std_logic;
-      tsgswapiq   : out std_logic;
-      tsgmode     : out std_logic;
-      tsgfc       : out std_logic;
-      cmix_gain   : out std_logic_vector(2 downto 0);
-      dc_reg      : out std_logic_vector(15 downto 0);
-      dccorri     : out std_logic_vector(7 downto 0);
-      dccorrq     : out std_logic_vector(7 downto 0);
-      gcorri      : out std_logic_vector(10 downto 0);
-      gcorrq      : out std_logic_vector(10 downto 0);
-      gfir1l      : out std_logic_vector(2 downto 0);
-      gfir1n      : out std_logic_vector(7 downto 0);
-      gfir2l      : out std_logic_vector(2 downto 0);
-      gfir2n      : out std_logic_vector(7 downto 0);
-      gfir3l      : out std_logic_vector(2 downto 0);
-      gfir3n      : out std_logic_vector(7 downto 0);
-      iqcorr      : out std_logic_vector(11 downto 0);
-      nco_fcv     : out std_logic_vector(31 downto 0);
-      ovr         : out std_logic_vector(2 downto 0);
-      stateo      : out std_logic_vector(5 downto 0);
-      tsgfcw      : out std_logic_vector(8 downto 7)
-   );
-end component;
+--component txtspcfg
+--   port(
+--      mimo_en     : in std_logic;
+--      sdin        : in std_logic;
+--      sclk        : in std_logic;
+--      sen         : in std_logic;
+--      lreset      : in std_logic;
+--      mreset      : in std_logic;
+--      txen        : in std_logic;
+--      bstate      : in std_logic;
+--      bsigi       : in std_logic_vector(22 downto 0);
+--      bsigq       : in std_logic_vector(22 downto 0);
+--      maddress    : in std_logic_vector(9 downto 0);
+--      sdout       : out std_logic;
+--      oen         : out std_logic;
+--      en          : out std_logic;
+--      insel       : out std_logic;
+--      ph_byp      : out std_logic;
+--      gc_byp      : out std_logic;
+--      gfir1_byp   : out std_logic;
+--      gfir2_byp   : out std_logic;
+--      gfir3_byp   : out std_logic;
+--      dc_byp      : out std_logic;
+--      isinc_byp   : out std_logic;
+--      cmix_sc     : out std_logic;
+--      cmix_byp    : out std_logic;
+--      bstart      : out std_logic;
+--      tsgdcldq    : out std_logic;
+--      tsgdcldi    : out std_logic;
+--      tsgswapiq   : out std_logic;
+--      tsgmode     : out std_logic;
+--      tsgfc       : out std_logic;
+--      cmix_gain   : out std_logic_vector(2 downto 0);
+--      dc_reg      : out std_logic_vector(15 downto 0);
+--      dccorri     : out std_logic_vector(7 downto 0);
+--      dccorrq     : out std_logic_vector(7 downto 0);
+--      gcorri      : out std_logic_vector(10 downto 0);
+--      gcorrq      : out std_logic_vector(10 downto 0);
+--      gfir1l      : out std_logic_vector(2 downto 0);
+--      gfir1n      : out std_logic_vector(7 downto 0);
+--      gfir2l      : out std_logic_vector(2 downto 0);
+--      gfir2n      : out std_logic_vector(7 downto 0);
+--      gfir3l      : out std_logic_vector(2 downto 0);
+--      gfir3n      : out std_logic_vector(7 downto 0);
+--      iqcorr      : out std_logic_vector(11 downto 0);
+--      nco_fcv     : out std_logic_vector(31 downto 0);
+--      ovr         : out std_logic_vector(2 downto 0);
+--      stateo      : out std_logic_vector(5 downto 0);
+--      tsgfcw      : out std_logic_vector(8 downto 7)
+--   );
+--end component;
 
 begin 
 
@@ -277,7 +281,7 @@ end process;
 -- ----------------------------------------------------------------------------
 -- Gain correctors 
 -- ----------------------------------------------------------------------------
-gcorr_inst2 : gcorr
+gcorr_inst2 : gcorr  -- 18 bit
 port map(
    clk   => clk,
    nrst  => nrst,
@@ -288,7 +292,7 @@ port map(
    y     => inst2_y
    );
 
-gcorr_inst3 : gcorr
+gcorr_inst3 : gcorr  -- 18 bit
 port map(
    clk   => clk,
    nrst  => nrst,
@@ -317,7 +321,7 @@ port map(
 -- ----------------------------------------------------------------------------
 -- DC correctors 
 -- ----------------------------------------------------------------------------
-dccorr_inst5 : dccorr
+dccorr_inst5 : dccorr -- 16 bit
 port map(
    clk   => clk,
    nrst  => nrst,
@@ -329,7 +333,7 @@ port map(
    );
 
 
-dccorr_inst6 : dccorr
+dccorr_inst6 : dccorr -- 16 bit
 port map(
    clk   => clk,
    nrst  => nrst,
