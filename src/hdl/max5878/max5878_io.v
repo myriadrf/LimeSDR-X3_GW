@@ -93,6 +93,16 @@ module max5878_io
   
   wire seliq_to_pins;
   
+  reg[15:0] data_out_from_device_reg;
+  wire[31:0] data_out_from_device_mod;
+  
+  always @(posedge clk_div) begin
+    data_out_from_device_reg = data_out_from_device[15:0];
+  end
+  assign data_out_from_device_mod[15:0] = INV_IQSEL ? data_out_from_device_reg : data_out_from_device[15:0];
+  assign data_out_from_device_mod[31:16] = data_out_from_device[31:16];
+  
+  
   assign clk_in_int_buf =  clk;
   //assign clk_div = clk_out2;
   
@@ -163,7 +173,7 @@ module max5878_io
      for (slice_count = 0; slice_count < num_serial_bits; slice_count = slice_count + 1) begin: out_slices
         // This places the first data in time on the right
         assign oserdes_d[14-slice_count-1] =
-           data_out_from_device[slice_count*SYS_W+:SYS_W];
+           data_out_from_device_mod[slice_count*SYS_W+:SYS_W];
         // To place the first data in time on the left, use the
         //   following code, instead
         // assign oserdes_d[slice_count] =
