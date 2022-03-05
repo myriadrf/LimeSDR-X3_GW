@@ -1,0 +1,11 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               16M
+Start Address      0x00000000
+End Address        0x00FFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x00947A5B    Mar  5 17:45:21 2022    /home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
