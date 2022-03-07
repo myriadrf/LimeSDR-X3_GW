@@ -205,13 +205,16 @@ begin
    from_txtspcfg.ovr         <= mem(3)(14 downto 12);
    
    --0x4
-   from_txtspcfg.dccorri     <= mem(4)(15 downto 8);
-   from_txtspcfg.dccorrq     <= mem(4)(7 downto 0);
+   --from_txtspcfg.dccorri     <= mem(4)(15 downto 8); -- B.J.
+   --from_txtspcfg.dccorrq     <= mem(4)(7 downto 0); -- B.J.
    
    --0x5
-   from_txtspcfg.gfir1l      <= mem(5)(10 downto 8);
-   from_txtspcfg.gfir1n      <= mem(5)(7 downto 0);
+   from_txtspcfg.gfir1l      <= (others => '0'); --mem(5)(10 downto 8); -- B.J.
+   from_txtspcfg.gfir1n      <= (others => '0'); --mem(5)(7 downto 0); -- B.J.
    
+   -- B.J.
+   from_txtspcfg.dccorri     <= mem(4)(15 downto 0);
+   from_txtspcfg.dccorrq     <= mem(5)(15 downto 0);   
    --0x6
    from_txtspcfg.gfir2l      <= mem(6)(10 downto 8);
    from_txtspcfg.gfir2n      <= mem(6)(7 downto 0);

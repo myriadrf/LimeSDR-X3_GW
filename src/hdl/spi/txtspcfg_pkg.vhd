@@ -25,8 +25,12 @@ package txtspcfg_pkg is
       gcorri      : std_logic_vector(10 downto 0);
       gcorrq      : std_logic_vector(10 downto 0);
       iqcorr      : std_logic_vector(11 downto 0);
-      dccorri     : std_logic_vector(7 downto 0);
-      dccorrq     : std_logic_vector(7 downto 0);
+
+      --dccorri     : std_logic_vector(7 downto 0);
+      --dccorrq     : std_logic_vector(7 downto 0);
+      dccorri     : std_logic_vector(15 downto 0); -- B.J.
+      dccorrq     : std_logic_vector(15 downto 0); -- B.J.
+
       ovr         : std_logic_vector(2 downto 0);	--HBI interpolation ratio 
       gfir1l      : std_logic_vector(2 downto 0);    --Length of GPFIR1
       gfir1n      : std_logic_vector(7 downto 0);    --Clock division ratio of GPFIR1

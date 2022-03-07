@@ -23,6 +23,8 @@ use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
 use work.cdcmcfg_pkg.all;
 
+use work.fircfg_pkg.all; -- B.J.
+
 -- ----------------------------------------------------------------------------
 -- Entity declaration
 -- ----------------------------------------------------------------------------
@@ -38,7 +40,11 @@ entity cfg_top is
       TAMERCFG_START_ADDR  : integer := 224;
       GNSSCFG_START_ADDR   : integer := 256;
       CDCMCFG_START_ADDR   : integer := 320;
+   
       RXTSPCFG_START_ADDR_3  : integer := 352; -- B.J.
+      FIRCFG_TX    : integer := 704;  -- BJ (for Transmitter)
+      FIRCFG_RX    : integer := 704+32; -- BJ (for Receiver)
+
       MEMCFG_START_ADDR    : integer := 65504
       );
    port (
@@ -71,8 +77,14 @@ entity cfg_top is
       from_txtspcfg_0      : out t_FROM_TXTSPCFG;  
       to_txtspcfg_1        : in  t_TO_TXTSPCFG;
       from_txtspcfg_1      : out t_FROM_TXTSPCFG; 
-      to_rxtspcfg          : in  t_TO_RXTSPCFG;
-      from_rxtspcfg        : out t_FROM_RXTSPCFG;    
+      --to_rxtspcfg          : in  t_TO_RXTSPCFG;
+      --from_rxtspcfg        : out t_FROM_RXTSPCFG;
+
+      to_rxtspcfg_2a          : in  t_TO_RXTSPCFG; -- B.J.
+      from_rxtspcfg_2a        : out t_FROM_RXTSPCFG;  -- B.J.       
+      to_rxtspcfg_2b          : in  t_TO_RXTSPCFG; -- B.J.
+      from_rxtspcfg_2b        : out t_FROM_RXTSPCFG;  -- B.J. 
+
       to_periphcfg         : in  t_TO_PERIPHCFG;
       from_periphcfg       : out t_FROM_PERIPHCFG;
       to_tamercfg          : in  t_TO_TAMERCFG;
@@ -86,7 +98,9 @@ entity cfg_top is
       to_rxtspcfg_3a       : in  t_TO_RXTSPCFG;    -- B.J.
       from_rxtspcfg_3a     : out t_FROM_RXTSPCFG;  -- B.J.
       to_rxtspcfg_3b       : in  t_TO_RXTSPCFG;    -- B.J.
-      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG   -- B.J.
+      from_rxtspcfg_3b     : out t_FROM_RXTSPCFG;   -- B.J.
+      from_fircfg_tx_a, from_fircfg_tx_b : out t_FROM_FIRCFG;  -- B.J.
+      from_fircfg_rx_a, from_fircfg_rx_b : out t_FROM_FIRCFG   -- B.J.
    );
 end cfg_top;
 
@@ -122,8 +136,8 @@ signal inst4_1_sen     : std_logic;
 signal inst4_1_sdout   : std_logic;
 
 --inst5
-signal inst5_sen     : std_logic;
-signal inst5_sdout   : std_logic;
+signal inst5_sen, inst5_sen_b     : std_logic;
+signal inst5_sdout, inst5_sdout_b   : std_logic;
 
 --inst6
 signal inst6_sdout   : std_logic;
@@ -140,6 +154,8 @@ signal inst255_to_memcfg     : t_TO_MEMCFG;
 signal inst255_from_memcfg   : t_FROM_MEMCFG;
 
 signal inst9_sen, inst9_sdout, inst10_sen, inst10_sdout : std_logic;  -- B.J.
+signal inst11_sen_a, inst11_sen_b, inst12_sen_a, inst12_sen_b: std_logic;  -- B.J.
+signal inst11_sdout_a, inst11_sdout_b, inst12_sdout_a, inst12_sdout_b: std_logic; -- B.J.
 
 begin
 
@@ -339,8 +355,30 @@ begin
       mreset               => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
       oen                  => open,
       stateo               => open,    
-      to_rxtspcfg          => to_rxtspcfg,
-      from_rxtspcfg        => from_rxtspcfg
+      to_rxtspcfg          => to_rxtspcfg_2a,
+      from_rxtspcfg        => from_rxtspcfg_2a
+   );
+
+   inst5_sen_b <= sen when inst255_from_memcfg.mac(1)='1' else '1';
+   
+   inst5_rxtspcfg_b : entity work.rxtspcfg
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress             => std_logic_vector(to_unsigned(RXTSPCFG_START_ADDR/32,10)),
+      mimo_en              => '1',   
+      -- Serial port IOs
+      sdin                 => sdin,
+      sclk                 => sclk,
+      sen                  => inst5_sen_b,
+      sdout                => inst5_sdout_b,  
+      -- Signals coming from the pins or top level serial interface
+      lreset               => lreset,   -- Logic reset signal, resets logic cells only  (use only one reset)
+      mreset               => mreset,   -- Memory reset signal, resets configuration memory only (use only one reset)      
+      oen                  => open,
+      stateo               => open,    
+      to_rxtspcfg          => to_rxtspcfg_2b,
+      from_rxtspcfg        => from_rxtspcfg_2b
    );
    
 -- ----------------------------------------------------------------------------
@@ -533,13 +571,103 @@ port map(
 );
 ----- end B.J.
 
+----------------------------------------------------------------
+--- B.J.
+inst11_sen_a <= sen when inst255_from_memcfg.mac(0)='1' else '1';    
+inst11_fircfg_a : entity work.fircfg
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress       => std_logic_vector(to_unsigned(FIRCFG_TX/32,10)),
+      mimo_en        => '1', -- MIMO enable, from TOP SPI
+   
+      -- Serial port IOs
+      sdin           => sdin, -- Data in
+      sclk           => sclk, -- Data clock
+      sen            => inst11_sen_a,  -- Enable signal (active low)
+      sdout          => inst11_sdout_a,   -- Data out
+      -- Signals coming from the pins or top level serial interface
+      lreset         => lreset, -- Logic reset signal, resets logic cells only
+      mreset         => mreset, -- Memory reset signal, resets configuration memory only    
+      oen            => open,
+      stateo         => open,      
+      from_fircfg  => from_fircfg_tx_a -- B.J.
+);
+
+inst11_sen_b <= sen when inst255_from_memcfg.mac(1)='1' else '1';
+inst11_fircfg_b : entity work.fircfg
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress       => std_logic_vector(to_unsigned(FIRCFG_TX/32,10)),
+      mimo_en        => '1', -- MIMO enable, from TOP SPI
+   
+      -- Serial port IOs
+      sdin           => sdin, -- Data in
+      sclk           => sclk, -- Data clock
+      sen            => inst11_sen_b,  -- Enable signal (active low)
+      sdout          => inst11_sdout_b,   -- Data out
+      -- Signals coming from the pins or top level serial interface
+      lreset         => lreset, -- Logic reset signal, resets logic cells only
+      mreset         => mreset, -- Memory reset signal, resets configuration memory only    
+      oen            => open,
+      stateo         => open,      
+      from_fircfg  => from_fircfg_tx_b -- B.J.
+   );
+----- end B.J.
+----------------------------------------------------------------
+--- B.J.
+inst12_sen_a <= sen when inst255_from_memcfg.mac(0)='1' else '1';    
+inst12_fircfg_a : entity work.fircfg
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress       => std_logic_vector(to_unsigned(FIRCFG_RX/32,10)),
+      mimo_en        => '1', -- MIMO enable, from TOP SPI
+   
+      -- Serial port IOs
+      sdin           => sdin, -- Data in
+      sclk           => sclk, -- Data clock
+      sen            => inst12_sen_a,  -- Enable signal (active low)
+      sdout          => inst12_sdout_a,   -- Data out
+      -- Signals coming from the pins or top level serial interface
+      lreset         => lreset, -- Logic reset signal, resets logic cells only
+      mreset         => mreset, -- Memory reset signal, resets configuration memory only    
+      oen            => open,
+      stateo         => open,      
+      from_fircfg  => from_fircfg_rx_a -- B.J.
+);
+
+inst12_sen_b <= sen when inst255_from_memcfg.mac(1)='1' else '1';
+inst12_fircfg_b : entity work.fircfg
+   port map(
+      -- Address and location of this module
+      -- Will be hard wired at the top level
+      maddress       => std_logic_vector(to_unsigned(FIRCFG_RX/32,10)),
+      mimo_en        => '1', -- MIMO enable, from TOP SPI
+   
+      -- Serial port IOs
+      sdin           => sdin, -- Data in
+      sclk           => sclk, -- Data clock
+      sen            => inst12_sen_b,  -- Enable signal (active low)
+      sdout          => inst12_sdout_b,   -- Data out
+      -- Signals coming from the pins or top level serial interface
+      lreset         => lreset, -- Logic reset signal, resets logic cells only
+      mreset         => mreset, -- Memory reset signal, resets configuration memory only    
+      oen            => open,
+      stateo         => open,      
+      from_fircfg  => from_fircfg_rx_b -- B.J.
+   );   
+----- end B.J.
+
 -- ----------------------------------------------------------------------------
 -- Output ports
 -- ----------------------------------------------------------------------------    
    sdout <= inst0_0_sdout OR inst0_1_sdout OR inst0_2_sdout OR inst1_sdoutA OR 
-            inst3_sdout OR inst4_0_sdout OR inst4_1_sdout OR inst5_sdout OR 
-            inst6_sdout OR inst7_sdout OR inst8_sdout OR inst255_sdout
-            OR inst9_sdout OR inst10_sdout;  -- B.J.
+            inst3_sdout OR inst4_0_sdout OR inst4_1_sdout OR inst5_sdout OR inst5_sdout_b OR
+            inst6_sdout OR inst7_sdout OR inst255_sdout OR
+            inst9_sdout OR inst10_sdout OR  -- B.J.
+            inst11_sdout_a OR inst11_sdout_b OR inst12_sdout_a OR inst12_sdout_b; -- B.J.
             
             
       inst255_to_memcfg <= to_memcfg;
