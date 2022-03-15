@@ -2008,8 +2008,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en,
 
-       -- ext_rx_en => '0',
-       ext_rx_en => dpd_tx_en,  -- B.J.      
+       ext_rx_en => '0',
+       --ext_rx_en => dpd_tx_en,  -- B.J.      
 
        tx_dma_en => inst2_s1_dma_en  
    );   

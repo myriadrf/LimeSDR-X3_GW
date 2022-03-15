@@ -230,15 +230,17 @@ signal smpl_cnt_en_reg  : std_logic;
 
 begin
 
+
     process(clk)
     begin
-    if rising_edge(clk) then
-    fir_out_ai_dc_reg <= fir_out_ai_dc;
-    fir_out_aq_dc_reg <= fir_out_aq_dc;
-    fir_out_bi_dc_reg <= fir_out_bi_dc;
-    fir_out_bq_dc_reg <= fir_out_bq_dc;
-    end if;
+		if rising_edge(clk) then
+			fir_out_ai_dc_reg <= fir_out_ai_dc;
+			fir_out_aq_dc_reg <= fir_out_aq_dc;
+			fir_out_bi_dc_reg <= fir_out_bi_dc;
+			fir_out_bq_dc_reg <= fir_out_bq_dc;
+		end if;
     end process;
+
 
    process(clk, reset_n)
    begin 
@@ -542,6 +544,7 @@ fir_out_bq_dc <= fir_out_bq_p;
       clk_div              => clk,
       clk_fwd              => clkfwd,
       -- data_out_from_device => inst4_TYQ & inst4_TYI,
+      -- data_out_from_device => fir_out_aq_dc & fir_out_ai_dc, -- B.J.
       data_out_from_device => fir_out_aq_dc_reg & fir_out_ai_dc_reg, -- B.J.
       data_out_to_pins_p   => DAC1_B_P,
       data_out_to_pins_n   => DAC1_B_N,
@@ -564,6 +567,7 @@ fir_out_bq_dc <= fir_out_bq_p;
       clk_div              => clk,
       clk_fwd              => clkfwd,
       -- data_out_from_device => inst5_TYQ & inst5_TYI,
+      -- data_out_from_device => fir_out_bq_dc & fir_out_bi_dc, -- B.J.
       data_out_from_device => fir_out_bq_dc_reg & fir_out_bi_dc_reg, -- B.J.
       data_out_to_pins_p   => DAC2_B_P,
       data_out_to_pins_n   => DAC2_B_N,
