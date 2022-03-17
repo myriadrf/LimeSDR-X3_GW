@@ -18,7 +18,7 @@ USE IEEE.std_logic_1164.ALL;
 -- ----------------------------------------------------------------------------
 -- Entity declaration
 -- ----------------------------------------------------------------------------
-ENTITY hb1 IS
+ENTITY hb1_mod IS
 	PORT (
 		xi1 : IN std_logic_vector(17 DOWNTO 0); -- I input signal
 		xq1 : IN std_logic_vector(17 DOWNTO 0); -- Q input signal
@@ -30,12 +30,12 @@ ENTITY hb1 IS
 		yi1 : OUT std_logic_vector(17 DOWNTO 0); -- I output signal
 		yq1 : OUT std_logic_vector(17 DOWNTO 0) -- Q output signal
 	);
-END hb1;
+END hb1_mod;
 
 -- ----------------------------------------------------------------------------
 -- Architecture
 -- ----------------------------------------------------------------------------
-ARCHITECTURE hb1_arch OF hb1 IS
+ARCHITECTURE hb1_arch OF hb1_mod IS
 
 	SIGNAL xi : std_logic_vector(24 DOWNTO 0); -- I input signal
 	SIGNAL xq : std_logic_vector(24 DOWNTO 0); -- Q input signal
@@ -185,7 +185,7 @@ BEGIN
 			IF en = '1' THEN
 				yi2 <= yi(24 DOWNTO 7);
 				if delay='0' then yq2<=yq(24 downto 7);
-				else	yq2<= yqquad;
+				else	yq2<= yqsec; -- yqquad;
 				end if;	
 			
 			END IF;
