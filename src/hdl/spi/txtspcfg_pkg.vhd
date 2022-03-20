@@ -47,8 +47,9 @@ package txtspcfg_pkg is
       gfir3_byp   : std_logic;
       dc_byp      : std_logic;
       isinc_byp   : std_logic;
+      hbi_byp     : std_logic;
       cmix_sc     : std_logic;
-      cmix_byp    : std_logic;
+      hbi_del    : std_logic; --cmix_byp
       cmix_gain   : std_logic_vector(2 downto 0);
       bstart      : std_logic;           -- BIST start flag
       tsgfcw      : std_logic_vector(8 downto 7);
