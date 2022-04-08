@@ -109,9 +109,6 @@ entity lms7_trx_top is
          -- On-board oscillators
       CLK100_FPGA_P     : in     std_logic;
       CLK100_FPGA_N     : in     std_logic;
-         -- Clock generator
-      FPGA_AUXCLK_P     : in     std_logic;
-      FPGA_AUXCLK_N     : in     std_logic;
       -- ----------------------------------------------------------------------------
       -- LMS7002 #1  (Full LML interface)
          -- PORT1
@@ -756,7 +753,6 @@ signal inst20_wfm_0_outfifo_wrreq      : std_logic;
 signal inst20_wfm_0_outfifo_data       : std_logic_vector(127 downto 0);
 
 signal CLK100_FPGA                     : std_logic;
-signal FPGA_AUXCLK                     : std_logic;
 signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 
 
@@ -882,17 +878,18 @@ begin
 -- ----------------------------------------------------------------------------
 -- Input buffers
 -- ----------------------------------------------------------------------------
-   inst0_ibuf : entity work.ibufs
-   port map(
 
-      CLK100_FPGA_P  => CLK100_FPGA_P,
-      CLK100_FPGA_N  => CLK100_FPGA_N,
-      clk100_fpga    => CLK100_FPGA,
-                     
-      FPGA_AUXCLK_P  => FPGA_AUXCLK_P,
-      FPGA_AUXCLK_N  => FPGA_AUXCLK_N,
-      fpga_auxclk    => FPGA_AUXCLK
-   );
+   -- Diffrential buffer for CLK100_FPGA
+   IBUFDS_inst0 : IBUFDS
+      generic map (
+         DIFF_TERM      => FALSE, -- Differential Termination 
+         IBUF_LOW_PWR   => TRUE,  -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
+         IOSTANDARD     => "LVDS_25")
+      port map (
+         O  => clk100_fpga,       -- Buffer output
+         I  => CLK100_FPGA_P,     -- Diff_p buffer input (connect directly to top-level port)
+         IB => CLK100_FPGA_N      -- Diff_n buffer input (connect directly to top-level port)
+      );
    
 -- ----------------------------------------------------------------------------
 -- ADC IO 
