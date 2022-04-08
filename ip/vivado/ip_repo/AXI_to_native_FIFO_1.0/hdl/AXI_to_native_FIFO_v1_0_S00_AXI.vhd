@@ -140,29 +140,6 @@ architecture arch_imp of AXI_to_native_FIFO_v1_0_S00_AXI is
 	signal byte_index	: integer;
 	signal aw_en	: std_logic;
 	
-	
-   attribute MARK_DEBUG : string;
-   attribute MARK_DEBUG of slv_reg_rden   : signal is "TRUE";
-   attribute MARK_DEBUG of slv_reg_wren   : signal is "TRUE";
-   attribute MARK_DEBUG of slv_reg0       : signal is "TRUE";
-   attribute MARK_DEBUG of slv_reg1       : signal is "TRUE";
-   attribute MARK_DEBUG of slv_reg2       : signal is "TRUE";
-   attribute MARK_DEBUG of slv_reg3       : signal is "TRUE";
-   attribute MARK_DEBUG of reg_data_out   : signal is "TRUE";
-   
-   
-   attribute MARK_DEBUG of M_NATIVE_WRITE_ACLR     : signal is "TRUE";
-   attribute MARK_DEBUG of M_NATIVE_WRITE_FULL     : signal is "TRUE";
-   attribute MARK_DEBUG of M_NATIVE_WRITE_AFULL    : signal is "TRUE";
-   attribute MARK_DEBUG of M_NATIVE_WRITE_DIN      : signal is "TRUE";
-   attribute MARK_DEBUG of M_NATIVE_WRITE_WR_EN    : signal is "TRUE";
-   
-   attribute MARK_DEBUG of native_read_rd_en       : signal is "TRUE";
- 
-   
-   
-				
-	
 
 begin
 	-- I/O Connections assignments
