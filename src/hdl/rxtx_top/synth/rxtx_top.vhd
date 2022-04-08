@@ -21,7 +21,9 @@ use work.tstcfg_pkg.all;
 -- ----------------------------------------------------------------------------
 entity rxtx_top is
    generic(
-      DEV_FAMILY                   : string := "Cyclone IV E";
+      DEV_FAMILY                   : string := "Cyclone IV E"; 
+      TX_EN                        : boolean := true;
+      RX_EN                        : boolean := true;
       -- TX parameters
       TX_IQ_WIDTH                  : integer := 12;
       TX_N_BUFF                    : integer := 4; -- 2,4 valid values
@@ -106,7 +108,7 @@ signal inst1_DIQ_h               : std_logic_vector(TX_IQ_WIDTH downto 0);
 signal inst1_DIQ_l               : std_logic_vector(TX_IQ_WIDTH downto 0);
 signal inst1_in_pct_full         : std_logic;
 signal inst1_pct_loss_flg        : std_logic;
-signal inst1_in_pct_rdy          : std_logic;
+--signal inst1_in_pct_rdy          : std_logic;
 signal inst1_in_pct_reset_n_req  : std_logic;
 
 --inst2
@@ -149,19 +151,20 @@ begin
 -- tx_path_top instance.
 -- 
 -- ----------------------------------------------------------------------------
-   process(tx_clk, inst1_reset_n)
-      begin
-      if inst1_reset_n = '0' then 
-         inst1_in_pct_rdy <= '0';
-      elsif (tx_clk'event AND tx_clk='1') then 
-         if unsigned(tx_in_pct_rdusedw) < (TX_IN_PCT_SIZE*8)/TX_IN_PCT_DATA_W then 
-            inst1_in_pct_rdy <= '0';
-         else 
-            inst1_in_pct_rdy <= '1';
-         end if;
-      end if;
-   end process;
+--   process(tx_clk, inst1_reset_n)
+--      begin
+--      if inst1_reset_n = '0' then 
+--         inst1_in_pct_rdy <= '0';
+--      elsif (tx_clk'event AND tx_clk='1') then 
+--         if unsigned(tx_in_pct_rdusedw) < (TX_IN_PCT_SIZE*8)/TX_IN_PCT_DATA_W then 
+--            inst1_in_pct_rdy <= '0';
+--         else 
+--            inst1_in_pct_rdy <= '1';
+--         end if;
+--      end if;
+--   end process;
 
+TX_gen0 : if TX_EN = true generate
    tx_path_top_inst1 : entity work.tx_path_top
    generic map( 
       g_DEV_FAMILY         => DEV_FAMILY,
@@ -214,9 +217,24 @@ begin
       );
       
 -- ----------------------------------------------------------------------------
+-- pulse_gen instance instance.
+-- 
+-- ----------------------------------------------------------------------------   
+   pulse_gen_inst6 : entity work.pulse_gen
+      port map(
+      clk         => tx_clk,
+      reset_n     => inst6_reset_n,
+      wait_cycles => from_fpgacfg.sync_pulse_period,
+      pulse       => inst6_pulse
+   );
+   
+end generate;
+      
+-- ----------------------------------------------------------------------------
 -- rx_path_top instance instance.
 -- 
 -- ----------------------------------------------------------------------------   
+RX_gen0 : if RX_EN = true generate
    rx_path_top_inst5 : entity work.rx_path_top
    generic map( 
       dev_family           => DEV_FAMILY,
@@ -258,25 +276,8 @@ begin
       tx_pct_loss          => inst1_pct_loss_flg,
       tx_pct_loss_clr      => from_fpgacfg.txpct_loss_clr
    );
-   
--- ----------------------------------------------------------------------------
--- pulse_gen instance instance.
--- 
--- ----------------------------------------------------------------------------   
-   pulse_gen_inst6 : entity work.pulse_gen
-      port map(
-      clk         => tx_clk,
-      reset_n     => inst6_reset_n,
-      wait_cycles => from_fpgacfg.sync_pulse_period,
-      pulse       => inst6_pulse
-   );
-   
-   
--- ----------------------------------------------------------------------------
--- Output ports 
--- ---------------------------------------------------------------------------- 
-  
-   
+end generate;
+     
   
 end arch;   
 

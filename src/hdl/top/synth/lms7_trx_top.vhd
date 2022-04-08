@@ -775,7 +775,7 @@ attribute KEEP_HIERARCHY : string;
 --attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
 --attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
 
-attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
+--attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
 
 --attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
 --attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
@@ -2225,6 +2225,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    inst11_rxtx_top : entity work.rxtx_top
    generic map(
       DEV_FAMILY              => g_DEV_FAMILY,
+      TX_EN                   => false,
       -- TX parameters
       TX_IQ_WIDTH             => 14,
       TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
@@ -2245,7 +2246,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
-      tx_clk                  => inst1_pll_1_c1,
+      tx_clk                  => '0',--inst1_pll_1_c1,
       tx_clk_reset_n          => '0',--reset_n,     
       tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
       tx_txant_en             => open,--inst11_tx_txant_en,  

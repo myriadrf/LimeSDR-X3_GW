@@ -71,15 +71,17 @@ begin
    --cos_i and cos_q is inside clocked proc to meet timing 
 	reg0: process (clk, nrst)
 	begin
-		if (nrst = '0') then
-			cos_i <= (others => '0');
-			cos_q <= (others => '0');
-		elsif rising_edge(clk) then
-			if (en = '1') then
-            cos_i <= xi_signed - resize (xi_signed(17 downto 6),18);
-            cos_q <= xq_signed - resize (xq_signed(17 downto 6),18);
-			end if;
-		end if;
+	    if rising_edge(clk) then
+            if (nrst = '0') then
+                cos_i <= (others => '0');
+                cos_q <= (others => '0');
+            else --elsif rising_edge(clk) then
+                if (en = '1') then
+                cos_i <= xi_signed - resize (xi_signed(17 downto 6),18);
+                cos_q <= xq_signed - resize (xq_signed(17 downto 6),18);
+                end if;
+            end if;
+	    end if;
 	end process reg0;
 
 	r_xi <= cos_i * pcw_signed;

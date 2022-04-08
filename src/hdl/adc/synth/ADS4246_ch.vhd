@@ -122,17 +122,19 @@ reset_p<= not reset_n;
 --register for all ADC bits 
       process(reset_n, clk)
    begin
-      if reset_n='0' then
-         captured_data <= (others=>'0');
-      elsif (clk'event and clk = '1') then
-         captured_data <=  data_out_l (6) & data_h_reg (6) & 
-                           data_out_l (5) & data_h_reg (5) & 
-                           data_out_l (4) & data_h_reg (4) & 
-                           data_out_l (3) & data_h_reg (3) &
-                           data_out_l (2) & data_h_reg (2) & 
-                           data_out_l (1) & data_h_reg (1) &
-                           data_out_l (0) & data_h_reg (0);
-                           
+      if rising_edge(clk) then
+          if reset_n='0' then
+             captured_data <= (others=>'0');
+          else --elsif (clk'event and clk = '1') then
+             captured_data <=  data_out_l (6) & data_h_reg (6) & 
+                               data_out_l (5) & data_h_reg (5) & 
+                               data_out_l (4) & data_h_reg (4) & 
+                               data_out_l (3) & data_h_reg (3) &
+                               data_out_l (2) & data_h_reg (2) & 
+                               data_out_l (1) & data_h_reg (1) &
+                               data_out_l (0) & data_h_reg (0);
+                               
+          end if;
       end if;
    end process;                             
                      

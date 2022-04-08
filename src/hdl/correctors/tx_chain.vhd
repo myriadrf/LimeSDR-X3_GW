@@ -264,16 +264,18 @@ nco_inst1 : nco
        
 inmux_i_reg : process(clk, nrst)
 begin
-   if nrst = '0' then 
-      in_mux_i <= (others=>'0');
-   elsif (clk'event AND clk='1') then 
-      if inst0_insel = '0' then 
-         in_mux_i <= TXI;
-         in_mux_q <= TXQ;
-      else 
-         in_mux_i <= inst0_cos & "0000";
-         in_mux_q <= inst0_sin & "0000";
-      end if;
+   if rising_edge(clk) then
+       if nrst = '0' then 
+          in_mux_i <= (others=>'0');
+       else --elsif (clk'event AND clk='1') then 
+          if inst0_insel = '0' then 
+             in_mux_i <= TXI;
+             in_mux_q <= TXQ;
+          else 
+             in_mux_i <= inst0_cos & "0000";
+             in_mux_q <= inst0_sin & "0000";
+          end if;
+       end if;  
    end if;
 end process;
 

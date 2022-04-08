@@ -88,48 +88,51 @@ BEGIN
    -- ----------------------------------------------------------------------------
    PROCESS (clk, reset_n)
    BEGIN
-      IF reset_n = '0' THEN
-         coef_array <= (OTHERS => (OTHERS => '0'));
-      ELSIF rising_edge(clk) THEN
-         IF (chI = '1') THEN
-            coef_array <= (
-               resize(signed(from_fircfg.H0), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H2), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H3), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H4), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H5), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H6), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H7), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H8), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H9), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HA), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HB), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HC), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HD), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HE), g_COEF_WIDTH),
-               resize(signed(from_fircfg.HF), g_COEF_WIDTH)
-               );
-         ELSE
-            coef_array <= (
-               resize(signed(from_fircfg.H10), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H11), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H12), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H13), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H14), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H15), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H16), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H17), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H18), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H19), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1A), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1B), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1C), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1D), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1E), g_COEF_WIDTH),
-               resize(signed(from_fircfg.H1F), g_COEF_WIDTH)
-               );
-         END IF;
+      IF rising_edge(CLK) then
+          IF reset_n = '0' THEN
+             coef_array <= (OTHERS => (OTHERS => '0'));
+    --      ELSIF rising_edge(clk) THEN
+          ELSE
+             IF (chI = '1') THEN
+                coef_array <= (
+                   resize(signed(from_fircfg.H0), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H2), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H3), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H4), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H5), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H6), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H7), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H8), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H9), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HA), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HB), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HC), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HD), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HE), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.HF), g_COEF_WIDTH)
+                   );
+             ELSE
+                coef_array <= (
+                   resize(signed(from_fircfg.H10), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H11), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H12), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H13), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H14), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H15), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H16), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H17), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H18), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H19), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1A), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1B), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1C), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1D), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1E), g_COEF_WIDTH),
+                   resize(signed(from_fircfg.H1F), g_COEF_WIDTH)
+                   );
+             END IF;
+          END IF;
       END IF;
    END PROCESS;
 
@@ -138,12 +141,14 @@ BEGIN
    -- ----------------------------------------------------------------------------
    PROCESS (clk, reset_n)
    BEGIN
-      IF reset_n = '0' THEN
-         in_buf <= (OTHERS => (OTHERS => '0'));
-      ELSIF rising_edge(clk) THEN
-         IF en = '1' THEN
-            in_buf <= d & in_buf(0 TO g_N_TAP - 2);
-         END IF;
+      IF rising_edge(clk) THEN
+          IF reset_n = '0' THEN
+             in_buf <= (OTHERS => (OTHERS => '0'));
+          ELSE --ELSIF rising_edge(clk) THEN
+             IF en = '1' THEN
+                in_buf <= d & in_buf(0 TO g_N_TAP - 2);
+             END IF;
+          END IF;
       END IF;
    END PROCESS;
 

@@ -26,12 +26,11 @@ create_generated_clock -name cpu_spi_clk -source [get_pins inst0_cpu/inst0_mb_cp
 
 
 
-
 create_generated_clock -name clk_125mhz_Gen -source [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pipe_clock_i/pclk_i1_bufgctrl.pclk_i1/I0] -divide_by 1 -add -master_clock clk_125mhz [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pipe_clock_i/pclk_i1_bufgctrl.pclk_i1/O]
 create_generated_clock -name clk_250mhz_Gen -source [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pipe_clock_i/pclk_i1_bufgctrl.pclk_i1/I1] -divide_by 1 -add -master_clock clk_250mhz [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pipe_clock_i/pclk_i1_bufgctrl.pclk_i1/O]
 set_clock_groups -logically_exclusive -group [get_clocks -include_generated_clocks clk_125mhz_Gen] -group [get_clocks -include_generated_clocks clk_250mhz_Gen]
+set_clock_groups -logically_exclusive -group [get_clocks -include_generated_clocks clk_125mhz] -group [get_clocks -include_generated_clocks clk_250mhz]
 
-set_disable_timing -from [get_ports {{BOM_VER[0]} {BOM_VER[1]} {BOM_VER[2]} {BOM_VER[3]} {FPGA_SW[0]} {FPGA_SW[1]} {FPGA_SW[2]} {FPGA_SW[3]} {HW_VER[0]} {HW_VER[1]} {HW_VER[2]} {HW_VER[3]} LM75_OS}]
-set_disable_timing -to [get_ports {FAN_CTRL FPGA_LED1_G FPGA_LED1_R FPGA_LED2_G FPGA_LED2_R FPGA_LED3_G FPGA_LED3_R FPGA_LED4_G FPGA_LED4_R RFSW1_LMS3_RX1_V1 RFSW1_LMS3_RX2_V1 RFSW_LMS1_RX1_V1 RFSW_LMS1_RX2_V1 RFSW_LMS1_TX1_V1 RFSW_LMS1_TX2_V1 RFSW_LMS2_RX1C_V1 RFSW_LMS2_RX1IN_V1 RFSW_LMS2_RX2C_V1 RFSW_LMS2_RX2IN_V1 RFSW_LMS2_TRX1_V1 RFSW_LMS2_TRX1T_V1 RFSW_LMS2_TRX2_V1 RFSW_LMS2_TRX2T_V1}]
-set_false_path -from [get_ports {{BOM_VER[0]} {BOM_VER[1]} {BOM_VER[2]} {BOM_VER[3]} {FPGA_SW[0]} {FPGA_SW[1]} {FPGA_SW[2]} {FPGA_SW[3]} {HW_VER[0]} {HW_VER[1]} {HW_VER[2]} {HW_VER[3]} LM75_OS}]
-set_false_path -to [get_ports {FAN_CTRL FPGA_LED1_G FPGA_LED1_R FPGA_LED2_G FPGA_LED2_R FPGA_LED3_G FPGA_LED3_R FPGA_LED4_G FPGA_LED4_R RFSW1_LMS3_RX1_V1 RFSW1_LMS3_RX2_V1 RFSW_LMS1_RX1_V1 RFSW_LMS1_RX2_V1 RFSW_LMS1_TX1_V1 RFSW_LMS1_TX2_V1 RFSW_LMS2_RX1C_V1 RFSW_LMS2_RX1IN_V1 RFSW_LMS2_RX2C_V1 RFSW_LMS2_RX2IN_V1 RFSW_LMS2_TRX1_V1 RFSW_LMS2_TRX1T_V1 RFSW_LMS2_TRX2_V1 RFSW_LMS2_TRX2T_V1}]
+
+create_generated_clock -name LMS2_BB_ADC_BUFG_CLOCK -source [get_pins inst0_LMS2_RX1_BB_ADC1/clkout_bufg] -multiply_by 1 [get_pins inst0_LMS2_RX1_BB_ADC1/clkout_bufg]
+create_generated_clock -name LMS3_BB_ADC_BUFG_CLOCK -source [get_pins inst0_LMS3_RX1_BB_ADC1/clkout_bufg] -multiply_by 1 [get_pins inst0_LMS3_RX1_BB_ADC1/clkout_bufg]
