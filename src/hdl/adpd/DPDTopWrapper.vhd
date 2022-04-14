@@ -144,7 +144,7 @@ BEGIN
       END IF;
    END PROCESS;
    -- To know SISO or MIMO mode
-   mimo_en <= ch_en(1) AND ch_en(1);
+   mimo_en <= ch_en(0) AND ch_en(1);
 
    -- Select signal for A channels sample MUX
    aiq_in_sel <= '0' WHEN ((mimo_en = '1') and (fix_mimo='0')) ELSE
