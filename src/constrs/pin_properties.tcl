@@ -310,6 +310,7 @@ set_property PACKAGE_PIN N21 [get_ports PPS_IN_EXT]
 set_property PACKAGE_PIN T22 [get_ports PPS_OUT]
 set_property PACKAGE_PIN M25 [get_ports EXT_SYNC_OUT]
 set_property PACKAGE_PIN P20 [get_ports EXT_SYNC_IN]
+set_property PACKAGE_PIN L20 [get_ports GNSS_TPULSE]
 set_property IOSTANDARD LVCMOS33 [get_ports EXT_SYNC_*]
 
 # SPI0
