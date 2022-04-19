@@ -45,7 +45,7 @@ ENTITY DPDTop IS
       PAEN0, PAEN1, DCEN0, DCEN1 : OUT STD_LOGIC;
       rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
       reset_n2 : OUT STD_LOGIC;
-      tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo: out std_logic
+      tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo, dpdtop_en: out std_logic
    );
 END DPDTop;
 
@@ -82,7 +82,7 @@ ARCHITECTURE struct OF DPDTop IS
          gfir0_byp, gfir0_sleep, gfir0_odd, gfir1_byp, gfir1_sleep, gfir1_odd : OUT STD_LOGIC;
          PAEN0, PAEN1, DCEN0, DCEN1, reset_n_soft : OUT STD_LOGIC;
          rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
-         tx_en, capture_en, lms3_monitoring, fix_mimo: out std_logic
+         tx_en, capture_en, lms3_monitoring, fix_mimo, dpdtop_en: out std_logic
       );
    END COMPONENT adpdcfg;
 
@@ -244,6 +244,8 @@ ARCHITECTURE struct OF DPDTop IS
    SIGNAL reset_n_soft, reset_n1 : STD_LOGIC;
    signal sig_temp1, sig_temp2, sig_temp3, sig_temp4, sig_temp5, 
    sig_temp6, sig_temp7, sig_temp8, sig_temp9, sig_temp10: std_logic;
+   
+   signal dpd_cfr_en: std_logic;
 
 BEGIN
 
@@ -302,7 +304,8 @@ BEGIN
       tx_en => tx_en,
       capture_en =>capture_en,
       lms3_monitoring => lms3_monitoring,
-      fix_mimo => fix_mimo
+      fix_mimo => fix_mimo,
+      dpdtop_en => dpdtop_en
    );
 
    reset_n1 <= reset_n AND reset_n_soft;
@@ -482,7 +485,7 @@ BEGIN
       sclk => sclk,
       reset_n => reset_n,
       reset_mem_n => mem_reset_n,
-      data_valid => inst9_data_valid,
+      data_valid => inst9_data_valid and (not sleep),
       xpi => inst7_yi1(17 DOWNTO 4),
       xpq => inst7_yq1(17 DOWNTO 4),
       ypi => inst9_ypi, -- 18 bits
@@ -644,7 +647,7 @@ BEGIN
       sclk => sclk,
       reset_n => reset_n,
       reset_mem_n => mem_reset_n,
-      data_valid => inst9_data_valid,
+      data_valid => inst9_data_valid and (not sleep),
       xpi => inst8_yi1(17 DOWNTO 4),
       xpq => inst8_yq1(17 DOWNTO 4),
       ypi => inst10_ypi, -- 18 bits

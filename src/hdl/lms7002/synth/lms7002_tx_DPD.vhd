@@ -232,21 +232,6 @@ begin
    reset_n_DPDTOP <= clk_2x_reset_n AND reset_n;
    reset_n_temp <= reset_n_DPDTOP and reset_n_soft; 
    
-    --- nije pomoglo
-   process (clk_2x, reset_n_temp) is
-   begin
-    
-    if reset_n_temp='0' then
-       inst2_data_req1 <='0';
-    elsif clk_2x'event and clk_2x='1' then
-       if (inst2_data_req_orig='1') then
-           inst2_data_req1 <= not inst2_data_req1;
-       end if;  
-   end if;
-   end process;
-   
-   --- nije pomoglo
-   --inst2_data_req<=inst2_data_req_orig and inst2_data_req1;
    inst2_data_req <= inst2_data_req_orig;
    
    inst2_DPDTopWrapper : entity work.DPDTopWrapper
@@ -271,7 +256,7 @@ begin
          sclk => sclk, -- Data clock
          sen => sen, -- Enable signal (active low)
          sdout => sdout, -- Data out
-         data_req => inst2_data_req_orig,  -- problematican signal  (inst2_data_req)
+         data_req => inst2_data_req_orig,
          data_valid => inst2_data_valid_orig,
          diq_in => inst2_diq_in,
          diq_out => inst2_diq_out,
@@ -314,7 +299,7 @@ begin
    end process; 
    
    mimo_enable <= ch_en(1) AND ch_en(1);
-   inst2_data_valid <= inst2_data_valid_orig when (mimo_enable='1') 
+   inst2_data_valid <= inst2_data_valid_orig  when (mimo_enable='1') 
         else (inst2_data_valid1 and inst2_data_valid_orig);  -- 30.72
    
    inst3_fifo_inst : ENTITY work.fifo_inst
@@ -334,7 +319,8 @@ begin
          wrfull => inst3_wrfull,
          wrempty => OPEN,
          wrusedw => OPEN,
-         rdclk => clk_2X, -- modified by B.J.
+         
+         rdclk => clk_2X, -- modified by B.J.                
          rdreq => inst4_fifo_rdreq,
          q => inst3_q,
          rdempty => inst3_rdempty,
@@ -363,12 +349,9 @@ begin
       iq_width             => g_IQ_WIDTH
       )
    port map(
-      -- clk                  => clk,
-      -- to LimeLight, at transmit, 61.44 MSps
-      clk                  => clk_2X, -- B.J.
+      clk                  => clk_2X, -- B.J.      
       -- reset_n              => reset_n,
       reset_n              => reset_n_temp, -- B.J.
-
       --Mode settings
       mode                 => mode, -- JESD207: 1; TRXIQ: 0
       trxiqpulse           => trxiqpulse, -- trxiqpulse on: 1; trxiqpulse off: 0
@@ -407,12 +390,9 @@ begin
       diq_width   => g_IQ_WIDTH
    )
    port map(
-      -- clk               => clk,
-      -- to LimeLight, at transmit, 61.44 MSps
       clk               => clk_2X, -- B.J.
       -- reset_n           => reset_n,
       reset_n           => reset_n_temp, -- B.J.
-
       test_ptrn_en      => test_ptrn_en,  -- Enables test pattern
       test_ptrn_fidm    => '0',           -- Frame start at fsync = 0, when 0. Frame start at fsync = 1, when 1.
       test_ptrn_I       => test_ptrn_I,
@@ -438,9 +418,6 @@ begin
    )
    port map(
       from_fpgacfg   => from_fpgacfg,
-      --input ports 
-      -- clk            => clk,
-      -- to LimeLight, at transmit, 61.44 MSps
       clk            => clk_2X, -- B.J.
       -- reset_n        => reset_n,
       reset_n        => reset_n_temp, -- B.J.      

@@ -39,6 +39,7 @@ ENTITY DPDTopWrapper IS
 
       data_req : OUT std_logic;
       data_valid : OUT std_logic;
+      --data_req_empty: in std_logic;
 
       diq_in : IN std_logic_vector(63 DOWNTO 0);
       diq_out : OUT std_logic_vector(63 DOWNTO 0);
@@ -88,7 +89,7 @@ ARCHITECTURE arch OF DPDTopWrapper IS
          PAEN0, PAEN1, DCEN0, DCEN1 : OUT std_logic;
          rf_sw : OUT std_logic_vector(2 DOWNTO 0);
 		 reset_n2: out std_logic;
-	     tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo: out std_logic
+	     tx_en, capture_en, reset_n_software, lms3_monitoring, fix_mimo, dpdtop_en: out std_logic
       );
    END COMPONENT DPDTop;
 
@@ -116,7 +117,8 @@ ARCHITECTURE arch OF DPDTopWrapper IS
    SIGNAL xen_reg1 : std_logic;
    SIGNAL inst1_xen, inst9_data_valid, inst1_xen_reg0, inst1_xen_reg1 : std_logic;
    SIGNAL yp_ai_reg, yp_aq_reg, yp_ai_prim, yp_aq_prim, yp_bi_prim, yp_bq_prim : std_logic_vector(15 DOWNTO 0);
-   signal reset_n2, fix_mimo: std_logic;
+   signal reset_n2, fix_mimo, dpdtop_en: std_logic;
+   signal data_req_reg, data_req_reg2, data_req_int,data_valid_reg: std_logic;
 	
 	attribute MARK_DEBUG : string;
 	attribute MARK_DEBUG of ai_in: signal is "TRUE";
@@ -182,7 +184,7 @@ BEGIN
       reset_n => reset_n,
       mem_reset_n => mem_reset_n,
       from_memcfg => from_memcfg,
-      sleep => sleep,
+      sleep => sleep or (not dpdtop_en),
       ai_in => ai_in,
       aq_in => aq_in,
       bi_in => bi_in,
@@ -215,7 +217,8 @@ BEGIN
       capture_en =>capture_en,
       reset_n_software => reset_n_software,
       lms3_monitoring => lms3_monitoring,
-      fix_mimo => fix_mimo
+      fix_mimo => fix_mimo,
+      dpdtop_en => dpdtop_en
    );
 
    -- for input
@@ -268,12 +271,37 @@ BEGIN
    -- ----------------------------------------------------------------------------
    -- for input
    -- B.J. 17.11.2021
-   -- I want to slow down request in MIMO 2X
-   data_req <= xen;
-   --data_req <= xen_siso;
+   -- I want to slow down request in MIMO 2X   
+   --data_req <= xen;
+   
+   -- Dummy, when DPD or CFR are not used  
+   data_req_proc : process(clk, reset_n)  -- for fclk=61.44
+   begin
+      if reset_n = '0' then 
+         data_req_reg <= '0';  -- 30.72
+         data_req_reg2 <= '0';   -- 15.36       
+      elsif (clk'event AND clk='1') then
+         data_req_reg <= NOT data_req_reg;         
+         if (data_req_reg = '1') then
+           data_req_reg2 <= NOT data_req_reg2;
+         end if;        
+      end if;
+   end process; 
+   
+  data_req_int <= data_req_reg when ch_en = "11" else -- 30.72
+        (data_req_reg  and  data_req_reg2);    -- 15.36 (every fourth pulse)
+  
+  data_valid_reg <= data_req_reg; -- 30.72  
+  
+   
+ -----------------------------  
+   
+   data_req    <= data_req_int when (dpdtop_en='0') else
+          xen;
 
    -- for output
-   data_valid <= inst9_data_valid;
+   data_valid  <= data_valid_reg when (dpdtop_en='0') else
+          inst9_data_valid;
 
    --    diq_out bus contains samples in following order: 
    --    MIMO mode:           SISO mode:
@@ -281,6 +309,10 @@ BEGIN
    --    AQ=diq_out[31:16]     AQ(0)=diq_out[31:16]
    --    BI=diq_out[47:32]     AI(1)=diq_out[47:32]
    --    BQ=diq_out[64:48]     AQ(1)=diq_out[64:48]
-   diq_out <= diq_out_mimo WHEN mimo_en = '1' ELSE
+   
+   diq_out     <= diq_in  when (dpdtop_en='0') else
+      diq_out_mimo WHEN (mimo_en = '1') ELSE
       diq_out_siso;
+      
+ 
 END arch;

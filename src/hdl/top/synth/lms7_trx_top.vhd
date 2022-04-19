@@ -1667,8 +1667,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       CORE_LDO_EN          => open,
       -- Internal TX ports
       tx_reset_n           => inst1_lms1_txpll_locked,
-      tx_fifo_0_wrclk      => inst1_lms1_txpll_c1,
-      
+      tx_fifo_0_wrclk      => inst1_lms1_txpll_c1,      
       --tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_0.rx_en,
       tx_fifo_0_reset_n    => inst0_from_fpgacfg_mod_0.rx_en or dpd_tx_en,  -- B.J.
 
@@ -1828,7 +1827,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_tstcfg_from_rxtx     => inst7_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
-      tx_clk                  => inst1_lms1_txpll_c1,
+      tx_clk                  => inst1_lms1_txpll_c1,      
       tx_clk_reset_n          => inst1_lms1_txpll_locked,
       tx_pct_loss_flg         => inst7_tx_pct_loss_flg,
       tx_txant_en             => inst7_tx_txant_en,  

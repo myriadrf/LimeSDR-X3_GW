@@ -47,7 +47,7 @@ entity adpdcfg is
 		PAEN0, PAEN1, DCEN0, DCEN1, reset_n_soft : OUT STD_LOGIC;
 		rf_sw : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
 		
-		tx_en, capture_en, lms3_monitoring, fix_mimo: out std_logic
+		tx_en, capture_en, lms3_monitoring, fix_mimo, dpdtop_en: out std_logic
 	);
 end adpdcfg;
 
@@ -163,7 +163,7 @@ begin
 		if mreset = '0' then	
 			--Read only registers
 			mem(0)	<= "0100000000000000"; -- ADPD_BUFF_SIZE
-			mem(1)  <= "0000101001100000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
+			mem(1)  <= "0000101000100000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
 			mem(2)	<= "0000000000000000"; -- adpd_config0(15:0) 
 			mem(3)	<= "0000000000000000"; -- adpd_config1(15:0)
 			mem(4)	<= "0000000000000000"; -- adpd_data(15:0)
@@ -214,8 +214,11 @@ begin
 	    rf_sw <= (others=>'0');	
 	    
 	    ADPD_CAP_RESETN	<= mem(1)(4);
-		lms3_monitoring <= mem(1)(5);
-		fix_mimo <= mem(1)(6);	
+		lms3_monitoring <= mem(1)(5); -- default 1
+		
+		dpdtop_en <= mem(1)(6); -- DEFAULT = 0
+			
+		fix_mimo <= '0';
 
 	    DCEN0 <= mem(1)(7); -- DC-DC enable  channel A
 	    DCEN1 <= mem(1)(8); -- DC-DC enable  channel B

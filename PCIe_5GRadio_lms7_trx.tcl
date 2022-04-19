@@ -325,6 +325,7 @@
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/hb/hb1d.vhd"
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/hb/clkdiv.vhd"
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/hb/hb1.vhd"
+#    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/hb/hb1_mod.vhd"
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/mb_elf/cpu.elf"
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/adpd/ddr2rxiq.vhd"
 #    "/home/limenet1/Work/PCIe_5GRadio_3v0/pcie_5gradio_gw/src/hdl/adc/synth/adc_top_equaliser.vhd"
@@ -794,6 +795,7 @@ set files [list \
  [file normalize "${origin_dir}/src/hdl/hb/hb1d.vhd"] \
  [file normalize "${origin_dir}/src/hdl/hb/clkdiv.vhd"] \
  [file normalize "${origin_dir}/src/hdl/hb/hb1.vhd"] \
+ [file normalize "${origin_dir}/src/hdl/hb/hb1_mod.vhd"] \
  [file normalize "${origin_dir}/src/mb_elf/cpu.elf"] \
  [file normalize "${origin_dir}/src/hdl/adpd/ddr2rxiq.vhd"] \
  [file normalize "${origin_dir}/src/hdl/adc/synth/adc_top_equaliser.vhd"] \
@@ -4418,6 +4420,18 @@ set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
 set file "$origin_dir/src/hdl/hb/hb1.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
+set_property -name "is_enabled" -value "1" -objects $file_obj
+set_property -name "is_global_include" -value "0" -objects $file_obj
+set_property -name "library" -value "work" -objects $file_obj
+set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
+set_property -name "used_in" -value "synthesis simulation" -objects $file_obj
+set_property -name "used_in_simulation" -value "1" -objects $file_obj
+set_property -name "used_in_synthesis" -value "1" -objects $file_obj
+
+set file "$origin_dir/src/hdl/hb/hb1_mod.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
