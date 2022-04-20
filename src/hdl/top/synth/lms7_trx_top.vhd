@@ -1738,9 +1738,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
          wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
     
-         rdclk => pcie_bus_clk,   
-         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
-         
+         rdclk => pcie_bus_clk, 
+         clk =>  inst1_lms1_txpll_c2,   -- inst1_lms1_txpll_c1
          reset_n => cap_resetn, -- reset signal for dpd capture buffer
          
          ch_0_valid => xp_data_valid, 

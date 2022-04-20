@@ -287,6 +287,7 @@ ARCHITECTURE arch OF data_cap_buffer IS
 	SIGNAL start_read_sync_rdclk : STD_LOGIC_VECTOR(1 DOWNTO 0);
 	SIGNAL cnt2 : unsigned(19 DOWNTO 0);
 	SIGNAL cap_size_x6 : STD_LOGIC_VECTOR(19 DOWNTO 0);
+	signal tff: std_logic;
 	
 BEGIN
 
@@ -367,9 +368,11 @@ BEGIN
 			cap_cont_en_sync_clk <= (OTHERS => '0');
 			cap_done_all_inst_sync_clk <= (OTHERS => '0');
 		ELSIF (clk'event AND clk = '1') THEN
+		   if (tff = '1') then
 			cap_en_sync_clk <= cap_en_sync_clk(0) & cap_en;
 			cap_cont_en_sync_clk <= cap_cont_en_sync_clk(0) & cap_cont_en;
 			cap_done_all_inst_sync_clk <= cap_done_all_inst_sync_clk(0) & cap_done_all_inst;
+		   end if;
 		END IF;
 	END PROCESS;
 
@@ -391,8 +394,12 @@ BEGIN
 	fsm_f : PROCESS (clk, reset_n)BEGIN
 		IF (reset_n = '0') THEN
 			current_state <= idle;
+			tff <= '0';
 		ELSIF (clk'event AND clk = '1') THEN
-			current_state <= next_state;
+		    tff <= not tff;
+			if (tff = '1') then
+			     current_state <= next_state;
+			end if;     
 		END IF;
 	END PROCESS;
 

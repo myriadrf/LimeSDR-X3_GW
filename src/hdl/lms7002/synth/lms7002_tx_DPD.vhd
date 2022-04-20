@@ -298,7 +298,7 @@ begin
    end if;
    end process; 
    
-   mimo_enable <= ch_en(1) AND ch_en(1);
+   mimo_enable <= ch_en(0) AND ch_en(1);
    inst2_data_valid <= inst2_data_valid_orig  when (mimo_enable='1') 
         else (inst2_data_valid1 and inst2_data_valid_orig);  -- 30.72
    
