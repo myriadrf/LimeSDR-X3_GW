@@ -316,13 +316,13 @@ inst1_pll_scanclk <= rcnfg_clk;
 --      PSINCDEC  =>inst2_pll_phaseupdown,
 --      PS_CNT_SEL=>inst2_pll_phasecounterselect
 --);
-
+    inst3_clk(1) <= inst3_clk(2);
   MMCM_inst1 : entity work.tx_pll
   port map(
       clk_in1        => pll_inclk,
       --reset          => inst1_pll_areset_in,
       clk_out1       => inst3_clk(0),
-      clk_out2       => inst3_clk(1),
+      clk_out2       => open,--inst3_clk(1),
 
       clk_out3       => inst3_clk(2), -- B.J.
 
