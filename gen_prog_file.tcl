@@ -9,4 +9,5 @@ puts $bit_path
 set bit_string "up 0x00000000 $bit_path "
 puts $bit_string
 
-write_cfgmem  -format mcs -force -size 16 -interface SPIx4 -loadbit $bit_string -file "[file normalize "$script_path/bitstream/lms7_trx_B30_v8_temp.mcs"]"
+write_cfgmem  -format bin -force -size 16 -interface SPIx4 -loadbit $bit_string -file "[file normalize "$script_path/bitstream/flash_programming_file.bin"]"
+file copy -force $bit_path $script_path/bitstream/ram_programming_file.bit
