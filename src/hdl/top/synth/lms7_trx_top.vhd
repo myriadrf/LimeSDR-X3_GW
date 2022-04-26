@@ -2241,7 +2241,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       -- TX module signals
-      tx_clk                  => '0',--inst1_pll_1_c1,
+      tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => '0',--reset_n,     
       tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
       tx_txant_en             => open,--inst11_tx_txant_en,  
