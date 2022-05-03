@@ -154,7 +154,7 @@ begin
          mem(5)  <= "0000000000000000"; --  5 free, UNUSED[4:0], GFIR1_L[2:0] (def. 1) (Length of PHEQ - 1), GFIR1_N[7:0] (def. 1) (PHEQ Clock division ratio. Must be HBI interpolation ratio - 1)
          mem(6)  <= "0000000000000000"; --  5 free, UNUSED[4:0], GFIR2_L[2:0], GFIR2_N[7:0]
          mem(7)  <= "0000000000000000"; --  5 free, UNUSED[4:0], GFIR3_L[2:0], GFIR3_N[7:0]
-         mem(8)  <= "0000001000000000"; --  3 free, CMIX_GAIN[1:0], CMIX_SC, CMIX_GAIN[2], UNUSED[2:0], CMIX_BYP, ISINC_BYP, GFIR3_BYP, GFIR2_BYP, GFIR1_BYP, DC_BYP, UNUSED, GC_BYP, PH_BYP
+         mem(8)  <= "0000001100000000"; --  3 free, CMIX_GAIN[1:0], CMIX_SC, CMIX_GAIN[2], UNUSED[2:0], CMIX_BYP, ISINC_BYP, GFIR3_BYP, GFIR2_BYP, GFIR1_BYP, DC_BYP, UNUSED, GC_BYP, PH_BYP
          mem(9)   <= "0000000000000000"; --  0 free, BSIGI(LSB)[14:0], BSTATE {READ ONLY}
          mem(10)  <= "0000000000000000"; --  0 free, BSIGQ[7:0](LSB), BSIGI(MSB)[22:15], {READ ONLY}
          mem(11)  <= "0000000000000000"; --  1 free, BSIGQ[22:8](MSB), {READ ONLY}
@@ -232,7 +232,7 @@ begin
    from_txtspcfg.gfir3_byp   <= mem(8)(6);
    from_txtspcfg.isinc_byp   <= mem(8)(7);
   
-   from_txtspcfg.hbi_byp    <= mem(8)(8); --B.J. (default 0)
+   from_txtspcfg.hbi_byp    <= mem(8)(8); --B.J. (default 1)
    from_txtspcfg.hbi_del     <= mem(8)(9); -- B.J. (default 1)
    
    from_txtspcfg.cmix_sc     <= mem(8)(13);
