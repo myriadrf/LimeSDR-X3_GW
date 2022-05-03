@@ -498,7 +498,6 @@ signal inst0_pll_locked          : std_logic;
 --inst1 (pll_top instance)
 signal inst1_lms1_txpll_c0             : std_logic;
 signal inst1_lms1_txpll_c1             : std_logic;
-signal inst1_lms1_txpll_c2             : std_logic;
 signal inst1_lms1_txpll_locked         : std_logic;
 signal inst1_lms1_txpll_rcnfg_from_pll : std_logic_vector(63 downto 0);
 signal inst1_lms1_rxpll_c0             : std_logic;
@@ -1212,7 +1211,6 @@ begin
       lms1_txpll_drct_clk_en     => inst0_from_fpgacfg_0.drct_clk_en(0) & inst0_from_fpgacfg_0.drct_clk_en(0),
       lms1_txpll_c0              => LMS1_FCLK1,
       lms1_txpll_c1              => inst1_lms1_txpll_c1,
-      lms1_txpll_c2              => inst1_lms1_txpll_c2, -- B.J.
       lms1_txpll_locked          => inst1_lms1_txpll_locked,
       -- LMS#1 RX PLL ports
       lms1_rxpll_inclk           => LMS1_MCLK2,
@@ -1647,8 +1645,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- Momory module reset
       mem_reset_n          => reset_n,
       -- PORT1 interface
-      MCLK1                => inst1_lms1_txpll_c1, --  61.44
-      MCLK1_2x             => inst1_lms1_txpll_c2, -- 122.88
+      MCLK1                => inst1_lms1_txpll_c1, -- 122.88
       FCLK1                => open, 
       --DIQ1                 => LMS1_DIQ1_INT,
       DIQ1                 => LMS1_DIQ1_D,
@@ -1729,17 +1726,17 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    inst_data_cap_buffer: data_cap_buffer
       port map (
          
-         wclk0 => inst1_lms1_txpll_c2,   -- clk for xp_a (122.88)
-         wclk1 => inst1_lms1_txpll_c2,   -- clk for yp_a (122.88)
+         wclk0 => inst1_lms1_txpll_c1,   -- clk for xp_a (122.88)
+         wclk1 => inst1_lms1_txpll_c1,   -- clk for yp_a (122.88)
          wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
-         wclk3 => inst1_lms1_txpll_c2,   -- clk for xp_b (122.88)
-         wclk4 => inst1_lms1_txpll_c2,   -- clk for yp_b (122.88)
+         wclk3 => inst1_lms1_txpll_c1,   -- clk for xp_b (122.88)
+         wclk4 => inst1_lms1_txpll_c1,   -- clk for yp_b (122.88)
          wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
          wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
          wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
     
          rdclk => pcie_bus_clk, 
-         clk =>  inst1_lms1_txpll_c2,   -- inst1_lms1_txpll_c1
+         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
          reset_n => cap_resetn, -- reset signal for dpd capture buffer
          
          ch_0_valid => xp_data_valid, 

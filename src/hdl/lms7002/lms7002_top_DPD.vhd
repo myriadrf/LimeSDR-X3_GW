@@ -48,7 +48,6 @@ entity lms7002_top_DPD is
       mem_reset_n       : in  std_logic;
       -- PORT1 interface
       MCLK1             : in  std_logic;  -- TX interface clock
-      MCLK1_2x          : in  std_logic;
       FCLK1             : out std_logic;  -- TX interface feedback clock
       DIQ1              : out std_logic_vector(g_IQ_WIDTH-1 downto 0);
       ENABLE_IQSEL1     : out std_logic;
@@ -139,18 +138,6 @@ signal int_fidm                  : std_logic;
 signal lms_txen_int        : std_logic;
 signal lms_rxen_int        : std_logic;
 
-signal tx_fifo_1_cnt       : unsigned(63 downto 0);
-signal tx_fifo_1_error     : std_logic;
-signal debug_tx_ptrn_en    : std_logic;
-
-   attribute noprune : boolean;
-   attribute noprune of tx_fifo_1_cnt     : signal is true;
-   attribute noprune of tx_fifo_1_error   : signal is true;
-
-   attribute mark_debug    : string;
-   attribute keep          : string;
-   attribute mark_debug of debug_tx_ptrn_en     : signal is "true";
-
      --added by B.J.
    SIGNAL x_ai_p, x_aq_p, x_bi_p, x_bq_p : STD_LOGIC_VECTOR(11 DOWNTO 0);
    SIGNAL inst2_diq_out_h : STD_LOGIC_VECTOR (g_IQ_WIDTH DOWNTO 0);
@@ -189,45 +176,10 @@ begin
    
    sync_reg3 : entity work.sync_reg 
    port map(tx_fifo_1_wrclk, tx_fifo_1_reset_n, '1', inst1_fifo_1_reset_n);
-   
-   -- clk_2x is held in reset only when both fifos are in reset
-   sync_reg4 : entity work.sync_reg 
-   port map(MCLK1_2x, (inst1_fifo_0_reset_n OR inst1_fifo_1_reset_n), '1', inst1_clk_2x_reset_n);
-   
-   sync_reg5 : entity work.sync_reg 
-   port map(MCLK2, inst0_reset_n, from_fpgacfg.tx_ptrn_en, debug_tx_ptrn_en);
       
     -- added by B.J.
    sync_reg6 : ENTITY work.sync_reg
    PORT MAP(MCLK2, tx_reset_n, '1', tx_reset_n1);  -- B.J.
-   
-   process(tx_fifo_1_wrclk, tx_fifo_1_reset_n) 
-   begin 
-      if tx_fifo_1_reset_n = '0' then 
-         tx_fifo_1_cnt   <= (others=>'0');
-         tx_fifo_1_error <= '0';
-      elsif rising_edge(tx_fifo_1_wrclk) then
-      
-         if tx_fifo_1_wrreq = '1' then
-            if tx_fifo_1_cnt < 153599 then 
-               tx_fifo_1_cnt <= tx_fifo_1_cnt + 2;
-            else
-               tx_fifo_1_cnt <= (others=>'0');
-            end if;
-            
-            if std_logic_vector(tx_fifo_1_cnt) = tx_fifo_1_data then 
-               tx_fifo_1_error <= '0';
-            else
-               tx_fifo_1_error <= '1';
-            end if;
-            
-         else
-            tx_fifo_1_cnt     <= tx_fifo_1_cnt;
-            tx_fifo_1_error   <= tx_fifo_1_error;
-         end if;
-        end if;
-   end process;
-   
     
 -- ----------------------------------------------------------------------------
 -- RX interface
@@ -332,8 +284,6 @@ inst1_lms7002_tx : entity work.lms7002_tx_DPD
    port map(
       clk                  => MCLK1,
       reset_n              => tx_reset_n,
-      clk_2x               => MCLK1_2x,
-      clk_2x_reset_n       => inst1_clk_2x_reset_n,
       mem_reset_n          => mem_reset_n,
       from_memcfg          => from_memcfg,
       from_fpgacfg         => from_fpgacfg,

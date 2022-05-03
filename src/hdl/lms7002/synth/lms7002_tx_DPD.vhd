@@ -39,9 +39,7 @@ entity lms7002_tx_DPD is
    
    port (
       clk                  : in  std_logic;
-      reset_n              : in  std_logic;
-      clk_2x               : in  std_logic;
-      clk_2x_reset_n       : in  std_logic;      
+      reset_n              : in  std_logic;   
       mem_reset_n          : in  std_logic;
       from_memcfg          : in  t_FROM_MEMCFG;
       from_fpgacfg         : in  t_FROM_FPGACFG;
@@ -140,17 +138,14 @@ signal inst4_rdempty       : std_logic;
 signal inst5_diq_h         : std_logic_vector(g_IQ_WIDTH downto 0);
 signal inst5_diq_l         : std_logic_vector(g_IQ_WIDTH downto 0);
 
+signal fifo_reset_n		   : std_logic;
 signal reset_n_DPDTOP, reset_n_soft, reset_n_temp, inst2_data_req_orig, mimo_enable, inst2_data_req1: std_logic; -- B.J.
-
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of fifo_0_wrclk: signal is "TRUE";
-attribute MARK_DEBUG of fifo_0_wrreq: signal is "TRUE";
-attribute MARK_DEBUG of fifo_0_wrfull: signal is "TRUE";
-attribute MARK_DEBUG of inst0_rdreq: signal is "TRUE";
-attribute MARK_DEBUG of inst0_q: signal is "TRUE";
-attribute MARK_DEBUG of inst0_rdempty: signal is "TRUE";
  
 begin
+
+   -- clk_2x is held in reset only when both fifos are in reset
+   sync_reg4 : entity work.sync_reg 
+   port map(clk, (fifo_0_reset_n OR fifo_1_reset_n), '1', fifo_reset_n);
 
 -- ----------------------------------------------------------------------------
 -- FIFO for storing TX samples
@@ -173,7 +168,7 @@ begin
       wrfull   => fifo_0_wrfull,
       wrempty  => open,
       wrusedw  => fifo_0_wrusedw,
-      rdclk    => clk_2x, -- B.J.
+      rdclk    => clk, -- B.J.
       -- rdclk    => clk,
       rdreq    => inst0_rdreq,
       q        => inst0_q,
@@ -205,7 +200,7 @@ begin
       wrfull   => fifo_1_wrfull,
       wrempty  => open,
       wrusedw  => fifo_1_wrusedw,
-      rdclk    => clk_2x, -- B.J.
+      rdclk    => clk, -- B.J.
       -- rdclk    => clk,
       rdreq    => inst1_rdreq,
       q        => inst1_q,
@@ -229,7 +224,7 @@ begin
 
    inst2_diq_in <= inst0_q when tx_src_sel = '0' else inst1_q;
    inst2_sleep <=  inst0_rdempty when tx_src_sel = '0' else inst1_rdempty;
-   reset_n_DPDTOP <= clk_2x_reset_n AND reset_n;
+   reset_n_DPDTOP <= fifo_reset_n AND reset_n;
    reset_n_temp <= reset_n_DPDTOP and reset_n_soft; 
    
    inst2_data_req <= inst2_data_req_orig;
@@ -244,7 +239,7 @@ begin
          g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR
       )
       port map(
-         clk => clk_2x, -- 122.88MHz
+         clk => clk, -- 122.88MHz
          
          reset_n => reset_n_DPDTOP,
          
@@ -286,12 +281,12 @@ begin
 -- ----------------------------------------------------------------------------
    -- FIFO for storing TX samples
 -- ----------------------------------------------------------------------------    
-   process (clk_2x, reset_n_temp) is
+   process (clk, reset_n_temp) is
    begin
     
     if reset_n_temp='0' then
        inst2_data_valid1 <='0';
-    elsif clk_2x'event and clk_2x='1' then
+    elsif clk'event and clk='1' then
        if (inst2_data_valid_orig='1') then
            inst2_data_valid1 <= not inst2_data_valid1;
        end if;  
@@ -313,14 +308,14 @@ begin
       )
       PORT MAP(
          reset_n  => reset_n_temp, -- modified by B.J.
-         wrclk => clk_2x,
+         wrclk => clk,
          wrreq => inst2_data_valid  AND (NOT inst3_wrfull), --inst2_data_valid 
          data => inst2_diq_out,
          wrfull => inst3_wrfull,
          wrempty => OPEN,
          wrusedw => OPEN,
          
-         rdclk => clk_2X, -- modified by B.J.                
+         rdclk => clk, -- modified by B.J.                
          rdreq => inst4_fifo_rdreq,
          q => inst3_q,
          rdempty => inst3_rdempty,
@@ -349,7 +344,7 @@ begin
       iq_width             => g_IQ_WIDTH
       )
    port map(
-      clk                  => clk_2X, -- B.J.      
+      clk                  => clk, -- B.J.      
       -- reset_n              => reset_n,
       reset_n              => reset_n_temp, -- B.J.
       --Mode settings
@@ -390,7 +385,7 @@ begin
       diq_width   => g_IQ_WIDTH
    )
    port map(
-      clk               => clk_2X, -- B.J.
+      clk               => clk, -- B.J.
       -- reset_n           => reset_n,
       reset_n           => reset_n_temp, -- B.J.
       test_ptrn_en      => test_ptrn_en,  -- Enables test pattern
@@ -418,7 +413,7 @@ begin
    )
    port map(
       from_fpgacfg   => from_fpgacfg,
-      clk            => clk_2X, -- B.J.
+      clk            => clk, -- B.J.
       -- reset_n        => reset_n,
       reset_n        => reset_n_temp, -- B.J.      
       data_in_h      => inst5_diq_h,
