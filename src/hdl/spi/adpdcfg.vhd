@@ -211,11 +211,10 @@ begin
 
 	    --rf_sw <= mem(1)(6 DOWNTO 4); -- RF_SW control
 	    -- not used on this board
-	    rf_sw <= (others=>'0');	
+	    rf_sw <= (others=>'0');
 	    
 	    ADPD_CAP_RESETN	<= mem(1)(4);
-		lms3_monitoring <= mem(1)(5); -- default 1
-		
+		lms3_monitoring <= mem(1)(5); -- default 1  (LMS#3 is used for montoring path)		
 		dpdtop_en <= mem(1)(6); -- DEFAULT = 0
 			
 		fix_mimo <= '0';
@@ -223,12 +222,12 @@ begin
 	    DCEN0 <= mem(1)(7); -- DC-DC enable  channel A
 	    DCEN1 <= mem(1)(8); -- DC-DC enable  channel B
 	
-	    tx_en <= mem(1)(9);
-	    capture_en <= mem(1)(10);
-	    reset_n_soft <= mem(1)(11);
+	    tx_en <= mem(1)(9);  -- default 1
+	    capture_en <= mem(1)(10); -- default 0 (signals transferred to FFTViewer, not to DPDViewer)
+	    reset_n_soft <= mem(1)(11); -- default 1
 
-	    cfr0_interpolation <= mem(1)(13 DOWNTO 12);
-	    cfr1_interpolation <= mem(1)(15 DOWNTO 14);
+	    cfr0_interpolation <= mem(1)(13 DOWNTO 12);  -- default "00"
+	    cfr1_interpolation <= mem(1)(15 DOWNTO 14);  -- default "00"
 		
 		adpd_config0 <= mem(2)(15 DOWNTO 0);
 		adpd_config1 <= mem(3)(15 DOWNTO 0);
@@ -236,30 +235,25 @@ begin
 	
 		-- mem(5) default:0xEEEE
 		-- CH A		
-		cfr0_sleep <= mem(5)(0); -- 0
-		cfr0_bypass <= mem(5)(1); -- 1	
-		cfr0_odd <= mem(5)(2); -- 1		
+		cfr0_sleep <= mem(5)(0); -- default 0
+		cfr0_bypass <= mem(5)(1); -- default 1	
+		cfr0_odd <= mem(5)(2); -- default1 		
+		gain_cfr0_bypass <= mem(5)(3); -- default 1		
 	
-		gain_cfr0_bypass <= mem(5)(3); -- 1		
-	
-		gfir0_sleep <= mem(5)(4); -- 0	
-		gfir0_byp <= mem(5)(5); -- 1
-		gfir0_odd <= mem(5)(6); -- 1	
-	
-		hb0_delay <= mem(5)(7); -- 1
-	
+		gfir0_sleep <= mem(5)(4); -- default 0	
+		gfir0_byp <= mem(5)(5); -- default 1
+		gfir0_odd <= mem(5)(6); -- default 1	
+		hb0_delay <= mem(5)(7); -- default 1	
 		-- CH B			
-		cfr1_sleep <= mem(5)(8); -- 0
-		cfr1_bypass <= mem(5)(9); -- 1
-		cfr1_odd <= mem(5)(10); -- 1	
+		cfr1_sleep <= mem(5)(8); -- default 0
+		cfr1_bypass <= mem(5)(9); -- default 1
+		cfr1_odd <= mem(5)(10); -- default 1	
+		gain_cfr1_bypass <= mem(5)(11); -- default 1
 	
-		gain_cfr1_bypass <= mem(5)(11); -- 1
-	
-		gfir1_sleep <= mem(5)(12); -- 0	
-		gfir1_byp <= mem(5)(13); -- 1
-		gfir1_odd <= mem(5)(14); -- 1		
-	
-		hb1_delay <= mem(5)(15); -- 1
+		gfir1_sleep <= mem(5)(12); -- default 0	
+		gfir1_byp <= mem(5)(13); -- default 1
+		gfir1_odd <= mem(5)(14); -- default 1	
+		hb1_delay <= mem(5)(15); -- default 1
 		----------------		
 		cfr0_threshold <= mem(6)(15 DOWNTO 0); --"1111111111111111"	
 		cfr1_threshold <= mem(7)(15 DOWNTO 0); --"1111111111111111"	

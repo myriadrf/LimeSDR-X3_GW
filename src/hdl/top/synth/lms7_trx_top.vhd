@@ -80,13 +80,19 @@ entity lms7_trx_top is
 
       g_RXTSPCFG_START_ADDR_3   : integer := 352; -- B.J.
       g_ADPDCFG_START_ADDR   : integer := 416;  -- B.J.
+      
       g_CFR0CFG_START_ADDR   : integer := 448;  -- B.J.
       g_CFR1CFG_START_ADDR   : integer := 512;  -- B.J.
       g_FIR0CFG_START_ADDR   : integer := 576;  -- B.J.
       g_FIR1CFG_START_ADDR   : integer := 640;  -- B.J.
 
       g_FIRCFG_TX_START_ADDR    : integer := 704;  -- B.J. (LMS#2 equaliser, for Transmitter)
-      g_FIRCFG_RX_START_ADDR    : integer := 704+32; -- B.J. (LMS#2 equaliser, for Receiver)
+      g_FIRCFG_RX_START_ADDR    : integer := 736; -- B.J. (LMS#2 equaliser, for Receiver)
+
+      g_CFR2CFG_START_ADDR  : integer := 768;  -- B.J
+      g_CFR3CFG_START_ADDR  : integer := 832;  -- B.J
+      g_FIR2CFG_START_ADDR  : integer := 896;  -- B.J
+      g_FIR3CFG_START_ADDR  : integer := 960;  -- B.J
 
       g_MEMCFG_START_ADDR     : integer := 65504;
       -- External periphery
@@ -2341,7 +2347,12 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       g_TX0_FIFO_DATAW        => 128,
       g_TX1_FIFO_WRUSEDW      => 9,
       g_TX1_FIFO_DATAW        => 2*g_EXT_ADC_D_WIDTH,
-      g_INV_IQSEL             => 1 --Inverting IQSEL signal to compensate for schematic design error
+      g_INV_IQSEL             => 1,--Inverting IQSEL signal to compensate for schematic design error
+
+      g_CFR2CFG_START_ADDR  => g_CFR2CFG_START_ADDR, -- B.J.
+      g_CFR3CFG_START_ADDR  => g_CFR3CFG_START_ADDR, -- B.J.
+      g_FIR2CFG_START_ADDR  => g_FIR2CFG_START_ADDR, -- B.J.
+      g_FIR3CFG_START_ADDR  => g_FIR3CFG_START_ADDR  -- B.J.
    )
    port map(
       clk                  => inst1_pll_1_c1,
@@ -2394,10 +2405,15 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
       to_txtspcfg_1        => inst0_to_txtspcfg_1,
-      smpl_cnt_en          => inst12_smpl_cnt_en,
-            
+      smpl_cnt_en          => inst12_smpl_cnt_en,            
       from_fircfg_a        => inst0_from_fircfg_tx_a,  -- B.J.
-      from_fircfg_b        => inst0_from_fircfg_tx_b   -- B.J.
+      from_fircfg_b        => inst0_from_fircfg_tx_b,   -- B.J
+      
+      sdin                 => inst0_spi_0_MOSI,  -- Data in
+      sclk                 => inst0_spi_0_SCLK,  -- Data clock
+      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
+      sdout                => inst12_sdout,  -- Data out  
+      from_memcfg          => inst0_from_memcfg -- B.J
    );
    
    

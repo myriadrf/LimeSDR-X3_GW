@@ -278,8 +278,23 @@ begin
        end if;  
    end if;
 end process;
-
-
+-----------------------------------------------------------------------------
+-- IQ correctors 
+-- ----------------------------------------------------------------------------
+iqcorr_inst4 : iqcorr
+port map(
+   clk      => clk,
+   nrst     => nrst,
+   en       => inst0_en,
+   byp      => inst0_ph_byp,
+   pcw      => inst0_iqcorr,
+   --xi       => inst2_y,
+   xi       => in_mux_i,   
+   --xq       => inst3_y,
+   xq       => in_mux_q,  
+   yi       => inst4_yi,
+   yq       => inst4_yq
+   );
 -- ----------------------------------------------------------------------------
 -- Gain correctors 
 -- ----------------------------------------------------------------------------
@@ -290,7 +305,7 @@ port map(
    en    => inst0_en,
    byp   => inst0_gc_byp,
    gc    => inst0_gcorri,
-   x     => in_mux_i,
+   x     => inst4_yi, --in_mux_i,
    y     => inst2_y
    );
 
@@ -301,26 +316,10 @@ port map(
    en    => inst0_en,
    byp   => inst0_gc_byp,
    gc    => inst0_gcorrq,
-   x     => in_mux_q,
+   x     => inst4_yq, --in_mux_q,
    y     => inst3_y
    );
--- ----------------------------------------------------------------------------
--- IQ correctors 
--- ----------------------------------------------------------------------------
-iqcorr_inst4 : iqcorr
-port map(
-   clk      => clk,
-   nrst     => nrst,
-   en       => inst0_en,
-   byp      => inst0_ph_byp,
-   pcw      => inst0_iqcorr,
-   xi       => inst2_y,
-   xq       => inst3_y,
-   yi       => inst4_yi,
-   yq       => inst4_yq
-   );
-
--- ----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -- DC correctors 
 -- ----------------------------------------------------------------------------
 dccorr_inst5 : dccorr -- 16 bit
@@ -330,7 +329,8 @@ port map(
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorri,
-   x     => inst4_yi(17 downto 2),
+   --x     => inst4_yi(17 downto 2),
+   x     => inst2_y(17 downto 2),
    y     => inst5_y
    );
 
@@ -342,10 +342,10 @@ port map(
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorrq,
-   x     => inst4_yq(17 downto 2),
+   --x     => inst4_yq(17 downto 2),
+   x     => inst3_y(17 downto 2),
    y     => inst6_y
    );
-
 
 -- ----------------------------------------------------------------------------
 -- To output ports
