@@ -138,7 +138,7 @@ begin
    sync_reg0_1 : entity work.sync_reg 
    port map(tx_clk, tx_dma_en, '1', tx_dma_en_sync);  -- B.J.
    
-   tx_in_pct_reset_n_req   <= inst0_reset_n AND inst1_in_pct_reset_n_req;   
+   tx_in_pct_reset_n_req   <= inst0_reset_n;-- AND inst1_in_pct_reset_n_req;   
    inst1_reset_n           <= inst0_reset_n and tx_dma_en_sync;
    inst6_reset_n           <= inst0_reset_n;  
    inst5_reset_n           <= inst0_reset_n;

@@ -82,20 +82,6 @@ architecture arch of wr_stream_buff is
    signal inst2_wrfull              : std_logic;
    
    
-      
-   -- For testing only (delete this after)
-   signal wr_cnt                    : unsigned(63 downto 0);
-   signal payload_cnt               : unsigned(63 downto 0);
-   signal cnt_error                 : std_logic;
-   signal payload_error             : std_logic;
-   
-   attribute noprune : boolean;
-   attribute noprune of wr_cnt         : signal is true;
-   attribute noprune of payload_cnt    : signal is true;
-   attribute noprune of cnt_error      : signal is true;
-   attribute noprune of payload_error  : signal is true;
-   
-
    
 begin
    
@@ -111,31 +97,6 @@ begin
             reset_n_pulse <= '1';
          end if;
          
-      end if;
-   end process;
-   
-   
-   process(clk, reset_n)
-   begin 
-      if reset_n = '0' then 
-         wr_cnt    <= (others=> '0');
-         cnt_error <= '0';
-      elsif rising_edge(clk) then 
-         if from_dma_writer.valid = '1' then
-            wr_cnt <= wr_cnt + 1;
-         else 
-            wr_cnt <= wr_cnt;
-         end if;
-         
-         if from_dma_writer.valid = '1' then
-            if from_dma_writer.data = std_logic_vector(wr_cnt) then 
-               cnt_error <= '0' ;
-            else 
-               cnt_error <= '1' ;
-            end if;
-         else 
-            cnt_error <= cnt_error ;
-         end if;
       end if;
    end process;
 
@@ -158,7 +119,7 @@ begin
    )
    port map(
       --input ports 
-      reset_n     => from_dma_writer.enable AND reset_n,
+      reset_n     => from_dma_writer.enable AND reset_n and buff_0_aclrn,
       --reset_0_n   => from_dma_writer.enable AND reset_n,
       --reset_1_n   => buff_0_aclrn,
       wrclk       => clk,
@@ -210,7 +171,7 @@ begin
    )
    port map(
       --input ports 
-      reset_n  => reset_n_pulse,
+      reset_n  => reset_n_pulse and buff_1_aclrn,
       wrclk    => clk,
       wrreq    => inst1_pct_payload_valid,
       data     => inst1_pct_payload_data,
@@ -224,32 +185,6 @@ begin
       rdusedw  => buff_1_rdusedw   
    );
    
-   
-   -- For testing only (delete this after)
-   process(clk, reset_n_pulse)
-   begin 
-      if reset_n_pulse = '0' then 
-         payload_cnt    <= (others=> '0');
-         payload_error  <= '0';
-      elsif rising_edge(clk) then 
-         if inst1_pct_payload_valid = '1' then
-            payload_cnt <= payload_cnt +1;
-         else 
-            payload_cnt <= payload_cnt;
-         end if;
-         
-         if inst1_pct_payload_valid = '1' then 
-            if std_logic_vector(payload_cnt) = inst1_pct_payload_data then 
-               payload_error <= '0';
-            else 
-               payload_error <= '1';
-            end if;
-         else 
-            payload_error <= payload_error;
-         end if;
-         
-      end if;
-   end process;
    
 -- ----------------------------------------------------------------------------
 -- Output ports
