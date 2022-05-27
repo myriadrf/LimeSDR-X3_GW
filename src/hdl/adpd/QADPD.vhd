@@ -19,7 +19,8 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.std_logic_unsigned.ALL;
 USE ieee.math_real.ALL;
-USE ieee.std_logic_arith.ALL;
+--USE ieee.std_logic_arith.ALL;
+USE ieee.numeric_std.ALL;
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -67,31 +68,37 @@ ARCHITECTURE structure OF QADPD IS
 
 	TYPE cols IS ARRAY (M DOWNTO 0) OF STD_LOGIC_VECTOR(mul_n - 1 DOWNTO 0);
 	TYPE matr IS ARRAY (N DOWNTO 0) OF cols;
+	TYPE matrsigned IS ARRAY (N DOWNTO 0) OF SIGNED(mul_n - 1 DOWNTO 0);
 	TYPE matr4 IS ARRAY (M DOWNTO 0) OF cols;
 
 	TYPE cols2 IS ARRAY (M DOWNTO 0) OF STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
+	TYPE cols2signed IS ARRAY (M DOWNTO 0) OF SIGNED(2 * mul_n - 1 DOWNTO 0);
+	
 	TYPE matr2 IS ARRAY (N DOWNTO 0) OF cols2;
+	TYPE matr2signed IS ARRAY (N DOWNTO 0) OF cols2signed;
 
 	TYPE cols3 IS ARRAY (M DOWNTO 0) OF STD_LOGIC_VECTOR(mul_n + 12 DOWNTO 0);
 	TYPE matr3 IS ARRAY (N DOWNTO 0) OF cols3;
 	SIGNAL epprim : cols;
 
 	CONSTANT extens : STD_LOGIC_VECTOR(mul_n - 18 DOWNTO 0) := (OTHERS => '0');
-	SIGNAL XIp, XQp, XIpp, XQpp : STD_LOGIC_VECTOR(mul_n - 1 DOWNTO 0);
-	SIGNAL sig1, sig2 : STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
+	SIGNAL XIp, XQp, XIp1, XQp1, XIpp, XQpp : STD_LOGIC_VECTOR(mul_n - 1 DOWNTO 0);
+	SIGNAL sig1, sig2 : SIGNED(2 * mul_n - 1 DOWNTO 0);
 	SIGNAL sig3, sig4, ep, epp : STD_LOGIC_VECTOR(mul_n - 1 DOWNTO 0);
 
 	SIGNAL xIep, xQep : matr;
 	SIGNAL xIep_z, xQep_z : matr4;
-	SIGNAL xIep_s, xQep_s : cols2;
-	SIGNAL res1, res2, res3, res4 : matr2;
-	SIGNAL res1_s, res2_s, res2_sprim, res3_s, res4_s, res4_sprim : matr3;
+	SIGNAL xIep_s, xQep_s : cols2signed;
+	SIGNAL res2, res4 : matr2;
+	SIGNAL res1, res3 : matr2signed;
+	SIGNAL res1_s, res2_sprim, res3_s, res4_sprim : matr3;
 	SIGNAL ijYpI, ijYpQ, ijYpI_s, ijYpQ_s : matr2;
 
 	TYPE row2 IS ARRAY (N DOWNTO 0) OF STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
 
 	SIGNAL iYpI, iYpQ : row2;
 	SIGNAL YpI_s2, YpQ_s2 : STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
+	
 	SIGNAL a, ap, b, bp, mul5a, mul5b, mul6a, mul6b : matr;
 	CONSTANT zer : STD_LOGIC_VECTOR(mul_n - 17 DOWNTO 0) := (OTHERS => '0');
 
@@ -106,13 +113,15 @@ ARCHITECTURE structure OF QADPD IS
 	SIGNAL c, d, cp, dp, mul7a, mul7b, mul8a, mul8b : short_matr;
 
 	TYPE short_cols2 IS ARRAY (0 DOWNTO 0) OF STD_LOGIC_VECTOR(2 * mul_n - 1 DOWNTO 0);
+	TYPE short_cols2signed IS ARRAY (0 DOWNTO 0) OF SIGNED(2 * mul_n - 1 DOWNTO 0);
 	TYPE short_matr2 IS ARRAY (N DOWNTO 0) OF short_cols2;
-	SIGNAL res5, res6, res7, res8, iIQpI, iIQpQ, iIQpI_s, iIQpQ_s : short_matr2;
+	TYPE short_matr2signed IS ARRAY (N DOWNTO 0) OF short_cols2signed;
+	SIGNAL res6, res8, iIQpI, iIQpQ, iIQpI_s, iIQpQ_s : short_matr2;
+	SIGNAL res5, res7 : short_matr2signed;
 
 	TYPE short_cols3 IS ARRAY (0 DOWNTO 0) OF STD_LOGIC_VECTOR(mul_n + 12 DOWNTO 0);
 	TYPE short_matr3 IS ARRAY (N DOWNTO 0) OF short_cols3;
-
-	SIGNAL res5_s, res6_s, res6_sprim, res7_s, res8_s, res8_sprim : short_matr3;
+	SIGNAL res5_s, res6_sprim, res7_s, res8_sprim : short_matr3;
 
 BEGIN
 
@@ -165,7 +174,7 @@ BEGIN
 		END IF;
 	END PROCESS;
 
-	lab4 : PROCESS (clk) IS 
+	lab4 : PROCESS (clk) IS
 	BEGIN
 		IF (clk'event AND clk = '1') THEN -- pipeline
 			IF (data_valid = '1') THEN
@@ -185,13 +194,25 @@ BEGIN
 		END IF;
 	END PROCESS;
 
-	Mult1 : multiplier2
-	PORT MAP(dataa => XIp, datab => XIp, result => sig1);
-	sig3(mul_n - 1 DOWNTO 0) <= sig1(2 * mul_n - 5 DOWNTO mul_n - 4); -- FS
+	PROCESS (clk) IS
+	BEGIN
+		IF (clk'event AND clk = '1') THEN
+			IF data_valid = '1' THEN
+				sig1 <= signed(XIp) * signed(XIp);
+				sig2 <= signed(XQp) * signed(XQp);
+				XIp1 <= XIp;
+				XQp1 <= XQp;
+			END IF;
+		END IF;
+	END PROCESS;
 
-	Mult2 : multiplier2
-	PORT MAP(dataa => XQp, datab => XQp, result => sig2);
-	sig4(mul_n - 1 DOWNTO 0) <= sig2(2 * mul_n - 5 DOWNTO mul_n - 4); -- FS
+	--Mult1 : multiplier2
+	--PORT MAP(dataa => XIp, datab => XIp, result => sig1);
+	sig3(mul_n - 1 DOWNTO 0) <= STD_LOGIC_VECTOR(sig1(2 * mul_n - 5 DOWNTO mul_n - 4)); -- FS
+
+	--Mult2 : multiplier2
+	--PORT MAP(dataa => XQp, datab => XQp, result => sig2);
+	sig4(mul_n - 1 DOWNTO 0) <= STD_LOGIC_VECTOR(sig2(2 * mul_n - 5 DOWNTO mul_n - 4)); -- FS
 
 	Adder1 : adder GENERIC MAP(res_n => mul_n, op_n => mul_n, addi => 1)
 	PORT MAP(dataa => sig3, datab => sig4, res => ep);
@@ -200,8 +221,8 @@ BEGIN
 	BEGIN
 		IF (clk'event AND clk = '1') THEN
 			IF (data_valid = '1') THEN
-				xIpp <= xIp;
-				xQpp <= xQp;
+				xIpp <= xIp1;
+				xQpp <= xQp1;
 				epp <= ep;
 			END IF;
 		END IF;
@@ -213,20 +234,24 @@ BEGIN
 
 	lab5 : FOR j IN 1 TO M GENERATE
 
-		Mult3 : multiplier2
-		PORT MAP(dataa => xIep_z(j - 1)(j - 1), datab => epprim(j - 1), result => xIep_s(j - 1));
-		Mult4 : multiplier2
-		PORT MAP(dataa => xQep_z(j - 1)(j - 1), datab => epprim(j - 1), result => xQep_s(j - 1));
-		lab6 : PROCESS (clk) IS
+		--Mult3 : multiplier2
+		--PORT MAP(dataa => xIep_z(j - 1)(j - 1), datab => epprim(j - 1), result => xIep_s(j - 1));
+		--Mult4 : multiplier2
+		--PORT MAP(dataa => xQep_z(j - 1)(j - 1), datab => epprim(j - 1), result => xQep_s(j - 1));
+
+		PROCESS (clk) IS
 		BEGIN
 			IF (clk'event AND clk = '1') THEN
-				IF (data_valid = '1') THEN
-					xIep_z(j)(j) <= xIep_s(j - 1)(2 * mul_n - 5 DOWNTO mul_n - 4);
-					xQep_z(j)(j) <= xQep_s(j - 1)(2 * mul_n - 5 DOWNTO mul_n - 4);
+				IF data_valid = '1' THEN
+				    xIep_s(j - 1) <= signed(xIep_z(j - 1)(j - 1)) * signed(epprim(j - 1));
+					xQep_s(j - 1) <= signed(xQep_z(j - 1)(j - 1)) * signed(epprim(j - 1));
 					epprim(j) <= epprim(j - 1);
 				END IF;
 			END IF;
 		END PROCESS;
+		
+		xIep_z(j)(j) <= STD_LOGIC_VECTOR(xIep_s(j - 1)(2 * mul_n - 5 DOWNTO mul_n - 4));
+		xQep_z(j)(j) <= STD_LOGIC_VECTOR(xQep_s(j - 1)(2 * mul_n - 5 DOWNTO mul_n - 4));
 
 		labX1 : FOR k IN 0 TO j - 1 GENERATE
 			labX2 : PROCESS (clk) IS
@@ -248,7 +273,7 @@ BEGIN
 
 	lab1 : FOR i IN N DOWNTO 1 GENERATE
 		lab2 : FOR j IN 0 TO M GENERATE
-			lab3 : PROCESS (clk) IS  --, reset_n
+			lab3 : PROCESS (clk) IS --, reset_n
 			BEGIN
 				IF (clk'event AND clk = '1') THEN
 					IF (data_valid = '1') THEN
@@ -266,20 +291,18 @@ BEGIN
 			--    YpI  += a[i][j]* xIep[i][j] - b[i][j]* xQep[i][j]; 
 			--    YpQ  += a[i][j]* xQep[i][j] + b[i][j]* xIep[i][j]; 
 
-			mul5a(i)(j) <= a(i)(j) WHEN data_valid = '1' ELSE
-			b(i)(j);
+			mul5a(i)(j) <= (a(i)(j)) WHEN data_valid = '1' ELSE
+			(b(i)(j));
 			mul5b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
 			xQep(i)(j);
 
-			Mult5 : multiplier2 PORT MAP(dataa => mul5a(i)(j), datab => mul5b(i)(j), result => res1(i)(j));
-			lab14 : PROCESS (clk) IS
+			PROCESS (clk) IS
 			BEGIN
 				IF (clk'event AND clk = '1') THEN
-					IF (data_valid = '1') THEN
-						res1_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  a(i)(j)*xIep(i)(j)
-						res2_sprim(i)(j) <= res2_s(i)(j);
-					ELSE
-						res2_s(i)(j) <= res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	b(i)(j)*xQep(i)(j)
+					res1(i)(j) <= signed(mul5a(i)(j)) * signed(mul5b(i)(j));
+					res1_s(i)(j) <= STD_LOGIC_VECTOR(res1(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j));
+					IF (data_valid = '0') THEN
+						res2_sprim (i)(j)<= res1_s(i)(j);
 					END IF;
 				END IF;
 			END PROCESS;
@@ -293,20 +316,18 @@ BEGIN
 			b(i)(j);
 			mul6b(i)(j) <= xQep(i)(j) WHEN data_valid = '1' ELSE
 			xIep(i)(j);
-			Mult6 : multiplier2 PORT MAP(dataa => mul6a(i)(j), datab => mul6b(i)(j), result => res3(i)(j));
 
-			lab15 : PROCESS (clk) IS  --, reset_n
+			PROCESS (clk) IS
 			BEGIN
-				IF (clk'event AND clk = '1') THEN -- pipeline
-					IF (data_valid = '1') THEN
-
-						res3_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --a(i)(j)*xQep(i)(j)
-						res4_sprim(i)(j) <= res4_s(i)(j);
-					ELSE
-						res4_s(i)(j) <= res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --b(i)(j)*xIep(i)(j)
+				IF (clk'event AND clk = '1') THEN
+					res3(i)(j) <= signed(mul6a(i)(j)) * signed(mul6b(i)(j));
+					res3_s(i)(j) <= STD_LOGIC_VECTOR(res3(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j));
+					IF (data_valid = '0') THEN
+						res4_sprim(i)(j) <= res3_s(i)(j);
 					END IF;
 				END IF;
 			END PROCESS;
+
 			Adder3 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 1) -- addition
 			PORT MAP(dataa => res3_s(i)(j), datab => res4_sprim(i)(j), res => ijYpQ(i)(j));
 
@@ -332,25 +353,30 @@ BEGIN
 			d(i)(j);
 			mul7b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
 			xQep(i)(j);
-			Mult7 : multiplier2 PORT MAP(dataa => mul7a(i)(j), datab => mul7b(i)(j), result => res5(i)(j));
+
+			PROCESS (clk) IS
+			BEGIN
+				IF (clk'event AND clk = '1') THEN
+					res5(i)(j) <= signed(mul7a(i)(j)) * signed(mul7b(i)(j));
+					res5_s(i)(j) <= STD_LOGIC_VECTOR(res5(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j));
+					IF (data_valid = '0') THEN
+						res6_sprim (i)(j)<= res5_s(i)(j);
+					END IF;
+				END IF;
+			END PROCESS;
 
 			mul8a(i)(j) <= d(i)(j) WHEN data_valid = '1' ELSE
 			c(i)(j);
 			mul8b(i)(j) <= xIep(i)(j) WHEN data_valid = '1' ELSE
 			xQep(i)(j);
-			Mult8 : multiplier2 PORT MAP(dataa => mul8a(i)(j), datab => mul8b(i)(j), result => res7(i)(j));
 
-			labX1 : PROCESS (clk) IS  --, reset_n
+			PROCESS (clk) IS
 			BEGIN
-				IF (clk'event AND clk = '1') THEN -- pipeline
-					IF (data_valid = '1') THEN
-						res5_s(i)(j) <= res5(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  c[i][j])* xIep[i][j]
-						res7_s(i)(j) <= res7(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --  d[i][j])* xIep[i][j]
-						res6_sprim(i)(j) <= res6_s(i)(j);
-						res8_sprim(i)(j) <= res8_s(i)(j);
-					ELSE
-						res6_s(i)(j) <= res5(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	d[i][j])* xQep[i][j]
-						res8_s(i)(j) <= res7(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j); --	c[i][j])* xQep[i][j]						
+				IF (clk'event AND clk = '1') THEN
+					res7(i)(j) <= signed(mul8a(i)(j)) * signed(mul8b(i)(j));
+					res7_s(i)(j) <= STD_LOGIC_VECTOR(res7(i)(j)(2 * mul_n - 1 - j DOWNTO mul_n - 13 - j));
+					IF (data_valid = '0') THEN
+						res8_sprim(i)(j) <= res7_s(i)(j);
 					END IF;
 				END IF;
 			END PROCESS;
@@ -361,7 +387,7 @@ BEGIN
 			AdderX2 : adder GENERIC MAP(res_n => 2 * mul_n, op_n => mul_n + 13, addi => 0) -- subtraction 
 			PORT MAP(dataa => res7_s(i)(j), datab => res8_sprim(i)(j), res => iIQpQ(i)(j));
 			------- d[i][j])* xIep[i][j] - c[i][j])* xQep[i][j]
-			labX2 : PROCESS (clk) IS  --, reset_n
+			labX2 : PROCESS (clk) IS --, reset_n
 			BEGIN
 				IF (clk'event AND clk = '1') THEN
 					IF (data_valid = '1') THEN

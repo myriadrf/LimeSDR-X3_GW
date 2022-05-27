@@ -34,7 +34,8 @@ entity lms7002_tx_DPD is
       g_CFR0CFG_START_ADDR   : integer := 448;  -- B.J.
       g_CFR1CFG_START_ADDR   : integer := 512;  -- B.J.
       g_FIR0CFG_START_ADDR   : integer := 576;  -- B.J.
-      g_FIR1CFG_START_ADDR   : integer := 640   -- B.J.
+      g_FIR1CFG_START_ADDR   : integer := 640;   -- B.J.
+      DPD_enable : INTEGER := 1  -- B.J.
    );
    
    port (
@@ -236,7 +237,8 @@ begin
          g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR,
          g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, 
          g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR,
-         g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR
+         g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,
+         DPD_enable => DPD_enable
       )
       port map(
          clk => clk, -- 122.88MHz

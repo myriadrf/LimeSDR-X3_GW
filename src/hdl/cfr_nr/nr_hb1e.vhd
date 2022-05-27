@@ -178,48 +178,49 @@ BEGIN
         xp => xp, xo => xo, xm => xm);
 
     -- Delay line
-    delay : PROCESS (clk, reset)
+    delay : PROCESS (clk)  --, reset
     BEGIN
-        IF reset = '0' THEN
-            b0 <= (OTHERS => '0');
-            b1 <= (OTHERS => '0');
-            b2 <= (OTHERS => '0');
-            b3 <= (OTHERS => '0');
-            b4 <= (OTHERS => '0');
-            b5 <= (OTHERS => '0');
-            b6 <= (OTHERS => '0');
-            b7 <= (OTHERS => '0');
-            b8 <= (OTHERS => '0');
-            b9 <= (OTHERS => '0');
-            b10 <= (OTHERS => '0');
-            b11 <= (OTHERS => '0');
-            b12 <= (OTHERS => '0');
-            b13 <= (OTHERS => '0');
-            b14 <= (OTHERS => '0');
-            b15 <= (OTHERS => '0');
-            b16 <= (OTHERS => '0');
-            b17 <= (OTHERS => '0');
-            b18 <= (OTHERS => '0');
-            b19 <= (OTHERS => '0');
-            b20 <= (OTHERS => '0');
-            b21 <= (OTHERS => '0');
-            b22 <= (OTHERS => '0');
-            b23 <= (OTHERS => '0');
-            b24 <= (OTHERS => '0');
-            b25 <= (OTHERS => '0');
-            b26 <= (OTHERS => '0');
-            b27 <= (OTHERS => '0');
-            b28 <= (OTHERS => '0');
-            b29 <= (OTHERS => '0');
-            b30 <= (OTHERS => '0');
-            b31 <= (OTHERS => '0');
-            b32 <= (OTHERS => '0');
-            b33 <= (OTHERS => '0');
-            b34 <= (OTHERS => '0');
-            b35 <= (OTHERS => '0');
-            b36 <= (OTHERS => '0');
-            b37 <= (OTHERS => '0');
-        ELSIF clk'event AND clk = '1' THEN
+--        IF reset = '0' THEN
+--            b0 <= (OTHERS => '0');
+--            b1 <= (OTHERS => '0');
+--            b2 <= (OTHERS => '0');
+--            b3 <= (OTHERS => '0');
+--            b4 <= (OTHERS => '0');
+--            b5 <= (OTHERS => '0');
+--            b6 <= (OTHERS => '0');
+--            b7 <= (OTHERS => '0');
+--            b8 <= (OTHERS => '0');
+--            b9 <= (OTHERS => '0');
+--            b10 <= (OTHERS => '0');
+--            b11 <= (OTHERS => '0');
+--            b12 <= (OTHERS => '0');
+--            b13 <= (OTHERS => '0');
+--            b14 <= (OTHERS => '0');
+--            b15 <= (OTHERS => '0');
+--            b16 <= (OTHERS => '0');
+--            b17 <= (OTHERS => '0');
+--            b18 <= (OTHERS => '0');
+--            b19 <= (OTHERS => '0');
+--            b20 <= (OTHERS => '0');
+--            b21 <= (OTHERS => '0');
+--            b22 <= (OTHERS => '0');
+--            b23 <= (OTHERS => '0');
+--            b24 <= (OTHERS => '0');
+--            b25 <= (OTHERS => '0');
+--            b26 <= (OTHERS => '0');
+--            b27 <= (OTHERS => '0');
+--            b28 <= (OTHERS => '0');
+--            b29 <= (OTHERS => '0');
+--            b30 <= (OTHERS => '0');
+--            b31 <= (OTHERS => '0');
+--            b32 <= (OTHERS => '0');
+--            b33 <= (OTHERS => '0');
+--            b34 <= (OTHERS => '0');
+--            b35 <= (OTHERS => '0');
+--            b36 <= (OTHERS => '0');
+--            b37 <= (OTHERS => '0');
+--        ELS
+        IF clk'event AND clk = '1' THEN
             IF en = '1' THEN
                 b0 <= b1;
                 b1 <= s2;

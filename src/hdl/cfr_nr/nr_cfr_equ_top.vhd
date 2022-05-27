@@ -11,7 +11,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 USE work.txtspcfg_pkg.ALL;
-use work.memcfg_pkg.all;
+USE work.memcfg_pkg.ALL;
 USE work.fircfg_pkg.ALL;
 -- ----------------------------------------------------------------------------
 -- Entity declaration
@@ -118,40 +118,44 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
             sen : IN STD_LOGIC; -- Enable signal (active low)
             sdout : OUT STD_LOGIC; -- Data out
             oen : OUT STD_LOGIC;
-            yi : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
-            yq : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
+            --yi : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
+            --yq : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
+            yi : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
+            yq : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
             xen : OUT STD_LOGIC
         );
     END COMPONENT nr_gfirhf;
-    
+
     COMPONENT invsinc26 IS
-      PORT (
-         clk : IN STD_LOGIC; -- Clock
-         reset : IN STD_LOGIC; -- Reset
-         en : IN STD_LOGIC; -- Sleep mode control
-         x1 : IN STD_LOGIC_VECTOR(17 DOWNTO 0); -- Input
-         y1 : OUT STD_LOGIC_VECTOR(17 DOWNTO 0) -- Output
-      );
+        PORT (
+            clk : IN STD_LOGIC; -- Clock
+            reset : IN STD_LOGIC; -- Reset
+            en : IN STD_LOGIC; -- Sleep mode control
+            x1 : IN STD_LOGIC_VECTOR(17 DOWNTO 0); -- Input
+            y1 : OUT STD_LOGIC_VECTOR(17 DOWNTO 0) -- Output
+        );
     END COMPONENT invsinc26;
 
     COMPONENT adder IS
-		GENERIC (
-			res_n : NATURAL := 18; 
-			op_n : NATURAL := 18; 
-			addi : NATURAL := 1); 
-		PORT (
-			dataa : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
-			datab : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
-			res : OUT STD_LOGIC_VECTOR (res_n - 1 DOWNTO 0));
-	END COMPONENT adder;
+        GENERIC (
+            res_n : NATURAL := 18;
+            op_n : NATURAL := 18;
+            addi : NATURAL := 1);
+        PORT (
+            dataa : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
+            datab : IN STD_LOGIC_VECTOR (op_n - 1 DOWNTO 0);
+            res : OUT STD_LOGIC_VECTOR (res_n - 1 DOWNTO 0));
+    END COMPONENT adder;
 
-    SIGNAL sai_6, saq_6 : STD_LOGIC_VECTOR(24 DOWNTO 0);
+    --SIGNAL sai_6, saq_6 : STD_LOGIC_VECTOR(24 DOWNTO 0);
+    SIGNAL sai_6, saq_6 : STD_LOGIC_VECTOR(17 DOWNTO 0);
     SIGNAL sai_11, saq_11 : STD_LOGIC_VECTOR(21 DOWNTO 0);
     SIGNAL sai_1, saq_1, sai_2, saq_2, sai_8, saq_8, sai_9, saq_9 : STD_LOGIC_VECTOR(17 DOWNTO 0);
     SIGNAL sai_3, saq_3, sai_4, saq_4, sai_5, saq_5, sai_7, saq_7, sai_12, saq_12 : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL sai_10, saq_10 : STD_LOGIC_VECTOR(13 DOWNTO 0);
 
-    SIGNAL sbi_6, sbq_6 : STD_LOGIC_VECTOR(24 DOWNTO 0);
+    --SIGNAL sbi_6, sbq_6 : STD_LOGIC_VECTOR(24 DOWNTO 0);
+    SIGNAL sbi_6, sbq_6 : STD_LOGIC_VECTOR(17 DOWNTO 0);
     SIGNAL sbi_11, sbq_11 : STD_LOGIC_VECTOR(21 DOWNTO 0);
     SIGNAL sbi_1, sbq_1, sbi_2, sbq_2, sbi_8, sbq_8, sbi_9, sbq_9 : STD_LOGIC_VECTOR(17 DOWNTO 0);
     SIGNAL sbi_3, sbq_3, sbi_4, sbq_4, sbi_5, sbq_5, sbi_7, sbq_7, sbi_12, sbq_12 : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -173,12 +177,12 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
     SIGNAL xena, bypass_insta_1, bypass_insta_2, bypass_insta_3, bypass_insta_4, isinc_bypass_insta_6, equ_bypass_insta_7 : STD_LOGIC;
     SIGNAL xenb, bypass_instb_1, bypass_instb_2, bypass_instb_3, bypass_instb_4, isinc_bypass_instb_6, equ_bypass_instb_7 : STD_LOGIC;
 
-    signal zeroes, saq_7p, sbq_7p : std_logic_vector(15 downto 0);
-    signal invertq_insta_6, invertq_instb_6: std_logic;    
+    SIGNAL zeroes, saq_7p, sbq_7p : STD_LOGIC_VECTOR(15 DOWNTO 0);
+    SIGNAL invertq_insta_6, invertq_instb_6 : STD_LOGIC;
 
 BEGIN
 
-    zeroes <= (others=>'0');
+    zeroes <= (OTHERS => '0');
     sdout <= sdout_insta_2 OR sdout_instb_2 OR sdout_insta_4 OR sdout_instb_4;
     sen0 <= sen OR (NOT from_memcfg.mac(0));
     sen1 <= sen OR (NOT from_memcfg.mac(1));
@@ -197,7 +201,7 @@ BEGIN
     isinc_bypass_insta_6 <= from_txtspcfg_0.isinc_byp;
     equ_bypass_insta_7 <= from_txtspcfg_0.equaliser_byp;
     invertq_insta_6 <= from_txtspcfg_0.invertq;
-    
+
     bypass_instb_1 <= from_txtspcfg_1.hbi_byp;
     hb1_delay_instb_1 <= from_txtspcfg_1.hbi_del;
     cfr_sleep_instb_2 <= from_txtspcfg_1.cfr_sleep;
@@ -214,7 +218,7 @@ BEGIN
     invertq_instb_6 <= from_txtspcfg_1.invertq;
     xen <= xena;
     yen <= xena;
-      
+
     ----- channel A  -----    
 
     xena <= xen_insta_1 WHEN bypass_insta_1 = '0' ELSE
@@ -295,7 +299,7 @@ BEGIN
         sleep => fir_sleep_insta_4, -- sleep_a,
         clk => clk, -- 245.76 MSPS
         reset => reset_n,
-        reset_mem_n => mem_reset_n, 
+        reset_mem_n => mem_reset_n,
         bypass => bypass_insta_4,
         odd => fir_odd_insta_4,
         half => '0',
@@ -310,8 +314,8 @@ BEGIN
         sen => sen0,
         sdout => sdout_insta_4,
         oen => OPEN,
-        yi => sai_6, -- 25 bits
-        yq => saq_6, -- 25 bits
+        yi => sai_6, -- 18 bits
+        yq => saq_6, -- 18 bits
         xen => OPEN
     );
 
@@ -320,8 +324,10 @@ BEGIN
         (
             clk => clk,
             nrst => reset_n,
-            TXI => sai_6(24 DOWNTO 7), -- 18bit
-            TXQ => saq_6(24 DOWNTO 7),
+            --TXI => sai_6(24 DOWNTO 7), -- 18bit
+            --TXQ => saq_6(24 DOWNTO 7),
+            TXI => sai_6, -- 18bit
+            TXQ => saq_6,
             TYI => sai_7, -- 16 bit
             TYQ => saq_7,
             from_txtspcfg => from_txtspcfg_0, -- TxTSP configuration, channel A
@@ -329,12 +335,18 @@ BEGIN
         );
 
     Adder1 : adder GENERIC MAP(res_n => 16, op_n => 16, addi => 0)
-		PORT MAP(dataa => zeroes, datab => saq_7, res => saq_7p);
-
-    saq_8 <= saq_7 & "00" WHEN invertq_insta_6 = '0' ELSE
-        saq_7p & "00";    
-    sai_8 <= sai_7 & "00"; -- 18 bit
-
+    PORT MAP(dataa => zeroes, datab => saq_7, res => saq_7p);
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF invertq_insta_6 = '0' THEN
+                saq_8 <= saq_7 & "00";
+            ELSE
+                saq_8 <= saq_7p & "00";
+            END IF;
+            sai_8 <= sai_7 & "00"; -- 18 bit            
+        END IF;
+    END PROCESS;
 
     insta_6_i : invsinc26 PORT MAP(
         clk => clk,
@@ -348,10 +360,19 @@ BEGIN
         en => '1',
         x1 => saq_8,
         y1 => saq_9); -- 18 bit
-    sai_10 <= sai_9(17 DOWNTO 4) WHEN isinc_bypass_insta_6 = '0' ELSE
-        sai_8(17 DOWNTO 4); -- to 14 bit
-    saq_10 <= saq_9(17 DOWNTO 4) WHEN isinc_bypass_insta_6 = '0' ELSE
-        saq_8(17 DOWNTO 4);
+
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF isinc_bypass_insta_6 = '0' THEN
+                sai_10 <= sai_9(17 DOWNTO 4);
+                saq_10 <= saq_9(17 DOWNTO 4);
+            ELSE
+                sai_10 <= sai_8(17 DOWNTO 4);
+                saq_10 <= saq_8(17 DOWNTO 4);
+            END IF;
+        END IF;
+    END PROCESS;
 
     insta_7_i : ENTITY work.firfilt
         GENERIC MAP(
@@ -370,11 +391,7 @@ BEGIN
             q_valid => OPEN,
             chI => '1'
         );
-
     -- 16 bit
-    sai_12 <= sai_11(21 DOWNTO 6) WHEN equ_bypass_insta_7 = '0' ELSE
-        (sai_10 & "00");
-
     insta_7_q : ENTITY work.firfilt
         GENERIC MAP(
             g_IN_WIDTH => 14, -- Input data width
@@ -392,20 +409,30 @@ BEGIN
             q_valid => OPEN,
             chI => '0'
         );
-    -- 16 bit
-    saq_12 <= saq_11(21 DOWNTO 6) WHEN equ_bypass_insta_7 = '0' ELSE
-        (saq_10 & "00");
 
     PROCESS (clk)
     BEGIN
         IF rising_edge(clk) THEN
-            ai_out <= sai_12;
-            aq_out <= saq_12;
+            IF equ_bypass_insta_7 = '0' THEN
+                sai_12 <= sai_11(21 DOWNTO 6);
+                saq_12 <= saq_11(21 DOWNTO 6);
+            ELSE
+                sai_12 <= (sai_10 & "00");
+                saq_12 <= (saq_10 & "00");
+            END IF;
         END IF;
     END PROCESS;
 
-    ----- channel B  -----
+    -- 16 bit
+    --PROCESS (clk)
+    --BEGIN
+    --    IF rising_edge(clk) THEN
+    ai_out <= sai_12;
+    aq_out <= saq_12;
+    --    END IF;
+    --END PROCESS;
 
+    ----- channel B  -----
     xenb <= xen_instb_1 WHEN bypass_instb_1 = '0' ELSE
         '1';
     PROCESS (clk)
@@ -476,7 +503,7 @@ BEGIN
         ypq_o => sbq_5 -- 16 bits
     );
 
-    bypass_instb_4 <=  fir_bypass_instb_4; --bypass_instb_1 OR
+    bypass_instb_4 <= fir_bypass_instb_4; --bypass_instb_1 OR
     instb_4 : nr_gfirhf
     PORT MAP(
         sleep => fir_sleep_instb_4, -- sleep_a,
@@ -496,8 +523,8 @@ BEGIN
         sen => sen1,
         sdout => sdout_instb_4,
         oen => OPEN,
-        yi => sbi_6, -- 25 bits
-        yq => sbq_6, -- 25 bits
+        yi => sbi_6, -- 18 bits
+        yq => sbq_6, -- 18 bits
         xen => OPEN --inst5_xen
     );
 
@@ -506,20 +533,29 @@ BEGIN
         (
             clk => clk,
             nrst => reset_n,
-            TXI => sbi_6(24 DOWNTO 7), -- 18bit
-            TXQ => sbq_6(24 DOWNTO 7),
+            --TXI => sbi_6(24 DOWNTO 7), -- 18bit
+            --TXQ => sbq_6(24 DOWNTO 7),
+            TXI => sbi_6, -- 18bit
+            TXQ => sbq_6,
             TYI => sbi_7, -- 16 bit
             TYQ => sbq_7,
             from_txtspcfg => from_txtspcfg_1, -- TxTSP configuration, channel B 
             to_txtspcfg => to_txtspcfg_1
         );
-    
-    Adder2 : adder GENERIC MAP(res_n => 16, op_n => 16, addi => 0)
-		PORT MAP(dataa => zeroes, datab => sbq_7, res => sbq_7p);
-    sbq_8 <= sbq_7 & "00" WHEN invertq_instb_6 = '0' ELSE
-        sbq_7p & "00";    
-    sbi_8 <= sbi_7 & "00"; -- 18 bit
 
+    Adder2 : adder GENERIC MAP(res_n => 16, op_n => 16, addi => 0)
+    PORT MAP(dataa => zeroes, datab => sbq_7, res => sbq_7p);
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF invertq_instb_6 = '0' THEN
+                sbq_8 <= sbq_7 & "00";
+            ELSE
+                sbq_8 <= sbq_7p & "00";
+            END IF;
+            sbi_8 <= sbi_7 & "00"; -- 18 bit            
+        END IF;
+    END PROCESS;
 
     instb_6_i : invsinc26 PORT MAP(
         clk => clk,
@@ -533,10 +569,19 @@ BEGIN
         en => '1',
         x1 => sbq_8,
         y1 => sbq_9); -- 18 bit
-    sbi_10 <= sbi_9(17 DOWNTO 4) WHEN isinc_bypass_instb_6 = '0' ELSE
-        sbi_8(17 DOWNTO 4); -- to 14 bit
-    sbq_10 <= sbq_9(17 DOWNTO 4) WHEN isinc_bypass_instb_6 = '0' ELSE
-        sbq_8(17 DOWNTO 4);
+
+    PROCESS (clk)
+    BEGIN
+        IF rising_edge(clk) THEN
+            IF isinc_bypass_instb_6 = '0' THEN
+                sbi_10 <= sbi_9(17 DOWNTO 4);
+                sbq_10 <= sbq_9(17 DOWNTO 4);
+            ELSE
+                sbi_10 <= sbi_8(17 DOWNTO 4);
+                sbq_10 <= sbq_8(17 DOWNTO 4);
+            END IF;
+        END IF;
+    END PROCESS;
 
     instb_7_i : ENTITY work.firfilt
         GENERIC MAP(
@@ -556,10 +601,6 @@ BEGIN
             chI => '1'
         );
 
-    -- 16 bit
-    sbi_12 <= sbi_11(21 DOWNTO 6) WHEN equ_bypass_instb_7 = '0' ELSE
-        (sbi_10 & "00");
-
     instb_7_q : ENTITY work.firfilt
         GENERIC MAP(
             g_IN_WIDTH => 14, -- Input data width
@@ -577,16 +618,26 @@ BEGIN
             q_valid => OPEN,
             chI => '0'
         );
-    -- 16 bit
-    sbq_12 <= sbq_11(21 DOWNTO 6) WHEN equ_bypass_instb_7 = '0' ELSE
-        (sbq_10 & "00");
 
     PROCESS (clk)
     BEGIN
         IF rising_edge(clk) THEN
-            bi_out <= sbi_12;
-            bq_out <= sbq_12;
+            IF equ_bypass_instb_7 = '0' THEN
+                sbi_12 <= sbi_11(21 DOWNTO 6);
+                sbq_12 <= sbq_11(21 DOWNTO 6);
+            ELSE
+                sbi_12 <= (sbi_10 & "00");
+                sbq_12 <= (sbq_10 & "00");
+            END IF;
         END IF;
     END PROCESS;
+
+    --PROCESS (clk)
+    --BEGIN
+    --    IF rising_edge(clk) THEN
+    bi_out <= sbi_12;
+    bq_out <= sbq_12;
+    --    END IF;
+    --END PROCESS;
 
 END ARCHITECTURE struct;

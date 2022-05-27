@@ -41,7 +41,7 @@ end qpsmc19x14;
 -- ----------------------------------------------------------------------------
 architecture qpsmc19x14_arch of qpsmc19x14 is
 	signal ph: std_logic_vector(15 downto 0); -- 16 bit input to Walsh processors
-	signal pha, phb, phc: std_logic_vector(2 downto 0); -- Three MSB of phase
+	signal pha, phb, phc, phb_temp, phc_temp, phd_temp: std_logic_vector(2 downto 0); -- Three MSB of phase
 	signal phd: std_logic_vector(3 downto 0);
 
 	-- Walsh signals
@@ -306,6 +306,10 @@ architecture qpsmc19x14_arch of qpsmc19x14 is
 	use work.components.csava14x8;
 	use work.components.csava12x8;
 	use work.components.csava20x9;
+        
+    use work.components.csava20x9_mod;  -- B.J.
+    use work.components.csavaWx8; -- B.J. 
+	use work.components.csavaWx6; -- B.J.
 	
 	for all:bcla4 use entity work.bcla4(bcla4_arch);
 	for all:csa10 use entity work.csa10(csa10_arch);
@@ -328,6 +332,13 @@ architecture qpsmc19x14_arch of qpsmc19x14 is
 	for all:csava14x8 use entity work.csava14x8(csava14x8_arch);
 	for all:csava12x8 use entity work.csava12x8(csava12x8_arch);
 	for all:csava20x9 use entity work.csava20x9(csava20x9_arch);
+
+    for all:csava20x9_mod use entity work.csava20x9_mod(arch); -- B.J.
+    for all:csavaWx8 use entity work.csavaWx8(arch); -- B.J.
+	for all:csavaWx6 use entity work.csavaWx6(arch); -- B.J.
+	
+	signal c_s2a3in7_temp, c_s2a3in8_temp : std_logic_vector(3 downto 0);
+	signal s_s3a0in9_temp:std_logic_vector(6 downto 0);
 	
 begin	
 	-- Set logic signals
@@ -850,217 +861,209 @@ begin
 
 	-- First stage of sine adders
 	-- --------------------------------------------------------------------------------
-	s_s1a0: csava20x6
+	--s_s1a0: csava20x6
+	s_s1a0: csavaWx6 generic map (WIDTH => 20)
 		port map (in1 => sine_wt_0(19 downto 0), in2 => sine_wt_1(19 downto 0),
 			in3 => sine_wt_2(19 downto 0), in4 => sine_wt_4(19 downto 0),
 			in5 => sine_wt_8(19 downto 0), in6 => sine_wt_16(19 downto 0),
-			s => s_s1a0s, c => s_s1a0c);
-	s_s1a1: csava17x6
+			s => s_s1a0s, c => s_s1a0c, clk => clk);
+	--s_s1a1: csava17x6
+	s_s1a1: csavaWx6 generic map (WIDTH => 17)
 		port map (in1 => sine_wt_3(16 downto 0), in2 => sine_wt_32(16 downto 0),
 			in3 => sine_wt_5(16 downto 0), in4 => sine_wt_64(16 downto 0),
 			in5 => sine_wt_6(16 downto 0), in6 => sine_wt_9(16 downto 0),
-			s => s_s1a1s, c => s_s1a1c);
-	s_s1a2: csava15x6
+			s => s_s1a1s, c => s_s1a1c, clk => clk);
+	--s_s1a2: csava15x6
+	s_s1a2: csavaWx6 generic map (WIDTH => 15)
 		port map (in1 => sine_wt_128(14 downto 0), in2 => sine_wt_7(14 downto 0),
 			in3 => sine_wt_10(14 downto 0), in4 => sine_wt_17(14 downto 0),
 			in5 => sine_wt_256(14 downto 0), in6 => sine_wt_11(14 downto 0),
-			s => s_s1a2s, c => s_s1a2c);
-	s_s1a3: csava13x6
+			s => s_s1a2s, c => s_s1a2c, clk => clk);
+	--s_s1a3: csava13x6
+	s_s1a3: csavaWx6 generic map (WIDTH => 13)
 		port map (in1 => sine_wt_12(12 downto 0), in2 => sine_wt_18(12 downto 0),
 			in3 => sine_wt_33(12 downto 0), in4 => sine_wt_512(12 downto 0),
 			in5 => sine_wt_13(12 downto 0), in6 => sine_wt_19(12 downto 0),
-			s => s_s1a3s, c => s_s1a3c);
-	s_s1a4: csava12x6
+			s => s_s1a3s, c => s_s1a3c, clk => clk);
+	--s_s1a4: csava12x6
+	s_s1a4: csavaWx6 generic map (WIDTH => 12)
 		port map (in1 => sine_wt_20(11 downto 0), in2 => sine_wt_34(11 downto 0),
 			in3 => sine_wt_65(11 downto 0), in4 => sine_wt_1024(11 downto 0),
 			in5 => sine_wt_14(11 downto 0), in6 => sine_wt_21(11 downto 0),
-			s => s_s1a4s, c => s_s1a4c);
-	s_s1a5: csava11x6
+			s => s_s1a4s, c => s_s1a4c, clk => clk);
+	--s_s1a5: csava11x6
+	s_s1a5: csavaWx6 generic map (WIDTH => 11)
 		port map (in1 => sine_wt_24(10 downto 0), in2 => sine_wt_35(10 downto 0),
 			in3 => sine_wt_36(10 downto 0), in4 => sine_wt_66(10 downto 0),
 			in5 => sine_wt_129(10 downto 0), in6 => sine_wt_2048(10 downto 0),
-			s => s_s1a5s, c => s_s1a5c);
-	s_s1a6: csava10x6
+			s => s_s1a5s, c => s_s1a5c, clk => clk);
+	--s_s1a6: csava10x6
+	s_s1a6: csavaWx6 generic map (WIDTH => 10)
 		port map (in1 => sine_wt_22(9 downto 0), in2 => sine_wt_25(9 downto 0),
 			in3 => sine_wt_37(9 downto 0), in4 => sine_wt_40(9 downto 0),
 			in5 => sine_wt_67(9 downto 0), in6 => sine_wt_68(9 downto 0),
-			s => s_s1a6s, c => s_s1a6c);
-	s_s1a7: csava10x6
+			s => s_s1a6s, c => s_s1a6c, clk => clk);
+	--s_s1a7: csava10x6
+	s_s1a7: csavaWx6 generic map (WIDTH => 10)
 		port map (in1 => sine_wt_130(9 downto 0), in2 => sine_wt_257(9 downto 0),
 			in3 => sine_wt_4096(9 downto 0), in4 => sine_wt_26(9 downto 0),
 			in5 => sine_wt_38(9 downto 0), in6 => sine_wt_41(9 downto 0),
-			s => s_s1a7s, c => s_s1a7c);
-	s_s1a8: csava9x6
+			s => s_s1a7s, c => s_s1a7c, clk => clk);
+	--s_s1a8: csava9x6
+	s_s1a8: csavaWx6 generic map (WIDTH => 9)
 		port map (in1 => sine_wt_48(8 downto 0), in2 => sine_wt_69(8 downto 0),
 			in3 => sine_wt_72(8 downto 0), in4 => sine_wt_131(8 downto 0),
 			in5 => sine_wt_132(8 downto 0), in6 => sine_wt_258(8 downto 0),
-			s => s_s1a8s, c => s_s1a8c);
-	s_s1a9: csava9x6
+			s => s_s1a8s, c => s_s1a8c, clk => clk);
+	--s_s1a9: csava9x6
+	s_s1a9: csavaWx6 generic map (WIDTH => 9)
 		port map (in1 => sine_wt_513(8 downto 0), in2 => sine_wt_8192(8 downto 0),
 			in3 => sine_wt_15(8 downto 0), in4 => sine_wt_28(8 downto 0),
 			in5 => sine_wt_42(8 downto 0), in6 => sine_wt_49(8 downto 0),
-			s => s_s1a9s, c => s_s1a9c);
-	s_s1a10: csava8x6
+			s => s_s1a9s, c => s_s1a9c, clk => clk);
+	--s_s1a10: csava8x6
+	s_s1a10: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => sine_wt_50(7 downto 0), in2 => sine_wt_70(7 downto 0),
 			in3 => sine_wt_73(7 downto 0), in4 => sine_wt_74(7 downto 0),
 			in5 => sine_wt_80(7 downto 0), in6 => sine_wt_81(7 downto 0),
-			s => s_s1a10s, c => s_s1a10c);
-	s_s1a11: csava8x6
+			s => s_s1a10s, c => s_s1a10c, clk => clk);
+	--s_s1a11: csava8x6
+	s_s1a11: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => sine_wt_96(7 downto 0), in2 => sine_wt_133(7 downto 0),
 			in3 => sine_wt_134(7 downto 0), in4 => sine_wt_136(7 downto 0),
 			in5 => sine_wt_137(7 downto 0), in6 => sine_wt_144(7 downto 0),
-			s => s_s1a11s, c => s_s1a11c);
-	s_s1a12: csava8x6
+			s => s_s1a11s, c => s_s1a11c, clk => clk);
+	--s_s1a12: csava8x6
+	s_s1a12: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => sine_wt_259(7 downto 0), in2 => sine_wt_260(7 downto 0),
 			in3 => sine_wt_261(7 downto 0), in4 => sine_wt_264(7 downto 0),
 			in5 => sine_wt_514(7 downto 0), in6 => sine_wt_515(7 downto 0),
-			s => s_s1a12s, c => s_s1a12c);
-	s_s1a13: csava8x6
+			s => s_s1a12s, c => s_s1a12c, clk => clk);
+	--s_s1a13: csava8x6
+	s_s1a13: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => sine_wt_516(7 downto 0), in2 => sine_wt_1025(7 downto 0),
 			in3 => sine_wt_1026(7 downto 0), in4 => sine_wt_2049(7 downto 0),
 			in5 => sine_wt_16384(7 downto 0), in6 => sine_wt_23(7 downto 0),
-			s => s_s1a13s, c => s_s1a13c);
-	s_s1a14: csava7x6
+			s => s_s1a13s, c => s_s1a13c, clk => clk);
+	--s_s1a14: csava7x6
+	s_s1a14: csavaWx6 generic map (WIDTH => 7)
 		port map (in1 => sine_wt_44(6 downto 0), in2 => sine_wt_52(6 downto 0),
 			in3 => sine_wt_76(6 downto 0), in4 => sine_wt_82(6 downto 0),
 			in5 => sine_wt_97(6 downto 0), in6 => sine_wt_138(6 downto 0),
-			s => s_s1a14s, c => s_s1a14c);
-	s_s1a15: csava7x6
+			s => s_s1a14s, c => s_s1a14c, clk => clk);
+	--s_s1a15: csava7x6
+	s_s1a15: csavaWx6 generic map (WIDTH => 7)
 		port map (in1 => sine_wt_145(6 downto 0), in2 => sine_wt_160(6 downto 0),
 			in3 => sine_wt_262(6 downto 0), in4 => sine_wt_265(6 downto 0),
 			in5 => sine_wt_272(6 downto 0), in6 => sine_wt_517(6 downto 0),
-			s => s_s1a15s, c => s_s1a15c);
-	s_s1a16: csava7x6
+			s => s_s1a15s, c => s_s1a15c, clk => clk);
+	--s_s1a16: csava7x6
+	s_s1a16: csavaWx6 generic map (WIDTH => 7)
 		port map (in1 => sine_wt_520(6 downto 0), in2 => sine_wt_1027(6 downto 0),
 			in3 => sine_wt_1028(6 downto 0), in4 => sine_wt_2050(6 downto 0),
 			in5 => sine_wt_4097(6 downto 0), in6 => sine_wt_32768(6 downto 0),
-			s => s_s1a16s, c => s_s1a16c);
+			s => s_s1a16s, c => s_s1a16c, clk => clk);
 
 	-- First stage of cosine adders
 	-- --------------------------------------------------------------------------------
-	c_s1a0: csava20x6
+	--c_s1a0: csava20x6
+	c_s1a0: csavaWx6 generic map (WIDTH => 20)
 		port map (in1 => cosine_wt_0(19 downto 0), in2 => cosine_wt_1(19 downto 0),
 			in3 => cosine_wt_2(19 downto 0), in4 => cosine_wt_3(19 downto 0),
 			in5 => cosine_wt_4(19 downto 0), in6 => cosine_wt_5(19 downto 0),
-			s => c_s1a0s, c => c_s1a0c);
-	c_s1a1: csava18x6
+			s => c_s1a0s, c => c_s1a0c, clk => clk);
+	--c_s1a1: csava18x6
+	c_s1a1: csavaWx6 generic map (WIDTH => 18)
 		port map (in1 => cosine_wt_8(17 downto 0), in2 => cosine_wt_6(17 downto 0),
 			in3 => cosine_wt_9(17 downto 0), in4 => cosine_wt_16(17 downto 0),
 			in5 => cosine_wt_10(17 downto 0), in6 => cosine_wt_17(17 downto 0),
-			s => c_s1a1s, c => c_s1a1c);
-	c_s1a2: csava16x6
+			s => c_s1a1s, c => c_s1a1c, clk => clk);
+	--c_s1a2: csava16x6
+	c_s1a2: csavaWx6 generic map (WIDTH => 16)
 		port map (in1 => cosine_wt_32(15 downto 0), in2 => cosine_wt_12(15 downto 0),
 			in3 => cosine_wt_18(15 downto 0), in4 => cosine_wt_33(15 downto 0),
 			in5 => cosine_wt_64(15 downto 0), in6 => cosine_wt_20(15 downto 0),
-			s => c_s1a2s, c => c_s1a2c);
-	c_s1a3: csava14x6
+			s => c_s1a2s, c => c_s1a2c, clk => clk);
+	--c_s1a3: csava14x6
+	c_s1a3: csavaWx6 generic map (WIDTH => 14)
 		port map (in1 => cosine_wt_34(13 downto 0), in2 => cosine_wt_65(13 downto 0),
 			in3 => cosine_wt_128(13 downto 0), in4 => cosine_wt_7(13 downto 0),
 			in5 => cosine_wt_24(13 downto 0), in6 => cosine_wt_36(13 downto 0),
-			s => c_s1a3s, c => c_s1a3c);
-	c_s1a4: csava13x6
+			s => c_s1a3s, c => c_s1a3c, clk => clk);
+	--c_s1a4: csava13x6
+	c_s1a4: csavaWx6 generic map (WIDTH => 13)
 		port map (in1 => cosine_wt_66(12 downto 0), in2 => cosine_wt_129(12 downto 0),
 			in3 => cosine_wt_256(12 downto 0), in4 => cosine_wt_11(12 downto 0),
 			in5 => cosine_wt_40(12 downto 0), in6 => cosine_wt_68(12 downto 0),
-			s => c_s1a4s, c => c_s1a4c);
-	c_s1a5: csava12x6
+			s => c_s1a4s, c => c_s1a4c, clk => clk);
+	--c_s1a5: csava12x6
+	c_s1a5: csavaWx6 generic map (WIDTH => 12)
 		port map (in1 => cosine_wt_130(11 downto 0), in2 => cosine_wt_257(11 downto 0),
 			in3 => cosine_wt_512(11 downto 0), in4 => cosine_wt_13(11 downto 0),
 			in5 => cosine_wt_19(11 downto 0), in6 => cosine_wt_48(11 downto 0),
-			s => c_s1a5s, c => c_s1a5c);
-	c_s1a6: csava11x6
+			s => c_s1a5s, c => c_s1a5c, clk => clk);
+	--c_s1a6: csava11x6
+	c_s1a6: csavaWx6 generic map (WIDTH => 11)
 		port map (in1 => cosine_wt_72(10 downto 0), in2 => cosine_wt_132(10 downto 0),
 			in3 => cosine_wt_258(10 downto 0), in4 => cosine_wt_513(10 downto 0),
 			in5 => cosine_wt_1024(10 downto 0), in6 => cosine_wt_14(10 downto 0),
-			s => c_s1a6s, c => c_s1a6c);
-	c_s1a7: csava10x6
+			s => c_s1a6s, c => c_s1a6c, clk => clk);
+	--c_s1a7: csava10x6
+	c_s1a7: csavaWx6 generic map (WIDTH => 10)
 		port map (in1 => cosine_wt_21(9 downto 0), in2 => cosine_wt_35(9 downto 0),
 			in3 => cosine_wt_80(9 downto 0), in4 => cosine_wt_136(9 downto 0),
 			in5 => cosine_wt_260(9 downto 0), in6 => cosine_wt_514(9 downto 0),
-			s => c_s1a7s, c => c_s1a7c);
-	c_s1a8: csava10x6
+			s => c_s1a7s, c => c_s1a7c, clk => clk);
+	--c_s1a8: csava10x6
+	c_s1a8: csavaWx6 generic map (WIDTH => 10)
 		port map (in1 => cosine_wt_1025(9 downto 0), in2 => cosine_wt_2048(9 downto 0),
 			in3 => cosine_wt_15(9 downto 0), in4 => cosine_wt_22(9 downto 0),
 			in5 => cosine_wt_25(9 downto 0), in6 => cosine_wt_37(9 downto 0),
-			s => c_s1a8s, c => c_s1a8c);
-	c_s1a9: csava9x6
+			s => c_s1a8s, c => c_s1a8c, clk => clk);
+	--c_s1a9: csava9x6
+	c_s1a9: csavaWx6 generic map (WIDTH => 9)
 		port map (in1 => cosine_wt_67(8 downto 0), in2 => cosine_wt_96(8 downto 0),
 			in3 => cosine_wt_144(8 downto 0), in4 => cosine_wt_264(8 downto 0),
 			in5 => cosine_wt_516(8 downto 0), in6 => cosine_wt_1026(8 downto 0),
-			s => c_s1a9s, c => c_s1a9c);
-	c_s1a10: csava9x6
+			s => c_s1a9s, c => c_s1a9c, clk => clk);
+	--c_s1a10: csava9x6
+	c_s1a10: csavaWx6 generic map (WIDTH => 9)
 		port map (in1 => cosine_wt_2049(8 downto 0), in2 => cosine_wt_4096(8 downto 0),
 			in3 => cosine_wt_23(8 downto 0), in4 => cosine_wt_26(8 downto 0),
 			in5 => cosine_wt_38(8 downto 0), in6 => cosine_wt_41(8 downto 0),
-			s => c_s1a10s, c => c_s1a10c);
-	c_s1a11: csava8x6
+			s => c_s1a10s, c => c_s1a10c, clk => clk);
+	--c_s1a11: csava8x6
+	c_s1a11: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => cosine_wt_69(7 downto 0), in2 => cosine_wt_131(7 downto 0),
 			in3 => cosine_wt_160(7 downto 0), in4 => cosine_wt_272(7 downto 0),
 			in5 => cosine_wt_520(7 downto 0), in6 => cosine_wt_1028(7 downto 0),
-			s => c_s1a11s, c => c_s1a11c);
-	c_s1a12: csava8x6
+			s => c_s1a11s, c => c_s1a11c, clk => clk);
+	--c_s1a12: csava8x6
+	c_s1a12: csavaWx6 generic map (WIDTH => 8)
 		port map (in1 => cosine_wt_2050(7 downto 0), in2 => cosine_wt_4097(7 downto 0),
 			in3 => cosine_wt_8192(7 downto 0), in4 => cosine_wt_27(7 downto 0),
 			in5 => cosine_wt_28(7 downto 0), in6 => cosine_wt_39(7 downto 0),
-			s => c_s1a12s, c => c_s1a12c);
-	c_s1a13: csava7x6
+			s => c_s1a12s, c => c_s1a12c, clk => clk);
+	--c_s1a13: csava7x6
+	c_s1a13: csavaWx6 generic map (WIDTH => 7)
 		port map (in1 => cosine_wt_42(6 downto 0), in2 => cosine_wt_49(6 downto 0),
 			in3 => cosine_wt_70(6 downto 0), in4 => cosine_wt_73(6 downto 0),
 			in5 => cosine_wt_133(6 downto 0), in6 => cosine_wt_192(6 downto 0),
-			s => c_s1a13s, c => c_s1a13c);
-	c_s1a14: csava7x6
+			s => c_s1a13s, c => c_s1a13c, clk => clk);
+	--c_s1a14: csava7x6
+	c_s1a14: csavaWx6 generic map (WIDTH => 7)
 		port map (in1 => cosine_wt_259(6 downto 0), in2 => cosine_wt_288(6 downto 0),
 			in3 => cosine_wt_528(6 downto 0), in4 => cosine_wt_1032(6 downto 0),
 			in5 => cosine_wt_2052(6 downto 0), in6 => cosine_wt_4098(6 downto 0),
-			s => c_s1a14s, c => c_s1a14c);
+			s => c_s1a14s, c => c_s1a14c, clk => clk);
 
 	-- That is enough for the first stage. Let us move to the next one
 	-- ----------------------------------------------------------------------------------
 	
 	-- Latch sine adders' outputs
-	s_latchb: process(clk, reset)
+	s_latchb: process(clk)
 	begin
-		if reset = '0' then
- 			s_s2a0in1 <= (others => '0');
- 			s_s2a0in2 <= (others => '0');
- 			s_s2a0in3 <= (others => '0');
- 			s_s2a0in4 <= (others => '0');
- 			s_s2a0in5 <= (others => '0');
- 			s_s2a0in6 <= (others => '0');
-			s_s2a0in7 <= (others => '0');
- 			s_s2a0in8 <= (others => '0');
- 			s_s2a0in9 <= (others => '0');
-
- 			s_s2a1in1 <= (others => '0');
- 			s_s2a1in2 <= (others => '0');
- 			s_s2a1in3 <= (others => '0');
- 			s_s2a1in4 <= (others => '0');
- 			s_s2a1in5 <= (others => '0');
- 			s_s2a1in6 <= (others => '0');
- 			s_s2a1in7 <= (others => '0');
- 			s_s2a1in8 <= (others => '0');
-
- 			s_s2a2in1 <= (others => '0');
- 			s_s2a2in2 <= (others => '0');
- 			s_s2a2in3 <= (others => '0');
- 			s_s2a2in4 <= (others => '0');
- 			s_s2a2in5 <= (others => '0');
- 			s_s2a2in6 <= (others => '0');
- 			s_s2a2in7 <= (others => '0');
- 			s_s2a2in8 <= (others => '0');
-
- 			s_s2a3in1 <= (others => '0');
- 			s_s2a3in2 <= (others => '0');
- 			s_s2a3in3 <= (others => '0');
- 			s_s2a3in4 <= (others => '0');
- 			s_s2a3in5 <= (others => '0');
- 			s_s2a3in6 <= (others => '0');
- 			s_s2a3in7 <= (others => '0');
- 			s_s2a3in8 <= (others => '0');
- 
- 			s_s2for <= (others => '0');
-
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
 	 		s_s2a0in1 <= s_s1a0s;
  			s_s2a0in2 <= s_s1a0c;
  			s_s2a0in3 <= s_s1a1s;
@@ -1104,45 +1107,10 @@ begin
 	end process s_latchb;
 
 	-- Latch cosine adders' outputs
-	c_latchb: process(clk, reset)
+	c_latchb: process(clk)
 	begin
-		if reset = '0' then
- 			c_s2a0in1 <= (others => '0');
- 			c_s2a0in2 <= (others => '0');
- 			c_s2a0in3 <= (others => '0');
- 			c_s2a0in4 <= (others => '0');
- 			c_s2a0in5 <= (others => '0');
- 			c_s2a0in6 <= (others => '0');
-			c_s2a0in7 <= (others => '0');
- 			c_s2a0in8 <= (others => '0');
 
- 			c_s2a1in1 <= (others => '0');
- 			c_s2a1in2 <= (others => '0');
- 			c_s2a1in3 <= (others => '0');
- 			c_s2a1in4 <= (others => '0');
- 			c_s2a1in5 <= (others => '0');
- 			c_s2a1in6 <= (others => '0');
- 			c_s2a1in7 <= (others => '0');
- 			c_s2a1in8 <= (others => '0');
-
- 			c_s2a2in1 <= (others => '0');
- 			c_s2a2in2 <= (others => '0');
- 			c_s2a2in3 <= (others => '0');
- 			c_s2a2in4 <= (others => '0');
- 			c_s2a2in5 <= (others => '0');
- 			c_s2a2in6 <= (others => '0');
- 			c_s2a2in7 <= (others => '0');
- 			c_s2a2in8 <= (others => '0');
-
- 			c_s2a3in1 <= (others => '0');
- 			c_s2a3in2 <= (others => '0');
- 			c_s2a3in3 <= (others => '0');
- 			c_s2a3in4 <= (others => '0');
- 			c_s2a3in5 <= (others => '0');
- 			c_s2a3in6 <= (others => '0');
- 			c_s2a3in7 <= (others => '0');
- 			c_s2a3in8 <= (others => '0');
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
  			c_s2a0in1 <= c_s1a0s;
 			c_s2a0in2 <= c_s1a0c;
 			c_s2a0in3 <= c_s1a1s;
@@ -1176,15 +1144,20 @@ begin
 			c_s2a3in4 <= c_s1a13c;
  			c_s2a3in5 <= c_s1a14s;
 			c_s2a3in6 <= c_s1a14c;
-			c_s2a3in7 <= cosine_wt_8193(3 downto 0);
-			c_s2a3in8 <= cosine_wt_16384(3 downto 0);
+			
+			c_s2a3in7_temp <= cosine_wt_8193(3 downto 0);
+			c_s2a3in7 <= c_s2a3in7_temp;
+			c_s2a3in8_temp <= cosine_wt_16384(3 downto 0);
+			c_s2a3in8 <= c_s2a3in8_temp;
 		end if;
 	end process c_latchb;
+	
+	
 
 	-- Second stage of sine adders
 	-- --------------------------------------------------------------------------------
-	s_s2a0: csava20x9
-		port map(in1 => s_s2a0in1, in2 => s_s2a0in2,
+	s_s2a0: csava20x9_mod  -- B.J.
+		port map(clk => clk,in1 => s_s2a0in1, in2 => s_s2a0in2,
 			in3(19) => s_s2a0in3(16), -- <============
 			in3(18) => s_s2a0in3(16),
 			in3(17) => s_s2a0in3(16),
@@ -1237,8 +1210,12 @@ begin
 			in9(6 downto 0) => s_s2a0in9,
 			s => s_s2a0s, c => s_s2a0c);
 
-	s_s2a1: csava18x8
-		port map(in1(17) => s_s2a1in1(11), -- <===========
+	--s_s2a1: csava18x8
+        s_s2a1: csavaWx8
+        generic map (WIDTH => 18)
+		port map(
+		    clk => clk, 
+		    in1(17) => s_s2a1in1(11), -- <===========
 			in1(16) => s_s2a1in1(11),
 			in1(15) => s_s2a1in1(11),
 			in1(14) => s_s2a1in1(11),
@@ -1306,8 +1283,12 @@ begin
 			in8(9 downto 0) => s_s2a1in8,
 			s => s_s2a1s, c => s_s2a1c);
 
-	s_s2a2: csava14x8
-		port map(in1(13) => s_s2a2in1(8), -- <===========
+	--s_s2a2: csava14x8
+        s_s2a2: csavaWx8
+        generic map (WIDTH => 14)
+		port map(
+		    clk => clk, 
+		    in1(13) => s_s2a2in1(8), -- <===========
 			in1(12) => s_s2a2in1(8),
 			in1(11) => s_s2a2in1(8),
 			in1(10) => s_s2a2in1(8),
@@ -1361,8 +1342,12 @@ begin
 			in8(7 downto 0) => s_s2a2in8, 
 			s => s_s2a2s, c => s_s2a2c);
 
-	s_s2a3: csava12x8
-		port map(in1(11) => s_s2a3in1(7), -- <===========
+	--s_s2a3: csava12x8
+        s_s2a3: csavaWx8
+        generic map (WIDTH => 12)
+		port map(
+		    clk => clk, 
+		    in1(11) => s_s2a3in1(7), -- <===========
 			in1(10) => s_s2a3in1(7),
 			in1(9) => s_s2a3in1(7),
 			in1(8) => s_s2a3in1(7),
@@ -1410,8 +1395,12 @@ begin
 
 	-- Second stage of cosine adders
 	-- --------------------------------------------------------------------------------
-	c_s2a0: csava20x8
-		port map(in1 => c_s2a0in1, in2 => c_s2a0in2,
+	-- c_s2a0: csava20x8
+        c_s2a0: csavaWx8
+        generic map (WIDTH => 20)
+		port map(
+		    clk => clk, 
+		    in1 => c_s2a0in1, in2 => c_s2a0in2,
 			in3(19) => c_s2a0in3(17), -- <============
 			in3(18) => c_s2a0in3(17),
 			in3(17 downto 0) => c_s2a0in3,
@@ -1444,8 +1433,12 @@ begin
 			in8(13 downto 0) => c_s2a0in8,
 			s => c_s2a0s, c => c_s2a0c);
 
-	c_s2a1: csava17x8
-		port map(in1(16) => c_s2a1in1(12), -- <===========
+	--c_s2a1: csava17x8
+        c_s2a1: csavaWx8
+        generic map (WIDTH => 17)
+		port map(
+		    clk => clk,
+		    in1(16) => c_s2a1in1(12), -- <===========
 			in1(15) => c_s2a1in1(12),
 			in1(14) => c_s2a1in1(12),
 			in1(13) => c_s2a1in1(12),
@@ -1499,8 +1492,12 @@ begin
 			in8(9 downto 0) => c_s2a1in8, 
 			s => c_s2a1s, c => c_s2a1c);
 
-	c_s2a2: csava14x8
-		port map(in1(13) => c_s2a2in1(9), -- <===========
+	--c_s2a2: csava14x8
+        c_s2a2: csavaWx8
+        generic map (WIDTH => 14)
+		port map(
+		    clk => clk, 
+		    in1(13) => c_s2a2in1(9), -- <===========
 			in1(12) => c_s2a2in1(9),
 			in1(11) => c_s2a2in1(9),
 			in1(10) => c_s2a2in1(9),
@@ -1550,8 +1547,12 @@ begin
 			in8(7 downto 0) => c_s2a2in8, 
 			s => c_s2a2s, c => c_s2a2c);
 
-	c_s2a3: csava12x8
-		port map(in1(11) => c_s2a3in1(7), -- <===========
+	--c_s2a3: csava12x8
+        c_s2a3: csavaWx8
+        generic map (WIDTH => 12)
+		port map(
+		    clk => clk, 
+		    in1(11) => c_s2a3in1(7), -- <===========
 			in1(10) => c_s2a3in1(7),
 			in1(9) => c_s2a3in1(7),
 			in1(8) => c_s2a3in1(7),
@@ -1608,19 +1609,9 @@ begin
 	-- STAGE 3 ---------------------------------------------------------------
 	
 	-- Latch sine adder outputs
-	s_latchc: process(clk, reset)
+	s_latchc: process(clk)
 	begin
-		if reset = '0' then
- 			s_s3a0in1 <= (others => '0');
- 			s_s3a0in2 <= (others => '0');
- 			s_s3a0in3 <= (others => '0');
- 			s_s3a0in4 <= (others => '0');
- 			s_s3a0in5 <= (others => '0');
- 			s_s3a0in6 <= (others => '0');
-			s_s3a0in7 <= (others => '0');
- 			s_s3a0in8 <= (others => '0');
-			s_s3a0in9 <= (others => '0');
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
  			s_s3a0in1 <= s_s2a0s;
 			s_s3a0in2 <= s_s2a0c;
 			s_s3a0in3 <= s_s2a1s;
@@ -1629,23 +1620,16 @@ begin
 			s_s3a0in6 <= s_s2a2c; 
 			s_s3a0in7 <= s_s2a3s;
 			s_s3a0in8 <= s_s2a3c;
-			s_s3a0in9 <= s_s2for;
+			
+			s_s3a0in9_temp <= s_s2for;
+			s_s3a0in9 <= s_s3a0in9_temp;
 		end if;
 	end process s_latchc;
 
 	-- Latch cosine adder outputs
-	c_latchc: process(clk, reset)
+	c_latchc: process (clk)
 	begin
-		if reset = '0' then
- 			c_s3a0in1 <= (others => '0');
- 			c_s3a0in2 <= (others => '0');
- 			c_s3a0in3 <= (others => '0');
- 			c_s3a0in4 <= (others => '0');
- 			c_s3a0in5 <= (others => '0');
- 			c_s3a0in6 <= (others => '0');
-			c_s3a0in7 <= (others => '0');
- 			c_s3a0in8 <= (others => '0');
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
  			c_s3a0in1 <= c_s2a0s;
 			c_s3a0in2 <= c_s2a0c;
 			c_s3a0in3 <= c_s2a1s;
@@ -1659,8 +1643,11 @@ begin
 
 	-- Third stage sine adder
 	-- --------------------------------------------------------------------------------
-	s_s3a0: csava20x9
-		port map(in1 => s_s3a0in1, in2 => s_s3a0in2,
+	--s_s3a0: csava20x9
+        s_s3a0: csava20x9_mod
+        port map(
+            clk => clk,
+            in1 => s_s3a0in1, in2 => s_s3a0in2,
 			in3(19) => s_s3a0in3(17), -- <============
 			in3(18) => s_s3a0in3(17),
 			in3(17 downto 0) => s_s3a0in3,
@@ -1717,8 +1704,12 @@ begin
 
 	-- Third stage cosine adder
 	-- --------------------------------------------------------------------------------
-	c_s3a0: csava20x8
-		port map(in1 => c_s3a0in1, in2 => c_s3a0in2,
+	--c_s3a0: csava20x8
+        c_s3a0: csavaWx8
+                generic map (WIDTH => 20)
+		port map(
+		    clk => clk,
+		    in1 => c_s3a0in1, in2 => c_s3a0in2,
 			in3(19) => c_s3a0in3(16), -- <============
 			in3(18) => c_s3a0in3(16),
 			in3(17) => c_s3a0in3(16),
@@ -1762,14 +1753,9 @@ begin
 			s => c_s3a0s, c => c_s3a0c);
 
 	-- Latch D
-	latchd: process(clk, reset)
+	latchd: process(clk)
 	begin
-		if reset = '0' then
-			s_s4a0in1 <= (others => '0');
-			s_s4a0in2 <= (others => '0');
-			c_s4a0in1 <= (others => '0');
-			c_s4a0in2 <= (others => '0');
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
 			s_s4a0in1 <= s_s3a0s;
 			s_s4a0in2 <= s_s3a0c;
 			c_s4a0in1 <= c_s3a0s;
@@ -1786,18 +1772,9 @@ begin
 			cin => zero, cout => c_s4a0c, s => c_s4a0s);
 
 	-- Latch E
-	latche: process(clk, reset)
+	latche: process(clk)
 	begin
-		if reset = '0' then
-			s_s5a0in1 <= (others => '0');
-			s_s5a0in2 <= (others => '0');
-			s_s5a0cin <= '0';
-			s_s5a1in1i <= (others => '0');
-			c_s5a0in1 <= (others => '0');
-			c_s5a0in2 <= (others => '0');
-			c_s5a0cin <= '0';
-			c_s5a1in1i <= (others => '0');
-		elsif clk'event and clk = '1' then
+		if clk'event and clk = '1' then
 			s_s5a0in1 <= s_s4a0in1(19 downto 10);
 			s_s5a0in2 <= s_s4a0in2(19 downto 10);
 			s_s5a0cin <= s_s4a0c;
@@ -1821,9 +1798,18 @@ begin
 			phd(2 downto 0) <= "000";
 		elsif clk'event and clk = '1' then
 			pha <= phase(18 downto 16);
-			phb <= pha;
-			phc <= phb;
-			phd(2 downto 0) <= phc;
+			--phb <= pha;			
+			--phc <= phb;
+			--phd(2 downto 0) <= phc;
+
+			-- add three clock cycles
+			phb_temp <= pha;  -- B.J.
+			phb <= phb_temp;
+			phc_temp <= phb; -- B.J.
+			phc <= phc_temp;
+			phd_temp <= phc; -- B.J.
+
+			phd(2 downto 0) <= phd_temp;
 		end if;
 	end process latchph;
 	phd(3) <= spc;
@@ -1928,7 +1914,7 @@ begin
 	co(13) <= c13 when ofc = '1' else not c13;
 	
 	-- Laaaaaaaaaast latch
-	latchg: process(clk, reset)
+	latchg: process (clk, reset)
 	begin
 		if reset = '0' then
 			sin <= (others => '0');

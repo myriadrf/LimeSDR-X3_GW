@@ -139,7 +139,7 @@ begin
 				xp => xp, xo => xo, xm => xm);
 
 	-- Delay line
-	delay: process(clk, reset)
+	delay: process(clk, reset) 
 	begin
 		if reset = '0' then
 			b0 <= (others => '0');

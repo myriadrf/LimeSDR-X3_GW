@@ -23,7 +23,8 @@ ENTITY DPDTop IS
    CFR0CFG_START_ADDR   : integer := 448;
    CFR1CFG_START_ADDR   : integer := 512;
    FIR0CFG_START_ADDR   : integer := 576;
-   FIR1CFG_START_ADDR   : integer := 640
+   FIR1CFG_START_ADDR   : integer := 640;   
+   DPD_enable : INTEGER := 1  -- B.J.
    );
 
    PORT (
@@ -472,9 +473,12 @@ BEGIN
       delay => inst0_hb0_delay
    );
 
+ 
    ------------------------------------------------------------------------------
    -- CH A QADPD  SR: 61.44 MSps
    ------------------------------------------------------------------------------
+  en_A1: if DPD_enable=1 generate
+   
    inst9_qadpd : QADPD
    GENERIC MAP(
       n => 4, -- memory depth
@@ -493,6 +497,12 @@ BEGIN
       spi_ctrl => inst0_adpd_config0,
       spi_data => inst0_adpd_data
    );
+  end generate;
+  
+   en_A0: if DPD_enable=0 generate   
+      inst9_ypi<=inst7_yi1;
+      inst9_ypq<=inst7_yq1; 
+   end generate;
    -------------------------------------------------------------------------
    -------------------------------------------------------------------------
    xenb <= inst2_xen WHEN cfr1_interpolation = "00" ELSE
@@ -637,6 +647,9 @@ BEGIN
    ------------------------------------------------------------------------------
    -- CH B QADPD  SR: 61.44 MSps
    ------------------------------------------------------------------------------
+   
+  en_B1: if DPD_enable=1 generate
+   
    inst10_qadpd : QADPD
    GENERIC MAP(
       n => 4,
@@ -654,7 +667,14 @@ BEGIN
       ypq => inst10_ypq, -- 18 bits	
       spi_ctrl => inst0_adpd_config1,
       spi_data => inst0_adpd_data
-   );
+    );
+    
+  end generate;
+  
+   en_B0: if DPD_enable=0 generate   
+      inst10_ypi<=inst8_yi1;
+      inst10_ypq<=inst8_yq1; 
+   end generate;
 
    xp_ai <= inst7_yi1(17 DOWNTO 2);
    xp_aq <= inst7_yq1(17 DOWNTO 2);

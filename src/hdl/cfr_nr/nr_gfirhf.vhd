@@ -39,9 +39,8 @@ ENTITY nr_gfirhf IS
 		sdout : OUT STD_LOGIC; -- Data out
 		oen : OUT STD_LOGIC;
 
-		-- Filter output signals
-		yi : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
-		yq : OUT STD_LOGIC_VECTOR(24 DOWNTO 0);
+		yi : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
+		yq : OUT STD_LOGIC_VECTOR(17 DOWNTO 0);
 		xen : OUT STD_LOGIC
 	);
 END nr_gfirhf;
@@ -53,11 +52,13 @@ ARCHITECTURE nr_gfirhf_arch OF nr_gfirhf IS
 
 	COMPONENT nr_fehf IS
 		PORT (
-			x : IN STD_LOGIC_VECTOR(24 DOWNTO 0); -- Input signal
-			h : IN marray16x16;			
+			--x : IN STD_LOGIC_VECTOR(24 DOWNTO 0); -- Input signal
+			x : IN STD_LOGIC_VECTOR(17 DOWNTO 0); -- Input signal
+			h : IN marray16x16;
 			clk, reset, sleep : IN STD_LOGIC;
 			odd, half : IN STD_LOGIC;
-			y : OUT STD_LOGIC_VECTOR(24 DOWNTO 0) -- Filter output    
+			--y : OUT STD_LOGIC_VECTOR(24 DOWNTO 0) -- Filter output 
+			y : OUT STD_LOGIC_VECTOR(17 DOWNTO 0) -- Filter output       
 		);
 	END COMPONENT nr_fehf;
 
@@ -76,14 +77,14 @@ ARCHITECTURE nr_gfirhf_arch OF nr_gfirhf IS
 	END COMPONENT nr_fircms;
 
 	SIGNAL ce0h, ce1h : marray16x16;-- Coefficients
-	SIGNAL xii, xqi, yii, yim, yqi, yqm : STD_LOGIC_VECTOR(24 DOWNTO 0);
+	SIGNAL xii, xqi, yii, yim, yqi, yqm : STD_LOGIC_VECTOR(17 DOWNTO 0);
 	SIGNAL sdout0, oen0, sdout1, oen1 : STD_LOGIC;
 
 BEGIN
 
 	xen <= '1';
-	xii <= xi & "000000000";
-	xqi <= xq & "000000000";
+	xii <= xi & "00"; --18 bit
+	xqi <= xq & "00";
 
 	-- Configuration engines
 	ce0 : nr_fircms PORT MAP(
@@ -140,8 +141,8 @@ BEGIN
 			yq <= (OTHERS => '0');
 		ELSIF clk'event AND clk = '1' THEN
 			--IF sleep = '0' THEN
-				yi <= yim;
-				yq <= yqm;
+			yi <= yim;
+			yq <= yqm;
 			--END IF;
 		END IF;
 	END PROCESS dl;

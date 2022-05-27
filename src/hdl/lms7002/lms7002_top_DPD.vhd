@@ -38,7 +38,8 @@ entity lms7002_top_DPD is
       g_CFR0CFG_START_ADDR   : integer := 448;  -- B.J.
       g_CFR1CFG_START_ADDR   : integer := 512;  -- B.J.
       g_FIR0CFG_START_ADDR   : integer := 576;  -- B.J.
-      g_FIR1CFG_START_ADDR   : integer := 640   -- B.J.
+      g_FIR1CFG_START_ADDR   : integer := 640;  -- B.J.
+      DPD_enable : INTEGER := 1  -- B.J.
    );
    port (  
       from_fpgacfg      : in  t_FROM_FPGACFG;
@@ -278,7 +279,8 @@ inst1_lms7002_tx : entity work.lms7002_tx_DPD
       g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR,  -- B.J.
       g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR,  -- B.J. 
       g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR,  -- B.J.
-      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR   -- B.J.
+      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
+      DPD_enable => DPD_enable
       
       )
    port map(

@@ -21,7 +21,8 @@ ENTITY DPDTopWrapper IS
    g_CFR0CFG_START_ADDR   : integer := 448;
    g_CFR1CFG_START_ADDR   : integer := 512;
    g_FIR0CFG_START_ADDR   : integer := 576;
-   g_FIR1CFG_START_ADDR   : integer := 640
+   g_FIR1CFG_START_ADDR   : integer := 640;
+   DPD_enable : INTEGER := 1  -- B.J.
    );
 
    PORT (
@@ -67,7 +68,8 @@ ARCHITECTURE arch OF DPDTopWrapper IS
       CFR0CFG_START_ADDR   : integer := 448;
       CFR1CFG_START_ADDR   : integer := 512;
       FIR0CFG_START_ADDR   : integer := 576;
-      FIR1CFG_START_ADDR   : integer := 640
+      FIR1CFG_START_ADDR   : integer := 640;
+      DPD_enable : INTEGER := 1  -- B.J.
       );
 
       PORT (
@@ -177,7 +179,8 @@ BEGIN
       CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR,
       CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, 
       FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR,
-      FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR
+      FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,
+      DPD_enable => DPD_enable
    )
    PORT MAP(
       clk_X2 => clk, -- 122.88 MHz

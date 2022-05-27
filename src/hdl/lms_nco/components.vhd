@@ -1022,5 +1022,54 @@ component gfirhf16mod_bj is
 	);
 end component gfirhf16mod_bj;
 
+component csava20x9_mod is
+    port (
+	clk : in std_logic;
+	in1: in std_logic_vector(19 downto 0); -- First input
+	in2: in std_logic_vector(19 downto 0);
+	in3: in std_logic_vector(19 downto 0);
+	in4: in std_logic_vector(19 downto 0);
+	in5: in std_logic_vector(19 downto 0);
+	in6: in std_logic_vector(19 downto 0);
+	in7: in std_logic_vector(19 downto 0);
+	in8: in std_logic_vector(19 downto 0);
+	in9: in std_logic_vector(19 downto 0);	-- Last input
+	s: out std_logic_vector(19 downto 0);	-- Sum output
+	c: out std_logic_vector(19 downto 0)	-- Carry output
+    );
+end component csava20x9_mod;
+
+component csavaWx8 is
+	generic (WIDTH: integer);
+    port (
+	clk : in std_logic;
+	in1: in std_logic_vector(WIDTH-1  downto 0); -- First input
+	in2: in std_logic_vector(WIDTH-1  downto 0);
+	in3: in std_logic_vector(WIDTH-1  downto 0);
+	in4: in std_logic_vector(WIDTH-1  downto 0);
+	in5: in std_logic_vector(WIDTH-1  downto 0);
+	in6: in std_logic_vector(WIDTH-1  downto 0);
+	in7: in std_logic_vector(WIDTH-1  downto 0);
+	in8: in std_logic_vector(WIDTH-1  downto 0);	-- Last input
+	s: out std_logic_vector(WIDTH-1  downto 0);	-- Sum output
+	c: out std_logic_vector(WIDTH-1 downto 0)	-- Carry output
+    );
+end component csavaWx8;
+
+component csavaWx6 is
+	generic (WIDTH: integer);
+    port (
+	clk : in std_logic;
+	in1: in std_logic_vector(WIDTH-1 downto 0); -- First input
+	in2: in std_logic_vector(WIDTH-1 downto 0);
+	in3: in std_logic_vector(WIDTH-1 downto 0);
+	in4: in std_logic_vector(WIDTH-1 downto 0);
+	in5: in std_logic_vector(WIDTH-1 downto 0);
+	in6: in std_logic_vector(WIDTH-1 downto 0);	-- Last input
+	s: out std_logic_vector(WIDTH-1 downto 0);	-- Sum output
+	c: out std_logic_vector(WIDTH-1 downto 0)	-- Carry output
+    );
+end component csavaWx6;
+
 
 end components;

@@ -113,7 +113,7 @@ BEGIN
         xq;
 
     -- Latch La
-    la : PROCESS (clk, reset)
+    la : PROCESS (clk, reset)  --
     BEGIN
         IF reset = '0' THEN
             xe <= (OTHERS => '0');
@@ -125,7 +125,7 @@ BEGIN
     END PROCESS la;
 
     -- Latch Lb
-    lb : PROCESS (clk, reset)
+    lb : PROCESS (clk, reset)  --, reset
     BEGIN
         IF reset = '0' THEN
             xo <= (OTHERS => '0');
@@ -152,7 +152,7 @@ BEGIN
 
     -- Delay yia one clock cycle to align it with ya
 
-    le : PROCESS (clk, reset)
+    le : PROCESS (clk, reset)  --, reset
     BEGIN
         IF reset = '0' THEN
             yi <= (OTHERS => '0');

@@ -509,7 +509,7 @@ BEGIN
 	PROCESS (wclk7, reset_n)BEGIN 
 		IF (reset_n = '0') THEN
 			wclk7_reset_n_sync <= (OTHERS => '0');
-		ELSIF (wclk6'event AND wclk6 = '1') THEN
+		ELSIF (wclk7'event AND wclk7 = '1') THEN
 			wclk7_reset_n_sync <= wclk7_reset_n_sync(0) & reset_n;
 		END IF;
 	END PROCESS;

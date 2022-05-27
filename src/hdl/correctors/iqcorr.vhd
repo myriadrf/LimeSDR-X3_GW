@@ -87,7 +87,7 @@ begin
 	r_xi <= cos_i * pcw_signed;
 	r_xq <= cos_q * pcw_signed;
 
-	reg1: process (clk, nrst)
+	reg1: process (clk, nrst) 
 	begin
 		if (nrst = '0') then
 			r_c_xi <= (others => '0');

@@ -98,7 +98,7 @@ entity lms7_trx_top is
       -- External periphery
       g_GPIO_N                : integer := 16;
 
-      DPD_enable : INTEGER := 1  -- B.J.
+      DPD_enable : INTEGER := 0  -- B.J.
    );
    port (
       -- ----------------------------------------------------------------------------
@@ -1642,7 +1642,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
       g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
       g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
-      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR  -- B.J.
+      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
+      DPD_enable => DPD_enable
    ) 
    port map(  
       from_fpgacfg         => inst0_from_fpgacfg_mod_0,

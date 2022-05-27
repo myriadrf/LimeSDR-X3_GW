@@ -46,7 +46,7 @@ begin
    x_signed    <= signed(x);
    
    --m inside clocked process to increase fmax
-   process(clk, nrst)
+   process(clk, nrst) 
 	begin
 		if(nrst = '0') then
 			m <= (others => '0');
