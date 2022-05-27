@@ -1543,8 +1543,8 @@ begin
       led2_dac_ss          => inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR),
       led2_adf_ss          => inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR),
       led2_ctrl            => inst0_from_fpgacfg_0.FPGA_LED2_CTRL,
-      led2_g               => open,
-      led2_r               => open,     
+      led2_g               => FPGA_LED2_G,--open,
+      led2_r               => FPGA_LED2_R,--open,     
       --LED3 - LED6
       led3_in              => not inst1_lms1_txpll_locked,
       led4_in              => not inst1_lms1_rxpll_locked,
@@ -1566,14 +1566,14 @@ begin
    
    
    
-   process(CLK100_FPGA)
-   variable counter : unsigned(26 downto 0);
-   begin
-   if(rising_edge(CLK100_FPGA)) then
-        counter := counter +1 ;
-        FPGA_LED2_R <= counter(25);
-   end if;
-   end process;
+--   process(CLK100_FPGA)
+--   variable counter : unsigned(26 downto 0);
+--   begin
+--   if(rising_edge(CLK100_FPGA)) then
+--        counter := counter +1 ;
+--        FPGA_LED2_R <= counter(25);
+--   end if;
+--   end process;
    
    process(inst1_lms1_rxpll_c1)
    variable counter : unsigned(26 downto 0);
