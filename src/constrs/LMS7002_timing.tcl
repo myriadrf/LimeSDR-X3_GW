@@ -63,13 +63,13 @@ create_generated_clock -name LMS1_FCLK1 -source [get_pins inst1_pll_top/inst0_tx
 #set MAX_DELAY_RX 5.050
 
 #LMS1
-set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -max 4.050 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
+set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -max 3.850 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
 
-set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -min 2.900 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
+set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -min 2.700 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
 
-set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -clock_fall -max -add_delay 4.050 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
+set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -clock_fall -max -add_delay 3.850 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
 
-set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -clock_fall -min -add_delay 2.900 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
+set_input_delay -clock [get_clocks LMS1_MCLK2_VIRT] -clock_fall -min -add_delay 2.700 [get_ports {{LMS1_DIQ2_D[*]} LMS1_ENABLE_IQSEL2}]
 
 
 # ----------------------------------------------------------------------------
@@ -90,11 +90,11 @@ set_output_delay -clock [get_clocks LMS1_FCLK1] -min 1.000 [get_ports {{LMS1_DIQ
 set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -max -add_delay 2.800 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
 set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -min -add_delay 1.000 [get_ports {{LMS1_DIQ1_D[*]} LMS1_ENABLE_IQSEL1}]
 
-set_output_delay -clock [get_clocks LMS1_FCLK1] -max 3.800 [get_ports {LMS1_DIQ1_D[11]}]
-set_output_delay -clock [get_clocks LMS1_FCLK1] -min 2.000 [get_ports {LMS1_DIQ1_D[11]}]
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -max 3.800 [get_ports {LMS1_DIQ1_D[11]}]
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -min 2.000 [get_ports {LMS1_DIQ1_D[11]}]
 
-set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -max -add_delay 3.800 [get_ports {LMS1_DIQ1_D[11]}]
-set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -min -add_delay 2.000 [get_ports {LMS1_DIQ1_D[11]}]
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -max -add_delay 3.800 [get_ports {LMS1_DIQ1_D[11]}]
+#set_output_delay -clock [get_clocks LMS1_FCLK1] -clock_fall -min -add_delay 2.000 [get_ports {LMS1_DIQ1_D[11]}]
 
 set_false_path -to [get_ports LMS1_FCLK1]
 

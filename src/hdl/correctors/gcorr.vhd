@@ -32,45 +32,34 @@ end gcorr;
 -- ----------------------------------------------------------------------------
 architecture gcorr_arch of gcorr is
 
-	signal mux 	: signed (17 downto 0);
-	signal r		: signed (17 downto 0);
-	signal m		: signed (29 downto 0);
+	signal m		: std_logic_vector (35 downto 0);
    
-   signal gc_unisgned   : unsigned(gc'left downto 0);
-   signal x_signed      : signed(x'left downto 0);
-   signal y_signed      : signed(y'left downto 0);
+   signal gc_padded     : std_logic_vector(x'left downto 0);
+   signal sclr          : std_logic;
+   
+
    
 begin
+     --Pad gc in order to be large enough for 18x18 multiplier
+     gc_padded   <= "0000000" & gc;
+     sclr        <= not nrst;
 
-   gc_unisgned <= unsigned(gc);
-   x_signed    <= signed(x);
-   
-   --m inside clocked process to increase fmax
-   process(clk, nrst) 
-	begin
-		if(nrst = '0') then
-			m <= (others => '0');
-		elsif rising_edge(clk) then
-         m <= x_signed * signed('0' & gc_unisgned);
-		end if;		
-	end process;
-   
-	--m <= x * signed('0' & gc);
-	mux <= m(28 downto 11) when byp = '0' else x_signed;
+    --Multiply input by coefficient
+    ----Note : this module is pipelined and introduces latency
+	Multiplier : entity work.multiplier2_pipelined PORT MAP(clk => clk, sclr => sclr, dataa => x, datab => gc_padded, result => m);
 
+    --Mux and register output
 	reg: process(clk, nrst)
 	begin
 		if(nrst = '0') then
-			r <= (others => '0');
+			y <= (others => '0');
 		elsif rising_edge(clk) then
 			if en = '1' then
-				r <= mux;
+				y <= m(28 downto 11) when byp = '0' else x;
 			end if;
 		end if;
 		
 	end process reg;
  
- -- Output	
- y <= std_logic_vector(r);
 
 end gcorr_arch;
