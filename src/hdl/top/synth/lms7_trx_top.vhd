@@ -98,7 +98,7 @@ entity lms7_trx_top is
       -- External periphery
       g_GPIO_N                : integer := 16;
 
-      DPD_enable : INTEGER := 0  -- B.J.
+      DPD_enable : INTEGER := 1  -- B.J.
    );
    port (
       -- ----------------------------------------------------------------------------
