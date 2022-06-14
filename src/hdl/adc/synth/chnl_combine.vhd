@@ -81,17 +81,28 @@ signal a_reg_valid  : std_logic;
 signal b_reg_valid  : std_logic;
 signal ab_reg_valid : std_logic;
 
+signal ch_en_reg     : std_logic_vector(ch_en'LEFT downto 0);
+signal ch_en_change  : std_logic;
 
 signal int_data_valid      : std_logic;
 
 type state_type is (idle, rd_a, rd_b, rd_ab);
 signal current_state, next_state : state_type;
 
-  
-
 begin
 
-
+--Monitor status of ch_en 
+ch_en_monitor : process(all)
+begin
+    if rising_edge(clk) then
+        ch_en_reg <= ch_en;
+        if ch_en = ch_en_reg then
+            ch_en_change <= '0';
+        else
+            ch_en_change <= '1';
+        end if;
+    end if;
+end process;
 
 -- ----------------------------------------------------------------------------
 -- Clock domain crosing FIFO for chnl A
@@ -238,7 +249,7 @@ begin
 -- ----------------------------------------------------------------------------
    fsm_f : process(clk, reset_n)
    begin
-      if(reset_n = '0')then
+      if(reset_n = '0' or ch_en_change = '1')then
          current_state <= idle;
       elsif(clk'event and clk = '1')then
          current_state <= next_state;
