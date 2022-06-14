@@ -413,7 +413,7 @@ begin
     CDCM_REG_1_DEFAULT  => x"0000",
     CDCM_REG_2_DEFAULT  => x"0018",
     CDCM_REG_3_DEFAULT  => x"00f0",
-    CDCM_REG_4_DEFAULT  => x"30af",
+    CDCM_REG_4_DEFAULT  => x"20ff",
     CDCM_REG_5_DEFAULT  => x"0023",
     CDCM_REG_6_DEFAULT  => x"0018",
     CDCM_REG_7_DEFAULT  => x"0023",
@@ -427,7 +427,7 @@ begin
     CDCM_REG_15_DEFAULT => x"0003",
     CDCM_REG_16_DEFAULT => x"0180",
     CDCM_REG_17_DEFAULT => x"0000",
-    CDCM_REG_18_DEFAULT => x"0013",
+    CDCM_REG_18_DEFAULT => x"0003",
     CDCM_REG_19_DEFAULT => x"0180",
     CDCM_REG_20_DEFAULT => x"0000"
    )
