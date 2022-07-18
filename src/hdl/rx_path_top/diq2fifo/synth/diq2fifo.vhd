@@ -64,6 +64,7 @@ architecture arch of diq2fifo is
 signal inst0_diq_out_h  : std_logic_vector (iq_width downto 0); 
 signal inst0_diq_out_l  : std_logic_vector (iq_width downto 0);
 signal inst0_reset_n    : std_logic; 
+signal inst0_reset_n_cnt: std_logic; 
 
 signal inst2_data_h     : std_logic_vector (iq_width downto 0);
 signal inst2_data_l     : std_logic_vector (iq_width downto 0);
@@ -93,6 +94,9 @@ lab1: if  DPDTopWrapper_enable=0 generate
  inst0_reset_n <= reset_n when smpl_cmp_start = '0' else '1';   
 end generate;
 
+--Force cnt_en to use old (non DPD) reset to fix some timestamp related issues
+inst0_reset_n_cnt <= reset_n when smpl_cmp_start = '0' else '1';   
+
 
 inst0_lms7002_ddin : entity work.lms7002_ddin
    generic map( 
@@ -109,9 +113,9 @@ inst0_lms7002_ddin : entity work.lms7002_ddin
       data_out_l  => inst0_diq_out_l 
         );
         
-   process(clk, inst0_reset_n)
+   process(clk, inst0_reset_n_cnt)
    begin 
-      if inst0_reset_n = '0' then 
+      if inst0_reset_n_cnt = '0' then 
          smpl_cnt_en_reg <= '0';
       elsif rising_edge(clk) then 
          if mimo_en = '0' AND ddr_en = '1' then 
