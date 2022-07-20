@@ -2348,7 +2348,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       g_TX0_FIFO_DATAW        => 128,
       g_TX1_FIFO_WRUSEDW      => 9,
       g_TX1_FIFO_DATAW        => 2*g_EXT_ADC_D_WIDTH,
-      g_INV_IQSEL             => 1,--Inverting IQSEL signal to compensate for schematic design error
+      g_INV_IQSEL             => 0,--Option to invert I and Q channels
 
       g_CFR2CFG_START_ADDR  => g_CFR2CFG_START_ADDR, -- B.J.
       g_CFR3CFG_START_ADDR  => g_CFR3CFG_START_ADDR, -- B.J.
