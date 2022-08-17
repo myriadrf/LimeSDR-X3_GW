@@ -1755,8 +1755,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          ch_1_q =>  yp_aq,    
          
          ch_2_valid => '1', 
-         ch_2_i => x_aq_lms3, --x_ai, lms#3
-         ch_2_q => x_ai_lms3, --x_aq, lms#3
+         
+         -- SWAPPED I AND Q FOR 3.1 BOARD,  LMS 3
+         ch_2_i => x_ai_lms3, --x_ai, lms#3
+         ch_2_q => x_aq_lms3, --x_aq, lms#3
          
          ch_3_valid => xp_data_valid, 
          ch_3_i => xp_bi, 
@@ -1767,8 +1769,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          ch_4_q => yp_bq,   
          
          ch_5_valid => '1', 
-         ch_5_i => x_bq_lms3, --x_bi, lms#3
-         ch_5_q => x_bi_lms3, --x_bq, lms#3 
+         
+         -- SWAPPED I AND Q FOR 3.1 BOARD, LMS 3
+         ch_5_i => x_bi_lms3, --x_bi, lms#3
+         ch_5_q => x_bq_lms3, --x_bq, lms#3 
          
          ch_6_valid => x_data_valid_lms1, 
          ch_6_i => x_aq_lms1, --x_ai 
