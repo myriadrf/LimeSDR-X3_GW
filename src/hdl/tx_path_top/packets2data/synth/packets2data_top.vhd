@@ -148,22 +148,33 @@ end process;
       smpl_buff_q             => inst0_smpl_buff_q,    
       smpl_buff_valid         => inst0_smpl_buff_valid
    );
-        
-        
-bit_unpack_64_inst1 : entity work.bit_unpack_64
-  port map(
-        clk             => rclk,
-        reset_n         => reset_n,
-        data_in         => inst0_smpl_buff_q,
-        data_in_valid   => inst0_smpl_buff_valid,
-        sample_width    => sample_width,
-        data_out        => inst1_data_out,
-        data_out_valid  => inst1_data_out_valid
-        );
+--        
+   bit_unpack_64 : if out_pct_data_w=64 generate
+        bit_unpack_64_inst1 : entity work.bit_unpack_64
+          port map(
+                clk             => rclk,
+                reset_n         => reset_n,
+                data_in         => inst0_smpl_buff_q,
+                data_in_valid   => inst0_smpl_buff_valid,
+                sample_width    => sample_width,
+                data_out        => inst1_data_out,
+                data_out_valid  => inst1_data_out_valid
+                );
+        smpl_fifo_wrreq   <= inst1_data_out_valid;   
+        smpl_fifo_data    <= inst1_data_out;
+   end generate bit_unpack_64;
+   
+   bit_unpack_128 : if out_pct_data_w = 128 generate
+   
+   --TODO: add proper unpacking code for 12bit sample width
+   --This placeholder code only works properly for 16bit samples
+       smpl_fifo_wrreq   <= inst0_smpl_buff_valid;
+       smpl_fifo_data    <= inst0_smpl_buff_q;
+   end generate;
+
         
   
-smpl_fifo_wrreq   <= inst1_data_out_valid;   
-smpl_fifo_data    <= inst1_data_out;
+
   
   
 end arch;   

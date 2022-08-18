@@ -152,6 +152,7 @@ end process;
 -- ----------------------------------------------------------------------------
 p2d_wr_fsm_inst0 : entity work.p2d_wr_fsm
    generic map(
+      g_DATA_WIDTH   => in_pct_data_w,
       g_PCT_MAX_SIZE => g_PCT_MAX_SIZE,   
       g_PCT_HDR_SIZE => g_PCT_HDR_SIZE,         
       g_BUFF_COUNT   => g_BUFF_COUNT
@@ -231,7 +232,7 @@ begin
       pct_buff_size       <= (others=>(others=>'1'));
    elsif (rclk'event AND rclk='1') then 
       for i in 0 to g_BUFF_COUNT-1 loop
-         if unsigned(instx_rdusedw(i)) >= unsigned(pct_buff_size(i)) then 
+         if unsigned(instx_rdusedw(i)) >= (unsigned(pct_buff_size(i))) then 
             pct_buff_rdy_int(i)<= '1';
          else 
             pct_buff_rdy_int(i)<= '0';
@@ -262,7 +263,8 @@ p2d_rd_inst3 : entity work.p2d_rd
    generic map(
       g_PCT_MAX_SIZE => g_PCT_MAX_SIZE,    
       g_PCT_HDR_SIZE => g_PCT_HDR_SIZE,
-      g_BUFF_COUNT   => g_BUFF_COUNT
+      g_BUFF_COUNT   => g_BUFF_COUNT,
+      g_DATA_W       => out_pct_data_w
    )  
    port map(   
       clk                     => rclk,

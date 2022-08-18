@@ -21,6 +21,7 @@ entity tx_path_top is
       g_PCT_HDR_SIZE       : integer := 16;
       g_BUFF_COUNT         : integer := 4; -- 2,4 valid values
       g_FIFO_DATA_W        : integer := 128;
+      g_DOUBLE_BUS         : boolean := false;
       decomp_fifo_size     : integer := 9 -- 256 words
       );
    port (
@@ -71,6 +72,16 @@ end tx_path_top;
 architecture arch of tx_path_top is
 --declare signals,  components here
 
+function bus_width_return(A: boolean) return integer is
+    begin
+        if A = true then
+            return 128;
+        else
+            return 64;
+        end if;
+end bus_width_return;
+
+constant C_bus_width                : integer := bus_width_return(g_DOUBLE_BUS);
 signal reset_n_sync_iq_rdclk        : std_logic;
 
 signal rx_sample_nr_iq_rdclk        : std_logic_vector(63 downto 0);
@@ -113,20 +124,8 @@ signal pct_sync_num_of_packets_16b  : std_logic_vector(2 downto 0);
 signal pct_sync_num_of_rdy_packets  : unsigned(2 downto 0);
 signal pct_rdy_combined_vect        : std_logic_vector(g_BUFF_COUNT downto 0);
 
-
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of smpl_fifo_wrreq: signal is "TRUE";
-attribute MARK_DEBUG of smpl_fifo_wrfull: signal is "TRUE";
-attribute MARK_DEBUG of smpl_fifo_wrusedw: signal is "TRUE";
-attribute MARK_DEBUG of in_pct_rdreq: signal is "TRUE";
-attribute MARK_DEBUG of in_pct_rdempty: signal is "TRUE";
-attribute MARK_DEBUG of ch_en: signal is "TRUE";
-attribute MARK_DEBUG of ddr_en: signal is "TRUE";
-attribute MARK_DEBUG of en: signal is "TRUE";
-
-
-
 begin
+
 
 --Synchronization registers for asynchronous input ports
 sync_reg0 : entity work.sync_reg 
@@ -302,7 +301,7 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       g_PCT_HDR_SIZE    => g_PCT_HDR_SIZE,
       g_BUFF_COUNT      => g_BUFF_COUNT, -- 2,4 valid values
       in_pct_data_w     => g_FIFO_DATA_W,
-      out_pct_data_w    => 64
+      out_pct_data_w    => C_bus_width
    )
    port map(
 
