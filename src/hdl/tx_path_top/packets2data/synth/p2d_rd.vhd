@@ -46,6 +46,7 @@ entity p2d_rd is
       pct_buff_sel            : out std_logic_vector(3 downto 0);
       pct_buff_clr_n          : out std_logic_vector(g_BUFF_COUNT-1 downto 0);
       
+      read_hold               : in std_logic; 
       smpl_buff_almost_full   : in std_logic
      
    );
@@ -225,7 +226,7 @@ begin
    -- internal read request signal,  
    rd_req_int_proc : process (current_state, smpl_buff_almost_full)
    begin 
-      if current_state = rd_buff AND smpl_buff_almost_full = '0' then 
+      if current_state = rd_buff AND smpl_buff_almost_full = '0' and read_hold = '0' then 
          rd_req_int <= '1';
       else 
          rd_req_int <= '0';
@@ -278,7 +279,7 @@ begin
             next_state <= switch_next_buff;
          
          when rd_buff =>
-            if smpl_buff_almost_full = '0' then
+            if smpl_buff_almost_full = '0' and read_hold = '0' then
                if rd_cnt < rd_cnt_max - 1 then 
                   next_state <= rd_buff;
                else 
@@ -289,7 +290,7 @@ begin
             end if;
          
          when rd_hold => 
-            if smpl_buff_almost_full = '0' then
+            if smpl_buff_almost_full = '0' and read_hold = '0' then
                next_state <= rd_buff;
             else
                next_state <= rd_hold;

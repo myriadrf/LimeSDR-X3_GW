@@ -64,21 +64,32 @@ end packets2data_top;
 -- ----------------------------------------------------------------------------
 architecture arch of packets2data_top is
 --declare signals,  components here
-
+constant c_buffer128_usedww      : integer := 10;
 --inst0
 signal inst0_smpl_buff_q         : std_logic_vector(out_pct_data_w-1 downto 0); 
 signal inst0_smpl_buff_valid     : std_logic;
-
+signal inst0_data_out_read_hold  : std_logic;
+signal inst1_data_out_read_hold  : std_logic;
 --inst1
 signal inst1_data_out            : std_logic_vector(127 downto 0);
 signal inst1_data_out_valid      : std_logic;
+signal inst1_wrreq				 : std_logic; --only used for 128bit bus
+signal inst1_128bit_reset	     : std_logic;
 
 --inst2
-signal inst2_wrusedw             : std_logic_vector(decomp_fifo_size-1 downto 0);
+signal inst2_wrusedw             : std_logic_vector(c_buffer128_usedww-1 downto 0);
+signal inst2_rdempty 			 : std_logic;
+signal inst2_outdata		     : std_logic_vector(127 downto 0);
+-- signal inst2_wrreq				 : std_logic;
+signal inst2_rdreq				 : std_logic;
 
 signal max_fifo_words            : std_logic_vector(decomp_fifo_size-1 downto 0);
 signal fifo_limit                : unsigned(decomp_fifo_size-1 downto 0);
 signal fifo_full_sig             : std_logic;
+
+
+signal mux_sel                   : std_logic;
+ 
  
 begin
 
@@ -100,7 +111,6 @@ begin
    if reset_n = '0' then 
       fifo_full_sig <= '0';
    elsif (rclk'event AND rclk='1') then 
-      --if unsigned(inst2_wrusedw) > fifo_limit then
       if unsigned(smpl_fifo_wrusedw) > fifo_limit then
          fifo_full_sig <= '1';
       else
@@ -144,11 +154,24 @@ end process;
       in_pct_clr_flag         => in_pct_clr_flag,
       in_pct_buff_rdy         => in_pct_buff_rdy, 
       
+      p2d_rd_read_hold        => inst1_data_out_read_hold,
+      
       smpl_buff_almost_full   => fifo_full_sig,
       smpl_buff_q             => inst0_smpl_buff_q,    
       smpl_buff_valid         => inst0_smpl_buff_valid
    );
---        
+   
+   
+--- --------------------------------------------------------
+---  Sample unpacking generate statements
+--- --------------------------------------------------------    
+
+    
+
+    --- --------------------------------------------------------
+    ---  64bit bus
+    --- --------------------------------------------------------    
+   
    bit_unpack_64 : if out_pct_data_w=64 generate
         bit_unpack_64_inst1 : entity work.bit_unpack_64
           port map(
@@ -160,18 +183,70 @@ end process;
                 data_out        => inst1_data_out,
                 data_out_valid  => inst1_data_out_valid
                 );
-        smpl_fifo_wrreq   <= inst1_data_out_valid;   
-        smpl_fifo_data    <= inst1_data_out;
+        smpl_fifo_wrreq          <= inst1_data_out_valid;   
+        smpl_fifo_data           <= inst1_data_out;
+        inst0_data_out_read_hold <= '0';
+        inst1_data_out_read_hold <= '0';
    end generate bit_unpack_64;
+   
+    --- --------------------------------------------------------
+    ---  128bit bus
+    --- --------------------------------------------------------   
    
    bit_unpack_128 : if out_pct_data_w = 128 generate
    
-   --TODO: add proper unpacking code for 12bit sample width
-   --This placeholder code only works properly for 16bit samples
-       smpl_fifo_wrreq   <= inst0_smpl_buff_valid;
-       smpl_fifo_data    <= inst0_smpl_buff_q;
-   end generate;
+    --If 12bit sample format is selected the data gets routed to the Bit packer
+    --If 16bit sample format is selected the data goes straight to other modules
+    smpl_fifo_data           <= inst1_data_out           when sample_width = "10" else inst0_smpl_buff_q;
+    smpl_fifo_wrreq          <= inst1_data_out_valid     when sample_width = "10" else inst0_smpl_buff_valid;
+    
+   inst1_128bit_reset <= '1' when sample_width = "10" else '0';    
+   
+        --4 is an arbitrary value, can be changed if needed
+   inst1_data_out_read_hold <= '1' when unsigned(inst2_wrusedw) > 4 else '0';
 
+        --Bit packer -> turns 12bit sample stream to a 16bit sample stream
+   inst1_unpack_128_to_48 : entity work.unpack_128_to_48
+      port map (
+                clk            => rclk,
+                reset_n        => inst1_128bit_reset and reset_n,
+                data128_in     => inst2_outdata,
+                data128_out    => inst1_data_out,
+                data_out_valid => inst1_data_out_valid,
+                data_available => not inst2_rdempty,
+                data_rdreq     => inst2_rdreq
+   );
+   
+        --FIFO Buffer for the 128bit packer (smallest possible size)
+        --Needed for flow control implementation by bit packer
+   inst2_unpack128_buffer : entity work.fifo_inst
+      generic map (
+                   vendor         => "XILINX",
+                   wrwidth        => 128,
+                   wrusedw_witdth => c_buffer128_usedww,
+                   rdwidth        => 128,
+                   rdusedw_width  => c_buffer128_usedww,
+                   show_ahead     => "ON"
+   )
+      port map (
+                reset_n     => inst1_128bit_reset and reset_n,
+                wr_rst_busy => open,
+                rd_rst_busy => open,
+                wrclk       => rclk,
+                wrreq       => inst0_smpl_buff_valid,
+                data        => inst0_smpl_buff_q,
+                wrfull      => open,
+                wrempty     => open,
+                wrusedw     => inst2_wrusedw,
+                rdclk       => rclk,
+                rdreq       => inst2_rdreq,
+                q           => inst2_outdata,
+                rdempty     => inst2_rdempty,
+                rdusedw     => open
+   );
+  
+   end generate;
+    
         
   
 

@@ -51,6 +51,7 @@ entity packets2data is
       in_pct_clr_flag         : out std_logic;
       in_pct_buff_rdy         : out std_logic_vector(g_BUFF_COUNT-1 downto 0);
       
+      p2d_rd_read_hold        : in std_logic;
       smpl_buff_almost_full   : in std_logic;
       smpl_buff_q             : out std_logic_vector(out_pct_data_w-1 downto 0);
       smpl_buff_valid         : out std_logic
@@ -284,6 +285,7 @@ p2d_rd_inst3 : entity work.p2d_rd
       pct_buff_sel            => inst3_pct_buff_sel,
       pct_buff_clr_n          => inst3_pct_buff_clr_n,
       
+      read_hold               => p2d_rd_read_hold,
       smpl_buff_almost_full   => smpl_buff_almost_full
 
    );
