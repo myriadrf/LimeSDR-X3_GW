@@ -35,17 +35,10 @@ architecture arch of unpack_128_to_48 is
 signal data128_in_reg	      : std_logic_vector(127 downto 0);
 signal data128_out_int        : std_logic_vector(127 downto 0);
 signal data_rdreq_int         : std_logic;
+signal data_out_valid_int     : std_logic;
 
 type t_state_type is (state0, state1, state2, state3);
 signal current_state, next_state : t_state_type := state0;
-
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of data128_in      : signal is "TRUE";
-attribute MARK_DEBUG of data128_out_int : signal is "TRUE";
-attribute MARK_DEBUG of reset_n         : signal is "TRUE";
-attribute MARK_DEBUG of current_state   : signal is "TRUE";
-attribute MARK_DEBUG of data_rdreq_int   : signal is "TRUE";
-attribute MARK_DEBUG of data_available   : signal is "TRUE";
 				
 begin
 
@@ -85,7 +78,7 @@ begin
 		begin
 			next_state               <= current_state;
 			data128_out_int          <= data128_out_int;
-			data_out_valid 	         <= '0';
+			data_out_valid_int       <= '0';
 			data_rdreq_int           <= '0';
 			
 			case current_state is 
@@ -102,9 +95,9 @@ begin
 					data128_out_int(15  downto 0  ) <= data128_in(11 downto 0 ) & "0000";
 					
 					if data_available = '1' then
-					   data_rdreq_int <= '1';
-					   data_out_valid <= '1';
-					   next_state     <= state1;
+					   data_rdreq_int     <= '1';
+					   data_out_valid_int <= '1';
+					   next_state         <= state1;
 					end if;
 				
 				when state1 =>
@@ -119,9 +112,9 @@ begin
 				    data128_out_int(15  downto 0  ) <= data128_in_reg(107 downto 96 ) & "0000";
 					
 					if data_available = '1' then
-					   data_rdreq_int <= '1';
-					   data_out_valid <= '1';
-					   next_state     <= state2;
+					   data_rdreq_int     <= '1';
+					   data_out_valid_int <= '1';
+					   next_state         <= state2;
 					end if;
 					
 				when state2 =>
@@ -136,9 +129,9 @@ begin
 					data128_out_int(15  downto 0  ) <= data128_in_reg(75  downto 64 ) & "0000";
 					
 					if data_available = '1' then
-					   data_rdreq_int <= '1';
-					   data_out_valid <= '1';
-					   next_state     <= state3;
+					   data_rdreq_int     <= '1';
+					   data_out_valid_int <= '1';
+					   next_state         <= state3;
 					end if;
 					
 				when state3 =>
@@ -152,16 +145,21 @@ begin
 					data128_out_int(31  downto 16 ) <= data128_in_reg(55  downto 44 ) & "0000";
 					data128_out_int(15  downto 0  ) <= data128_in_reg(43  downto 32 ) & "0000";
 					
-					next_state        <= state0;
-					data_out_valid    <= '1';
+					next_state            <= state0;
+					data_out_valid_int    <= '1';
 								
 				when others => next_state <= state0;
 			end case;
 	end process;
 
-
-    data128_out  <= data128_out_int;
-    data_rdreq   <= data_rdreq_int;
+    output_register_proc : process(clk)
+    begin
+        if rising_edge(clk) then
+            data128_out    <= data128_out_int;
+            data_out_valid <= data_out_valid_int;
+        end if;
+    end process;
+    data_rdreq     <= data_rdreq_int;
 
 end arch;   
 
