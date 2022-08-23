@@ -33,6 +33,7 @@ entity rxtx_top is
       TX_IN_PCT_RDUSEDW_W          : integer := 11;
       TX_OUT_PCT_DATA_W            : integer := 64;
       TX_SMPL_FIFO_WRUSEDW_W       : integer := 9;
+      TX_HIGHSPEED_BUS             : boolean := false;
       
       -- RX parameters
       RX_DATABUS_WIDTH             : integer := 64;
@@ -173,6 +174,7 @@ TX_gen0 : if TX_EN = true generate
       g_PCT_HDR_SIZE       => TX_IN_PCT_HDR_SIZE,
       g_BUFF_COUNT         => TX_N_BUFF,
       g_FIFO_DATA_W        => TX_IN_PCT_DATA_W,
+      g_DOUBLE_BUS         => TX_HIGHSPEED_BUS,
       decomp_fifo_size     => 9
       )
    port map(

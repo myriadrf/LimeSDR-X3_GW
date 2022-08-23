@@ -1821,6 +1821,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
       TX_IN_PCT_DATA_W        => c_H2F_S0_0_RWIDTH,      -- 
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S0_0_RDUSEDW_WIDTH,
+      TX_HIGHSPEED_BUS        => false,
       
       -- RX parameters
       RX_DATABUS_WIDTH        => c_F2H_S0_WWIDTH,
@@ -1968,6 +1969,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
       TX_IN_PCT_DATA_W        => c_H2F_S1_0_RWIDTH,      -- 
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S1_0_RDUSEDW_WIDTH,
+      TX_HIGHSPEED_BUS        => true,
       
       -- RX parameters
       RX_DATABUS_WIDTH        => c_F2H_S1_WWIDTH,
@@ -2236,6 +2238,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
       TX_IN_PCT_DATA_W        => c_H2F_S2_0_RWIDTH,      -- 
       TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
+      TX_HIGHSPEED_BUS        => true,
       
       -- RX parameters
       RX_DATABUS_WIDTH        => c_F2H_S2_WWIDTH,
