@@ -41,11 +41,6 @@ entity tx_path_top is
       pct_loss_flg         : out std_logic;
       pct_loss_flg_clr     : in std_logic;
       
-      --txant
-      txant_cyc_before_en  : in std_logic_vector(15 downto 0) := x"0001";
-      txant_cyc_after_en   : in std_logic_vector(15 downto 0) := x"0001";
-      txant_en             : out std_logic;
-      
       --Mode settings
       mode                 : in std_logic; -- JESD207: 1; TRXIQ: 0
       trxiqpulse           : in std_logic; -- trxiqpulse on: 1; trxiqpulse off: 0

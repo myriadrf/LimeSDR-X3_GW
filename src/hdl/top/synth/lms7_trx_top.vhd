@@ -618,7 +618,6 @@ signal LMS1_DIQ1_11_DELAYED         : std_logic;
 --inst7
 --constant c_WFM_INFIFO_SIZE          : integer := FIFO_WORDS_TO_Nbits(g_WFM_INFIFO_SIZE/(c_S0_DATA_WIDTH/8),true);
 signal inst7_tx_pct_loss_flg        : std_logic;
-signal inst7_tx_txant_en            : std_logic;
 signal inst7_tx_in_pct_full         : std_logic;
 signal inst7_rx_pct_fifo_wrreq      : std_logic;
 signal inst7_rx_pct_fifo_wdata      : std_logic_vector(63 downto 0);
@@ -642,13 +641,11 @@ signal inst8_tx_fifo_1_wrusedw      : std_logic_vector(8 downto 0);
 signal inst8_rx_smpl_cmp_done       : std_logic;
 signal inst8_rx_smpl_cmp_err        : std_logic;
 signal inst8_sdout                  : std_logic; 
-signal inst8_tx_ant_en              : std_logic; 
 signal inst8_rx_smpl_cnt_en         : std_logic;
 signal inst8_rx_smpl_cmp_start      : std_logic;
 
 --inst9
 signal inst9_tx_pct_loss_flg        : std_logic;
-signal inst9_tx_txant_en            : std_logic;
 signal inst9_tx_in_pct_full         : std_logic;
 signal inst9_rx_pct_fifo_wrreq      : std_logic;
 signal inst9_rx_pct_fifo_wdata      : std_logic_vector(c_F2H_S1_WWIDTH-1 downto 0);
@@ -696,7 +693,6 @@ signal inst10_data_valid            : std_logic;
 
 --inst11
 signal inst11_tx_pct_loss_flg        : std_logic;
-signal inst11_tx_txant_en            : std_logic;
 signal inst11_tx_in_pct_full         : std_logic;
 signal inst11_rx_pct_fifo_wrreq      : std_logic;
 signal inst11_rx_pct_fifo_wdata      : std_logic_vector(c_F2H_S2_WWIDTH-1 downto 0);
@@ -727,6 +723,7 @@ signal inst12_mm_wait_req              : std_logic;
 signal inst12_mm_irq                   : std_logic;
 signal inst12_uart_tx                  : std_logic;
 signal inst12_smpl_cnt_en              : std_logic;
+signal inst12_tx_ant_en              : std_logic;
 
 
 
@@ -780,11 +777,6 @@ attribute KEEP_HIERARCHY : string;
 
 --attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
 --attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
-
-
-signal gpio_o : std_logic_vector(15 downto 0);
-signal gpio_i : std_logic_vector(15 downto 0);
-signal gpio_t : std_logic_vector(15 downto 0);
 
 signal spi0_lms1_miso   : std_logic;
 signal spi0_lms2_miso   : std_logic;
@@ -1838,7 +1830,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       tx_clk                  => inst1_lms1_txpll_c1,      
       tx_clk_reset_n          => inst1_lms1_txpll_locked,
       tx_pct_loss_flg         => inst7_tx_pct_loss_flg,
-      tx_txant_en             => inst7_tx_txant_en,  
       --Tx interface data 
       tx_smpl_fifo_wrreq      => inst7_tx_smpl_fifo_wrreq,
       tx_smpl_fifo_wrfull     => inst6_tx_fifo_0_wrfull,
@@ -1986,7 +1977,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => reset_n,     
       tx_pct_loss_flg         => inst11_tx_pct_loss_flg,
-      tx_txant_en             => inst11_tx_txant_en,  
       --Tx interface data 
       tx_smpl_fifo_wrreq      => inst9_tx_smpl_fifo_wrreq,
       tx_smpl_fifo_wrfull     => inst12_tx0_wrfull,
@@ -2255,7 +2245,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => '0',--reset_n,     
       tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
-      tx_txant_en             => open,--inst11_tx_txant_en,  
       --Tx interface data 
       tx_smpl_fifo_wrreq      => open,--inst11_tx_smpl_fifo_wrreq,
       tx_smpl_fifo_wrfull     => '1',--inst12_tx0_wrfull,
@@ -2413,7 +2402,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
       to_txtspcfg_1        => inst0_to_txtspcfg_1,
-      smpl_cnt_en          => inst12_smpl_cnt_en,            
+      smpl_cnt_en          => inst12_smpl_cnt_en,   
+      txant_en             => inst12_tx_ant_en,         
       from_fircfg_a        => inst0_from_fircfg_tx_a,  -- B.J.
       from_fircfg_b        => inst0_from_fircfg_tx_b,   -- B.J
       
@@ -2463,65 +2453,16 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 --   inst3_OPNDRN : OPNDRN
 --	port map (a_in => inst0_gpo(0), a_out => FPGA_ADC_RESET);
    
---   -- TRX1_TDD_SW (High = TX enbled, Low = RX Enabled)
---   PMOD_A_PIN1 <= inst6_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(4)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(4);         
---   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
---   PMOD_A_PIN2 <= inst6_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5);         
+   -- TRX1_TDD_SW (High = TX enbled, Low = RX Enabled)
+   PMOD_A_PIN1 <= inst6_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(4)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(4);         
+   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
+   PMOD_A_PIN2 <= inst6_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5);         
 
---   -- TRX1_TDD_SW (High = TX enbled, Low = RX Enabled)
---   PMOD_A_PIN3 <= inst8_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(4)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(4);         
---   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
---   PMOD_A_PIN4 <= inst8_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5); 
+   -- TRX1_TDD_SW (High = TX enbled, Low = RX Enabled)
+   PMOD_A_PIN3 <= inst12_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(4)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(4);         
+   -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
+   PMOD_A_PIN4 <= inst12_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5); 
 
---   gen_gpio : for i in 0 to 15 generate 
---      IOBUF_GPIO : IOBUF
---      generic map (
---         DRIVE       => 4,
---         IOSTANDARD  => "LVCMOS33",
---         SLEW        => "SLOW"
---         )
---      port map (
---         O           => gpio_o(i),     -- Buffer output
---         IO          => FPGA_GPIO(i),  -- Buffer inout port (connect directly to top-level port)
---         I           => gpio_i(i),     -- Buffer input
---         T           => gpio_t(i)      -- 3-state enable input, high=input, low=output 
---         );
---   end generate gen_gpio;
-   
-   
-   gpio_t( 0) <= '0';
-   gpio_t( 1) <= '0';
-   gpio_t( 2) <= '0';
-   gpio_t( 3) <= '0';
-   gpio_t( 4) <= '0';
-   gpio_t( 5) <= '0';
-   gpio_t( 6) <= '0';
-   gpio_t( 7) <= '0';
-   gpio_t( 8) <= '0';
-   gpio_t( 9) <= '0';
-   gpio_t(10) <= '0';
-   gpio_t(11) <= '0';
-   gpio_t(12) <= '0';
-   gpio_t(13) <= '0';
-   gpio_t(14) <= '0';
-   gpio_t(15) <= '0';
-   
-   gpio_i( 0) <= inst0_spi_0_SCLK;--LMK1_CLK;--inst1_lms1_rxpll_c1;--lms2_bb_adc1_clkout_global;--inst1_lms1_rxpll_c1;--inst0_spi_1_SCLK;         
-   gpio_i( 1) <= '0';--inst0_spi_1_SCLK;--LMS1_MCLK2;--CLK100_FPGA;--lms2_bb_adc2_clkout_global;--CLK100_FPGA;--inst0_spi_1_MOSI;
-   gpio_i( 2) <= '0';--inst0_spi_2_SCLK;--lms3_bb_adc1_clkout_global;--LMS1_MCLK2;--inst6_tx_ant_en;
-   gpio_i( 3) <= lms3_bb_adc2_clkout_global;--FPGA_SPI1_MISO;
-   gpio_i( 4) <= inst1_pll_1_c1;--inst0_spi_1_SS_n(1);
-   gpio_i( 5) <= '0';
-   gpio_i( 6) <= inst8_tx_ant_en;
-   gpio_i( 7) <= '0';
-   gpio_i( 8) <= inst1_pll_0_locked;
-   gpio_i( 9) <= GNSS_TPULSE;
-   gpio_i(10) <= GNSS_UART_TX;
-   gpio_i(11) <= inst12_uart_tx;
-   gpio_i(12) <= inst0_spi_2_SCLK;
-   gpio_i(13) <= '0';
-   gpio_i(14) <= inst0_spi_2_MOSI;
-   gpio_i(15) <= inst0_spi_2_SS_n(0);
    
 
    FPGA_SPI0_SCLK       <= inst0_spi_0_SCLK;

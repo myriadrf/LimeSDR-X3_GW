@@ -29,75 +29,76 @@ USE UNISIM.vcomponents.ALL;
 -- ----------------------------------------------------------------------------
 ENTITY max5878_top IS
    GENERIC (
-      g_DEV_FAMILY : STRING := "Cyclone V GX";
-      g_IQ_WIDTH : INTEGER := 16;
-      g_TX0_FIFO_WRUSEDW : INTEGER := 9;
-      g_TX0_FIFO_DATAW : INTEGER := 128;
-      g_TX1_FIFO_WRUSEDW : INTEGER := 9;
-      g_TX1_FIFO_DATAW : INTEGER := 128;
-      g_TX2_FIFO_WRUSEDW : INTEGER := 9;
-      g_TX2_FIFO_DATAW : INTEGER := 128;
-      g_INV_IQSEL : INTEGER := 0;
+      g_DEV_FAMILY         : STRING := "Cyclone V GX";
+      g_IQ_WIDTH           : INTEGER := 16;
+      g_TX0_FIFO_WRUSEDW   : INTEGER := 9;
+      g_TX0_FIFO_DATAW     : INTEGER := 128;
+      g_TX1_FIFO_WRUSEDW   : INTEGER := 9;
+      g_TX1_FIFO_DATAW     : INTEGER := 128;
+      g_TX2_FIFO_WRUSEDW   : INTEGER := 9;
+      g_TX2_FIFO_DATAW     : INTEGER := 128;
+      g_INV_IQSEL          : INTEGER := 0;
       g_CFR2CFG_START_ADDR : INTEGER := 768; 
       g_CFR3CFG_START_ADDR : INTEGER := 832;
       g_FIR2CFG_START_ADDR : INTEGER := 896;
       g_FIR3CFG_START_ADDR : INTEGER := 960 
    );
    PORT (
-      clk : IN STD_LOGIC; -- Logic clock
-      clk2x : IN STD_LOGIC; -- DAC interface clock for OSERDERSE
-      clkfwd : IN STD_LOGIC; -- Forwarded clock for DAC
-      reset_n : IN STD_LOGIC;
+      clk             : IN STD_LOGIC; -- Logic clock
+      clk2x           : IN STD_LOGIC; -- DAC interface clock for OSERDERSE
+      clkfwd          : IN STD_LOGIC; -- Forwarded clock for DAC
+      reset_n         : IN STD_LOGIC;
       --DAC#1 Outputs
-      DAC1_CLK_P : OUT STD_LOGIC; --  Differential clock for DAC
-      DAC1_CLK_N : OUT STD_LOGIC;
-      DAC1_B_P : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0); -- DAC data bits
-      DAC1_B_N : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0);
-      DAC1_SELIQ_P : OUT STD_LOGIC; -- SELIQN low and SELIQP high -  data to the I-DAC outputs
-      DAC1_SELIQ_N : OUT STD_LOGIC; -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
+      DAC1_CLK_P      : OUT STD_LOGIC; --  Differential clock for DAC
+      DAC1_CLK_N      : OUT STD_LOGIC;
+      DAC1_B_P        : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0); -- DAC data bits
+      DAC1_B_N        : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0);
+      DAC1_SELIQ_P    : OUT STD_LOGIC; -- SELIQN low and SELIQP high -  data to the I-DAC outputs
+      DAC1_SELIQ_N    : OUT STD_LOGIC; -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
 
-      DAC1_PD : OUT STD_LOGIC; -- '1' -  power-down, 0 -  normal operation.
-      DAC1_TORB : OUT STD_LOGIC; -- '1' - complement input format,  '0' - binary input format
-      DAC1_XOR_P : OUT STD_LOGIC; -- XORN high and XORP low - data stream unchanged, 
-      DAC1_XOR_N : OUT STD_LOGIC; -- XORN low and XORP high -  invert the DAC input data
+      DAC1_PD         : OUT STD_LOGIC; -- '1' -  power-down, 0 -  normal operation.
+      DAC1_TORB       : OUT STD_LOGIC; -- '1' - complement input format,  '0' - binary input format
+      DAC1_XOR_P      : OUT STD_LOGIC; -- XORN high and XORP low - data stream unchanged, 
+      DAC1_XOR_N      : OUT STD_LOGIC; -- XORN low and XORP high -  invert the DAC input data
       --DAC#2 Outputs
-      DAC2_CLK_P : OUT STD_LOGIC; --  Differential clock for DAC
-      DAC2_CLK_N : OUT STD_LOGIC;
-      DAC2_B_P : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0); -- DAC data bits
-      DAC2_B_N : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0);
-      DAC2_SELIQ_P : OUT STD_LOGIC; -- SELIQN low and SELIQP high -  data to the I-DAC outputs
-      DAC2_SELIQ_N : OUT STD_LOGIC; -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
+      DAC2_CLK_P      : OUT STD_LOGIC; --  Differential clock for DAC
+      DAC2_CLK_N      : OUT STD_LOGIC;
+      DAC2_B_P        : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0); -- DAC data bits
+      DAC2_B_N        : OUT STD_LOGIC_VECTOR(g_IQ_WIDTH - 1 DOWNTO 0);
+      DAC2_SELIQ_P    : OUT STD_LOGIC; -- SELIQN low and SELIQP high -  data to the I-DAC outputs
+      DAC2_SELIQ_N    : OUT STD_LOGIC; -- SELIQP low and SELIQN high -  data to the Q-DAC outputs
 
-      DAC2_PD : OUT STD_LOGIC; -- '1' -  power-down, 0 -  normal operation.
-      DAC2_TORB : OUT STD_LOGIC; -- '1' - complement input format,  '0' - binary input format
-      DAC2_XOR_P : OUT STD_LOGIC; -- XORN high and XORP low - data stream unchanged, 
-      DAC2_XOR_N : OUT STD_LOGIC; -- XORN low and XORP high -  invert the DAC input data
+      DAC2_PD         : OUT STD_LOGIC; -- '1' -  power-down, 0 -  normal operation.
+      DAC2_TORB       : OUT STD_LOGIC; -- '1' - complement input format,  '0' - binary input format
+      DAC2_XOR_P      : OUT STD_LOGIC; -- XORN high and XORP low - data stream unchanged, 
+      DAC2_XOR_N      : OUT STD_LOGIC; -- XORN low and XORP high -  invert the DAC input data
       -- Internal TX ports
-      tx_reset_n : IN STD_LOGIC;
-      tx_src_sel : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+      tx_reset_n      : IN STD_LOGIC;
+      tx_src_sel      : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
       -- tx0 FIFO source for DAC
-      tx0_wrclk : IN STD_LOGIC;
-      tx0_reset_n : IN STD_LOGIC;
-      tx0_wrfull : OUT STD_LOGIC;
-      tx0_wrusedw : OUT STD_LOGIC_VECTOR(g_TX0_FIFO_WRUSEDW - 1 DOWNTO 0);
-      tx0_wrreq : IN STD_LOGIC;
-      tx0_data : IN STD_LOGIC_VECTOR(g_TX0_FIFO_DATAW - 1 DOWNTO 0);
+      tx0_wrclk       : IN STD_LOGIC;
+      tx0_reset_n     : IN STD_LOGIC;
+      tx0_wrfull      : OUT STD_LOGIC;
+      tx0_wrusedw     : OUT STD_LOGIC_VECTOR(g_TX0_FIFO_WRUSEDW - 1 DOWNTO 0);
+      tx0_wrreq       : IN STD_LOGIC;
+      tx0_data        : IN STD_LOGIC_VECTOR(g_TX0_FIFO_DATAW - 1 DOWNTO 0);
       -- misc
-      smpl_cnt_en : OUT STD_LOGIC;
+      smpl_cnt_en     : OUT STD_LOGIC;
+      txant_en        : OUT STD_LOGIC;
       -- Configuration data
-      from_fpgacfg : IN t_FROM_FPGACFG;
+      from_fpgacfg    : IN t_FROM_FPGACFG;
       from_txtspcfg_0 : IN t_FROM_TXTSPCFG;
-      to_txtspcfg_0 : OUT t_TO_TXTSPCFG;
+      to_txtspcfg_0   : OUT t_TO_TXTSPCFG;
       from_txtspcfg_1 : IN t_FROM_TXTSPCFG;
-      to_txtspcfg_1 : OUT t_TO_TXTSPCFG;
-      from_fircfg_a : IN t_FROM_FIRCFG; -- B.J.
-      from_fircfg_b : IN t_FROM_FIRCFG; -- B.J.      
+      to_txtspcfg_1   : OUT t_TO_TXTSPCFG;
+      from_fircfg_a   : IN t_FROM_FIRCFG; -- B.J.
+      from_fircfg_b   : IN t_FROM_FIRCFG; -- B.J.      
       
-      sdin : IN STD_LOGIC;
-      sclk : IN STD_LOGIC;
-      sen : IN STD_LOGIC;
-      sdout : OUT STD_LOGIC;
-      from_memcfg : IN t_FROM_MEMCFG
+      sdin            : IN STD_LOGIC;
+      sclk            : IN STD_LOGIC;
+      sen             : IN STD_LOGIC;
+      sdout           : OUT STD_LOGIC;
+      from_memcfg     : IN t_FROM_MEMCFG
 
    );
 END max5878_top;
@@ -337,6 +338,16 @@ PROCESS (clk, reset_n)
          fifo_q_valid => inst3_fifo_q_valid,
          fifo_q => inst3_fifo_q
       );
+      
+   inst3_0_edge_delay : entity work.edge_delay
+      port map (
+                clk      => clk,
+                reset_n  => tx_reset_n,
+                rise_dly => from_fpgacfg.txant_pre,
+                fall_dly => from_fpgacfg.txant_post,
+                d        => inst3_fifo_rdreq, --assigning fifo_rdreq in this case is equivalent to what is done in lms7002_top
+                q        => TXANT_EN
+   );   
 
    inst3_fifo_rdempty <= inst0_rdempty;
 

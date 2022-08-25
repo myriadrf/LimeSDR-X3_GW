@@ -53,7 +53,6 @@ entity rxtx_top is
       tx_clk                  : in     std_logic;
       tx_clk_reset_n          : in     std_logic;    
       tx_pct_loss_flg         : out    std_logic;
-      tx_txant_en             : out    std_logic;  
          -- Tx interface data
       tx_smpl_fifo_wrreq      : out    std_logic;    
       tx_smpl_fifo_wrfull     : in     std_logic;
@@ -193,11 +192,6 @@ TX_gen0 : if TX_EN = true generate
             
       pct_loss_flg         => inst1_pct_loss_flg,
       pct_loss_flg_clr     => inst5_pct_hdr_cap, --from_fpgacfg.txpct_loss_clr
-      
-      --txant
-      txant_cyc_before_en  => from_fpgacfg.txant_pre,
-      txant_cyc_after_en   => from_fpgacfg.txant_post,
-      txant_en             => tx_txant_en,
       
       --Mode settings
       mode                 => from_fpgacfg.mode,       -- JESD207: 1; TRXIQ: 0
