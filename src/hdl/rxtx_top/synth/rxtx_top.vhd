@@ -130,7 +130,8 @@ signal inst6_pulse               : std_logic;
 
 begin
  
-    inst0_reset_n_in <= from_fpgacfg.rx_en or ext_rx_en;  
+        --If ext_rx_en is enabled, use TX when pcie_dma is enabled, otherwise use rx_en
+    inst0_reset_n_in <= from_fpgacfg.rx_en when ext_rx_en = '0' else tx_dma_en;  
    -- Reset signal for inst0 with synchronous removal to tx_pct_clk clock domain, 
    sync_reg0_0 : entity work.sync_reg 
    port map(tx_clk, inst0_reset_n_in, '1', inst0_reset_n);  -- B.J.
@@ -138,10 +139,14 @@ begin
    sync_reg0_1 : entity work.sync_reg 
    port map(tx_clk, tx_dma_en, '1', tx_dma_en_sync);  -- B.J.
    
+   -- RX reset
+   sync_reg0_2 : entity work.sync_reg 
+   port map(tx_clk, from_fpgacfg.rx_en , '1', inst5_reset_n);  -- B.J.
+   
+   -- TX resets
    tx_in_pct_reset_n_req   <= inst0_reset_n;-- AND inst1_in_pct_reset_n_req;   
-   inst1_reset_n           <= inst0_reset_n and tx_dma_en_sync;
+   inst1_reset_n           <= inst0_reset_n;--inst0_reset_n and tx_dma_en_sync;
    inst6_reset_n           <= inst0_reset_n;  
-   inst5_reset_n           <= inst0_reset_n;
    
    -- Reset signal for inst0 with synchronous removal to rx_clk clock domain, 
    sync_reg1 : entity work.sync_reg 
