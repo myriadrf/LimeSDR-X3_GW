@@ -225,7 +225,7 @@ begin
 
    inst2_diq_in <= inst0_q when tx_src_sel = '0' else inst1_q;
    inst2_sleep <=  inst0_rdempty when tx_src_sel = '0' else inst1_rdempty;
-   reset_n_DPDTOP <= fifo_reset_n AND reset_n;
+   reset_n_DPDTOP <= (fifo_reset_n or test_ptrn_en) AND reset_n;
    reset_n_temp <= reset_n_DPDTOP and reset_n_soft; 
    
    inst2_data_req <= inst2_data_req_orig;
