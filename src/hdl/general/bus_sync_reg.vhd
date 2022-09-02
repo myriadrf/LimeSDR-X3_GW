@@ -30,7 +30,9 @@ end bus_sync_reg;
 architecture arch of bus_sync_reg is
 --declare signals,  components here
 signal sync_reg0,sync_reg1 : std_logic_vector (bus_width-1 downto 0);
-
+attribute ASYNC_REG : string;
+attribute ASYNC_REG of sync_reg0 : signal is "TRUE";
+attribute ASYNC_REG of sync_reg1 : signal is "TRUE";
   
 begin
 

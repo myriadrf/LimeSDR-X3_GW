@@ -28,6 +28,8 @@ architecture arch of sync_reg is
 --declare signals,  components here
 signal sync_reg : std_logic_vector (1 downto 0); 
 
+attribute ASYNC_REG : string;
+attribute ASYNC_REG of sync_reg : signal is "TRUE";
   
 begin
 
