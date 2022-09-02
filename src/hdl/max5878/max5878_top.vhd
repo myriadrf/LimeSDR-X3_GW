@@ -83,7 +83,6 @@ ENTITY max5878_top IS
       tx0_wrreq       : IN STD_LOGIC;
       tx0_data        : IN STD_LOGIC_VECTOR(g_TX0_FIFO_DATAW - 1 DOWNTO 0);
       -- misc
-      smpl_cnt_en     : OUT STD_LOGIC;
       txant_en        : OUT STD_LOGIC;
       -- Configuration data
       from_fpgacfg    : IN t_FROM_FPGACFG;
@@ -245,20 +244,6 @@ ARCHITECTURE arch OF max5878_top IS
    SIGNAL xena : STD_LOGIC;
 
 BEGIN
-
-PROCESS (clk, reset_n)
-   BEGIN
-      IF reset_n = '0' THEN
-         smpl_cnt_en_reg <= '0';
-      ELSIF rising_edge(clk) THEN
-         IF from_fpgacfg.mimo_int_en = '0' AND from_fpgacfg.ddr_en = '1' THEN
-            smpl_cnt_en_reg <= '1';
-         ELSE
-            smpl_cnt_en_reg <= NOT smpl_cnt_en_reg;
-         END IF;
-      END IF;
-   END PROCESS;
-   smpl_cnt_en <= smpl_cnt_en_reg;
 
    --DAC1_SLEEP <= '0'; -- 0 - Normal operation, 1 - power down
    --DAC2_SLEEP <= '0';

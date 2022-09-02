@@ -310,7 +310,7 @@ smpl_cnt_inst3 : entity work.smpl_cnt
 -- ----------------------------------------------------------------------------        
 smpl_cnt_inst4 : entity work.iq_smpl_cnt
    generic map(
-      G_DOUBLEBUS => (outbus_width = 128),
+      G_DOUBLEBUS => false,--(outbus_width = 128),
       cnt_width   => 64
    )
    port map(

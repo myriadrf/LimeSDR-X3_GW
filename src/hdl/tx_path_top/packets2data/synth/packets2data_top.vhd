@@ -197,8 +197,14 @@ end process;
    
     --If 12bit sample format is selected the data gets routed to the Bit packer
     --If 16bit sample format is selected the data goes straight to other modules
-    smpl_fifo_data           <= inst1_data_out           when sample_width = "10" else inst0_smpl_buff_q;
-    smpl_fifo_wrreq          <= inst1_data_out_valid     when sample_width = "10" else inst0_smpl_buff_valid;
+    
+    outdata_reg : process(all)
+    begin
+        if rising_edge(rclk) then
+            smpl_fifo_data           <= inst1_data_out           when sample_width = "10" else inst0_smpl_buff_q;
+            smpl_fifo_wrreq          <= inst1_data_out_valid     when sample_width = "10" else inst0_smpl_buff_valid;
+        end if;
+    end process;
     
    inst1_128bit_reset <= '1' when sample_width = "10" else '0';    
    

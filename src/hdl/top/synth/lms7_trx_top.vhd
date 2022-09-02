@@ -641,7 +641,6 @@ signal inst8_tx_fifo_1_wrusedw      : std_logic_vector(8 downto 0);
 signal inst8_rx_smpl_cmp_done       : std_logic;
 signal inst8_rx_smpl_cmp_err        : std_logic;
 signal inst8_sdout                  : std_logic; 
-signal inst8_rx_smpl_cnt_en         : std_logic;
 signal inst8_rx_smpl_cmp_start      : std_logic;
 
 --inst9
@@ -690,6 +689,7 @@ signal inst10_adc4_data_ch_b        : std_logic_vector(g_EXT_ADC_D_WIDTH-1 downt
 
 signal inst10_data                  : std_logic_vector(14*4-1 downto 0);
 signal inst10_data_valid            : std_logic;
+signal inst10_smpl_cnt_en           : std_logic;
 
 --inst11
 signal inst11_tx_pct_loss_flg        : std_logic;
@@ -710,6 +710,7 @@ signal inst11_tx_smpl_fifo_data      : std_logic_vector(127 downto 0);
 
 signal inst11_data                   : std_logic_vector(14*4-1 downto 0);
 signal inst11_data_valid             : std_logic;
+signal inst11_smpl_cnt_en            : std_logic;
 
 
 --inst12 
@@ -722,7 +723,6 @@ signal inst12_mm_rd_datav              : std_logic;
 signal inst12_mm_wait_req              : std_logic;
 signal inst12_mm_irq                   : std_logic;
 signal inst12_uart_tx                  : std_logic;
-signal inst12_smpl_cnt_en              : std_logic;
 signal inst12_tx_ant_en              : std_logic;
 
 
@@ -1802,7 +1802,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          );
    
    --LMS1_DIQ1_D <= LMS1_DIQ1_11_DELAYED & LMS1_DIQ1_INT(10 downto 0);
-   
    inst7_rxtx_top : entity work.rxtx_top
    generic map(
       DEV_FAMILY              => g_DEV_FAMILY,
@@ -1936,6 +1935,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       ch_en       => inst0_from_fpgacfg_mod_1.ch_en(1 downto 0),
       data        => inst10_data,
       data_valid  => inst10_data_valid,
+      smpl_cnt_en => inst10_smpl_cnt_en,
       -- A chanel
       a_clk       => lms2_bb_adc1_clkout,
       a_reset_n   => reset_n,
@@ -2001,7 +2001,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_pct_fifo_wrreq       => inst9_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => inst12_smpl_cnt_en,
+      rx_smpl_nr_cnt_en       => inst10_smpl_cnt_en,
 
        ext_rx_en => '0',
        --ext_rx_en => dpd_tx_en,  -- B.J.      
@@ -2202,6 +2202,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       ch_en       => inst0_from_fpgacfg_mod_2.ch_en(1 downto 0),
       data        => inst11_data,
       data_valid  => inst11_data_valid,
+      --lms3 does not need smpl_cnt_en signal, because there is no TX stream
+      smpl_cnt_en => open,--inst11_smpl_cnt_en,
       -- A chanel
       a_clk       => lms3_bb_adc1_clkout,
       a_reset_n   => reset_n,
@@ -2269,7 +2271,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
       rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata,
       -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => '1',
+      -- smpl_cnt_en increments counter that is only used for TX synchronisation
+      -- making it useless for LMS3
+      rx_smpl_nr_cnt_en       => '0',--inst11_smpl_cnt_en,
 
       --ext_rx_en =>  '0',
       ext_rx_en =>  '0', -- not for now: dpd_tx_en,  -- B.J.
@@ -2402,7 +2406,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_txtspcfg_0        => inst0_to_txtspcfg_0,
       from_txtspcfg_1      => inst0_from_txtspcfg_1,
       to_txtspcfg_1        => inst0_to_txtspcfg_1,
-      smpl_cnt_en          => inst12_smpl_cnt_en,   
       txant_en             => inst12_tx_ant_en,         
       from_fircfg_a        => inst0_from_fircfg_tx_a,  -- B.J.
       from_fircfg_b        => inst0_from_fircfg_tx_b,   -- B.J

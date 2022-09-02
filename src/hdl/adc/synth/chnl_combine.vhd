@@ -32,6 +32,7 @@ entity chnl_combine is
       ch_en       : in  std_logic_vector(1 downto 0); -- "11" - AB, "10" - B, "01" - A
       data        : out std_logic_vector(4*diq_width-1 downto 0);
       data_valid  : out std_logic;
+      smpl_cnt_en : out std_logic;
       -- A chanel
       a_clk       : in  std_logic;
       a_reset_n   : in  std_logic;
@@ -85,6 +86,7 @@ signal ch_en_reg     : std_logic_vector(ch_en'LEFT downto 0);
 signal ch_en_change  : std_logic;
 
 signal int_data_valid      : std_logic;
+signal smpl_cnt_en_internal: std_logic;
 
 type state_type is (idle, rd_a, rd_b, rd_ab);
 signal current_state, next_state : state_type;
@@ -393,6 +395,29 @@ end process;
          end if;
       end if;
    end process;
+   
+-- ----------------------------------------------------------------------------
+-- Sample count enable logic
+-- ----------------------------------------------------------------------------  
+    smpl_cnt_en <= smpl_cnt_en_internal;
+    
+    
+    
+
+    smpl_cnt_en_control : process(clk,reset_n)
+    begin
+        if reset_n = '0' then
+            smpl_cnt_en_internal <= '0';
+        elsif rising_edge(clk) then
+            if ch_en = "01" then
+                smpl_cnt_en_internal <= inst0_q_valid;
+            elsif ch_en = "10" then
+                smpl_cnt_en_internal <= inst1_q_valid;
+            else
+                smpl_cnt_en_internal <= ab_reg_valid;
+            end if;
+        end if;
+    end process;
   
 end arch;   
 
