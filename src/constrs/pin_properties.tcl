@@ -598,3 +598,8 @@ set_property PACKAGE_PIN P15 [get_ports PMOD_A_PIN9]
 set_property PACKAGE_PIN P16 [get_ports PMOD_A_PIN10]
 set_property IOSTANDARD LVCMOS33 [get_ports PMOD*]
 
+#set_property PACKAGE_PIN H13 [get_ports FPGA_CFG_CCLK]
+set_property PACKAGE_PIN P18 [get_ports FPGA_CFG_CS  ]
+set_property PACKAGE_PIN R14 [get_ports FPGA_CFG_MOSI  ]
+set_property PACKAGE_PIN R15 [get_ports FPGA_CFG_MISO  ]
+set_property IOSTANDARD LVCMOS33 [get_ports FPGA_CFG_*]

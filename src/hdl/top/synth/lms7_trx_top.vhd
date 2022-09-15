@@ -348,6 +348,10 @@ entity lms7_trx_top is
        PMOD_A_PIN9      : inout std_logic;
        PMOD_A_PIN10     : inout std_logic; 
        
+         -- FPGA config (clk is routed via startupe2 primitive in spi IP core)
+       FPGA_CFG_CS      : out std_logic;
+       FPGA_CFG_MOSI    : out std_logic;
+       FPGA_CFG_MISO    : in  std_logic;       
          -- Bill Of material and hardware version 
       BOM_VER           : in     std_logic_vector(3 downto 0);
       HW_VER            : in     std_logic_vector(3 downto 0);
@@ -1041,6 +1045,10 @@ begin
       spi_2_MOSI                 => inst0_spi_2_MOSI,
       spi_2_SCLK                 => inst0_spi_2_SCLK,
       spi_2_SS_n                 => inst0_spi_2_SS_n,
+      -- Config QSPI
+      fpga_cfg_qspi_MOSI	     =>FPGA_CFG_MOSI,
+      fpga_cfg_qspi_MISO	     =>FPGA_CFG_MISO,
+      fpga_cfg_qspi_SS_n         =>FPGA_CFG_CS,
       -- I2C
       i2c_scl                    => FPGA_I2C_SCL,
       i2c_sda                    => FPGA_I2C_SDA,

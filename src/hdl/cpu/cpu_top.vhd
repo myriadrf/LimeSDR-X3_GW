@@ -80,6 +80,10 @@ entity cpu_top is
       -- I2C
       i2c_scl              : inout  std_logic;
       i2c_sda              : inout  std_logic;
+	  -- Configuration Flash SPI
+	  fpga_cfg_qspi_MISO   : in     std_logic;
+	  fpga_cfg_qspi_MOSI   : out    std_logic;
+	  fpga_cfg_qspi_SS_n   : out    std_logic;
       -- Genral purpose I/O
       gpi                  : in     std_logic_vector(7 downto 0);
       gpo                  : out    std_logic_vector(7 downto 0);
@@ -211,6 +215,15 @@ architecture arch of cpu_top is
    signal inst0_spi_2_SCLK          : std_logic;
    signal inst0_spi_2_SS_n          : std_logic_vector(3 downto 0);
    
+   signal inst0_fpga_cfg_qspi_io0_i : std_logic;
+   signal inst0_fpga_cfg_qspi_io0_o : std_logic; 
+   signal inst0_fpga_cfg_qspi_io0_t : std_logic; 
+   signal inst0_fpga_cfg_qspi_io1_i : std_logic; 
+   signal inst0_fpga_cfg_qspi_io1_o : std_logic; 
+   signal inst0_fpga_cfg_qspi_io1_t : std_logic; 
+   signal inst0_fpga_cfg_qspi_ss_o  : std_logic_vector(0 downto 0);
+   signal inst0_fpga_cfg_qspi_ss_t  : std_logic_vector(0 downto 0);
+   
    signal inst0_iic_0_scl_o         : std_logic;
    signal inst0_iic_0_scl_t         : std_logic;
    signal inst0_iic_0_sda_o         : std_logic;
@@ -314,6 +327,15 @@ architecture arch of cpu_top is
       spi_2_ss_i                 : in std_logic_vector ( 3 downto 0 );
       spi_2_ss_o                 : out std_logic_vector ( 3 downto 0 );
       spi_2_ss_t                 : out std_logic;
+      fpga_cfg_qspi_io0_i        : in  std_logic;
+      fpga_cfg_qspi_io0_o        : out std_logic; 
+      fpga_cfg_qspi_io0_t        : out std_logic; 
+      fpga_cfg_qspi_io1_i        : in  std_logic; 
+      fpga_cfg_qspi_io1_o        : out std_logic; 
+      fpga_cfg_qspi_io1_t        : out std_logic; 
+      fpga_cfg_qspi_ss_i         : in  std_logic_vector(0 downto 0); 
+      fpga_cfg_qspi_ss_o         : out std_logic_vector(0 downto 0); 
+      fpga_cfg_qspi_ss_t         : out std_logic_vector(0 downto 0); 
       uart_0_rxd                 : in std_logic;
       uart_0_txd                 : out std_logic;
       extm_axi_resetn_out        : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -453,6 +475,16 @@ begin
       spi_2_ss_t               => open,
       uart_0_rxd               => '0',
       uart_0_txd               => open,
+      
+      fpga_cfg_qspi_io0_i      => inst0_fpga_cfg_qspi_io0_i,
+      fpga_cfg_qspi_io0_o      => inst0_fpga_cfg_qspi_io0_o,
+      fpga_cfg_qspi_io0_t      => inst0_fpga_cfg_qspi_io0_t,    
+      fpga_cfg_qspi_io1_i      => inst0_fpga_cfg_qspi_io1_i,
+      fpga_cfg_qspi_io1_o      => inst0_fpga_cfg_qspi_io1_o,
+      fpga_cfg_qspi_io1_t      => inst0_fpga_cfg_qspi_io1_t,    
+      fpga_cfg_qspi_ss_i       => (others => '0'),
+      fpga_cfg_qspi_ss_o       => inst0_fpga_cfg_qspi_ss_o ,
+      fpga_cfg_qspi_ss_t       => open,
       
       extm_axi_resetn_out      => pll_axi_resetn_out,
       extm_0_axi_araddr        => pll_from_axim.araddr,
@@ -605,6 +637,10 @@ begin
    spi_2_SCLK <= inst0_spi_2_SCLK;
    spi_2_MOSI <= inst0_spi_2_MOSI;
    spi_2_SS_n <= inst0_spi_2_SS_n;
+   
+   fpga_cfg_qspi_MOSI <= inst0_fpga_cfg_qspi_io0_o;
+   inst0_fpga_cfg_qspi_io1_i <= fpga_cfg_qspi_MISO;
+   fpga_cfg_qspi_SS_n    <= inst0_fpga_cfg_qspi_ss_o(0);
    
    i2c_scl <= inst0_iic_0_scl_o when inst0_iic_0_scl_t = '0' else 'Z';
    i2c_sda <= inst0_iic_0_sda_o when inst0_iic_0_sda_t = '0' else 'Z';
