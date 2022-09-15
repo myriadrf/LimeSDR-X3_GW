@@ -52,14 +52,14 @@ end txiq_par;
 -- ----------------------------------------------------------------------------
 architecture arch of txiq_par is
 
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of ch_en : signal is "TRUE";
-attribute MARK_DEBUG of reset_n : signal is "TRUE";
-attribute MARK_DEBUG of en : signal is "TRUE";
-attribute MARK_DEBUG of fifo_rdempty : signal is "TRUE";
-attribute MARK_DEBUG of fifo_rdreq : signal is "TRUE";
-attribute MARK_DEBUG of fifo_q_valid : signal is "TRUE";
-attribute MARK_DEBUG of fifo_q : signal is "TRUE";
+--attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of ch_en : signal is "TRUE";
+--attribute MARK_DEBUG of reset_n : signal is "TRUE";
+--attribute MARK_DEBUG of en : signal is "TRUE";
+--attribute MARK_DEBUG of fifo_rdempty : signal is "TRUE";
+--attribute MARK_DEBUG of fifo_rdreq : signal is "TRUE";
+--attribute MARK_DEBUG of fifo_q_valid : signal is "TRUE";
+--attribute MARK_DEBUG of fifo_q : signal is "TRUE";
 
 --declare signals,  components here
 signal int_fifo_rdreq         : std_logic;

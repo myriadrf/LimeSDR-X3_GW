@@ -122,12 +122,12 @@ ARCHITECTURE arch OF DPDTopWrapper IS
    signal reset_n2, fix_mimo, dpdtop_en: std_logic;
    signal data_req_reg, data_req_reg2, data_req_int,data_valid_reg: std_logic;
 	
-	attribute MARK_DEBUG : string;
-	attribute MARK_DEBUG of ai_in: signal is "TRUE";
-    attribute MARK_DEBUG of aq_in: signal is "TRUE";
-    attribute MARK_DEBUG of bi_in: signal is "TRUE";
-    attribute MARK_DEBUG of bq_in: signal is "TRUE";
-    attribute MARK_DEBUG of xen: signal is "TRUE";
+--	attribute MARK_DEBUG : string;
+--	attribute MARK_DEBUG of ai_in: signal is "TRUE";
+--    attribute MARK_DEBUG of aq_in: signal is "TRUE";
+--    attribute MARK_DEBUG of bi_in: signal is "TRUE";
+--    attribute MARK_DEBUG of bq_in: signal is "TRUE";
+--    attribute MARK_DEBUG of xen: signal is "TRUE";
 
 BEGIN
    -- ----------------------------------------------------------------------------

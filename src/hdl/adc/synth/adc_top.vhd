@@ -71,12 +71,12 @@ signal valid_cnt_ovrfl  : std_logic;
 signal reset_n_sync     : std_logic;
 signal debug : std_Logic;
 
-attribute MARK_DEBUG : string;
-attribute MARK_DEBUG of inst1_RYI: signal is "TRUE";
-attribute MARK_DEBUG of inst1_RYQ: signal is "TRUE";
-attribute MARK_DEBUG of inst1_RXI: signal is "TRUE";
-attribute MARK_DEBUG of inst1_RXQ: signal is "TRUE";
-attribute MARK_DEBUG of debug: signal is "TRUE";
+--attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of inst1_RYI: signal is "TRUE";
+--attribute MARK_DEBUG of inst1_RYQ: signal is "TRUE";
+--attribute MARK_DEBUG of inst1_RXI: signal is "TRUE";
+--attribute MARK_DEBUG of inst1_RXQ: signal is "TRUE";
+--attribute MARK_DEBUG of debug: signal is "TRUE";
   
 begin
 
