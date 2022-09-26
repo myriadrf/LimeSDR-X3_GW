@@ -762,40 +762,32 @@ signal CLK100_FPGA                     : std_logic;
 signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 
 
-attribute DONT_TOUCH : string;
-attribute KEEP_HIERARCHY : string;
-
-
---attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
---attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
---attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
---attribute DONT_TOUCH of inst6_lms7002_top : label is "TRUE";
---attribute KEEP_HIERARCHY of inst6_lms7002_top : label is "TRUE";
-
---attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
-
---attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
-
---attribute DONT_TOUCH of inst9_rxtx_top    : label is "TRUE";
---attribute DONT_TOUCH of inst11_rxtx_top   : label is "TRUE";
-
 signal spi0_lms1_miso   : std_logic;
 signal spi0_lms2_miso   : std_logic;
 
---attribute DONT_TOUCH of inst10_adc1_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc2_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc3_top   : label is "TRUE";
---attribute DONT_TOUCH of inst10_adc4_top   : label is "TRUE";
+-- debug attributes
+--attribute BLACK_BOX : string;
+--attribute BLACK_BOX of <architecture_name>: architecture is "TRUE";
 
---attribute DONT_TOUCH of inst2_pcie_top    : label is "TRUE";
-
---attribute DONT_TOUCH of inst0_cpu         : label is "TRUE";
---attribute DONT_TOUCH of inst1_pll_top     : label is "TRUE";
---attribute DONT_TOUCH of inst7_rxtx_top    : label is "TRUE";
-
+--entities
+--inst0_LMS2_RX1_BB_ADC1
+--inst0_LMS2_RX1_BB_ADC2
+--inst0_LMS3_RX1_BB_ADC1
+--inst0_LMS3_RX1_BB_ADC2
+--inst0_cpu
+--inst1_pll_top
+--inst2_pcie_top
+--inst4_general_periph_top
+--inst6_lms7002_top
+--inst_data_cap_buffer
+--inst7_rxtx_top
+--inst10_adc1_top
+--inst10_adc2_top
+--inst9_rxtx_top
+--inst10_adc3_top
+--inst10_adc4_top
+--inst11_rxtx_top
+--inst12_max5878_top
 
 -- B.J.
 component data_cap_buffer is
