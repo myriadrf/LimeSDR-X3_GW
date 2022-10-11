@@ -91,21 +91,21 @@ create_clock -period 10.000 -name PCIE_REFCLK -waveform {0.000 5.000} [get_ports
 #
 
 # PCIe Lane 0
-set_property LOC GTPE2_CHANNEL_X0Y7 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
+set_property LOC GTPE2_CHANNEL_X0Y7 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
 # PCIe Lane 1
-set_property LOC GTPE2_CHANNEL_X0Y6 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[1].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
+set_property LOC GTPE2_CHANNEL_X0Y6 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[1].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
 # PCIe Lane 2
-set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[2].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
+set_property LOC GTPE2_CHANNEL_X0Y5 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[2].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
 # PCIe Lane 3
-set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[3].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
+set_property LOC GTPE2_CHANNEL_X0Y4 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[3].gt_wrapper_i/gtp_channel.gtpe2_channel_i}]
 
 # GTP Common Placement
-set_property LOC GTPE2_COMMON_X0Y1 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].pipe_quad.gt_common_enabled.gt_common_int.gt_common_i/qpll_wrapper_i/gtp_common.gtpe2_common_i}]
+set_property LOC GTPE2_COMMON_X0Y1 [get_cells {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].pipe_quad.gt_common_enabled.gt_common_int.gt_common_i/qpll_wrapper_i/gtp_common.gtpe2_common_i}]
 
 # PCI Express Block placement. This constraint selects the PCI Express
 # Block to be used.
 #
-set_property LOC PCIE_X0Y0 [get_cells inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/pcie_top_i/pcie_7x_i/pcie_block_i]
+set_property LOC PCIE_X0Y0 [get_cells inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/pcie_top_i/pcie_7x_i/pcie_block_i]
 
 #
 # BlockRAM placement
@@ -116,7 +116,7 @@ set_property LOC PCIE_X0Y0 [get_cells inst2_pcie_top/inst1_litepcie_top/inst0_li
 # Timing Constraints
 ###############################################################################
 #
-create_clock -period 10.000 -name txoutclk_x0y0 [get_pins {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_phy/pcie_support_i/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/gtp_channel.gtpe2_channel_i/TXOUTCLK}]
+create_clock -period 10.000 -name txoutclk_x0y0 [get_pins {inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pcie_i/inst/inst/gt_top_i/pipe_wrapper_i/pipe_lane[0].gt_wrapper_i/gtp_channel.gtpe2_channel_i/TXOUTCLK}]
 #
 #
 set_false_path -through [get_pins -filter REF_PIN_NAME=~PLPHYLNKUPN -of_objects [get_cells -hierarchical -filter { PRIMITIVE_TYPE =~ * }]]

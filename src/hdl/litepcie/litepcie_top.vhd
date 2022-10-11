@@ -71,14 +71,14 @@ signal refclk : std_logic;
    -- Verilog component declaration
    component litepcie_core
    port (
-      clk125               : in  std_logic;
-      pcie_x4_rst_n        : in  std_logic;
-      pcie_x4_clk_p        : in  std_logic;
-      pcie_x4_clk_n        : in  std_logic;
-      pcie_x4_rx_p         : in  std_logic_vector(3 downto 0);
-      pcie_x4_rx_n         : in  std_logic_vector(3 downto 0);
-      pcie_x4_tx_p         : out std_logic_vector(3 downto 0); 
-      pcie_x4_tx_n         : out std_logic_vector(3 downto 0); 
+      clk                  : in  std_logic;
+      pcie_rst_n           : in  std_logic;
+      pcie_clk_p           : in  std_logic;
+      pcie_clk_n           : in  std_logic;
+      pcie_rx_p            : in  std_logic_vector(3 downto 0);
+      pcie_rx_n            : in  std_logic_vector(3 downto 0);
+      pcie_tx_p            : out std_logic_vector(3 downto 0); 
+      pcie_tx_n            : out std_logic_vector(3 downto 0); 
       
       dma_writer0_valid    : out std_logic;
       dma_writer0_ready    : in  std_logic;
@@ -120,7 +120,9 @@ signal refclk : std_logic;
       cntrl_writer_data    : out std_logic_vector(511 downto 0);
       cntrl_writer_valid   : out std_logic;       
       cntrl_reader_data    : in  std_logic_vector(511 downto 0);
-      cntrl_reader_valid   : in  std_logic     
+      cntrl_reader_valid   : in  std_logic;
+      
+      msi_irqs             : in  std_logic_vector(15 downto 0)     
    );
    end component;  
 
@@ -132,14 +134,14 @@ begin
 -- ----------------------------------------------------------------------------
    inst0_litepcie_core : litepcie_core
    port map (
-      clk125               => clk125,
-      pcie_x4_rst_n        => pcie_x4_rst_n,
-      pcie_x4_clk_p        => pcie_x4_refclk_p, 
-      pcie_x4_clk_n        => pcie_x4_refclk_n,
-      pcie_x4_rx_p         => pcie_x4_rx_p,
-      pcie_x4_rx_n         => pcie_x4_rx_n,
-      pcie_x4_tx_p         => pcie_x4_tx_p,
-      pcie_x4_tx_n         => pcie_x4_tx_n,
+      clk                  => clk125,
+      pcie_rst_n           => pcie_x4_rst_n,
+      pcie_clk_p           => pcie_x4_refclk_p, 
+      pcie_clk_n           => pcie_x4_refclk_n,
+      pcie_rx_p            => pcie_x4_rx_p,
+      pcie_rx_n            => pcie_x4_rx_n,
+      pcie_tx_p            => pcie_x4_tx_p,
+      pcie_tx_n            => pcie_x4_tx_n,
       
       
       -- HOST -> FPGA
@@ -185,7 +187,8 @@ begin
       cntrl_writer_valid   => cntrl_writer_valid,
       -- FPGA -> HOST
       cntrl_reader_data    => cntrl_reader_data,
-      cntrl_reader_valid   => cntrl_reader_valid
+      cntrl_reader_valid   => cntrl_reader_valid,
+      msi_irqs             => (others => '0')
    );
    
   
