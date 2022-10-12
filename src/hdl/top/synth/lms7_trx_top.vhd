@@ -1542,21 +1542,21 @@ begin
 --        FPGA_LED2_R <= counter(25);
 --   end if;
 --   end process;
-   
-   process(inst1_lms1_rxpll_c1)
+   --LMS2 TX
+   process(inst1_pll_1_c1)
    variable counter : unsigned(26 downto 0);
    begin
-   if(rising_edge(inst1_lms1_rxpll_c1)) then
+   if(rising_edge(inst1_pll_1_c1)) then
         counter := counter +1 ;
         FPGA_LED3_R <= counter(25);
    end if;
    end process;
    
-   
-   process(inst1_pll_1_c1)
+   --LMS2 RX
+   process(lms2_bb_adc1_clkout_global)
    variable counter : unsigned(26 downto 0);
    begin
-   if(rising_edge(inst1_pll_1_c1)) then
+   if(rising_edge(lms2_bb_adc1_clkout_global)) then
         counter := counter +1 ;
         FPGA_LED4_R <= counter(25);
    end if;
