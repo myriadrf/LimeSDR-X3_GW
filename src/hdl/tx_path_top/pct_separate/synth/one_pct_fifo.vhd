@@ -38,7 +38,10 @@ entity one_pct_fifo is
       pct_header        : out std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0);
       pct_data_rdreq    : in  std_logic;
       pct_data          : out std_logic_vector(g_PCTFIFO_RDATA_WIDTH-1 downto 0);
-      pct_data_rdempty  : out std_logic
+      pct_data_rdempty  : out std_logic;
+      
+      pct_counter       : out std_logic_vector(15 downto 0);
+      pct_counter_rst   : in  std_logic
 
    );
 end one_pct_fifo;
@@ -108,7 +111,9 @@ begin
       pct_data          => inst0_pct_data,
       pct_wrempty       => inst1_almostwrempty AND (NOT inst1_wr_rst_busy),
       pct_header        => inst0_pct_header,    
-      pct_header_valid  => inst0_pct_header_valid
+      pct_header_valid  => inst0_pct_header_valid,
+      pct_counter       => pct_counter    ,
+      pct_counter_rst   => pct_counter_rst
    );
    
 -- ----------------------------------------------------------------------------

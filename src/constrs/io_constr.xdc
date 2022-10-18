@@ -34,3 +34,48 @@ set_clock_groups -logically_exclusive -group [get_clocks -include_generated_cloc
 
 create_generated_clock -name LMS2_BB_ADC_BUFG_CLOCK -source [get_pins inst0_LMS2_RX1_BB_ADC1/clkout_bufg] -multiply_by 1 [get_pins inst0_LMS2_RX1_BB_ADC1/clkout_bufg]
 create_generated_clock -name LMS3_BB_ADC_BUFG_CLOCK -source [get_pins inst0_LMS3_RX1_BB_ADC1/clkout_bufg] -multiply_by 1 [get_pins inst0_LMS3_RX1_BB_ADC1/clkout_bufg]
+
+
+
+
+
+create_debug_core u_ila_0 ila
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 2 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list inst1_pll_top/inst7/inst/clk_out2]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe0]
+set_property port_width 16 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[0]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[1]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[2]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[3]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[4]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[5]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[6]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[7]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[8]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[9]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[10]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[11]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[12]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[13]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[14]} {inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_int[15]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe1]
+set_property port_width 1 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_inc]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe2]
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_inc_reg]]
+create_debug_core u_ila_1 ila
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_1]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_1]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_1]
+set_property C_DATA_DEPTH 1024 [get_debug_cores u_ila_1]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_1]
+set_property C_INPUT_PIPE_STAGES 2 [get_debug_cores u_ila_1]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_1]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_1]
+set_property port_width 1 [get_debug_ports u_ila_1/clk]
+connect_debug_port u_ila_1/clk [get_nets [list CLK100_FPGA_BUFG]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_1/probe0]
+set_property port_width 1 [get_debug_ports u_ila_1/probe0]
+connect_debug_port u_ila_1/probe0 [get_nets [list inst9_rxtx_top/TX_gen0.tx_path_top_inst1/inst0_one_pct_fifo/inst0_pct_separate_fsm/pct_counter_rst]]
+set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
+set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
+set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]
+connect_debug_port dbg_hub/clk [get_nets CLK100_FPGA_BUFG]

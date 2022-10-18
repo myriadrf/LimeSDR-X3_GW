@@ -45,8 +45,10 @@ entity rxtx_top is
       
    );
    port (
+      sys_clk                 : in     std_logic;
       -- Configuration memory ports     
       from_fpgacfg            : in     t_FROM_FPGACFG;
+      to_fpgacfg              : out    t_TO_FPGACFG;
       to_tstcfg_from_rxtx     : out    t_TO_TSTCFG_FROM_RXTX;
       from_tstcfg             : in     t_FROM_TSTCFG;
       -- TX path
@@ -128,7 +130,23 @@ signal inst5_pct_hdr_cap         : std_logic;
 signal inst6_reset_n             : std_logic;
 signal inst6_pulse               : std_logic;
 
+signal pct_counter               : std_logic_vector(15 downto 0);
+signal pct_counter_rst           : std_logic;
+
 begin
+
+       comp_bus_sync_reg : entity work.bus_sync_reg
+      generic map (
+                   bus_width => 16
+   )
+      port map (
+                clk      => sys_clk,
+                reset_n  => '1',
+                async_in => pct_counter,
+                sync_out => to_fpgacfg.tx_pct_cnt
+   );
+
+    pct_counter_rst <= from_fpgacfg.tx_pct_cnt_rst;
  
         --If ext_rx_en is enabled, use TX when pcie_dma is enabled, otherwise use rx_en
     inst0_reset_n_in <= from_fpgacfg.rx_en when ext_rx_en = '0' else tx_dma_en;  
@@ -203,7 +221,7 @@ TX_gen0 : if TX_EN = true generate
       trxiqpulse           => from_fpgacfg.trxiq_pulse, -- trxiqpulse on: 1; trxiqpulse off: 0
       ddr_en               => from_fpgacfg.ddr_en,     -- DDR: 1; SDR: 0
       mimo_en              => from_fpgacfg.mimo_int_en,    -- SISO: 1; MIMO: 0
-      ch_en                => from_fpgacfg.ch_en(1 downto 0),      --"11" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
+      ch_en                => from_fpgacfg.ch_en(1 downto 0),      --"01" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
       fidm                 => '0',       -- Frame start at fsync = 0, when 0. Frame start at fsync = 1, when 1.
       sample_width         => from_fpgacfg.smpl_width, --"10"-12bit, "01"-14bit, "00"-16bit;
       --Tx interface data
@@ -214,7 +232,9 @@ TX_gen0 : if TX_EN = true generate
       --fifo ports
       in_pct_rdreq         => tx_in_pct_rdreq,
       in_pct_data          => tx_in_pct_data,
-      in_pct_rdempty       => tx_in_pct_rdempty
+      in_pct_rdempty       => tx_in_pct_rdempty,
+      pct_counter          => pct_counter    ,
+      pct_counter_rst      => pct_counter_rst
       );
       
 -- ----------------------------------------------------------------------------

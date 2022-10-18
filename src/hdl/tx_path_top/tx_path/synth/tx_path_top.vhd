@@ -57,7 +57,10 @@ entity tx_path_top is
       --fifo ports
       in_pct_rdreq         : out std_logic;
       in_pct_data          : in std_logic_vector(g_FIFO_DATA_W-1 downto 0);
-      in_pct_rdempty       : in std_logic
+      in_pct_rdempty       : in std_logic;
+      
+      pct_counter       : out std_logic_vector(15 downto 0);
+      pct_counter_rst   : in  std_logic
       );
 end tx_path_top;
 
@@ -159,6 +162,8 @@ bus_sync_reg1 : entity work.bus_sync_reg
  generic map (2) 
  port map(iq_rdclk, '1', sample_width, sample_width_sync_iq_rdclk); 
  
+ 
+
 
 --to determine required number of buffers
 process(iq_rdclk, reset_n)
@@ -283,7 +288,9 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       pct_header        => inst0_pct_header,
       pct_data_rdreq    => inst1_in_pct_rdreq,
       pct_data          => inst0_pct_data,
-      pct_data_rdempty  => inst0_pct_data_rdempty
+      pct_data_rdempty  => inst0_pct_data_rdempty,
+      pct_counter       => pct_counter    ,
+      pct_counter_rst   => pct_counter_rst
    ); 
 
 -- ----------------------------------------------------------------------------
