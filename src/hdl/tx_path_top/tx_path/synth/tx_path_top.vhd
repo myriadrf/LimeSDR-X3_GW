@@ -59,10 +59,12 @@ entity tx_path_top is
       in_pct_data          : in std_logic_vector(g_FIFO_DATA_W-1 downto 0);
       in_pct_rdempty       : in std_logic;
       
-      pct_counter       : out std_logic_vector(15 downto 0);
-      pct_counter_rst   : in  std_logic
+      pct_counter       : out std_logic_vector(31 downto 0);
+      pct_counter_rst   : in  std_logic;
+      pct_loss_pulse    : out std_logic
       );
 end tx_path_top;
+
 
 -- ----------------------------------------------------------------------------
 -- Architecture
@@ -123,7 +125,7 @@ signal pct_sync_num_of_rdy_packets  : unsigned(2 downto 0);
 signal pct_rdy_combined_vect        : std_logic_vector(g_BUFF_COUNT downto 0);
 
 begin
-
+pct_loss_pulse    <= inst1_in_pct_clr_flag;
 
 --Synchronization registers for asynchronous input ports
 sync_reg0 : entity work.sync_reg 

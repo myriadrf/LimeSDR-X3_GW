@@ -159,6 +159,8 @@ signal inst11_sdout_a, inst11_sdout_b, inst12_sdout_a, inst12_sdout_b: std_logic
 
 begin
 
+inst255_to_memcfg <= to_memcfg;
+from_memcfg       <= inst255_from_memcfg;
 -- ----------------------------------------------------------------------------
 -- fpgacfg instance
 -- ----------------------------------------------------------------------------

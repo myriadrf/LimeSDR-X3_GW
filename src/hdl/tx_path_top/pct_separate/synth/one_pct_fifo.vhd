@@ -40,7 +40,7 @@ entity one_pct_fifo is
       pct_data          : out std_logic_vector(g_PCTFIFO_RDATA_WIDTH-1 downto 0);
       pct_data_rdempty  : out std_logic;
       
-      pct_counter       : out std_logic_vector(15 downto 0);
+      pct_counter       : out std_logic_vector(31 downto 0);
       pct_counter_rst   : in  std_logic
 
    );

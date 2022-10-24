@@ -126,6 +126,7 @@ signal smpl_buff_valid_int          : std_logic;
   
 begin
 
+
 sync_reg1 : entity work.sync_reg 
 port map(rclk, '1', pct_sync_dis, pct_sync_dis_rclk);
 

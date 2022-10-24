@@ -35,7 +35,7 @@ entity pct_separate_fsm is
       pct_header        : out std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0);
       pct_header_valid  : out std_logic;
       
-      pct_counter       : out std_logic_vector(15 downto 0);
+      pct_counter       : out std_logic_vector(31 downto 0);
       pct_counter_rst   : in  std_logic
 
    );
@@ -67,7 +67,7 @@ signal header_valid_reg    : std_logic;
 
 signal pct_counter_inc     : std_logic;
 signal pct_counter_inc_reg : std_logic;
-signal pct_counter_int     : std_logic_vector(15 downto 0);
+signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
 
 attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of current_state: signal is "TRUE";

@@ -21,11 +21,18 @@ package memcfg_pkg is
    -- Outputs from the 
    type t_FROM_MEMCFG is record
       mac   : std_logic_vector(15 downto 0);
+      LMS1_tx_pct_rst : std_logic; 
+      LMS1_tx_drp_rst : std_logic;
+      LMS2_tx_pct_rst : std_logic;
+      LMS2_tx_drp_rst : std_logic;
    end record t_FROM_MEMCFG;
   
    -- Inputs to the 
    type t_TO_MEMCFG is record
-      no_input : std_logic;
+      LMS1_tx_pct_cnt : std_logic_vector(31 downto 0);
+      LMS1_tx_drp_cnt : std_logic_vector(31 downto 0);
+      LMS2_tx_pct_cnt : std_logic_vector(31 downto 0);
+      LMS2_tx_drp_cnt : std_logic_vector(31 downto 0);
    end record t_TO_MEMCFG;
    
 
