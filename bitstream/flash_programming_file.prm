@@ -8,8 +8,4 @@ Start Address      0x00000000
 End Address        0x00FFFFFF
 
 Addr1         Addr2         Date                    File(s)
-<<<<<<< HEAD
-0x00000000    0x00947A5B    Oct 25 12:07:14 2022    Z:/Work/5G_RADIO_01/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
-=======
-0x00000000    0x00947A5B    Oct 24 22:56:23 2022    Z:/Work/5G_RADIO_00/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
->>>>>>> origin/tx_packet_counter_temp_branch
+0x00000000    0x00947A5B    Oct 25 15:20:44 2022    Z:/Work/5G_RADIO_01/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit
