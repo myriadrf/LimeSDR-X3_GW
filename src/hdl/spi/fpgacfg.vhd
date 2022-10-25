@@ -65,7 +65,7 @@ architecture fpgacfg_arch of fpgacfg is
    
    signal BOARD_ID_reg        : std_logic_vector(15 downto 0);
    signal MAJOR_REV_reg       : std_logic_vector(15 downto 0);
-   signal COMPILE_REV_reg     : std_logic_vector(7 downto 0);
+   signal COMPILE_REV_reg     : std_logic_vector(15 downto 0);
 
    attribute noprune          : boolean;
    attribute noprune of BOARD_ID_reg      : signal is true;
@@ -89,11 +89,11 @@ begin
       if lreset = '0' then
          BOARD_ID_reg      <= BOARD_ID;
          MAJOR_REV_reg     <= std_logic_vector(to_unsigned(MAJOR_REV, 16));
-         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 8));
+         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 16));
       elsif sclk'event and sclk = '1' then
          BOARD_ID_reg      <= BOARD_ID;
          MAJOR_REV_reg     <= std_logic_vector(to_unsigned(MAJOR_REV, 16));
-         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 8));
+         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 16));
       end if;
    end process;
 
@@ -162,7 +162,8 @@ begin
             case inst_reg(4 downto 0) is  -- mux read-only outputs
                when "00000" => dout_reg <= BOARD_ID_reg;
                when "00001" => dout_reg <= MAJOR_REV_reg;
-               when "00010" => dout_reg <= (15 downto 8 => '0') & COMPILE_REV_reg;
+--               when "00010" => dout_reg <= (15 downto 8 => '0') & COMPILE_REV_reg;
+               when "00010" => dout_reg <= COMPILE_REV_reg;
                when "00011" => dout_reg <= (15 downto 9 => '0') & to_fpgacfg.PWR_SRC & to_fpgacfg.BOM_VER & to_fpgacfg.HW_VER;
                when others  => dout_reg <= mem(to_integer(unsigned(inst_reg(4 downto 0))));
             end case;
