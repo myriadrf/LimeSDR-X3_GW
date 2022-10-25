@@ -83,6 +83,7 @@ package fpgacfg_pkg is
       txant_pre         : std_logic_vector(15 downto 0);
       txant_post        : std_logic_vector(15 downto 0);
       TX_HI_FREQ_MODE   : std_logic;
+      tx_pct_cnt_rst    : std_logic;
    end record t_FROM_FPGACFG;
   
    -- Inputs to the fpgacfg.
@@ -90,6 +91,7 @@ package fpgacfg_pkg is
       HW_VER   : std_logic_vector(3 downto 0);
       BOM_VER  : std_logic_vector(3 downto 0);
       PWR_SRC  : std_logic;
+      tx_pct_cnt : std_logic_vector(15 downto 0);
    end record t_TO_FPGACFG;
    
 

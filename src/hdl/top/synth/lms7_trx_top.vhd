@@ -1780,6 +1780,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    --LMS1_DIQ1_D <= LMS1_DIQ1_11_DELAYED & LMS1_DIQ1_INT(10 downto 0);
    inst7_rxtx_top : entity work.rxtx_top
    generic map(
+      index                   => 1,
       DEV_FAMILY              => g_DEV_FAMILY,
       -- TX parameters
       TX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
@@ -1797,10 +1798,14 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S0_WRUSEDW_WIDTH --bus width in bits 
       
    )
-   port map(                                             
+   port map(        
+      sys_clk                 => CLK100_FPGA,                                     
       from_fpgacfg            => inst0_from_fpgacfg_mod_0,
+      to_fpgacfg              => inst0_to_fpgacfg_0,
       to_tstcfg_from_rxtx     => inst7_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
+      from_memcfg             => inst0_from_memcfg,
+      to_memcfg               => inst0_to_memcfg,
       -- TX module signals
       tx_clk                  => inst1_lms1_txpll_c1,      
       tx_clk_reset_n          => inst1_lms1_txpll_locked,
@@ -1925,9 +1930,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       
    );
    
-
    inst9_rxtx_top : entity work.rxtx_top
    generic map(
+      index                   => 2,
       DEV_FAMILY              => g_DEV_FAMILY,
       -- TX parameters
       TX_IQ_WIDTH             => 14,
@@ -1945,10 +1950,14 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S1_WRUSEDW_WIDTH --bus width in bits 
       
    )
-   port map(                                             
+   port map(               
+   sys_clk                 => CLK100_FPGA,                                
       from_fpgacfg            => inst0_from_fpgacfg_mod_1,
+      to_fpgacfg              => inst0_to_fpgacfg_1,
       to_tstcfg_from_rxtx     => inst9_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
+      from_memcfg             => inst0_from_memcfg,
+      to_memcfg               => inst0_to_memcfg,
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => reset_n,     
@@ -2197,6 +2206,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
  -- RX and TX module
    inst11_rxtx_top : entity work.rxtx_top
    generic map(
+      INDEX                   => 3,
       DEV_FAMILY              => g_DEV_FAMILY,
       TX_EN                   => false,
       -- TX parameters
@@ -2215,10 +2225,14 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
       
    )
-   port map(                                             
+   port map(            
+    sys_clk                 => CLK100_FPGA,                                   
       from_fpgacfg            => inst0_from_fpgacfg_mod_2,
+      to_fpgacfg              => inst0_to_fpgacfg_2,
       to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
+      from_memcfg             => inst0_from_memcfg,
+      to_memcfg               => inst0_to_memcfg,  
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => '0',--reset_n,     

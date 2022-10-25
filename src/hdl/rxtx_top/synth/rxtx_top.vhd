@@ -15,12 +15,14 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.fpgacfg_pkg.all;
 use work.tstcfg_pkg.all;
+use work.memcfg_pkg.all;
 
 -- ----------------------------------------------------------------------------
 -- Entity declaration
 -- ----------------------------------------------------------------------------
 entity rxtx_top is
-   generic(
+   generic(  
+      index                        : integer := 1;
       DEV_FAMILY                   : string := "Cyclone IV E"; 
       TX_EN                        : boolean := true;
       RX_EN                        : boolean := true;
@@ -45,8 +47,10 @@ entity rxtx_top is
       
    );
    port (
+      sys_clk                 : in     std_logic;
       -- Configuration memory ports     
       from_fpgacfg            : in     t_FROM_FPGACFG;
+      to_fpgacfg              : out    t_TO_FPGACFG;
       to_tstcfg_from_rxtx     : out    t_TO_TSTCFG_FROM_RXTX;
       from_tstcfg             : in     t_FROM_TSTCFG;
       -- TX path
@@ -78,6 +82,8 @@ entity rxtx_top is
       rx_pct_fifo_wdata       : out    std_logic_vector(RX_DATABUS_WIDTH-1 downto 0);
          -- RX sample nr count enable
       rx_smpl_nr_cnt_en       : in     std_logic;
+      to_memcfg            : out     t_TO_MEMCFG;
+      from_memcfg          : in    t_FROM_MEMCFG;
 
       ext_rx_en: in std_logic;  -- B.J.;
       tx_dma_en: in std_logic
@@ -128,7 +134,78 @@ signal inst5_pct_hdr_cap         : std_logic;
 signal inst6_reset_n             : std_logic;
 signal inst6_pulse               : std_logic;
 
+signal pct_counter               : std_logic_vector(31 downto 0);
+signal pct_drop_counter          : std_logic_vector(31 downto 0);
+
+signal pct_counter_sync          : std_logic_vector(31 downto 0);
+signal pct_drop_counter_sync     : std_logic_vector(31 downto 0);
+
+signal pct_counter_rst           : std_logic;
+signal pct_drop_rst              : std_logic;
+
+signal pct_loss_pulse            : std_logic; 
+signal pct_loss_pulse_reg        : std_logic;
+
+    -- attribute MARK_DEBUG : string;
+    -- attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
+--    attribute MARK_DEBUG of pct_counter_rst : signal is "TRUE";
+--    attribute MARK_DEBUG of pct_drop_rst : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_loss_pulse : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_loss_pulse_reg : signal is "TRUE";
+
 begin
+
+    pct_loss_counter_proc : process(all)
+    begin
+        if rising_edge(tx_clk) then
+            pct_loss_pulse_reg <= pct_loss_pulse;
+            if (pct_drop_rst = '1' ) then
+                pct_drop_counter <= (others => '0');
+            elsif (pct_loss_pulse = '1' and pct_loss_pulse_reg = '0') then
+                pct_drop_counter <= std_logic_vector(unsigned(pct_drop_counter) +1);
+            end if;        
+        end if;    
+    end process;
+
+    comp_bus_sync_reg0 : entity work.bus_sync_reg
+      generic map (
+                   bus_width => 32
+   )
+      port map (
+                clk      => sys_clk,
+                reset_n  => '1',
+                async_in => pct_counter,
+                sync_out => pct_counter_sync
+   );
+   comp_bus_sync_reg1 : entity work.bus_sync_reg
+      generic map (
+                   bus_width => 32
+   )
+      port map (
+                clk      => sys_clk,
+                reset_n  => '1',
+                async_in => pct_drop_counter,
+                sync_out => pct_drop_counter_sync
+   );
+   
+   g_index1 : if index = 1 generate
+    to_memcfg.LMS1_tx_pct_cnt <= pct_counter_sync;
+    to_memcfg.LMS1_tx_drp_cnt <= pct_drop_counter_sync;
+    pct_counter_rst           <= from_memcfg.LMS1_tx_pct_rst;  
+    pct_drop_rst              <= from_memcfg.LMS1_tx_drp_rst;
+   end generate;
+   g_index2 : if index = 2 generate
+    to_memcfg.LMS2_tx_pct_cnt <= pct_counter_sync;
+    to_memcfg.LMS2_tx_drp_cnt <= pct_drop_counter_sync;
+    pct_counter_rst           <= from_memcfg.LMS2_tx_pct_rst;  
+    pct_drop_rst              <= from_memcfg.LMS2_tx_drp_rst;
+   end generate;
+   g_index3 : if index = 3 generate
+    pct_counter_rst <= '1';
+    pct_drop_rst    <= '1';
+   end generate;
+
  
         --If ext_rx_en is enabled, use TX when pcie_dma is enabled, otherwise use rx_en
     inst0_reset_n_in <= from_fpgacfg.rx_en when ext_rx_en = '0' else tx_dma_en;  
@@ -203,7 +280,7 @@ TX_gen0 : if TX_EN = true generate
       trxiqpulse           => from_fpgacfg.trxiq_pulse, -- trxiqpulse on: 1; trxiqpulse off: 0
       ddr_en               => from_fpgacfg.ddr_en,     -- DDR: 1; SDR: 0
       mimo_en              => from_fpgacfg.mimo_int_en,    -- SISO: 1; MIMO: 0
-      ch_en                => from_fpgacfg.ch_en(1 downto 0),      --"11" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
+      ch_en                => from_fpgacfg.ch_en(1 downto 0),      --"01" - Ch. A, "10" - Ch. B, "11" - Ch. A and Ch. B. 
       fidm                 => '0',       -- Frame start at fsync = 0, when 0. Frame start at fsync = 1, when 1.
       sample_width         => from_fpgacfg.smpl_width, --"10"-12bit, "01"-14bit, "00"-16bit;
       --Tx interface data
@@ -214,7 +291,10 @@ TX_gen0 : if TX_EN = true generate
       --fifo ports
       in_pct_rdreq         => tx_in_pct_rdreq,
       in_pct_data          => tx_in_pct_data,
-      in_pct_rdempty       => tx_in_pct_rdempty
+      in_pct_rdempty       => tx_in_pct_rdempty,
+      pct_counter          => pct_counter    ,
+      pct_counter_rst      => pct_counter_rst,
+      pct_loss_pulse       => pct_loss_pulse
       );
       
 -- ----------------------------------------------------------------------------

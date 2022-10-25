@@ -20,7 +20,7 @@ use ieee.numeric_std.all;
 entity pct_separate_fsm is
    generic(
       g_DATA_WIDTH   : integer := 32;
-      g_PCT_MAX_SIZE : integer := 4096;   -- Maximum packet size in bytes 
+      g_PCT_MAX_SIZE : integer := 4096;   -- Maximum packet size in bytes
       g_PCT_HDR_SIZE : integer := 16      -- Packet header size in bytes
    );
    port (
@@ -33,7 +33,10 @@ entity pct_separate_fsm is
       pct_data          : out std_logic_vector(g_DATA_WIDTH-1 downto 0);
       pct_wrempty       : in  std_logic;
       pct_header        : out std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0);
-      pct_header_valid  : out std_logic
+      pct_header_valid  : out std_logic;
+      
+      pct_counter       : out std_logic_vector(31 downto 0);
+      pct_counter_rst   : in  std_logic
 
    );
 end pct_separate_fsm;
@@ -62,7 +65,11 @@ signal header_0            : std_logic_vector(63 downto 0);
 signal header_1            : std_logic_vector(63 downto 0);
 signal header_valid_reg    : std_logic;
 
---attribute MARK_DEBUG : string;
+signal pct_counter_inc     : std_logic;
+signal pct_counter_inc_reg : std_logic;
+signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
+
+-- attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of current_state: signal is "TRUE";
 --attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
 --attribute MARK_DEBUG of infifo_data     : signal is "TRUE";
@@ -76,12 +83,28 @@ signal header_valid_reg    : std_logic;
 --attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
 --attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
 
-
+--attribute MARK_DEBUG of pct_counter_inc_reg          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_inc          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_int          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_rst          : signal is "TRUE";
 
   
 begin
 
+--counter
+process(clk)
+begin
+    if rising_edge(clk) then
+        pct_counter_inc_reg <= pct_counter_inc;
+        if pct_counter_rst = '1' then
+            pct_counter_int <= (others => '0');
+        elsif pct_counter_inc = '1' and pct_counter_inc_reg = '0' then
+            pct_counter_int <= std_logic_vector(unsigned(pct_counter_int)+1);
+        end if;
+    end if;
+end process;
 
+pct_counter <= pct_counter_int;
 -- ----------------------------------------------------------------------------
 --state machine
 -- ----------------------------------------------------------------------------
@@ -98,6 +121,7 @@ end process;
 -- ----------------------------------------------------------------------------
 fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt, 
                rd_cnt_max) begin
+   pct_counter_inc <= '0';
    next_state <= current_state;
    case current_state is
    
@@ -120,6 +144,7 @@ fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt,
       when rd_done =>
          if pct_wrempty = '1' then 
             next_state <= idle;
+            pct_counter_inc <= '1';
          else
             next_state <= rd_done;
          end if;

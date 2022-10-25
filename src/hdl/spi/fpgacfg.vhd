@@ -165,6 +165,7 @@ begin
 --               when "00010" => dout_reg <= (15 downto 8 => '0') & COMPILE_REV_reg;
                when "00010" => dout_reg <= COMPILE_REV_reg;
                when "00011" => dout_reg <= (15 downto 9 => '0') & to_fpgacfg.PWR_SRC & to_fpgacfg.BOM_VER & to_fpgacfg.HW_VER;
+               when "01110" => dout_reg <= to_fpgacfg.tx_pct_cnt;--adr = 14
                when others  => dout_reg <= mem(to_integer(unsigned(inst_reg(4 downto 0))));
             end case;
          end if;
@@ -203,7 +204,7 @@ begin
          mem(11)  <= "0000000000000000";  -- 16 free, 
          mem(12)  <= "0000000000000011";  --  0 free, wfm_ch_en
          mem(13)  <= "0000000000000000";  --  0 free, Reserved,wfm_load,wfm_play,Reserved
-         mem(14)  <= "0000000000000010";  -- 14 free, Reserved,wfm_smpl_width
+         mem(14)  <= "0000000000000000";  -- 16 free, Reserved
          mem(15)  <= x"03FC";             -- 16 free, sync_size
          --Peripheral config
          mem(16)  <= x"0001";             -- 16 free, txant_pre
@@ -304,6 +305,7 @@ begin
       from_fpgacfg.FX3_LED_CTRL        <= mem(28)(2 downto 0);
       from_fpgacfg.CLK_ENA             <= mem(29)(7 downto 0);
       from_fpgacfg.sync_pulse_period   <= mem(30)(15 downto 0) & mem(31)(15 downto 0);
+      from_fpgacfg.tx_pct_cnt_rst      <= mem(11)(0);
 
 
 end fpgacfg_arch;

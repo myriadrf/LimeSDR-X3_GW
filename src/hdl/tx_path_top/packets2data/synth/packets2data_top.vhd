@@ -161,7 +161,6 @@ end process;
       smpl_buff_valid         => inst0_smpl_buff_valid
    );
    
-   
 --- --------------------------------------------------------
 ---  Sample unpacking generate statements
 --- --------------------------------------------------------    

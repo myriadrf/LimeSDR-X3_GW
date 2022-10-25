@@ -64,7 +64,11 @@ architecture memcfg_arch of memcfg is
 	-- Components
 	use work.mcfg_components.mcfg32wm_fsm;
 	for all: mcfg32wm_fsm use entity work.mcfg32wm_fsm(mcfg32wm_fsm_arch);
+	
+	
 
+                    
+	
 begin
 
 
@@ -131,6 +135,14 @@ begin
 			elsif dout_reg_len = '1' then
 				case inst_reg(4 downto 0) is	-- mux read-only outputs
 					when "00001" => dout_reg <= x"0001";
+					when 5d"2"    => dout_reg <= to_memcfg.LMS1_tx_pct_cnt(31 downto 16);
+					when 5d"3"    => dout_reg <= to_memcfg.LMS1_tx_pct_cnt(15 downto  0);
+					when 5d"4"    => dout_reg <= to_memcfg.LMS1_tx_drp_cnt(31 downto 16);
+					when 5d"5"    => dout_reg <= to_memcfg.LMS1_tx_drp_cnt(15 downto  0);
+					when 5d"7"    => dout_reg <= to_memcfg.LMS2_tx_pct_cnt(31 downto 16);
+					when 5d"8"    => dout_reg <= to_memcfg.LMS2_tx_pct_cnt(15 downto  0);
+					when 5d"9"    => dout_reg <= to_memcfg.LMS2_tx_drp_cnt(31 downto 16);
+					when 5d"10"   => dout_reg <= to_memcfg.LMS2_tx_drp_cnt(15 downto  0);
 					when others  => dout_reg <= mem(to_integer(unsigned(inst_reg(4 downto 0))));
 				end case;
 			end if;			      
@@ -199,6 +211,11 @@ begin
 	-- Decoding logic
 	-- ---------------------------------------------------------------------------------------------
    from_memcfg.mac <= mem(31) (15 downto 0);
+   
+   from_memcfg.LMS1_tx_pct_rst <= mem(1)(0);
+   from_memcfg.LMS1_tx_drp_rst <= mem(1)(1);
+   from_memcfg.LMS2_tx_pct_rst <= mem(6)(0);
+   from_memcfg.LMS2_tx_drp_rst <= mem(6)(1);
 
 
 end memcfg_arch;

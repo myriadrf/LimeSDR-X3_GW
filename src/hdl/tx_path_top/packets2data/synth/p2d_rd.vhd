@@ -100,6 +100,12 @@ signal current_state, next_state : state_type;
 --   );
 --   END COMPONENT;
 
+-- attribute MARK_DEBUG : string;
+-- attribute MARK_DEBUG of current_state : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_smpl_nr_equal : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_smpl_nr_less : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_buff_rdy : signal is "TRUE";
+
 begin
    
 -- ----------------------------------------------------------------------------
