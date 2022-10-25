@@ -84,7 +84,12 @@ signal pct_header_valid          : std_logic;
 signal pct_words                 : unsigned(15 downto 0);
 signal pct_rdy_reg               : std_logic;
 
-  
+
+-- attribute MARK_DEBUG : string;
+-- attribute MARK_DEBUG of infifo_rdreq : signal is "TRUE";
+-- attribute MARK_DEBUG of infifo_data  : signal is "TRUE";
+				
+				  
 begin
 -- ----------------------------------------------------------------------------
 -- Reset logic

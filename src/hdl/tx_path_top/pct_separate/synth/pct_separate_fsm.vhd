@@ -69,7 +69,7 @@ signal pct_counter_inc     : std_logic;
 signal pct_counter_inc_reg : std_logic;
 signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
 
-attribute MARK_DEBUG : string;
+-- attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of current_state: signal is "TRUE";
 --attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
 --attribute MARK_DEBUG of infifo_data     : signal is "TRUE";
@@ -83,10 +83,10 @@ attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
 --attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
 
-attribute MARK_DEBUG of pct_counter_inc_reg          : signal is "TRUE";
-attribute MARK_DEBUG of pct_counter_inc          : signal is "TRUE";
-attribute MARK_DEBUG of pct_counter_int          : signal is "TRUE";
-attribute MARK_DEBUG of pct_counter_rst          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_inc_reg          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_inc          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_int          : signal is "TRUE";
+--attribute MARK_DEBUG of pct_counter_rst          : signal is "TRUE";
 
   
 begin

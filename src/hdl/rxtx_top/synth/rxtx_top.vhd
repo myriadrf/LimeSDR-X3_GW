@@ -146,17 +146,19 @@ signal pct_drop_rst              : std_logic;
 signal pct_loss_pulse            : std_logic; 
 signal pct_loss_pulse_reg        : std_logic;
 
---    attribute MARK_DEBUG : string;
---    attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
---    attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
+    -- attribute MARK_DEBUG : string;
+    -- attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
 --    attribute MARK_DEBUG of pct_counter_rst : signal is "TRUE";
 --    attribute MARK_DEBUG of pct_drop_rst : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_loss_pulse : signal is "TRUE";
+    -- attribute MARK_DEBUG of pct_loss_pulse_reg : signal is "TRUE";
 
 begin
 
     pct_loss_counter_proc : process(all)
     begin
-        if rising_edge(sys_clk) then
+        if rising_edge(tx_clk) then
             pct_loss_pulse_reg <= pct_loss_pulse;
             if (pct_drop_rst = '1' ) then
                 pct_drop_counter <= (others => '0');

@@ -106,6 +106,14 @@ alias  crnt_pct_sync_dis      : std_logic is pct_hdr_0_reg(4);
 --   );
 --   END COMPONENT;
 
+-- attribute MARK_DEBUG : string;
+-- attribute MARK_DEBUG of current_state : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_smpl_nr_equal : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_smpl_nr_less : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_hdr_1_reg : signal is "TRUE";
+-- attribute MARK_DEBUG of sample_nr : signal is "TRUE";
+-- attribute MARK_DEBUG of in_pct_reset_n_req : signal is "TRUE";
+
 begin
 
    LPM_COMPARE_component : entity work.lpm_compare_inst

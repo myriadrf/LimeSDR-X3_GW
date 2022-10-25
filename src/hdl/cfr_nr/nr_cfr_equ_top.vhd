@@ -180,6 +180,13 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
     SIGNAL zeroes, saq_7p, sbq_7p : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL invertq_insta_6, invertq_instb_6 : STD_LOGIC;
 
+
+-- attribute MARK_DEBUG : string;
+-- attribute MARK_DEBUG of ai_out : signal is "TRUE";
+-- attribute MARK_DEBUG of aq_out : signal is "TRUE";
+-- attribute MARK_DEBUG of bi_out : signal is "TRUE";
+-- attribute MARK_DEBUG of bq_out : signal is "TRUE";
+
 BEGIN
 
     zeroes <= (OTHERS => '0');
