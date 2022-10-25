@@ -1,3 +1,5 @@
+Gateware version 2.14
+
 # PCIe_5GRadio_lms7_trx FPGA gateware
 
 This repository contains the FPGA gateware project for the PCIe_5GRadio board.
