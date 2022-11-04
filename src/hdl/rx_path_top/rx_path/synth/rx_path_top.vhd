@@ -92,6 +92,8 @@ signal inst2_smpl_buff_rdreq  : std_logic;
 signal inst2_smpl_buff_rddata : std_logic_vector(outbus_width-1 downto 0);
 --inst3
 signal inst3_q                : std_logic_vector(63 downto 0);
+--inst4
+signal smpl_nr_cnt_int        : std_logic_vector(63 downto 0);
 
 --internal signals
 type my_array is array (0 to 5) of std_logic_vector(63 downto 0);
@@ -147,6 +149,7 @@ bus_sync_reg2 : entity work.bus_sync_reg
 generic map (64)
 port map(clk, '1', smpl_nr_in, smpl_nr_in_sync);
 
+smpl_nr_cnt <= smpl_nr_cnt_int;
 
  
 --samples are placed to MSb LSb ar filled with zeros 
@@ -250,9 +253,10 @@ end generate;
     
 --packet reserved bits  
   inst2_pct_hdr_0(15 downto 0)   <="000000000000" & tx_pct_loss_sync & pct_fifo_wusedw(pct_buff_wrusedw_w-1 downto pct_buff_wrusedw_w-3);
-  inst2_pct_hdr_0(31 downto 16)  <=x"0201";
-  inst2_pct_hdr_0(47 downto 32)  <=x"0403";
-  inst2_pct_hdr_0(63 downto 48)  <=x"0605";
+--  inst2_pct_hdr_0(31 downto 16)  <=x"0201";
+--  inst2_pct_hdr_0(47 downto 32)  <=x"0403";
+--  inst2_pct_hdr_0(63 downto 48)  <=x"0605";
+  inst2_pct_hdr_0(63 downto 16)  <=smpl_nr_cnt_int(47 downto 0);
         
         
 -- ----------------------------------------------------------------------------
@@ -326,7 +330,7 @@ smpl_cnt_inst4 : entity work.iq_smpl_cnt
       sload       => ld_smpl_nr_sync,
       data        => smpl_nr_in_sync,
       cnt_en      => smpl_nr_cnt_en,
-      q           => smpl_nr_cnt        
+      q           => smpl_nr_cnt_int        
         );
         
 -- ----------------------------------------------------------------------------
