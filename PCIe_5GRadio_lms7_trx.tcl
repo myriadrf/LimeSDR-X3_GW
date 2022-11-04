@@ -595,14 +595,7 @@ proc checkRequiredFiles { origin_dir} {
  "[file normalize "$origin_dir/src/hdl/tx_path_top/pct_separate/synth/pct_separate_fsm.vhd"]"\
  "[file normalize "$origin_dir/src/hdl/tx_path_top/pct_separate/sim/one_pct_tb.vhd"]"\
  "[file normalize "$origin_dir/src/constrs/io_warning.tcl"]"\
- "[file normalize "$origin_dir/../5G_RADIO_00 - 2022/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.srcs/utils_1/imports/synth_1/lms7_trx_top.dcp"]"\
-  ]
-  foreach ifile $files {
-    if { ![file isfile $ifile] } {
-      puts " Could not find remote file $ifile "
-      set status false
-    }
-  }
+
 
   set paths [list \
  "[file normalize "$origin_dir/[file normalize "$origin_dir/../5G_RADIO_00"]"]"\
@@ -4865,7 +4858,6 @@ set_property -name "xsim.simulate.xsim.more_options" -value "" -objects $obj
 set obj [get_filesets utils_1]
 set files [list \
  [file normalize "${origin_dir}/src/constrs/io_warning.tcl"] \
- [file normalize "${origin_dir}/../5G_RADIO_00 - 2022/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.srcs/utils_1/imports/synth_1/lms7_trx_top.dcp"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -4886,18 +4878,7 @@ set_property -name "used_in_implementation" -value "1" -objects $file_obj
 set_property -name "used_in_simulation" -value "1" -objects $file_obj
 set_property -name "used_in_synthesis" -value "1" -objects $file_obj
 
-set file "$origin_dir/../5G_RADIO_00 - 2022/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.srcs/utils_1/imports/synth_1/lms7_trx_top.dcp"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets utils_1] [list "*$file"]]
-set_property -name "is_enabled" -value "1" -objects $file_obj
-set_property -name "is_global_include" -value "0" -objects $file_obj
-set_property -name "library" -value "work" -objects $file_obj
-set_property -name "netlist_only" -value "0" -objects $file_obj
-set_property -name "path_mode" -value "RelativeFirst" -objects $file_obj
-set_property -name "scoped_to_cells" -value "" -objects $file_obj
-set_property -name "used_in" -value "synthesis implementation" -objects $file_obj
-set_property -name "used_in_implementation" -value "1" -objects $file_obj
-set_property -name "used_in_synthesis" -value "1" -objects $file_obj
+
 
 
 # Set 'utils_1' fileset file properties for local files

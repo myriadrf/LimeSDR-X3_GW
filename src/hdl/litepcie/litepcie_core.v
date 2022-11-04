@@ -8,8 +8,8 @@
 //
 // Filename   : litepcie_core.v
 // Device     : xc7a
-// LiteX sha1 : c717e4c8
-// Date       : 2022-10-12 09:49:10
+// LiteX sha1 : 75bf6688
+// Date       : 2022-11-03 16:39:21
 //------------------------------------------------------------------------------
 
 
@@ -166,10 +166,10 @@ wire s7pciephy_tx_datapath_cdc_source_source_last;
 wire [127:0] s7pciephy_tx_datapath_cdc_source_source_payload_dat;
 wire [15:0] s7pciephy_tx_datapath_cdc_source_source_payload_be;
 wire s7pciephy_tx_datapath_cdc_cd_rst;
-wire from2594933811536_clk;
-wire from2594933811536_rst;
-wire to2594933811536_clk;
-wire to2594933811536_rst;
+wire from140314895943952_clk;
+wire from140314895943952_rst;
+wire to140314895943952_clk;
+wire to140314895943952_rst;
 wire s7pciephy_tx_datapath_cdc_cdc_sink_valid;
 wire s7pciephy_tx_datapath_cdc_cdc_sink_ready;
 wire s7pciephy_tx_datapath_cdc_cdc_sink_first;
@@ -348,10 +348,10 @@ wire s7pciephy_rx_datapath_cdc_source_source_last;
 wire [127:0] s7pciephy_rx_datapath_cdc_source_source_payload_dat;
 wire [15:0] s7pciephy_rx_datapath_cdc_source_source_payload_be;
 wire s7pciephy_rx_datapath_cdc_cd_rst;
-wire from2594934547712_clk;
-wire from2594934547712_rst;
-wire to2594934547712_clk;
-wire to2594934547712_rst;
+wire from140314895575840_clk;
+wire from140314895575840_rst;
+wire to140314895575840_clk;
+wire to140314895575840_rst;
 wire s7pciephy_rx_datapath_cdc_cdc_sink_valid;
 wire s7pciephy_rx_datapath_cdc_cdc_sink_ready;
 wire s7pciephy_rx_datapath_cdc_cdc_sink_first;
@@ -419,10 +419,10 @@ wire s7pciephy_msi_cdc_source_source_first;
 wire s7pciephy_msi_cdc_source_source_last;
 wire [7:0] s7pciephy_msi_cdc_source_source_payload_dat;
 wire s7pciephy_msi_cdc_cd_rst;
-wire from2594934206720_clk;
-wire from2594934206720_rst;
-wire to2594934206720_clk;
-wire to2594934206720_rst;
+wire from140314895828592_clk;
+wire from140314895828592_rst;
+wire to140314895828592_clk;
+wire to140314895828592_rst;
 wire s7pciephy_msi_cdc_cdc_sink_valid;
 wire s7pciephy_msi_cdc_cdc_sink_ready;
 wire s7pciephy_msi_cdc_cdc_sink_first;
@@ -964,81 +964,86 @@ wire [127:0] litepciedma0_writer_sink_sink_payload_data;
 reg  litepciedma0_writer_enable_storage = 1'd0;
 reg  litepciedma0_writer_enable_re = 1'd0;
 reg  litepciedma0_writer_irq = 1'd0;
-wire litepciedma0_writer_table_source_source_valid;
-wire litepciedma0_writer_table_source_source_ready;
-wire litepciedma0_writer_table_source_source_first;
-wire litepciedma0_writer_table_source_source_last;
-wire [31:0] litepciedma0_writer_table_source_source_payload_address;
-wire [23:0] litepciedma0_writer_table_source_source_payload_length;
-wire litepciedma0_writer_table_source_source_payload_irq_disable;
-wire litepciedma0_writer_table_source_source_payload_last_disable;
-wire [31:0] litepciedma0_writer_table_address_lsb;
-wire [23:0] litepciedma0_writer_table_length;
-wire litepciedma0_writer_table_irq_disable;
-wire litepciedma0_writer_table_last_disable;
-reg  [57:0] litepciedma0_writer_table_value_storage = 58'd0;
-reg  litepciedma0_writer_table_value_re = 1'd0;
-wire [31:0] litepciedma0_writer_table_address_msb;
-reg  [31:0] litepciedma0_writer_table_we_storage = 32'd0;
-reg  litepciedma0_writer_table_we_re = 1'd0;
-reg  litepciedma0_writer_table_loop_prog_n_storage = 1'd0;
-reg  litepciedma0_writer_table_loop_prog_n_re = 1'd0;
-reg  [15:0] litepciedma0_writer_table_index = 16'd0;
-reg  [15:0] litepciedma0_writer_table_count = 16'd0;
-reg  [31:0] litepciedma0_writer_table_loop_status_status = 32'd0;
-wire litepciedma0_writer_table_loop_status_we;
-reg  litepciedma0_writer_table_loop_status_re = 1'd0;
-wire [8:0] litepciedma0_writer_table_level_status;
-wire litepciedma0_writer_table_level_we;
-reg  litepciedma0_writer_table_level_re = 1'd0;
-reg  litepciedma0_writer_table_reset_storage = 1'd0;
-reg  litepciedma0_writer_table_reset_re = 1'd0;
-reg  litepciedma0_writer_table_table_sink_valid = 1'd0;
-wire litepciedma0_writer_table_table_sink_ready;
-reg  litepciedma0_writer_table_table_sink_first = 1'd0;
-reg  litepciedma0_writer_table_table_sink_last = 1'd0;
-reg  [31:0] litepciedma0_writer_table_table_sink_payload_address = 32'd0;
-reg  [23:0] litepciedma0_writer_table_table_sink_payload_length = 24'd0;
-reg  litepciedma0_writer_table_table_sink_payload_irq_disable = 1'd0;
-reg  litepciedma0_writer_table_table_sink_payload_last_disable = 1'd0;
-wire litepciedma0_writer_table_table_source_valid;
-wire litepciedma0_writer_table_table_source_ready;
-wire litepciedma0_writer_table_table_source_first;
-wire litepciedma0_writer_table_table_source_last;
-wire [31:0] litepciedma0_writer_table_table_source_payload_address;
-wire [23:0] litepciedma0_writer_table_table_source_payload_length;
-wire litepciedma0_writer_table_table_source_payload_irq_disable;
-wire litepciedma0_writer_table_table_source_payload_last_disable;
-wire litepciedma0_writer_table_table_syncfifo0_we;
-wire litepciedma0_writer_table_table_syncfifo0_writable;
-wire litepciedma0_writer_table_table_syncfifo0_re;
-wire litepciedma0_writer_table_table_syncfifo0_readable;
-wire [59:0] litepciedma0_writer_table_table_syncfifo0_din;
-wire [59:0] litepciedma0_writer_table_table_syncfifo0_dout;
-reg  [8:0] litepciedma0_writer_table_table_level = 9'd0;
-reg  litepciedma0_writer_table_table_replace = 1'd0;
-reg  [7:0] litepciedma0_writer_table_table_produce = 8'd0;
-reg  [7:0] litepciedma0_writer_table_table_consume = 8'd0;
-reg  [7:0] litepciedma0_writer_table_table_wrport_adr = 8'd0;
-wire [59:0] litepciedma0_writer_table_table_wrport_dat_r;
-wire litepciedma0_writer_table_table_wrport_we;
-wire [59:0] litepciedma0_writer_table_table_wrport_dat_w;
-wire litepciedma0_writer_table_table_do_read;
-wire [7:0] litepciedma0_writer_table_table_rdport_adr;
-wire [59:0] litepciedma0_writer_table_table_rdport_dat_r;
-wire [31:0] litepciedma0_writer_table_table_fifo_in_payload_address;
-wire [23:0] litepciedma0_writer_table_table_fifo_in_payload_length;
-wire litepciedma0_writer_table_table_fifo_in_payload_irq_disable;
-wire litepciedma0_writer_table_table_fifo_in_payload_last_disable;
-wire litepciedma0_writer_table_table_fifo_in_first;
-wire litepciedma0_writer_table_table_fifo_in_last;
-wire [31:0] litepciedma0_writer_table_table_fifo_out_payload_address;
-wire [23:0] litepciedma0_writer_table_table_fifo_out_payload_length;
-wire litepciedma0_writer_table_table_fifo_out_payload_irq_disable;
-wire litepciedma0_writer_table_table_fifo_out_payload_last_disable;
-wire litepciedma0_writer_table_table_fifo_out_first;
-wire litepciedma0_writer_table_table_fifo_out_last;
-wire litepciedma0_writer_table_table_reset;
+wire litepciedma0_writer_source_source_valid;
+wire litepciedma0_writer_source_source_ready;
+wire litepciedma0_writer_source_source_first;
+wire litepciedma0_writer_source_source_last;
+wire [31:0] litepciedma0_writer_source_source_payload_address;
+wire [23:0] litepciedma0_writer_source_source_payload_length;
+wire litepciedma0_writer_source_source_payload_irq_disable;
+wire litepciedma0_writer_source_source_payload_last_disable;
+wire [31:0] litepciedma0_writer_address_lsb;
+wire [23:0] litepciedma0_writer_length;
+wire litepciedma0_writer_irq_disable;
+wire litepciedma0_writer_last_disable;
+reg  [57:0] litepciedma0_writer_value_storage = 58'd0;
+reg  litepciedma0_writer_value_re = 1'd0;
+wire [31:0] litepciedma0_writer_address_msb;
+reg  [31:0] litepciedma0_writer_we_storage = 32'd0;
+reg  litepciedma0_writer_we_re = 1'd0;
+reg  litepciedma0_writer_loop_prog_n_storage = 1'd0;
+reg  litepciedma0_writer_loop_prog_n_re = 1'd0;
+reg  [15:0] litepciedma0_writer_index = 16'd0;
+reg  [15:0] litepciedma0_writer_count = 16'd0;
+reg  [31:0] litepciedma0_writer_loop_status_status = 32'd0;
+wire litepciedma0_writer_loop_status_we;
+reg  litepciedma0_writer_loop_status_re = 1'd0;
+reg  [31:0] litepciedma0_writer_dmaCnt = 32'd0;
+wire [31:0] litepciedma0_writer_dmaDescriptorCnt_status;
+wire litepciedma0_writer_dmaDescriptorCnt_we;
+reg  litepciedma0_writer_dmaDescriptorCnt_re = 1'd0;
+wire [8:0] litepciedma0_writer_level_status;
+wire litepciedma0_writer_level_we;
+reg  litepciedma0_writer_level_re = 1'd0;
+reg  litepciedma0_writer_reset_storage = 1'd0;
+reg  litepciedma0_writer_reset_re = 1'd0;
+reg  litepciedma0_writer_table_sink_valid = 1'd0;
+wire litepciedma0_writer_table_sink_ready;
+reg  litepciedma0_writer_table_sink_first = 1'd0;
+reg  litepciedma0_writer_table_sink_last = 1'd0;
+reg  [31:0] litepciedma0_writer_table_sink_payload_address = 32'd0;
+reg  [23:0] litepciedma0_writer_table_sink_payload_length = 24'd0;
+reg  litepciedma0_writer_table_sink_payload_irq_disable = 1'd0;
+reg  litepciedma0_writer_table_sink_payload_last_disable = 1'd0;
+wire litepciedma0_writer_table_source_valid;
+wire litepciedma0_writer_table_source_ready;
+wire litepciedma0_writer_table_source_first;
+wire litepciedma0_writer_table_source_last;
+wire [31:0] litepciedma0_writer_table_source_payload_address;
+wire [23:0] litepciedma0_writer_table_source_payload_length;
+wire litepciedma0_writer_table_source_payload_irq_disable;
+wire litepciedma0_writer_table_source_payload_last_disable;
+wire litepciedma0_writer_table_syncfifo0_we;
+wire litepciedma0_writer_table_syncfifo0_writable;
+wire litepciedma0_writer_table_syncfifo0_re;
+wire litepciedma0_writer_table_syncfifo0_readable;
+wire [59:0] litepciedma0_writer_table_syncfifo0_din;
+wire [59:0] litepciedma0_writer_table_syncfifo0_dout;
+reg  [8:0] litepciedma0_writer_table_level = 9'd0;
+reg  litepciedma0_writer_table_replace = 1'd0;
+reg  [7:0] litepciedma0_writer_table_produce = 8'd0;
+reg  [7:0] litepciedma0_writer_table_consume = 8'd0;
+reg  [7:0] litepciedma0_writer_table_wrport_adr = 8'd0;
+wire [59:0] litepciedma0_writer_table_wrport_dat_r;
+wire litepciedma0_writer_table_wrport_we;
+wire [59:0] litepciedma0_writer_table_wrport_dat_w;
+wire litepciedma0_writer_table_do_read;
+wire [7:0] litepciedma0_writer_table_rdport_adr;
+wire [59:0] litepciedma0_writer_table_rdport_dat_r;
+wire [31:0] litepciedma0_writer_table_fifo_in_payload_address;
+wire [23:0] litepciedma0_writer_table_fifo_in_payload_length;
+wire litepciedma0_writer_table_fifo_in_payload_irq_disable;
+wire litepciedma0_writer_table_fifo_in_payload_last_disable;
+wire litepciedma0_writer_table_fifo_in_first;
+wire litepciedma0_writer_table_fifo_in_last;
+wire [31:0] litepciedma0_writer_table_fifo_out_payload_address;
+wire [23:0] litepciedma0_writer_table_fifo_out_payload_length;
+wire litepciedma0_writer_table_fifo_out_payload_irq_disable;
+wire litepciedma0_writer_table_fifo_out_payload_last_disable;
+wire litepciedma0_writer_table_fifo_out_first;
+wire litepciedma0_writer_table_fifo_out_last;
+wire litepciedma0_writer_table_reset;
+reg  litepciedma0_writer_loop_first = 1'd0;
 wire litepciedma0_writer_splitter_sink_valid;
 reg  litepciedma0_writer_splitter_sink_ready = 1'd0;
 wire litepciedma0_writer_splitter_sink_first;
@@ -1048,7 +1053,7 @@ wire [23:0] litepciedma0_writer_splitter_sink_payload_length;
 wire litepciedma0_writer_splitter_sink_payload_irq_disable;
 wire litepciedma0_writer_splitter_sink_payload_last_disable;
 reg  litepciedma0_writer_splitter_source_valid = 1'd0;
-wire litepciedma0_writer_splitter_source_ready;
+reg  litepciedma0_writer_splitter_source_ready = 1'd0;
 reg  litepciedma0_writer_splitter_source_first = 1'd0;
 reg  litepciedma0_writer_splitter_source_last = 1'd0;
 wire [31:0] litepciedma0_writer_splitter_source_payload_address;
@@ -1056,46 +1061,11 @@ reg  [23:0] litepciedma0_writer_splitter_source_payload_length = 24'd0;
 wire litepciedma0_writer_splitter_source_payload_irq_disable;
 wire litepciedma0_writer_splitter_source_payload_last_disable;
 wire [7:0] litepciedma0_writer_splitter_source_payload_user_id;
+reg  litepciedma0_writer_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma0_writer_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma0_writer_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma0_writer_splitter_desc_id = 32'd0;
 reg  litepciedma0_writer_splitter_reset = 1'd0;
-wire litepciedma0_writer_splitter_sink_sink_valid;
-wire litepciedma0_writer_splitter_sink_sink_ready;
-wire litepciedma0_writer_splitter_sink_sink_first;
-wire litepciedma0_writer_splitter_sink_sink_last;
-wire [31:0] litepciedma0_writer_splitter_sink_sink_payload_address;
-wire [23:0] litepciedma0_writer_splitter_sink_sink_payload_length;
-wire litepciedma0_writer_splitter_sink_sink_payload_irq_disable;
-wire litepciedma0_writer_splitter_sink_sink_payload_last_disable;
-wire [7:0] litepciedma0_writer_splitter_sink_sink_payload_user_id;
-wire litepciedma0_writer_splitter_source_source_valid;
-reg  litepciedma0_writer_splitter_source_source_ready = 1'd0;
-wire litepciedma0_writer_splitter_source_source_first;
-wire litepciedma0_writer_splitter_source_source_last;
-wire [31:0] litepciedma0_writer_splitter_source_source_payload_address;
-wire [23:0] litepciedma0_writer_splitter_source_source_payload_length;
-wire litepciedma0_writer_splitter_source_source_payload_irq_disable;
-wire litepciedma0_writer_splitter_source_source_payload_last_disable;
-wire [7:0] litepciedma0_writer_splitter_source_source_payload_user_id;
-wire litepciedma0_writer_splitter_pipe_valid_sink_valid;
-wire litepciedma0_writer_splitter_pipe_valid_sink_ready;
-wire litepciedma0_writer_splitter_pipe_valid_sink_first;
-wire litepciedma0_writer_splitter_pipe_valid_sink_last;
-wire [31:0] litepciedma0_writer_splitter_pipe_valid_sink_payload_address;
-wire [23:0] litepciedma0_writer_splitter_pipe_valid_sink_payload_length;
-wire litepciedma0_writer_splitter_pipe_valid_sink_payload_irq_disable;
-wire litepciedma0_writer_splitter_pipe_valid_sink_payload_last_disable;
-wire [7:0] litepciedma0_writer_splitter_pipe_valid_sink_payload_user_id;
-reg  litepciedma0_writer_splitter_pipe_valid_source_valid = 1'd0;
-wire litepciedma0_writer_splitter_pipe_valid_source_ready;
-reg  litepciedma0_writer_splitter_pipe_valid_source_first = 1'd0;
-reg  litepciedma0_writer_splitter_pipe_valid_source_last = 1'd0;
-reg  [31:0] litepciedma0_writer_splitter_pipe_valid_source_payload_address = 32'd0;
-reg  [23:0] litepciedma0_writer_splitter_pipe_valid_source_payload_length = 24'd0;
-reg  litepciedma0_writer_splitter_pipe_valid_source_payload_irq_disable = 1'd0;
-reg  litepciedma0_writer_splitter_pipe_valid_source_payload_last_disable = 1'd0;
-reg  [7:0] litepciedma0_writer_splitter_pipe_valid_source_payload_user_id = 8'd0;
 reg  litepciedma0_writer_data_fifo_sink_valid = 1'd0;
 wire litepciedma0_writer_data_fifo_sink_ready;
 reg  litepciedma0_writer_data_fifo_sink_first = 1'd0;
@@ -1133,7 +1103,7 @@ wire litepciedma0_writer_data_fifo_fifo_in_last;
 wire [127:0] litepciedma0_writer_data_fifo_fifo_out_payload_data;
 wire litepciedma0_writer_data_fifo_fifo_out_first;
 wire litepciedma0_writer_data_fifo_fifo_out_last;
-reg  litepciedma0_writer_resetinserter_reset = 1'd0;
+reg  litepciedma0_writer_data_fifo_reset = 1'd0;
 reg  litepciedma0_writer_req_done = 1'd0;
 reg  [23:0] litepciedma0_writer_req_count = 24'd0;
 reg  litepciedma0_litepciemasterinternalport1_sink_valid = 1'd0;
@@ -1194,6 +1164,10 @@ reg  [15:0] litepciedma0_reader_table_count = 16'd0;
 reg  [31:0] litepciedma0_reader_table_loop_status_status = 32'd0;
 wire litepciedma0_reader_table_loop_status_we;
 reg  litepciedma0_reader_table_loop_status_re = 1'd0;
+reg  [31:0] litepciedma0_reader_table_dmaCnt = 32'd0;
+wire [31:0] litepciedma0_reader_table_dmaDescriptorCnt_status;
+wire litepciedma0_reader_table_dmaDescriptorCnt_we;
+reg  litepciedma0_reader_table_dmaDescriptorCnt_re = 1'd0;
 wire [8:0] litepciedma0_reader_table_level_status;
 wire litepciedma0_reader_table_level_we;
 reg  litepciedma0_reader_table_level_re = 1'd0;
@@ -1245,6 +1219,7 @@ wire litepciedma0_reader_table_table_fifo_out_payload_last_disable;
 wire litepciedma0_reader_table_table_fifo_out_first;
 wire litepciedma0_reader_table_table_fifo_out_last;
 wire litepciedma0_reader_table_table_reset;
+reg  litepciedma0_reader_table_loop_first = 1'd0;
 wire litepciedma0_reader_splitter_sink_valid;
 reg  litepciedma0_reader_splitter_sink_ready = 1'd0;
 wire litepciedma0_reader_splitter_sink_first;
@@ -1262,6 +1237,7 @@ reg  [23:0] litepciedma0_reader_splitter_source_payload_length = 24'd0;
 wire litepciedma0_reader_splitter_source_payload_irq_disable;
 wire litepciedma0_reader_splitter_source_payload_last_disable;
 wire [7:0] litepciedma0_reader_splitter_source_payload_user_id;
+reg  litepciedma0_reader_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma0_reader_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma0_reader_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma0_reader_splitter_desc_id = 32'd0;
@@ -1340,7 +1316,7 @@ wire litepciedma0_reader_data_fifo_fifo_in_last;
 wire [127:0] litepciedma0_reader_data_fifo_fifo_out_payload_data;
 wire litepciedma0_reader_data_fifo_fifo_out_first;
 wire litepciedma0_reader_data_fifo_fifo_out_last;
-reg  litepciedma0_reader_resetinserter_reset = 1'd0;
+reg  litepciedma0_reader_data_fifo_reset = 1'd0;
 reg  [10:0] litepciedma0_reader_pending_words = 11'd0;
 reg  [10:0] litepciedma0_reader_pending_words_queue = 11'd0;
 reg  [10:0] litepciedma0_reader_pending_words_dequeue = 11'd0;
@@ -1532,81 +1508,86 @@ wire [127:0] litepciedma1_writer_sink_sink_payload_data;
 reg  litepciedma1_writer_enable_storage = 1'd0;
 reg  litepciedma1_writer_enable_re = 1'd0;
 reg  litepciedma1_writer_irq = 1'd0;
-wire litepciedma1_writer_table_source_source_valid;
-wire litepciedma1_writer_table_source_source_ready;
-wire litepciedma1_writer_table_source_source_first;
-wire litepciedma1_writer_table_source_source_last;
-wire [31:0] litepciedma1_writer_table_source_source_payload_address;
-wire [23:0] litepciedma1_writer_table_source_source_payload_length;
-wire litepciedma1_writer_table_source_source_payload_irq_disable;
-wire litepciedma1_writer_table_source_source_payload_last_disable;
-wire [31:0] litepciedma1_writer_table_address_lsb;
-wire [23:0] litepciedma1_writer_table_length;
-wire litepciedma1_writer_table_irq_disable;
-wire litepciedma1_writer_table_last_disable;
-reg  [57:0] litepciedma1_writer_table_value_storage = 58'd0;
-reg  litepciedma1_writer_table_value_re = 1'd0;
-wire [31:0] litepciedma1_writer_table_address_msb;
-reg  [31:0] litepciedma1_writer_table_we_storage = 32'd0;
-reg  litepciedma1_writer_table_we_re = 1'd0;
-reg  litepciedma1_writer_table_loop_prog_n_storage = 1'd0;
-reg  litepciedma1_writer_table_loop_prog_n_re = 1'd0;
-reg  [15:0] litepciedma1_writer_table_index = 16'd0;
-reg  [15:0] litepciedma1_writer_table_count = 16'd0;
-reg  [31:0] litepciedma1_writer_table_loop_status_status = 32'd0;
-wire litepciedma1_writer_table_loop_status_we;
-reg  litepciedma1_writer_table_loop_status_re = 1'd0;
-wire [8:0] litepciedma1_writer_table_level_status;
-wire litepciedma1_writer_table_level_we;
-reg  litepciedma1_writer_table_level_re = 1'd0;
-reg  litepciedma1_writer_table_reset_storage = 1'd0;
-reg  litepciedma1_writer_table_reset_re = 1'd0;
-reg  litepciedma1_writer_table_table_sink_valid = 1'd0;
-wire litepciedma1_writer_table_table_sink_ready;
-reg  litepciedma1_writer_table_table_sink_first = 1'd0;
-reg  litepciedma1_writer_table_table_sink_last = 1'd0;
-reg  [31:0] litepciedma1_writer_table_table_sink_payload_address = 32'd0;
-reg  [23:0] litepciedma1_writer_table_table_sink_payload_length = 24'd0;
-reg  litepciedma1_writer_table_table_sink_payload_irq_disable = 1'd0;
-reg  litepciedma1_writer_table_table_sink_payload_last_disable = 1'd0;
-wire litepciedma1_writer_table_table_source_valid;
-wire litepciedma1_writer_table_table_source_ready;
-wire litepciedma1_writer_table_table_source_first;
-wire litepciedma1_writer_table_table_source_last;
-wire [31:0] litepciedma1_writer_table_table_source_payload_address;
-wire [23:0] litepciedma1_writer_table_table_source_payload_length;
-wire litepciedma1_writer_table_table_source_payload_irq_disable;
-wire litepciedma1_writer_table_table_source_payload_last_disable;
-wire litepciedma1_writer_table_table_syncfifo1_we;
-wire litepciedma1_writer_table_table_syncfifo1_writable;
-wire litepciedma1_writer_table_table_syncfifo1_re;
-wire litepciedma1_writer_table_table_syncfifo1_readable;
-wire [59:0] litepciedma1_writer_table_table_syncfifo1_din;
-wire [59:0] litepciedma1_writer_table_table_syncfifo1_dout;
-reg  [8:0] litepciedma1_writer_table_table_level = 9'd0;
-reg  litepciedma1_writer_table_table_replace = 1'd0;
-reg  [7:0] litepciedma1_writer_table_table_produce = 8'd0;
-reg  [7:0] litepciedma1_writer_table_table_consume = 8'd0;
-reg  [7:0] litepciedma1_writer_table_table_wrport_adr = 8'd0;
-wire [59:0] litepciedma1_writer_table_table_wrport_dat_r;
-wire litepciedma1_writer_table_table_wrport_we;
-wire [59:0] litepciedma1_writer_table_table_wrport_dat_w;
-wire litepciedma1_writer_table_table_do_read;
-wire [7:0] litepciedma1_writer_table_table_rdport_adr;
-wire [59:0] litepciedma1_writer_table_table_rdport_dat_r;
-wire [31:0] litepciedma1_writer_table_table_fifo_in_payload_address;
-wire [23:0] litepciedma1_writer_table_table_fifo_in_payload_length;
-wire litepciedma1_writer_table_table_fifo_in_payload_irq_disable;
-wire litepciedma1_writer_table_table_fifo_in_payload_last_disable;
-wire litepciedma1_writer_table_table_fifo_in_first;
-wire litepciedma1_writer_table_table_fifo_in_last;
-wire [31:0] litepciedma1_writer_table_table_fifo_out_payload_address;
-wire [23:0] litepciedma1_writer_table_table_fifo_out_payload_length;
-wire litepciedma1_writer_table_table_fifo_out_payload_irq_disable;
-wire litepciedma1_writer_table_table_fifo_out_payload_last_disable;
-wire litepciedma1_writer_table_table_fifo_out_first;
-wire litepciedma1_writer_table_table_fifo_out_last;
-wire litepciedma1_writer_table_table_reset;
+wire litepciedma1_writer_source_source_valid;
+wire litepciedma1_writer_source_source_ready;
+wire litepciedma1_writer_source_source_first;
+wire litepciedma1_writer_source_source_last;
+wire [31:0] litepciedma1_writer_source_source_payload_address;
+wire [23:0] litepciedma1_writer_source_source_payload_length;
+wire litepciedma1_writer_source_source_payload_irq_disable;
+wire litepciedma1_writer_source_source_payload_last_disable;
+wire [31:0] litepciedma1_writer_address_lsb;
+wire [23:0] litepciedma1_writer_length;
+wire litepciedma1_writer_irq_disable;
+wire litepciedma1_writer_last_disable;
+reg  [57:0] litepciedma1_writer_value_storage = 58'd0;
+reg  litepciedma1_writer_value_re = 1'd0;
+wire [31:0] litepciedma1_writer_address_msb;
+reg  [31:0] litepciedma1_writer_we_storage = 32'd0;
+reg  litepciedma1_writer_we_re = 1'd0;
+reg  litepciedma1_writer_loop_prog_n_storage = 1'd0;
+reg  litepciedma1_writer_loop_prog_n_re = 1'd0;
+reg  [15:0] litepciedma1_writer_index = 16'd0;
+reg  [15:0] litepciedma1_writer_count = 16'd0;
+reg  [31:0] litepciedma1_writer_loop_status_status = 32'd0;
+wire litepciedma1_writer_loop_status_we;
+reg  litepciedma1_writer_loop_status_re = 1'd0;
+reg  [31:0] litepciedma1_writer_dmaCnt = 32'd0;
+wire [31:0] litepciedma1_writer_dmaDescriptorCnt_status;
+wire litepciedma1_writer_dmaDescriptorCnt_we;
+reg  litepciedma1_writer_dmaDescriptorCnt_re = 1'd0;
+wire [8:0] litepciedma1_writer_level_status;
+wire litepciedma1_writer_level_we;
+reg  litepciedma1_writer_level_re = 1'd0;
+reg  litepciedma1_writer_reset_storage = 1'd0;
+reg  litepciedma1_writer_reset_re = 1'd0;
+reg  litepciedma1_writer_table_sink_valid = 1'd0;
+wire litepciedma1_writer_table_sink_ready;
+reg  litepciedma1_writer_table_sink_first = 1'd0;
+reg  litepciedma1_writer_table_sink_last = 1'd0;
+reg  [31:0] litepciedma1_writer_table_sink_payload_address = 32'd0;
+reg  [23:0] litepciedma1_writer_table_sink_payload_length = 24'd0;
+reg  litepciedma1_writer_table_sink_payload_irq_disable = 1'd0;
+reg  litepciedma1_writer_table_sink_payload_last_disable = 1'd0;
+wire litepciedma1_writer_table_source_valid;
+wire litepciedma1_writer_table_source_ready;
+wire litepciedma1_writer_table_source_first;
+wire litepciedma1_writer_table_source_last;
+wire [31:0] litepciedma1_writer_table_source_payload_address;
+wire [23:0] litepciedma1_writer_table_source_payload_length;
+wire litepciedma1_writer_table_source_payload_irq_disable;
+wire litepciedma1_writer_table_source_payload_last_disable;
+wire litepciedma1_writer_table_syncfifo1_we;
+wire litepciedma1_writer_table_syncfifo1_writable;
+wire litepciedma1_writer_table_syncfifo1_re;
+wire litepciedma1_writer_table_syncfifo1_readable;
+wire [59:0] litepciedma1_writer_table_syncfifo1_din;
+wire [59:0] litepciedma1_writer_table_syncfifo1_dout;
+reg  [8:0] litepciedma1_writer_table_level = 9'd0;
+reg  litepciedma1_writer_table_replace = 1'd0;
+reg  [7:0] litepciedma1_writer_table_produce = 8'd0;
+reg  [7:0] litepciedma1_writer_table_consume = 8'd0;
+reg  [7:0] litepciedma1_writer_table_wrport_adr = 8'd0;
+wire [59:0] litepciedma1_writer_table_wrport_dat_r;
+wire litepciedma1_writer_table_wrport_we;
+wire [59:0] litepciedma1_writer_table_wrport_dat_w;
+wire litepciedma1_writer_table_do_read;
+wire [7:0] litepciedma1_writer_table_rdport_adr;
+wire [59:0] litepciedma1_writer_table_rdport_dat_r;
+wire [31:0] litepciedma1_writer_table_fifo_in_payload_address;
+wire [23:0] litepciedma1_writer_table_fifo_in_payload_length;
+wire litepciedma1_writer_table_fifo_in_payload_irq_disable;
+wire litepciedma1_writer_table_fifo_in_payload_last_disable;
+wire litepciedma1_writer_table_fifo_in_first;
+wire litepciedma1_writer_table_fifo_in_last;
+wire [31:0] litepciedma1_writer_table_fifo_out_payload_address;
+wire [23:0] litepciedma1_writer_table_fifo_out_payload_length;
+wire litepciedma1_writer_table_fifo_out_payload_irq_disable;
+wire litepciedma1_writer_table_fifo_out_payload_last_disable;
+wire litepciedma1_writer_table_fifo_out_first;
+wire litepciedma1_writer_table_fifo_out_last;
+wire litepciedma1_writer_table_reset;
+reg  litepciedma1_writer_loop_first = 1'd0;
 wire litepciedma1_writer_splitter_sink_valid;
 reg  litepciedma1_writer_splitter_sink_ready = 1'd0;
 wire litepciedma1_writer_splitter_sink_first;
@@ -1616,7 +1597,7 @@ wire [23:0] litepciedma1_writer_splitter_sink_payload_length;
 wire litepciedma1_writer_splitter_sink_payload_irq_disable;
 wire litepciedma1_writer_splitter_sink_payload_last_disable;
 reg  litepciedma1_writer_splitter_source_valid = 1'd0;
-wire litepciedma1_writer_splitter_source_ready;
+reg  litepciedma1_writer_splitter_source_ready = 1'd0;
 reg  litepciedma1_writer_splitter_source_first = 1'd0;
 reg  litepciedma1_writer_splitter_source_last = 1'd0;
 wire [31:0] litepciedma1_writer_splitter_source_payload_address;
@@ -1624,46 +1605,11 @@ reg  [23:0] litepciedma1_writer_splitter_source_payload_length = 24'd0;
 wire litepciedma1_writer_splitter_source_payload_irq_disable;
 wire litepciedma1_writer_splitter_source_payload_last_disable;
 wire [7:0] litepciedma1_writer_splitter_source_payload_user_id;
+reg  litepciedma1_writer_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma1_writer_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma1_writer_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma1_writer_splitter_desc_id = 32'd0;
 reg  litepciedma1_writer_splitter_reset = 1'd0;
-wire litepciedma1_writer_splitter_sink_sink_valid;
-wire litepciedma1_writer_splitter_sink_sink_ready;
-wire litepciedma1_writer_splitter_sink_sink_first;
-wire litepciedma1_writer_splitter_sink_sink_last;
-wire [31:0] litepciedma1_writer_splitter_sink_sink_payload_address;
-wire [23:0] litepciedma1_writer_splitter_sink_sink_payload_length;
-wire litepciedma1_writer_splitter_sink_sink_payload_irq_disable;
-wire litepciedma1_writer_splitter_sink_sink_payload_last_disable;
-wire [7:0] litepciedma1_writer_splitter_sink_sink_payload_user_id;
-wire litepciedma1_writer_splitter_source_source_valid;
-reg  litepciedma1_writer_splitter_source_source_ready = 1'd0;
-wire litepciedma1_writer_splitter_source_source_first;
-wire litepciedma1_writer_splitter_source_source_last;
-wire [31:0] litepciedma1_writer_splitter_source_source_payload_address;
-wire [23:0] litepciedma1_writer_splitter_source_source_payload_length;
-wire litepciedma1_writer_splitter_source_source_payload_irq_disable;
-wire litepciedma1_writer_splitter_source_source_payload_last_disable;
-wire [7:0] litepciedma1_writer_splitter_source_source_payload_user_id;
-wire litepciedma1_writer_splitter_pipe_valid_sink_valid;
-wire litepciedma1_writer_splitter_pipe_valid_sink_ready;
-wire litepciedma1_writer_splitter_pipe_valid_sink_first;
-wire litepciedma1_writer_splitter_pipe_valid_sink_last;
-wire [31:0] litepciedma1_writer_splitter_pipe_valid_sink_payload_address;
-wire [23:0] litepciedma1_writer_splitter_pipe_valid_sink_payload_length;
-wire litepciedma1_writer_splitter_pipe_valid_sink_payload_irq_disable;
-wire litepciedma1_writer_splitter_pipe_valid_sink_payload_last_disable;
-wire [7:0] litepciedma1_writer_splitter_pipe_valid_sink_payload_user_id;
-reg  litepciedma1_writer_splitter_pipe_valid_source_valid = 1'd0;
-wire litepciedma1_writer_splitter_pipe_valid_source_ready;
-reg  litepciedma1_writer_splitter_pipe_valid_source_first = 1'd0;
-reg  litepciedma1_writer_splitter_pipe_valid_source_last = 1'd0;
-reg  [31:0] litepciedma1_writer_splitter_pipe_valid_source_payload_address = 32'd0;
-reg  [23:0] litepciedma1_writer_splitter_pipe_valid_source_payload_length = 24'd0;
-reg  litepciedma1_writer_splitter_pipe_valid_source_payload_irq_disable = 1'd0;
-reg  litepciedma1_writer_splitter_pipe_valid_source_payload_last_disable = 1'd0;
-reg  [7:0] litepciedma1_writer_splitter_pipe_valid_source_payload_user_id = 8'd0;
 reg  litepciedma1_writer_data_fifo_sink_valid = 1'd0;
 wire litepciedma1_writer_data_fifo_sink_ready;
 reg  litepciedma1_writer_data_fifo_sink_first = 1'd0;
@@ -1701,7 +1647,7 @@ wire litepciedma1_writer_data_fifo_fifo_in_last;
 wire [127:0] litepciedma1_writer_data_fifo_fifo_out_payload_data;
 wire litepciedma1_writer_data_fifo_fifo_out_first;
 wire litepciedma1_writer_data_fifo_fifo_out_last;
-reg  litepciedma1_writer_resetinserter_reset = 1'd0;
+reg  litepciedma1_writer_data_fifo_reset = 1'd0;
 reg  litepciedma1_writer_req_done = 1'd0;
 reg  [23:0] litepciedma1_writer_req_count = 24'd0;
 reg  litepciedma1_litepciemasterinternalport3_sink_valid = 1'd0;
@@ -1762,6 +1708,10 @@ reg  [15:0] litepciedma1_reader_table_count = 16'd0;
 reg  [31:0] litepciedma1_reader_table_loop_status_status = 32'd0;
 wire litepciedma1_reader_table_loop_status_we;
 reg  litepciedma1_reader_table_loop_status_re = 1'd0;
+reg  [31:0] litepciedma1_reader_table_dmaCnt = 32'd0;
+wire [31:0] litepciedma1_reader_table_dmaDescriptorCnt_status;
+wire litepciedma1_reader_table_dmaDescriptorCnt_we;
+reg  litepciedma1_reader_table_dmaDescriptorCnt_re = 1'd0;
 wire [8:0] litepciedma1_reader_table_level_status;
 wire litepciedma1_reader_table_level_we;
 reg  litepciedma1_reader_table_level_re = 1'd0;
@@ -1813,6 +1763,7 @@ wire litepciedma1_reader_table_table_fifo_out_payload_last_disable;
 wire litepciedma1_reader_table_table_fifo_out_first;
 wire litepciedma1_reader_table_table_fifo_out_last;
 wire litepciedma1_reader_table_table_reset;
+reg  litepciedma1_reader_table_loop_first = 1'd0;
 wire litepciedma1_reader_splitter_sink_valid;
 reg  litepciedma1_reader_splitter_sink_ready = 1'd0;
 wire litepciedma1_reader_splitter_sink_first;
@@ -1830,6 +1781,7 @@ reg  [23:0] litepciedma1_reader_splitter_source_payload_length = 24'd0;
 wire litepciedma1_reader_splitter_source_payload_irq_disable;
 wire litepciedma1_reader_splitter_source_payload_last_disable;
 wire [7:0] litepciedma1_reader_splitter_source_payload_user_id;
+reg  litepciedma1_reader_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma1_reader_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma1_reader_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma1_reader_splitter_desc_id = 32'd0;
@@ -1908,7 +1860,7 @@ wire litepciedma1_reader_data_fifo_fifo_in_last;
 wire [127:0] litepciedma1_reader_data_fifo_fifo_out_payload_data;
 wire litepciedma1_reader_data_fifo_fifo_out_first;
 wire litepciedma1_reader_data_fifo_fifo_out_last;
-reg  litepciedma1_reader_resetinserter_reset = 1'd0;
+reg  litepciedma1_reader_data_fifo_reset = 1'd0;
 reg  [10:0] litepciedma1_reader_pending_words = 11'd0;
 reg  [10:0] litepciedma1_reader_pending_words_queue = 11'd0;
 reg  [10:0] litepciedma1_reader_pending_words_dequeue = 11'd0;
@@ -2100,81 +2052,86 @@ wire [127:0] litepciedma2_writer_sink_sink_payload_data;
 reg  litepciedma2_writer_enable_storage = 1'd0;
 reg  litepciedma2_writer_enable_re = 1'd0;
 reg  litepciedma2_writer_irq = 1'd0;
-wire litepciedma2_writer_table_source_source_valid;
-wire litepciedma2_writer_table_source_source_ready;
-wire litepciedma2_writer_table_source_source_first;
-wire litepciedma2_writer_table_source_source_last;
-wire [31:0] litepciedma2_writer_table_source_source_payload_address;
-wire [23:0] litepciedma2_writer_table_source_source_payload_length;
-wire litepciedma2_writer_table_source_source_payload_irq_disable;
-wire litepciedma2_writer_table_source_source_payload_last_disable;
-wire [31:0] litepciedma2_writer_table_address_lsb;
-wire [23:0] litepciedma2_writer_table_length;
-wire litepciedma2_writer_table_irq_disable;
-wire litepciedma2_writer_table_last_disable;
-reg  [57:0] litepciedma2_writer_table_value_storage = 58'd0;
-reg  litepciedma2_writer_table_value_re = 1'd0;
-wire [31:0] litepciedma2_writer_table_address_msb;
-reg  [31:0] litepciedma2_writer_table_we_storage = 32'd0;
-reg  litepciedma2_writer_table_we_re = 1'd0;
-reg  litepciedma2_writer_table_loop_prog_n_storage = 1'd0;
-reg  litepciedma2_writer_table_loop_prog_n_re = 1'd0;
-reg  [15:0] litepciedma2_writer_table_index = 16'd0;
-reg  [15:0] litepciedma2_writer_table_count = 16'd0;
-reg  [31:0] litepciedma2_writer_table_loop_status_status = 32'd0;
-wire litepciedma2_writer_table_loop_status_we;
-reg  litepciedma2_writer_table_loop_status_re = 1'd0;
-wire [8:0] litepciedma2_writer_table_level_status;
-wire litepciedma2_writer_table_level_we;
-reg  litepciedma2_writer_table_level_re = 1'd0;
-reg  litepciedma2_writer_table_reset_storage = 1'd0;
-reg  litepciedma2_writer_table_reset_re = 1'd0;
-reg  litepciedma2_writer_table_table_sink_valid = 1'd0;
-wire litepciedma2_writer_table_table_sink_ready;
-reg  litepciedma2_writer_table_table_sink_first = 1'd0;
-reg  litepciedma2_writer_table_table_sink_last = 1'd0;
-reg  [31:0] litepciedma2_writer_table_table_sink_payload_address = 32'd0;
-reg  [23:0] litepciedma2_writer_table_table_sink_payload_length = 24'd0;
-reg  litepciedma2_writer_table_table_sink_payload_irq_disable = 1'd0;
-reg  litepciedma2_writer_table_table_sink_payload_last_disable = 1'd0;
-wire litepciedma2_writer_table_table_source_valid;
-wire litepciedma2_writer_table_table_source_ready;
-wire litepciedma2_writer_table_table_source_first;
-wire litepciedma2_writer_table_table_source_last;
-wire [31:0] litepciedma2_writer_table_table_source_payload_address;
-wire [23:0] litepciedma2_writer_table_table_source_payload_length;
-wire litepciedma2_writer_table_table_source_payload_irq_disable;
-wire litepciedma2_writer_table_table_source_payload_last_disable;
-wire litepciedma2_writer_table_table_syncfifo2_we;
-wire litepciedma2_writer_table_table_syncfifo2_writable;
-wire litepciedma2_writer_table_table_syncfifo2_re;
-wire litepciedma2_writer_table_table_syncfifo2_readable;
-wire [59:0] litepciedma2_writer_table_table_syncfifo2_din;
-wire [59:0] litepciedma2_writer_table_table_syncfifo2_dout;
-reg  [8:0] litepciedma2_writer_table_table_level = 9'd0;
-reg  litepciedma2_writer_table_table_replace = 1'd0;
-reg  [7:0] litepciedma2_writer_table_table_produce = 8'd0;
-reg  [7:0] litepciedma2_writer_table_table_consume = 8'd0;
-reg  [7:0] litepciedma2_writer_table_table_wrport_adr = 8'd0;
-wire [59:0] litepciedma2_writer_table_table_wrport_dat_r;
-wire litepciedma2_writer_table_table_wrport_we;
-wire [59:0] litepciedma2_writer_table_table_wrport_dat_w;
-wire litepciedma2_writer_table_table_do_read;
-wire [7:0] litepciedma2_writer_table_table_rdport_adr;
-wire [59:0] litepciedma2_writer_table_table_rdport_dat_r;
-wire [31:0] litepciedma2_writer_table_table_fifo_in_payload_address;
-wire [23:0] litepciedma2_writer_table_table_fifo_in_payload_length;
-wire litepciedma2_writer_table_table_fifo_in_payload_irq_disable;
-wire litepciedma2_writer_table_table_fifo_in_payload_last_disable;
-wire litepciedma2_writer_table_table_fifo_in_first;
-wire litepciedma2_writer_table_table_fifo_in_last;
-wire [31:0] litepciedma2_writer_table_table_fifo_out_payload_address;
-wire [23:0] litepciedma2_writer_table_table_fifo_out_payload_length;
-wire litepciedma2_writer_table_table_fifo_out_payload_irq_disable;
-wire litepciedma2_writer_table_table_fifo_out_payload_last_disable;
-wire litepciedma2_writer_table_table_fifo_out_first;
-wire litepciedma2_writer_table_table_fifo_out_last;
-wire litepciedma2_writer_table_table_reset;
+wire litepciedma2_writer_source_source_valid;
+wire litepciedma2_writer_source_source_ready;
+wire litepciedma2_writer_source_source_first;
+wire litepciedma2_writer_source_source_last;
+wire [31:0] litepciedma2_writer_source_source_payload_address;
+wire [23:0] litepciedma2_writer_source_source_payload_length;
+wire litepciedma2_writer_source_source_payload_irq_disable;
+wire litepciedma2_writer_source_source_payload_last_disable;
+wire [31:0] litepciedma2_writer_address_lsb;
+wire [23:0] litepciedma2_writer_length;
+wire litepciedma2_writer_irq_disable;
+wire litepciedma2_writer_last_disable;
+reg  [57:0] litepciedma2_writer_value_storage = 58'd0;
+reg  litepciedma2_writer_value_re = 1'd0;
+wire [31:0] litepciedma2_writer_address_msb;
+reg  [31:0] litepciedma2_writer_we_storage = 32'd0;
+reg  litepciedma2_writer_we_re = 1'd0;
+reg  litepciedma2_writer_loop_prog_n_storage = 1'd0;
+reg  litepciedma2_writer_loop_prog_n_re = 1'd0;
+reg  [15:0] litepciedma2_writer_index = 16'd0;
+reg  [15:0] litepciedma2_writer_count = 16'd0;
+reg  [31:0] litepciedma2_writer_loop_status_status = 32'd0;
+wire litepciedma2_writer_loop_status_we;
+reg  litepciedma2_writer_loop_status_re = 1'd0;
+reg  [31:0] litepciedma2_writer_dmaCnt = 32'd0;
+wire [31:0] litepciedma2_writer_dmaDescriptorCnt_status;
+wire litepciedma2_writer_dmaDescriptorCnt_we;
+reg  litepciedma2_writer_dmaDescriptorCnt_re = 1'd0;
+wire [8:0] litepciedma2_writer_level_status;
+wire litepciedma2_writer_level_we;
+reg  litepciedma2_writer_level_re = 1'd0;
+reg  litepciedma2_writer_reset_storage = 1'd0;
+reg  litepciedma2_writer_reset_re = 1'd0;
+reg  litepciedma2_writer_table_sink_valid = 1'd0;
+wire litepciedma2_writer_table_sink_ready;
+reg  litepciedma2_writer_table_sink_first = 1'd0;
+reg  litepciedma2_writer_table_sink_last = 1'd0;
+reg  [31:0] litepciedma2_writer_table_sink_payload_address = 32'd0;
+reg  [23:0] litepciedma2_writer_table_sink_payload_length = 24'd0;
+reg  litepciedma2_writer_table_sink_payload_irq_disable = 1'd0;
+reg  litepciedma2_writer_table_sink_payload_last_disable = 1'd0;
+wire litepciedma2_writer_table_source_valid;
+wire litepciedma2_writer_table_source_ready;
+wire litepciedma2_writer_table_source_first;
+wire litepciedma2_writer_table_source_last;
+wire [31:0] litepciedma2_writer_table_source_payload_address;
+wire [23:0] litepciedma2_writer_table_source_payload_length;
+wire litepciedma2_writer_table_source_payload_irq_disable;
+wire litepciedma2_writer_table_source_payload_last_disable;
+wire litepciedma2_writer_table_syncfifo2_we;
+wire litepciedma2_writer_table_syncfifo2_writable;
+wire litepciedma2_writer_table_syncfifo2_re;
+wire litepciedma2_writer_table_syncfifo2_readable;
+wire [59:0] litepciedma2_writer_table_syncfifo2_din;
+wire [59:0] litepciedma2_writer_table_syncfifo2_dout;
+reg  [8:0] litepciedma2_writer_table_level = 9'd0;
+reg  litepciedma2_writer_table_replace = 1'd0;
+reg  [7:0] litepciedma2_writer_table_produce = 8'd0;
+reg  [7:0] litepciedma2_writer_table_consume = 8'd0;
+reg  [7:0] litepciedma2_writer_table_wrport_adr = 8'd0;
+wire [59:0] litepciedma2_writer_table_wrport_dat_r;
+wire litepciedma2_writer_table_wrport_we;
+wire [59:0] litepciedma2_writer_table_wrport_dat_w;
+wire litepciedma2_writer_table_do_read;
+wire [7:0] litepciedma2_writer_table_rdport_adr;
+wire [59:0] litepciedma2_writer_table_rdport_dat_r;
+wire [31:0] litepciedma2_writer_table_fifo_in_payload_address;
+wire [23:0] litepciedma2_writer_table_fifo_in_payload_length;
+wire litepciedma2_writer_table_fifo_in_payload_irq_disable;
+wire litepciedma2_writer_table_fifo_in_payload_last_disable;
+wire litepciedma2_writer_table_fifo_in_first;
+wire litepciedma2_writer_table_fifo_in_last;
+wire [31:0] litepciedma2_writer_table_fifo_out_payload_address;
+wire [23:0] litepciedma2_writer_table_fifo_out_payload_length;
+wire litepciedma2_writer_table_fifo_out_payload_irq_disable;
+wire litepciedma2_writer_table_fifo_out_payload_last_disable;
+wire litepciedma2_writer_table_fifo_out_first;
+wire litepciedma2_writer_table_fifo_out_last;
+wire litepciedma2_writer_table_reset;
+reg  litepciedma2_writer_loop_first = 1'd0;
 wire litepciedma2_writer_splitter_sink_valid;
 reg  litepciedma2_writer_splitter_sink_ready = 1'd0;
 wire litepciedma2_writer_splitter_sink_first;
@@ -2184,7 +2141,7 @@ wire [23:0] litepciedma2_writer_splitter_sink_payload_length;
 wire litepciedma2_writer_splitter_sink_payload_irq_disable;
 wire litepciedma2_writer_splitter_sink_payload_last_disable;
 reg  litepciedma2_writer_splitter_source_valid = 1'd0;
-wire litepciedma2_writer_splitter_source_ready;
+reg  litepciedma2_writer_splitter_source_ready = 1'd0;
 reg  litepciedma2_writer_splitter_source_first = 1'd0;
 reg  litepciedma2_writer_splitter_source_last = 1'd0;
 wire [31:0] litepciedma2_writer_splitter_source_payload_address;
@@ -2192,46 +2149,11 @@ reg  [23:0] litepciedma2_writer_splitter_source_payload_length = 24'd0;
 wire litepciedma2_writer_splitter_source_payload_irq_disable;
 wire litepciedma2_writer_splitter_source_payload_last_disable;
 wire [7:0] litepciedma2_writer_splitter_source_payload_user_id;
+reg  litepciedma2_writer_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma2_writer_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma2_writer_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma2_writer_splitter_desc_id = 32'd0;
 reg  litepciedma2_writer_splitter_reset = 1'd0;
-wire litepciedma2_writer_splitter_sink_sink_valid;
-wire litepciedma2_writer_splitter_sink_sink_ready;
-wire litepciedma2_writer_splitter_sink_sink_first;
-wire litepciedma2_writer_splitter_sink_sink_last;
-wire [31:0] litepciedma2_writer_splitter_sink_sink_payload_address;
-wire [23:0] litepciedma2_writer_splitter_sink_sink_payload_length;
-wire litepciedma2_writer_splitter_sink_sink_payload_irq_disable;
-wire litepciedma2_writer_splitter_sink_sink_payload_last_disable;
-wire [7:0] litepciedma2_writer_splitter_sink_sink_payload_user_id;
-wire litepciedma2_writer_splitter_source_source_valid;
-reg  litepciedma2_writer_splitter_source_source_ready = 1'd0;
-wire litepciedma2_writer_splitter_source_source_first;
-wire litepciedma2_writer_splitter_source_source_last;
-wire [31:0] litepciedma2_writer_splitter_source_source_payload_address;
-wire [23:0] litepciedma2_writer_splitter_source_source_payload_length;
-wire litepciedma2_writer_splitter_source_source_payload_irq_disable;
-wire litepciedma2_writer_splitter_source_source_payload_last_disable;
-wire [7:0] litepciedma2_writer_splitter_source_source_payload_user_id;
-wire litepciedma2_writer_splitter_pipe_valid_sink_valid;
-wire litepciedma2_writer_splitter_pipe_valid_sink_ready;
-wire litepciedma2_writer_splitter_pipe_valid_sink_first;
-wire litepciedma2_writer_splitter_pipe_valid_sink_last;
-wire [31:0] litepciedma2_writer_splitter_pipe_valid_sink_payload_address;
-wire [23:0] litepciedma2_writer_splitter_pipe_valid_sink_payload_length;
-wire litepciedma2_writer_splitter_pipe_valid_sink_payload_irq_disable;
-wire litepciedma2_writer_splitter_pipe_valid_sink_payload_last_disable;
-wire [7:0] litepciedma2_writer_splitter_pipe_valid_sink_payload_user_id;
-reg  litepciedma2_writer_splitter_pipe_valid_source_valid = 1'd0;
-wire litepciedma2_writer_splitter_pipe_valid_source_ready;
-reg  litepciedma2_writer_splitter_pipe_valid_source_first = 1'd0;
-reg  litepciedma2_writer_splitter_pipe_valid_source_last = 1'd0;
-reg  [31:0] litepciedma2_writer_splitter_pipe_valid_source_payload_address = 32'd0;
-reg  [23:0] litepciedma2_writer_splitter_pipe_valid_source_payload_length = 24'd0;
-reg  litepciedma2_writer_splitter_pipe_valid_source_payload_irq_disable = 1'd0;
-reg  litepciedma2_writer_splitter_pipe_valid_source_payload_last_disable = 1'd0;
-reg  [7:0] litepciedma2_writer_splitter_pipe_valid_source_payload_user_id = 8'd0;
 reg  litepciedma2_writer_data_fifo_sink_valid = 1'd0;
 wire litepciedma2_writer_data_fifo_sink_ready;
 reg  litepciedma2_writer_data_fifo_sink_first = 1'd0;
@@ -2269,7 +2191,7 @@ wire litepciedma2_writer_data_fifo_fifo_in_last;
 wire [127:0] litepciedma2_writer_data_fifo_fifo_out_payload_data;
 wire litepciedma2_writer_data_fifo_fifo_out_first;
 wire litepciedma2_writer_data_fifo_fifo_out_last;
-reg  litepciedma2_writer_resetinserter_reset = 1'd0;
+reg  litepciedma2_writer_data_fifo_reset = 1'd0;
 reg  litepciedma2_writer_req_done = 1'd0;
 reg  [23:0] litepciedma2_writer_req_count = 24'd0;
 reg  litepciedma2_litepciemasterinternalport5_sink_valid = 1'd0;
@@ -2330,6 +2252,10 @@ reg  [15:0] litepciedma2_reader_table_count = 16'd0;
 reg  [31:0] litepciedma2_reader_table_loop_status_status = 32'd0;
 wire litepciedma2_reader_table_loop_status_we;
 reg  litepciedma2_reader_table_loop_status_re = 1'd0;
+reg  [31:0] litepciedma2_reader_table_dmaCnt = 32'd0;
+wire [31:0] litepciedma2_reader_table_dmaDescriptorCnt_status;
+wire litepciedma2_reader_table_dmaDescriptorCnt_we;
+reg  litepciedma2_reader_table_dmaDescriptorCnt_re = 1'd0;
 wire [8:0] litepciedma2_reader_table_level_status;
 wire litepciedma2_reader_table_level_we;
 reg  litepciedma2_reader_table_level_re = 1'd0;
@@ -2381,6 +2307,7 @@ wire litepciedma2_reader_table_table_fifo_out_payload_last_disable;
 wire litepciedma2_reader_table_table_fifo_out_first;
 wire litepciedma2_reader_table_table_fifo_out_last;
 wire litepciedma2_reader_table_table_reset;
+reg  litepciedma2_reader_table_loop_first = 1'd0;
 wire litepciedma2_reader_splitter_sink_valid;
 reg  litepciedma2_reader_splitter_sink_ready = 1'd0;
 wire litepciedma2_reader_splitter_sink_first;
@@ -2398,6 +2325,7 @@ reg  [23:0] litepciedma2_reader_splitter_source_payload_length = 24'd0;
 wire litepciedma2_reader_splitter_source_payload_irq_disable;
 wire litepciedma2_reader_splitter_source_payload_last_disable;
 wire [7:0] litepciedma2_reader_splitter_source_payload_user_id;
+reg  litepciedma2_reader_splitter_terminate = 1'd0;
 reg  [31:0] litepciedma2_reader_splitter_desc_length = 32'd0;
 reg  [31:0] litepciedma2_reader_splitter_desc_offset = 32'd0;
 reg  [31:0] litepciedma2_reader_splitter_desc_id = 32'd0;
@@ -2476,7 +2404,7 @@ wire litepciedma2_reader_data_fifo_fifo_in_last;
 wire [127:0] litepciedma2_reader_data_fifo_fifo_out_payload_data;
 wire litepciedma2_reader_data_fifo_fifo_out_first;
 wire litepciedma2_reader_data_fifo_fifo_out_last;
-reg  litepciedma2_reader_resetinserter_reset = 1'd0;
+reg  litepciedma2_reader_data_fifo_reset = 1'd0;
 reg  [10:0] litepciedma2_reader_pending_words = 11'd0;
 reg  [10:0] litepciedma2_reader_pending_words_queue = 11'd0;
 reg  [10:0] litepciedma2_reader_pending_words_dequeue = 11'd0;
@@ -2666,417 +2594,441 @@ wire litepciecore_wishbone_we;
 wire [2:0] litepciecore_wishbone_cti;
 wire [1:0] litepciecore_wishbone_bte;
 reg  litepciecore_wishbone_err = 1'd0;
-wire [13:0] interface0_adr;
-wire interface0_we;
-wire [31:0] interface0_dat_w;
-reg  [31:0] interface0_dat_r = 32'd0;
-reg  csrbank0_cntrl15_re = 1'd0;
-wire [31:0] csrbank0_cntrl15_r;
-reg  csrbank0_cntrl15_we = 1'd0;
-wire [31:0] csrbank0_cntrl15_w;
-reg  csrbank0_cntrl14_re = 1'd0;
-wire [31:0] csrbank0_cntrl14_r;
-reg  csrbank0_cntrl14_we = 1'd0;
-wire [31:0] csrbank0_cntrl14_w;
-reg  csrbank0_cntrl13_re = 1'd0;
-wire [31:0] csrbank0_cntrl13_r;
-reg  csrbank0_cntrl13_we = 1'd0;
-wire [31:0] csrbank0_cntrl13_w;
-reg  csrbank0_cntrl12_re = 1'd0;
-wire [31:0] csrbank0_cntrl12_r;
-reg  csrbank0_cntrl12_we = 1'd0;
-wire [31:0] csrbank0_cntrl12_w;
-reg  csrbank0_cntrl11_re = 1'd0;
-wire [31:0] csrbank0_cntrl11_r;
-reg  csrbank0_cntrl11_we = 1'd0;
-wire [31:0] csrbank0_cntrl11_w;
-reg  csrbank0_cntrl10_re = 1'd0;
-wire [31:0] csrbank0_cntrl10_r;
-reg  csrbank0_cntrl10_we = 1'd0;
-wire [31:0] csrbank0_cntrl10_w;
-reg  csrbank0_cntrl9_re = 1'd0;
-wire [31:0] csrbank0_cntrl9_r;
-reg  csrbank0_cntrl9_we = 1'd0;
-wire [31:0] csrbank0_cntrl9_w;
-reg  csrbank0_cntrl8_re = 1'd0;
-wire [31:0] csrbank0_cntrl8_r;
-reg  csrbank0_cntrl8_we = 1'd0;
-wire [31:0] csrbank0_cntrl8_w;
-reg  csrbank0_cntrl7_re = 1'd0;
-wire [31:0] csrbank0_cntrl7_r;
-reg  csrbank0_cntrl7_we = 1'd0;
-wire [31:0] csrbank0_cntrl7_w;
-reg  csrbank0_cntrl6_re = 1'd0;
-wire [31:0] csrbank0_cntrl6_r;
-reg  csrbank0_cntrl6_we = 1'd0;
-wire [31:0] csrbank0_cntrl6_w;
-reg  csrbank0_cntrl5_re = 1'd0;
-wire [31:0] csrbank0_cntrl5_r;
-reg  csrbank0_cntrl5_we = 1'd0;
-wire [31:0] csrbank0_cntrl5_w;
-reg  csrbank0_cntrl4_re = 1'd0;
-wire [31:0] csrbank0_cntrl4_r;
-reg  csrbank0_cntrl4_we = 1'd0;
-wire [31:0] csrbank0_cntrl4_w;
-reg  csrbank0_cntrl3_re = 1'd0;
-wire [31:0] csrbank0_cntrl3_r;
-reg  csrbank0_cntrl3_we = 1'd0;
-wire [31:0] csrbank0_cntrl3_w;
-reg  csrbank0_cntrl2_re = 1'd0;
-wire [31:0] csrbank0_cntrl2_r;
-reg  csrbank0_cntrl2_we = 1'd0;
-wire [31:0] csrbank0_cntrl2_w;
-reg  csrbank0_cntrl1_re = 1'd0;
-wire [31:0] csrbank0_cntrl1_r;
-reg  csrbank0_cntrl1_we = 1'd0;
-wire [31:0] csrbank0_cntrl1_w;
-reg  csrbank0_cntrl0_re = 1'd0;
-wire [31:0] csrbank0_cntrl0_r;
-reg  csrbank0_cntrl0_we = 1'd0;
-wire [31:0] csrbank0_cntrl0_w;
-reg  csrbank0_enable0_re = 1'd0;
-wire csrbank0_enable0_r;
-reg  csrbank0_enable0_we = 1'd0;
-wire csrbank0_enable0_w;
-reg  csrbank0_test0_re = 1'd0;
-wire [31:0] csrbank0_test0_r;
-reg  csrbank0_test0_we = 1'd0;
-wire [31:0] csrbank0_test0_w;
-reg  csrbank0_ndma_re = 1'd0;
-wire [3:0] csrbank0_ndma_r;
-reg  csrbank0_ndma_we = 1'd0;
-wire [3:0] csrbank0_ndma_w;
-reg  csrbank0_enable_both0_re = 1'd0;
-wire csrbank0_enable_both0_r;
-reg  csrbank0_enable_both0_we = 1'd0;
-wire csrbank0_enable_both0_w;
-wire csrbank0_sel;
-wire [13:0] interface1_adr;
-wire interface1_we;
-wire [31:0] interface1_dat_w;
-reg  [31:0] interface1_dat_r = 32'd0;
-reg  csrbank1_reset0_re = 1'd0;
-wire [1:0] csrbank1_reset0_r;
-reg  csrbank1_reset0_we = 1'd0;
-wire [1:0] csrbank1_reset0_w;
-reg  csrbank1_scratch0_re = 1'd0;
-wire [31:0] csrbank1_scratch0_r;
-reg  csrbank1_scratch0_we = 1'd0;
-wire [31:0] csrbank1_scratch0_w;
-reg  csrbank1_bus_errors_re = 1'd0;
-wire [31:0] csrbank1_bus_errors_r;
-reg  csrbank1_bus_errors_we = 1'd0;
-wire [31:0] csrbank1_bus_errors_w;
-wire csrbank1_sel;
-wire [13:0] interface2_adr;
-wire interface2_we;
-wire [31:0] interface2_dat_w;
-reg  [31:0] interface2_dat_r = 32'd0;
-wire [5:0] mmap_adr;
-wire [7:0] mmap_dat_r;
-wire mmap_sel;
-reg  mmap_sel_r = 1'd0;
-wire [13:0] interface3_adr;
-wire interface3_we;
-wire [31:0] interface3_dat_w;
-reg  [31:0] interface3_dat_r = 32'd0;
-reg  csrbank2_writer_enable0_re = 1'd0;
-wire csrbank2_writer_enable0_r;
-reg  csrbank2_writer_enable0_we = 1'd0;
-wire csrbank2_writer_enable0_w;
-reg  csrbank2_writer_table_value1_re = 1'd0;
-wire [25:0] csrbank2_writer_table_value1_r;
-reg  csrbank2_writer_table_value1_we = 1'd0;
-wire [25:0] csrbank2_writer_table_value1_w;
-reg  csrbank2_writer_table_value0_re = 1'd0;
-wire [31:0] csrbank2_writer_table_value0_r;
-reg  csrbank2_writer_table_value0_we = 1'd0;
-wire [31:0] csrbank2_writer_table_value0_w;
-reg  csrbank2_writer_table_we0_re = 1'd0;
-wire [31:0] csrbank2_writer_table_we0_r;
-reg  csrbank2_writer_table_we0_we = 1'd0;
-wire [31:0] csrbank2_writer_table_we0_w;
-reg  csrbank2_writer_table_loop_prog_n0_re = 1'd0;
-wire csrbank2_writer_table_loop_prog_n0_r;
-reg  csrbank2_writer_table_loop_prog_n0_we = 1'd0;
-wire csrbank2_writer_table_loop_prog_n0_w;
-reg  csrbank2_writer_table_loop_status_re = 1'd0;
-wire [31:0] csrbank2_writer_table_loop_status_r;
-reg  csrbank2_writer_table_loop_status_we = 1'd0;
-wire [31:0] csrbank2_writer_table_loop_status_w;
-reg  csrbank2_writer_table_level_re = 1'd0;
-wire [8:0] csrbank2_writer_table_level_r;
-reg  csrbank2_writer_table_level_we = 1'd0;
-wire [8:0] csrbank2_writer_table_level_w;
-reg  csrbank2_writer_table_reset0_re = 1'd0;
-wire csrbank2_writer_table_reset0_r;
-reg  csrbank2_writer_table_reset0_we = 1'd0;
-wire csrbank2_writer_table_reset0_w;
-reg  csrbank2_reader_enable0_re = 1'd0;
-wire csrbank2_reader_enable0_r;
-reg  csrbank2_reader_enable0_we = 1'd0;
-wire csrbank2_reader_enable0_w;
-reg  csrbank2_reader_table_value1_re = 1'd0;
-wire [25:0] csrbank2_reader_table_value1_r;
-reg  csrbank2_reader_table_value1_we = 1'd0;
-wire [25:0] csrbank2_reader_table_value1_w;
-reg  csrbank2_reader_table_value0_re = 1'd0;
-wire [31:0] csrbank2_reader_table_value0_r;
-reg  csrbank2_reader_table_value0_we = 1'd0;
-wire [31:0] csrbank2_reader_table_value0_w;
-reg  csrbank2_reader_table_we0_re = 1'd0;
-wire [31:0] csrbank2_reader_table_we0_r;
-reg  csrbank2_reader_table_we0_we = 1'd0;
-wire [31:0] csrbank2_reader_table_we0_w;
-reg  csrbank2_reader_table_loop_prog_n0_re = 1'd0;
-wire csrbank2_reader_table_loop_prog_n0_r;
-reg  csrbank2_reader_table_loop_prog_n0_we = 1'd0;
-wire csrbank2_reader_table_loop_prog_n0_w;
-reg  csrbank2_reader_table_loop_status_re = 1'd0;
-wire [31:0] csrbank2_reader_table_loop_status_r;
-reg  csrbank2_reader_table_loop_status_we = 1'd0;
-wire [31:0] csrbank2_reader_table_loop_status_w;
-reg  csrbank2_reader_table_level_re = 1'd0;
-wire [8:0] csrbank2_reader_table_level_r;
-reg  csrbank2_reader_table_level_we = 1'd0;
-wire [8:0] csrbank2_reader_table_level_w;
-reg  csrbank2_reader_table_reset0_re = 1'd0;
-wire csrbank2_reader_table_reset0_r;
-reg  csrbank2_reader_table_reset0_we = 1'd0;
-wire csrbank2_reader_table_reset0_w;
-reg  csrbank2_buffering_reader_fifo_control0_re = 1'd0;
-wire [31:0] csrbank2_buffering_reader_fifo_control0_r;
-reg  csrbank2_buffering_reader_fifo_control0_we = 1'd0;
-wire [31:0] csrbank2_buffering_reader_fifo_control0_w;
-reg  csrbank2_buffering_reader_fifo_status_re = 1'd0;
-wire [23:0] csrbank2_buffering_reader_fifo_status_r;
-reg  csrbank2_buffering_reader_fifo_status_we = 1'd0;
-wire [23:0] csrbank2_buffering_reader_fifo_status_w;
-reg  csrbank2_buffering_writer_fifo_control0_re = 1'd0;
-wire [31:0] csrbank2_buffering_writer_fifo_control0_r;
-reg  csrbank2_buffering_writer_fifo_control0_we = 1'd0;
-wire [31:0] csrbank2_buffering_writer_fifo_control0_w;
-reg  csrbank2_buffering_writer_fifo_status_re = 1'd0;
-wire [23:0] csrbank2_buffering_writer_fifo_status_r;
-reg  csrbank2_buffering_writer_fifo_status_we = 1'd0;
-wire [23:0] csrbank2_buffering_writer_fifo_status_w;
-wire csrbank2_sel;
-wire [13:0] interface4_adr;
-wire interface4_we;
-wire [31:0] interface4_dat_w;
-reg  [31:0] interface4_dat_r = 32'd0;
-reg  csrbank3_writer_enable0_re = 1'd0;
-wire csrbank3_writer_enable0_r;
-reg  csrbank3_writer_enable0_we = 1'd0;
-wire csrbank3_writer_enable0_w;
-reg  csrbank3_writer_table_value1_re = 1'd0;
-wire [25:0] csrbank3_writer_table_value1_r;
-reg  csrbank3_writer_table_value1_we = 1'd0;
-wire [25:0] csrbank3_writer_table_value1_w;
-reg  csrbank3_writer_table_value0_re = 1'd0;
-wire [31:0] csrbank3_writer_table_value0_r;
-reg  csrbank3_writer_table_value0_we = 1'd0;
-wire [31:0] csrbank3_writer_table_value0_w;
-reg  csrbank3_writer_table_we0_re = 1'd0;
-wire [31:0] csrbank3_writer_table_we0_r;
-reg  csrbank3_writer_table_we0_we = 1'd0;
-wire [31:0] csrbank3_writer_table_we0_w;
-reg  csrbank3_writer_table_loop_prog_n0_re = 1'd0;
-wire csrbank3_writer_table_loop_prog_n0_r;
-reg  csrbank3_writer_table_loop_prog_n0_we = 1'd0;
-wire csrbank3_writer_table_loop_prog_n0_w;
-reg  csrbank3_writer_table_loop_status_re = 1'd0;
-wire [31:0] csrbank3_writer_table_loop_status_r;
-reg  csrbank3_writer_table_loop_status_we = 1'd0;
-wire [31:0] csrbank3_writer_table_loop_status_w;
-reg  csrbank3_writer_table_level_re = 1'd0;
-wire [8:0] csrbank3_writer_table_level_r;
-reg  csrbank3_writer_table_level_we = 1'd0;
-wire [8:0] csrbank3_writer_table_level_w;
-reg  csrbank3_writer_table_reset0_re = 1'd0;
-wire csrbank3_writer_table_reset0_r;
-reg  csrbank3_writer_table_reset0_we = 1'd0;
-wire csrbank3_writer_table_reset0_w;
-reg  csrbank3_reader_enable0_re = 1'd0;
-wire csrbank3_reader_enable0_r;
-reg  csrbank3_reader_enable0_we = 1'd0;
-wire csrbank3_reader_enable0_w;
-reg  csrbank3_reader_table_value1_re = 1'd0;
-wire [25:0] csrbank3_reader_table_value1_r;
-reg  csrbank3_reader_table_value1_we = 1'd0;
-wire [25:0] csrbank3_reader_table_value1_w;
-reg  csrbank3_reader_table_value0_re = 1'd0;
-wire [31:0] csrbank3_reader_table_value0_r;
-reg  csrbank3_reader_table_value0_we = 1'd0;
-wire [31:0] csrbank3_reader_table_value0_w;
-reg  csrbank3_reader_table_we0_re = 1'd0;
-wire [31:0] csrbank3_reader_table_we0_r;
-reg  csrbank3_reader_table_we0_we = 1'd0;
-wire [31:0] csrbank3_reader_table_we0_w;
-reg  csrbank3_reader_table_loop_prog_n0_re = 1'd0;
-wire csrbank3_reader_table_loop_prog_n0_r;
-reg  csrbank3_reader_table_loop_prog_n0_we = 1'd0;
-wire csrbank3_reader_table_loop_prog_n0_w;
-reg  csrbank3_reader_table_loop_status_re = 1'd0;
-wire [31:0] csrbank3_reader_table_loop_status_r;
-reg  csrbank3_reader_table_loop_status_we = 1'd0;
-wire [31:0] csrbank3_reader_table_loop_status_w;
-reg  csrbank3_reader_table_level_re = 1'd0;
-wire [8:0] csrbank3_reader_table_level_r;
-reg  csrbank3_reader_table_level_we = 1'd0;
-wire [8:0] csrbank3_reader_table_level_w;
-reg  csrbank3_reader_table_reset0_re = 1'd0;
-wire csrbank3_reader_table_reset0_r;
-reg  csrbank3_reader_table_reset0_we = 1'd0;
-wire csrbank3_reader_table_reset0_w;
-reg  csrbank3_buffering_reader_fifo_control0_re = 1'd0;
-wire [31:0] csrbank3_buffering_reader_fifo_control0_r;
-reg  csrbank3_buffering_reader_fifo_control0_we = 1'd0;
-wire [31:0] csrbank3_buffering_reader_fifo_control0_w;
-reg  csrbank3_buffering_reader_fifo_status_re = 1'd0;
-wire [23:0] csrbank3_buffering_reader_fifo_status_r;
-reg  csrbank3_buffering_reader_fifo_status_we = 1'd0;
-wire [23:0] csrbank3_buffering_reader_fifo_status_w;
-reg  csrbank3_buffering_writer_fifo_control0_re = 1'd0;
-wire [31:0] csrbank3_buffering_writer_fifo_control0_r;
-reg  csrbank3_buffering_writer_fifo_control0_we = 1'd0;
-wire [31:0] csrbank3_buffering_writer_fifo_control0_w;
-reg  csrbank3_buffering_writer_fifo_status_re = 1'd0;
-wire [23:0] csrbank3_buffering_writer_fifo_status_r;
-reg  csrbank3_buffering_writer_fifo_status_we = 1'd0;
-wire [23:0] csrbank3_buffering_writer_fifo_status_w;
-wire csrbank3_sel;
-wire [13:0] interface5_adr;
-wire interface5_we;
-wire [31:0] interface5_dat_w;
-reg  [31:0] interface5_dat_r = 32'd0;
-reg  csrbank4_writer_enable0_re = 1'd0;
-wire csrbank4_writer_enable0_r;
-reg  csrbank4_writer_enable0_we = 1'd0;
-wire csrbank4_writer_enable0_w;
-reg  csrbank4_writer_table_value1_re = 1'd0;
-wire [25:0] csrbank4_writer_table_value1_r;
-reg  csrbank4_writer_table_value1_we = 1'd0;
-wire [25:0] csrbank4_writer_table_value1_w;
-reg  csrbank4_writer_table_value0_re = 1'd0;
-wire [31:0] csrbank4_writer_table_value0_r;
-reg  csrbank4_writer_table_value0_we = 1'd0;
-wire [31:0] csrbank4_writer_table_value0_w;
-reg  csrbank4_writer_table_we0_re = 1'd0;
-wire [31:0] csrbank4_writer_table_we0_r;
-reg  csrbank4_writer_table_we0_we = 1'd0;
-wire [31:0] csrbank4_writer_table_we0_w;
-reg  csrbank4_writer_table_loop_prog_n0_re = 1'd0;
-wire csrbank4_writer_table_loop_prog_n0_r;
-reg  csrbank4_writer_table_loop_prog_n0_we = 1'd0;
-wire csrbank4_writer_table_loop_prog_n0_w;
-reg  csrbank4_writer_table_loop_status_re = 1'd0;
-wire [31:0] csrbank4_writer_table_loop_status_r;
-reg  csrbank4_writer_table_loop_status_we = 1'd0;
-wire [31:0] csrbank4_writer_table_loop_status_w;
-reg  csrbank4_writer_table_level_re = 1'd0;
-wire [8:0] csrbank4_writer_table_level_r;
-reg  csrbank4_writer_table_level_we = 1'd0;
-wire [8:0] csrbank4_writer_table_level_w;
-reg  csrbank4_writer_table_reset0_re = 1'd0;
-wire csrbank4_writer_table_reset0_r;
-reg  csrbank4_writer_table_reset0_we = 1'd0;
-wire csrbank4_writer_table_reset0_w;
-reg  csrbank4_reader_enable0_re = 1'd0;
-wire csrbank4_reader_enable0_r;
-reg  csrbank4_reader_enable0_we = 1'd0;
-wire csrbank4_reader_enable0_w;
-reg  csrbank4_reader_table_value1_re = 1'd0;
-wire [25:0] csrbank4_reader_table_value1_r;
-reg  csrbank4_reader_table_value1_we = 1'd0;
-wire [25:0] csrbank4_reader_table_value1_w;
-reg  csrbank4_reader_table_value0_re = 1'd0;
-wire [31:0] csrbank4_reader_table_value0_r;
-reg  csrbank4_reader_table_value0_we = 1'd0;
-wire [31:0] csrbank4_reader_table_value0_w;
-reg  csrbank4_reader_table_we0_re = 1'd0;
-wire [31:0] csrbank4_reader_table_we0_r;
-reg  csrbank4_reader_table_we0_we = 1'd0;
-wire [31:0] csrbank4_reader_table_we0_w;
-reg  csrbank4_reader_table_loop_prog_n0_re = 1'd0;
-wire csrbank4_reader_table_loop_prog_n0_r;
-reg  csrbank4_reader_table_loop_prog_n0_we = 1'd0;
-wire csrbank4_reader_table_loop_prog_n0_w;
-reg  csrbank4_reader_table_loop_status_re = 1'd0;
-wire [31:0] csrbank4_reader_table_loop_status_r;
-reg  csrbank4_reader_table_loop_status_we = 1'd0;
-wire [31:0] csrbank4_reader_table_loop_status_w;
-reg  csrbank4_reader_table_level_re = 1'd0;
-wire [8:0] csrbank4_reader_table_level_r;
-reg  csrbank4_reader_table_level_we = 1'd0;
-wire [8:0] csrbank4_reader_table_level_w;
-reg  csrbank4_reader_table_reset0_re = 1'd0;
-wire csrbank4_reader_table_reset0_r;
-reg  csrbank4_reader_table_reset0_we = 1'd0;
-wire csrbank4_reader_table_reset0_w;
-reg  csrbank4_buffering_reader_fifo_control0_re = 1'd0;
-wire [31:0] csrbank4_buffering_reader_fifo_control0_r;
-reg  csrbank4_buffering_reader_fifo_control0_we = 1'd0;
-wire [31:0] csrbank4_buffering_reader_fifo_control0_w;
-reg  csrbank4_buffering_reader_fifo_status_re = 1'd0;
-wire [23:0] csrbank4_buffering_reader_fifo_status_r;
-reg  csrbank4_buffering_reader_fifo_status_we = 1'd0;
-wire [23:0] csrbank4_buffering_reader_fifo_status_w;
-reg  csrbank4_buffering_writer_fifo_control0_re = 1'd0;
-wire [31:0] csrbank4_buffering_writer_fifo_control0_r;
-reg  csrbank4_buffering_writer_fifo_control0_we = 1'd0;
-wire [31:0] csrbank4_buffering_writer_fifo_control0_w;
-reg  csrbank4_buffering_writer_fifo_status_re = 1'd0;
-wire [23:0] csrbank4_buffering_writer_fifo_status_r;
-reg  csrbank4_buffering_writer_fifo_status_we = 1'd0;
-wire [23:0] csrbank4_buffering_writer_fifo_status_w;
-wire csrbank4_sel;
-wire [13:0] interface6_adr;
-wire interface6_we;
-wire [31:0] interface6_dat_w;
-reg  [31:0] interface6_dat_r = 32'd0;
-reg  csrbank5_enable0_re = 1'd0;
-wire [31:0] csrbank5_enable0_r;
-reg  csrbank5_enable0_we = 1'd0;
-wire [31:0] csrbank5_enable0_w;
-reg  csrbank5_clear0_re = 1'd0;
-wire [31:0] csrbank5_clear0_r;
-reg  csrbank5_clear0_we = 1'd0;
-wire [31:0] csrbank5_clear0_w;
-reg  csrbank5_vector_re = 1'd0;
-wire [31:0] csrbank5_vector_r;
-reg  csrbank5_vector_we = 1'd0;
-wire [31:0] csrbank5_vector_w;
-wire csrbank5_sel;
-wire [13:0] interface7_adr;
-wire interface7_we;
-wire [31:0] interface7_dat_w;
-reg  [31:0] interface7_dat_r = 32'd0;
-reg  csrbank6_link_status_re = 1'd0;
-wire [9:0] csrbank6_link_status_r;
-reg  csrbank6_link_status_we = 1'd0;
-wire [9:0] csrbank6_link_status_w;
-reg  csrbank6_msi_enable_re = 1'd0;
-wire csrbank6_msi_enable_r;
-reg  csrbank6_msi_enable_we = 1'd0;
-wire csrbank6_msi_enable_w;
-reg  csrbank6_msix_enable_re = 1'd0;
-wire csrbank6_msix_enable_r;
-reg  csrbank6_msix_enable_we = 1'd0;
-wire csrbank6_msix_enable_w;
-reg  csrbank6_bus_master_enable_re = 1'd0;
-wire csrbank6_bus_master_enable_r;
-reg  csrbank6_bus_master_enable_we = 1'd0;
-wire csrbank6_bus_master_enable_w;
-reg  csrbank6_max_request_size_re = 1'd0;
-wire [15:0] csrbank6_max_request_size_r;
-reg  csrbank6_max_request_size_we = 1'd0;
-wire [15:0] csrbank6_max_request_size_w;
-reg  csrbank6_max_payload_size_re = 1'd0;
-wire [15:0] csrbank6_max_payload_size_r;
-reg  csrbank6_max_payload_size_we = 1'd0;
-wire [15:0] csrbank6_max_payload_size_w;
-wire csrbank6_sel;
+wire [13:0] csr_bankarray_interface0_bank_bus_adr;
+wire csr_bankarray_interface0_bank_bus_we;
+wire [31:0] csr_bankarray_interface0_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface0_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank0_cntrl15_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl15_r;
+reg  csr_bankarray_csrbank0_cntrl15_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl15_w;
+reg  csr_bankarray_csrbank0_cntrl14_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl14_r;
+reg  csr_bankarray_csrbank0_cntrl14_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl14_w;
+reg  csr_bankarray_csrbank0_cntrl13_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl13_r;
+reg  csr_bankarray_csrbank0_cntrl13_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl13_w;
+reg  csr_bankarray_csrbank0_cntrl12_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl12_r;
+reg  csr_bankarray_csrbank0_cntrl12_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl12_w;
+reg  csr_bankarray_csrbank0_cntrl11_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl11_r;
+reg  csr_bankarray_csrbank0_cntrl11_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl11_w;
+reg  csr_bankarray_csrbank0_cntrl10_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl10_r;
+reg  csr_bankarray_csrbank0_cntrl10_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl10_w;
+reg  csr_bankarray_csrbank0_cntrl9_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl9_r;
+reg  csr_bankarray_csrbank0_cntrl9_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl9_w;
+reg  csr_bankarray_csrbank0_cntrl8_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl8_r;
+reg  csr_bankarray_csrbank0_cntrl8_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl8_w;
+reg  csr_bankarray_csrbank0_cntrl7_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl7_r;
+reg  csr_bankarray_csrbank0_cntrl7_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl7_w;
+reg  csr_bankarray_csrbank0_cntrl6_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl6_r;
+reg  csr_bankarray_csrbank0_cntrl6_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl6_w;
+reg  csr_bankarray_csrbank0_cntrl5_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl5_r;
+reg  csr_bankarray_csrbank0_cntrl5_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl5_w;
+reg  csr_bankarray_csrbank0_cntrl4_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl4_r;
+reg  csr_bankarray_csrbank0_cntrl4_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl4_w;
+reg  csr_bankarray_csrbank0_cntrl3_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl3_r;
+reg  csr_bankarray_csrbank0_cntrl3_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl3_w;
+reg  csr_bankarray_csrbank0_cntrl2_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl2_r;
+reg  csr_bankarray_csrbank0_cntrl2_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl2_w;
+reg  csr_bankarray_csrbank0_cntrl1_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl1_r;
+reg  csr_bankarray_csrbank0_cntrl1_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl1_w;
+reg  csr_bankarray_csrbank0_cntrl0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl0_r;
+reg  csr_bankarray_csrbank0_cntrl0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_cntrl0_w;
+reg  csr_bankarray_csrbank0_enable0_re = 1'd0;
+wire csr_bankarray_csrbank0_enable0_r;
+reg  csr_bankarray_csrbank0_enable0_we = 1'd0;
+wire csr_bankarray_csrbank0_enable0_w;
+reg  csr_bankarray_csrbank0_test0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_test0_r;
+reg  csr_bankarray_csrbank0_test0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank0_test0_w;
+reg  csr_bankarray_csrbank0_ndma_re = 1'd0;
+wire [3:0] csr_bankarray_csrbank0_ndma_r;
+reg  csr_bankarray_csrbank0_ndma_we = 1'd0;
+wire [3:0] csr_bankarray_csrbank0_ndma_w;
+reg  csr_bankarray_csrbank0_enable_both0_re = 1'd0;
+wire csr_bankarray_csrbank0_enable_both0_r;
+reg  csr_bankarray_csrbank0_enable_both0_we = 1'd0;
+wire csr_bankarray_csrbank0_enable_both0_w;
+wire csr_bankarray_csrbank0_sel;
+wire [13:0] csr_bankarray_interface1_bank_bus_adr;
+wire csr_bankarray_interface1_bank_bus_we;
+wire [31:0] csr_bankarray_interface1_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface1_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank1_reset0_re = 1'd0;
+wire [1:0] csr_bankarray_csrbank1_reset0_r;
+reg  csr_bankarray_csrbank1_reset0_we = 1'd0;
+wire [1:0] csr_bankarray_csrbank1_reset0_w;
+reg  csr_bankarray_csrbank1_scratch0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank1_scratch0_r;
+reg  csr_bankarray_csrbank1_scratch0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank1_scratch0_w;
+reg  csr_bankarray_csrbank1_bus_errors_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank1_bus_errors_r;
+reg  csr_bankarray_csrbank1_bus_errors_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank1_bus_errors_w;
+wire csr_bankarray_csrbank1_sel;
+wire [13:0] csr_bankarray_sram_bus_adr;
+wire csr_bankarray_sram_bus_we;
+wire [31:0] csr_bankarray_sram_bus_dat_w;
+reg  [31:0] csr_bankarray_sram_bus_dat_r = 32'd0;
+wire [5:0] csr_bankarray_adr;
+wire [7:0] csr_bankarray_dat_r;
+wire csr_bankarray_sel;
+reg  csr_bankarray_sel_r = 1'd0;
+wire [13:0] csr_bankarray_interface2_bank_bus_adr;
+wire csr_bankarray_interface2_bank_bus_we;
+wire [31:0] csr_bankarray_interface2_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface2_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank2_writer_enable0_re = 1'd0;
+wire csr_bankarray_csrbank2_writer_enable0_r;
+reg  csr_bankarray_csrbank2_writer_enable0_we = 1'd0;
+wire csr_bankarray_csrbank2_writer_enable0_w;
+reg  csr_bankarray_csrbank2_writer_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank2_writer_table_value1_r;
+reg  csr_bankarray_csrbank2_writer_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank2_writer_table_value1_w;
+reg  csr_bankarray_csrbank2_writer_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_value0_r;
+reg  csr_bankarray_csrbank2_writer_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_value0_w;
+reg  csr_bankarray_csrbank2_writer_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_we0_r;
+reg  csr_bankarray_csrbank2_writer_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_we0_w;
+reg  csr_bankarray_csrbank2_writer_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank2_writer_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank2_writer_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank2_writer_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank2_writer_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_loop_status_r;
+reg  csr_bankarray_csrbank2_writer_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_loop_status_w;
+reg  csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank2_writer_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank2_writer_table_level_r;
+reg  csr_bankarray_csrbank2_writer_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank2_writer_table_level_w;
+reg  csr_bankarray_csrbank2_writer_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank2_writer_table_reset0_r;
+reg  csr_bankarray_csrbank2_writer_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank2_writer_table_reset0_w;
+reg  csr_bankarray_csrbank2_reader_enable0_re = 1'd0;
+wire csr_bankarray_csrbank2_reader_enable0_r;
+reg  csr_bankarray_csrbank2_reader_enable0_we = 1'd0;
+wire csr_bankarray_csrbank2_reader_enable0_w;
+reg  csr_bankarray_csrbank2_reader_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank2_reader_table_value1_r;
+reg  csr_bankarray_csrbank2_reader_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank2_reader_table_value1_w;
+reg  csr_bankarray_csrbank2_reader_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_value0_r;
+reg  csr_bankarray_csrbank2_reader_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_value0_w;
+reg  csr_bankarray_csrbank2_reader_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_we0_r;
+reg  csr_bankarray_csrbank2_reader_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_we0_w;
+reg  csr_bankarray_csrbank2_reader_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank2_reader_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank2_reader_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank2_reader_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank2_reader_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_loop_status_r;
+reg  csr_bankarray_csrbank2_reader_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_loop_status_w;
+reg  csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank2_reader_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank2_reader_table_level_r;
+reg  csr_bankarray_csrbank2_reader_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank2_reader_table_level_w;
+reg  csr_bankarray_csrbank2_reader_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank2_reader_table_reset0_r;
+reg  csr_bankarray_csrbank2_reader_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank2_reader_table_reset0_w;
+reg  csr_bankarray_csrbank2_buffering_reader_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_buffering_reader_fifo_control0_r;
+reg  csr_bankarray_csrbank2_buffering_reader_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_buffering_reader_fifo_control0_w;
+reg  csr_bankarray_csrbank2_buffering_reader_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank2_buffering_reader_fifo_status_r;
+reg  csr_bankarray_csrbank2_buffering_reader_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank2_buffering_reader_fifo_status_w;
+reg  csr_bankarray_csrbank2_buffering_writer_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_buffering_writer_fifo_control0_r;
+reg  csr_bankarray_csrbank2_buffering_writer_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank2_buffering_writer_fifo_control0_w;
+reg  csr_bankarray_csrbank2_buffering_writer_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank2_buffering_writer_fifo_status_r;
+reg  csr_bankarray_csrbank2_buffering_writer_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank2_buffering_writer_fifo_status_w;
+wire csr_bankarray_csrbank2_sel;
+wire [13:0] csr_bankarray_interface3_bank_bus_adr;
+wire csr_bankarray_interface3_bank_bus_we;
+wire [31:0] csr_bankarray_interface3_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface3_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank3_writer_enable0_re = 1'd0;
+wire csr_bankarray_csrbank3_writer_enable0_r;
+reg  csr_bankarray_csrbank3_writer_enable0_we = 1'd0;
+wire csr_bankarray_csrbank3_writer_enable0_w;
+reg  csr_bankarray_csrbank3_writer_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank3_writer_table_value1_r;
+reg  csr_bankarray_csrbank3_writer_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank3_writer_table_value1_w;
+reg  csr_bankarray_csrbank3_writer_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_value0_r;
+reg  csr_bankarray_csrbank3_writer_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_value0_w;
+reg  csr_bankarray_csrbank3_writer_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_we0_r;
+reg  csr_bankarray_csrbank3_writer_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_we0_w;
+reg  csr_bankarray_csrbank3_writer_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank3_writer_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank3_writer_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank3_writer_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank3_writer_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_loop_status_r;
+reg  csr_bankarray_csrbank3_writer_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_loop_status_w;
+reg  csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank3_writer_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank3_writer_table_level_r;
+reg  csr_bankarray_csrbank3_writer_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank3_writer_table_level_w;
+reg  csr_bankarray_csrbank3_writer_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank3_writer_table_reset0_r;
+reg  csr_bankarray_csrbank3_writer_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank3_writer_table_reset0_w;
+reg  csr_bankarray_csrbank3_reader_enable0_re = 1'd0;
+wire csr_bankarray_csrbank3_reader_enable0_r;
+reg  csr_bankarray_csrbank3_reader_enable0_we = 1'd0;
+wire csr_bankarray_csrbank3_reader_enable0_w;
+reg  csr_bankarray_csrbank3_reader_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank3_reader_table_value1_r;
+reg  csr_bankarray_csrbank3_reader_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank3_reader_table_value1_w;
+reg  csr_bankarray_csrbank3_reader_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_value0_r;
+reg  csr_bankarray_csrbank3_reader_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_value0_w;
+reg  csr_bankarray_csrbank3_reader_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_we0_r;
+reg  csr_bankarray_csrbank3_reader_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_we0_w;
+reg  csr_bankarray_csrbank3_reader_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank3_reader_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank3_reader_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank3_reader_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank3_reader_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_loop_status_r;
+reg  csr_bankarray_csrbank3_reader_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_loop_status_w;
+reg  csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank3_reader_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank3_reader_table_level_r;
+reg  csr_bankarray_csrbank3_reader_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank3_reader_table_level_w;
+reg  csr_bankarray_csrbank3_reader_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank3_reader_table_reset0_r;
+reg  csr_bankarray_csrbank3_reader_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank3_reader_table_reset0_w;
+reg  csr_bankarray_csrbank3_buffering_reader_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_buffering_reader_fifo_control0_r;
+reg  csr_bankarray_csrbank3_buffering_reader_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_buffering_reader_fifo_control0_w;
+reg  csr_bankarray_csrbank3_buffering_reader_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank3_buffering_reader_fifo_status_r;
+reg  csr_bankarray_csrbank3_buffering_reader_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank3_buffering_reader_fifo_status_w;
+reg  csr_bankarray_csrbank3_buffering_writer_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_buffering_writer_fifo_control0_r;
+reg  csr_bankarray_csrbank3_buffering_writer_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank3_buffering_writer_fifo_control0_w;
+reg  csr_bankarray_csrbank3_buffering_writer_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank3_buffering_writer_fifo_status_r;
+reg  csr_bankarray_csrbank3_buffering_writer_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank3_buffering_writer_fifo_status_w;
+wire csr_bankarray_csrbank3_sel;
+wire [13:0] csr_bankarray_interface4_bank_bus_adr;
+wire csr_bankarray_interface4_bank_bus_we;
+wire [31:0] csr_bankarray_interface4_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface4_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank4_writer_enable0_re = 1'd0;
+wire csr_bankarray_csrbank4_writer_enable0_r;
+reg  csr_bankarray_csrbank4_writer_enable0_we = 1'd0;
+wire csr_bankarray_csrbank4_writer_enable0_w;
+reg  csr_bankarray_csrbank4_writer_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank4_writer_table_value1_r;
+reg  csr_bankarray_csrbank4_writer_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank4_writer_table_value1_w;
+reg  csr_bankarray_csrbank4_writer_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_value0_r;
+reg  csr_bankarray_csrbank4_writer_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_value0_w;
+reg  csr_bankarray_csrbank4_writer_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_we0_r;
+reg  csr_bankarray_csrbank4_writer_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_we0_w;
+reg  csr_bankarray_csrbank4_writer_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank4_writer_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank4_writer_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank4_writer_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank4_writer_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_loop_status_r;
+reg  csr_bankarray_csrbank4_writer_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_loop_status_w;
+reg  csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank4_writer_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank4_writer_table_level_r;
+reg  csr_bankarray_csrbank4_writer_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank4_writer_table_level_w;
+reg  csr_bankarray_csrbank4_writer_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank4_writer_table_reset0_r;
+reg  csr_bankarray_csrbank4_writer_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank4_writer_table_reset0_w;
+reg  csr_bankarray_csrbank4_reader_enable0_re = 1'd0;
+wire csr_bankarray_csrbank4_reader_enable0_r;
+reg  csr_bankarray_csrbank4_reader_enable0_we = 1'd0;
+wire csr_bankarray_csrbank4_reader_enable0_w;
+reg  csr_bankarray_csrbank4_reader_table_value1_re = 1'd0;
+wire [25:0] csr_bankarray_csrbank4_reader_table_value1_r;
+reg  csr_bankarray_csrbank4_reader_table_value1_we = 1'd0;
+wire [25:0] csr_bankarray_csrbank4_reader_table_value1_w;
+reg  csr_bankarray_csrbank4_reader_table_value0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_value0_r;
+reg  csr_bankarray_csrbank4_reader_table_value0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_value0_w;
+reg  csr_bankarray_csrbank4_reader_table_we0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_we0_r;
+reg  csr_bankarray_csrbank4_reader_table_we0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_we0_w;
+reg  csr_bankarray_csrbank4_reader_table_loop_prog_n0_re = 1'd0;
+wire csr_bankarray_csrbank4_reader_table_loop_prog_n0_r;
+reg  csr_bankarray_csrbank4_reader_table_loop_prog_n0_we = 1'd0;
+wire csr_bankarray_csrbank4_reader_table_loop_prog_n0_w;
+reg  csr_bankarray_csrbank4_reader_table_loop_status_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_loop_status_r;
+reg  csr_bankarray_csrbank4_reader_table_loop_status_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_loop_status_w;
+reg  csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_r;
+reg  csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_w;
+reg  csr_bankarray_csrbank4_reader_table_level_re = 1'd0;
+wire [8:0] csr_bankarray_csrbank4_reader_table_level_r;
+reg  csr_bankarray_csrbank4_reader_table_level_we = 1'd0;
+wire [8:0] csr_bankarray_csrbank4_reader_table_level_w;
+reg  csr_bankarray_csrbank4_reader_table_reset0_re = 1'd0;
+wire csr_bankarray_csrbank4_reader_table_reset0_r;
+reg  csr_bankarray_csrbank4_reader_table_reset0_we = 1'd0;
+wire csr_bankarray_csrbank4_reader_table_reset0_w;
+reg  csr_bankarray_csrbank4_buffering_reader_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_buffering_reader_fifo_control0_r;
+reg  csr_bankarray_csrbank4_buffering_reader_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_buffering_reader_fifo_control0_w;
+reg  csr_bankarray_csrbank4_buffering_reader_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank4_buffering_reader_fifo_status_r;
+reg  csr_bankarray_csrbank4_buffering_reader_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank4_buffering_reader_fifo_status_w;
+reg  csr_bankarray_csrbank4_buffering_writer_fifo_control0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_buffering_writer_fifo_control0_r;
+reg  csr_bankarray_csrbank4_buffering_writer_fifo_control0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank4_buffering_writer_fifo_control0_w;
+reg  csr_bankarray_csrbank4_buffering_writer_fifo_status_re = 1'd0;
+wire [23:0] csr_bankarray_csrbank4_buffering_writer_fifo_status_r;
+reg  csr_bankarray_csrbank4_buffering_writer_fifo_status_we = 1'd0;
+wire [23:0] csr_bankarray_csrbank4_buffering_writer_fifo_status_w;
+wire csr_bankarray_csrbank4_sel;
+wire [13:0] csr_bankarray_interface5_bank_bus_adr;
+wire csr_bankarray_interface5_bank_bus_we;
+wire [31:0] csr_bankarray_interface5_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface5_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank5_enable0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_enable0_r;
+reg  csr_bankarray_csrbank5_enable0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_enable0_w;
+reg  csr_bankarray_csrbank5_clear0_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_clear0_r;
+reg  csr_bankarray_csrbank5_clear0_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_clear0_w;
+reg  csr_bankarray_csrbank5_vector_re = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_vector_r;
+reg  csr_bankarray_csrbank5_vector_we = 1'd0;
+wire [31:0] csr_bankarray_csrbank5_vector_w;
+wire csr_bankarray_csrbank5_sel;
+wire [13:0] csr_bankarray_interface6_bank_bus_adr;
+wire csr_bankarray_interface6_bank_bus_we;
+wire [31:0] csr_bankarray_interface6_bank_bus_dat_w;
+reg  [31:0] csr_bankarray_interface6_bank_bus_dat_r = 32'd0;
+reg  csr_bankarray_csrbank6_link_status_re = 1'd0;
+wire [9:0] csr_bankarray_csrbank6_link_status_r;
+reg  csr_bankarray_csrbank6_link_status_we = 1'd0;
+wire [9:0] csr_bankarray_csrbank6_link_status_w;
+reg  csr_bankarray_csrbank6_msi_enable_re = 1'd0;
+wire csr_bankarray_csrbank6_msi_enable_r;
+reg  csr_bankarray_csrbank6_msi_enable_we = 1'd0;
+wire csr_bankarray_csrbank6_msi_enable_w;
+reg  csr_bankarray_csrbank6_msix_enable_re = 1'd0;
+wire csr_bankarray_csrbank6_msix_enable_r;
+reg  csr_bankarray_csrbank6_msix_enable_we = 1'd0;
+wire csr_bankarray_csrbank6_msix_enable_w;
+reg  csr_bankarray_csrbank6_bus_master_enable_re = 1'd0;
+wire csr_bankarray_csrbank6_bus_master_enable_r;
+reg  csr_bankarray_csrbank6_bus_master_enable_we = 1'd0;
+wire csr_bankarray_csrbank6_bus_master_enable_w;
+reg  csr_bankarray_csrbank6_max_request_size_re = 1'd0;
+wire [15:0] csr_bankarray_csrbank6_max_request_size_r;
+reg  csr_bankarray_csrbank6_max_request_size_we = 1'd0;
+wire [15:0] csr_bankarray_csrbank6_max_request_size_w;
+reg  csr_bankarray_csrbank6_max_payload_size_re = 1'd0;
+wire [15:0] csr_bankarray_csrbank6_max_payload_size_r;
+reg  csr_bankarray_csrbank6_max_payload_size_we = 1'd0;
+wire [15:0] csr_bankarray_csrbank6_max_payload_size_w;
+wire csr_bankarray_csrbank6_sel;
 wire [13:0] csr_interconnect_adr;
 wire csr_interconnect_we;
 wire [31:0] csr_interconnect_dat_w;
@@ -3921,22 +3873,22 @@ reg  [2:0] litepciecore_litepcieendpoint_fill_tag_litepciecrossbar_next_value = 
 reg  litepciecore_litepcieendpoint_fill_tag_litepciecrossbar_next_value_ce = 1'd0;
 reg  [1:0] litepciecore_litepciewishbonemaster_state = 2'd0;
 reg  [1:0] litepciecore_litepciewishbonemaster_next_state = 2'd0;
-reg  litepciecore_bufferizeendpoints0_state0 = 1'd0;
-reg  litepciecore_bufferizeendpoints0_next_state0 = 1'd0;
-reg  [31:0] litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value0 = 32'd0;
-reg  litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value_ce0 = 1'd0;
-reg  [31:0] litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value1 = 32'd0;
-reg  litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value_ce1 = 1'd0;
-reg  [31:0] litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value2 = 32'd0;
-reg  litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value_ce2 = 1'd0;
+reg  litepciecore_resetinserter0_state = 1'd0;
+reg  litepciecore_resetinserter0_next_state = 1'd0;
+reg  [31:0] litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value0 = 32'd0;
+reg  litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value_ce0 = 1'd0;
+reg  [31:0] litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value1 = 32'd0;
+reg  litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value_ce1 = 1'd0;
+reg  [31:0] litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value2 = 32'd0;
+reg  litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value_ce2 = 1'd0;
 reg  litepciecore_fsm0_state0 = 1'd0;
 reg  litepciecore_fsm0_next_state0 = 1'd0;
 reg  [23:0] litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value0 = 24'd0;
 reg  litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value_ce0 = 1'd0;
 reg  litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value1 = 1'd0;
 reg  litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value_ce1 = 1'd0;
-reg  litepciecore_bufferizeendpoints0_state1 = 1'd0;
-reg  litepciecore_bufferizeendpoints0_next_state1 = 1'd0;
+reg  litepciecore_bufferizeendpoints0_state = 1'd0;
+reg  litepciecore_bufferizeendpoints0_next_state = 1'd0;
 reg  [31:0] litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value0 = 32'd0;
 reg  litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value_ce0 = 1'd0;
 reg  [31:0] litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value1 = 32'd0;
@@ -3945,22 +3897,22 @@ reg  [31:0] litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value2
 reg  litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value_ce2 = 1'd0;
 reg  litepciecore_fsm0_state1 = 1'd0;
 reg  litepciecore_fsm0_next_state1 = 1'd0;
-reg  litepciecore_bufferizeendpoints1_state0 = 1'd0;
-reg  litepciecore_bufferizeendpoints1_next_state0 = 1'd0;
-reg  [31:0] litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value0 = 32'd0;
-reg  litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value_ce0 = 1'd0;
-reg  [31:0] litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value1 = 32'd0;
-reg  litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value_ce1 = 1'd0;
-reg  [31:0] litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value2 = 32'd0;
-reg  litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value_ce2 = 1'd0;
+reg  litepciecore_resetinserter1_state = 1'd0;
+reg  litepciecore_resetinserter1_next_state = 1'd0;
+reg  [31:0] litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value0 = 32'd0;
+reg  litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value_ce0 = 1'd0;
+reg  [31:0] litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value1 = 32'd0;
+reg  litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value_ce1 = 1'd0;
+reg  [31:0] litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value2 = 32'd0;
+reg  litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value_ce2 = 1'd0;
 reg  litepciecore_fsm1_state0 = 1'd0;
 reg  litepciecore_fsm1_next_state0 = 1'd0;
 reg  [23:0] litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value0 = 24'd0;
 reg  litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value_ce0 = 1'd0;
 reg  litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 = 1'd0;
 reg  litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 = 1'd0;
-reg  litepciecore_bufferizeendpoints1_state1 = 1'd0;
-reg  litepciecore_bufferizeendpoints1_next_state1 = 1'd0;
+reg  litepciecore_bufferizeendpoints1_state = 1'd0;
+reg  litepciecore_bufferizeendpoints1_next_state = 1'd0;
 reg  [31:0] litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value0 = 32'd0;
 reg  litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value_ce0 = 1'd0;
 reg  [31:0] litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value1 = 32'd0;
@@ -3969,22 +3921,22 @@ reg  [31:0] litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value2
 reg  litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value_ce2 = 1'd0;
 reg  litepciecore_fsm1_state1 = 1'd0;
 reg  litepciecore_fsm1_next_state1 = 1'd0;
-reg  litepciecore_bufferizeendpoints2_state0 = 1'd0;
-reg  litepciecore_bufferizeendpoints2_next_state0 = 1'd0;
-reg  [31:0] litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value0 = 32'd0;
-reg  litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value_ce0 = 1'd0;
-reg  [31:0] litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value1 = 32'd0;
-reg  litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value_ce1 = 1'd0;
-reg  [31:0] litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value2 = 32'd0;
-reg  litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value_ce2 = 1'd0;
+reg  litepciecore_resetinserter2_state = 1'd0;
+reg  litepciecore_resetinserter2_next_state = 1'd0;
+reg  [31:0] litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value0 = 32'd0;
+reg  litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value_ce0 = 1'd0;
+reg  [31:0] litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value1 = 32'd0;
+reg  litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value_ce1 = 1'd0;
+reg  [31:0] litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value2 = 32'd0;
+reg  litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value_ce2 = 1'd0;
 reg  litepciecore_fsm2_state0 = 1'd0;
 reg  litepciecore_fsm2_next_state0 = 1'd0;
 reg  [23:0] litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value0 = 24'd0;
 reg  litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value_ce0 = 1'd0;
 reg  litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value1 = 1'd0;
 reg  litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value_ce1 = 1'd0;
-reg  litepciecore_bufferizeendpoints2_state1 = 1'd0;
-reg  litepciecore_bufferizeendpoints2_next_state1 = 1'd0;
+reg  litepciecore_bufferizeendpoints2_state = 1'd0;
+reg  litepciecore_bufferizeendpoints2_next_state = 1'd0;
 reg  [31:0] litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value0 = 32'd0;
 reg  litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value_ce0 = 1'd0;
 reg  [31:0] litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value1 = 32'd0;
@@ -4097,29 +4049,29 @@ wire xilinxasyncresetsynchronizerimpl0;
 wire xilinxasyncresetsynchronizerimpl0_rst_meta;
 wire xilinxasyncresetsynchronizerimpl1_rst_meta;
 wire xilinxasyncresetsynchronizerimpl2_rst_meta;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl00 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl01 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl10 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl11 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl0_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl0_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl1_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl1_regs1 = 3'd0;
 wire xilinxasyncresetsynchronizerimpl3_rst_meta;
 wire xilinxasyncresetsynchronizerimpl4_rst_meta;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl20 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl21 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl30 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl31 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl2_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl2_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl3_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl3_regs1 = 3'd0;
 wire xilinxasyncresetsynchronizerimpl5_rst_meta;
 wire xilinxasyncresetsynchronizerimpl6_rst_meta;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl40 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl41 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl50 = 3'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl51 = 3'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  xilinxmultiregimpl6_xilinxmultiregimpl60 = 1'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  xilinxmultiregimpl6_xilinxmultiregimpl61 = 1'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl4_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl4_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl5_regs0 = 3'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [2:0] xilinxmultiregimpl5_regs1 = 3'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  xilinxmultiregimpl6_regs0 = 1'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  xilinxmultiregimpl6_regs1 = 1'd0;
 wire xilinxmultiregimpl6;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl70 = 16'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl71 = 16'd0;
-(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl80 = 16'd0;
-(* async_reg = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl81 = 16'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl7_regs0 = 16'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl7_regs1 = 16'd0;
+(* async_reg = "true", mr_ff = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl8_regs0 = 16'd0;
+(* async_reg = "true", dont_touch = "true" *) reg  [15:0] xilinxmultiregimpl8_regs1 = 16'd0;
 
 //------------------------------------------------------------------------------
 // Combinatorial Logic
@@ -4234,8 +4186,8 @@ assign s7pciephy_tx_datapath_source_source_last = s7pciephy_tx_datapath_pipe_rea
 assign s7pciephy_tx_datapath_source_source_payload_dat = s7pciephy_tx_datapath_pipe_ready_source_payload_dat;
 assign s7pciephy_tx_datapath_source_source_payload_be = s7pciephy_tx_datapath_pipe_ready_source_payload_be;
 assign s7pciephy_tx_datapath_pipe_valid_sink_ready = ((~s7pciephy_tx_datapath_pipe_valid_source_valid) | s7pciephy_tx_datapath_pipe_valid_source_ready);
-assign from2594933811536_clk = sys_clk;
-assign to2594933811536_clk = pcie_clk;
+assign from140314895943952_clk = sys_clk;
+assign to140314895943952_clk = pcie_clk;
 assign s7pciephy_tx_datapath_cdc_cd_rst = (sys_rst | pcie_rst);
 assign s7pciephy_tx_datapath_cdc_cdc_sink_valid = s7pciephy_tx_datapath_cdc_sink_sink_valid;
 assign s7pciephy_tx_datapath_cdc_sink_sink_ready = s7pciephy_tx_datapath_cdc_cdc_sink_ready;
@@ -4447,8 +4399,8 @@ assign s7pciephy_rx_datapath_converter_converter_source_first = s7pciephy_rx_dat
 assign s7pciephy_rx_datapath_converter_converter_source_last = s7pciephy_rx_datapath_converter_converter_sink_last;
 assign s7pciephy_rx_datapath_converter_converter_source_payload_data = s7pciephy_rx_datapath_converter_converter_sink_payload_data;
 assign s7pciephy_rx_datapath_converter_converter_source_payload_valid_token_count = 1'd1;
-assign from2594934547712_clk = pcie_clk;
-assign to2594934547712_clk = sys_clk;
+assign from140314895575840_clk = pcie_clk;
+assign to140314895575840_clk = sys_clk;
 assign s7pciephy_rx_datapath_cdc_cd_rst = (pcie_rst | sys_rst);
 assign s7pciephy_rx_datapath_cdc_cdc_sink_valid = s7pciephy_rx_datapath_cdc_sink_sink_valid;
 assign s7pciephy_rx_datapath_cdc_sink_sink_ready = s7pciephy_rx_datapath_cdc_cdc_sink_ready;
@@ -4504,8 +4456,8 @@ always @(*) begin
 end
 assign s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_next = (s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_next_binary ^ s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_next_binary[2:1]);
 assign s7pciephy_rx_datapath_pipe_valid_sink_ready = ((~s7pciephy_rx_datapath_pipe_valid_source_valid) | s7pciephy_rx_datapath_pipe_valid_source_ready);
-assign from2594934206720_clk = sys_clk;
-assign to2594934206720_clk = pcie_clk;
+assign from140314895828592_clk = sys_clk;
+assign to140314895828592_clk = pcie_clk;
 assign s7pciephy_msi_cdc_cd_rst = (sys_rst | pcie_rst);
 assign s7pciephy_msi_cdc_cdc_sink_valid = s7pciephy_msi_cdc_sink_sink_valid;
 assign s7pciephy_msi_cdc_sink_sink_ready = s7pciephy_msi_cdc_cdc_sink_ready;
@@ -6300,16 +6252,16 @@ always @(*) begin
 	litepciecore_litepcieendpoint_master_in_sink_payload_adr <= 32'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_len <= 10'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_tag <= 8'd0;
+	litepciedma0_litepciemasterinternalport1_sink_ready <= 1'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_dat <= 128'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_channel <= 8'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_user_id <= 8'd0;
 	litepciedma2_litepciemasterinternalport5_sink_ready <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_sink_ready <= 1'd0;
 	litepciecore_litepcieendpoint_master_in_sink_valid <= 1'd0;
-	litepciecore_litepcieendpoint_master_in_sink_payload_req_id <= 16'd0;
 	litepciecore_litepcieendpoint_master_in_sink_first <= 1'd0;
 	litepciecore_litepcieendpoint_master_in_sink_last <= 1'd0;
-	litepciedma0_litepciemasterinternalport1_sink_ready <= 1'd0;
+	litepciecore_litepcieendpoint_master_in_sink_payload_req_id <= 16'd0;
 	litepciecore_litepcieendpoint_master_in_sink_payload_we <= 1'd0;
 	case (litepciecore_litepcieendpoint_arbiter0_grant)
 		1'd0: begin
@@ -6386,37 +6338,20 @@ always @(*) begin
 	end
 end
 always @(*) begin
-	litepciedma1_litepciemasterinternalport3_source_payload_channel <= 8'd0;
-	litepciedma1_litepciemasterinternalport3_source_payload_user_id <= 8'd0;
-	litepciecore_litepcieendpoint_master_in_source_ready <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_valid <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_first <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_last <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_req_id <= 16'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_cmp_id <= 16'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_adr <= 32'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_len <= 10'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_end <= 1'd0;
-	litepciedma0_litepciemasterinternalport1_source_valid <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_err <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_tag <= 8'd0;
-	litepciedma0_litepciemasterinternalport1_source_first <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_dat <= 128'd0;
 	litepciedma0_litepciemasterinternalport1_source_last <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_channel <= 8'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_req_id <= 16'd0;
-	litepciedma2_litepciemasterinternalport5_source_payload_user_id <= 8'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_cmp_id <= 16'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_adr <= 32'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_len <= 10'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_end <= 1'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_err <= 1'd0;
+	litepciecore_litepcieendpoint_master_in_source_ready <= 1'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_tag <= 8'd0;
+	litepciedma1_litepciemasterinternalport3_source_valid <= 1'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_dat <= 128'd0;
 	litepciedma0_litepciemasterinternalport1_source_payload_channel <= 8'd0;
-	litepciedma0_litepciemasterinternalport1_source_payload_user_id <= 8'd0;
-	litepciedma1_litepciemasterinternalport3_source_valid <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_source_first <= 1'd0;
+	litepciedma0_litepciemasterinternalport1_source_payload_user_id <= 8'd0;
 	litepciedma1_litepciemasterinternalport3_source_last <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_source_payload_req_id <= 16'd0;
 	litepciedma1_litepciemasterinternalport3_source_payload_cmp_id <= 16'd0;
@@ -6425,7 +6360,24 @@ always @(*) begin
 	litepciedma1_litepciemasterinternalport3_source_payload_end <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_source_payload_err <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_source_payload_tag <= 8'd0;
+	litepciedma2_litepciemasterinternalport5_source_valid <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_source_payload_dat <= 128'd0;
+	litepciedma1_litepciemasterinternalport3_source_payload_channel <= 8'd0;
+	litepciedma2_litepciemasterinternalport5_source_first <= 1'd0;
+	litepciedma1_litepciemasterinternalport3_source_payload_user_id <= 8'd0;
+	litepciedma2_litepciemasterinternalport5_source_last <= 1'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_req_id <= 16'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_cmp_id <= 16'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_adr <= 32'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_len <= 10'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_end <= 1'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_err <= 1'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_tag <= 8'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_dat <= 128'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_channel <= 8'd0;
+	litepciedma2_litepciemasterinternalport5_source_payload_user_id <= 8'd0;
+	litepciedma0_litepciemasterinternalport1_source_valid <= 1'd0;
+	litepciedma0_litepciemasterinternalport1_source_first <= 1'd0;
 	case (litepciecore_litepcieendpoint_dispatcher0_sel1)
 		1'd1: begin
 			litepciedma0_litepciemasterinternalport1_source_valid <= litepciecore_litepcieendpoint_master_in_source_valid;
@@ -6495,16 +6447,16 @@ always @(*) begin
 end
 always @(*) begin
 	litepciecore_litepcieendpoint_sink_payload_dat <= 128'd0;
-	litepciecore_litepcieendpoint_sink_payload_channel <= 8'd0;
 	litepciedma1_litepciemasterinternalport2_sink_ready <= 1'd0;
+	litepciecore_litepcieendpoint_sink_payload_channel <= 8'd0;
 	litepciecore_litepcieendpoint_sink_payload_user_id <= 8'd0;
 	litepciedma0_litepciemasterinternalport0_sink_ready <= 1'd0;
 	litepciecore_litepcieendpoint_sink_valid <= 1'd0;
 	litepciecore_litepcieendpoint_sink_first <= 1'd0;
 	litepciecore_litepcieendpoint_sink_last <= 1'd0;
+	litepciedma2_litepciemasterinternalport4_sink_ready <= 1'd0;
 	litepciecore_litepcieendpoint_sink_payload_req_id <= 16'd0;
 	litepciecore_litepcieendpoint_sink_payload_we <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_sink_ready <= 1'd0;
 	litepciecore_litepcieendpoint_sink_payload_adr <= 32'd0;
 	litepciecore_litepcieendpoint_sink_payload_len <= 10'd0;
 	litepciecore_litepcieendpoint_sink_payload_tag <= 8'd0;
@@ -6583,46 +6535,46 @@ always @(*) begin
 	end
 end
 always @(*) begin
-	litepciedma2_litepciemasterinternalport4_source_payload_end <= 1'd0;
 	litepciedma0_litepciemasterinternalport0_source_valid <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_source_payload_err <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_source_payload_tag <= 8'd0;
 	litepciedma0_litepciemasterinternalport0_source_first <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_source_payload_dat <= 128'd0;
 	litepciedma0_litepciemasterinternalport0_source_last <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_source_payload_channel <= 8'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_req_id <= 16'd0;
-	litepciedma2_litepciemasterinternalport4_source_payload_user_id <= 8'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_cmp_id <= 16'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_adr <= 32'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_len <= 10'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_end <= 1'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_err <= 1'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_tag <= 8'd0;
+	litepciedma1_litepciemasterinternalport2_source_valid <= 1'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_dat <= 128'd0;
 	litepciedma0_litepciemasterinternalport0_source_payload_channel <= 8'd0;
-	litepciedma0_litepciemasterinternalport0_source_payload_user_id <= 8'd0;
-	litepciecore_litepcieendpoint_source_ready <= 1'd0;
-	litepciedma1_litepciemasterinternalport2_source_valid <= 1'd0;
 	litepciedma1_litepciemasterinternalport2_source_first <= 1'd0;
+	litepciedma0_litepciemasterinternalport0_source_payload_user_id <= 8'd0;
 	litepciedma1_litepciemasterinternalport2_source_last <= 1'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_req_id <= 16'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_cmp_id <= 16'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_adr <= 32'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_len <= 10'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_end <= 1'd0;
+	litepciecore_litepcieendpoint_source_ready <= 1'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_err <= 1'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_tag <= 8'd0;
+	litepciedma2_litepciemasterinternalport4_source_valid <= 1'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_dat <= 128'd0;
 	litepciedma1_litepciemasterinternalport2_source_payload_channel <= 8'd0;
-	litepciedma1_litepciemasterinternalport2_source_payload_user_id <= 8'd0;
-	litepciedma2_litepciemasterinternalport4_source_valid <= 1'd0;
 	litepciedma2_litepciemasterinternalport4_source_first <= 1'd0;
+	litepciedma1_litepciemasterinternalport2_source_payload_user_id <= 8'd0;
 	litepciedma2_litepciemasterinternalport4_source_last <= 1'd0;
 	litepciedma2_litepciemasterinternalport4_source_payload_req_id <= 16'd0;
 	litepciedma2_litepciemasterinternalport4_source_payload_cmp_id <= 16'd0;
 	litepciedma2_litepciemasterinternalport4_source_payload_adr <= 32'd0;
 	litepciedma2_litepciemasterinternalport4_source_payload_len <= 10'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_end <= 1'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_err <= 1'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_tag <= 8'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_dat <= 128'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_channel <= 8'd0;
+	litepciedma2_litepciemasterinternalport4_source_payload_user_id <= 8'd0;
 	case (litepciecore_litepcieendpoint_dispatcher1_sel1)
 		1'd1: begin
 			litepciedma0_litepciemasterinternalport0_source_valid <= litepciecore_litepcieendpoint_source_valid;
@@ -6816,20 +6768,20 @@ assign litepciedma0_buffering_next_source_ready = bufferizeendpoints1_sink_sink_
 assign bufferizeendpoints1_sink_sink_first = litepciedma0_buffering_next_source_first;
 assign bufferizeendpoints1_sink_sink_last = litepciedma0_buffering_next_source_last;
 assign bufferizeendpoints1_sink_sink_payload_data = litepciedma0_buffering_next_source_payload_data;
-assign litepciedma0_writer_splitter_sink_valid = litepciedma0_writer_table_source_source_valid;
-assign litepciedma0_writer_table_source_source_ready = litepciedma0_writer_splitter_sink_ready;
-assign litepciedma0_writer_splitter_sink_first = litepciedma0_writer_table_source_source_first;
-assign litepciedma0_writer_splitter_sink_last = litepciedma0_writer_table_source_source_last;
-assign litepciedma0_writer_splitter_sink_payload_address = litepciedma0_writer_table_source_source_payload_address;
-assign litepciedma0_writer_splitter_sink_payload_length = litepciedma0_writer_table_source_source_payload_length;
-assign litepciedma0_writer_splitter_sink_payload_irq_disable = litepciedma0_writer_table_source_source_payload_irq_disable;
-assign litepciedma0_writer_splitter_sink_payload_last_disable = litepciedma0_writer_table_source_source_payload_last_disable;
+assign litepciedma0_writer_splitter_sink_valid = litepciedma0_writer_source_source_valid;
+assign litepciedma0_writer_source_source_ready = litepciedma0_writer_splitter_sink_ready;
+assign litepciedma0_writer_splitter_sink_first = litepciedma0_writer_source_source_first;
+assign litepciedma0_writer_splitter_sink_last = litepciedma0_writer_source_source_last;
+assign litepciedma0_writer_splitter_sink_payload_address = litepciedma0_writer_source_source_payload_address;
+assign litepciedma0_writer_splitter_sink_payload_length = litepciedma0_writer_source_source_payload_length;
+assign litepciedma0_writer_splitter_sink_payload_irq_disable = litepciedma0_writer_source_source_payload_irq_disable;
+assign litepciedma0_writer_splitter_sink_payload_last_disable = litepciedma0_writer_source_source_payload_last_disable;
 always @(*) begin
 	litepciedma0_writer_sink_sink_ready <= 1'd0;
-	litepciedma0_writer_data_fifo_sink_valid <= 1'd0;
-	litepciedma0_writer_data_fifo_sink_first <= 1'd0;
 	litepciedma0_writer_data_fifo_sink_last <= 1'd0;
 	litepciedma0_writer_data_fifo_sink_payload_data <= 128'd0;
+	litepciedma0_writer_data_fifo_sink_valid <= 1'd0;
+	litepciedma0_writer_data_fifo_sink_first <= 1'd0;
 	litepciedma0_writer_sink_sink_ready <= 1'd1;
 	if (litepciedma0_writer_enable_storage) begin
 		litepciedma0_writer_data_fifo_sink_valid <= litepciedma0_writer_sink_sink_valid;
@@ -6840,92 +6792,83 @@ always @(*) begin
 	end
 end
 assign litepciedma0_litepciemasterinternalport0_sink_payload_channel = 1'd0;
-assign litepciedma0_litepciemasterinternalport0_sink_payload_user_id = litepciedma0_writer_splitter_source_source_payload_user_id;
+assign litepciedma0_litepciemasterinternalport0_sink_payload_user_id = litepciedma0_writer_splitter_source_payload_user_id;
 assign litepciedma0_litepciemasterinternalport0_sink_first = (litepciedma0_writer_req_count == 1'd0);
-assign litepciedma0_litepciemasterinternalport0_sink_last = (litepciedma0_writer_req_count == (litepciedma0_writer_splitter_source_source_payload_length[23:4] - 1'd1));
+assign litepciedma0_litepciemasterinternalport0_sink_last = (litepciedma0_writer_req_count == (litepciedma0_writer_splitter_source_payload_length[23:4] - 1'd1));
 assign litepciedma0_litepciemasterinternalport0_sink_payload_we = 1'd1;
-assign litepciedma0_litepciemasterinternalport0_sink_payload_adr = litepciedma0_writer_splitter_source_source_payload_address;
+assign litepciedma0_litepciemasterinternalport0_sink_payload_adr = litepciedma0_writer_splitter_source_payload_address;
 assign litepciedma0_litepciemasterinternalport0_sink_payload_req_id = s7pciephy_id;
 assign litepciedma0_litepciemasterinternalport0_sink_payload_tag = 1'd0;
-assign litepciedma0_litepciemasterinternalport0_sink_payload_len = litepciedma0_writer_splitter_source_source_payload_length[23:2];
+assign litepciedma0_litepciemasterinternalport0_sink_payload_len = litepciedma0_writer_splitter_source_payload_length[23:2];
 assign litepciedma0_litepciemasterinternalport0_sink_payload_dat = litepciedma0_writer_data_fifo_source_payload_data;
 always @(*) begin
 	litepciedma0_writer_irq <= 1'd0;
-	if (((litepciedma0_writer_splitter_source_source_valid & litepciedma0_writer_splitter_source_source_ready) & litepciedma0_writer_splitter_source_source_last)) begin
-		litepciedma0_writer_irq <= (~litepciedma0_writer_splitter_source_source_payload_irq_disable);
+	if (((litepciedma0_writer_splitter_source_valid & litepciedma0_writer_splitter_source_ready) & litepciedma0_writer_splitter_source_last)) begin
+		litepciedma0_writer_irq <= (~litepciedma0_writer_splitter_source_payload_irq_disable);
 	end
 end
-assign litepciedma0_writer_table_table_reset = (litepciedma0_writer_table_reset_storage & litepciedma0_writer_table_reset_re);
-assign litepciedma0_writer_table_level_status = litepciedma0_writer_table_table_level;
-assign litepciedma0_writer_table_source_source_valid = litepciedma0_writer_table_table_source_valid;
-assign litepciedma0_writer_table_table_source_ready = litepciedma0_writer_table_source_source_ready;
-assign litepciedma0_writer_table_source_source_first = litepciedma0_writer_table_table_source_first;
-assign litepciedma0_writer_table_source_source_last = litepciedma0_writer_table_table_source_last;
-assign litepciedma0_writer_table_source_source_payload_address = litepciedma0_writer_table_table_source_payload_address;
-assign litepciedma0_writer_table_source_source_payload_length = litepciedma0_writer_table_table_source_payload_length;
-assign litepciedma0_writer_table_source_source_payload_irq_disable = litepciedma0_writer_table_table_source_payload_irq_disable;
-assign litepciedma0_writer_table_source_source_payload_last_disable = litepciedma0_writer_table_table_source_payload_last_disable;
-assign litepciedma0_writer_table_table_syncfifo0_din = {litepciedma0_writer_table_table_fifo_in_last, litepciedma0_writer_table_table_fifo_in_first, litepciedma0_writer_table_table_fifo_in_payload_last_disable, litepciedma0_writer_table_table_fifo_in_payload_irq_disable, litepciedma0_writer_table_table_fifo_in_payload_length, litepciedma0_writer_table_table_fifo_in_payload_address};
-assign {litepciedma0_writer_table_table_fifo_out_last, litepciedma0_writer_table_table_fifo_out_first, litepciedma0_writer_table_table_fifo_out_payload_last_disable, litepciedma0_writer_table_table_fifo_out_payload_irq_disable, litepciedma0_writer_table_table_fifo_out_payload_length, litepciedma0_writer_table_table_fifo_out_payload_address} = litepciedma0_writer_table_table_syncfifo0_dout;
-assign litepciedma0_writer_table_table_sink_ready = litepciedma0_writer_table_table_syncfifo0_writable;
-assign litepciedma0_writer_table_table_syncfifo0_we = litepciedma0_writer_table_table_sink_valid;
-assign litepciedma0_writer_table_table_fifo_in_first = litepciedma0_writer_table_table_sink_first;
-assign litepciedma0_writer_table_table_fifo_in_last = litepciedma0_writer_table_table_sink_last;
-assign litepciedma0_writer_table_table_fifo_in_payload_address = litepciedma0_writer_table_table_sink_payload_address;
-assign litepciedma0_writer_table_table_fifo_in_payload_length = litepciedma0_writer_table_table_sink_payload_length;
-assign litepciedma0_writer_table_table_fifo_in_payload_irq_disable = litepciedma0_writer_table_table_sink_payload_irq_disable;
-assign litepciedma0_writer_table_table_fifo_in_payload_last_disable = litepciedma0_writer_table_table_sink_payload_last_disable;
-assign litepciedma0_writer_table_table_source_valid = litepciedma0_writer_table_table_syncfifo0_readable;
-assign litepciedma0_writer_table_table_source_first = litepciedma0_writer_table_table_fifo_out_first;
-assign litepciedma0_writer_table_table_source_last = litepciedma0_writer_table_table_fifo_out_last;
-assign litepciedma0_writer_table_table_source_payload_address = litepciedma0_writer_table_table_fifo_out_payload_address;
-assign litepciedma0_writer_table_table_source_payload_length = litepciedma0_writer_table_table_fifo_out_payload_length;
-assign litepciedma0_writer_table_table_source_payload_irq_disable = litepciedma0_writer_table_table_fifo_out_payload_irq_disable;
-assign litepciedma0_writer_table_table_source_payload_last_disable = litepciedma0_writer_table_table_fifo_out_payload_last_disable;
-assign litepciedma0_writer_table_table_syncfifo0_re = litepciedma0_writer_table_table_source_ready;
+assign litepciedma0_writer_table_reset = (litepciedma0_writer_reset_storage & litepciedma0_writer_reset_re);
+assign litepciedma0_writer_level_status = litepciedma0_writer_table_level;
+assign litepciedma0_writer_source_source_valid = litepciedma0_writer_table_source_valid;
+assign litepciedma0_writer_table_source_ready = litepciedma0_writer_source_source_ready;
+assign litepciedma0_writer_source_source_first = litepciedma0_writer_table_source_first;
+assign litepciedma0_writer_source_source_last = litepciedma0_writer_table_source_last;
+assign litepciedma0_writer_source_source_payload_address = litepciedma0_writer_table_source_payload_address;
+assign litepciedma0_writer_source_source_payload_length = litepciedma0_writer_table_source_payload_length;
+assign litepciedma0_writer_source_source_payload_irq_disable = litepciedma0_writer_table_source_payload_irq_disable;
+assign litepciedma0_writer_source_source_payload_last_disable = litepciedma0_writer_table_source_payload_last_disable;
+assign litepciedma0_writer_table_syncfifo0_din = {litepciedma0_writer_table_fifo_in_last, litepciedma0_writer_table_fifo_in_first, litepciedma0_writer_table_fifo_in_payload_last_disable, litepciedma0_writer_table_fifo_in_payload_irq_disable, litepciedma0_writer_table_fifo_in_payload_length, litepciedma0_writer_table_fifo_in_payload_address};
+assign {litepciedma0_writer_table_fifo_out_last, litepciedma0_writer_table_fifo_out_first, litepciedma0_writer_table_fifo_out_payload_last_disable, litepciedma0_writer_table_fifo_out_payload_irq_disable, litepciedma0_writer_table_fifo_out_payload_length, litepciedma0_writer_table_fifo_out_payload_address} = litepciedma0_writer_table_syncfifo0_dout;
+assign litepciedma0_writer_table_sink_ready = litepciedma0_writer_table_syncfifo0_writable;
+assign litepciedma0_writer_table_syncfifo0_we = litepciedma0_writer_table_sink_valid;
+assign litepciedma0_writer_table_fifo_in_first = litepciedma0_writer_table_sink_first;
+assign litepciedma0_writer_table_fifo_in_last = litepciedma0_writer_table_sink_last;
+assign litepciedma0_writer_table_fifo_in_payload_address = litepciedma0_writer_table_sink_payload_address;
+assign litepciedma0_writer_table_fifo_in_payload_length = litepciedma0_writer_table_sink_payload_length;
+assign litepciedma0_writer_table_fifo_in_payload_irq_disable = litepciedma0_writer_table_sink_payload_irq_disable;
+assign litepciedma0_writer_table_fifo_in_payload_last_disable = litepciedma0_writer_table_sink_payload_last_disable;
+assign litepciedma0_writer_table_source_valid = litepciedma0_writer_table_syncfifo0_readable;
+assign litepciedma0_writer_table_source_first = litepciedma0_writer_table_fifo_out_first;
+assign litepciedma0_writer_table_source_last = litepciedma0_writer_table_fifo_out_last;
+assign litepciedma0_writer_table_source_payload_address = litepciedma0_writer_table_fifo_out_payload_address;
+assign litepciedma0_writer_table_source_payload_length = litepciedma0_writer_table_fifo_out_payload_length;
+assign litepciedma0_writer_table_source_payload_irq_disable = litepciedma0_writer_table_fifo_out_payload_irq_disable;
+assign litepciedma0_writer_table_source_payload_last_disable = litepciedma0_writer_table_fifo_out_payload_last_disable;
+assign litepciedma0_writer_table_syncfifo0_re = litepciedma0_writer_table_source_ready;
 always @(*) begin
-	litepciedma0_writer_table_table_wrport_adr <= 8'd0;
-	if (litepciedma0_writer_table_table_replace) begin
-		litepciedma0_writer_table_table_wrport_adr <= (litepciedma0_writer_table_table_produce - 1'd1);
+	litepciedma0_writer_table_wrport_adr <= 8'd0;
+	if (litepciedma0_writer_table_replace) begin
+		litepciedma0_writer_table_wrport_adr <= (litepciedma0_writer_table_produce - 1'd1);
 	end else begin
-		litepciedma0_writer_table_table_wrport_adr <= litepciedma0_writer_table_table_produce;
+		litepciedma0_writer_table_wrport_adr <= litepciedma0_writer_table_produce;
 	end
 end
-assign litepciedma0_writer_table_table_wrport_dat_w = litepciedma0_writer_table_table_syncfifo0_din;
-assign litepciedma0_writer_table_table_wrport_we = (litepciedma0_writer_table_table_syncfifo0_we & (litepciedma0_writer_table_table_syncfifo0_writable | litepciedma0_writer_table_table_replace));
-assign litepciedma0_writer_table_table_do_read = (litepciedma0_writer_table_table_syncfifo0_readable & litepciedma0_writer_table_table_syncfifo0_re);
-assign litepciedma0_writer_table_table_rdport_adr = litepciedma0_writer_table_table_consume;
-assign litepciedma0_writer_table_table_syncfifo0_dout = litepciedma0_writer_table_table_rdport_dat_r;
-assign litepciedma0_writer_table_table_syncfifo0_writable = (litepciedma0_writer_table_table_level != 9'd256);
-assign litepciedma0_writer_table_table_syncfifo0_readable = (litepciedma0_writer_table_table_level != 1'd0);
+assign litepciedma0_writer_table_wrport_dat_w = litepciedma0_writer_table_syncfifo0_din;
+assign litepciedma0_writer_table_wrport_we = (litepciedma0_writer_table_syncfifo0_we & (litepciedma0_writer_table_syncfifo0_writable | litepciedma0_writer_table_replace));
+assign litepciedma0_writer_table_do_read = (litepciedma0_writer_table_syncfifo0_readable & litepciedma0_writer_table_syncfifo0_re);
+assign litepciedma0_writer_table_rdport_adr = litepciedma0_writer_table_consume;
+assign litepciedma0_writer_table_syncfifo0_dout = litepciedma0_writer_table_rdport_dat_r;
+assign litepciedma0_writer_table_syncfifo0_writable = (litepciedma0_writer_table_level != 9'd256);
+assign litepciedma0_writer_table_syncfifo0_readable = (litepciedma0_writer_table_level != 1'd0);
 assign litepciedma0_writer_splitter_source_payload_address = (litepciedma0_writer_splitter_sink_payload_address + litepciedma0_writer_splitter_desc_offset);
 assign litepciedma0_writer_splitter_source_payload_irq_disable = litepciedma0_writer_splitter_sink_payload_irq_disable;
 assign litepciedma0_writer_splitter_source_payload_last_disable = litepciedma0_writer_splitter_sink_payload_last_disable;
 assign litepciedma0_writer_splitter_source_payload_user_id = litepciedma0_writer_splitter_desc_id;
-assign litepciedma0_writer_splitter_sink_sink_valid = litepciedma0_writer_splitter_source_valid;
-assign litepciedma0_writer_splitter_source_ready = litepciedma0_writer_splitter_sink_sink_ready;
-assign litepciedma0_writer_splitter_sink_sink_first = litepciedma0_writer_splitter_source_first;
-assign litepciedma0_writer_splitter_sink_sink_last = litepciedma0_writer_splitter_source_last;
-assign litepciedma0_writer_splitter_sink_sink_payload_address = litepciedma0_writer_splitter_source_payload_address;
-assign litepciedma0_writer_splitter_sink_sink_payload_length = litepciedma0_writer_splitter_source_payload_length;
-assign litepciedma0_writer_splitter_sink_sink_payload_irq_disable = litepciedma0_writer_splitter_source_payload_irq_disable;
-assign litepciedma0_writer_splitter_sink_sink_payload_last_disable = litepciedma0_writer_splitter_source_payload_last_disable;
-assign litepciedma0_writer_splitter_sink_sink_payload_user_id = litepciedma0_writer_splitter_source_payload_user_id;
 always @(*) begin
-	litepciedma0_writer_splitter_sink_ready <= 1'd0;
-	litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value2 <= 32'd0;
-	litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value_ce2 <= 1'd0;
-	litepciecore_bufferizeendpoints0_next_state0 <= 1'd0;
 	litepciedma0_writer_splitter_source_valid <= 1'd0;
-	litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value0 <= 32'd0;
-	litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value_ce0 <= 1'd0;
+	litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value2 <= 32'd0;
+	litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value_ce2 <= 1'd0;
 	litepciedma0_writer_splitter_source_first <= 1'd0;
 	litepciedma0_writer_splitter_source_last <= 1'd0;
-	litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value1 <= 32'd0;
-	litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value_ce1 <= 1'd0;
 	litepciedma0_writer_splitter_source_payload_length <= 24'd0;
-	litepciecore_bufferizeendpoints0_next_state0 <= litepciecore_bufferizeendpoints0_state0;
-	case (litepciecore_bufferizeendpoints0_state0)
+	litepciecore_resetinserter0_next_state <= 1'd0;
+	litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value0 <= 32'd0;
+	litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value_ce0 <= 1'd0;
+	litepciedma0_writer_splitter_sink_ready <= 1'd0;
+	litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value1 <= 32'd0;
+	litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value_ce1 <= 1'd0;
+	litepciecore_resetinserter0_next_state <= litepciecore_resetinserter0_state;
+	case (litepciecore_resetinserter0_state)
 		1'd1: begin
 			litepciedma0_writer_splitter_source_valid <= 1'd1;
 			litepciedma0_writer_splitter_source_first <= (litepciedma0_writer_splitter_desc_offset == 1'd0);
@@ -6937,48 +6880,29 @@ always @(*) begin
 				litepciedma0_writer_splitter_source_payload_length <= litepciedma0_writer_splitter_desc_length;
 			end
 			if (litepciedma0_writer_splitter_source_ready) begin
-				litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value0 <= (litepciedma0_writer_splitter_desc_offset + s7pciephy_max_payload_size);
-				litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value_ce0 <= 1'd1;
-				litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value1 <= (litepciedma0_writer_splitter_desc_length - s7pciephy_max_payload_size);
-				litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value_ce1 <= 1'd1;
-				if (litepciedma0_writer_splitter_source_last) begin
+				litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value0 <= (litepciedma0_writer_splitter_desc_offset + s7pciephy_max_payload_size);
+				litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value_ce0 <= 1'd1;
+				litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value1 <= (litepciedma0_writer_splitter_desc_length - s7pciephy_max_payload_size);
+				litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value_ce1 <= 1'd1;
+				if ((litepciedma0_writer_splitter_source_last | litepciedma0_writer_splitter_terminate)) begin
 					litepciedma0_writer_splitter_sink_ready <= 1'd1;
-					litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value2 <= (litepciedma0_writer_splitter_desc_id + 1'd1);
-					litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints0_next_state0 <= 1'd0;
+					litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value2 <= (litepciedma0_writer_splitter_desc_id + 1'd1);
+					litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value_ce2 <= 1'd1;
+					litepciecore_resetinserter0_next_state <= 1'd0;
 				end
 			end
 		end
 		default: begin
-			litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value0 <= 1'd0;
-			litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value_ce0 <= 1'd1;
-			litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value1 <= litepciedma0_writer_splitter_sink_payload_length;
-			litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value_ce1 <= 1'd1;
+			litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value0 <= 1'd0;
+			litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value_ce0 <= 1'd1;
+			litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value1 <= litepciedma0_writer_splitter_sink_payload_length;
+			litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value_ce1 <= 1'd1;
 			if (litepciedma0_writer_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints0_next_state0 <= 1'd1;
+				litepciecore_resetinserter0_next_state <= 1'd1;
 			end
 		end
 	endcase
 end
-assign litepciedma0_writer_splitter_pipe_valid_sink_ready = ((~litepciedma0_writer_splitter_pipe_valid_source_valid) | litepciedma0_writer_splitter_pipe_valid_source_ready);
-assign litepciedma0_writer_splitter_pipe_valid_sink_valid = litepciedma0_writer_splitter_sink_sink_valid;
-assign litepciedma0_writer_splitter_sink_sink_ready = litepciedma0_writer_splitter_pipe_valid_sink_ready;
-assign litepciedma0_writer_splitter_pipe_valid_sink_first = litepciedma0_writer_splitter_sink_sink_first;
-assign litepciedma0_writer_splitter_pipe_valid_sink_last = litepciedma0_writer_splitter_sink_sink_last;
-assign litepciedma0_writer_splitter_pipe_valid_sink_payload_address = litepciedma0_writer_splitter_sink_sink_payload_address;
-assign litepciedma0_writer_splitter_pipe_valid_sink_payload_length = litepciedma0_writer_splitter_sink_sink_payload_length;
-assign litepciedma0_writer_splitter_pipe_valid_sink_payload_irq_disable = litepciedma0_writer_splitter_sink_sink_payload_irq_disable;
-assign litepciedma0_writer_splitter_pipe_valid_sink_payload_last_disable = litepciedma0_writer_splitter_sink_sink_payload_last_disable;
-assign litepciedma0_writer_splitter_pipe_valid_sink_payload_user_id = litepciedma0_writer_splitter_sink_sink_payload_user_id;
-assign litepciedma0_writer_splitter_source_source_valid = litepciedma0_writer_splitter_pipe_valid_source_valid;
-assign litepciedma0_writer_splitter_pipe_valid_source_ready = litepciedma0_writer_splitter_source_source_ready;
-assign litepciedma0_writer_splitter_source_source_first = litepciedma0_writer_splitter_pipe_valid_source_first;
-assign litepciedma0_writer_splitter_source_source_last = litepciedma0_writer_splitter_pipe_valid_source_last;
-assign litepciedma0_writer_splitter_source_source_payload_address = litepciedma0_writer_splitter_pipe_valid_source_payload_address;
-assign litepciedma0_writer_splitter_source_source_payload_length = litepciedma0_writer_splitter_pipe_valid_source_payload_length;
-assign litepciedma0_writer_splitter_source_source_payload_irq_disable = litepciedma0_writer_splitter_pipe_valid_source_payload_irq_disable;
-assign litepciedma0_writer_splitter_source_source_payload_last_disable = litepciedma0_writer_splitter_pipe_valid_source_payload_last_disable;
-assign litepciedma0_writer_splitter_source_source_payload_user_id = litepciedma0_writer_splitter_pipe_valid_source_payload_user_id;
 assign litepciedma0_writer_data_fifo_syncfifo0_din = {litepciedma0_writer_data_fifo_fifo_in_last, litepciedma0_writer_data_fifo_fifo_in_first, litepciedma0_writer_data_fifo_fifo_in_payload_data};
 assign {litepciedma0_writer_data_fifo_fifo_out_last, litepciedma0_writer_data_fifo_fifo_out_first, litepciedma0_writer_data_fifo_fifo_out_payload_data} = litepciedma0_writer_data_fifo_syncfifo0_dout;
 assign litepciedma0_writer_data_fifo_sink_ready = litepciedma0_writer_data_fifo_syncfifo0_writable;
@@ -7010,15 +6934,16 @@ assign litepciedma0_writer_data_fifo_rdport_re = litepciedma0_writer_data_fifo_d
 assign litepciedma0_writer_data_fifo_syncfifo0_writable = (litepciedma0_writer_data_fifo_level0 != 8'd128);
 assign litepciedma0_writer_data_fifo_syncfifo0_readable = (litepciedma0_writer_data_fifo_level0 != 1'd0);
 always @(*) begin
+	litepciedma0_writer_data_fifo_reset <= 1'd0;
+	litepciedma0_writer_splitter_source_ready <= 1'd0;
+	litepciedma0_writer_splitter_reset <= 1'd0;
 	litepciedma0_litepciemasterinternalport0_sink_valid <= 1'd0;
-	litepciedma0_writer_splitter_source_source_ready <= 1'd0;
-	litepciedma0_writer_data_fifo_source_ready <= 1'd0;
 	litepciecore_fsm0_next_state0 <= 1'd0;
 	litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value0 <= 24'd0;
-	litepciedma0_writer_splitter_reset <= 1'd0;
+	litepciedma0_writer_splitter_terminate <= 1'd0;
 	litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value_ce0 <= 1'd0;
+	litepciedma0_writer_data_fifo_source_ready <= 1'd0;
 	litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value1 <= 1'd0;
-	litepciedma0_writer_resetinserter_reset <= 1'd0;
 	litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value_ce1 <= 1'd0;
 	litepciecore_fsm0_next_state0 <= litepciecore_fsm0_state0;
 	case (litepciecore_fsm0_state0)
@@ -7027,13 +6952,14 @@ always @(*) begin
 			if (litepciedma0_litepciemasterinternalport0_sink_ready) begin
 				litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value0 <= (litepciedma0_writer_req_count + 1'd1);
 				litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value_ce0 <= 1'd1;
+				if ((litepciedma0_writer_data_fifo_source_last & (~litepciedma0_writer_splitter_source_payload_last_disable))) begin
+					litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value1 <= 1'd1;
+					litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value_ce1 <= 1'd1;
+				end
+				litepciedma0_writer_splitter_terminate <= litepciedma0_writer_req_done;
 				litepciedma0_writer_data_fifo_source_ready <= (~litepciedma0_writer_req_done);
 				if (litepciedma0_litepciemasterinternalport0_sink_last) begin
-					litepciedma0_writer_splitter_source_source_ready <= 1'd1;
-					if ((litepciedma0_writer_data_fifo_source_last & (~litepciedma0_writer_splitter_source_source_payload_last_disable))) begin
-						litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value1 <= 1'd1;
-						litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value_ce1 <= 1'd1;
-					end
+					litepciedma0_writer_splitter_source_ready <= 1'd1;
 					litepciecore_fsm0_next_state0 <= 1'd0;
 				end
 			end
@@ -7041,13 +6967,13 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma0_writer_enable_storage)) begin
 				litepciedma0_writer_splitter_reset <= 1'd1;
-				litepciedma0_writer_resetinserter_reset <= 1'd1;
+				litepciedma0_writer_data_fifo_reset <= 1'd1;
 			end
 			litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value0 <= 1'd0;
 			litepciedma0_writer_req_count_bufferizeendpoints0_fsm0_next_value_ce0 <= 1'd1;
 			litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value1 <= 1'd0;
 			litepciedma0_writer_req_done_bufferizeendpoints0_fsm0_next_value_ce1 <= 1'd1;
-			if ((litepciedma0_writer_splitter_source_source_valid & (litepciedma0_writer_data_fifo_level1 >= litepciedma0_writer_splitter_source_source_payload_length[23:4]))) begin
+			if ((litepciedma0_writer_splitter_source_valid & (litepciedma0_writer_data_fifo_level1 >= litepciedma0_writer_splitter_source_payload_length[23:4]))) begin
 				litepciecore_fsm0_next_state0 <= 1'd1;
 			end
 		end
@@ -7067,10 +6993,10 @@ assign litepciedma0_reader_source_source_first = litepciedma0_reader_data_fifo_s
 assign litepciedma0_reader_source_source_last = litepciedma0_reader_data_fifo_source_last;
 assign litepciedma0_reader_source_source_payload_data = litepciedma0_reader_data_fifo_source_payload_data;
 always @(*) begin
-	litepciedma0_reader_data_fifo_sink_payload_data <= 128'd0;
 	litepciedma0_reader_data_fifo_sink_first <= 1'd0;
-	litepciedma0_litepciemasterinternalport1_source_ready <= 1'd0;
+	litepciedma0_reader_data_fifo_sink_payload_data <= 128'd0;
 	litepciedma0_reader_data_fifo_sink_valid <= 1'd0;
+	litepciedma0_litepciemasterinternalport1_source_ready <= 1'd0;
 	if (litepciedma0_reader_enable_storage) begin
 		litepciedma0_reader_data_fifo_sink_valid <= litepciedma0_litepciemasterinternalport1_source_valid;
 		litepciedma0_litepciemasterinternalport1_source_ready <= litepciedma0_reader_data_fifo_sink_ready;
@@ -7164,20 +7090,20 @@ assign litepciedma0_reader_splitter_sink_sink_payload_irq_disable = litepciedma0
 assign litepciedma0_reader_splitter_sink_sink_payload_last_disable = litepciedma0_reader_splitter_source_payload_last_disable;
 assign litepciedma0_reader_splitter_sink_sink_payload_user_id = litepciedma0_reader_splitter_source_payload_user_id;
 always @(*) begin
-	litepciedma0_reader_splitter_source_valid <= 1'd0;
-	litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value2 <= 32'd0;
-	litepciedma0_reader_splitter_source_first <= 1'd0;
-	litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value_ce2 <= 1'd0;
 	litepciedma0_reader_splitter_source_last <= 1'd0;
+	litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value2 <= 32'd0;
 	litepciedma0_reader_splitter_source_payload_length <= 24'd0;
-	litepciecore_bufferizeendpoints0_next_state1 <= 1'd0;
-	litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value0 <= 32'd0;
+	litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value_ce2 <= 1'd0;
 	litepciedma0_reader_splitter_sink_ready <= 1'd0;
+	litepciedma0_reader_splitter_source_valid <= 1'd0;
+	litepciecore_bufferizeendpoints0_next_state <= 1'd0;
+	litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value0 <= 32'd0;
 	litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value_ce0 <= 1'd0;
 	litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value1 <= 32'd0;
 	litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value_ce1 <= 1'd0;
-	litepciecore_bufferizeendpoints0_next_state1 <= litepciecore_bufferizeendpoints0_state1;
-	case (litepciecore_bufferizeendpoints0_state1)
+	litepciedma0_reader_splitter_source_first <= 1'd0;
+	litepciecore_bufferizeendpoints0_next_state <= litepciecore_bufferizeendpoints0_state;
+	case (litepciecore_bufferizeendpoints0_state)
 		1'd1: begin
 			litepciedma0_reader_splitter_source_valid <= 1'd1;
 			litepciedma0_reader_splitter_source_first <= (litepciedma0_reader_splitter_desc_offset == 1'd0);
@@ -7193,11 +7119,11 @@ always @(*) begin
 				litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value_ce0 <= 1'd1;
 				litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value1 <= (litepciedma0_reader_splitter_desc_length - s7pciephy_max_request_size);
 				litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value_ce1 <= 1'd1;
-				if (litepciedma0_reader_splitter_source_last) begin
+				if ((litepciedma0_reader_splitter_source_last | litepciedma0_reader_splitter_terminate)) begin
 					litepciedma0_reader_splitter_sink_ready <= 1'd1;
 					litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value2 <= (litepciedma0_reader_splitter_desc_id + 1'd1);
 					litepciedma0_reader_splitter_desc_id_bufferizeendpoints0_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints0_next_state1 <= 1'd0;
+					litepciecore_bufferizeendpoints0_next_state <= 1'd0;
 				end
 			end
 		end
@@ -7207,7 +7133,7 @@ always @(*) begin
 			litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value1 <= litepciedma0_reader_splitter_sink_payload_length;
 			litepciedma0_reader_splitter_desc_length_bufferizeendpoints0_next_value_ce1 <= 1'd1;
 			if (litepciedma0_reader_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints0_next_state1 <= 1'd1;
+				litepciecore_bufferizeendpoints0_next_state <= 1'd1;
 			end
 		end
 	endcase
@@ -7262,11 +7188,11 @@ assign litepciedma0_reader_data_fifo_rdport_re = litepciedma0_reader_data_fifo_d
 assign litepciedma0_reader_data_fifo_syncfifo0_writable = (litepciedma0_reader_data_fifo_level0 != 11'd1024);
 assign litepciedma0_reader_data_fifo_syncfifo0_readable = (litepciedma0_reader_data_fifo_level0 != 1'd0);
 always @(*) begin
-	litepciedma0_litepciemasterinternalport1_sink_valid <= 1'd0;
-	litepciedma0_reader_splitter_reset <= 1'd0;
-	litepciedma0_reader_splitter_source_source_ready <= 1'd0;
-	litepciedma0_reader_resetinserter_reset <= 1'd0;
 	litepciecore_fsm0_next_state1 <= 1'd0;
+	litepciedma0_reader_splitter_reset <= 1'd0;
+	litepciedma0_litepciemasterinternalport1_sink_valid <= 1'd0;
+	litepciedma0_reader_splitter_source_source_ready <= 1'd0;
+	litepciedma0_reader_data_fifo_reset <= 1'd0;
 	litepciecore_fsm0_next_state1 <= litepciecore_fsm0_state1;
 	case (litepciecore_fsm0_state1)
 		1'd1: begin
@@ -7279,7 +7205,7 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma0_reader_enable_storage)) begin
 				litepciedma0_reader_splitter_reset <= 1'd1;
-				litepciedma0_reader_resetinserter_reset <= 1'd1;
+				litepciedma0_reader_data_fifo_reset <= 1'd1;
 			end
 			if ((litepciedma0_reader_splitter_source_source_valid & (litepciedma0_reader_pending_words < 10'd992))) begin
 				litepciecore_fsm0_next_state1 <= 1'd1;
@@ -7291,8 +7217,8 @@ assign litepciedma0_buffering_reader_fifo_sink_first = litepciedma0_buffering_si
 assign litepciedma0_buffering_reader_fifo_sink_last = litepciedma0_buffering_sink_sink_last;
 assign litepciedma0_buffering_reader_fifo_sink_payload_data = litepciedma0_buffering_sink_sink_payload_data;
 always @(*) begin
-	litepciedma0_buffering_reader_fifo_sink_valid <= 1'd0;
 	litepciedma0_buffering_sink_sink_ready <= 1'd0;
+	litepciedma0_buffering_reader_fifo_sink_valid <= 1'd0;
 	if (((litepciedma0_buffering_reader_fifo_level1 < litepciedma0_buffering_csrfield_depth0[23:4]) | 1'd0)) begin
 		litepciedma0_buffering_reader_fifo_sink_valid <= litepciedma0_buffering_sink_sink_valid;
 		litepciedma0_buffering_sink_sink_ready <= litepciedma0_buffering_reader_fifo_sink_ready;
@@ -7315,8 +7241,8 @@ assign litepciedma0_buffering_writer_fifo_sink_first = litepciedma0_buffering_ne
 assign litepciedma0_buffering_writer_fifo_sink_last = litepciedma0_buffering_next_sink_last;
 assign litepciedma0_buffering_writer_fifo_sink_payload_data = litepciedma0_buffering_next_sink_payload_data;
 always @(*) begin
-	litepciedma0_buffering_next_sink_ready <= 1'd0;
 	litepciedma0_buffering_writer_fifo_sink_valid <= 1'd0;
+	litepciedma0_buffering_next_sink_ready <= 1'd0;
 	if (((litepciedma0_buffering_writer_fifo_level1 < litepciedma0_buffering_csrfield_depth1[23:4]) | 1'd0)) begin
 		litepciedma0_buffering_writer_fifo_sink_valid <= litepciedma0_buffering_next_sink_valid;
 		litepciedma0_buffering_next_sink_ready <= litepciedma0_buffering_writer_fifo_sink_ready;
@@ -7437,20 +7363,20 @@ assign litepciedma1_buffering_next_source_ready = bufferizeendpoints3_sink_sink_
 assign bufferizeendpoints3_sink_sink_first = litepciedma1_buffering_next_source_first;
 assign bufferizeendpoints3_sink_sink_last = litepciedma1_buffering_next_source_last;
 assign bufferizeendpoints3_sink_sink_payload_data = litepciedma1_buffering_next_source_payload_data;
-assign litepciedma1_writer_splitter_sink_valid = litepciedma1_writer_table_source_source_valid;
-assign litepciedma1_writer_table_source_source_ready = litepciedma1_writer_splitter_sink_ready;
-assign litepciedma1_writer_splitter_sink_first = litepciedma1_writer_table_source_source_first;
-assign litepciedma1_writer_splitter_sink_last = litepciedma1_writer_table_source_source_last;
-assign litepciedma1_writer_splitter_sink_payload_address = litepciedma1_writer_table_source_source_payload_address;
-assign litepciedma1_writer_splitter_sink_payload_length = litepciedma1_writer_table_source_source_payload_length;
-assign litepciedma1_writer_splitter_sink_payload_irq_disable = litepciedma1_writer_table_source_source_payload_irq_disable;
-assign litepciedma1_writer_splitter_sink_payload_last_disable = litepciedma1_writer_table_source_source_payload_last_disable;
+assign litepciedma1_writer_splitter_sink_valid = litepciedma1_writer_source_source_valid;
+assign litepciedma1_writer_source_source_ready = litepciedma1_writer_splitter_sink_ready;
+assign litepciedma1_writer_splitter_sink_first = litepciedma1_writer_source_source_first;
+assign litepciedma1_writer_splitter_sink_last = litepciedma1_writer_source_source_last;
+assign litepciedma1_writer_splitter_sink_payload_address = litepciedma1_writer_source_source_payload_address;
+assign litepciedma1_writer_splitter_sink_payload_length = litepciedma1_writer_source_source_payload_length;
+assign litepciedma1_writer_splitter_sink_payload_irq_disable = litepciedma1_writer_source_source_payload_irq_disable;
+assign litepciedma1_writer_splitter_sink_payload_last_disable = litepciedma1_writer_source_source_payload_last_disable;
 always @(*) begin
-	litepciedma1_writer_data_fifo_sink_payload_data <= 128'd0;
-	litepciedma1_writer_sink_sink_ready <= 1'd0;
 	litepciedma1_writer_data_fifo_sink_valid <= 1'd0;
 	litepciedma1_writer_data_fifo_sink_first <= 1'd0;
+	litepciedma1_writer_sink_sink_ready <= 1'd0;
 	litepciedma1_writer_data_fifo_sink_last <= 1'd0;
+	litepciedma1_writer_data_fifo_sink_payload_data <= 128'd0;
 	litepciedma1_writer_sink_sink_ready <= 1'd1;
 	if (litepciedma1_writer_enable_storage) begin
 		litepciedma1_writer_data_fifo_sink_valid <= litepciedma1_writer_sink_sink_valid;
@@ -7461,92 +7387,83 @@ always @(*) begin
 	end
 end
 assign litepciedma1_litepciemasterinternalport2_sink_payload_channel = 2'd2;
-assign litepciedma1_litepciemasterinternalport2_sink_payload_user_id = litepciedma1_writer_splitter_source_source_payload_user_id;
+assign litepciedma1_litepciemasterinternalport2_sink_payload_user_id = litepciedma1_writer_splitter_source_payload_user_id;
 assign litepciedma1_litepciemasterinternalport2_sink_first = (litepciedma1_writer_req_count == 1'd0);
-assign litepciedma1_litepciemasterinternalport2_sink_last = (litepciedma1_writer_req_count == (litepciedma1_writer_splitter_source_source_payload_length[23:4] - 1'd1));
+assign litepciedma1_litepciemasterinternalport2_sink_last = (litepciedma1_writer_req_count == (litepciedma1_writer_splitter_source_payload_length[23:4] - 1'd1));
 assign litepciedma1_litepciemasterinternalport2_sink_payload_we = 1'd1;
-assign litepciedma1_litepciemasterinternalport2_sink_payload_adr = litepciedma1_writer_splitter_source_source_payload_address;
+assign litepciedma1_litepciemasterinternalport2_sink_payload_adr = litepciedma1_writer_splitter_source_payload_address;
 assign litepciedma1_litepciemasterinternalport2_sink_payload_req_id = s7pciephy_id;
 assign litepciedma1_litepciemasterinternalport2_sink_payload_tag = 1'd0;
-assign litepciedma1_litepciemasterinternalport2_sink_payload_len = litepciedma1_writer_splitter_source_source_payload_length[23:2];
+assign litepciedma1_litepciemasterinternalport2_sink_payload_len = litepciedma1_writer_splitter_source_payload_length[23:2];
 assign litepciedma1_litepciemasterinternalport2_sink_payload_dat = litepciedma1_writer_data_fifo_source_payload_data;
 always @(*) begin
 	litepciedma1_writer_irq <= 1'd0;
-	if (((litepciedma1_writer_splitter_source_source_valid & litepciedma1_writer_splitter_source_source_ready) & litepciedma1_writer_splitter_source_source_last)) begin
-		litepciedma1_writer_irq <= (~litepciedma1_writer_splitter_source_source_payload_irq_disable);
+	if (((litepciedma1_writer_splitter_source_valid & litepciedma1_writer_splitter_source_ready) & litepciedma1_writer_splitter_source_last)) begin
+		litepciedma1_writer_irq <= (~litepciedma1_writer_splitter_source_payload_irq_disable);
 	end
 end
-assign litepciedma1_writer_table_table_reset = (litepciedma1_writer_table_reset_storage & litepciedma1_writer_table_reset_re);
-assign litepciedma1_writer_table_level_status = litepciedma1_writer_table_table_level;
-assign litepciedma1_writer_table_source_source_valid = litepciedma1_writer_table_table_source_valid;
-assign litepciedma1_writer_table_table_source_ready = litepciedma1_writer_table_source_source_ready;
-assign litepciedma1_writer_table_source_source_first = litepciedma1_writer_table_table_source_first;
-assign litepciedma1_writer_table_source_source_last = litepciedma1_writer_table_table_source_last;
-assign litepciedma1_writer_table_source_source_payload_address = litepciedma1_writer_table_table_source_payload_address;
-assign litepciedma1_writer_table_source_source_payload_length = litepciedma1_writer_table_table_source_payload_length;
-assign litepciedma1_writer_table_source_source_payload_irq_disable = litepciedma1_writer_table_table_source_payload_irq_disable;
-assign litepciedma1_writer_table_source_source_payload_last_disable = litepciedma1_writer_table_table_source_payload_last_disable;
-assign litepciedma1_writer_table_table_syncfifo1_din = {litepciedma1_writer_table_table_fifo_in_last, litepciedma1_writer_table_table_fifo_in_first, litepciedma1_writer_table_table_fifo_in_payload_last_disable, litepciedma1_writer_table_table_fifo_in_payload_irq_disable, litepciedma1_writer_table_table_fifo_in_payload_length, litepciedma1_writer_table_table_fifo_in_payload_address};
-assign {litepciedma1_writer_table_table_fifo_out_last, litepciedma1_writer_table_table_fifo_out_first, litepciedma1_writer_table_table_fifo_out_payload_last_disable, litepciedma1_writer_table_table_fifo_out_payload_irq_disable, litepciedma1_writer_table_table_fifo_out_payload_length, litepciedma1_writer_table_table_fifo_out_payload_address} = litepciedma1_writer_table_table_syncfifo1_dout;
-assign litepciedma1_writer_table_table_sink_ready = litepciedma1_writer_table_table_syncfifo1_writable;
-assign litepciedma1_writer_table_table_syncfifo1_we = litepciedma1_writer_table_table_sink_valid;
-assign litepciedma1_writer_table_table_fifo_in_first = litepciedma1_writer_table_table_sink_first;
-assign litepciedma1_writer_table_table_fifo_in_last = litepciedma1_writer_table_table_sink_last;
-assign litepciedma1_writer_table_table_fifo_in_payload_address = litepciedma1_writer_table_table_sink_payload_address;
-assign litepciedma1_writer_table_table_fifo_in_payload_length = litepciedma1_writer_table_table_sink_payload_length;
-assign litepciedma1_writer_table_table_fifo_in_payload_irq_disable = litepciedma1_writer_table_table_sink_payload_irq_disable;
-assign litepciedma1_writer_table_table_fifo_in_payload_last_disable = litepciedma1_writer_table_table_sink_payload_last_disable;
-assign litepciedma1_writer_table_table_source_valid = litepciedma1_writer_table_table_syncfifo1_readable;
-assign litepciedma1_writer_table_table_source_first = litepciedma1_writer_table_table_fifo_out_first;
-assign litepciedma1_writer_table_table_source_last = litepciedma1_writer_table_table_fifo_out_last;
-assign litepciedma1_writer_table_table_source_payload_address = litepciedma1_writer_table_table_fifo_out_payload_address;
-assign litepciedma1_writer_table_table_source_payload_length = litepciedma1_writer_table_table_fifo_out_payload_length;
-assign litepciedma1_writer_table_table_source_payload_irq_disable = litepciedma1_writer_table_table_fifo_out_payload_irq_disable;
-assign litepciedma1_writer_table_table_source_payload_last_disable = litepciedma1_writer_table_table_fifo_out_payload_last_disable;
-assign litepciedma1_writer_table_table_syncfifo1_re = litepciedma1_writer_table_table_source_ready;
+assign litepciedma1_writer_table_reset = (litepciedma1_writer_reset_storage & litepciedma1_writer_reset_re);
+assign litepciedma1_writer_level_status = litepciedma1_writer_table_level;
+assign litepciedma1_writer_source_source_valid = litepciedma1_writer_table_source_valid;
+assign litepciedma1_writer_table_source_ready = litepciedma1_writer_source_source_ready;
+assign litepciedma1_writer_source_source_first = litepciedma1_writer_table_source_first;
+assign litepciedma1_writer_source_source_last = litepciedma1_writer_table_source_last;
+assign litepciedma1_writer_source_source_payload_address = litepciedma1_writer_table_source_payload_address;
+assign litepciedma1_writer_source_source_payload_length = litepciedma1_writer_table_source_payload_length;
+assign litepciedma1_writer_source_source_payload_irq_disable = litepciedma1_writer_table_source_payload_irq_disable;
+assign litepciedma1_writer_source_source_payload_last_disable = litepciedma1_writer_table_source_payload_last_disable;
+assign litepciedma1_writer_table_syncfifo1_din = {litepciedma1_writer_table_fifo_in_last, litepciedma1_writer_table_fifo_in_first, litepciedma1_writer_table_fifo_in_payload_last_disable, litepciedma1_writer_table_fifo_in_payload_irq_disable, litepciedma1_writer_table_fifo_in_payload_length, litepciedma1_writer_table_fifo_in_payload_address};
+assign {litepciedma1_writer_table_fifo_out_last, litepciedma1_writer_table_fifo_out_first, litepciedma1_writer_table_fifo_out_payload_last_disable, litepciedma1_writer_table_fifo_out_payload_irq_disable, litepciedma1_writer_table_fifo_out_payload_length, litepciedma1_writer_table_fifo_out_payload_address} = litepciedma1_writer_table_syncfifo1_dout;
+assign litepciedma1_writer_table_sink_ready = litepciedma1_writer_table_syncfifo1_writable;
+assign litepciedma1_writer_table_syncfifo1_we = litepciedma1_writer_table_sink_valid;
+assign litepciedma1_writer_table_fifo_in_first = litepciedma1_writer_table_sink_first;
+assign litepciedma1_writer_table_fifo_in_last = litepciedma1_writer_table_sink_last;
+assign litepciedma1_writer_table_fifo_in_payload_address = litepciedma1_writer_table_sink_payload_address;
+assign litepciedma1_writer_table_fifo_in_payload_length = litepciedma1_writer_table_sink_payload_length;
+assign litepciedma1_writer_table_fifo_in_payload_irq_disable = litepciedma1_writer_table_sink_payload_irq_disable;
+assign litepciedma1_writer_table_fifo_in_payload_last_disable = litepciedma1_writer_table_sink_payload_last_disable;
+assign litepciedma1_writer_table_source_valid = litepciedma1_writer_table_syncfifo1_readable;
+assign litepciedma1_writer_table_source_first = litepciedma1_writer_table_fifo_out_first;
+assign litepciedma1_writer_table_source_last = litepciedma1_writer_table_fifo_out_last;
+assign litepciedma1_writer_table_source_payload_address = litepciedma1_writer_table_fifo_out_payload_address;
+assign litepciedma1_writer_table_source_payload_length = litepciedma1_writer_table_fifo_out_payload_length;
+assign litepciedma1_writer_table_source_payload_irq_disable = litepciedma1_writer_table_fifo_out_payload_irq_disable;
+assign litepciedma1_writer_table_source_payload_last_disable = litepciedma1_writer_table_fifo_out_payload_last_disable;
+assign litepciedma1_writer_table_syncfifo1_re = litepciedma1_writer_table_source_ready;
 always @(*) begin
-	litepciedma1_writer_table_table_wrport_adr <= 8'd0;
-	if (litepciedma1_writer_table_table_replace) begin
-		litepciedma1_writer_table_table_wrport_adr <= (litepciedma1_writer_table_table_produce - 1'd1);
+	litepciedma1_writer_table_wrport_adr <= 8'd0;
+	if (litepciedma1_writer_table_replace) begin
+		litepciedma1_writer_table_wrport_adr <= (litepciedma1_writer_table_produce - 1'd1);
 	end else begin
-		litepciedma1_writer_table_table_wrport_adr <= litepciedma1_writer_table_table_produce;
+		litepciedma1_writer_table_wrport_adr <= litepciedma1_writer_table_produce;
 	end
 end
-assign litepciedma1_writer_table_table_wrport_dat_w = litepciedma1_writer_table_table_syncfifo1_din;
-assign litepciedma1_writer_table_table_wrport_we = (litepciedma1_writer_table_table_syncfifo1_we & (litepciedma1_writer_table_table_syncfifo1_writable | litepciedma1_writer_table_table_replace));
-assign litepciedma1_writer_table_table_do_read = (litepciedma1_writer_table_table_syncfifo1_readable & litepciedma1_writer_table_table_syncfifo1_re);
-assign litepciedma1_writer_table_table_rdport_adr = litepciedma1_writer_table_table_consume;
-assign litepciedma1_writer_table_table_syncfifo1_dout = litepciedma1_writer_table_table_rdport_dat_r;
-assign litepciedma1_writer_table_table_syncfifo1_writable = (litepciedma1_writer_table_table_level != 9'd256);
-assign litepciedma1_writer_table_table_syncfifo1_readable = (litepciedma1_writer_table_table_level != 1'd0);
+assign litepciedma1_writer_table_wrport_dat_w = litepciedma1_writer_table_syncfifo1_din;
+assign litepciedma1_writer_table_wrport_we = (litepciedma1_writer_table_syncfifo1_we & (litepciedma1_writer_table_syncfifo1_writable | litepciedma1_writer_table_replace));
+assign litepciedma1_writer_table_do_read = (litepciedma1_writer_table_syncfifo1_readable & litepciedma1_writer_table_syncfifo1_re);
+assign litepciedma1_writer_table_rdport_adr = litepciedma1_writer_table_consume;
+assign litepciedma1_writer_table_syncfifo1_dout = litepciedma1_writer_table_rdport_dat_r;
+assign litepciedma1_writer_table_syncfifo1_writable = (litepciedma1_writer_table_level != 9'd256);
+assign litepciedma1_writer_table_syncfifo1_readable = (litepciedma1_writer_table_level != 1'd0);
 assign litepciedma1_writer_splitter_source_payload_address = (litepciedma1_writer_splitter_sink_payload_address + litepciedma1_writer_splitter_desc_offset);
 assign litepciedma1_writer_splitter_source_payload_irq_disable = litepciedma1_writer_splitter_sink_payload_irq_disable;
 assign litepciedma1_writer_splitter_source_payload_last_disable = litepciedma1_writer_splitter_sink_payload_last_disable;
 assign litepciedma1_writer_splitter_source_payload_user_id = litepciedma1_writer_splitter_desc_id;
-assign litepciedma1_writer_splitter_sink_sink_valid = litepciedma1_writer_splitter_source_valid;
-assign litepciedma1_writer_splitter_source_ready = litepciedma1_writer_splitter_sink_sink_ready;
-assign litepciedma1_writer_splitter_sink_sink_first = litepciedma1_writer_splitter_source_first;
-assign litepciedma1_writer_splitter_sink_sink_last = litepciedma1_writer_splitter_source_last;
-assign litepciedma1_writer_splitter_sink_sink_payload_address = litepciedma1_writer_splitter_source_payload_address;
-assign litepciedma1_writer_splitter_sink_sink_payload_length = litepciedma1_writer_splitter_source_payload_length;
-assign litepciedma1_writer_splitter_sink_sink_payload_irq_disable = litepciedma1_writer_splitter_source_payload_irq_disable;
-assign litepciedma1_writer_splitter_sink_sink_payload_last_disable = litepciedma1_writer_splitter_source_payload_last_disable;
-assign litepciedma1_writer_splitter_sink_sink_payload_user_id = litepciedma1_writer_splitter_source_payload_user_id;
 always @(*) begin
-	litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value_ce0 <= 1'd0;
-	litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value1 <= 32'd0;
-	litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value_ce1 <= 1'd0;
+	litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value0 <= 32'd0;
+	litepciedma1_writer_splitter_source_payload_length <= 24'd0;
+	litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value_ce0 <= 1'd0;
+	litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value1 <= 32'd0;
+	litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value_ce1 <= 1'd0;
+	litepciedma1_writer_splitter_sink_ready <= 1'd0;
+	litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value2 <= 32'd0;
+	litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value_ce2 <= 1'd0;
 	litepciedma1_writer_splitter_source_valid <= 1'd0;
 	litepciedma1_writer_splitter_source_first <= 1'd0;
 	litepciedma1_writer_splitter_source_last <= 1'd0;
-	litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value2 <= 32'd0;
-	litepciedma1_writer_splitter_source_payload_length <= 24'd0;
-	litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value_ce2 <= 1'd0;
-	litepciedma1_writer_splitter_sink_ready <= 1'd0;
-	litepciecore_bufferizeendpoints1_next_state0 <= 1'd0;
-	litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value0 <= 32'd0;
-	litepciecore_bufferizeendpoints1_next_state0 <= litepciecore_bufferizeendpoints1_state0;
-	case (litepciecore_bufferizeendpoints1_state0)
+	litepciecore_resetinserter1_next_state <= 1'd0;
+	litepciecore_resetinserter1_next_state <= litepciecore_resetinserter1_state;
+	case (litepciecore_resetinserter1_state)
 		1'd1: begin
 			litepciedma1_writer_splitter_source_valid <= 1'd1;
 			litepciedma1_writer_splitter_source_first <= (litepciedma1_writer_splitter_desc_offset == 1'd0);
@@ -7558,48 +7475,29 @@ always @(*) begin
 				litepciedma1_writer_splitter_source_payload_length <= litepciedma1_writer_splitter_desc_length;
 			end
 			if (litepciedma1_writer_splitter_source_ready) begin
-				litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value0 <= (litepciedma1_writer_splitter_desc_offset + s7pciephy_max_payload_size);
-				litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value_ce0 <= 1'd1;
-				litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value1 <= (litepciedma1_writer_splitter_desc_length - s7pciephy_max_payload_size);
-				litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value_ce1 <= 1'd1;
-				if (litepciedma1_writer_splitter_source_last) begin
+				litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value0 <= (litepciedma1_writer_splitter_desc_offset + s7pciephy_max_payload_size);
+				litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value_ce0 <= 1'd1;
+				litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value1 <= (litepciedma1_writer_splitter_desc_length - s7pciephy_max_payload_size);
+				litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value_ce1 <= 1'd1;
+				if ((litepciedma1_writer_splitter_source_last | litepciedma1_writer_splitter_terminate)) begin
 					litepciedma1_writer_splitter_sink_ready <= 1'd1;
-					litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value2 <= (litepciedma1_writer_splitter_desc_id + 1'd1);
-					litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints1_next_state0 <= 1'd0;
+					litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value2 <= (litepciedma1_writer_splitter_desc_id + 1'd1);
+					litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value_ce2 <= 1'd1;
+					litepciecore_resetinserter1_next_state <= 1'd0;
 				end
 			end
 		end
 		default: begin
-			litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value0 <= 1'd0;
-			litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value_ce0 <= 1'd1;
-			litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value1 <= litepciedma1_writer_splitter_sink_payload_length;
-			litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value_ce1 <= 1'd1;
+			litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value0 <= 1'd0;
+			litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value_ce0 <= 1'd1;
+			litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value1 <= litepciedma1_writer_splitter_sink_payload_length;
+			litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value_ce1 <= 1'd1;
 			if (litepciedma1_writer_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints1_next_state0 <= 1'd1;
+				litepciecore_resetinserter1_next_state <= 1'd1;
 			end
 		end
 	endcase
 end
-assign litepciedma1_writer_splitter_pipe_valid_sink_ready = ((~litepciedma1_writer_splitter_pipe_valid_source_valid) | litepciedma1_writer_splitter_pipe_valid_source_ready);
-assign litepciedma1_writer_splitter_pipe_valid_sink_valid = litepciedma1_writer_splitter_sink_sink_valid;
-assign litepciedma1_writer_splitter_sink_sink_ready = litepciedma1_writer_splitter_pipe_valid_sink_ready;
-assign litepciedma1_writer_splitter_pipe_valid_sink_first = litepciedma1_writer_splitter_sink_sink_first;
-assign litepciedma1_writer_splitter_pipe_valid_sink_last = litepciedma1_writer_splitter_sink_sink_last;
-assign litepciedma1_writer_splitter_pipe_valid_sink_payload_address = litepciedma1_writer_splitter_sink_sink_payload_address;
-assign litepciedma1_writer_splitter_pipe_valid_sink_payload_length = litepciedma1_writer_splitter_sink_sink_payload_length;
-assign litepciedma1_writer_splitter_pipe_valid_sink_payload_irq_disable = litepciedma1_writer_splitter_sink_sink_payload_irq_disable;
-assign litepciedma1_writer_splitter_pipe_valid_sink_payload_last_disable = litepciedma1_writer_splitter_sink_sink_payload_last_disable;
-assign litepciedma1_writer_splitter_pipe_valid_sink_payload_user_id = litepciedma1_writer_splitter_sink_sink_payload_user_id;
-assign litepciedma1_writer_splitter_source_source_valid = litepciedma1_writer_splitter_pipe_valid_source_valid;
-assign litepciedma1_writer_splitter_pipe_valid_source_ready = litepciedma1_writer_splitter_source_source_ready;
-assign litepciedma1_writer_splitter_source_source_first = litepciedma1_writer_splitter_pipe_valid_source_first;
-assign litepciedma1_writer_splitter_source_source_last = litepciedma1_writer_splitter_pipe_valid_source_last;
-assign litepciedma1_writer_splitter_source_source_payload_address = litepciedma1_writer_splitter_pipe_valid_source_payload_address;
-assign litepciedma1_writer_splitter_source_source_payload_length = litepciedma1_writer_splitter_pipe_valid_source_payload_length;
-assign litepciedma1_writer_splitter_source_source_payload_irq_disable = litepciedma1_writer_splitter_pipe_valid_source_payload_irq_disable;
-assign litepciedma1_writer_splitter_source_source_payload_last_disable = litepciedma1_writer_splitter_pipe_valid_source_payload_last_disable;
-assign litepciedma1_writer_splitter_source_source_payload_user_id = litepciedma1_writer_splitter_pipe_valid_source_payload_user_id;
 assign litepciedma1_writer_data_fifo_syncfifo1_din = {litepciedma1_writer_data_fifo_fifo_in_last, litepciedma1_writer_data_fifo_fifo_in_first, litepciedma1_writer_data_fifo_fifo_in_payload_data};
 assign {litepciedma1_writer_data_fifo_fifo_out_last, litepciedma1_writer_data_fifo_fifo_out_first, litepciedma1_writer_data_fifo_fifo_out_payload_data} = litepciedma1_writer_data_fifo_syncfifo1_dout;
 assign litepciedma1_writer_data_fifo_sink_ready = litepciedma1_writer_data_fifo_syncfifo1_writable;
@@ -7631,16 +7529,17 @@ assign litepciedma1_writer_data_fifo_rdport_re = litepciedma1_writer_data_fifo_d
 assign litepciedma1_writer_data_fifo_syncfifo1_writable = (litepciedma1_writer_data_fifo_level0 != 8'd128);
 assign litepciedma1_writer_data_fifo_syncfifo1_readable = (litepciedma1_writer_data_fifo_level0 != 1'd0);
 always @(*) begin
-	litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value_ce0 <= 1'd0;
-	litepciedma1_litepciemasterinternalport2_sink_valid <= 1'd0;
-	litepciedma1_writer_splitter_source_source_ready <= 1'd0;
-	litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 <= 1'd0;
-	litepciedma1_writer_data_fifo_source_ready <= 1'd0;
-	litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 <= 1'd0;
-	litepciedma1_writer_splitter_reset <= 1'd0;
-	litepciedma1_writer_resetinserter_reset <= 1'd0;
-	litepciecore_fsm1_next_state0 <= 1'd0;
 	litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value0 <= 24'd0;
+	litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value_ce0 <= 1'd0;
+	litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 <= 1'd0;
+	litepciedma1_writer_splitter_terminate <= 1'd0;
+	litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 <= 1'd0;
+	litepciedma1_writer_data_fifo_source_ready <= 1'd0;
+	litepciedma1_writer_data_fifo_reset <= 1'd0;
+	litepciedma1_writer_splitter_source_ready <= 1'd0;
+	litepciedma1_litepciemasterinternalport2_sink_valid <= 1'd0;
+	litepciedma1_writer_splitter_reset <= 1'd0;
+	litepciecore_fsm1_next_state0 <= 1'd0;
 	litepciecore_fsm1_next_state0 <= litepciecore_fsm1_state0;
 	case (litepciecore_fsm1_state0)
 		1'd1: begin
@@ -7648,13 +7547,14 @@ always @(*) begin
 			if (litepciedma1_litepciemasterinternalport2_sink_ready) begin
 				litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value0 <= (litepciedma1_writer_req_count + 1'd1);
 				litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value_ce0 <= 1'd1;
+				if ((litepciedma1_writer_data_fifo_source_last & (~litepciedma1_writer_splitter_source_payload_last_disable))) begin
+					litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 <= 1'd1;
+					litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 <= 1'd1;
+				end
+				litepciedma1_writer_splitter_terminate <= litepciedma1_writer_req_done;
 				litepciedma1_writer_data_fifo_source_ready <= (~litepciedma1_writer_req_done);
 				if (litepciedma1_litepciemasterinternalport2_sink_last) begin
-					litepciedma1_writer_splitter_source_source_ready <= 1'd1;
-					if ((litepciedma1_writer_data_fifo_source_last & (~litepciedma1_writer_splitter_source_source_payload_last_disable))) begin
-						litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 <= 1'd1;
-						litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 <= 1'd1;
-					end
+					litepciedma1_writer_splitter_source_ready <= 1'd1;
 					litepciecore_fsm1_next_state0 <= 1'd0;
 				end
 			end
@@ -7662,13 +7562,13 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma1_writer_enable_storage)) begin
 				litepciedma1_writer_splitter_reset <= 1'd1;
-				litepciedma1_writer_resetinserter_reset <= 1'd1;
+				litepciedma1_writer_data_fifo_reset <= 1'd1;
 			end
 			litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value0 <= 1'd0;
 			litepciedma1_writer_req_count_bufferizeendpoints1_fsm1_next_value_ce0 <= 1'd1;
 			litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value1 <= 1'd0;
 			litepciedma1_writer_req_done_bufferizeendpoints1_fsm1_next_value_ce1 <= 1'd1;
-			if ((litepciedma1_writer_splitter_source_source_valid & (litepciedma1_writer_data_fifo_level1 >= litepciedma1_writer_splitter_source_source_payload_length[23:4]))) begin
+			if ((litepciedma1_writer_splitter_source_valid & (litepciedma1_writer_data_fifo_level1 >= litepciedma1_writer_splitter_source_payload_length[23:4]))) begin
 				litepciecore_fsm1_next_state0 <= 1'd1;
 			end
 		end
@@ -7688,9 +7588,9 @@ assign litepciedma1_reader_source_source_first = litepciedma1_reader_data_fifo_s
 assign litepciedma1_reader_source_source_last = litepciedma1_reader_data_fifo_source_last;
 assign litepciedma1_reader_source_source_payload_data = litepciedma1_reader_data_fifo_source_payload_data;
 always @(*) begin
-	litepciedma1_reader_data_fifo_sink_payload_data <= 128'd0;
-	litepciedma1_litepciemasterinternalport3_source_ready <= 1'd0;
 	litepciedma1_reader_data_fifo_sink_valid <= 1'd0;
+	litepciedma1_litepciemasterinternalport3_source_ready <= 1'd0;
+	litepciedma1_reader_data_fifo_sink_payload_data <= 128'd0;
 	litepciedma1_reader_data_fifo_sink_first <= 1'd0;
 	if (litepciedma1_reader_enable_storage) begin
 		litepciedma1_reader_data_fifo_sink_valid <= litepciedma1_litepciemasterinternalport3_source_valid;
@@ -7785,20 +7685,20 @@ assign litepciedma1_reader_splitter_sink_sink_payload_irq_disable = litepciedma1
 assign litepciedma1_reader_splitter_sink_sink_payload_last_disable = litepciedma1_reader_splitter_source_payload_last_disable;
 assign litepciedma1_reader_splitter_sink_sink_payload_user_id = litepciedma1_reader_splitter_source_payload_user_id;
 always @(*) begin
+	litepciecore_bufferizeendpoints1_next_state <= 1'd0;
+	litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value0 <= 32'd0;
+	litepciedma1_reader_splitter_sink_ready <= 1'd0;
 	litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value_ce0 <= 1'd0;
-	litepciedma1_reader_splitter_source_payload_length <= 24'd0;
 	litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value1 <= 32'd0;
 	litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value_ce1 <= 1'd0;
-	litepciedma1_reader_splitter_sink_ready <= 1'd0;
-	litepciedma1_reader_splitter_source_last <= 1'd0;
-	litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value2 <= 32'd0;
-	litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value_ce2 <= 1'd0;
 	litepciedma1_reader_splitter_source_valid <= 1'd0;
+	litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value2 <= 32'd0;
 	litepciedma1_reader_splitter_source_first <= 1'd0;
-	litepciecore_bufferizeendpoints1_next_state1 <= 1'd0;
-	litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value0 <= 32'd0;
-	litepciecore_bufferizeendpoints1_next_state1 <= litepciecore_bufferizeendpoints1_state1;
-	case (litepciecore_bufferizeendpoints1_state1)
+	litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value_ce2 <= 1'd0;
+	litepciedma1_reader_splitter_source_last <= 1'd0;
+	litepciedma1_reader_splitter_source_payload_length <= 24'd0;
+	litepciecore_bufferizeendpoints1_next_state <= litepciecore_bufferizeendpoints1_state;
+	case (litepciecore_bufferizeendpoints1_state)
 		1'd1: begin
 			litepciedma1_reader_splitter_source_valid <= 1'd1;
 			litepciedma1_reader_splitter_source_first <= (litepciedma1_reader_splitter_desc_offset == 1'd0);
@@ -7814,11 +7714,11 @@ always @(*) begin
 				litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value_ce0 <= 1'd1;
 				litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value1 <= (litepciedma1_reader_splitter_desc_length - s7pciephy_max_request_size);
 				litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value_ce1 <= 1'd1;
-				if (litepciedma1_reader_splitter_source_last) begin
+				if ((litepciedma1_reader_splitter_source_last | litepciedma1_reader_splitter_terminate)) begin
 					litepciedma1_reader_splitter_sink_ready <= 1'd1;
 					litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value2 <= (litepciedma1_reader_splitter_desc_id + 1'd1);
 					litepciedma1_reader_splitter_desc_id_bufferizeendpoints1_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints1_next_state1 <= 1'd0;
+					litepciecore_bufferizeendpoints1_next_state <= 1'd0;
 				end
 			end
 		end
@@ -7828,7 +7728,7 @@ always @(*) begin
 			litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value1 <= litepciedma1_reader_splitter_sink_payload_length;
 			litepciedma1_reader_splitter_desc_length_bufferizeendpoints1_next_value_ce1 <= 1'd1;
 			if (litepciedma1_reader_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints1_next_state1 <= 1'd1;
+				litepciecore_bufferizeendpoints1_next_state <= 1'd1;
 			end
 		end
 	endcase
@@ -7883,11 +7783,11 @@ assign litepciedma1_reader_data_fifo_rdport_re = litepciedma1_reader_data_fifo_d
 assign litepciedma1_reader_data_fifo_syncfifo1_writable = (litepciedma1_reader_data_fifo_level0 != 11'd1024);
 assign litepciedma1_reader_data_fifo_syncfifo1_readable = (litepciedma1_reader_data_fifo_level0 != 1'd0);
 always @(*) begin
+	litepciedma1_reader_data_fifo_reset <= 1'd0;
+	litepciecore_fsm1_next_state1 <= 1'd0;
+	litepciedma1_reader_splitter_reset <= 1'd0;
 	litepciedma1_litepciemasterinternalport3_sink_valid <= 1'd0;
 	litepciedma1_reader_splitter_source_source_ready <= 1'd0;
-	litepciedma1_reader_resetinserter_reset <= 1'd0;
-	litepciedma1_reader_splitter_reset <= 1'd0;
-	litepciecore_fsm1_next_state1 <= 1'd0;
 	litepciecore_fsm1_next_state1 <= litepciecore_fsm1_state1;
 	case (litepciecore_fsm1_state1)
 		1'd1: begin
@@ -7900,7 +7800,7 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma1_reader_enable_storage)) begin
 				litepciedma1_reader_splitter_reset <= 1'd1;
-				litepciedma1_reader_resetinserter_reset <= 1'd1;
+				litepciedma1_reader_data_fifo_reset <= 1'd1;
 			end
 			if ((litepciedma1_reader_splitter_source_source_valid & (litepciedma1_reader_pending_words < 10'd992))) begin
 				litepciecore_fsm1_next_state1 <= 1'd1;
@@ -7936,8 +7836,8 @@ assign litepciedma1_buffering_writer_fifo_sink_first = litepciedma1_buffering_ne
 assign litepciedma1_buffering_writer_fifo_sink_last = litepciedma1_buffering_next_sink_last;
 assign litepciedma1_buffering_writer_fifo_sink_payload_data = litepciedma1_buffering_next_sink_payload_data;
 always @(*) begin
-	litepciedma1_buffering_next_sink_ready <= 1'd0;
 	litepciedma1_buffering_writer_fifo_sink_valid <= 1'd0;
+	litepciedma1_buffering_next_sink_ready <= 1'd0;
 	if (((litepciedma1_buffering_writer_fifo_level1 < litepciedma1_buffering_csrfield_depth1[23:4]) | 1'd0)) begin
 		litepciedma1_buffering_writer_fifo_sink_valid <= litepciedma1_buffering_next_sink_valid;
 		litepciedma1_buffering_next_sink_ready <= litepciedma1_buffering_writer_fifo_sink_ready;
@@ -8058,20 +7958,20 @@ assign litepciedma2_buffering_next_source_ready = bufferizeendpoints5_sink_sink_
 assign bufferizeendpoints5_sink_sink_first = litepciedma2_buffering_next_source_first;
 assign bufferizeendpoints5_sink_sink_last = litepciedma2_buffering_next_source_last;
 assign bufferizeendpoints5_sink_sink_payload_data = litepciedma2_buffering_next_source_payload_data;
-assign litepciedma2_writer_splitter_sink_valid = litepciedma2_writer_table_source_source_valid;
-assign litepciedma2_writer_table_source_source_ready = litepciedma2_writer_splitter_sink_ready;
-assign litepciedma2_writer_splitter_sink_first = litepciedma2_writer_table_source_source_first;
-assign litepciedma2_writer_splitter_sink_last = litepciedma2_writer_table_source_source_last;
-assign litepciedma2_writer_splitter_sink_payload_address = litepciedma2_writer_table_source_source_payload_address;
-assign litepciedma2_writer_splitter_sink_payload_length = litepciedma2_writer_table_source_source_payload_length;
-assign litepciedma2_writer_splitter_sink_payload_irq_disable = litepciedma2_writer_table_source_source_payload_irq_disable;
-assign litepciedma2_writer_splitter_sink_payload_last_disable = litepciedma2_writer_table_source_source_payload_last_disable;
+assign litepciedma2_writer_splitter_sink_valid = litepciedma2_writer_source_source_valid;
+assign litepciedma2_writer_source_source_ready = litepciedma2_writer_splitter_sink_ready;
+assign litepciedma2_writer_splitter_sink_first = litepciedma2_writer_source_source_first;
+assign litepciedma2_writer_splitter_sink_last = litepciedma2_writer_source_source_last;
+assign litepciedma2_writer_splitter_sink_payload_address = litepciedma2_writer_source_source_payload_address;
+assign litepciedma2_writer_splitter_sink_payload_length = litepciedma2_writer_source_source_payload_length;
+assign litepciedma2_writer_splitter_sink_payload_irq_disable = litepciedma2_writer_source_source_payload_irq_disable;
+assign litepciedma2_writer_splitter_sink_payload_last_disable = litepciedma2_writer_source_source_payload_last_disable;
 always @(*) begin
 	litepciedma2_writer_data_fifo_sink_valid <= 1'd0;
 	litepciedma2_writer_data_fifo_sink_first <= 1'd0;
+	litepciedma2_writer_sink_sink_ready <= 1'd0;
 	litepciedma2_writer_data_fifo_sink_last <= 1'd0;
 	litepciedma2_writer_data_fifo_sink_payload_data <= 128'd0;
-	litepciedma2_writer_sink_sink_ready <= 1'd0;
 	litepciedma2_writer_sink_sink_ready <= 1'd1;
 	if (litepciedma2_writer_enable_storage) begin
 		litepciedma2_writer_data_fifo_sink_valid <= litepciedma2_writer_sink_sink_valid;
@@ -8082,92 +7982,83 @@ always @(*) begin
 	end
 end
 assign litepciedma2_litepciemasterinternalport4_sink_payload_channel = 3'd4;
-assign litepciedma2_litepciemasterinternalport4_sink_payload_user_id = litepciedma2_writer_splitter_source_source_payload_user_id;
+assign litepciedma2_litepciemasterinternalport4_sink_payload_user_id = litepciedma2_writer_splitter_source_payload_user_id;
 assign litepciedma2_litepciemasterinternalport4_sink_first = (litepciedma2_writer_req_count == 1'd0);
-assign litepciedma2_litepciemasterinternalport4_sink_last = (litepciedma2_writer_req_count == (litepciedma2_writer_splitter_source_source_payload_length[23:4] - 1'd1));
+assign litepciedma2_litepciemasterinternalport4_sink_last = (litepciedma2_writer_req_count == (litepciedma2_writer_splitter_source_payload_length[23:4] - 1'd1));
 assign litepciedma2_litepciemasterinternalport4_sink_payload_we = 1'd1;
-assign litepciedma2_litepciemasterinternalport4_sink_payload_adr = litepciedma2_writer_splitter_source_source_payload_address;
+assign litepciedma2_litepciemasterinternalport4_sink_payload_adr = litepciedma2_writer_splitter_source_payload_address;
 assign litepciedma2_litepciemasterinternalport4_sink_payload_req_id = s7pciephy_id;
 assign litepciedma2_litepciemasterinternalport4_sink_payload_tag = 1'd0;
-assign litepciedma2_litepciemasterinternalport4_sink_payload_len = litepciedma2_writer_splitter_source_source_payload_length[23:2];
+assign litepciedma2_litepciemasterinternalport4_sink_payload_len = litepciedma2_writer_splitter_source_payload_length[23:2];
 assign litepciedma2_litepciemasterinternalport4_sink_payload_dat = litepciedma2_writer_data_fifo_source_payload_data;
 always @(*) begin
 	litepciedma2_writer_irq <= 1'd0;
-	if (((litepciedma2_writer_splitter_source_source_valid & litepciedma2_writer_splitter_source_source_ready) & litepciedma2_writer_splitter_source_source_last)) begin
-		litepciedma2_writer_irq <= (~litepciedma2_writer_splitter_source_source_payload_irq_disable);
+	if (((litepciedma2_writer_splitter_source_valid & litepciedma2_writer_splitter_source_ready) & litepciedma2_writer_splitter_source_last)) begin
+		litepciedma2_writer_irq <= (~litepciedma2_writer_splitter_source_payload_irq_disable);
 	end
 end
-assign litepciedma2_writer_table_table_reset = (litepciedma2_writer_table_reset_storage & litepciedma2_writer_table_reset_re);
-assign litepciedma2_writer_table_level_status = litepciedma2_writer_table_table_level;
-assign litepciedma2_writer_table_source_source_valid = litepciedma2_writer_table_table_source_valid;
-assign litepciedma2_writer_table_table_source_ready = litepciedma2_writer_table_source_source_ready;
-assign litepciedma2_writer_table_source_source_first = litepciedma2_writer_table_table_source_first;
-assign litepciedma2_writer_table_source_source_last = litepciedma2_writer_table_table_source_last;
-assign litepciedma2_writer_table_source_source_payload_address = litepciedma2_writer_table_table_source_payload_address;
-assign litepciedma2_writer_table_source_source_payload_length = litepciedma2_writer_table_table_source_payload_length;
-assign litepciedma2_writer_table_source_source_payload_irq_disable = litepciedma2_writer_table_table_source_payload_irq_disable;
-assign litepciedma2_writer_table_source_source_payload_last_disable = litepciedma2_writer_table_table_source_payload_last_disable;
-assign litepciedma2_writer_table_table_syncfifo2_din = {litepciedma2_writer_table_table_fifo_in_last, litepciedma2_writer_table_table_fifo_in_first, litepciedma2_writer_table_table_fifo_in_payload_last_disable, litepciedma2_writer_table_table_fifo_in_payload_irq_disable, litepciedma2_writer_table_table_fifo_in_payload_length, litepciedma2_writer_table_table_fifo_in_payload_address};
-assign {litepciedma2_writer_table_table_fifo_out_last, litepciedma2_writer_table_table_fifo_out_first, litepciedma2_writer_table_table_fifo_out_payload_last_disable, litepciedma2_writer_table_table_fifo_out_payload_irq_disable, litepciedma2_writer_table_table_fifo_out_payload_length, litepciedma2_writer_table_table_fifo_out_payload_address} = litepciedma2_writer_table_table_syncfifo2_dout;
-assign litepciedma2_writer_table_table_sink_ready = litepciedma2_writer_table_table_syncfifo2_writable;
-assign litepciedma2_writer_table_table_syncfifo2_we = litepciedma2_writer_table_table_sink_valid;
-assign litepciedma2_writer_table_table_fifo_in_first = litepciedma2_writer_table_table_sink_first;
-assign litepciedma2_writer_table_table_fifo_in_last = litepciedma2_writer_table_table_sink_last;
-assign litepciedma2_writer_table_table_fifo_in_payload_address = litepciedma2_writer_table_table_sink_payload_address;
-assign litepciedma2_writer_table_table_fifo_in_payload_length = litepciedma2_writer_table_table_sink_payload_length;
-assign litepciedma2_writer_table_table_fifo_in_payload_irq_disable = litepciedma2_writer_table_table_sink_payload_irq_disable;
-assign litepciedma2_writer_table_table_fifo_in_payload_last_disable = litepciedma2_writer_table_table_sink_payload_last_disable;
-assign litepciedma2_writer_table_table_source_valid = litepciedma2_writer_table_table_syncfifo2_readable;
-assign litepciedma2_writer_table_table_source_first = litepciedma2_writer_table_table_fifo_out_first;
-assign litepciedma2_writer_table_table_source_last = litepciedma2_writer_table_table_fifo_out_last;
-assign litepciedma2_writer_table_table_source_payload_address = litepciedma2_writer_table_table_fifo_out_payload_address;
-assign litepciedma2_writer_table_table_source_payload_length = litepciedma2_writer_table_table_fifo_out_payload_length;
-assign litepciedma2_writer_table_table_source_payload_irq_disable = litepciedma2_writer_table_table_fifo_out_payload_irq_disable;
-assign litepciedma2_writer_table_table_source_payload_last_disable = litepciedma2_writer_table_table_fifo_out_payload_last_disable;
-assign litepciedma2_writer_table_table_syncfifo2_re = litepciedma2_writer_table_table_source_ready;
+assign litepciedma2_writer_table_reset = (litepciedma2_writer_reset_storage & litepciedma2_writer_reset_re);
+assign litepciedma2_writer_level_status = litepciedma2_writer_table_level;
+assign litepciedma2_writer_source_source_valid = litepciedma2_writer_table_source_valid;
+assign litepciedma2_writer_table_source_ready = litepciedma2_writer_source_source_ready;
+assign litepciedma2_writer_source_source_first = litepciedma2_writer_table_source_first;
+assign litepciedma2_writer_source_source_last = litepciedma2_writer_table_source_last;
+assign litepciedma2_writer_source_source_payload_address = litepciedma2_writer_table_source_payload_address;
+assign litepciedma2_writer_source_source_payload_length = litepciedma2_writer_table_source_payload_length;
+assign litepciedma2_writer_source_source_payload_irq_disable = litepciedma2_writer_table_source_payload_irq_disable;
+assign litepciedma2_writer_source_source_payload_last_disable = litepciedma2_writer_table_source_payload_last_disable;
+assign litepciedma2_writer_table_syncfifo2_din = {litepciedma2_writer_table_fifo_in_last, litepciedma2_writer_table_fifo_in_first, litepciedma2_writer_table_fifo_in_payload_last_disable, litepciedma2_writer_table_fifo_in_payload_irq_disable, litepciedma2_writer_table_fifo_in_payload_length, litepciedma2_writer_table_fifo_in_payload_address};
+assign {litepciedma2_writer_table_fifo_out_last, litepciedma2_writer_table_fifo_out_first, litepciedma2_writer_table_fifo_out_payload_last_disable, litepciedma2_writer_table_fifo_out_payload_irq_disable, litepciedma2_writer_table_fifo_out_payload_length, litepciedma2_writer_table_fifo_out_payload_address} = litepciedma2_writer_table_syncfifo2_dout;
+assign litepciedma2_writer_table_sink_ready = litepciedma2_writer_table_syncfifo2_writable;
+assign litepciedma2_writer_table_syncfifo2_we = litepciedma2_writer_table_sink_valid;
+assign litepciedma2_writer_table_fifo_in_first = litepciedma2_writer_table_sink_first;
+assign litepciedma2_writer_table_fifo_in_last = litepciedma2_writer_table_sink_last;
+assign litepciedma2_writer_table_fifo_in_payload_address = litepciedma2_writer_table_sink_payload_address;
+assign litepciedma2_writer_table_fifo_in_payload_length = litepciedma2_writer_table_sink_payload_length;
+assign litepciedma2_writer_table_fifo_in_payload_irq_disable = litepciedma2_writer_table_sink_payload_irq_disable;
+assign litepciedma2_writer_table_fifo_in_payload_last_disable = litepciedma2_writer_table_sink_payload_last_disable;
+assign litepciedma2_writer_table_source_valid = litepciedma2_writer_table_syncfifo2_readable;
+assign litepciedma2_writer_table_source_first = litepciedma2_writer_table_fifo_out_first;
+assign litepciedma2_writer_table_source_last = litepciedma2_writer_table_fifo_out_last;
+assign litepciedma2_writer_table_source_payload_address = litepciedma2_writer_table_fifo_out_payload_address;
+assign litepciedma2_writer_table_source_payload_length = litepciedma2_writer_table_fifo_out_payload_length;
+assign litepciedma2_writer_table_source_payload_irq_disable = litepciedma2_writer_table_fifo_out_payload_irq_disable;
+assign litepciedma2_writer_table_source_payload_last_disable = litepciedma2_writer_table_fifo_out_payload_last_disable;
+assign litepciedma2_writer_table_syncfifo2_re = litepciedma2_writer_table_source_ready;
 always @(*) begin
-	litepciedma2_writer_table_table_wrport_adr <= 8'd0;
-	if (litepciedma2_writer_table_table_replace) begin
-		litepciedma2_writer_table_table_wrport_adr <= (litepciedma2_writer_table_table_produce - 1'd1);
+	litepciedma2_writer_table_wrport_adr <= 8'd0;
+	if (litepciedma2_writer_table_replace) begin
+		litepciedma2_writer_table_wrport_adr <= (litepciedma2_writer_table_produce - 1'd1);
 	end else begin
-		litepciedma2_writer_table_table_wrport_adr <= litepciedma2_writer_table_table_produce;
+		litepciedma2_writer_table_wrport_adr <= litepciedma2_writer_table_produce;
 	end
 end
-assign litepciedma2_writer_table_table_wrport_dat_w = litepciedma2_writer_table_table_syncfifo2_din;
-assign litepciedma2_writer_table_table_wrport_we = (litepciedma2_writer_table_table_syncfifo2_we & (litepciedma2_writer_table_table_syncfifo2_writable | litepciedma2_writer_table_table_replace));
-assign litepciedma2_writer_table_table_do_read = (litepciedma2_writer_table_table_syncfifo2_readable & litepciedma2_writer_table_table_syncfifo2_re);
-assign litepciedma2_writer_table_table_rdport_adr = litepciedma2_writer_table_table_consume;
-assign litepciedma2_writer_table_table_syncfifo2_dout = litepciedma2_writer_table_table_rdport_dat_r;
-assign litepciedma2_writer_table_table_syncfifo2_writable = (litepciedma2_writer_table_table_level != 9'd256);
-assign litepciedma2_writer_table_table_syncfifo2_readable = (litepciedma2_writer_table_table_level != 1'd0);
+assign litepciedma2_writer_table_wrport_dat_w = litepciedma2_writer_table_syncfifo2_din;
+assign litepciedma2_writer_table_wrport_we = (litepciedma2_writer_table_syncfifo2_we & (litepciedma2_writer_table_syncfifo2_writable | litepciedma2_writer_table_replace));
+assign litepciedma2_writer_table_do_read = (litepciedma2_writer_table_syncfifo2_readable & litepciedma2_writer_table_syncfifo2_re);
+assign litepciedma2_writer_table_rdport_adr = litepciedma2_writer_table_consume;
+assign litepciedma2_writer_table_syncfifo2_dout = litepciedma2_writer_table_rdport_dat_r;
+assign litepciedma2_writer_table_syncfifo2_writable = (litepciedma2_writer_table_level != 9'd256);
+assign litepciedma2_writer_table_syncfifo2_readable = (litepciedma2_writer_table_level != 1'd0);
 assign litepciedma2_writer_splitter_source_payload_address = (litepciedma2_writer_splitter_sink_payload_address + litepciedma2_writer_splitter_desc_offset);
 assign litepciedma2_writer_splitter_source_payload_irq_disable = litepciedma2_writer_splitter_sink_payload_irq_disable;
 assign litepciedma2_writer_splitter_source_payload_last_disable = litepciedma2_writer_splitter_sink_payload_last_disable;
 assign litepciedma2_writer_splitter_source_payload_user_id = litepciedma2_writer_splitter_desc_id;
-assign litepciedma2_writer_splitter_sink_sink_valid = litepciedma2_writer_splitter_source_valid;
-assign litepciedma2_writer_splitter_source_ready = litepciedma2_writer_splitter_sink_sink_ready;
-assign litepciedma2_writer_splitter_sink_sink_first = litepciedma2_writer_splitter_source_first;
-assign litepciedma2_writer_splitter_sink_sink_last = litepciedma2_writer_splitter_source_last;
-assign litepciedma2_writer_splitter_sink_sink_payload_address = litepciedma2_writer_splitter_source_payload_address;
-assign litepciedma2_writer_splitter_sink_sink_payload_length = litepciedma2_writer_splitter_source_payload_length;
-assign litepciedma2_writer_splitter_sink_sink_payload_irq_disable = litepciedma2_writer_splitter_source_payload_irq_disable;
-assign litepciedma2_writer_splitter_sink_sink_payload_last_disable = litepciedma2_writer_splitter_source_payload_last_disable;
-assign litepciedma2_writer_splitter_sink_sink_payload_user_id = litepciedma2_writer_splitter_source_payload_user_id;
 always @(*) begin
-	litepciedma2_writer_splitter_source_first <= 1'd0;
-	litepciedma2_writer_splitter_source_last <= 1'd0;
-	litepciedma2_writer_splitter_source_payload_length <= 24'd0;
-	litepciecore_bufferizeendpoints2_next_state0 <= 1'd0;
-	litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value0 <= 32'd0;
-	litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value_ce0 <= 1'd0;
-	litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value_ce2 <= 1'd0;
-	litepciedma2_writer_splitter_sink_ready <= 1'd0;
-	litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value1 <= 32'd0;
-	litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value_ce1 <= 1'd0;
-	litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value2 <= 32'd0;
+	litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value2 <= 32'd0;
+	litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value_ce2 <= 1'd0;
 	litepciedma2_writer_splitter_source_valid <= 1'd0;
-	litepciecore_bufferizeendpoints2_next_state0 <= litepciecore_bufferizeendpoints2_state0;
-	case (litepciecore_bufferizeendpoints2_state0)
+	litepciecore_resetinserter2_next_state <= 1'd0;
+	litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value0 <= 32'd0;
+	litepciedma2_writer_splitter_source_first <= 1'd0;
+	litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value_ce0 <= 1'd0;
+	litepciedma2_writer_splitter_source_last <= 1'd0;
+	litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value1 <= 32'd0;
+	litepciedma2_writer_splitter_source_payload_length <= 24'd0;
+	litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value_ce1 <= 1'd0;
+	litepciedma2_writer_splitter_sink_ready <= 1'd0;
+	litepciecore_resetinserter2_next_state <= litepciecore_resetinserter2_state;
+	case (litepciecore_resetinserter2_state)
 		1'd1: begin
 			litepciedma2_writer_splitter_source_valid <= 1'd1;
 			litepciedma2_writer_splitter_source_first <= (litepciedma2_writer_splitter_desc_offset == 1'd0);
@@ -8179,48 +8070,29 @@ always @(*) begin
 				litepciedma2_writer_splitter_source_payload_length <= litepciedma2_writer_splitter_desc_length;
 			end
 			if (litepciedma2_writer_splitter_source_ready) begin
-				litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value0 <= (litepciedma2_writer_splitter_desc_offset + s7pciephy_max_payload_size);
-				litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value_ce0 <= 1'd1;
-				litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value1 <= (litepciedma2_writer_splitter_desc_length - s7pciephy_max_payload_size);
-				litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value_ce1 <= 1'd1;
-				if (litepciedma2_writer_splitter_source_last) begin
+				litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value0 <= (litepciedma2_writer_splitter_desc_offset + s7pciephy_max_payload_size);
+				litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value_ce0 <= 1'd1;
+				litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value1 <= (litepciedma2_writer_splitter_desc_length - s7pciephy_max_payload_size);
+				litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value_ce1 <= 1'd1;
+				if ((litepciedma2_writer_splitter_source_last | litepciedma2_writer_splitter_terminate)) begin
 					litepciedma2_writer_splitter_sink_ready <= 1'd1;
-					litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value2 <= (litepciedma2_writer_splitter_desc_id + 1'd1);
-					litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints2_next_state0 <= 1'd0;
+					litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value2 <= (litepciedma2_writer_splitter_desc_id + 1'd1);
+					litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value_ce2 <= 1'd1;
+					litepciecore_resetinserter2_next_state <= 1'd0;
 				end
 			end
 		end
 		default: begin
-			litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value0 <= 1'd0;
-			litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value_ce0 <= 1'd1;
-			litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value1 <= litepciedma2_writer_splitter_sink_payload_length;
-			litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value_ce1 <= 1'd1;
+			litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value0 <= 1'd0;
+			litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value_ce0 <= 1'd1;
+			litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value1 <= litepciedma2_writer_splitter_sink_payload_length;
+			litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value_ce1 <= 1'd1;
 			if (litepciedma2_writer_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints2_next_state0 <= 1'd1;
+				litepciecore_resetinserter2_next_state <= 1'd1;
 			end
 		end
 	endcase
 end
-assign litepciedma2_writer_splitter_pipe_valid_sink_ready = ((~litepciedma2_writer_splitter_pipe_valid_source_valid) | litepciedma2_writer_splitter_pipe_valid_source_ready);
-assign litepciedma2_writer_splitter_pipe_valid_sink_valid = litepciedma2_writer_splitter_sink_sink_valid;
-assign litepciedma2_writer_splitter_sink_sink_ready = litepciedma2_writer_splitter_pipe_valid_sink_ready;
-assign litepciedma2_writer_splitter_pipe_valid_sink_first = litepciedma2_writer_splitter_sink_sink_first;
-assign litepciedma2_writer_splitter_pipe_valid_sink_last = litepciedma2_writer_splitter_sink_sink_last;
-assign litepciedma2_writer_splitter_pipe_valid_sink_payload_address = litepciedma2_writer_splitter_sink_sink_payload_address;
-assign litepciedma2_writer_splitter_pipe_valid_sink_payload_length = litepciedma2_writer_splitter_sink_sink_payload_length;
-assign litepciedma2_writer_splitter_pipe_valid_sink_payload_irq_disable = litepciedma2_writer_splitter_sink_sink_payload_irq_disable;
-assign litepciedma2_writer_splitter_pipe_valid_sink_payload_last_disable = litepciedma2_writer_splitter_sink_sink_payload_last_disable;
-assign litepciedma2_writer_splitter_pipe_valid_sink_payload_user_id = litepciedma2_writer_splitter_sink_sink_payload_user_id;
-assign litepciedma2_writer_splitter_source_source_valid = litepciedma2_writer_splitter_pipe_valid_source_valid;
-assign litepciedma2_writer_splitter_pipe_valid_source_ready = litepciedma2_writer_splitter_source_source_ready;
-assign litepciedma2_writer_splitter_source_source_first = litepciedma2_writer_splitter_pipe_valid_source_first;
-assign litepciedma2_writer_splitter_source_source_last = litepciedma2_writer_splitter_pipe_valid_source_last;
-assign litepciedma2_writer_splitter_source_source_payload_address = litepciedma2_writer_splitter_pipe_valid_source_payload_address;
-assign litepciedma2_writer_splitter_source_source_payload_length = litepciedma2_writer_splitter_pipe_valid_source_payload_length;
-assign litepciedma2_writer_splitter_source_source_payload_irq_disable = litepciedma2_writer_splitter_pipe_valid_source_payload_irq_disable;
-assign litepciedma2_writer_splitter_source_source_payload_last_disable = litepciedma2_writer_splitter_pipe_valid_source_payload_last_disable;
-assign litepciedma2_writer_splitter_source_source_payload_user_id = litepciedma2_writer_splitter_pipe_valid_source_payload_user_id;
 assign litepciedma2_writer_data_fifo_syncfifo2_din = {litepciedma2_writer_data_fifo_fifo_in_last, litepciedma2_writer_data_fifo_fifo_in_first, litepciedma2_writer_data_fifo_fifo_in_payload_data};
 assign {litepciedma2_writer_data_fifo_fifo_out_last, litepciedma2_writer_data_fifo_fifo_out_first, litepciedma2_writer_data_fifo_fifo_out_payload_data} = litepciedma2_writer_data_fifo_syncfifo2_dout;
 assign litepciedma2_writer_data_fifo_sink_ready = litepciedma2_writer_data_fifo_syncfifo2_writable;
@@ -8252,16 +8124,17 @@ assign litepciedma2_writer_data_fifo_rdport_re = litepciedma2_writer_data_fifo_d
 assign litepciedma2_writer_data_fifo_syncfifo2_writable = (litepciedma2_writer_data_fifo_level0 != 8'd128);
 assign litepciedma2_writer_data_fifo_syncfifo2_readable = (litepciedma2_writer_data_fifo_level0 != 1'd0);
 always @(*) begin
-	litepciedma2_writer_splitter_reset <= 1'd0;
-	litepciedma2_writer_resetinserter_reset <= 1'd0;
+	litepciedma2_writer_data_fifo_source_ready <= 1'd0;
+	litepciedma2_writer_data_fifo_reset <= 1'd0;
 	litepciecore_fsm2_next_state0 <= 1'd0;
+	litepciedma2_writer_splitter_source_ready <= 1'd0;
 	litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value0 <= 24'd0;
+	litepciedma2_writer_splitter_reset <= 1'd0;
 	litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value_ce0 <= 1'd0;
+	litepciedma2_litepciemasterinternalport4_sink_valid <= 1'd0;
 	litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value1 <= 1'd0;
 	litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value_ce1 <= 1'd0;
-	litepciedma2_writer_splitter_source_source_ready <= 1'd0;
-	litepciedma2_litepciemasterinternalport4_sink_valid <= 1'd0;
-	litepciedma2_writer_data_fifo_source_ready <= 1'd0;
+	litepciedma2_writer_splitter_terminate <= 1'd0;
 	litepciecore_fsm2_next_state0 <= litepciecore_fsm2_state0;
 	case (litepciecore_fsm2_state0)
 		1'd1: begin
@@ -8269,13 +8142,14 @@ always @(*) begin
 			if (litepciedma2_litepciemasterinternalport4_sink_ready) begin
 				litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value0 <= (litepciedma2_writer_req_count + 1'd1);
 				litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value_ce0 <= 1'd1;
+				if ((litepciedma2_writer_data_fifo_source_last & (~litepciedma2_writer_splitter_source_payload_last_disable))) begin
+					litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value1 <= 1'd1;
+					litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value_ce1 <= 1'd1;
+				end
+				litepciedma2_writer_splitter_terminate <= litepciedma2_writer_req_done;
 				litepciedma2_writer_data_fifo_source_ready <= (~litepciedma2_writer_req_done);
 				if (litepciedma2_litepciemasterinternalport4_sink_last) begin
-					litepciedma2_writer_splitter_source_source_ready <= 1'd1;
-					if ((litepciedma2_writer_data_fifo_source_last & (~litepciedma2_writer_splitter_source_source_payload_last_disable))) begin
-						litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value1 <= 1'd1;
-						litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value_ce1 <= 1'd1;
-					end
+					litepciedma2_writer_splitter_source_ready <= 1'd1;
 					litepciecore_fsm2_next_state0 <= 1'd0;
 				end
 			end
@@ -8283,13 +8157,13 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma2_writer_enable_storage)) begin
 				litepciedma2_writer_splitter_reset <= 1'd1;
-				litepciedma2_writer_resetinserter_reset <= 1'd1;
+				litepciedma2_writer_data_fifo_reset <= 1'd1;
 			end
 			litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value0 <= 1'd0;
 			litepciedma2_writer_req_count_bufferizeendpoints2_fsm2_next_value_ce0 <= 1'd1;
 			litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value1 <= 1'd0;
 			litepciedma2_writer_req_done_bufferizeendpoints2_fsm2_next_value_ce1 <= 1'd1;
-			if ((litepciedma2_writer_splitter_source_source_valid & (litepciedma2_writer_data_fifo_level1 >= litepciedma2_writer_splitter_source_source_payload_length[23:4]))) begin
+			if ((litepciedma2_writer_splitter_source_valid & (litepciedma2_writer_data_fifo_level1 >= litepciedma2_writer_splitter_source_payload_length[23:4]))) begin
 				litepciecore_fsm2_next_state0 <= 1'd1;
 			end
 		end
@@ -8310,9 +8184,9 @@ assign litepciedma2_reader_source_source_last = litepciedma2_reader_data_fifo_so
 assign litepciedma2_reader_source_source_payload_data = litepciedma2_reader_data_fifo_source_payload_data;
 always @(*) begin
 	litepciedma2_reader_data_fifo_sink_first <= 1'd0;
-	litepciedma2_litepciemasterinternalport5_source_ready <= 1'd0;
-	litepciedma2_reader_data_fifo_sink_valid <= 1'd0;
 	litepciedma2_reader_data_fifo_sink_payload_data <= 128'd0;
+	litepciedma2_reader_data_fifo_sink_valid <= 1'd0;
+	litepciedma2_litepciemasterinternalport5_source_ready <= 1'd0;
 	if (litepciedma2_reader_enable_storage) begin
 		litepciedma2_reader_data_fifo_sink_valid <= litepciedma2_litepciemasterinternalport5_source_valid;
 		litepciedma2_litepciemasterinternalport5_source_ready <= litepciedma2_reader_data_fifo_sink_ready;
@@ -8406,20 +8280,20 @@ assign litepciedma2_reader_splitter_sink_sink_payload_irq_disable = litepciedma2
 assign litepciedma2_reader_splitter_sink_sink_payload_last_disable = litepciedma2_reader_splitter_source_payload_last_disable;
 assign litepciedma2_reader_splitter_sink_sink_payload_user_id = litepciedma2_reader_splitter_source_payload_user_id;
 always @(*) begin
-	litepciedma2_reader_splitter_sink_ready <= 1'd0;
-	litepciecore_bufferizeendpoints2_next_state1 <= 1'd0;
-	litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value0 <= 32'd0;
-	litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value_ce0 <= 1'd0;
-	litepciedma2_reader_splitter_source_valid <= 1'd0;
-	litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value1 <= 32'd0;
-	litepciedma2_reader_splitter_source_first <= 1'd0;
-	litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value_ce1 <= 1'd0;
-	litepciedma2_reader_splitter_source_last <= 1'd0;
-	litepciedma2_reader_splitter_source_payload_length <= 24'd0;
 	litepciedma2_reader_splitter_desc_id_bufferizeendpoints2_next_value2 <= 32'd0;
 	litepciedma2_reader_splitter_desc_id_bufferizeendpoints2_next_value_ce2 <= 1'd0;
-	litepciecore_bufferizeendpoints2_next_state1 <= litepciecore_bufferizeendpoints2_state1;
-	case (litepciecore_bufferizeendpoints2_state1)
+	litepciedma2_reader_splitter_source_valid <= 1'd0;
+	litepciedma2_reader_splitter_source_first <= 1'd0;
+	litepciedma2_reader_splitter_source_last <= 1'd0;
+	litepciecore_bufferizeendpoints2_next_state <= 1'd0;
+	litepciedma2_reader_splitter_source_payload_length <= 24'd0;
+	litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value0 <= 32'd0;
+	litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value_ce0 <= 1'd0;
+	litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value1 <= 32'd0;
+	litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value_ce1 <= 1'd0;
+	litepciedma2_reader_splitter_sink_ready <= 1'd0;
+	litepciecore_bufferizeendpoints2_next_state <= litepciecore_bufferizeendpoints2_state;
+	case (litepciecore_bufferizeendpoints2_state)
 		1'd1: begin
 			litepciedma2_reader_splitter_source_valid <= 1'd1;
 			litepciedma2_reader_splitter_source_first <= (litepciedma2_reader_splitter_desc_offset == 1'd0);
@@ -8435,11 +8309,11 @@ always @(*) begin
 				litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value_ce0 <= 1'd1;
 				litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value1 <= (litepciedma2_reader_splitter_desc_length - s7pciephy_max_request_size);
 				litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value_ce1 <= 1'd1;
-				if (litepciedma2_reader_splitter_source_last) begin
+				if ((litepciedma2_reader_splitter_source_last | litepciedma2_reader_splitter_terminate)) begin
 					litepciedma2_reader_splitter_sink_ready <= 1'd1;
 					litepciedma2_reader_splitter_desc_id_bufferizeendpoints2_next_value2 <= (litepciedma2_reader_splitter_desc_id + 1'd1);
 					litepciedma2_reader_splitter_desc_id_bufferizeendpoints2_next_value_ce2 <= 1'd1;
-					litepciecore_bufferizeendpoints2_next_state1 <= 1'd0;
+					litepciecore_bufferizeendpoints2_next_state <= 1'd0;
 				end
 			end
 		end
@@ -8449,7 +8323,7 @@ always @(*) begin
 			litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value1 <= litepciedma2_reader_splitter_sink_payload_length;
 			litepciedma2_reader_splitter_desc_length_bufferizeendpoints2_next_value_ce1 <= 1'd1;
 			if (litepciedma2_reader_splitter_sink_valid) begin
-				litepciecore_bufferizeendpoints2_next_state1 <= 1'd1;
+				litepciecore_bufferizeendpoints2_next_state <= 1'd1;
 			end
 		end
 	endcase
@@ -8504,11 +8378,11 @@ assign litepciedma2_reader_data_fifo_rdport_re = litepciedma2_reader_data_fifo_d
 assign litepciedma2_reader_data_fifo_syncfifo2_writable = (litepciedma2_reader_data_fifo_level0 != 11'd1024);
 assign litepciedma2_reader_data_fifo_syncfifo2_readable = (litepciedma2_reader_data_fifo_level0 != 1'd0);
 always @(*) begin
+	litepciedma2_reader_splitter_source_source_ready <= 1'd0;
+	litepciedma2_reader_data_fifo_reset <= 1'd0;
 	litepciedma2_reader_splitter_reset <= 1'd0;
 	litepciedma2_litepciemasterinternalport5_sink_valid <= 1'd0;
 	litepciecore_fsm2_next_state1 <= 1'd0;
-	litepciedma2_reader_resetinserter_reset <= 1'd0;
-	litepciedma2_reader_splitter_source_source_ready <= 1'd0;
 	litepciecore_fsm2_next_state1 <= litepciecore_fsm2_state1;
 	case (litepciecore_fsm2_state1)
 		1'd1: begin
@@ -8521,7 +8395,7 @@ always @(*) begin
 		default: begin
 			if ((~litepciedma2_reader_enable_storage)) begin
 				litepciedma2_reader_splitter_reset <= 1'd1;
-				litepciedma2_reader_resetinserter_reset <= 1'd1;
+				litepciedma2_reader_data_fifo_reset <= 1'd1;
 			end
 			if ((litepciedma2_reader_splitter_source_source_valid & (litepciedma2_reader_pending_words < 10'd992))) begin
 				litepciecore_fsm2_next_state1 <= 1'd1;
@@ -8533,8 +8407,8 @@ assign litepciedma2_buffering_reader_fifo_sink_first = litepciedma2_buffering_si
 assign litepciedma2_buffering_reader_fifo_sink_last = litepciedma2_buffering_sink_sink_last;
 assign litepciedma2_buffering_reader_fifo_sink_payload_data = litepciedma2_buffering_sink_sink_payload_data;
 always @(*) begin
-	litepciedma2_buffering_sink_sink_ready <= 1'd0;
 	litepciedma2_buffering_reader_fifo_sink_valid <= 1'd0;
+	litepciedma2_buffering_sink_sink_ready <= 1'd0;
 	if (((litepciedma2_buffering_reader_fifo_level1 < litepciedma2_buffering_csrfield_depth0[23:4]) | 1'd0)) begin
 		litepciedma2_buffering_reader_fifo_sink_valid <= litepciedma2_buffering_sink_sink_valid;
 		litepciedma2_buffering_sink_sink_ready <= litepciedma2_buffering_reader_fifo_sink_ready;
@@ -8557,8 +8431,8 @@ assign litepciedma2_buffering_writer_fifo_sink_first = litepciedma2_buffering_ne
 assign litepciedma2_buffering_writer_fifo_sink_last = litepciedma2_buffering_next_sink_last;
 assign litepciedma2_buffering_writer_fifo_sink_payload_data = litepciedma2_buffering_next_sink_payload_data;
 always @(*) begin
-	litepciedma2_buffering_writer_fifo_sink_valid <= 1'd0;
 	litepciedma2_buffering_next_sink_ready <= 1'd0;
+	litepciedma2_buffering_writer_fifo_sink_valid <= 1'd0;
 	if (((litepciedma2_buffering_writer_fifo_level1 < litepciedma2_buffering_csrfield_depth1[23:4]) | 1'd0)) begin
 		litepciedma2_buffering_writer_fifo_sink_valid <= litepciedma2_buffering_next_sink_valid;
 		litepciedma2_buffering_next_sink_ready <= litepciedma2_buffering_writer_fifo_sink_ready;
@@ -8669,12 +8543,12 @@ assign pcie_msi_enable = pcie_msi_enable_storage;
 assign pcie_msi_vector_status = pcie_msi_vector;
 assign pcie_msi_source_valid = (pcie_msi_msi != 1'd0);
 always @(*) begin
-	litepciecore_wishbone_dat_r <= 32'd0;
 	litepciecore_adr <= 14'd0;
-	litepciecore_wishbone2csr_next_state <= 1'd0;
 	litepciecore_we <= 1'd0;
-	litepciecore_wishbone_ack <= 1'd0;
 	litepciecore_dat_w <= 32'd0;
+	litepciecore_wishbone_ack <= 1'd0;
+	litepciecore_wishbone_dat_r <= 32'd0;
+	litepciecore_wishbone2csr_next_state <= 1'd0;
 	litepciecore_wishbone2csr_next_state <= litepciecore_wishbone2csr_state;
 	case (litepciecore_wishbone2csr_state)
 		1'd1: begin
@@ -8703,234 +8577,234 @@ assign litepciecore_wishbone_we = pcie_wishbone_master_wishbone_we;
 assign litepciecore_wishbone_cti = pcie_wishbone_master_wishbone_cti;
 assign litepciecore_wishbone_bte = pcie_wishbone_master_wishbone_bte;
 assign pcie_wishbone_master_wishbone_err = litepciecore_wishbone_err;
-assign csrbank0_sel = (interface0_adr[13:9] == 5'd26);
-assign csrbank0_cntrl15_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_sel = (csr_bankarray_interface0_bank_bus_adr[13:9] == 5'd26);
+assign csr_bankarray_csrbank0_cntrl15_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl15_re <= 1'd0;
-	csrbank0_cntrl15_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 1'd0))) begin
-		csrbank0_cntrl15_re <= interface0_we;
-		csrbank0_cntrl15_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl15_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl15_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank0_cntrl15_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl15_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl14_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl14_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl14_we <= 1'd0;
-	csrbank0_cntrl14_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 1'd1))) begin
-		csrbank0_cntrl14_re <= interface0_we;
-		csrbank0_cntrl14_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl14_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl14_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank0_cntrl14_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl14_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl13_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl13_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl13_re <= 1'd0;
-	csrbank0_cntrl13_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 2'd2))) begin
-		csrbank0_cntrl13_re <= interface0_we;
-		csrbank0_cntrl13_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl13_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl13_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank0_cntrl13_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl13_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl12_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl12_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl12_re <= 1'd0;
-	csrbank0_cntrl12_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 2'd3))) begin
-		csrbank0_cntrl12_re <= interface0_we;
-		csrbank0_cntrl12_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl12_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl12_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 2'd3))) begin
+		csr_bankarray_csrbank0_cntrl12_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl12_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl11_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl11_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl11_we <= 1'd0;
-	csrbank0_cntrl11_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 3'd4))) begin
-		csrbank0_cntrl11_re <= interface0_we;
-		csrbank0_cntrl11_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl11_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl11_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 3'd4))) begin
+		csr_bankarray_csrbank0_cntrl11_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl11_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl10_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl10_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl10_re <= 1'd0;
-	csrbank0_cntrl10_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 3'd5))) begin
-		csrbank0_cntrl10_re <= interface0_we;
-		csrbank0_cntrl10_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl10_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl10_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 3'd5))) begin
+		csr_bankarray_csrbank0_cntrl10_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl10_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl9_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl9_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl9_we <= 1'd0;
-	csrbank0_cntrl9_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 3'd6))) begin
-		csrbank0_cntrl9_re <= interface0_we;
-		csrbank0_cntrl9_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl9_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl9_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 3'd6))) begin
+		csr_bankarray_csrbank0_cntrl9_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl9_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl8_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl8_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl8_we <= 1'd0;
-	csrbank0_cntrl8_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 3'd7))) begin
-		csrbank0_cntrl8_re <= interface0_we;
-		csrbank0_cntrl8_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl8_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl8_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 3'd7))) begin
+		csr_bankarray_csrbank0_cntrl8_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl8_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl7_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl7_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl7_re <= 1'd0;
-	csrbank0_cntrl7_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd8))) begin
-		csrbank0_cntrl7_re <= interface0_we;
-		csrbank0_cntrl7_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl7_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl7_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd8))) begin
+		csr_bankarray_csrbank0_cntrl7_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl7_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl6_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl6_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl6_we <= 1'd0;
-	csrbank0_cntrl6_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd9))) begin
-		csrbank0_cntrl6_re <= interface0_we;
-		csrbank0_cntrl6_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl6_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl6_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd9))) begin
+		csr_bankarray_csrbank0_cntrl6_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl6_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl5_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl5_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl5_re <= 1'd0;
-	csrbank0_cntrl5_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd10))) begin
-		csrbank0_cntrl5_re <= interface0_we;
-		csrbank0_cntrl5_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl5_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl5_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd10))) begin
+		csr_bankarray_csrbank0_cntrl5_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl5_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl4_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl4_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl4_re <= 1'd0;
-	csrbank0_cntrl4_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd11))) begin
-		csrbank0_cntrl4_re <= interface0_we;
-		csrbank0_cntrl4_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl4_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl4_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd11))) begin
+		csr_bankarray_csrbank0_cntrl4_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl4_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl3_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl3_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl3_we <= 1'd0;
-	csrbank0_cntrl3_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd12))) begin
-		csrbank0_cntrl3_re <= interface0_we;
-		csrbank0_cntrl3_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl3_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl3_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd12))) begin
+		csr_bankarray_csrbank0_cntrl3_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl3_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl2_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl2_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl2_re <= 1'd0;
-	csrbank0_cntrl2_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd13))) begin
-		csrbank0_cntrl2_re <= interface0_we;
-		csrbank0_cntrl2_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl2_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl2_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd13))) begin
+		csr_bankarray_csrbank0_cntrl2_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl2_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl1_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl1_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl1_we <= 1'd0;
-	csrbank0_cntrl1_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd14))) begin
-		csrbank0_cntrl1_re <= interface0_we;
-		csrbank0_cntrl1_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl1_we <= 1'd0;
+	csr_bankarray_csrbank0_cntrl1_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd14))) begin
+		csr_bankarray_csrbank0_cntrl1_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl1_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl0_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_cntrl0_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_cntrl0_we <= 1'd0;
-	csrbank0_cntrl0_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 4'd15))) begin
-		csrbank0_cntrl0_re <= interface0_we;
-		csrbank0_cntrl0_we <= (~interface0_we);
+	csr_bankarray_csrbank0_cntrl0_re <= 1'd0;
+	csr_bankarray_csrbank0_cntrl0_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 4'd15))) begin
+		csr_bankarray_csrbank0_cntrl0_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_cntrl0_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_enable0_r = interface0_dat_w[0];
+assign csr_bankarray_csrbank0_enable0_r = csr_bankarray_interface0_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank0_enable0_re <= 1'd0;
-	csrbank0_enable0_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 5'd16))) begin
-		csrbank0_enable0_re <= interface0_we;
-		csrbank0_enable0_we <= (~interface0_we);
+	csr_bankarray_csrbank0_enable0_we <= 1'd0;
+	csr_bankarray_csrbank0_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 5'd16))) begin
+		csr_bankarray_csrbank0_enable0_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_enable0_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_test0_r = interface0_dat_w[31:0];
+assign csr_bankarray_csrbank0_test0_r = csr_bankarray_interface0_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank0_test0_we <= 1'd0;
-	csrbank0_test0_re <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 5'd17))) begin
-		csrbank0_test0_re <= interface0_we;
-		csrbank0_test0_we <= (~interface0_we);
+	csr_bankarray_csrbank0_test0_we <= 1'd0;
+	csr_bankarray_csrbank0_test0_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 5'd17))) begin
+		csr_bankarray_csrbank0_test0_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_test0_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_ndma_r = interface0_dat_w[3:0];
+assign csr_bankarray_csrbank0_ndma_r = csr_bankarray_interface0_bank_bus_dat_w[3:0];
 always @(*) begin
-	csrbank0_ndma_re <= 1'd0;
-	csrbank0_ndma_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 5'd18))) begin
-		csrbank0_ndma_re <= interface0_we;
-		csrbank0_ndma_we <= (~interface0_we);
+	csr_bankarray_csrbank0_ndma_re <= 1'd0;
+	csr_bankarray_csrbank0_ndma_we <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 5'd18))) begin
+		csr_bankarray_csrbank0_ndma_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_ndma_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_enable_both0_r = interface0_dat_w[0];
+assign csr_bankarray_csrbank0_enable_both0_r = csr_bankarray_interface0_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank0_enable_both0_re <= 1'd0;
-	csrbank0_enable_both0_we <= 1'd0;
-	if ((csrbank0_sel & (interface0_adr[8:0] == 5'd19))) begin
-		csrbank0_enable_both0_re <= interface0_we;
-		csrbank0_enable_both0_we <= (~interface0_we);
+	csr_bankarray_csrbank0_enable_both0_we <= 1'd0;
+	csr_bankarray_csrbank0_enable_both0_re <= 1'd0;
+	if ((csr_bankarray_csrbank0_sel & (csr_bankarray_interface0_bank_bus_adr[8:0] == 5'd19))) begin
+		csr_bankarray_csrbank0_enable_both0_re <= csr_bankarray_interface0_bank_bus_we;
+		csr_bankarray_csrbank0_enable_both0_we <= (~csr_bankarray_interface0_bank_bus_we);
 	end
 end
-assign csrbank0_cntrl15_w = CNTRL_cntrl_storage[511:480];
-assign csrbank0_cntrl14_w = CNTRL_cntrl_storage[479:448];
-assign csrbank0_cntrl13_w = CNTRL_cntrl_storage[447:416];
-assign csrbank0_cntrl12_w = CNTRL_cntrl_storage[415:384];
-assign csrbank0_cntrl11_w = CNTRL_cntrl_storage[383:352];
-assign csrbank0_cntrl10_w = CNTRL_cntrl_storage[351:320];
-assign csrbank0_cntrl9_w = CNTRL_cntrl_storage[319:288];
-assign csrbank0_cntrl8_w = CNTRL_cntrl_storage[287:256];
-assign csrbank0_cntrl7_w = CNTRL_cntrl_storage[255:224];
-assign csrbank0_cntrl6_w = CNTRL_cntrl_storage[223:192];
-assign csrbank0_cntrl5_w = CNTRL_cntrl_storage[191:160];
-assign csrbank0_cntrl4_w = CNTRL_cntrl_storage[159:128];
-assign csrbank0_cntrl3_w = CNTRL_cntrl_storage[127:96];
-assign csrbank0_cntrl2_w = CNTRL_cntrl_storage[95:64];
-assign csrbank0_cntrl1_w = CNTRL_cntrl_storage[63:32];
-assign csrbank0_cntrl0_w = CNTRL_cntrl_storage[31:0];
-assign csrbank0_enable0_w = CNTRL_enable_storage;
-assign csrbank0_test0_w = CNTRL_test_storage[31:0];
-assign csrbank0_ndma_w = CNTRL_ndma_status[3:0];
-assign CNTRL_ndma_we = csrbank0_ndma_we;
-assign csrbank0_enable_both0_w = CNTRL_enable_both_storage;
-assign csrbank1_sel = (interface1_adr[13:9] == 1'd0);
-assign csrbank1_reset0_r = interface1_dat_w[1:0];
+assign csr_bankarray_csrbank0_cntrl15_w = CNTRL_cntrl_storage[511:480];
+assign csr_bankarray_csrbank0_cntrl14_w = CNTRL_cntrl_storage[479:448];
+assign csr_bankarray_csrbank0_cntrl13_w = CNTRL_cntrl_storage[447:416];
+assign csr_bankarray_csrbank0_cntrl12_w = CNTRL_cntrl_storage[415:384];
+assign csr_bankarray_csrbank0_cntrl11_w = CNTRL_cntrl_storage[383:352];
+assign csr_bankarray_csrbank0_cntrl10_w = CNTRL_cntrl_storage[351:320];
+assign csr_bankarray_csrbank0_cntrl9_w = CNTRL_cntrl_storage[319:288];
+assign csr_bankarray_csrbank0_cntrl8_w = CNTRL_cntrl_storage[287:256];
+assign csr_bankarray_csrbank0_cntrl7_w = CNTRL_cntrl_storage[255:224];
+assign csr_bankarray_csrbank0_cntrl6_w = CNTRL_cntrl_storage[223:192];
+assign csr_bankarray_csrbank0_cntrl5_w = CNTRL_cntrl_storage[191:160];
+assign csr_bankarray_csrbank0_cntrl4_w = CNTRL_cntrl_storage[159:128];
+assign csr_bankarray_csrbank0_cntrl3_w = CNTRL_cntrl_storage[127:96];
+assign csr_bankarray_csrbank0_cntrl2_w = CNTRL_cntrl_storage[95:64];
+assign csr_bankarray_csrbank0_cntrl1_w = CNTRL_cntrl_storage[63:32];
+assign csr_bankarray_csrbank0_cntrl0_w = CNTRL_cntrl_storage[31:0];
+assign csr_bankarray_csrbank0_enable0_w = CNTRL_enable_storage;
+assign csr_bankarray_csrbank0_test0_w = CNTRL_test_storage[31:0];
+assign csr_bankarray_csrbank0_ndma_w = CNTRL_ndma_status[3:0];
+assign CNTRL_ndma_we = csr_bankarray_csrbank0_ndma_we;
+assign csr_bankarray_csrbank0_enable_both0_w = CNTRL_enable_both_storage;
+assign csr_bankarray_csrbank1_sel = (csr_bankarray_interface1_bank_bus_adr[13:9] == 1'd0);
+assign csr_bankarray_csrbank1_reset0_r = csr_bankarray_interface1_bank_bus_dat_w[1:0];
 always @(*) begin
-	csrbank1_reset0_re <= 1'd0;
-	csrbank1_reset0_we <= 1'd0;
-	if ((csrbank1_sel & (interface1_adr[8:0] == 1'd0))) begin
-		csrbank1_reset0_re <= interface1_we;
-		csrbank1_reset0_we <= (~interface1_we);
+	csr_bankarray_csrbank1_reset0_re <= 1'd0;
+	csr_bankarray_csrbank1_reset0_we <= 1'd0;
+	if ((csr_bankarray_csrbank1_sel & (csr_bankarray_interface1_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank1_reset0_re <= csr_bankarray_interface1_bank_bus_we;
+		csr_bankarray_csrbank1_reset0_we <= (~csr_bankarray_interface1_bank_bus_we);
 	end
 end
-assign csrbank1_scratch0_r = interface1_dat_w[31:0];
+assign csr_bankarray_csrbank1_scratch0_r = csr_bankarray_interface1_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank1_scratch0_re <= 1'd0;
-	csrbank1_scratch0_we <= 1'd0;
-	if ((csrbank1_sel & (interface1_adr[8:0] == 1'd1))) begin
-		csrbank1_scratch0_re <= interface1_we;
-		csrbank1_scratch0_we <= (~interface1_we);
+	csr_bankarray_csrbank1_scratch0_we <= 1'd0;
+	csr_bankarray_csrbank1_scratch0_re <= 1'd0;
+	if ((csr_bankarray_csrbank1_sel & (csr_bankarray_interface1_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank1_scratch0_re <= csr_bankarray_interface1_bank_bus_we;
+		csr_bankarray_csrbank1_scratch0_we <= (~csr_bankarray_interface1_bank_bus_we);
 	end
 end
-assign csrbank1_bus_errors_r = interface1_dat_w[31:0];
+assign csr_bankarray_csrbank1_bus_errors_r = csr_bankarray_interface1_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank1_bus_errors_we <= 1'd0;
-	csrbank1_bus_errors_re <= 1'd0;
-	if ((csrbank1_sel & (interface1_adr[8:0] == 2'd2))) begin
-		csrbank1_bus_errors_re <= interface1_we;
-		csrbank1_bus_errors_we <= (~interface1_we);
+	csr_bankarray_csrbank1_bus_errors_re <= 1'd0;
+	csr_bankarray_csrbank1_bus_errors_we <= 1'd0;
+	if ((csr_bankarray_csrbank1_sel & (csr_bankarray_interface1_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank1_bus_errors_re <= csr_bankarray_interface1_bank_bus_we;
+		csr_bankarray_csrbank1_bus_errors_we <= (~csr_bankarray_interface1_bank_bus_we);
 	end
 end
 always @(*) begin
@@ -8940,808 +8814,880 @@ always @(*) begin
 	end
 end
 assign cpu_rst = reset_storage[1];
-assign csrbank1_reset0_w = reset_storage[1:0];
-assign csrbank1_scratch0_w = scratch_storage[31:0];
-assign csrbank1_bus_errors_w = bus_errors_status[31:0];
-assign bus_errors_we = csrbank1_bus_errors_we;
-assign mmap_sel = (interface2_adr[13:9] == 4'd8);
+assign csr_bankarray_csrbank1_reset0_w = reset_storage[1:0];
+assign csr_bankarray_csrbank1_scratch0_w = scratch_storage[31:0];
+assign csr_bankarray_csrbank1_bus_errors_w = bus_errors_status[31:0];
+assign bus_errors_we = csr_bankarray_csrbank1_bus_errors_we;
+assign csr_bankarray_sel = (csr_bankarray_sram_bus_adr[13:9] == 4'd8);
 always @(*) begin
-	interface2_dat_r <= 32'd0;
-	if (mmap_sel_r) begin
-		interface2_dat_r <= mmap_dat_r;
+	csr_bankarray_sram_bus_dat_r <= 32'd0;
+	if (csr_bankarray_sel_r) begin
+		csr_bankarray_sram_bus_dat_r <= csr_bankarray_dat_r;
 	end
 end
-assign mmap_adr = interface2_adr[5:0];
-assign csrbank2_sel = (interface3_adr[13:9] == 3'd5);
-assign csrbank2_writer_enable0_r = interface3_dat_w[0];
+assign csr_bankarray_adr = csr_bankarray_sram_bus_adr[5:0];
+assign csr_bankarray_csrbank2_sel = (csr_bankarray_interface2_bank_bus_adr[13:9] == 3'd5);
+assign csr_bankarray_csrbank2_writer_enable0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_writer_enable0_re <= 1'd0;
-	csrbank2_writer_enable0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 1'd0))) begin
-		csrbank2_writer_enable0_re <= interface3_we;
-		csrbank2_writer_enable0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_enable0_we <= 1'd0;
+	csr_bankarray_csrbank2_writer_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank2_writer_enable0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_enable0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_value1_r = interface3_dat_w[25:0];
+assign csr_bankarray_csrbank2_writer_table_value1_r = csr_bankarray_interface2_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank2_writer_table_value1_we <= 1'd0;
-	csrbank2_writer_table_value1_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 1'd1))) begin
-		csrbank2_writer_table_value1_re <= interface3_we;
-		csrbank2_writer_table_value1_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_value1_we <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_value1_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank2_writer_table_value1_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_value1_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_value0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_writer_table_value0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_writer_table_value0_re <= 1'd0;
-	csrbank2_writer_table_value0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 2'd2))) begin
-		csrbank2_writer_table_value0_re <= interface3_we;
-		csrbank2_writer_table_value0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_value0_re <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_value0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank2_writer_table_value0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_value0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_we0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_writer_table_we0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_writer_table_we0_re <= 1'd0;
-	csrbank2_writer_table_we0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 2'd3))) begin
-		csrbank2_writer_table_we0_re <= interface3_we;
-		csrbank2_writer_table_we0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_we0_we <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_we0_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 2'd3))) begin
+		csr_bankarray_csrbank2_writer_table_we0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_we0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_loop_prog_n0_r = interface3_dat_w[0];
+assign csr_bankarray_csrbank2_writer_table_loop_prog_n0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_writer_table_loop_prog_n0_we <= 1'd0;
-	csrbank2_writer_table_loop_prog_n0_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 3'd4))) begin
-		csrbank2_writer_table_loop_prog_n0_re <= interface3_we;
-		csrbank2_writer_table_loop_prog_n0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_loop_prog_n0_re <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_loop_prog_n0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 3'd4))) begin
+		csr_bankarray_csrbank2_writer_table_loop_prog_n0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_loop_prog_n0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_loop_status_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_writer_table_loop_status_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_writer_table_loop_status_re <= 1'd0;
-	csrbank2_writer_table_loop_status_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 3'd5))) begin
-		csrbank2_writer_table_loop_status_re <= interface3_we;
-		csrbank2_writer_table_loop_status_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_loop_status_re <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_loop_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 3'd5))) begin
+		csr_bankarray_csrbank2_writer_table_loop_status_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_loop_status_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_level_r = interface3_dat_w[8:0];
+assign csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_writer_table_level_re <= 1'd0;
-	csrbank2_writer_table_level_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 3'd6))) begin
-		csrbank2_writer_table_level_re <= interface3_we;
-		csrbank2_writer_table_level_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_we <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 3'd6))) begin
+		csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_table_reset0_r = interface3_dat_w[0];
+assign csr_bankarray_csrbank2_writer_table_level_r = csr_bankarray_interface2_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank2_writer_table_reset0_we <= 1'd0;
-	csrbank2_writer_table_reset0_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 3'd7))) begin
-		csrbank2_writer_table_reset0_re <= interface3_we;
-		csrbank2_writer_table_reset0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_level_we <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_level_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 3'd7))) begin
+		csr_bankarray_csrbank2_writer_table_level_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_level_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_enable0_r = interface3_dat_w[0];
+assign csr_bankarray_csrbank2_writer_table_reset0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_reader_enable0_re <= 1'd0;
-	csrbank2_reader_enable0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd8))) begin
-		csrbank2_reader_enable0_re <= interface3_we;
-		csrbank2_reader_enable0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_writer_table_reset0_re <= 1'd0;
+	csr_bankarray_csrbank2_writer_table_reset0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd8))) begin
+		csr_bankarray_csrbank2_writer_table_reset0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_writer_table_reset0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_value1_r = interface3_dat_w[25:0];
+assign csr_bankarray_csrbank2_reader_enable0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_reader_table_value1_re <= 1'd0;
-	csrbank2_reader_table_value1_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd9))) begin
-		csrbank2_reader_table_value1_re <= interface3_we;
-		csrbank2_reader_table_value1_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_enable0_we <= 1'd0;
+	csr_bankarray_csrbank2_reader_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd9))) begin
+		csr_bankarray_csrbank2_reader_enable0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_enable0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_value0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_reader_table_value1_r = csr_bankarray_interface2_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank2_reader_table_value0_we <= 1'd0;
-	csrbank2_reader_table_value0_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd10))) begin
-		csrbank2_reader_table_value0_re <= interface3_we;
-		csrbank2_reader_table_value0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_value1_we <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_value1_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd10))) begin
+		csr_bankarray_csrbank2_reader_table_value1_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_value1_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_we0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_reader_table_value0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_reader_table_we0_re <= 1'd0;
-	csrbank2_reader_table_we0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd11))) begin
-		csrbank2_reader_table_we0_re <= interface3_we;
-		csrbank2_reader_table_we0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_value0_re <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_value0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd11))) begin
+		csr_bankarray_csrbank2_reader_table_value0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_value0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_loop_prog_n0_r = interface3_dat_w[0];
+assign csr_bankarray_csrbank2_reader_table_we0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_reader_table_loop_prog_n0_we <= 1'd0;
-	csrbank2_reader_table_loop_prog_n0_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd12))) begin
-		csrbank2_reader_table_loop_prog_n0_re <= interface3_we;
-		csrbank2_reader_table_loop_prog_n0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_we0_we <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_we0_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd12))) begin
+		csr_bankarray_csrbank2_reader_table_we0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_we0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_loop_status_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_reader_table_loop_prog_n0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_reader_table_loop_status_we <= 1'd0;
-	csrbank2_reader_table_loop_status_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd13))) begin
-		csrbank2_reader_table_loop_status_re <= interface3_we;
-		csrbank2_reader_table_loop_status_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_loop_prog_n0_re <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_loop_prog_n0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd13))) begin
+		csr_bankarray_csrbank2_reader_table_loop_prog_n0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_loop_prog_n0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_level_r = interface3_dat_w[8:0];
+assign csr_bankarray_csrbank2_reader_table_loop_status_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_reader_table_level_re <= 1'd0;
-	csrbank2_reader_table_level_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd14))) begin
-		csrbank2_reader_table_level_re <= interface3_we;
-		csrbank2_reader_table_level_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_loop_status_re <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_loop_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd14))) begin
+		csr_bankarray_csrbank2_reader_table_loop_status_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_loop_status_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_reader_table_reset0_r = interface3_dat_w[0];
+assign csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_reader_table_reset0_re <= 1'd0;
-	csrbank2_reader_table_reset0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 4'd15))) begin
-		csrbank2_reader_table_reset0_re <= interface3_we;
-		csrbank2_reader_table_reset0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_we <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 4'd15))) begin
+		csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_buffering_reader_fifo_control0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_reader_table_level_r = csr_bankarray_interface2_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank2_buffering_reader_fifo_control0_we <= 1'd0;
-	csrbank2_buffering_reader_fifo_control0_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 5'd16))) begin
-		csrbank2_buffering_reader_fifo_control0_re <= interface3_we;
-		csrbank2_buffering_reader_fifo_control0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_level_we <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_level_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd16))) begin
+		csr_bankarray_csrbank2_reader_table_level_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_level_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_buffering_reader_fifo_status_r = interface3_dat_w[23:0];
+assign csr_bankarray_csrbank2_reader_table_reset0_r = csr_bankarray_interface2_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank2_buffering_reader_fifo_status_re <= 1'd0;
-	csrbank2_buffering_reader_fifo_status_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 5'd17))) begin
-		csrbank2_buffering_reader_fifo_status_re <= interface3_we;
-		csrbank2_buffering_reader_fifo_status_we <= (~interface3_we);
+	csr_bankarray_csrbank2_reader_table_reset0_re <= 1'd0;
+	csr_bankarray_csrbank2_reader_table_reset0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd17))) begin
+		csr_bankarray_csrbank2_reader_table_reset0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_reader_table_reset0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_buffering_writer_fifo_control0_r = interface3_dat_w[31:0];
+assign csr_bankarray_csrbank2_buffering_reader_fifo_control0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank2_buffering_writer_fifo_control0_re <= 1'd0;
-	csrbank2_buffering_writer_fifo_control0_we <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 5'd18))) begin
-		csrbank2_buffering_writer_fifo_control0_re <= interface3_we;
-		csrbank2_buffering_writer_fifo_control0_we <= (~interface3_we);
+	csr_bankarray_csrbank2_buffering_reader_fifo_control0_we <= 1'd0;
+	csr_bankarray_csrbank2_buffering_reader_fifo_control0_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd18))) begin
+		csr_bankarray_csrbank2_buffering_reader_fifo_control0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_buffering_reader_fifo_control0_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_buffering_writer_fifo_status_r = interface3_dat_w[23:0];
+assign csr_bankarray_csrbank2_buffering_reader_fifo_status_r = csr_bankarray_interface2_bank_bus_dat_w[23:0];
 always @(*) begin
-	csrbank2_buffering_writer_fifo_status_we <= 1'd0;
-	csrbank2_buffering_writer_fifo_status_re <= 1'd0;
-	if ((csrbank2_sel & (interface3_adr[8:0] == 5'd19))) begin
-		csrbank2_buffering_writer_fifo_status_re <= interface3_we;
-		csrbank2_buffering_writer_fifo_status_we <= (~interface3_we);
+	csr_bankarray_csrbank2_buffering_reader_fifo_status_we <= 1'd0;
+	csr_bankarray_csrbank2_buffering_reader_fifo_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd19))) begin
+		csr_bankarray_csrbank2_buffering_reader_fifo_status_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_buffering_reader_fifo_status_we <= (~csr_bankarray_interface2_bank_bus_we);
 	end
 end
-assign csrbank2_writer_enable0_w = litepciedma0_writer_enable_storage;
-assign litepciedma0_writer_table_address_lsb = litepciedma0_writer_table_value_storage[31:0];
-assign litepciedma0_writer_table_length = litepciedma0_writer_table_value_storage[55:32];
-assign litepciedma0_writer_table_irq_disable = litepciedma0_writer_table_value_storage[56];
-assign litepciedma0_writer_table_last_disable = litepciedma0_writer_table_value_storage[57];
-assign csrbank2_writer_table_value1_w = litepciedma0_writer_table_value_storage[57:32];
-assign csrbank2_writer_table_value0_w = litepciedma0_writer_table_value_storage[31:0];
-assign litepciedma0_writer_table_address_msb = litepciedma0_writer_table_we_storage[31:0];
-assign csrbank2_writer_table_we0_w = litepciedma0_writer_table_we_storage[31:0];
-assign csrbank2_writer_table_loop_prog_n0_w = litepciedma0_writer_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank2_buffering_writer_fifo_control0_r = csr_bankarray_interface2_bank_bus_dat_w[31:0];
 always @(*) begin
-	litepciedma0_writer_table_loop_status_status <= 32'd0;
-	litepciedma0_writer_table_loop_status_status[15:0] <= litepciedma0_writer_table_index;
-	litepciedma0_writer_table_loop_status_status[31:16] <= litepciedma0_writer_table_count;
+	csr_bankarray_csrbank2_buffering_writer_fifo_control0_re <= 1'd0;
+	csr_bankarray_csrbank2_buffering_writer_fifo_control0_we <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd20))) begin
+		csr_bankarray_csrbank2_buffering_writer_fifo_control0_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_buffering_writer_fifo_control0_we <= (~csr_bankarray_interface2_bank_bus_we);
+	end
 end
-assign csrbank2_writer_table_loop_status_w = litepciedma0_writer_table_loop_status_status[31:0];
-assign litepciedma0_writer_table_loop_status_we = csrbank2_writer_table_loop_status_we;
-assign csrbank2_writer_table_level_w = litepciedma0_writer_table_level_status[8:0];
-assign litepciedma0_writer_table_level_we = csrbank2_writer_table_level_we;
-assign csrbank2_writer_table_reset0_w = litepciedma0_writer_table_reset_storage;
-assign csrbank2_reader_enable0_w = litepciedma0_reader_enable_storage;
+assign csr_bankarray_csrbank2_buffering_writer_fifo_status_r = csr_bankarray_interface2_bank_bus_dat_w[23:0];
+always @(*) begin
+	csr_bankarray_csrbank2_buffering_writer_fifo_status_we <= 1'd0;
+	csr_bankarray_csrbank2_buffering_writer_fifo_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank2_sel & (csr_bankarray_interface2_bank_bus_adr[8:0] == 5'd21))) begin
+		csr_bankarray_csrbank2_buffering_writer_fifo_status_re <= csr_bankarray_interface2_bank_bus_we;
+		csr_bankarray_csrbank2_buffering_writer_fifo_status_we <= (~csr_bankarray_interface2_bank_bus_we);
+	end
+end
+assign csr_bankarray_csrbank2_writer_enable0_w = litepciedma0_writer_enable_storage;
+assign litepciedma0_writer_address_lsb = litepciedma0_writer_value_storage[31:0];
+assign litepciedma0_writer_length = litepciedma0_writer_value_storage[55:32];
+assign litepciedma0_writer_irq_disable = litepciedma0_writer_value_storage[56];
+assign litepciedma0_writer_last_disable = litepciedma0_writer_value_storage[57];
+assign csr_bankarray_csrbank2_writer_table_value1_w = litepciedma0_writer_value_storage[57:32];
+assign csr_bankarray_csrbank2_writer_table_value0_w = litepciedma0_writer_value_storage[31:0];
+assign litepciedma0_writer_address_msb = litepciedma0_writer_we_storage[31:0];
+assign csr_bankarray_csrbank2_writer_table_we0_w = litepciedma0_writer_we_storage[31:0];
+assign csr_bankarray_csrbank2_writer_table_loop_prog_n0_w = litepciedma0_writer_loop_prog_n_storage;
+always @(*) begin
+	litepciedma0_writer_loop_status_status <= 32'd0;
+	litepciedma0_writer_loop_status_status[15:0] <= litepciedma0_writer_index;
+	litepciedma0_writer_loop_status_status[31:16] <= litepciedma0_writer_count;
+end
+assign csr_bankarray_csrbank2_writer_table_loop_status_w = litepciedma0_writer_loop_status_status[31:0];
+assign litepciedma0_writer_loop_status_we = csr_bankarray_csrbank2_writer_table_loop_status_we;
+assign litepciedma0_writer_dmaDescriptorCnt_status[31:0] = litepciedma0_writer_dmaCnt;
+assign csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_w = litepciedma0_writer_dmaDescriptorCnt_status[31:0];
+assign litepciedma0_writer_dmaDescriptorCnt_we = csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank2_writer_table_level_w = litepciedma0_writer_level_status[8:0];
+assign litepciedma0_writer_level_we = csr_bankarray_csrbank2_writer_table_level_we;
+assign csr_bankarray_csrbank2_writer_table_reset0_w = litepciedma0_writer_reset_storage;
+assign csr_bankarray_csrbank2_reader_enable0_w = litepciedma0_reader_enable_storage;
 assign litepciedma0_reader_table_address_lsb = litepciedma0_reader_table_value_storage[31:0];
 assign litepciedma0_reader_table_length = litepciedma0_reader_table_value_storage[55:32];
 assign litepciedma0_reader_table_irq_disable = litepciedma0_reader_table_value_storage[56];
 assign litepciedma0_reader_table_last_disable = litepciedma0_reader_table_value_storage[57];
-assign csrbank2_reader_table_value1_w = litepciedma0_reader_table_value_storage[57:32];
-assign csrbank2_reader_table_value0_w = litepciedma0_reader_table_value_storage[31:0];
+assign csr_bankarray_csrbank2_reader_table_value1_w = litepciedma0_reader_table_value_storage[57:32];
+assign csr_bankarray_csrbank2_reader_table_value0_w = litepciedma0_reader_table_value_storage[31:0];
 assign litepciedma0_reader_table_address_msb = litepciedma0_reader_table_we_storage[31:0];
-assign csrbank2_reader_table_we0_w = litepciedma0_reader_table_we_storage[31:0];
-assign csrbank2_reader_table_loop_prog_n0_w = litepciedma0_reader_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank2_reader_table_we0_w = litepciedma0_reader_table_we_storage[31:0];
+assign csr_bankarray_csrbank2_reader_table_loop_prog_n0_w = litepciedma0_reader_table_loop_prog_n_storage;
 always @(*) begin
 	litepciedma0_reader_table_loop_status_status <= 32'd0;
 	litepciedma0_reader_table_loop_status_status[15:0] <= litepciedma0_reader_table_index;
 	litepciedma0_reader_table_loop_status_status[31:16] <= litepciedma0_reader_table_count;
 end
-assign csrbank2_reader_table_loop_status_w = litepciedma0_reader_table_loop_status_status[31:0];
-assign litepciedma0_reader_table_loop_status_we = csrbank2_reader_table_loop_status_we;
-assign csrbank2_reader_table_level_w = litepciedma0_reader_table_level_status[8:0];
-assign litepciedma0_reader_table_level_we = csrbank2_reader_table_level_we;
-assign csrbank2_reader_table_reset0_w = litepciedma0_reader_table_reset_storage;
+assign csr_bankarray_csrbank2_reader_table_loop_status_w = litepciedma0_reader_table_loop_status_status[31:0];
+assign litepciedma0_reader_table_loop_status_we = csr_bankarray_csrbank2_reader_table_loop_status_we;
+assign litepciedma0_reader_table_dmaDescriptorCnt_status[31:0] = litepciedma0_reader_table_dmaCnt;
+assign csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_w = litepciedma0_reader_table_dmaDescriptorCnt_status[31:0];
+assign litepciedma0_reader_table_dmaDescriptorCnt_we = csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank2_reader_table_level_w = litepciedma0_reader_table_level_status[8:0];
+assign litepciedma0_reader_table_level_we = csr_bankarray_csrbank2_reader_table_level_we;
+assign csr_bankarray_csrbank2_reader_table_reset0_w = litepciedma0_reader_table_reset_storage;
 assign litepciedma0_buffering_csrfield_depth0 = litepciedma0_buffering_reader_fifo_control_storage[23:0];
 assign litepciedma0_buffering_csrfield_scratch0 = litepciedma0_buffering_reader_fifo_control_storage[27:24];
 assign litepciedma0_buffering_csrfield_level_mode0 = litepciedma0_buffering_reader_fifo_control_storage[31];
-assign csrbank2_buffering_reader_fifo_control0_w = litepciedma0_buffering_reader_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank2_buffering_reader_fifo_control0_w = litepciedma0_buffering_reader_fifo_control_storage[31:0];
 assign litepciedma0_buffering_reader_fifo_status_status[23:0] = litepciedma0_buffering_csrfield_level0;
-assign csrbank2_buffering_reader_fifo_status_w = litepciedma0_buffering_reader_fifo_status_status[23:0];
-assign litepciedma0_buffering_reader_fifo_status_we = csrbank2_buffering_reader_fifo_status_we;
+assign csr_bankarray_csrbank2_buffering_reader_fifo_status_w = litepciedma0_buffering_reader_fifo_status_status[23:0];
+assign litepciedma0_buffering_reader_fifo_status_we = csr_bankarray_csrbank2_buffering_reader_fifo_status_we;
 assign litepciedma0_buffering_csrfield_depth1 = litepciedma0_buffering_writer_fifo_control_storage[23:0];
 assign litepciedma0_buffering_csrfield_scratch1 = litepciedma0_buffering_writer_fifo_control_storage[27:24];
 assign litepciedma0_buffering_csrfield_level_mode1 = litepciedma0_buffering_writer_fifo_control_storage[31];
-assign csrbank2_buffering_writer_fifo_control0_w = litepciedma0_buffering_writer_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank2_buffering_writer_fifo_control0_w = litepciedma0_buffering_writer_fifo_control_storage[31:0];
 assign litepciedma0_buffering_writer_fifo_status_status[23:0] = litepciedma0_buffering_csrfield_level1;
-assign csrbank2_buffering_writer_fifo_status_w = litepciedma0_buffering_writer_fifo_status_status[23:0];
-assign litepciedma0_buffering_writer_fifo_status_we = csrbank2_buffering_writer_fifo_status_we;
-assign csrbank3_sel = (interface4_adr[13:9] == 3'd6);
-assign csrbank3_writer_enable0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank2_buffering_writer_fifo_status_w = litepciedma0_buffering_writer_fifo_status_status[23:0];
+assign litepciedma0_buffering_writer_fifo_status_we = csr_bankarray_csrbank2_buffering_writer_fifo_status_we;
+assign csr_bankarray_csrbank3_sel = (csr_bankarray_interface3_bank_bus_adr[13:9] == 3'd6);
+assign csr_bankarray_csrbank3_writer_enable0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_writer_enable0_re <= 1'd0;
-	csrbank3_writer_enable0_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 1'd0))) begin
-		csrbank3_writer_enable0_re <= interface4_we;
-		csrbank3_writer_enable0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_enable0_we <= 1'd0;
+	csr_bankarray_csrbank3_writer_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank3_writer_enable0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_enable0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_value1_r = interface4_dat_w[25:0];
+assign csr_bankarray_csrbank3_writer_table_value1_r = csr_bankarray_interface3_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank3_writer_table_value1_we <= 1'd0;
-	csrbank3_writer_table_value1_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 1'd1))) begin
-		csrbank3_writer_table_value1_re <= interface4_we;
-		csrbank3_writer_table_value1_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_value1_re <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_value1_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank3_writer_table_value1_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_value1_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_value0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_writer_table_value0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_writer_table_value0_re <= 1'd0;
-	csrbank3_writer_table_value0_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 2'd2))) begin
-		csrbank3_writer_table_value0_re <= interface4_we;
-		csrbank3_writer_table_value0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_value0_we <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_value0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank3_writer_table_value0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_value0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_we0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_writer_table_we0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_writer_table_we0_we <= 1'd0;
-	csrbank3_writer_table_we0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 2'd3))) begin
-		csrbank3_writer_table_we0_re <= interface4_we;
-		csrbank3_writer_table_we0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_we0_re <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_we0_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 2'd3))) begin
+		csr_bankarray_csrbank3_writer_table_we0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_we0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_loop_prog_n0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank3_writer_table_loop_prog_n0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_writer_table_loop_prog_n0_we <= 1'd0;
-	csrbank3_writer_table_loop_prog_n0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 3'd4))) begin
-		csrbank3_writer_table_loop_prog_n0_re <= interface4_we;
-		csrbank3_writer_table_loop_prog_n0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_loop_prog_n0_re <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_loop_prog_n0_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 3'd4))) begin
+		csr_bankarray_csrbank3_writer_table_loop_prog_n0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_loop_prog_n0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_loop_status_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_writer_table_loop_status_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_writer_table_loop_status_re <= 1'd0;
-	csrbank3_writer_table_loop_status_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 3'd5))) begin
-		csrbank3_writer_table_loop_status_re <= interface4_we;
-		csrbank3_writer_table_loop_status_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_loop_status_we <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_loop_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 3'd5))) begin
+		csr_bankarray_csrbank3_writer_table_loop_status_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_loop_status_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_level_r = interface4_dat_w[8:0];
+assign csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_writer_table_level_we <= 1'd0;
-	csrbank3_writer_table_level_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 3'd6))) begin
-		csrbank3_writer_table_level_re <= interface4_we;
-		csrbank3_writer_table_level_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_re <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 3'd6))) begin
+		csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_table_reset0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank3_writer_table_level_r = csr_bankarray_interface3_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank3_writer_table_reset0_we <= 1'd0;
-	csrbank3_writer_table_reset0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 3'd7))) begin
-		csrbank3_writer_table_reset0_re <= interface4_we;
-		csrbank3_writer_table_reset0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_level_re <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_level_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 3'd7))) begin
+		csr_bankarray_csrbank3_writer_table_level_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_level_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_enable0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank3_writer_table_reset0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_reader_enable0_re <= 1'd0;
-	csrbank3_reader_enable0_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd8))) begin
-		csrbank3_reader_enable0_re <= interface4_we;
-		csrbank3_reader_enable0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_writer_table_reset0_we <= 1'd0;
+	csr_bankarray_csrbank3_writer_table_reset0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd8))) begin
+		csr_bankarray_csrbank3_writer_table_reset0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_writer_table_reset0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_value1_r = interface4_dat_w[25:0];
+assign csr_bankarray_csrbank3_reader_enable0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_reader_table_value1_we <= 1'd0;
-	csrbank3_reader_table_value1_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd9))) begin
-		csrbank3_reader_table_value1_re <= interface4_we;
-		csrbank3_reader_table_value1_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_enable0_we <= 1'd0;
+	csr_bankarray_csrbank3_reader_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd9))) begin
+		csr_bankarray_csrbank3_reader_enable0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_enable0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_value0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_reader_table_value1_r = csr_bankarray_interface3_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank3_reader_table_value0_we <= 1'd0;
-	csrbank3_reader_table_value0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd10))) begin
-		csrbank3_reader_table_value0_re <= interface4_we;
-		csrbank3_reader_table_value0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_value1_re <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_value1_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd10))) begin
+		csr_bankarray_csrbank3_reader_table_value1_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_value1_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_we0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_reader_table_value0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_reader_table_we0_re <= 1'd0;
-	csrbank3_reader_table_we0_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd11))) begin
-		csrbank3_reader_table_we0_re <= interface4_we;
-		csrbank3_reader_table_we0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_value0_we <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_value0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd11))) begin
+		csr_bankarray_csrbank3_reader_table_value0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_value0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_loop_prog_n0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank3_reader_table_we0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_reader_table_loop_prog_n0_we <= 1'd0;
-	csrbank3_reader_table_loop_prog_n0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd12))) begin
-		csrbank3_reader_table_loop_prog_n0_re <= interface4_we;
-		csrbank3_reader_table_loop_prog_n0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_we0_re <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_we0_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd12))) begin
+		csr_bankarray_csrbank3_reader_table_we0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_we0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_loop_status_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_reader_table_loop_prog_n0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_reader_table_loop_status_re <= 1'd0;
-	csrbank3_reader_table_loop_status_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd13))) begin
-		csrbank3_reader_table_loop_status_re <= interface4_we;
-		csrbank3_reader_table_loop_status_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_loop_prog_n0_re <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_loop_prog_n0_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd13))) begin
+		csr_bankarray_csrbank3_reader_table_loop_prog_n0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_loop_prog_n0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_level_r = interface4_dat_w[8:0];
+assign csr_bankarray_csrbank3_reader_table_loop_status_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_reader_table_level_re <= 1'd0;
-	csrbank3_reader_table_level_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd14))) begin
-		csrbank3_reader_table_level_re <= interface4_we;
-		csrbank3_reader_table_level_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_loop_status_we <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_loop_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd14))) begin
+		csr_bankarray_csrbank3_reader_table_loop_status_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_loop_status_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_reader_table_reset0_r = interface4_dat_w[0];
+assign csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_reader_table_reset0_we <= 1'd0;
-	csrbank3_reader_table_reset0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 4'd15))) begin
-		csrbank3_reader_table_reset0_re <= interface4_we;
-		csrbank3_reader_table_reset0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_re <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 4'd15))) begin
+		csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_buffering_reader_fifo_control0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_reader_table_level_r = csr_bankarray_interface3_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank3_buffering_reader_fifo_control0_we <= 1'd0;
-	csrbank3_buffering_reader_fifo_control0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 5'd16))) begin
-		csrbank3_buffering_reader_fifo_control0_re <= interface4_we;
-		csrbank3_buffering_reader_fifo_control0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_level_re <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_level_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd16))) begin
+		csr_bankarray_csrbank3_reader_table_level_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_level_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_buffering_reader_fifo_status_r = interface4_dat_w[23:0];
+assign csr_bankarray_csrbank3_reader_table_reset0_r = csr_bankarray_interface3_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank3_buffering_reader_fifo_status_re <= 1'd0;
-	csrbank3_buffering_reader_fifo_status_we <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 5'd17))) begin
-		csrbank3_buffering_reader_fifo_status_re <= interface4_we;
-		csrbank3_buffering_reader_fifo_status_we <= (~interface4_we);
+	csr_bankarray_csrbank3_reader_table_reset0_we <= 1'd0;
+	csr_bankarray_csrbank3_reader_table_reset0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd17))) begin
+		csr_bankarray_csrbank3_reader_table_reset0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_reader_table_reset0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_buffering_writer_fifo_control0_r = interface4_dat_w[31:0];
+assign csr_bankarray_csrbank3_buffering_reader_fifo_control0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank3_buffering_writer_fifo_control0_we <= 1'd0;
-	csrbank3_buffering_writer_fifo_control0_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 5'd18))) begin
-		csrbank3_buffering_writer_fifo_control0_re <= interface4_we;
-		csrbank3_buffering_writer_fifo_control0_we <= (~interface4_we);
+	csr_bankarray_csrbank3_buffering_reader_fifo_control0_we <= 1'd0;
+	csr_bankarray_csrbank3_buffering_reader_fifo_control0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd18))) begin
+		csr_bankarray_csrbank3_buffering_reader_fifo_control0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_buffering_reader_fifo_control0_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_buffering_writer_fifo_status_r = interface4_dat_w[23:0];
+assign csr_bankarray_csrbank3_buffering_reader_fifo_status_r = csr_bankarray_interface3_bank_bus_dat_w[23:0];
 always @(*) begin
-	csrbank3_buffering_writer_fifo_status_we <= 1'd0;
-	csrbank3_buffering_writer_fifo_status_re <= 1'd0;
-	if ((csrbank3_sel & (interface4_adr[8:0] == 5'd19))) begin
-		csrbank3_buffering_writer_fifo_status_re <= interface4_we;
-		csrbank3_buffering_writer_fifo_status_we <= (~interface4_we);
+	csr_bankarray_csrbank3_buffering_reader_fifo_status_re <= 1'd0;
+	csr_bankarray_csrbank3_buffering_reader_fifo_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd19))) begin
+		csr_bankarray_csrbank3_buffering_reader_fifo_status_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_buffering_reader_fifo_status_we <= (~csr_bankarray_interface3_bank_bus_we);
 	end
 end
-assign csrbank3_writer_enable0_w = litepciedma1_writer_enable_storage;
-assign litepciedma1_writer_table_address_lsb = litepciedma1_writer_table_value_storage[31:0];
-assign litepciedma1_writer_table_length = litepciedma1_writer_table_value_storage[55:32];
-assign litepciedma1_writer_table_irq_disable = litepciedma1_writer_table_value_storage[56];
-assign litepciedma1_writer_table_last_disable = litepciedma1_writer_table_value_storage[57];
-assign csrbank3_writer_table_value1_w = litepciedma1_writer_table_value_storage[57:32];
-assign csrbank3_writer_table_value0_w = litepciedma1_writer_table_value_storage[31:0];
-assign litepciedma1_writer_table_address_msb = litepciedma1_writer_table_we_storage[31:0];
-assign csrbank3_writer_table_we0_w = litepciedma1_writer_table_we_storage[31:0];
-assign csrbank3_writer_table_loop_prog_n0_w = litepciedma1_writer_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank3_buffering_writer_fifo_control0_r = csr_bankarray_interface3_bank_bus_dat_w[31:0];
 always @(*) begin
-	litepciedma1_writer_table_loop_status_status <= 32'd0;
-	litepciedma1_writer_table_loop_status_status[15:0] <= litepciedma1_writer_table_index;
-	litepciedma1_writer_table_loop_status_status[31:16] <= litepciedma1_writer_table_count;
+	csr_bankarray_csrbank3_buffering_writer_fifo_control0_we <= 1'd0;
+	csr_bankarray_csrbank3_buffering_writer_fifo_control0_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd20))) begin
+		csr_bankarray_csrbank3_buffering_writer_fifo_control0_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_buffering_writer_fifo_control0_we <= (~csr_bankarray_interface3_bank_bus_we);
+	end
 end
-assign csrbank3_writer_table_loop_status_w = litepciedma1_writer_table_loop_status_status[31:0];
-assign litepciedma1_writer_table_loop_status_we = csrbank3_writer_table_loop_status_we;
-assign csrbank3_writer_table_level_w = litepciedma1_writer_table_level_status[8:0];
-assign litepciedma1_writer_table_level_we = csrbank3_writer_table_level_we;
-assign csrbank3_writer_table_reset0_w = litepciedma1_writer_table_reset_storage;
-assign csrbank3_reader_enable0_w = litepciedma1_reader_enable_storage;
+assign csr_bankarray_csrbank3_buffering_writer_fifo_status_r = csr_bankarray_interface3_bank_bus_dat_w[23:0];
+always @(*) begin
+	csr_bankarray_csrbank3_buffering_writer_fifo_status_we <= 1'd0;
+	csr_bankarray_csrbank3_buffering_writer_fifo_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank3_sel & (csr_bankarray_interface3_bank_bus_adr[8:0] == 5'd21))) begin
+		csr_bankarray_csrbank3_buffering_writer_fifo_status_re <= csr_bankarray_interface3_bank_bus_we;
+		csr_bankarray_csrbank3_buffering_writer_fifo_status_we <= (~csr_bankarray_interface3_bank_bus_we);
+	end
+end
+assign csr_bankarray_csrbank3_writer_enable0_w = litepciedma1_writer_enable_storage;
+assign litepciedma1_writer_address_lsb = litepciedma1_writer_value_storage[31:0];
+assign litepciedma1_writer_length = litepciedma1_writer_value_storage[55:32];
+assign litepciedma1_writer_irq_disable = litepciedma1_writer_value_storage[56];
+assign litepciedma1_writer_last_disable = litepciedma1_writer_value_storage[57];
+assign csr_bankarray_csrbank3_writer_table_value1_w = litepciedma1_writer_value_storage[57:32];
+assign csr_bankarray_csrbank3_writer_table_value0_w = litepciedma1_writer_value_storage[31:0];
+assign litepciedma1_writer_address_msb = litepciedma1_writer_we_storage[31:0];
+assign csr_bankarray_csrbank3_writer_table_we0_w = litepciedma1_writer_we_storage[31:0];
+assign csr_bankarray_csrbank3_writer_table_loop_prog_n0_w = litepciedma1_writer_loop_prog_n_storage;
+always @(*) begin
+	litepciedma1_writer_loop_status_status <= 32'd0;
+	litepciedma1_writer_loop_status_status[15:0] <= litepciedma1_writer_index;
+	litepciedma1_writer_loop_status_status[31:16] <= litepciedma1_writer_count;
+end
+assign csr_bankarray_csrbank3_writer_table_loop_status_w = litepciedma1_writer_loop_status_status[31:0];
+assign litepciedma1_writer_loop_status_we = csr_bankarray_csrbank3_writer_table_loop_status_we;
+assign litepciedma1_writer_dmaDescriptorCnt_status[31:0] = litepciedma1_writer_dmaCnt;
+assign csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_w = litepciedma1_writer_dmaDescriptorCnt_status[31:0];
+assign litepciedma1_writer_dmaDescriptorCnt_we = csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank3_writer_table_level_w = litepciedma1_writer_level_status[8:0];
+assign litepciedma1_writer_level_we = csr_bankarray_csrbank3_writer_table_level_we;
+assign csr_bankarray_csrbank3_writer_table_reset0_w = litepciedma1_writer_reset_storage;
+assign csr_bankarray_csrbank3_reader_enable0_w = litepciedma1_reader_enable_storage;
 assign litepciedma1_reader_table_address_lsb = litepciedma1_reader_table_value_storage[31:0];
 assign litepciedma1_reader_table_length = litepciedma1_reader_table_value_storage[55:32];
 assign litepciedma1_reader_table_irq_disable = litepciedma1_reader_table_value_storage[56];
 assign litepciedma1_reader_table_last_disable = litepciedma1_reader_table_value_storage[57];
-assign csrbank3_reader_table_value1_w = litepciedma1_reader_table_value_storage[57:32];
-assign csrbank3_reader_table_value0_w = litepciedma1_reader_table_value_storage[31:0];
+assign csr_bankarray_csrbank3_reader_table_value1_w = litepciedma1_reader_table_value_storage[57:32];
+assign csr_bankarray_csrbank3_reader_table_value0_w = litepciedma1_reader_table_value_storage[31:0];
 assign litepciedma1_reader_table_address_msb = litepciedma1_reader_table_we_storage[31:0];
-assign csrbank3_reader_table_we0_w = litepciedma1_reader_table_we_storage[31:0];
-assign csrbank3_reader_table_loop_prog_n0_w = litepciedma1_reader_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank3_reader_table_we0_w = litepciedma1_reader_table_we_storage[31:0];
+assign csr_bankarray_csrbank3_reader_table_loop_prog_n0_w = litepciedma1_reader_table_loop_prog_n_storage;
 always @(*) begin
 	litepciedma1_reader_table_loop_status_status <= 32'd0;
 	litepciedma1_reader_table_loop_status_status[15:0] <= litepciedma1_reader_table_index;
 	litepciedma1_reader_table_loop_status_status[31:16] <= litepciedma1_reader_table_count;
 end
-assign csrbank3_reader_table_loop_status_w = litepciedma1_reader_table_loop_status_status[31:0];
-assign litepciedma1_reader_table_loop_status_we = csrbank3_reader_table_loop_status_we;
-assign csrbank3_reader_table_level_w = litepciedma1_reader_table_level_status[8:0];
-assign litepciedma1_reader_table_level_we = csrbank3_reader_table_level_we;
-assign csrbank3_reader_table_reset0_w = litepciedma1_reader_table_reset_storage;
+assign csr_bankarray_csrbank3_reader_table_loop_status_w = litepciedma1_reader_table_loop_status_status[31:0];
+assign litepciedma1_reader_table_loop_status_we = csr_bankarray_csrbank3_reader_table_loop_status_we;
+assign litepciedma1_reader_table_dmaDescriptorCnt_status[31:0] = litepciedma1_reader_table_dmaCnt;
+assign csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_w = litepciedma1_reader_table_dmaDescriptorCnt_status[31:0];
+assign litepciedma1_reader_table_dmaDescriptorCnt_we = csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank3_reader_table_level_w = litepciedma1_reader_table_level_status[8:0];
+assign litepciedma1_reader_table_level_we = csr_bankarray_csrbank3_reader_table_level_we;
+assign csr_bankarray_csrbank3_reader_table_reset0_w = litepciedma1_reader_table_reset_storage;
 assign litepciedma1_buffering_csrfield_depth0 = litepciedma1_buffering_reader_fifo_control_storage[23:0];
 assign litepciedma1_buffering_csrfield_scratch0 = litepciedma1_buffering_reader_fifo_control_storage[27:24];
 assign litepciedma1_buffering_csrfield_level_mode0 = litepciedma1_buffering_reader_fifo_control_storage[31];
-assign csrbank3_buffering_reader_fifo_control0_w = litepciedma1_buffering_reader_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank3_buffering_reader_fifo_control0_w = litepciedma1_buffering_reader_fifo_control_storage[31:0];
 assign litepciedma1_buffering_reader_fifo_status_status[23:0] = litepciedma1_buffering_csrfield_level0;
-assign csrbank3_buffering_reader_fifo_status_w = litepciedma1_buffering_reader_fifo_status_status[23:0];
-assign litepciedma1_buffering_reader_fifo_status_we = csrbank3_buffering_reader_fifo_status_we;
+assign csr_bankarray_csrbank3_buffering_reader_fifo_status_w = litepciedma1_buffering_reader_fifo_status_status[23:0];
+assign litepciedma1_buffering_reader_fifo_status_we = csr_bankarray_csrbank3_buffering_reader_fifo_status_we;
 assign litepciedma1_buffering_csrfield_depth1 = litepciedma1_buffering_writer_fifo_control_storage[23:0];
 assign litepciedma1_buffering_csrfield_scratch1 = litepciedma1_buffering_writer_fifo_control_storage[27:24];
 assign litepciedma1_buffering_csrfield_level_mode1 = litepciedma1_buffering_writer_fifo_control_storage[31];
-assign csrbank3_buffering_writer_fifo_control0_w = litepciedma1_buffering_writer_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank3_buffering_writer_fifo_control0_w = litepciedma1_buffering_writer_fifo_control_storage[31:0];
 assign litepciedma1_buffering_writer_fifo_status_status[23:0] = litepciedma1_buffering_csrfield_level1;
-assign csrbank3_buffering_writer_fifo_status_w = litepciedma1_buffering_writer_fifo_status_status[23:0];
-assign litepciedma1_buffering_writer_fifo_status_we = csrbank3_buffering_writer_fifo_status_we;
-assign csrbank4_sel = (interface5_adr[13:9] == 3'd7);
-assign csrbank4_writer_enable0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank3_buffering_writer_fifo_status_w = litepciedma1_buffering_writer_fifo_status_status[23:0];
+assign litepciedma1_buffering_writer_fifo_status_we = csr_bankarray_csrbank3_buffering_writer_fifo_status_we;
+assign csr_bankarray_csrbank4_sel = (csr_bankarray_interface4_bank_bus_adr[13:9] == 3'd7);
+assign csr_bankarray_csrbank4_writer_enable0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_writer_enable0_we <= 1'd0;
-	csrbank4_writer_enable0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 1'd0))) begin
-		csrbank4_writer_enable0_re <= interface5_we;
-		csrbank4_writer_enable0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_enable0_re <= 1'd0;
+	csr_bankarray_csrbank4_writer_enable0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank4_writer_enable0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_enable0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_value1_r = interface5_dat_w[25:0];
+assign csr_bankarray_csrbank4_writer_table_value1_r = csr_bankarray_interface4_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank4_writer_table_value1_we <= 1'd0;
-	csrbank4_writer_table_value1_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 1'd1))) begin
-		csrbank4_writer_table_value1_re <= interface5_we;
-		csrbank4_writer_table_value1_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_value1_we <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_value1_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank4_writer_table_value1_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_value1_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_value0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_writer_table_value0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_writer_table_value0_re <= 1'd0;
-	csrbank4_writer_table_value0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 2'd2))) begin
-		csrbank4_writer_table_value0_re <= interface5_we;
-		csrbank4_writer_table_value0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_value0_re <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_value0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank4_writer_table_value0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_value0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_we0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_writer_table_we0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_writer_table_we0_we <= 1'd0;
-	csrbank4_writer_table_we0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 2'd3))) begin
-		csrbank4_writer_table_we0_re <= interface5_we;
-		csrbank4_writer_table_we0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_we0_re <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_we0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 2'd3))) begin
+		csr_bankarray_csrbank4_writer_table_we0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_we0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_loop_prog_n0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank4_writer_table_loop_prog_n0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_writer_table_loop_prog_n0_re <= 1'd0;
-	csrbank4_writer_table_loop_prog_n0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 3'd4))) begin
-		csrbank4_writer_table_loop_prog_n0_re <= interface5_we;
-		csrbank4_writer_table_loop_prog_n0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_loop_prog_n0_we <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_loop_prog_n0_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 3'd4))) begin
+		csr_bankarray_csrbank4_writer_table_loop_prog_n0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_loop_prog_n0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_loop_status_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_writer_table_loop_status_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_writer_table_loop_status_re <= 1'd0;
-	csrbank4_writer_table_loop_status_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 3'd5))) begin
-		csrbank4_writer_table_loop_status_re <= interface5_we;
-		csrbank4_writer_table_loop_status_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_loop_status_re <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_loop_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 3'd5))) begin
+		csr_bankarray_csrbank4_writer_table_loop_status_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_loop_status_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_level_r = interface5_dat_w[8:0];
+assign csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_writer_table_level_we <= 1'd0;
-	csrbank4_writer_table_level_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 3'd6))) begin
-		csrbank4_writer_table_level_re <= interface5_we;
-		csrbank4_writer_table_level_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_re <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 3'd6))) begin
+		csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_table_reset0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank4_writer_table_level_r = csr_bankarray_interface4_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank4_writer_table_reset0_we <= 1'd0;
-	csrbank4_writer_table_reset0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 3'd7))) begin
-		csrbank4_writer_table_reset0_re <= interface5_we;
-		csrbank4_writer_table_reset0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_level_we <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_level_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 3'd7))) begin
+		csr_bankarray_csrbank4_writer_table_level_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_level_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_enable0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank4_writer_table_reset0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_reader_enable0_re <= 1'd0;
-	csrbank4_reader_enable0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd8))) begin
-		csrbank4_reader_enable0_re <= interface5_we;
-		csrbank4_reader_enable0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_writer_table_reset0_we <= 1'd0;
+	csr_bankarray_csrbank4_writer_table_reset0_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd8))) begin
+		csr_bankarray_csrbank4_writer_table_reset0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_writer_table_reset0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_value1_r = interface5_dat_w[25:0];
+assign csr_bankarray_csrbank4_reader_enable0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_reader_table_value1_we <= 1'd0;
-	csrbank4_reader_table_value1_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd9))) begin
-		csrbank4_reader_table_value1_re <= interface5_we;
-		csrbank4_reader_table_value1_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_enable0_re <= 1'd0;
+	csr_bankarray_csrbank4_reader_enable0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd9))) begin
+		csr_bankarray_csrbank4_reader_enable0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_enable0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_value0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_reader_table_value1_r = csr_bankarray_interface4_bank_bus_dat_w[25:0];
 always @(*) begin
-	csrbank4_reader_table_value0_re <= 1'd0;
-	csrbank4_reader_table_value0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd10))) begin
-		csrbank4_reader_table_value0_re <= interface5_we;
-		csrbank4_reader_table_value0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_value1_we <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_value1_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd10))) begin
+		csr_bankarray_csrbank4_reader_table_value1_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_value1_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_we0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_reader_table_value0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_reader_table_we0_re <= 1'd0;
-	csrbank4_reader_table_we0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd11))) begin
-		csrbank4_reader_table_we0_re <= interface5_we;
-		csrbank4_reader_table_we0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_value0_re <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_value0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd11))) begin
+		csr_bankarray_csrbank4_reader_table_value0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_value0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_loop_prog_n0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank4_reader_table_we0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_reader_table_loop_prog_n0_we <= 1'd0;
-	csrbank4_reader_table_loop_prog_n0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd12))) begin
-		csrbank4_reader_table_loop_prog_n0_re <= interface5_we;
-		csrbank4_reader_table_loop_prog_n0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_we0_re <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_we0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd12))) begin
+		csr_bankarray_csrbank4_reader_table_we0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_we0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_loop_status_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_reader_table_loop_prog_n0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_reader_table_loop_status_re <= 1'd0;
-	csrbank4_reader_table_loop_status_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd13))) begin
-		csrbank4_reader_table_loop_status_re <= interface5_we;
-		csrbank4_reader_table_loop_status_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_loop_prog_n0_we <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_loop_prog_n0_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd13))) begin
+		csr_bankarray_csrbank4_reader_table_loop_prog_n0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_loop_prog_n0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_level_r = interface5_dat_w[8:0];
+assign csr_bankarray_csrbank4_reader_table_loop_status_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_reader_table_level_re <= 1'd0;
-	csrbank4_reader_table_level_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd14))) begin
-		csrbank4_reader_table_level_re <= interface5_we;
-		csrbank4_reader_table_level_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_loop_status_re <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_loop_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd14))) begin
+		csr_bankarray_csrbank4_reader_table_loop_status_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_loop_status_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_reader_table_reset0_r = interface5_dat_w[0];
+assign csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_reader_table_reset0_we <= 1'd0;
-	csrbank4_reader_table_reset0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 4'd15))) begin
-		csrbank4_reader_table_reset0_re <= interface5_we;
-		csrbank4_reader_table_reset0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_re <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 4'd15))) begin
+		csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_buffering_reader_fifo_control0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_reader_table_level_r = csr_bankarray_interface4_bank_bus_dat_w[8:0];
 always @(*) begin
-	csrbank4_buffering_reader_fifo_control0_re <= 1'd0;
-	csrbank4_buffering_reader_fifo_control0_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 5'd16))) begin
-		csrbank4_buffering_reader_fifo_control0_re <= interface5_we;
-		csrbank4_buffering_reader_fifo_control0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_level_we <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_level_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd16))) begin
+		csr_bankarray_csrbank4_reader_table_level_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_level_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_buffering_reader_fifo_status_r = interface5_dat_w[23:0];
+assign csr_bankarray_csrbank4_reader_table_reset0_r = csr_bankarray_interface4_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank4_buffering_reader_fifo_status_re <= 1'd0;
-	csrbank4_buffering_reader_fifo_status_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 5'd17))) begin
-		csrbank4_buffering_reader_fifo_status_re <= interface5_we;
-		csrbank4_buffering_reader_fifo_status_we <= (~interface5_we);
+	csr_bankarray_csrbank4_reader_table_reset0_we <= 1'd0;
+	csr_bankarray_csrbank4_reader_table_reset0_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd17))) begin
+		csr_bankarray_csrbank4_reader_table_reset0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_reader_table_reset0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_buffering_writer_fifo_control0_r = interface5_dat_w[31:0];
+assign csr_bankarray_csrbank4_buffering_reader_fifo_control0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank4_buffering_writer_fifo_control0_we <= 1'd0;
-	csrbank4_buffering_writer_fifo_control0_re <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 5'd18))) begin
-		csrbank4_buffering_writer_fifo_control0_re <= interface5_we;
-		csrbank4_buffering_writer_fifo_control0_we <= (~interface5_we);
+	csr_bankarray_csrbank4_buffering_reader_fifo_control0_re <= 1'd0;
+	csr_bankarray_csrbank4_buffering_reader_fifo_control0_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd18))) begin
+		csr_bankarray_csrbank4_buffering_reader_fifo_control0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_buffering_reader_fifo_control0_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_buffering_writer_fifo_status_r = interface5_dat_w[23:0];
+assign csr_bankarray_csrbank4_buffering_reader_fifo_status_r = csr_bankarray_interface4_bank_bus_dat_w[23:0];
 always @(*) begin
-	csrbank4_buffering_writer_fifo_status_re <= 1'd0;
-	csrbank4_buffering_writer_fifo_status_we <= 1'd0;
-	if ((csrbank4_sel & (interface5_adr[8:0] == 5'd19))) begin
-		csrbank4_buffering_writer_fifo_status_re <= interface5_we;
-		csrbank4_buffering_writer_fifo_status_we <= (~interface5_we);
+	csr_bankarray_csrbank4_buffering_reader_fifo_status_we <= 1'd0;
+	csr_bankarray_csrbank4_buffering_reader_fifo_status_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd19))) begin
+		csr_bankarray_csrbank4_buffering_reader_fifo_status_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_buffering_reader_fifo_status_we <= (~csr_bankarray_interface4_bank_bus_we);
 	end
 end
-assign csrbank4_writer_enable0_w = litepciedma2_writer_enable_storage;
-assign litepciedma2_writer_table_address_lsb = litepciedma2_writer_table_value_storage[31:0];
-assign litepciedma2_writer_table_length = litepciedma2_writer_table_value_storage[55:32];
-assign litepciedma2_writer_table_irq_disable = litepciedma2_writer_table_value_storage[56];
-assign litepciedma2_writer_table_last_disable = litepciedma2_writer_table_value_storage[57];
-assign csrbank4_writer_table_value1_w = litepciedma2_writer_table_value_storage[57:32];
-assign csrbank4_writer_table_value0_w = litepciedma2_writer_table_value_storage[31:0];
-assign litepciedma2_writer_table_address_msb = litepciedma2_writer_table_we_storage[31:0];
-assign csrbank4_writer_table_we0_w = litepciedma2_writer_table_we_storage[31:0];
-assign csrbank4_writer_table_loop_prog_n0_w = litepciedma2_writer_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank4_buffering_writer_fifo_control0_r = csr_bankarray_interface4_bank_bus_dat_w[31:0];
 always @(*) begin
-	litepciedma2_writer_table_loop_status_status <= 32'd0;
-	litepciedma2_writer_table_loop_status_status[15:0] <= litepciedma2_writer_table_index;
-	litepciedma2_writer_table_loop_status_status[31:16] <= litepciedma2_writer_table_count;
+	csr_bankarray_csrbank4_buffering_writer_fifo_control0_we <= 1'd0;
+	csr_bankarray_csrbank4_buffering_writer_fifo_control0_re <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd20))) begin
+		csr_bankarray_csrbank4_buffering_writer_fifo_control0_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_buffering_writer_fifo_control0_we <= (~csr_bankarray_interface4_bank_bus_we);
+	end
 end
-assign csrbank4_writer_table_loop_status_w = litepciedma2_writer_table_loop_status_status[31:0];
-assign litepciedma2_writer_table_loop_status_we = csrbank4_writer_table_loop_status_we;
-assign csrbank4_writer_table_level_w = litepciedma2_writer_table_level_status[8:0];
-assign litepciedma2_writer_table_level_we = csrbank4_writer_table_level_we;
-assign csrbank4_writer_table_reset0_w = litepciedma2_writer_table_reset_storage;
-assign csrbank4_reader_enable0_w = litepciedma2_reader_enable_storage;
+assign csr_bankarray_csrbank4_buffering_writer_fifo_status_r = csr_bankarray_interface4_bank_bus_dat_w[23:0];
+always @(*) begin
+	csr_bankarray_csrbank4_buffering_writer_fifo_status_re <= 1'd0;
+	csr_bankarray_csrbank4_buffering_writer_fifo_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank4_sel & (csr_bankarray_interface4_bank_bus_adr[8:0] == 5'd21))) begin
+		csr_bankarray_csrbank4_buffering_writer_fifo_status_re <= csr_bankarray_interface4_bank_bus_we;
+		csr_bankarray_csrbank4_buffering_writer_fifo_status_we <= (~csr_bankarray_interface4_bank_bus_we);
+	end
+end
+assign csr_bankarray_csrbank4_writer_enable0_w = litepciedma2_writer_enable_storage;
+assign litepciedma2_writer_address_lsb = litepciedma2_writer_value_storage[31:0];
+assign litepciedma2_writer_length = litepciedma2_writer_value_storage[55:32];
+assign litepciedma2_writer_irq_disable = litepciedma2_writer_value_storage[56];
+assign litepciedma2_writer_last_disable = litepciedma2_writer_value_storage[57];
+assign csr_bankarray_csrbank4_writer_table_value1_w = litepciedma2_writer_value_storage[57:32];
+assign csr_bankarray_csrbank4_writer_table_value0_w = litepciedma2_writer_value_storage[31:0];
+assign litepciedma2_writer_address_msb = litepciedma2_writer_we_storage[31:0];
+assign csr_bankarray_csrbank4_writer_table_we0_w = litepciedma2_writer_we_storage[31:0];
+assign csr_bankarray_csrbank4_writer_table_loop_prog_n0_w = litepciedma2_writer_loop_prog_n_storage;
+always @(*) begin
+	litepciedma2_writer_loop_status_status <= 32'd0;
+	litepciedma2_writer_loop_status_status[15:0] <= litepciedma2_writer_index;
+	litepciedma2_writer_loop_status_status[31:16] <= litepciedma2_writer_count;
+end
+assign csr_bankarray_csrbank4_writer_table_loop_status_w = litepciedma2_writer_loop_status_status[31:0];
+assign litepciedma2_writer_loop_status_we = csr_bankarray_csrbank4_writer_table_loop_status_we;
+assign litepciedma2_writer_dmaDescriptorCnt_status[31:0] = litepciedma2_writer_dmaCnt;
+assign csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_w = litepciedma2_writer_dmaDescriptorCnt_status[31:0];
+assign litepciedma2_writer_dmaDescriptorCnt_we = csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank4_writer_table_level_w = litepciedma2_writer_level_status[8:0];
+assign litepciedma2_writer_level_we = csr_bankarray_csrbank4_writer_table_level_we;
+assign csr_bankarray_csrbank4_writer_table_reset0_w = litepciedma2_writer_reset_storage;
+assign csr_bankarray_csrbank4_reader_enable0_w = litepciedma2_reader_enable_storage;
 assign litepciedma2_reader_table_address_lsb = litepciedma2_reader_table_value_storage[31:0];
 assign litepciedma2_reader_table_length = litepciedma2_reader_table_value_storage[55:32];
 assign litepciedma2_reader_table_irq_disable = litepciedma2_reader_table_value_storage[56];
 assign litepciedma2_reader_table_last_disable = litepciedma2_reader_table_value_storage[57];
-assign csrbank4_reader_table_value1_w = litepciedma2_reader_table_value_storage[57:32];
-assign csrbank4_reader_table_value0_w = litepciedma2_reader_table_value_storage[31:0];
+assign csr_bankarray_csrbank4_reader_table_value1_w = litepciedma2_reader_table_value_storage[57:32];
+assign csr_bankarray_csrbank4_reader_table_value0_w = litepciedma2_reader_table_value_storage[31:0];
 assign litepciedma2_reader_table_address_msb = litepciedma2_reader_table_we_storage[31:0];
-assign csrbank4_reader_table_we0_w = litepciedma2_reader_table_we_storage[31:0];
-assign csrbank4_reader_table_loop_prog_n0_w = litepciedma2_reader_table_loop_prog_n_storage;
+assign csr_bankarray_csrbank4_reader_table_we0_w = litepciedma2_reader_table_we_storage[31:0];
+assign csr_bankarray_csrbank4_reader_table_loop_prog_n0_w = litepciedma2_reader_table_loop_prog_n_storage;
 always @(*) begin
 	litepciedma2_reader_table_loop_status_status <= 32'd0;
 	litepciedma2_reader_table_loop_status_status[15:0] <= litepciedma2_reader_table_index;
 	litepciedma2_reader_table_loop_status_status[31:16] <= litepciedma2_reader_table_count;
 end
-assign csrbank4_reader_table_loop_status_w = litepciedma2_reader_table_loop_status_status[31:0];
-assign litepciedma2_reader_table_loop_status_we = csrbank4_reader_table_loop_status_we;
-assign csrbank4_reader_table_level_w = litepciedma2_reader_table_level_status[8:0];
-assign litepciedma2_reader_table_level_we = csrbank4_reader_table_level_we;
-assign csrbank4_reader_table_reset0_w = litepciedma2_reader_table_reset_storage;
+assign csr_bankarray_csrbank4_reader_table_loop_status_w = litepciedma2_reader_table_loop_status_status[31:0];
+assign litepciedma2_reader_table_loop_status_we = csr_bankarray_csrbank4_reader_table_loop_status_we;
+assign litepciedma2_reader_table_dmaDescriptorCnt_status[31:0] = litepciedma2_reader_table_dmaCnt;
+assign csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_w = litepciedma2_reader_table_dmaDescriptorCnt_status[31:0];
+assign litepciedma2_reader_table_dmaDescriptorCnt_we = csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_we;
+assign csr_bankarray_csrbank4_reader_table_level_w = litepciedma2_reader_table_level_status[8:0];
+assign litepciedma2_reader_table_level_we = csr_bankarray_csrbank4_reader_table_level_we;
+assign csr_bankarray_csrbank4_reader_table_reset0_w = litepciedma2_reader_table_reset_storage;
 assign litepciedma2_buffering_csrfield_depth0 = litepciedma2_buffering_reader_fifo_control_storage[23:0];
 assign litepciedma2_buffering_csrfield_scratch0 = litepciedma2_buffering_reader_fifo_control_storage[27:24];
 assign litepciedma2_buffering_csrfield_level_mode0 = litepciedma2_buffering_reader_fifo_control_storage[31];
-assign csrbank4_buffering_reader_fifo_control0_w = litepciedma2_buffering_reader_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank4_buffering_reader_fifo_control0_w = litepciedma2_buffering_reader_fifo_control_storage[31:0];
 assign litepciedma2_buffering_reader_fifo_status_status[23:0] = litepciedma2_buffering_csrfield_level0;
-assign csrbank4_buffering_reader_fifo_status_w = litepciedma2_buffering_reader_fifo_status_status[23:0];
-assign litepciedma2_buffering_reader_fifo_status_we = csrbank4_buffering_reader_fifo_status_we;
+assign csr_bankarray_csrbank4_buffering_reader_fifo_status_w = litepciedma2_buffering_reader_fifo_status_status[23:0];
+assign litepciedma2_buffering_reader_fifo_status_we = csr_bankarray_csrbank4_buffering_reader_fifo_status_we;
 assign litepciedma2_buffering_csrfield_depth1 = litepciedma2_buffering_writer_fifo_control_storage[23:0];
 assign litepciedma2_buffering_csrfield_scratch1 = litepciedma2_buffering_writer_fifo_control_storage[27:24];
 assign litepciedma2_buffering_csrfield_level_mode1 = litepciedma2_buffering_writer_fifo_control_storage[31];
-assign csrbank4_buffering_writer_fifo_control0_w = litepciedma2_buffering_writer_fifo_control_storage[31:0];
+assign csr_bankarray_csrbank4_buffering_writer_fifo_control0_w = litepciedma2_buffering_writer_fifo_control_storage[31:0];
 assign litepciedma2_buffering_writer_fifo_status_status[23:0] = litepciedma2_buffering_csrfield_level1;
-assign csrbank4_buffering_writer_fifo_status_w = litepciedma2_buffering_writer_fifo_status_status[23:0];
-assign litepciedma2_buffering_writer_fifo_status_we = csrbank4_buffering_writer_fifo_status_we;
-assign csrbank5_sel = (interface6_adr[13:9] == 2'd3);
-assign csrbank5_enable0_r = interface6_dat_w[31:0];
+assign csr_bankarray_csrbank4_buffering_writer_fifo_status_w = litepciedma2_buffering_writer_fifo_status_status[23:0];
+assign litepciedma2_buffering_writer_fifo_status_we = csr_bankarray_csrbank4_buffering_writer_fifo_status_we;
+assign csr_bankarray_csrbank5_sel = (csr_bankarray_interface5_bank_bus_adr[13:9] == 2'd3);
+assign csr_bankarray_csrbank5_enable0_r = csr_bankarray_interface5_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank5_enable0_we <= 1'd0;
-	csrbank5_enable0_re <= 1'd0;
-	if ((csrbank5_sel & (interface6_adr[8:0] == 1'd0))) begin
-		csrbank5_enable0_re <= interface6_we;
-		csrbank5_enable0_we <= (~interface6_we);
+	csr_bankarray_csrbank5_enable0_we <= 1'd0;
+	csr_bankarray_csrbank5_enable0_re <= 1'd0;
+	if ((csr_bankarray_csrbank5_sel & (csr_bankarray_interface5_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank5_enable0_re <= csr_bankarray_interface5_bank_bus_we;
+		csr_bankarray_csrbank5_enable0_we <= (~csr_bankarray_interface5_bank_bus_we);
 	end
 end
-assign csrbank5_clear0_r = interface6_dat_w[31:0];
+assign csr_bankarray_csrbank5_clear0_r = csr_bankarray_interface5_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank5_clear0_re <= 1'd0;
-	csrbank5_clear0_we <= 1'd0;
-	if ((csrbank5_sel & (interface6_adr[8:0] == 1'd1))) begin
-		csrbank5_clear0_re <= interface6_we;
-		csrbank5_clear0_we <= (~interface6_we);
+	csr_bankarray_csrbank5_clear0_re <= 1'd0;
+	csr_bankarray_csrbank5_clear0_we <= 1'd0;
+	if ((csr_bankarray_csrbank5_sel & (csr_bankarray_interface5_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank5_clear0_re <= csr_bankarray_interface5_bank_bus_we;
+		csr_bankarray_csrbank5_clear0_we <= (~csr_bankarray_interface5_bank_bus_we);
 	end
 end
-assign csrbank5_vector_r = interface6_dat_w[31:0];
+assign csr_bankarray_csrbank5_vector_r = csr_bankarray_interface5_bank_bus_dat_w[31:0];
 always @(*) begin
-	csrbank5_vector_re <= 1'd0;
-	csrbank5_vector_we <= 1'd0;
-	if ((csrbank5_sel & (interface6_adr[8:0] == 2'd2))) begin
-		csrbank5_vector_re <= interface6_we;
-		csrbank5_vector_we <= (~interface6_we);
+	csr_bankarray_csrbank5_vector_re <= 1'd0;
+	csr_bankarray_csrbank5_vector_we <= 1'd0;
+	if ((csr_bankarray_csrbank5_sel & (csr_bankarray_interface5_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank5_vector_re <= csr_bankarray_interface5_bank_bus_we;
+		csr_bankarray_csrbank5_vector_we <= (~csr_bankarray_interface5_bank_bus_we);
 	end
 end
-assign csrbank5_enable0_w = pcie_msi_enable_storage[31:0];
-assign csrbank5_clear0_w = pcie_msi_clear_storage[31:0];
-assign csrbank5_vector_w = pcie_msi_vector_status[31:0];
-assign pcie_msi_vector_we = csrbank5_vector_we;
-assign csrbank6_sel = (interface7_adr[13:9] == 2'd2);
-assign csrbank6_link_status_r = interface7_dat_w[9:0];
+assign csr_bankarray_csrbank5_enable0_w = pcie_msi_enable_storage[31:0];
+assign csr_bankarray_csrbank5_clear0_w = pcie_msi_clear_storage[31:0];
+assign csr_bankarray_csrbank5_vector_w = pcie_msi_vector_status[31:0];
+assign pcie_msi_vector_we = csr_bankarray_csrbank5_vector_we;
+assign csr_bankarray_csrbank6_sel = (csr_bankarray_interface6_bank_bus_adr[13:9] == 2'd2);
+assign csr_bankarray_csrbank6_link_status_r = csr_bankarray_interface6_bank_bus_dat_w[9:0];
 always @(*) begin
-	csrbank6_link_status_re <= 1'd0;
-	csrbank6_link_status_we <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 1'd0))) begin
-		csrbank6_link_status_re <= interface7_we;
-		csrbank6_link_status_we <= (~interface7_we);
+	csr_bankarray_csrbank6_link_status_re <= 1'd0;
+	csr_bankarray_csrbank6_link_status_we <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 1'd0))) begin
+		csr_bankarray_csrbank6_link_status_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_link_status_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
-assign csrbank6_msi_enable_r = interface7_dat_w[0];
+assign csr_bankarray_csrbank6_msi_enable_r = csr_bankarray_interface6_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank6_msi_enable_re <= 1'd0;
-	csrbank6_msi_enable_we <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 1'd1))) begin
-		csrbank6_msi_enable_re <= interface7_we;
-		csrbank6_msi_enable_we <= (~interface7_we);
+	csr_bankarray_csrbank6_msi_enable_re <= 1'd0;
+	csr_bankarray_csrbank6_msi_enable_we <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 1'd1))) begin
+		csr_bankarray_csrbank6_msi_enable_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_msi_enable_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
-assign csrbank6_msix_enable_r = interface7_dat_w[0];
+assign csr_bankarray_csrbank6_msix_enable_r = csr_bankarray_interface6_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank6_msix_enable_we <= 1'd0;
-	csrbank6_msix_enable_re <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 2'd2))) begin
-		csrbank6_msix_enable_re <= interface7_we;
-		csrbank6_msix_enable_we <= (~interface7_we);
+	csr_bankarray_csrbank6_msix_enable_we <= 1'd0;
+	csr_bankarray_csrbank6_msix_enable_re <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 2'd2))) begin
+		csr_bankarray_csrbank6_msix_enable_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_msix_enable_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
-assign csrbank6_bus_master_enable_r = interface7_dat_w[0];
+assign csr_bankarray_csrbank6_bus_master_enable_r = csr_bankarray_interface6_bank_bus_dat_w[0];
 always @(*) begin
-	csrbank6_bus_master_enable_we <= 1'd0;
-	csrbank6_bus_master_enable_re <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 2'd3))) begin
-		csrbank6_bus_master_enable_re <= interface7_we;
-		csrbank6_bus_master_enable_we <= (~interface7_we);
+	csr_bankarray_csrbank6_bus_master_enable_we <= 1'd0;
+	csr_bankarray_csrbank6_bus_master_enable_re <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 2'd3))) begin
+		csr_bankarray_csrbank6_bus_master_enable_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_bus_master_enable_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
-assign csrbank6_max_request_size_r = interface7_dat_w[15:0];
+assign csr_bankarray_csrbank6_max_request_size_r = csr_bankarray_interface6_bank_bus_dat_w[15:0];
 always @(*) begin
-	csrbank6_max_request_size_re <= 1'd0;
-	csrbank6_max_request_size_we <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 3'd4))) begin
-		csrbank6_max_request_size_re <= interface7_we;
-		csrbank6_max_request_size_we <= (~interface7_we);
+	csr_bankarray_csrbank6_max_request_size_re <= 1'd0;
+	csr_bankarray_csrbank6_max_request_size_we <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 3'd4))) begin
+		csr_bankarray_csrbank6_max_request_size_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_max_request_size_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
-assign csrbank6_max_payload_size_r = interface7_dat_w[15:0];
+assign csr_bankarray_csrbank6_max_payload_size_r = csr_bankarray_interface6_bank_bus_dat_w[15:0];
 always @(*) begin
-	csrbank6_max_payload_size_re <= 1'd0;
-	csrbank6_max_payload_size_we <= 1'd0;
-	if ((csrbank6_sel & (interface7_adr[8:0] == 3'd5))) begin
-		csrbank6_max_payload_size_re <= interface7_we;
-		csrbank6_max_payload_size_we <= (~interface7_we);
+	csr_bankarray_csrbank6_max_payload_size_re <= 1'd0;
+	csr_bankarray_csrbank6_max_payload_size_we <= 1'd0;
+	if ((csr_bankarray_csrbank6_sel & (csr_bankarray_interface6_bank_bus_adr[8:0] == 3'd5))) begin
+		csr_bankarray_csrbank6_max_payload_size_re <= csr_bankarray_interface6_bank_bus_we;
+		csr_bankarray_csrbank6_max_payload_size_we <= (~csr_bankarray_interface6_bank_bus_we);
 	end
 end
 always @(*) begin
@@ -9751,47 +9697,47 @@ always @(*) begin
 	s7pciephy_link_status_status[3:2] <= s7pciephy_csrfield_width;
 	s7pciephy_link_status_status[9:4] <= s7pciephy_csrfield_ltssm;
 end
-assign csrbank6_link_status_w = s7pciephy_link_status_status[9:0];
-assign s7pciephy_link_status_we = csrbank6_link_status_we;
-assign csrbank6_msi_enable_w = s7pciephy_msi_enable_status;
-assign s7pciephy_msi_enable_we = csrbank6_msi_enable_we;
-assign csrbank6_msix_enable_w = s7pciephy_msix_enable_status;
-assign s7pciephy_msix_enable_we = csrbank6_msix_enable_we;
-assign csrbank6_bus_master_enable_w = s7pciephy_bus_master_enable_status;
-assign s7pciephy_bus_master_enable_we = csrbank6_bus_master_enable_we;
-assign csrbank6_max_request_size_w = s7pciephy_max_request_size_status[15:0];
-assign s7pciephy_max_request_size_we = csrbank6_max_request_size_we;
-assign csrbank6_max_payload_size_w = s7pciephy_max_payload_size_status[15:0];
-assign s7pciephy_max_payload_size_we = csrbank6_max_payload_size_we;
+assign csr_bankarray_csrbank6_link_status_w = s7pciephy_link_status_status[9:0];
+assign s7pciephy_link_status_we = csr_bankarray_csrbank6_link_status_we;
+assign csr_bankarray_csrbank6_msi_enable_w = s7pciephy_msi_enable_status;
+assign s7pciephy_msi_enable_we = csr_bankarray_csrbank6_msi_enable_we;
+assign csr_bankarray_csrbank6_msix_enable_w = s7pciephy_msix_enable_status;
+assign s7pciephy_msix_enable_we = csr_bankarray_csrbank6_msix_enable_we;
+assign csr_bankarray_csrbank6_bus_master_enable_w = s7pciephy_bus_master_enable_status;
+assign s7pciephy_bus_master_enable_we = csr_bankarray_csrbank6_bus_master_enable_we;
+assign csr_bankarray_csrbank6_max_request_size_w = s7pciephy_max_request_size_status[15:0];
+assign s7pciephy_max_request_size_we = csr_bankarray_csrbank6_max_request_size_we;
+assign csr_bankarray_csrbank6_max_payload_size_w = s7pciephy_max_payload_size_status[15:0];
+assign s7pciephy_max_payload_size_we = csr_bankarray_csrbank6_max_payload_size_we;
 assign csr_interconnect_adr = litepciecore_adr;
 assign csr_interconnect_we = litepciecore_we;
 assign csr_interconnect_dat_w = litepciecore_dat_w;
 assign litepciecore_dat_r = csr_interconnect_dat_r;
-assign interface0_adr = csr_interconnect_adr;
-assign interface1_adr = csr_interconnect_adr;
-assign interface3_adr = csr_interconnect_adr;
-assign interface4_adr = csr_interconnect_adr;
-assign interface5_adr = csr_interconnect_adr;
-assign interface6_adr = csr_interconnect_adr;
-assign interface7_adr = csr_interconnect_adr;
-assign interface2_adr = csr_interconnect_adr;
-assign interface0_we = csr_interconnect_we;
-assign interface1_we = csr_interconnect_we;
-assign interface3_we = csr_interconnect_we;
-assign interface4_we = csr_interconnect_we;
-assign interface5_we = csr_interconnect_we;
-assign interface6_we = csr_interconnect_we;
-assign interface7_we = csr_interconnect_we;
-assign interface2_we = csr_interconnect_we;
-assign interface0_dat_w = csr_interconnect_dat_w;
-assign interface1_dat_w = csr_interconnect_dat_w;
-assign interface3_dat_w = csr_interconnect_dat_w;
-assign interface4_dat_w = csr_interconnect_dat_w;
-assign interface5_dat_w = csr_interconnect_dat_w;
-assign interface6_dat_w = csr_interconnect_dat_w;
-assign interface7_dat_w = csr_interconnect_dat_w;
-assign interface2_dat_w = csr_interconnect_dat_w;
-assign csr_interconnect_dat_r = (((((((interface0_dat_r | interface1_dat_r) | interface3_dat_r) | interface4_dat_r) | interface5_dat_r) | interface6_dat_r) | interface7_dat_r) | interface2_dat_r);
+assign csr_bankarray_interface0_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface1_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface2_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface3_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface4_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface5_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface6_bank_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_sram_bus_adr = csr_interconnect_adr;
+assign csr_bankarray_interface0_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface1_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface2_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface3_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface4_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface5_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface6_bank_bus_we = csr_interconnect_we;
+assign csr_bankarray_sram_bus_we = csr_interconnect_we;
+assign csr_bankarray_interface0_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface1_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface2_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface3_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface4_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface5_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_interface6_bank_bus_dat_w = csr_interconnect_dat_w;
+assign csr_bankarray_sram_bus_dat_w = csr_interconnect_dat_w;
+assign csr_interconnect_dat_r = (((((((csr_bankarray_interface0_bank_bus_dat_r | csr_bankarray_interface1_bank_bus_dat_r) | csr_bankarray_interface2_bank_bus_dat_r) | csr_bankarray_interface3_bank_bus_dat_r) | csr_bankarray_interface4_bank_bus_dat_r) | csr_bankarray_interface5_bank_bus_dat_r) | csr_bankarray_interface6_bank_bus_dat_r) | csr_bankarray_sram_bus_dat_r);
 assign slice_proxy0 = s7pciephy_m_axis_rx_tuser[14:10];
 assign slice_proxy1 = s7pciephy_m_axis_rx_tuser[21:17];
 assign slice_proxy2 = depacketizer_header_extracter_source_payload_dat[31:0];
@@ -9891,53 +9837,53 @@ assign slice_proxy95 = packetizer_source_source_payload_be[15:12];
 assign slice_proxy96 = packetizer_source_source_payload_be[15:12];
 assign slice_proxy97 = packetizer_source_source_payload_be[15:12];
 assign xilinxasyncresetsynchronizerimpl0 = (rst | pcie_rst);
-assign s7pciephy_tx_datapath_cdc_cdc_produce_rdomain = xilinxmultiregimpl01;
-assign s7pciephy_tx_datapath_cdc_cdc_consume_wdomain = xilinxmultiregimpl11;
-assign s7pciephy_rx_datapath_cdc_cdc_produce_rdomain = xilinxmultiregimpl21;
-assign s7pciephy_rx_datapath_cdc_cdc_consume_wdomain = xilinxmultiregimpl31;
-assign s7pciephy_msi_cdc_cdc_produce_rdomain = xilinxmultiregimpl41;
-assign s7pciephy_msi_cdc_cdc_consume_wdomain = xilinxmultiregimpl51;
-assign s7pciephy_bus_master_enable_status = xilinxmultiregimpl6_xilinxmultiregimpl61;
+assign s7pciephy_tx_datapath_cdc_cdc_produce_rdomain = xilinxmultiregimpl0_regs1;
+assign s7pciephy_tx_datapath_cdc_cdc_consume_wdomain = xilinxmultiregimpl1_regs1;
+assign s7pciephy_rx_datapath_cdc_cdc_produce_rdomain = xilinxmultiregimpl2_regs1;
+assign s7pciephy_rx_datapath_cdc_cdc_consume_wdomain = xilinxmultiregimpl3_regs1;
+assign s7pciephy_msi_cdc_cdc_produce_rdomain = xilinxmultiregimpl4_regs1;
+assign s7pciephy_msi_cdc_cdc_consume_wdomain = xilinxmultiregimpl5_regs1;
+assign s7pciephy_bus_master_enable_status = xilinxmultiregimpl6_regs1;
 assign xilinxmultiregimpl6 = s7pciephy_command[2];
-assign s7pciephy_max_request_size_status = xilinxmultiregimpl71;
-assign s7pciephy_max_payload_size_status = xilinxmultiregimpl81;
+assign s7pciephy_max_request_size_status = xilinxmultiregimpl7_regs1;
+assign s7pciephy_max_payload_size_status = xilinxmultiregimpl8_regs1;
 
 
 //------------------------------------------------------------------------------
 // Synchronous Logic
 //------------------------------------------------------------------------------
 
-always @(posedge from2594933811536_clk) begin
-	s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_binary <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_next_binary;
-	s7pciephy_tx_datapath_cdc_cdc_graycounter0_q <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_next;
-	if (from2594933811536_rst) begin
-		s7pciephy_tx_datapath_cdc_cdc_graycounter0_q <= 3'd0;
-		s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_binary <= 3'd0;
-	end
-	xilinxmultiregimpl10 <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q;
-	xilinxmultiregimpl11 <= xilinxmultiregimpl10;
-end
-
-always @(posedge from2594934206720_clk) begin
-	s7pciephy_msi_cdc_cdc_graycounter0_q_binary <= s7pciephy_msi_cdc_cdc_graycounter0_q_next_binary;
-	s7pciephy_msi_cdc_cdc_graycounter0_q <= s7pciephy_msi_cdc_cdc_graycounter0_q_next;
-	if (from2594934206720_rst) begin
-		s7pciephy_msi_cdc_cdc_graycounter0_q <= 3'd0;
-		s7pciephy_msi_cdc_cdc_graycounter0_q_binary <= 3'd0;
-	end
-	xilinxmultiregimpl50 <= s7pciephy_msi_cdc_cdc_graycounter1_q;
-	xilinxmultiregimpl51 <= xilinxmultiregimpl50;
-end
-
-always @(posedge from2594934547712_clk) begin
+always @(posedge from140314895575840_clk) begin
 	s7pciephy_rx_datapath_cdc_cdc_graycounter0_q_binary <= s7pciephy_rx_datapath_cdc_cdc_graycounter0_q_next_binary;
 	s7pciephy_rx_datapath_cdc_cdc_graycounter0_q <= s7pciephy_rx_datapath_cdc_cdc_graycounter0_q_next;
-	if (from2594934547712_rst) begin
+	if (from140314895575840_rst) begin
 		s7pciephy_rx_datapath_cdc_cdc_graycounter0_q <= 3'd0;
 		s7pciephy_rx_datapath_cdc_cdc_graycounter0_q_binary <= 3'd0;
 	end
-	xilinxmultiregimpl30 <= s7pciephy_rx_datapath_cdc_cdc_graycounter1_q;
-	xilinxmultiregimpl31 <= xilinxmultiregimpl30;
+	xilinxmultiregimpl3_regs0 <= s7pciephy_rx_datapath_cdc_cdc_graycounter1_q;
+	xilinxmultiregimpl3_regs1 <= xilinxmultiregimpl3_regs0;
+end
+
+always @(posedge from140314895828592_clk) begin
+	s7pciephy_msi_cdc_cdc_graycounter0_q_binary <= s7pciephy_msi_cdc_cdc_graycounter0_q_next_binary;
+	s7pciephy_msi_cdc_cdc_graycounter0_q <= s7pciephy_msi_cdc_cdc_graycounter0_q_next;
+	if (from140314895828592_rst) begin
+		s7pciephy_msi_cdc_cdc_graycounter0_q <= 3'd0;
+		s7pciephy_msi_cdc_cdc_graycounter0_q_binary <= 3'd0;
+	end
+	xilinxmultiregimpl5_regs0 <= s7pciephy_msi_cdc_cdc_graycounter1_q;
+	xilinxmultiregimpl5_regs1 <= xilinxmultiregimpl5_regs0;
+end
+
+always @(posedge from140314895943952_clk) begin
+	s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_binary <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_next_binary;
+	s7pciephy_tx_datapath_cdc_cdc_graycounter0_q <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_next;
+	if (from140314895943952_rst) begin
+		s7pciephy_tx_datapath_cdc_cdc_graycounter0_q <= 3'd0;
+		s7pciephy_tx_datapath_cdc_cdc_graycounter0_q_binary <= 3'd0;
+	end
+	xilinxmultiregimpl1_regs0 <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q;
+	xilinxmultiregimpl1_regs1 <= xilinxmultiregimpl1_regs0;
 end
 
 always @(posedge pcie_clk) begin
@@ -10544,86 +10490,74 @@ always @(posedge sys_clk) begin
 		pcie_wishbone_master_sink_payload_dat <= pcie_wishbone_master_wishbone_dat_r;
 	end
 	litepciecore_litepciewishbonemaster_state <= litepciecore_litepciewishbonemaster_next_state;
-	if ((litepciedma0_writer_table_loop_prog_n_storage == 1'd0)) begin
-		litepciedma0_writer_table_table_sink_payload_address[31:0] <= litepciedma0_writer_table_address_lsb;
-		litepciedma0_writer_table_table_sink_payload_length <= litepciedma0_writer_table_length;
-		litepciedma0_writer_table_table_sink_payload_irq_disable <= litepciedma0_writer_table_irq_disable;
-		litepciedma0_writer_table_table_sink_payload_last_disable <= litepciedma0_writer_table_last_disable;
-		litepciedma0_writer_table_table_sink_first <= (litepciedma0_writer_table_table_level == 1'd0);
-		litepciedma0_writer_table_table_sink_valid <= litepciedma0_writer_table_we_re;
+	if ((litepciedma0_writer_loop_prog_n_storage == 1'd0)) begin
+		litepciedma0_writer_table_sink_payload_address[31:0] <= litepciedma0_writer_address_lsb;
+		litepciedma0_writer_table_sink_payload_length <= litepciedma0_writer_length;
+		litepciedma0_writer_table_sink_payload_irq_disable <= litepciedma0_writer_irq_disable;
+		litepciedma0_writer_table_sink_payload_last_disable <= litepciedma0_writer_last_disable;
+		litepciedma0_writer_table_sink_first <= (litepciedma0_writer_table_level == 1'd0);
+		litepciedma0_writer_table_sink_valid <= litepciedma0_writer_we_re;
 	end else begin
-		litepciedma0_writer_table_table_sink_first <= litepciedma0_writer_table_table_source_first;
-		litepciedma0_writer_table_table_sink_last <= litepciedma0_writer_table_table_source_last;
-		litepciedma0_writer_table_table_sink_payload_address <= litepciedma0_writer_table_table_source_payload_address;
-		litepciedma0_writer_table_table_sink_payload_length <= litepciedma0_writer_table_table_source_payload_length;
-		litepciedma0_writer_table_table_sink_payload_irq_disable <= litepciedma0_writer_table_table_source_payload_irq_disable;
-		litepciedma0_writer_table_table_sink_payload_last_disable <= litepciedma0_writer_table_table_source_payload_last_disable;
-		litepciedma0_writer_table_table_sink_valid <= (litepciedma0_writer_table_table_source_valid & litepciedma0_writer_table_table_source_ready);
+		litepciedma0_writer_table_sink_first <= litepciedma0_writer_table_source_first;
+		litepciedma0_writer_table_sink_last <= litepciedma0_writer_table_source_last;
+		litepciedma0_writer_table_sink_payload_address <= litepciedma0_writer_table_source_payload_address;
+		litepciedma0_writer_table_sink_payload_length <= litepciedma0_writer_table_source_payload_length;
+		litepciedma0_writer_table_sink_payload_irq_disable <= litepciedma0_writer_table_source_payload_irq_disable;
+		litepciedma0_writer_table_sink_payload_last_disable <= litepciedma0_writer_table_source_payload_last_disable;
+		litepciedma0_writer_table_sink_valid <= (litepciedma0_writer_table_source_valid & litepciedma0_writer_table_source_ready);
 	end
-	if (litepciedma0_writer_table_table_reset) begin
-		litepciedma0_writer_table_index <= 1'd0;
-		litepciedma0_writer_table_count <= 16'd65535;
+	if (litepciedma0_writer_table_reset) begin
+		litepciedma0_writer_loop_first <= 1'd1;
+		litepciedma0_writer_index <= 1'd0;
+		litepciedma0_writer_count <= 1'd0;
+		litepciedma0_writer_dmaCnt <= 1'd0;
 	end else begin
-		if ((litepciedma0_writer_table_table_source_valid & litepciedma0_writer_table_table_source_ready)) begin
-			if (litepciedma0_writer_table_table_source_first) begin
-				litepciedma0_writer_table_index <= 1'd0;
-				litepciedma0_writer_table_count <= (litepciedma0_writer_table_count + 1'd1);
+		if ((litepciedma0_writer_table_source_valid & litepciedma0_writer_table_source_ready)) begin
+			litepciedma0_writer_dmaCnt <= (litepciedma0_writer_dmaCnt + 1'd1);
+			if (litepciedma0_writer_table_source_first) begin
+				litepciedma0_writer_index <= 1'd0;
+				litepciedma0_writer_loop_first <= 1'd0;
+				litepciedma0_writer_count <= (litepciedma0_writer_count + {(~litepciedma0_writer_loop_first)});
 			end else begin
-				litepciedma0_writer_table_index <= (litepciedma0_writer_table_index + 1'd1);
+				litepciedma0_writer_index <= (litepciedma0_writer_index + 1'd1);
 			end
 		end
 	end
-	if (((litepciedma0_writer_table_table_syncfifo0_we & litepciedma0_writer_table_table_syncfifo0_writable) & (~litepciedma0_writer_table_table_replace))) begin
-		litepciedma0_writer_table_table_produce <= (litepciedma0_writer_table_table_produce + 1'd1);
+	if (((litepciedma0_writer_table_syncfifo0_we & litepciedma0_writer_table_syncfifo0_writable) & (~litepciedma0_writer_table_replace))) begin
+		litepciedma0_writer_table_produce <= (litepciedma0_writer_table_produce + 1'd1);
 	end
-	if (litepciedma0_writer_table_table_do_read) begin
-		litepciedma0_writer_table_table_consume <= (litepciedma0_writer_table_table_consume + 1'd1);
+	if (litepciedma0_writer_table_do_read) begin
+		litepciedma0_writer_table_consume <= (litepciedma0_writer_table_consume + 1'd1);
 	end
-	if (((litepciedma0_writer_table_table_syncfifo0_we & litepciedma0_writer_table_table_syncfifo0_writable) & (~litepciedma0_writer_table_table_replace))) begin
-		if ((~litepciedma0_writer_table_table_do_read)) begin
-			litepciedma0_writer_table_table_level <= (litepciedma0_writer_table_table_level + 1'd1);
+	if (((litepciedma0_writer_table_syncfifo0_we & litepciedma0_writer_table_syncfifo0_writable) & (~litepciedma0_writer_table_replace))) begin
+		if ((~litepciedma0_writer_table_do_read)) begin
+			litepciedma0_writer_table_level <= (litepciedma0_writer_table_level + 1'd1);
 		end
 	end else begin
-		if (litepciedma0_writer_table_table_do_read) begin
-			litepciedma0_writer_table_table_level <= (litepciedma0_writer_table_table_level - 1'd1);
+		if (litepciedma0_writer_table_do_read) begin
+			litepciedma0_writer_table_level <= (litepciedma0_writer_table_level - 1'd1);
 		end
 	end
-	if (litepciedma0_writer_table_table_reset) begin
-		litepciedma0_writer_table_table_level <= 9'd0;
-		litepciedma0_writer_table_table_produce <= 8'd0;
-		litepciedma0_writer_table_table_consume <= 8'd0;
+	if (litepciedma0_writer_table_reset) begin
+		litepciedma0_writer_table_level <= 9'd0;
+		litepciedma0_writer_table_produce <= 8'd0;
+		litepciedma0_writer_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints0_state0 <= litepciecore_bufferizeendpoints0_next_state0;
-	if (litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value_ce0) begin
-		litepciedma0_writer_splitter_desc_offset <= litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_bufferizeendpoints0_next_value0;
+	litepciecore_resetinserter0_state <= litepciecore_resetinserter0_next_state;
+	if (litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value_ce0) begin
+		litepciedma0_writer_splitter_desc_offset <= litepciedma0_writer_splitter_desc_offset_bufferizeendpoints0_resetinserter0_next_value0;
 	end
-	if (litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value_ce1) begin
-		litepciedma0_writer_splitter_desc_length <= litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_bufferizeendpoints0_next_value1;
+	if (litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value_ce1) begin
+		litepciedma0_writer_splitter_desc_length <= litepciedma0_writer_splitter_desc_length_bufferizeendpoints0_resetinserter0_next_value1;
 	end
-	if (litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value_ce2) begin
-		litepciedma0_writer_splitter_desc_id <= litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_bufferizeendpoints0_next_value2;
-	end
-	if (((~litepciedma0_writer_splitter_pipe_valid_source_valid) | litepciedma0_writer_splitter_pipe_valid_source_ready)) begin
-		litepciedma0_writer_splitter_pipe_valid_source_valid <= litepciedma0_writer_splitter_pipe_valid_sink_valid;
-		litepciedma0_writer_splitter_pipe_valid_source_first <= litepciedma0_writer_splitter_pipe_valid_sink_first;
-		litepciedma0_writer_splitter_pipe_valid_source_last <= litepciedma0_writer_splitter_pipe_valid_sink_last;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_address <= litepciedma0_writer_splitter_pipe_valid_sink_payload_address;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_length <= litepciedma0_writer_splitter_pipe_valid_sink_payload_length;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_irq_disable <= litepciedma0_writer_splitter_pipe_valid_sink_payload_irq_disable;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_last_disable <= litepciedma0_writer_splitter_pipe_valid_sink_payload_last_disable;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_user_id <= litepciedma0_writer_splitter_pipe_valid_sink_payload_user_id;
+	if (litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value_ce2) begin
+		litepciedma0_writer_splitter_desc_id <= litepciedma0_writer_splitter_desc_id_bufferizeendpoints0_resetinserter0_next_value2;
 	end
 	if (litepciedma0_writer_splitter_reset) begin
 		litepciedma0_writer_splitter_desc_length <= 32'd0;
 		litepciedma0_writer_splitter_desc_offset <= 32'd0;
 		litepciedma0_writer_splitter_desc_id <= 32'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints0_state0 <= 1'd0;
+		litepciecore_resetinserter0_state <= 1'd0;
 	end
 	if (litepciedma0_writer_data_fifo_syncfifo0_re) begin
 		litepciedma0_writer_data_fifo_readable <= 1'd1;
@@ -10647,7 +10581,7 @@ always @(posedge sys_clk) begin
 			litepciedma0_writer_data_fifo_level0 <= (litepciedma0_writer_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma0_writer_resetinserter_reset) begin
+	if (litepciedma0_writer_data_fifo_reset) begin
 		litepciedma0_writer_data_fifo_readable <= 1'd0;
 		litepciedma0_writer_data_fifo_level0 <= 8'd0;
 		litepciedma0_writer_data_fifo_produce <= 7'd0;
@@ -10684,13 +10618,17 @@ always @(posedge sys_clk) begin
 		litepciedma0_reader_table_table_sink_valid <= (litepciedma0_reader_table_table_source_valid & litepciedma0_reader_table_table_source_ready);
 	end
 	if (litepciedma0_reader_table_table_reset) begin
+		litepciedma0_reader_table_loop_first <= 1'd1;
 		litepciedma0_reader_table_index <= 1'd0;
-		litepciedma0_reader_table_count <= 16'd65535;
+		litepciedma0_reader_table_count <= 1'd0;
+		litepciedma0_reader_table_dmaCnt <= 1'd0;
 	end else begin
 		if ((litepciedma0_reader_table_table_source_valid & litepciedma0_reader_table_table_source_ready)) begin
+			litepciedma0_reader_table_dmaCnt <= (litepciedma0_reader_table_dmaCnt + 1'd1);
 			if (litepciedma0_reader_table_table_source_first) begin
 				litepciedma0_reader_table_index <= 1'd0;
-				litepciedma0_reader_table_count <= (litepciedma0_reader_table_count + 1'd1);
+				litepciedma0_reader_table_loop_first <= 1'd0;
+				litepciedma0_reader_table_count <= (litepciedma0_reader_table_count + {(~litepciedma0_reader_table_loop_first)});
 			end else begin
 				litepciedma0_reader_table_index <= (litepciedma0_reader_table_index + 1'd1);
 			end
@@ -10716,7 +10654,7 @@ always @(posedge sys_clk) begin
 		litepciedma0_reader_table_table_produce <= 8'd0;
 		litepciedma0_reader_table_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints0_state1 <= litepciecore_bufferizeendpoints0_next_state1;
+	litepciecore_bufferizeendpoints0_state <= litepciecore_bufferizeendpoints0_next_state;
 	if (litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value_ce0) begin
 		litepciedma0_reader_splitter_desc_offset <= litepciedma0_reader_splitter_desc_offset_bufferizeendpoints0_next_value0;
 	end
@@ -10746,7 +10684,7 @@ always @(posedge sys_clk) begin
 		litepciedma0_reader_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
 		litepciedma0_reader_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
 		litepciedma0_reader_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints0_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints0_state <= 1'd0;
 	end
 	if (litepciedma0_reader_data_fifo_syncfifo0_re) begin
 		litepciedma0_reader_data_fifo_readable <= 1'd1;
@@ -10770,7 +10708,7 @@ always @(posedge sys_clk) begin
 			litepciedma0_reader_data_fifo_level0 <= (litepciedma0_reader_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma0_reader_resetinserter_reset) begin
+	if (litepciedma0_reader_data_fifo_reset) begin
 		litepciedma0_reader_data_fifo_readable <= 1'd0;
 		litepciedma0_reader_data_fifo_level0 <= 11'd0;
 		litepciedma0_reader_data_fifo_produce <= 10'd0;
@@ -10845,86 +10783,74 @@ always @(posedge sys_clk) begin
 		bufferizeendpoints1_pipe_valid_source_last <= bufferizeendpoints1_pipe_valid_sink_last;
 		bufferizeendpoints1_pipe_valid_source_payload_data <= bufferizeendpoints1_pipe_valid_sink_payload_data;
 	end
-	if ((litepciedma1_writer_table_loop_prog_n_storage == 1'd0)) begin
-		litepciedma1_writer_table_table_sink_payload_address[31:0] <= litepciedma1_writer_table_address_lsb;
-		litepciedma1_writer_table_table_sink_payload_length <= litepciedma1_writer_table_length;
-		litepciedma1_writer_table_table_sink_payload_irq_disable <= litepciedma1_writer_table_irq_disable;
-		litepciedma1_writer_table_table_sink_payload_last_disable <= litepciedma1_writer_table_last_disable;
-		litepciedma1_writer_table_table_sink_first <= (litepciedma1_writer_table_table_level == 1'd0);
-		litepciedma1_writer_table_table_sink_valid <= litepciedma1_writer_table_we_re;
+	if ((litepciedma1_writer_loop_prog_n_storage == 1'd0)) begin
+		litepciedma1_writer_table_sink_payload_address[31:0] <= litepciedma1_writer_address_lsb;
+		litepciedma1_writer_table_sink_payload_length <= litepciedma1_writer_length;
+		litepciedma1_writer_table_sink_payload_irq_disable <= litepciedma1_writer_irq_disable;
+		litepciedma1_writer_table_sink_payload_last_disable <= litepciedma1_writer_last_disable;
+		litepciedma1_writer_table_sink_first <= (litepciedma1_writer_table_level == 1'd0);
+		litepciedma1_writer_table_sink_valid <= litepciedma1_writer_we_re;
 	end else begin
-		litepciedma1_writer_table_table_sink_first <= litepciedma1_writer_table_table_source_first;
-		litepciedma1_writer_table_table_sink_last <= litepciedma1_writer_table_table_source_last;
-		litepciedma1_writer_table_table_sink_payload_address <= litepciedma1_writer_table_table_source_payload_address;
-		litepciedma1_writer_table_table_sink_payload_length <= litepciedma1_writer_table_table_source_payload_length;
-		litepciedma1_writer_table_table_sink_payload_irq_disable <= litepciedma1_writer_table_table_source_payload_irq_disable;
-		litepciedma1_writer_table_table_sink_payload_last_disable <= litepciedma1_writer_table_table_source_payload_last_disable;
-		litepciedma1_writer_table_table_sink_valid <= (litepciedma1_writer_table_table_source_valid & litepciedma1_writer_table_table_source_ready);
+		litepciedma1_writer_table_sink_first <= litepciedma1_writer_table_source_first;
+		litepciedma1_writer_table_sink_last <= litepciedma1_writer_table_source_last;
+		litepciedma1_writer_table_sink_payload_address <= litepciedma1_writer_table_source_payload_address;
+		litepciedma1_writer_table_sink_payload_length <= litepciedma1_writer_table_source_payload_length;
+		litepciedma1_writer_table_sink_payload_irq_disable <= litepciedma1_writer_table_source_payload_irq_disable;
+		litepciedma1_writer_table_sink_payload_last_disable <= litepciedma1_writer_table_source_payload_last_disable;
+		litepciedma1_writer_table_sink_valid <= (litepciedma1_writer_table_source_valid & litepciedma1_writer_table_source_ready);
 	end
-	if (litepciedma1_writer_table_table_reset) begin
-		litepciedma1_writer_table_index <= 1'd0;
-		litepciedma1_writer_table_count <= 16'd65535;
+	if (litepciedma1_writer_table_reset) begin
+		litepciedma1_writer_loop_first <= 1'd1;
+		litepciedma1_writer_index <= 1'd0;
+		litepciedma1_writer_count <= 1'd0;
+		litepciedma1_writer_dmaCnt <= 1'd0;
 	end else begin
-		if ((litepciedma1_writer_table_table_source_valid & litepciedma1_writer_table_table_source_ready)) begin
-			if (litepciedma1_writer_table_table_source_first) begin
-				litepciedma1_writer_table_index <= 1'd0;
-				litepciedma1_writer_table_count <= (litepciedma1_writer_table_count + 1'd1);
+		if ((litepciedma1_writer_table_source_valid & litepciedma1_writer_table_source_ready)) begin
+			litepciedma1_writer_dmaCnt <= (litepciedma1_writer_dmaCnt + 1'd1);
+			if (litepciedma1_writer_table_source_first) begin
+				litepciedma1_writer_index <= 1'd0;
+				litepciedma1_writer_loop_first <= 1'd0;
+				litepciedma1_writer_count <= (litepciedma1_writer_count + {(~litepciedma1_writer_loop_first)});
 			end else begin
-				litepciedma1_writer_table_index <= (litepciedma1_writer_table_index + 1'd1);
+				litepciedma1_writer_index <= (litepciedma1_writer_index + 1'd1);
 			end
 		end
 	end
-	if (((litepciedma1_writer_table_table_syncfifo1_we & litepciedma1_writer_table_table_syncfifo1_writable) & (~litepciedma1_writer_table_table_replace))) begin
-		litepciedma1_writer_table_table_produce <= (litepciedma1_writer_table_table_produce + 1'd1);
+	if (((litepciedma1_writer_table_syncfifo1_we & litepciedma1_writer_table_syncfifo1_writable) & (~litepciedma1_writer_table_replace))) begin
+		litepciedma1_writer_table_produce <= (litepciedma1_writer_table_produce + 1'd1);
 	end
-	if (litepciedma1_writer_table_table_do_read) begin
-		litepciedma1_writer_table_table_consume <= (litepciedma1_writer_table_table_consume + 1'd1);
+	if (litepciedma1_writer_table_do_read) begin
+		litepciedma1_writer_table_consume <= (litepciedma1_writer_table_consume + 1'd1);
 	end
-	if (((litepciedma1_writer_table_table_syncfifo1_we & litepciedma1_writer_table_table_syncfifo1_writable) & (~litepciedma1_writer_table_table_replace))) begin
-		if ((~litepciedma1_writer_table_table_do_read)) begin
-			litepciedma1_writer_table_table_level <= (litepciedma1_writer_table_table_level + 1'd1);
+	if (((litepciedma1_writer_table_syncfifo1_we & litepciedma1_writer_table_syncfifo1_writable) & (~litepciedma1_writer_table_replace))) begin
+		if ((~litepciedma1_writer_table_do_read)) begin
+			litepciedma1_writer_table_level <= (litepciedma1_writer_table_level + 1'd1);
 		end
 	end else begin
-		if (litepciedma1_writer_table_table_do_read) begin
-			litepciedma1_writer_table_table_level <= (litepciedma1_writer_table_table_level - 1'd1);
+		if (litepciedma1_writer_table_do_read) begin
+			litepciedma1_writer_table_level <= (litepciedma1_writer_table_level - 1'd1);
 		end
 	end
-	if (litepciedma1_writer_table_table_reset) begin
-		litepciedma1_writer_table_table_level <= 9'd0;
-		litepciedma1_writer_table_table_produce <= 8'd0;
-		litepciedma1_writer_table_table_consume <= 8'd0;
+	if (litepciedma1_writer_table_reset) begin
+		litepciedma1_writer_table_level <= 9'd0;
+		litepciedma1_writer_table_produce <= 8'd0;
+		litepciedma1_writer_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints1_state0 <= litepciecore_bufferizeendpoints1_next_state0;
-	if (litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value_ce0) begin
-		litepciedma1_writer_splitter_desc_offset <= litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_bufferizeendpoints1_next_value0;
+	litepciecore_resetinserter1_state <= litepciecore_resetinserter1_next_state;
+	if (litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value_ce0) begin
+		litepciedma1_writer_splitter_desc_offset <= litepciedma1_writer_splitter_desc_offset_bufferizeendpoints1_resetinserter1_next_value0;
 	end
-	if (litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value_ce1) begin
-		litepciedma1_writer_splitter_desc_length <= litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_bufferizeendpoints1_next_value1;
+	if (litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value_ce1) begin
+		litepciedma1_writer_splitter_desc_length <= litepciedma1_writer_splitter_desc_length_bufferizeendpoints1_resetinserter1_next_value1;
 	end
-	if (litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value_ce2) begin
-		litepciedma1_writer_splitter_desc_id <= litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_bufferizeendpoints1_next_value2;
-	end
-	if (((~litepciedma1_writer_splitter_pipe_valid_source_valid) | litepciedma1_writer_splitter_pipe_valid_source_ready)) begin
-		litepciedma1_writer_splitter_pipe_valid_source_valid <= litepciedma1_writer_splitter_pipe_valid_sink_valid;
-		litepciedma1_writer_splitter_pipe_valid_source_first <= litepciedma1_writer_splitter_pipe_valid_sink_first;
-		litepciedma1_writer_splitter_pipe_valid_source_last <= litepciedma1_writer_splitter_pipe_valid_sink_last;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_address <= litepciedma1_writer_splitter_pipe_valid_sink_payload_address;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_length <= litepciedma1_writer_splitter_pipe_valid_sink_payload_length;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_irq_disable <= litepciedma1_writer_splitter_pipe_valid_sink_payload_irq_disable;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_last_disable <= litepciedma1_writer_splitter_pipe_valid_sink_payload_last_disable;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_user_id <= litepciedma1_writer_splitter_pipe_valid_sink_payload_user_id;
+	if (litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value_ce2) begin
+		litepciedma1_writer_splitter_desc_id <= litepciedma1_writer_splitter_desc_id_bufferizeendpoints1_resetinserter1_next_value2;
 	end
 	if (litepciedma1_writer_splitter_reset) begin
 		litepciedma1_writer_splitter_desc_length <= 32'd0;
 		litepciedma1_writer_splitter_desc_offset <= 32'd0;
 		litepciedma1_writer_splitter_desc_id <= 32'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints1_state0 <= 1'd0;
+		litepciecore_resetinserter1_state <= 1'd0;
 	end
 	if (litepciedma1_writer_data_fifo_syncfifo1_re) begin
 		litepciedma1_writer_data_fifo_readable <= 1'd1;
@@ -10948,7 +10874,7 @@ always @(posedge sys_clk) begin
 			litepciedma1_writer_data_fifo_level0 <= (litepciedma1_writer_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma1_writer_resetinserter_reset) begin
+	if (litepciedma1_writer_data_fifo_reset) begin
 		litepciedma1_writer_data_fifo_readable <= 1'd0;
 		litepciedma1_writer_data_fifo_level0 <= 8'd0;
 		litepciedma1_writer_data_fifo_produce <= 7'd0;
@@ -10985,13 +10911,17 @@ always @(posedge sys_clk) begin
 		litepciedma1_reader_table_table_sink_valid <= (litepciedma1_reader_table_table_source_valid & litepciedma1_reader_table_table_source_ready);
 	end
 	if (litepciedma1_reader_table_table_reset) begin
+		litepciedma1_reader_table_loop_first <= 1'd1;
 		litepciedma1_reader_table_index <= 1'd0;
-		litepciedma1_reader_table_count <= 16'd65535;
+		litepciedma1_reader_table_count <= 1'd0;
+		litepciedma1_reader_table_dmaCnt <= 1'd0;
 	end else begin
 		if ((litepciedma1_reader_table_table_source_valid & litepciedma1_reader_table_table_source_ready)) begin
+			litepciedma1_reader_table_dmaCnt <= (litepciedma1_reader_table_dmaCnt + 1'd1);
 			if (litepciedma1_reader_table_table_source_first) begin
 				litepciedma1_reader_table_index <= 1'd0;
-				litepciedma1_reader_table_count <= (litepciedma1_reader_table_count + 1'd1);
+				litepciedma1_reader_table_loop_first <= 1'd0;
+				litepciedma1_reader_table_count <= (litepciedma1_reader_table_count + {(~litepciedma1_reader_table_loop_first)});
 			end else begin
 				litepciedma1_reader_table_index <= (litepciedma1_reader_table_index + 1'd1);
 			end
@@ -11017,7 +10947,7 @@ always @(posedge sys_clk) begin
 		litepciedma1_reader_table_table_produce <= 8'd0;
 		litepciedma1_reader_table_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints1_state1 <= litepciecore_bufferizeendpoints1_next_state1;
+	litepciecore_bufferizeendpoints1_state <= litepciecore_bufferizeendpoints1_next_state;
 	if (litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value_ce0) begin
 		litepciedma1_reader_splitter_desc_offset <= litepciedma1_reader_splitter_desc_offset_bufferizeendpoints1_next_value0;
 	end
@@ -11047,7 +10977,7 @@ always @(posedge sys_clk) begin
 		litepciedma1_reader_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
 		litepciedma1_reader_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
 		litepciedma1_reader_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints1_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints1_state <= 1'd0;
 	end
 	if (litepciedma1_reader_data_fifo_syncfifo1_re) begin
 		litepciedma1_reader_data_fifo_readable <= 1'd1;
@@ -11071,7 +11001,7 @@ always @(posedge sys_clk) begin
 			litepciedma1_reader_data_fifo_level0 <= (litepciedma1_reader_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma1_reader_resetinserter_reset) begin
+	if (litepciedma1_reader_data_fifo_reset) begin
 		litepciedma1_reader_data_fifo_readable <= 1'd0;
 		litepciedma1_reader_data_fifo_level0 <= 11'd0;
 		litepciedma1_reader_data_fifo_produce <= 10'd0;
@@ -11146,86 +11076,74 @@ always @(posedge sys_clk) begin
 		bufferizeendpoints3_pipe_valid_source_last <= bufferizeendpoints3_pipe_valid_sink_last;
 		bufferizeendpoints3_pipe_valid_source_payload_data <= bufferizeendpoints3_pipe_valid_sink_payload_data;
 	end
-	if ((litepciedma2_writer_table_loop_prog_n_storage == 1'd0)) begin
-		litepciedma2_writer_table_table_sink_payload_address[31:0] <= litepciedma2_writer_table_address_lsb;
-		litepciedma2_writer_table_table_sink_payload_length <= litepciedma2_writer_table_length;
-		litepciedma2_writer_table_table_sink_payload_irq_disable <= litepciedma2_writer_table_irq_disable;
-		litepciedma2_writer_table_table_sink_payload_last_disable <= litepciedma2_writer_table_last_disable;
-		litepciedma2_writer_table_table_sink_first <= (litepciedma2_writer_table_table_level == 1'd0);
-		litepciedma2_writer_table_table_sink_valid <= litepciedma2_writer_table_we_re;
+	if ((litepciedma2_writer_loop_prog_n_storage == 1'd0)) begin
+		litepciedma2_writer_table_sink_payload_address[31:0] <= litepciedma2_writer_address_lsb;
+		litepciedma2_writer_table_sink_payload_length <= litepciedma2_writer_length;
+		litepciedma2_writer_table_sink_payload_irq_disable <= litepciedma2_writer_irq_disable;
+		litepciedma2_writer_table_sink_payload_last_disable <= litepciedma2_writer_last_disable;
+		litepciedma2_writer_table_sink_first <= (litepciedma2_writer_table_level == 1'd0);
+		litepciedma2_writer_table_sink_valid <= litepciedma2_writer_we_re;
 	end else begin
-		litepciedma2_writer_table_table_sink_first <= litepciedma2_writer_table_table_source_first;
-		litepciedma2_writer_table_table_sink_last <= litepciedma2_writer_table_table_source_last;
-		litepciedma2_writer_table_table_sink_payload_address <= litepciedma2_writer_table_table_source_payload_address;
-		litepciedma2_writer_table_table_sink_payload_length <= litepciedma2_writer_table_table_source_payload_length;
-		litepciedma2_writer_table_table_sink_payload_irq_disable <= litepciedma2_writer_table_table_source_payload_irq_disable;
-		litepciedma2_writer_table_table_sink_payload_last_disable <= litepciedma2_writer_table_table_source_payload_last_disable;
-		litepciedma2_writer_table_table_sink_valid <= (litepciedma2_writer_table_table_source_valid & litepciedma2_writer_table_table_source_ready);
+		litepciedma2_writer_table_sink_first <= litepciedma2_writer_table_source_first;
+		litepciedma2_writer_table_sink_last <= litepciedma2_writer_table_source_last;
+		litepciedma2_writer_table_sink_payload_address <= litepciedma2_writer_table_source_payload_address;
+		litepciedma2_writer_table_sink_payload_length <= litepciedma2_writer_table_source_payload_length;
+		litepciedma2_writer_table_sink_payload_irq_disable <= litepciedma2_writer_table_source_payload_irq_disable;
+		litepciedma2_writer_table_sink_payload_last_disable <= litepciedma2_writer_table_source_payload_last_disable;
+		litepciedma2_writer_table_sink_valid <= (litepciedma2_writer_table_source_valid & litepciedma2_writer_table_source_ready);
 	end
-	if (litepciedma2_writer_table_table_reset) begin
-		litepciedma2_writer_table_index <= 1'd0;
-		litepciedma2_writer_table_count <= 16'd65535;
+	if (litepciedma2_writer_table_reset) begin
+		litepciedma2_writer_loop_first <= 1'd1;
+		litepciedma2_writer_index <= 1'd0;
+		litepciedma2_writer_count <= 1'd0;
+		litepciedma2_writer_dmaCnt <= 1'd0;
 	end else begin
-		if ((litepciedma2_writer_table_table_source_valid & litepciedma2_writer_table_table_source_ready)) begin
-			if (litepciedma2_writer_table_table_source_first) begin
-				litepciedma2_writer_table_index <= 1'd0;
-				litepciedma2_writer_table_count <= (litepciedma2_writer_table_count + 1'd1);
+		if ((litepciedma2_writer_table_source_valid & litepciedma2_writer_table_source_ready)) begin
+			litepciedma2_writer_dmaCnt <= (litepciedma2_writer_dmaCnt + 1'd1);
+			if (litepciedma2_writer_table_source_first) begin
+				litepciedma2_writer_index <= 1'd0;
+				litepciedma2_writer_loop_first <= 1'd0;
+				litepciedma2_writer_count <= (litepciedma2_writer_count + {(~litepciedma2_writer_loop_first)});
 			end else begin
-				litepciedma2_writer_table_index <= (litepciedma2_writer_table_index + 1'd1);
+				litepciedma2_writer_index <= (litepciedma2_writer_index + 1'd1);
 			end
 		end
 	end
-	if (((litepciedma2_writer_table_table_syncfifo2_we & litepciedma2_writer_table_table_syncfifo2_writable) & (~litepciedma2_writer_table_table_replace))) begin
-		litepciedma2_writer_table_table_produce <= (litepciedma2_writer_table_table_produce + 1'd1);
+	if (((litepciedma2_writer_table_syncfifo2_we & litepciedma2_writer_table_syncfifo2_writable) & (~litepciedma2_writer_table_replace))) begin
+		litepciedma2_writer_table_produce <= (litepciedma2_writer_table_produce + 1'd1);
 	end
-	if (litepciedma2_writer_table_table_do_read) begin
-		litepciedma2_writer_table_table_consume <= (litepciedma2_writer_table_table_consume + 1'd1);
+	if (litepciedma2_writer_table_do_read) begin
+		litepciedma2_writer_table_consume <= (litepciedma2_writer_table_consume + 1'd1);
 	end
-	if (((litepciedma2_writer_table_table_syncfifo2_we & litepciedma2_writer_table_table_syncfifo2_writable) & (~litepciedma2_writer_table_table_replace))) begin
-		if ((~litepciedma2_writer_table_table_do_read)) begin
-			litepciedma2_writer_table_table_level <= (litepciedma2_writer_table_table_level + 1'd1);
+	if (((litepciedma2_writer_table_syncfifo2_we & litepciedma2_writer_table_syncfifo2_writable) & (~litepciedma2_writer_table_replace))) begin
+		if ((~litepciedma2_writer_table_do_read)) begin
+			litepciedma2_writer_table_level <= (litepciedma2_writer_table_level + 1'd1);
 		end
 	end else begin
-		if (litepciedma2_writer_table_table_do_read) begin
-			litepciedma2_writer_table_table_level <= (litepciedma2_writer_table_table_level - 1'd1);
+		if (litepciedma2_writer_table_do_read) begin
+			litepciedma2_writer_table_level <= (litepciedma2_writer_table_level - 1'd1);
 		end
 	end
-	if (litepciedma2_writer_table_table_reset) begin
-		litepciedma2_writer_table_table_level <= 9'd0;
-		litepciedma2_writer_table_table_produce <= 8'd0;
-		litepciedma2_writer_table_table_consume <= 8'd0;
+	if (litepciedma2_writer_table_reset) begin
+		litepciedma2_writer_table_level <= 9'd0;
+		litepciedma2_writer_table_produce <= 8'd0;
+		litepciedma2_writer_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints2_state0 <= litepciecore_bufferizeendpoints2_next_state0;
-	if (litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value_ce0) begin
-		litepciedma2_writer_splitter_desc_offset <= litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_bufferizeendpoints2_next_value0;
+	litepciecore_resetinserter2_state <= litepciecore_resetinserter2_next_state;
+	if (litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value_ce0) begin
+		litepciedma2_writer_splitter_desc_offset <= litepciedma2_writer_splitter_desc_offset_bufferizeendpoints2_resetinserter2_next_value0;
 	end
-	if (litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value_ce1) begin
-		litepciedma2_writer_splitter_desc_length <= litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_bufferizeendpoints2_next_value1;
+	if (litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value_ce1) begin
+		litepciedma2_writer_splitter_desc_length <= litepciedma2_writer_splitter_desc_length_bufferizeendpoints2_resetinserter2_next_value1;
 	end
-	if (litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value_ce2) begin
-		litepciedma2_writer_splitter_desc_id <= litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_bufferizeendpoints2_next_value2;
-	end
-	if (((~litepciedma2_writer_splitter_pipe_valid_source_valid) | litepciedma2_writer_splitter_pipe_valid_source_ready)) begin
-		litepciedma2_writer_splitter_pipe_valid_source_valid <= litepciedma2_writer_splitter_pipe_valid_sink_valid;
-		litepciedma2_writer_splitter_pipe_valid_source_first <= litepciedma2_writer_splitter_pipe_valid_sink_first;
-		litepciedma2_writer_splitter_pipe_valid_source_last <= litepciedma2_writer_splitter_pipe_valid_sink_last;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_address <= litepciedma2_writer_splitter_pipe_valid_sink_payload_address;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_length <= litepciedma2_writer_splitter_pipe_valid_sink_payload_length;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_irq_disable <= litepciedma2_writer_splitter_pipe_valid_sink_payload_irq_disable;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_last_disable <= litepciedma2_writer_splitter_pipe_valid_sink_payload_last_disable;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_user_id <= litepciedma2_writer_splitter_pipe_valid_sink_payload_user_id;
+	if (litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value_ce2) begin
+		litepciedma2_writer_splitter_desc_id <= litepciedma2_writer_splitter_desc_id_bufferizeendpoints2_resetinserter2_next_value2;
 	end
 	if (litepciedma2_writer_splitter_reset) begin
 		litepciedma2_writer_splitter_desc_length <= 32'd0;
 		litepciedma2_writer_splitter_desc_offset <= 32'd0;
 		litepciedma2_writer_splitter_desc_id <= 32'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints2_state0 <= 1'd0;
+		litepciecore_resetinserter2_state <= 1'd0;
 	end
 	if (litepciedma2_writer_data_fifo_syncfifo2_re) begin
 		litepciedma2_writer_data_fifo_readable <= 1'd1;
@@ -11249,7 +11167,7 @@ always @(posedge sys_clk) begin
 			litepciedma2_writer_data_fifo_level0 <= (litepciedma2_writer_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma2_writer_resetinserter_reset) begin
+	if (litepciedma2_writer_data_fifo_reset) begin
 		litepciedma2_writer_data_fifo_readable <= 1'd0;
 		litepciedma2_writer_data_fifo_level0 <= 8'd0;
 		litepciedma2_writer_data_fifo_produce <= 7'd0;
@@ -11286,13 +11204,17 @@ always @(posedge sys_clk) begin
 		litepciedma2_reader_table_table_sink_valid <= (litepciedma2_reader_table_table_source_valid & litepciedma2_reader_table_table_source_ready);
 	end
 	if (litepciedma2_reader_table_table_reset) begin
+		litepciedma2_reader_table_loop_first <= 1'd1;
 		litepciedma2_reader_table_index <= 1'd0;
-		litepciedma2_reader_table_count <= 16'd65535;
+		litepciedma2_reader_table_count <= 1'd0;
+		litepciedma2_reader_table_dmaCnt <= 1'd0;
 	end else begin
 		if ((litepciedma2_reader_table_table_source_valid & litepciedma2_reader_table_table_source_ready)) begin
+			litepciedma2_reader_table_dmaCnt <= (litepciedma2_reader_table_dmaCnt + 1'd1);
 			if (litepciedma2_reader_table_table_source_first) begin
 				litepciedma2_reader_table_index <= 1'd0;
-				litepciedma2_reader_table_count <= (litepciedma2_reader_table_count + 1'd1);
+				litepciedma2_reader_table_loop_first <= 1'd0;
+				litepciedma2_reader_table_count <= (litepciedma2_reader_table_count + {(~litepciedma2_reader_table_loop_first)});
 			end else begin
 				litepciedma2_reader_table_index <= (litepciedma2_reader_table_index + 1'd1);
 			end
@@ -11318,7 +11240,7 @@ always @(posedge sys_clk) begin
 		litepciedma2_reader_table_table_produce <= 8'd0;
 		litepciedma2_reader_table_table_consume <= 8'd0;
 	end
-	litepciecore_bufferizeendpoints2_state1 <= litepciecore_bufferizeendpoints2_next_state1;
+	litepciecore_bufferizeendpoints2_state <= litepciecore_bufferizeendpoints2_next_state;
 	if (litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value_ce0) begin
 		litepciedma2_reader_splitter_desc_offset <= litepciedma2_reader_splitter_desc_offset_bufferizeendpoints2_next_value0;
 	end
@@ -11348,7 +11270,7 @@ always @(posedge sys_clk) begin
 		litepciedma2_reader_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
 		litepciedma2_reader_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
 		litepciedma2_reader_splitter_pipe_valid_source_payload_user_id <= 8'd0;
-		litepciecore_bufferizeendpoints2_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints2_state <= 1'd0;
 	end
 	if (litepciedma2_reader_data_fifo_syncfifo2_re) begin
 		litepciedma2_reader_data_fifo_readable <= 1'd1;
@@ -11372,7 +11294,7 @@ always @(posedge sys_clk) begin
 			litepciedma2_reader_data_fifo_level0 <= (litepciedma2_reader_data_fifo_level0 - 1'd1);
 		end
 	end
-	if (litepciedma2_reader_resetinserter_reset) begin
+	if (litepciedma2_reader_data_fifo_reset) begin
 		litepciedma2_reader_data_fifo_readable <= 1'd0;
 		litepciedma2_reader_data_fifo_level0 <= 11'd0;
 		litepciedma2_reader_data_fifo_produce <= 10'd0;
@@ -11453,587 +11375,611 @@ always @(posedge sys_clk) begin
 		pcie_msi_msi <= (pcie_msi_irqs & pcie_msi_enable);
 	end
 	litepciecore_wishbone2csr_state <= litepciecore_wishbone2csr_next_state;
-	interface0_dat_r <= 1'd0;
-	if (csrbank0_sel) begin
-		case (interface0_adr[8:0])
+	csr_bankarray_interface0_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank0_sel) begin
+		case (csr_bankarray_interface0_bank_bus_adr[8:0])
 			1'd0: begin
-				interface0_dat_r <= csrbank0_cntrl15_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl15_w;
 			end
 			1'd1: begin
-				interface0_dat_r <= csrbank0_cntrl14_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl14_w;
 			end
 			2'd2: begin
-				interface0_dat_r <= csrbank0_cntrl13_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl13_w;
 			end
 			2'd3: begin
-				interface0_dat_r <= csrbank0_cntrl12_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl12_w;
 			end
 			3'd4: begin
-				interface0_dat_r <= csrbank0_cntrl11_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl11_w;
 			end
 			3'd5: begin
-				interface0_dat_r <= csrbank0_cntrl10_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl10_w;
 			end
 			3'd6: begin
-				interface0_dat_r <= csrbank0_cntrl9_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl9_w;
 			end
 			3'd7: begin
-				interface0_dat_r <= csrbank0_cntrl8_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl8_w;
 			end
 			4'd8: begin
-				interface0_dat_r <= csrbank0_cntrl7_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl7_w;
 			end
 			4'd9: begin
-				interface0_dat_r <= csrbank0_cntrl6_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl6_w;
 			end
 			4'd10: begin
-				interface0_dat_r <= csrbank0_cntrl5_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl5_w;
 			end
 			4'd11: begin
-				interface0_dat_r <= csrbank0_cntrl4_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl4_w;
 			end
 			4'd12: begin
-				interface0_dat_r <= csrbank0_cntrl3_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl3_w;
 			end
 			4'd13: begin
-				interface0_dat_r <= csrbank0_cntrl2_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl2_w;
 			end
 			4'd14: begin
-				interface0_dat_r <= csrbank0_cntrl1_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl1_w;
 			end
 			4'd15: begin
-				interface0_dat_r <= csrbank0_cntrl0_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_cntrl0_w;
 			end
 			5'd16: begin
-				interface0_dat_r <= csrbank0_enable0_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_enable0_w;
 			end
 			5'd17: begin
-				interface0_dat_r <= csrbank0_test0_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_test0_w;
 			end
 			5'd18: begin
-				interface0_dat_r <= csrbank0_ndma_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_ndma_w;
 			end
 			5'd19: begin
-				interface0_dat_r <= csrbank0_enable_both0_w;
+				csr_bankarray_interface0_bank_bus_dat_r <= csr_bankarray_csrbank0_enable_both0_w;
 			end
 		endcase
 	end
 	if (CNTRL_cntrl_we) begin
 		CNTRL_cntrl_storage <= CNTRL_cntrl_dat_w;
 	end
-	if (csrbank0_cntrl15_re) begin
-		CNTRL_cntrl_storage[511:480] <= csrbank0_cntrl15_r;
+	if (csr_bankarray_csrbank0_cntrl15_re) begin
+		CNTRL_cntrl_storage[511:480] <= csr_bankarray_csrbank0_cntrl15_r;
 	end
-	if (csrbank0_cntrl14_re) begin
-		CNTRL_cntrl_storage[479:448] <= csrbank0_cntrl14_r;
+	if (csr_bankarray_csrbank0_cntrl14_re) begin
+		CNTRL_cntrl_storage[479:448] <= csr_bankarray_csrbank0_cntrl14_r;
 	end
-	if (csrbank0_cntrl13_re) begin
-		CNTRL_cntrl_storage[447:416] <= csrbank0_cntrl13_r;
+	if (csr_bankarray_csrbank0_cntrl13_re) begin
+		CNTRL_cntrl_storage[447:416] <= csr_bankarray_csrbank0_cntrl13_r;
 	end
-	if (csrbank0_cntrl12_re) begin
-		CNTRL_cntrl_storage[415:384] <= csrbank0_cntrl12_r;
+	if (csr_bankarray_csrbank0_cntrl12_re) begin
+		CNTRL_cntrl_storage[415:384] <= csr_bankarray_csrbank0_cntrl12_r;
 	end
-	if (csrbank0_cntrl11_re) begin
-		CNTRL_cntrl_storage[383:352] <= csrbank0_cntrl11_r;
+	if (csr_bankarray_csrbank0_cntrl11_re) begin
+		CNTRL_cntrl_storage[383:352] <= csr_bankarray_csrbank0_cntrl11_r;
 	end
-	if (csrbank0_cntrl10_re) begin
-		CNTRL_cntrl_storage[351:320] <= csrbank0_cntrl10_r;
+	if (csr_bankarray_csrbank0_cntrl10_re) begin
+		CNTRL_cntrl_storage[351:320] <= csr_bankarray_csrbank0_cntrl10_r;
 	end
-	if (csrbank0_cntrl9_re) begin
-		CNTRL_cntrl_storage[319:288] <= csrbank0_cntrl9_r;
+	if (csr_bankarray_csrbank0_cntrl9_re) begin
+		CNTRL_cntrl_storage[319:288] <= csr_bankarray_csrbank0_cntrl9_r;
 	end
-	if (csrbank0_cntrl8_re) begin
-		CNTRL_cntrl_storage[287:256] <= csrbank0_cntrl8_r;
+	if (csr_bankarray_csrbank0_cntrl8_re) begin
+		CNTRL_cntrl_storage[287:256] <= csr_bankarray_csrbank0_cntrl8_r;
 	end
-	if (csrbank0_cntrl7_re) begin
-		CNTRL_cntrl_storage[255:224] <= csrbank0_cntrl7_r;
+	if (csr_bankarray_csrbank0_cntrl7_re) begin
+		CNTRL_cntrl_storage[255:224] <= csr_bankarray_csrbank0_cntrl7_r;
 	end
-	if (csrbank0_cntrl6_re) begin
-		CNTRL_cntrl_storage[223:192] <= csrbank0_cntrl6_r;
+	if (csr_bankarray_csrbank0_cntrl6_re) begin
+		CNTRL_cntrl_storage[223:192] <= csr_bankarray_csrbank0_cntrl6_r;
 	end
-	if (csrbank0_cntrl5_re) begin
-		CNTRL_cntrl_storage[191:160] <= csrbank0_cntrl5_r;
+	if (csr_bankarray_csrbank0_cntrl5_re) begin
+		CNTRL_cntrl_storage[191:160] <= csr_bankarray_csrbank0_cntrl5_r;
 	end
-	if (csrbank0_cntrl4_re) begin
-		CNTRL_cntrl_storage[159:128] <= csrbank0_cntrl4_r;
+	if (csr_bankarray_csrbank0_cntrl4_re) begin
+		CNTRL_cntrl_storage[159:128] <= csr_bankarray_csrbank0_cntrl4_r;
 	end
-	if (csrbank0_cntrl3_re) begin
-		CNTRL_cntrl_storage[127:96] <= csrbank0_cntrl3_r;
+	if (csr_bankarray_csrbank0_cntrl3_re) begin
+		CNTRL_cntrl_storage[127:96] <= csr_bankarray_csrbank0_cntrl3_r;
 	end
-	if (csrbank0_cntrl2_re) begin
-		CNTRL_cntrl_storage[95:64] <= csrbank0_cntrl2_r;
+	if (csr_bankarray_csrbank0_cntrl2_re) begin
+		CNTRL_cntrl_storage[95:64] <= csr_bankarray_csrbank0_cntrl2_r;
 	end
-	if (csrbank0_cntrl1_re) begin
-		CNTRL_cntrl_storage[63:32] <= csrbank0_cntrl1_r;
+	if (csr_bankarray_csrbank0_cntrl1_re) begin
+		CNTRL_cntrl_storage[63:32] <= csr_bankarray_csrbank0_cntrl1_r;
 	end
-	if (csrbank0_cntrl0_re) begin
-		CNTRL_cntrl_storage[31:0] <= csrbank0_cntrl0_r;
+	if (csr_bankarray_csrbank0_cntrl0_re) begin
+		CNTRL_cntrl_storage[31:0] <= csr_bankarray_csrbank0_cntrl0_r;
 	end
-	CNTRL_cntrl_re <= csrbank0_cntrl0_re;
-	if (csrbank0_enable0_re) begin
-		CNTRL_enable_storage <= csrbank0_enable0_r;
+	CNTRL_cntrl_re <= csr_bankarray_csrbank0_cntrl0_re;
+	if (csr_bankarray_csrbank0_enable0_re) begin
+		CNTRL_enable_storage <= csr_bankarray_csrbank0_enable0_r;
 	end
-	CNTRL_enable_re <= csrbank0_enable0_re;
-	if (csrbank0_test0_re) begin
-		CNTRL_test_storage[31:0] <= csrbank0_test0_r;
+	CNTRL_enable_re <= csr_bankarray_csrbank0_enable0_re;
+	if (csr_bankarray_csrbank0_test0_re) begin
+		CNTRL_test_storage[31:0] <= csr_bankarray_csrbank0_test0_r;
 	end
-	CNTRL_test_re <= csrbank0_test0_re;
-	CNTRL_ndma_re <= csrbank0_ndma_re;
-	if (csrbank0_enable_both0_re) begin
-		CNTRL_enable_both_storage <= csrbank0_enable_both0_r;
+	CNTRL_test_re <= csr_bankarray_csrbank0_test0_re;
+	CNTRL_ndma_re <= csr_bankarray_csrbank0_ndma_re;
+	if (csr_bankarray_csrbank0_enable_both0_re) begin
+		CNTRL_enable_both_storage <= csr_bankarray_csrbank0_enable_both0_r;
 	end
-	CNTRL_enable_both_re <= csrbank0_enable_both0_re;
-	interface1_dat_r <= 1'd0;
-	if (csrbank1_sel) begin
-		case (interface1_adr[8:0])
+	CNTRL_enable_both_re <= csr_bankarray_csrbank0_enable_both0_re;
+	csr_bankarray_interface1_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank1_sel) begin
+		case (csr_bankarray_interface1_bank_bus_adr[8:0])
 			1'd0: begin
-				interface1_dat_r <= csrbank1_reset0_w;
+				csr_bankarray_interface1_bank_bus_dat_r <= csr_bankarray_csrbank1_reset0_w;
 			end
 			1'd1: begin
-				interface1_dat_r <= csrbank1_scratch0_w;
+				csr_bankarray_interface1_bank_bus_dat_r <= csr_bankarray_csrbank1_scratch0_w;
 			end
 			2'd2: begin
-				interface1_dat_r <= csrbank1_bus_errors_w;
+				csr_bankarray_interface1_bank_bus_dat_r <= csr_bankarray_csrbank1_bus_errors_w;
 			end
 		endcase
 	end
-	if (csrbank1_reset0_re) begin
-		reset_storage[1:0] <= csrbank1_reset0_r;
+	if (csr_bankarray_csrbank1_reset0_re) begin
+		reset_storage[1:0] <= csr_bankarray_csrbank1_reset0_r;
 	end
-	reset_re <= csrbank1_reset0_re;
-	if (csrbank1_scratch0_re) begin
-		scratch_storage[31:0] <= csrbank1_scratch0_r;
+	reset_re <= csr_bankarray_csrbank1_reset0_re;
+	if (csr_bankarray_csrbank1_scratch0_re) begin
+		scratch_storage[31:0] <= csr_bankarray_csrbank1_scratch0_r;
 	end
-	scratch_re <= csrbank1_scratch0_re;
-	bus_errors_re <= csrbank1_bus_errors_re;
-	mmap_sel_r <= mmap_sel;
-	interface3_dat_r <= 1'd0;
-	if (csrbank2_sel) begin
-		case (interface3_adr[8:0])
+	scratch_re <= csr_bankarray_csrbank1_scratch0_re;
+	bus_errors_re <= csr_bankarray_csrbank1_bus_errors_re;
+	csr_bankarray_sel_r <= csr_bankarray_sel;
+	csr_bankarray_interface2_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank2_sel) begin
+		case (csr_bankarray_interface2_bank_bus_adr[8:0])
 			1'd0: begin
-				interface3_dat_r <= csrbank2_writer_enable0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_enable0_w;
 			end
 			1'd1: begin
-				interface3_dat_r <= csrbank2_writer_table_value1_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_value1_w;
 			end
 			2'd2: begin
-				interface3_dat_r <= csrbank2_writer_table_value0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_value0_w;
 			end
 			2'd3: begin
-				interface3_dat_r <= csrbank2_writer_table_we0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_we0_w;
 			end
 			3'd4: begin
-				interface3_dat_r <= csrbank2_writer_table_loop_prog_n0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_loop_prog_n0_w;
 			end
 			3'd5: begin
-				interface3_dat_r <= csrbank2_writer_table_loop_status_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_loop_status_w;
 			end
 			3'd6: begin
-				interface3_dat_r <= csrbank2_writer_table_level_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_w;
 			end
 			3'd7: begin
-				interface3_dat_r <= csrbank2_writer_table_reset0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_level_w;
 			end
 			4'd8: begin
-				interface3_dat_r <= csrbank2_reader_enable0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_writer_table_reset0_w;
 			end
 			4'd9: begin
-				interface3_dat_r <= csrbank2_reader_table_value1_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_enable0_w;
 			end
 			4'd10: begin
-				interface3_dat_r <= csrbank2_reader_table_value0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_value1_w;
 			end
 			4'd11: begin
-				interface3_dat_r <= csrbank2_reader_table_we0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_value0_w;
 			end
 			4'd12: begin
-				interface3_dat_r <= csrbank2_reader_table_loop_prog_n0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_we0_w;
 			end
 			4'd13: begin
-				interface3_dat_r <= csrbank2_reader_table_loop_status_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_loop_prog_n0_w;
 			end
 			4'd14: begin
-				interface3_dat_r <= csrbank2_reader_table_level_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_loop_status_w;
 			end
 			4'd15: begin
-				interface3_dat_r <= csrbank2_reader_table_reset0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_w;
 			end
 			5'd16: begin
-				interface3_dat_r <= csrbank2_buffering_reader_fifo_control0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_level_w;
 			end
 			5'd17: begin
-				interface3_dat_r <= csrbank2_buffering_reader_fifo_status_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_reader_table_reset0_w;
 			end
 			5'd18: begin
-				interface3_dat_r <= csrbank2_buffering_writer_fifo_control0_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_buffering_reader_fifo_control0_w;
 			end
 			5'd19: begin
-				interface3_dat_r <= csrbank2_buffering_writer_fifo_status_w;
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_buffering_reader_fifo_status_w;
+			end
+			5'd20: begin
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_buffering_writer_fifo_control0_w;
+			end
+			5'd21: begin
+				csr_bankarray_interface2_bank_bus_dat_r <= csr_bankarray_csrbank2_buffering_writer_fifo_status_w;
 			end
 		endcase
 	end
-	if (csrbank2_writer_enable0_re) begin
-		litepciedma0_writer_enable_storage <= csrbank2_writer_enable0_r;
+	if (csr_bankarray_csrbank2_writer_enable0_re) begin
+		litepciedma0_writer_enable_storage <= csr_bankarray_csrbank2_writer_enable0_r;
 	end
-	litepciedma0_writer_enable_re <= csrbank2_writer_enable0_re;
-	if (csrbank2_writer_table_value1_re) begin
-		litepciedma0_writer_table_value_storage[57:32] <= csrbank2_writer_table_value1_r;
+	litepciedma0_writer_enable_re <= csr_bankarray_csrbank2_writer_enable0_re;
+	if (csr_bankarray_csrbank2_writer_table_value1_re) begin
+		litepciedma0_writer_value_storage[57:32] <= csr_bankarray_csrbank2_writer_table_value1_r;
 	end
-	if (csrbank2_writer_table_value0_re) begin
-		litepciedma0_writer_table_value_storage[31:0] <= csrbank2_writer_table_value0_r;
+	if (csr_bankarray_csrbank2_writer_table_value0_re) begin
+		litepciedma0_writer_value_storage[31:0] <= csr_bankarray_csrbank2_writer_table_value0_r;
 	end
-	litepciedma0_writer_table_value_re <= csrbank2_writer_table_value0_re;
-	if (csrbank2_writer_table_we0_re) begin
-		litepciedma0_writer_table_we_storage[31:0] <= csrbank2_writer_table_we0_r;
+	litepciedma0_writer_value_re <= csr_bankarray_csrbank2_writer_table_value0_re;
+	if (csr_bankarray_csrbank2_writer_table_we0_re) begin
+		litepciedma0_writer_we_storage[31:0] <= csr_bankarray_csrbank2_writer_table_we0_r;
 	end
-	litepciedma0_writer_table_we_re <= csrbank2_writer_table_we0_re;
-	if (csrbank2_writer_table_loop_prog_n0_re) begin
-		litepciedma0_writer_table_loop_prog_n_storage <= csrbank2_writer_table_loop_prog_n0_r;
+	litepciedma0_writer_we_re <= csr_bankarray_csrbank2_writer_table_we0_re;
+	if (csr_bankarray_csrbank2_writer_table_loop_prog_n0_re) begin
+		litepciedma0_writer_loop_prog_n_storage <= csr_bankarray_csrbank2_writer_table_loop_prog_n0_r;
 	end
-	litepciedma0_writer_table_loop_prog_n_re <= csrbank2_writer_table_loop_prog_n0_re;
-	litepciedma0_writer_table_loop_status_re <= csrbank2_writer_table_loop_status_re;
-	litepciedma0_writer_table_level_re <= csrbank2_writer_table_level_re;
-	if (csrbank2_writer_table_reset0_re) begin
-		litepciedma0_writer_table_reset_storage <= csrbank2_writer_table_reset0_r;
+	litepciedma0_writer_loop_prog_n_re <= csr_bankarray_csrbank2_writer_table_loop_prog_n0_re;
+	litepciedma0_writer_loop_status_re <= csr_bankarray_csrbank2_writer_table_loop_status_re;
+	litepciedma0_writer_dmaDescriptorCnt_re <= csr_bankarray_csrbank2_writer_table_dmaDescriptorCnt_re;
+	litepciedma0_writer_level_re <= csr_bankarray_csrbank2_writer_table_level_re;
+	if (csr_bankarray_csrbank2_writer_table_reset0_re) begin
+		litepciedma0_writer_reset_storage <= csr_bankarray_csrbank2_writer_table_reset0_r;
 	end
-	litepciedma0_writer_table_reset_re <= csrbank2_writer_table_reset0_re;
-	if (csrbank2_reader_enable0_re) begin
-		litepciedma0_reader_enable_storage <= csrbank2_reader_enable0_r;
+	litepciedma0_writer_reset_re <= csr_bankarray_csrbank2_writer_table_reset0_re;
+	if (csr_bankarray_csrbank2_reader_enable0_re) begin
+		litepciedma0_reader_enable_storage <= csr_bankarray_csrbank2_reader_enable0_r;
 	end
-	litepciedma0_reader_enable_re <= csrbank2_reader_enable0_re;
-	if (csrbank2_reader_table_value1_re) begin
-		litepciedma0_reader_table_value_storage[57:32] <= csrbank2_reader_table_value1_r;
+	litepciedma0_reader_enable_re <= csr_bankarray_csrbank2_reader_enable0_re;
+	if (csr_bankarray_csrbank2_reader_table_value1_re) begin
+		litepciedma0_reader_table_value_storage[57:32] <= csr_bankarray_csrbank2_reader_table_value1_r;
 	end
-	if (csrbank2_reader_table_value0_re) begin
-		litepciedma0_reader_table_value_storage[31:0] <= csrbank2_reader_table_value0_r;
+	if (csr_bankarray_csrbank2_reader_table_value0_re) begin
+		litepciedma0_reader_table_value_storage[31:0] <= csr_bankarray_csrbank2_reader_table_value0_r;
 	end
-	litepciedma0_reader_table_value_re <= csrbank2_reader_table_value0_re;
-	if (csrbank2_reader_table_we0_re) begin
-		litepciedma0_reader_table_we_storage[31:0] <= csrbank2_reader_table_we0_r;
+	litepciedma0_reader_table_value_re <= csr_bankarray_csrbank2_reader_table_value0_re;
+	if (csr_bankarray_csrbank2_reader_table_we0_re) begin
+		litepciedma0_reader_table_we_storage[31:0] <= csr_bankarray_csrbank2_reader_table_we0_r;
 	end
-	litepciedma0_reader_table_we_re <= csrbank2_reader_table_we0_re;
-	if (csrbank2_reader_table_loop_prog_n0_re) begin
-		litepciedma0_reader_table_loop_prog_n_storage <= csrbank2_reader_table_loop_prog_n0_r;
+	litepciedma0_reader_table_we_re <= csr_bankarray_csrbank2_reader_table_we0_re;
+	if (csr_bankarray_csrbank2_reader_table_loop_prog_n0_re) begin
+		litepciedma0_reader_table_loop_prog_n_storage <= csr_bankarray_csrbank2_reader_table_loop_prog_n0_r;
 	end
-	litepciedma0_reader_table_loop_prog_n_re <= csrbank2_reader_table_loop_prog_n0_re;
-	litepciedma0_reader_table_loop_status_re <= csrbank2_reader_table_loop_status_re;
-	litepciedma0_reader_table_level_re <= csrbank2_reader_table_level_re;
-	if (csrbank2_reader_table_reset0_re) begin
-		litepciedma0_reader_table_reset_storage <= csrbank2_reader_table_reset0_r;
+	litepciedma0_reader_table_loop_prog_n_re <= csr_bankarray_csrbank2_reader_table_loop_prog_n0_re;
+	litepciedma0_reader_table_loop_status_re <= csr_bankarray_csrbank2_reader_table_loop_status_re;
+	litepciedma0_reader_table_dmaDescriptorCnt_re <= csr_bankarray_csrbank2_reader_table_dmaDescriptorCnt_re;
+	litepciedma0_reader_table_level_re <= csr_bankarray_csrbank2_reader_table_level_re;
+	if (csr_bankarray_csrbank2_reader_table_reset0_re) begin
+		litepciedma0_reader_table_reset_storage <= csr_bankarray_csrbank2_reader_table_reset0_r;
 	end
-	litepciedma0_reader_table_reset_re <= csrbank2_reader_table_reset0_re;
-	if (csrbank2_buffering_reader_fifo_control0_re) begin
-		litepciedma0_buffering_reader_fifo_control_storage[31:0] <= csrbank2_buffering_reader_fifo_control0_r;
+	litepciedma0_reader_table_reset_re <= csr_bankarray_csrbank2_reader_table_reset0_re;
+	if (csr_bankarray_csrbank2_buffering_reader_fifo_control0_re) begin
+		litepciedma0_buffering_reader_fifo_control_storage[31:0] <= csr_bankarray_csrbank2_buffering_reader_fifo_control0_r;
 	end
-	litepciedma0_buffering_reader_fifo_control_re <= csrbank2_buffering_reader_fifo_control0_re;
-	litepciedma0_buffering_reader_fifo_status_re <= csrbank2_buffering_reader_fifo_status_re;
-	if (csrbank2_buffering_writer_fifo_control0_re) begin
-		litepciedma0_buffering_writer_fifo_control_storage[31:0] <= csrbank2_buffering_writer_fifo_control0_r;
+	litepciedma0_buffering_reader_fifo_control_re <= csr_bankarray_csrbank2_buffering_reader_fifo_control0_re;
+	litepciedma0_buffering_reader_fifo_status_re <= csr_bankarray_csrbank2_buffering_reader_fifo_status_re;
+	if (csr_bankarray_csrbank2_buffering_writer_fifo_control0_re) begin
+		litepciedma0_buffering_writer_fifo_control_storage[31:0] <= csr_bankarray_csrbank2_buffering_writer_fifo_control0_r;
 	end
-	litepciedma0_buffering_writer_fifo_control_re <= csrbank2_buffering_writer_fifo_control0_re;
-	litepciedma0_buffering_writer_fifo_status_re <= csrbank2_buffering_writer_fifo_status_re;
-	interface4_dat_r <= 1'd0;
-	if (csrbank3_sel) begin
-		case (interface4_adr[8:0])
+	litepciedma0_buffering_writer_fifo_control_re <= csr_bankarray_csrbank2_buffering_writer_fifo_control0_re;
+	litepciedma0_buffering_writer_fifo_status_re <= csr_bankarray_csrbank2_buffering_writer_fifo_status_re;
+	csr_bankarray_interface3_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank3_sel) begin
+		case (csr_bankarray_interface3_bank_bus_adr[8:0])
 			1'd0: begin
-				interface4_dat_r <= csrbank3_writer_enable0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_enable0_w;
 			end
 			1'd1: begin
-				interface4_dat_r <= csrbank3_writer_table_value1_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_value1_w;
 			end
 			2'd2: begin
-				interface4_dat_r <= csrbank3_writer_table_value0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_value0_w;
 			end
 			2'd3: begin
-				interface4_dat_r <= csrbank3_writer_table_we0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_we0_w;
 			end
 			3'd4: begin
-				interface4_dat_r <= csrbank3_writer_table_loop_prog_n0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_loop_prog_n0_w;
 			end
 			3'd5: begin
-				interface4_dat_r <= csrbank3_writer_table_loop_status_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_loop_status_w;
 			end
 			3'd6: begin
-				interface4_dat_r <= csrbank3_writer_table_level_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_w;
 			end
 			3'd7: begin
-				interface4_dat_r <= csrbank3_writer_table_reset0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_level_w;
 			end
 			4'd8: begin
-				interface4_dat_r <= csrbank3_reader_enable0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_writer_table_reset0_w;
 			end
 			4'd9: begin
-				interface4_dat_r <= csrbank3_reader_table_value1_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_enable0_w;
 			end
 			4'd10: begin
-				interface4_dat_r <= csrbank3_reader_table_value0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_value1_w;
 			end
 			4'd11: begin
-				interface4_dat_r <= csrbank3_reader_table_we0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_value0_w;
 			end
 			4'd12: begin
-				interface4_dat_r <= csrbank3_reader_table_loop_prog_n0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_we0_w;
 			end
 			4'd13: begin
-				interface4_dat_r <= csrbank3_reader_table_loop_status_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_loop_prog_n0_w;
 			end
 			4'd14: begin
-				interface4_dat_r <= csrbank3_reader_table_level_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_loop_status_w;
 			end
 			4'd15: begin
-				interface4_dat_r <= csrbank3_reader_table_reset0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_w;
 			end
 			5'd16: begin
-				interface4_dat_r <= csrbank3_buffering_reader_fifo_control0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_level_w;
 			end
 			5'd17: begin
-				interface4_dat_r <= csrbank3_buffering_reader_fifo_status_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_reader_table_reset0_w;
 			end
 			5'd18: begin
-				interface4_dat_r <= csrbank3_buffering_writer_fifo_control0_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_buffering_reader_fifo_control0_w;
 			end
 			5'd19: begin
-				interface4_dat_r <= csrbank3_buffering_writer_fifo_status_w;
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_buffering_reader_fifo_status_w;
+			end
+			5'd20: begin
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_buffering_writer_fifo_control0_w;
+			end
+			5'd21: begin
+				csr_bankarray_interface3_bank_bus_dat_r <= csr_bankarray_csrbank3_buffering_writer_fifo_status_w;
 			end
 		endcase
 	end
-	if (csrbank3_writer_enable0_re) begin
-		litepciedma1_writer_enable_storage <= csrbank3_writer_enable0_r;
+	if (csr_bankarray_csrbank3_writer_enable0_re) begin
+		litepciedma1_writer_enable_storage <= csr_bankarray_csrbank3_writer_enable0_r;
 	end
-	litepciedma1_writer_enable_re <= csrbank3_writer_enable0_re;
-	if (csrbank3_writer_table_value1_re) begin
-		litepciedma1_writer_table_value_storage[57:32] <= csrbank3_writer_table_value1_r;
+	litepciedma1_writer_enable_re <= csr_bankarray_csrbank3_writer_enable0_re;
+	if (csr_bankarray_csrbank3_writer_table_value1_re) begin
+		litepciedma1_writer_value_storage[57:32] <= csr_bankarray_csrbank3_writer_table_value1_r;
 	end
-	if (csrbank3_writer_table_value0_re) begin
-		litepciedma1_writer_table_value_storage[31:0] <= csrbank3_writer_table_value0_r;
+	if (csr_bankarray_csrbank3_writer_table_value0_re) begin
+		litepciedma1_writer_value_storage[31:0] <= csr_bankarray_csrbank3_writer_table_value0_r;
 	end
-	litepciedma1_writer_table_value_re <= csrbank3_writer_table_value0_re;
-	if (csrbank3_writer_table_we0_re) begin
-		litepciedma1_writer_table_we_storage[31:0] <= csrbank3_writer_table_we0_r;
+	litepciedma1_writer_value_re <= csr_bankarray_csrbank3_writer_table_value0_re;
+	if (csr_bankarray_csrbank3_writer_table_we0_re) begin
+		litepciedma1_writer_we_storage[31:0] <= csr_bankarray_csrbank3_writer_table_we0_r;
 	end
-	litepciedma1_writer_table_we_re <= csrbank3_writer_table_we0_re;
-	if (csrbank3_writer_table_loop_prog_n0_re) begin
-		litepciedma1_writer_table_loop_prog_n_storage <= csrbank3_writer_table_loop_prog_n0_r;
+	litepciedma1_writer_we_re <= csr_bankarray_csrbank3_writer_table_we0_re;
+	if (csr_bankarray_csrbank3_writer_table_loop_prog_n0_re) begin
+		litepciedma1_writer_loop_prog_n_storage <= csr_bankarray_csrbank3_writer_table_loop_prog_n0_r;
 	end
-	litepciedma1_writer_table_loop_prog_n_re <= csrbank3_writer_table_loop_prog_n0_re;
-	litepciedma1_writer_table_loop_status_re <= csrbank3_writer_table_loop_status_re;
-	litepciedma1_writer_table_level_re <= csrbank3_writer_table_level_re;
-	if (csrbank3_writer_table_reset0_re) begin
-		litepciedma1_writer_table_reset_storage <= csrbank3_writer_table_reset0_r;
+	litepciedma1_writer_loop_prog_n_re <= csr_bankarray_csrbank3_writer_table_loop_prog_n0_re;
+	litepciedma1_writer_loop_status_re <= csr_bankarray_csrbank3_writer_table_loop_status_re;
+	litepciedma1_writer_dmaDescriptorCnt_re <= csr_bankarray_csrbank3_writer_table_dmaDescriptorCnt_re;
+	litepciedma1_writer_level_re <= csr_bankarray_csrbank3_writer_table_level_re;
+	if (csr_bankarray_csrbank3_writer_table_reset0_re) begin
+		litepciedma1_writer_reset_storage <= csr_bankarray_csrbank3_writer_table_reset0_r;
 	end
-	litepciedma1_writer_table_reset_re <= csrbank3_writer_table_reset0_re;
-	if (csrbank3_reader_enable0_re) begin
-		litepciedma1_reader_enable_storage <= csrbank3_reader_enable0_r;
+	litepciedma1_writer_reset_re <= csr_bankarray_csrbank3_writer_table_reset0_re;
+	if (csr_bankarray_csrbank3_reader_enable0_re) begin
+		litepciedma1_reader_enable_storage <= csr_bankarray_csrbank3_reader_enable0_r;
 	end
-	litepciedma1_reader_enable_re <= csrbank3_reader_enable0_re;
-	if (csrbank3_reader_table_value1_re) begin
-		litepciedma1_reader_table_value_storage[57:32] <= csrbank3_reader_table_value1_r;
+	litepciedma1_reader_enable_re <= csr_bankarray_csrbank3_reader_enable0_re;
+	if (csr_bankarray_csrbank3_reader_table_value1_re) begin
+		litepciedma1_reader_table_value_storage[57:32] <= csr_bankarray_csrbank3_reader_table_value1_r;
 	end
-	if (csrbank3_reader_table_value0_re) begin
-		litepciedma1_reader_table_value_storage[31:0] <= csrbank3_reader_table_value0_r;
+	if (csr_bankarray_csrbank3_reader_table_value0_re) begin
+		litepciedma1_reader_table_value_storage[31:0] <= csr_bankarray_csrbank3_reader_table_value0_r;
 	end
-	litepciedma1_reader_table_value_re <= csrbank3_reader_table_value0_re;
-	if (csrbank3_reader_table_we0_re) begin
-		litepciedma1_reader_table_we_storage[31:0] <= csrbank3_reader_table_we0_r;
+	litepciedma1_reader_table_value_re <= csr_bankarray_csrbank3_reader_table_value0_re;
+	if (csr_bankarray_csrbank3_reader_table_we0_re) begin
+		litepciedma1_reader_table_we_storage[31:0] <= csr_bankarray_csrbank3_reader_table_we0_r;
 	end
-	litepciedma1_reader_table_we_re <= csrbank3_reader_table_we0_re;
-	if (csrbank3_reader_table_loop_prog_n0_re) begin
-		litepciedma1_reader_table_loop_prog_n_storage <= csrbank3_reader_table_loop_prog_n0_r;
+	litepciedma1_reader_table_we_re <= csr_bankarray_csrbank3_reader_table_we0_re;
+	if (csr_bankarray_csrbank3_reader_table_loop_prog_n0_re) begin
+		litepciedma1_reader_table_loop_prog_n_storage <= csr_bankarray_csrbank3_reader_table_loop_prog_n0_r;
 	end
-	litepciedma1_reader_table_loop_prog_n_re <= csrbank3_reader_table_loop_prog_n0_re;
-	litepciedma1_reader_table_loop_status_re <= csrbank3_reader_table_loop_status_re;
-	litepciedma1_reader_table_level_re <= csrbank3_reader_table_level_re;
-	if (csrbank3_reader_table_reset0_re) begin
-		litepciedma1_reader_table_reset_storage <= csrbank3_reader_table_reset0_r;
+	litepciedma1_reader_table_loop_prog_n_re <= csr_bankarray_csrbank3_reader_table_loop_prog_n0_re;
+	litepciedma1_reader_table_loop_status_re <= csr_bankarray_csrbank3_reader_table_loop_status_re;
+	litepciedma1_reader_table_dmaDescriptorCnt_re <= csr_bankarray_csrbank3_reader_table_dmaDescriptorCnt_re;
+	litepciedma1_reader_table_level_re <= csr_bankarray_csrbank3_reader_table_level_re;
+	if (csr_bankarray_csrbank3_reader_table_reset0_re) begin
+		litepciedma1_reader_table_reset_storage <= csr_bankarray_csrbank3_reader_table_reset0_r;
 	end
-	litepciedma1_reader_table_reset_re <= csrbank3_reader_table_reset0_re;
-	if (csrbank3_buffering_reader_fifo_control0_re) begin
-		litepciedma1_buffering_reader_fifo_control_storage[31:0] <= csrbank3_buffering_reader_fifo_control0_r;
+	litepciedma1_reader_table_reset_re <= csr_bankarray_csrbank3_reader_table_reset0_re;
+	if (csr_bankarray_csrbank3_buffering_reader_fifo_control0_re) begin
+		litepciedma1_buffering_reader_fifo_control_storage[31:0] <= csr_bankarray_csrbank3_buffering_reader_fifo_control0_r;
 	end
-	litepciedma1_buffering_reader_fifo_control_re <= csrbank3_buffering_reader_fifo_control0_re;
-	litepciedma1_buffering_reader_fifo_status_re <= csrbank3_buffering_reader_fifo_status_re;
-	if (csrbank3_buffering_writer_fifo_control0_re) begin
-		litepciedma1_buffering_writer_fifo_control_storage[31:0] <= csrbank3_buffering_writer_fifo_control0_r;
+	litepciedma1_buffering_reader_fifo_control_re <= csr_bankarray_csrbank3_buffering_reader_fifo_control0_re;
+	litepciedma1_buffering_reader_fifo_status_re <= csr_bankarray_csrbank3_buffering_reader_fifo_status_re;
+	if (csr_bankarray_csrbank3_buffering_writer_fifo_control0_re) begin
+		litepciedma1_buffering_writer_fifo_control_storage[31:0] <= csr_bankarray_csrbank3_buffering_writer_fifo_control0_r;
 	end
-	litepciedma1_buffering_writer_fifo_control_re <= csrbank3_buffering_writer_fifo_control0_re;
-	litepciedma1_buffering_writer_fifo_status_re <= csrbank3_buffering_writer_fifo_status_re;
-	interface5_dat_r <= 1'd0;
-	if (csrbank4_sel) begin
-		case (interface5_adr[8:0])
+	litepciedma1_buffering_writer_fifo_control_re <= csr_bankarray_csrbank3_buffering_writer_fifo_control0_re;
+	litepciedma1_buffering_writer_fifo_status_re <= csr_bankarray_csrbank3_buffering_writer_fifo_status_re;
+	csr_bankarray_interface4_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank4_sel) begin
+		case (csr_bankarray_interface4_bank_bus_adr[8:0])
 			1'd0: begin
-				interface5_dat_r <= csrbank4_writer_enable0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_enable0_w;
 			end
 			1'd1: begin
-				interface5_dat_r <= csrbank4_writer_table_value1_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_value1_w;
 			end
 			2'd2: begin
-				interface5_dat_r <= csrbank4_writer_table_value0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_value0_w;
 			end
 			2'd3: begin
-				interface5_dat_r <= csrbank4_writer_table_we0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_we0_w;
 			end
 			3'd4: begin
-				interface5_dat_r <= csrbank4_writer_table_loop_prog_n0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_loop_prog_n0_w;
 			end
 			3'd5: begin
-				interface5_dat_r <= csrbank4_writer_table_loop_status_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_loop_status_w;
 			end
 			3'd6: begin
-				interface5_dat_r <= csrbank4_writer_table_level_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_w;
 			end
 			3'd7: begin
-				interface5_dat_r <= csrbank4_writer_table_reset0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_level_w;
 			end
 			4'd8: begin
-				interface5_dat_r <= csrbank4_reader_enable0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_writer_table_reset0_w;
 			end
 			4'd9: begin
-				interface5_dat_r <= csrbank4_reader_table_value1_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_enable0_w;
 			end
 			4'd10: begin
-				interface5_dat_r <= csrbank4_reader_table_value0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_value1_w;
 			end
 			4'd11: begin
-				interface5_dat_r <= csrbank4_reader_table_we0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_value0_w;
 			end
 			4'd12: begin
-				interface5_dat_r <= csrbank4_reader_table_loop_prog_n0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_we0_w;
 			end
 			4'd13: begin
-				interface5_dat_r <= csrbank4_reader_table_loop_status_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_loop_prog_n0_w;
 			end
 			4'd14: begin
-				interface5_dat_r <= csrbank4_reader_table_level_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_loop_status_w;
 			end
 			4'd15: begin
-				interface5_dat_r <= csrbank4_reader_table_reset0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_w;
 			end
 			5'd16: begin
-				interface5_dat_r <= csrbank4_buffering_reader_fifo_control0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_level_w;
 			end
 			5'd17: begin
-				interface5_dat_r <= csrbank4_buffering_reader_fifo_status_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_reader_table_reset0_w;
 			end
 			5'd18: begin
-				interface5_dat_r <= csrbank4_buffering_writer_fifo_control0_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_buffering_reader_fifo_control0_w;
 			end
 			5'd19: begin
-				interface5_dat_r <= csrbank4_buffering_writer_fifo_status_w;
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_buffering_reader_fifo_status_w;
+			end
+			5'd20: begin
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_buffering_writer_fifo_control0_w;
+			end
+			5'd21: begin
+				csr_bankarray_interface4_bank_bus_dat_r <= csr_bankarray_csrbank4_buffering_writer_fifo_status_w;
 			end
 		endcase
 	end
-	if (csrbank4_writer_enable0_re) begin
-		litepciedma2_writer_enable_storage <= csrbank4_writer_enable0_r;
+	if (csr_bankarray_csrbank4_writer_enable0_re) begin
+		litepciedma2_writer_enable_storage <= csr_bankarray_csrbank4_writer_enable0_r;
 	end
-	litepciedma2_writer_enable_re <= csrbank4_writer_enable0_re;
-	if (csrbank4_writer_table_value1_re) begin
-		litepciedma2_writer_table_value_storage[57:32] <= csrbank4_writer_table_value1_r;
+	litepciedma2_writer_enable_re <= csr_bankarray_csrbank4_writer_enable0_re;
+	if (csr_bankarray_csrbank4_writer_table_value1_re) begin
+		litepciedma2_writer_value_storage[57:32] <= csr_bankarray_csrbank4_writer_table_value1_r;
 	end
-	if (csrbank4_writer_table_value0_re) begin
-		litepciedma2_writer_table_value_storage[31:0] <= csrbank4_writer_table_value0_r;
+	if (csr_bankarray_csrbank4_writer_table_value0_re) begin
+		litepciedma2_writer_value_storage[31:0] <= csr_bankarray_csrbank4_writer_table_value0_r;
 	end
-	litepciedma2_writer_table_value_re <= csrbank4_writer_table_value0_re;
-	if (csrbank4_writer_table_we0_re) begin
-		litepciedma2_writer_table_we_storage[31:0] <= csrbank4_writer_table_we0_r;
+	litepciedma2_writer_value_re <= csr_bankarray_csrbank4_writer_table_value0_re;
+	if (csr_bankarray_csrbank4_writer_table_we0_re) begin
+		litepciedma2_writer_we_storage[31:0] <= csr_bankarray_csrbank4_writer_table_we0_r;
 	end
-	litepciedma2_writer_table_we_re <= csrbank4_writer_table_we0_re;
-	if (csrbank4_writer_table_loop_prog_n0_re) begin
-		litepciedma2_writer_table_loop_prog_n_storage <= csrbank4_writer_table_loop_prog_n0_r;
+	litepciedma2_writer_we_re <= csr_bankarray_csrbank4_writer_table_we0_re;
+	if (csr_bankarray_csrbank4_writer_table_loop_prog_n0_re) begin
+		litepciedma2_writer_loop_prog_n_storage <= csr_bankarray_csrbank4_writer_table_loop_prog_n0_r;
 	end
-	litepciedma2_writer_table_loop_prog_n_re <= csrbank4_writer_table_loop_prog_n0_re;
-	litepciedma2_writer_table_loop_status_re <= csrbank4_writer_table_loop_status_re;
-	litepciedma2_writer_table_level_re <= csrbank4_writer_table_level_re;
-	if (csrbank4_writer_table_reset0_re) begin
-		litepciedma2_writer_table_reset_storage <= csrbank4_writer_table_reset0_r;
+	litepciedma2_writer_loop_prog_n_re <= csr_bankarray_csrbank4_writer_table_loop_prog_n0_re;
+	litepciedma2_writer_loop_status_re <= csr_bankarray_csrbank4_writer_table_loop_status_re;
+	litepciedma2_writer_dmaDescriptorCnt_re <= csr_bankarray_csrbank4_writer_table_dmaDescriptorCnt_re;
+	litepciedma2_writer_level_re <= csr_bankarray_csrbank4_writer_table_level_re;
+	if (csr_bankarray_csrbank4_writer_table_reset0_re) begin
+		litepciedma2_writer_reset_storage <= csr_bankarray_csrbank4_writer_table_reset0_r;
 	end
-	litepciedma2_writer_table_reset_re <= csrbank4_writer_table_reset0_re;
-	if (csrbank4_reader_enable0_re) begin
-		litepciedma2_reader_enable_storage <= csrbank4_reader_enable0_r;
+	litepciedma2_writer_reset_re <= csr_bankarray_csrbank4_writer_table_reset0_re;
+	if (csr_bankarray_csrbank4_reader_enable0_re) begin
+		litepciedma2_reader_enable_storage <= csr_bankarray_csrbank4_reader_enable0_r;
 	end
-	litepciedma2_reader_enable_re <= csrbank4_reader_enable0_re;
-	if (csrbank4_reader_table_value1_re) begin
-		litepciedma2_reader_table_value_storage[57:32] <= csrbank4_reader_table_value1_r;
+	litepciedma2_reader_enable_re <= csr_bankarray_csrbank4_reader_enable0_re;
+	if (csr_bankarray_csrbank4_reader_table_value1_re) begin
+		litepciedma2_reader_table_value_storage[57:32] <= csr_bankarray_csrbank4_reader_table_value1_r;
 	end
-	if (csrbank4_reader_table_value0_re) begin
-		litepciedma2_reader_table_value_storage[31:0] <= csrbank4_reader_table_value0_r;
+	if (csr_bankarray_csrbank4_reader_table_value0_re) begin
+		litepciedma2_reader_table_value_storage[31:0] <= csr_bankarray_csrbank4_reader_table_value0_r;
 	end
-	litepciedma2_reader_table_value_re <= csrbank4_reader_table_value0_re;
-	if (csrbank4_reader_table_we0_re) begin
-		litepciedma2_reader_table_we_storage[31:0] <= csrbank4_reader_table_we0_r;
+	litepciedma2_reader_table_value_re <= csr_bankarray_csrbank4_reader_table_value0_re;
+	if (csr_bankarray_csrbank4_reader_table_we0_re) begin
+		litepciedma2_reader_table_we_storage[31:0] <= csr_bankarray_csrbank4_reader_table_we0_r;
 	end
-	litepciedma2_reader_table_we_re <= csrbank4_reader_table_we0_re;
-	if (csrbank4_reader_table_loop_prog_n0_re) begin
-		litepciedma2_reader_table_loop_prog_n_storage <= csrbank4_reader_table_loop_prog_n0_r;
+	litepciedma2_reader_table_we_re <= csr_bankarray_csrbank4_reader_table_we0_re;
+	if (csr_bankarray_csrbank4_reader_table_loop_prog_n0_re) begin
+		litepciedma2_reader_table_loop_prog_n_storage <= csr_bankarray_csrbank4_reader_table_loop_prog_n0_r;
 	end
-	litepciedma2_reader_table_loop_prog_n_re <= csrbank4_reader_table_loop_prog_n0_re;
-	litepciedma2_reader_table_loop_status_re <= csrbank4_reader_table_loop_status_re;
-	litepciedma2_reader_table_level_re <= csrbank4_reader_table_level_re;
-	if (csrbank4_reader_table_reset0_re) begin
-		litepciedma2_reader_table_reset_storage <= csrbank4_reader_table_reset0_r;
+	litepciedma2_reader_table_loop_prog_n_re <= csr_bankarray_csrbank4_reader_table_loop_prog_n0_re;
+	litepciedma2_reader_table_loop_status_re <= csr_bankarray_csrbank4_reader_table_loop_status_re;
+	litepciedma2_reader_table_dmaDescriptorCnt_re <= csr_bankarray_csrbank4_reader_table_dmaDescriptorCnt_re;
+	litepciedma2_reader_table_level_re <= csr_bankarray_csrbank4_reader_table_level_re;
+	if (csr_bankarray_csrbank4_reader_table_reset0_re) begin
+		litepciedma2_reader_table_reset_storage <= csr_bankarray_csrbank4_reader_table_reset0_r;
 	end
-	litepciedma2_reader_table_reset_re <= csrbank4_reader_table_reset0_re;
-	if (csrbank4_buffering_reader_fifo_control0_re) begin
-		litepciedma2_buffering_reader_fifo_control_storage[31:0] <= csrbank4_buffering_reader_fifo_control0_r;
+	litepciedma2_reader_table_reset_re <= csr_bankarray_csrbank4_reader_table_reset0_re;
+	if (csr_bankarray_csrbank4_buffering_reader_fifo_control0_re) begin
+		litepciedma2_buffering_reader_fifo_control_storage[31:0] <= csr_bankarray_csrbank4_buffering_reader_fifo_control0_r;
 	end
-	litepciedma2_buffering_reader_fifo_control_re <= csrbank4_buffering_reader_fifo_control0_re;
-	litepciedma2_buffering_reader_fifo_status_re <= csrbank4_buffering_reader_fifo_status_re;
-	if (csrbank4_buffering_writer_fifo_control0_re) begin
-		litepciedma2_buffering_writer_fifo_control_storage[31:0] <= csrbank4_buffering_writer_fifo_control0_r;
+	litepciedma2_buffering_reader_fifo_control_re <= csr_bankarray_csrbank4_buffering_reader_fifo_control0_re;
+	litepciedma2_buffering_reader_fifo_status_re <= csr_bankarray_csrbank4_buffering_reader_fifo_status_re;
+	if (csr_bankarray_csrbank4_buffering_writer_fifo_control0_re) begin
+		litepciedma2_buffering_writer_fifo_control_storage[31:0] <= csr_bankarray_csrbank4_buffering_writer_fifo_control0_r;
 	end
-	litepciedma2_buffering_writer_fifo_control_re <= csrbank4_buffering_writer_fifo_control0_re;
-	litepciedma2_buffering_writer_fifo_status_re <= csrbank4_buffering_writer_fifo_status_re;
-	interface6_dat_r <= 1'd0;
-	if (csrbank5_sel) begin
-		case (interface6_adr[8:0])
+	litepciedma2_buffering_writer_fifo_control_re <= csr_bankarray_csrbank4_buffering_writer_fifo_control0_re;
+	litepciedma2_buffering_writer_fifo_status_re <= csr_bankarray_csrbank4_buffering_writer_fifo_status_re;
+	csr_bankarray_interface5_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank5_sel) begin
+		case (csr_bankarray_interface5_bank_bus_adr[8:0])
 			1'd0: begin
-				interface6_dat_r <= csrbank5_enable0_w;
+				csr_bankarray_interface5_bank_bus_dat_r <= csr_bankarray_csrbank5_enable0_w;
 			end
 			1'd1: begin
-				interface6_dat_r <= csrbank5_clear0_w;
+				csr_bankarray_interface5_bank_bus_dat_r <= csr_bankarray_csrbank5_clear0_w;
 			end
 			2'd2: begin
-				interface6_dat_r <= csrbank5_vector_w;
+				csr_bankarray_interface5_bank_bus_dat_r <= csr_bankarray_csrbank5_vector_w;
 			end
 		endcase
 	end
-	if (csrbank5_enable0_re) begin
-		pcie_msi_enable_storage[31:0] <= csrbank5_enable0_r;
+	if (csr_bankarray_csrbank5_enable0_re) begin
+		pcie_msi_enable_storage[31:0] <= csr_bankarray_csrbank5_enable0_r;
 	end
-	pcie_msi_enable_re <= csrbank5_enable0_re;
-	if (csrbank5_clear0_re) begin
-		pcie_msi_clear_storage[31:0] <= csrbank5_clear0_r;
+	pcie_msi_enable_re <= csr_bankarray_csrbank5_enable0_re;
+	if (csr_bankarray_csrbank5_clear0_re) begin
+		pcie_msi_clear_storage[31:0] <= csr_bankarray_csrbank5_clear0_r;
 	end
-	pcie_msi_clear_re <= csrbank5_clear0_re;
-	pcie_msi_vector_re <= csrbank5_vector_re;
-	interface7_dat_r <= 1'd0;
-	if (csrbank6_sel) begin
-		case (interface7_adr[8:0])
+	pcie_msi_clear_re <= csr_bankarray_csrbank5_clear0_re;
+	pcie_msi_vector_re <= csr_bankarray_csrbank5_vector_re;
+	csr_bankarray_interface6_bank_bus_dat_r <= 1'd0;
+	if (csr_bankarray_csrbank6_sel) begin
+		case (csr_bankarray_interface6_bank_bus_adr[8:0])
 			1'd0: begin
-				interface7_dat_r <= csrbank6_link_status_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_link_status_w;
 			end
 			1'd1: begin
-				interface7_dat_r <= csrbank6_msi_enable_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_msi_enable_w;
 			end
 			2'd2: begin
-				interface7_dat_r <= csrbank6_msix_enable_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_msix_enable_w;
 			end
 			2'd3: begin
-				interface7_dat_r <= csrbank6_bus_master_enable_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_bus_master_enable_w;
 			end
 			3'd4: begin
-				interface7_dat_r <= csrbank6_max_request_size_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_max_request_size_w;
 			end
 			3'd5: begin
-				interface7_dat_r <= csrbank6_max_payload_size_w;
+				csr_bankarray_interface6_bank_bus_dat_r <= csr_bankarray_csrbank6_max_payload_size_w;
 			end
 		endcase
 	end
-	s7pciephy_link_status_re <= csrbank6_link_status_re;
-	s7pciephy_msi_enable_re <= csrbank6_msi_enable_re;
-	s7pciephy_msix_enable_re <= csrbank6_msix_enable_re;
-	s7pciephy_bus_master_enable_re <= csrbank6_bus_master_enable_re;
-	s7pciephy_max_request_size_re <= csrbank6_max_request_size_re;
-	s7pciephy_max_payload_size_re <= csrbank6_max_payload_size_re;
+	s7pciephy_link_status_re <= csr_bankarray_csrbank6_link_status_re;
+	s7pciephy_msi_enable_re <= csr_bankarray_csrbank6_msi_enable_re;
+	s7pciephy_msix_enable_re <= csr_bankarray_csrbank6_msix_enable_re;
+	s7pciephy_bus_master_enable_re <= csr_bankarray_csrbank6_bus_master_enable_re;
+	s7pciephy_max_request_size_re <= csr_bankarray_csrbank6_max_request_size_re;
+	s7pciephy_max_payload_size_re <= csr_bankarray_csrbank6_max_payload_size_re;
 	if (sys_rst) begin
 		reset_storage <= 2'd0;
 		reset_re <= 1'd0;
@@ -12082,34 +12028,31 @@ always @(posedge sys_clk) begin
 		CNTRL_enable_both_re <= 1'd0;
 		litepciedma0_writer_enable_storage <= 1'd0;
 		litepciedma0_writer_enable_re <= 1'd0;
-		litepciedma0_writer_table_value_re <= 1'd0;
-		litepciedma0_writer_table_we_storage <= 32'd0;
-		litepciedma0_writer_table_we_re <= 1'd0;
-		litepciedma0_writer_table_loop_prog_n_storage <= 1'd0;
-		litepciedma0_writer_table_loop_prog_n_re <= 1'd0;
-		litepciedma0_writer_table_index <= 16'd0;
-		litepciedma0_writer_table_count <= 16'd0;
-		litepciedma0_writer_table_loop_status_re <= 1'd0;
-		litepciedma0_writer_table_level_re <= 1'd0;
-		litepciedma0_writer_table_reset_storage <= 1'd0;
-		litepciedma0_writer_table_reset_re <= 1'd0;
-		litepciedma0_writer_table_table_sink_valid <= 1'd0;
-		litepciedma0_writer_table_table_sink_payload_address <= 32'd0;
-		litepciedma0_writer_table_table_sink_payload_length <= 24'd0;
-		litepciedma0_writer_table_table_sink_payload_irq_disable <= 1'd0;
-		litepciedma0_writer_table_table_sink_payload_last_disable <= 1'd0;
-		litepciedma0_writer_table_table_level <= 9'd0;
-		litepciedma0_writer_table_table_produce <= 8'd0;
-		litepciedma0_writer_table_table_consume <= 8'd0;
+		litepciedma0_writer_value_re <= 1'd0;
+		litepciedma0_writer_we_storage <= 32'd0;
+		litepciedma0_writer_we_re <= 1'd0;
+		litepciedma0_writer_loop_prog_n_storage <= 1'd0;
+		litepciedma0_writer_loop_prog_n_re <= 1'd0;
+		litepciedma0_writer_index <= 16'd0;
+		litepciedma0_writer_count <= 16'd0;
+		litepciedma0_writer_loop_status_re <= 1'd0;
+		litepciedma0_writer_dmaCnt <= 32'd0;
+		litepciedma0_writer_dmaDescriptorCnt_re <= 1'd0;
+		litepciedma0_writer_level_re <= 1'd0;
+		litepciedma0_writer_reset_storage <= 1'd0;
+		litepciedma0_writer_reset_re <= 1'd0;
+		litepciedma0_writer_table_sink_valid <= 1'd0;
+		litepciedma0_writer_table_sink_payload_address <= 32'd0;
+		litepciedma0_writer_table_sink_payload_length <= 24'd0;
+		litepciedma0_writer_table_sink_payload_irq_disable <= 1'd0;
+		litepciedma0_writer_table_sink_payload_last_disable <= 1'd0;
+		litepciedma0_writer_table_level <= 9'd0;
+		litepciedma0_writer_table_produce <= 8'd0;
+		litepciedma0_writer_table_consume <= 8'd0;
+		litepciedma0_writer_loop_first <= 1'd0;
 		litepciedma0_writer_splitter_desc_length <= 32'd0;
 		litepciedma0_writer_splitter_desc_offset <= 32'd0;
 		litepciedma0_writer_splitter_desc_id <= 32'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma0_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
 		litepciedma0_writer_data_fifo_readable <= 1'd0;
 		litepciedma0_writer_data_fifo_level0 <= 8'd0;
 		litepciedma0_writer_data_fifo_produce <= 7'd0;
@@ -12126,6 +12069,8 @@ always @(posedge sys_clk) begin
 		litepciedma0_reader_table_index <= 16'd0;
 		litepciedma0_reader_table_count <= 16'd0;
 		litepciedma0_reader_table_loop_status_re <= 1'd0;
+		litepciedma0_reader_table_dmaCnt <= 32'd0;
+		litepciedma0_reader_table_dmaDescriptorCnt_re <= 1'd0;
 		litepciedma0_reader_table_level_re <= 1'd0;
 		litepciedma0_reader_table_reset_storage <= 1'd0;
 		litepciedma0_reader_table_reset_re <= 1'd0;
@@ -12137,6 +12082,7 @@ always @(posedge sys_clk) begin
 		litepciedma0_reader_table_table_level <= 9'd0;
 		litepciedma0_reader_table_table_produce <= 8'd0;
 		litepciedma0_reader_table_table_consume <= 8'd0;
+		litepciedma0_reader_table_loop_first <= 1'd0;
 		litepciedma0_reader_splitter_desc_length <= 32'd0;
 		litepciedma0_reader_splitter_desc_offset <= 32'd0;
 		litepciedma0_reader_splitter_desc_id <= 32'd0;
@@ -12174,34 +12120,31 @@ always @(posedge sys_clk) begin
 		bufferizeendpoints1_pipe_valid_source_payload_data <= 128'd0;
 		litepciedma1_writer_enable_storage <= 1'd0;
 		litepciedma1_writer_enable_re <= 1'd0;
-		litepciedma1_writer_table_value_re <= 1'd0;
-		litepciedma1_writer_table_we_storage <= 32'd0;
-		litepciedma1_writer_table_we_re <= 1'd0;
-		litepciedma1_writer_table_loop_prog_n_storage <= 1'd0;
-		litepciedma1_writer_table_loop_prog_n_re <= 1'd0;
-		litepciedma1_writer_table_index <= 16'd0;
-		litepciedma1_writer_table_count <= 16'd0;
-		litepciedma1_writer_table_loop_status_re <= 1'd0;
-		litepciedma1_writer_table_level_re <= 1'd0;
-		litepciedma1_writer_table_reset_storage <= 1'd0;
-		litepciedma1_writer_table_reset_re <= 1'd0;
-		litepciedma1_writer_table_table_sink_valid <= 1'd0;
-		litepciedma1_writer_table_table_sink_payload_address <= 32'd0;
-		litepciedma1_writer_table_table_sink_payload_length <= 24'd0;
-		litepciedma1_writer_table_table_sink_payload_irq_disable <= 1'd0;
-		litepciedma1_writer_table_table_sink_payload_last_disable <= 1'd0;
-		litepciedma1_writer_table_table_level <= 9'd0;
-		litepciedma1_writer_table_table_produce <= 8'd0;
-		litepciedma1_writer_table_table_consume <= 8'd0;
+		litepciedma1_writer_value_re <= 1'd0;
+		litepciedma1_writer_we_storage <= 32'd0;
+		litepciedma1_writer_we_re <= 1'd0;
+		litepciedma1_writer_loop_prog_n_storage <= 1'd0;
+		litepciedma1_writer_loop_prog_n_re <= 1'd0;
+		litepciedma1_writer_index <= 16'd0;
+		litepciedma1_writer_count <= 16'd0;
+		litepciedma1_writer_loop_status_re <= 1'd0;
+		litepciedma1_writer_dmaCnt <= 32'd0;
+		litepciedma1_writer_dmaDescriptorCnt_re <= 1'd0;
+		litepciedma1_writer_level_re <= 1'd0;
+		litepciedma1_writer_reset_storage <= 1'd0;
+		litepciedma1_writer_reset_re <= 1'd0;
+		litepciedma1_writer_table_sink_valid <= 1'd0;
+		litepciedma1_writer_table_sink_payload_address <= 32'd0;
+		litepciedma1_writer_table_sink_payload_length <= 24'd0;
+		litepciedma1_writer_table_sink_payload_irq_disable <= 1'd0;
+		litepciedma1_writer_table_sink_payload_last_disable <= 1'd0;
+		litepciedma1_writer_table_level <= 9'd0;
+		litepciedma1_writer_table_produce <= 8'd0;
+		litepciedma1_writer_table_consume <= 8'd0;
+		litepciedma1_writer_loop_first <= 1'd0;
 		litepciedma1_writer_splitter_desc_length <= 32'd0;
 		litepciedma1_writer_splitter_desc_offset <= 32'd0;
 		litepciedma1_writer_splitter_desc_id <= 32'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma1_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
 		litepciedma1_writer_data_fifo_readable <= 1'd0;
 		litepciedma1_writer_data_fifo_level0 <= 8'd0;
 		litepciedma1_writer_data_fifo_produce <= 7'd0;
@@ -12218,6 +12161,8 @@ always @(posedge sys_clk) begin
 		litepciedma1_reader_table_index <= 16'd0;
 		litepciedma1_reader_table_count <= 16'd0;
 		litepciedma1_reader_table_loop_status_re <= 1'd0;
+		litepciedma1_reader_table_dmaCnt <= 32'd0;
+		litepciedma1_reader_table_dmaDescriptorCnt_re <= 1'd0;
 		litepciedma1_reader_table_level_re <= 1'd0;
 		litepciedma1_reader_table_reset_storage <= 1'd0;
 		litepciedma1_reader_table_reset_re <= 1'd0;
@@ -12229,6 +12174,7 @@ always @(posedge sys_clk) begin
 		litepciedma1_reader_table_table_level <= 9'd0;
 		litepciedma1_reader_table_table_produce <= 8'd0;
 		litepciedma1_reader_table_table_consume <= 8'd0;
+		litepciedma1_reader_table_loop_first <= 1'd0;
 		litepciedma1_reader_splitter_desc_length <= 32'd0;
 		litepciedma1_reader_splitter_desc_offset <= 32'd0;
 		litepciedma1_reader_splitter_desc_id <= 32'd0;
@@ -12266,34 +12212,31 @@ always @(posedge sys_clk) begin
 		bufferizeendpoints3_pipe_valid_source_payload_data <= 128'd0;
 		litepciedma2_writer_enable_storage <= 1'd0;
 		litepciedma2_writer_enable_re <= 1'd0;
-		litepciedma2_writer_table_value_re <= 1'd0;
-		litepciedma2_writer_table_we_storage <= 32'd0;
-		litepciedma2_writer_table_we_re <= 1'd0;
-		litepciedma2_writer_table_loop_prog_n_storage <= 1'd0;
-		litepciedma2_writer_table_loop_prog_n_re <= 1'd0;
-		litepciedma2_writer_table_index <= 16'd0;
-		litepciedma2_writer_table_count <= 16'd0;
-		litepciedma2_writer_table_loop_status_re <= 1'd0;
-		litepciedma2_writer_table_level_re <= 1'd0;
-		litepciedma2_writer_table_reset_storage <= 1'd0;
-		litepciedma2_writer_table_reset_re <= 1'd0;
-		litepciedma2_writer_table_table_sink_valid <= 1'd0;
-		litepciedma2_writer_table_table_sink_payload_address <= 32'd0;
-		litepciedma2_writer_table_table_sink_payload_length <= 24'd0;
-		litepciedma2_writer_table_table_sink_payload_irq_disable <= 1'd0;
-		litepciedma2_writer_table_table_sink_payload_last_disable <= 1'd0;
-		litepciedma2_writer_table_table_level <= 9'd0;
-		litepciedma2_writer_table_table_produce <= 8'd0;
-		litepciedma2_writer_table_table_consume <= 8'd0;
+		litepciedma2_writer_value_re <= 1'd0;
+		litepciedma2_writer_we_storage <= 32'd0;
+		litepciedma2_writer_we_re <= 1'd0;
+		litepciedma2_writer_loop_prog_n_storage <= 1'd0;
+		litepciedma2_writer_loop_prog_n_re <= 1'd0;
+		litepciedma2_writer_index <= 16'd0;
+		litepciedma2_writer_count <= 16'd0;
+		litepciedma2_writer_loop_status_re <= 1'd0;
+		litepciedma2_writer_dmaCnt <= 32'd0;
+		litepciedma2_writer_dmaDescriptorCnt_re <= 1'd0;
+		litepciedma2_writer_level_re <= 1'd0;
+		litepciedma2_writer_reset_storage <= 1'd0;
+		litepciedma2_writer_reset_re <= 1'd0;
+		litepciedma2_writer_table_sink_valid <= 1'd0;
+		litepciedma2_writer_table_sink_payload_address <= 32'd0;
+		litepciedma2_writer_table_sink_payload_length <= 24'd0;
+		litepciedma2_writer_table_sink_payload_irq_disable <= 1'd0;
+		litepciedma2_writer_table_sink_payload_last_disable <= 1'd0;
+		litepciedma2_writer_table_level <= 9'd0;
+		litepciedma2_writer_table_produce <= 8'd0;
+		litepciedma2_writer_table_consume <= 8'd0;
+		litepciedma2_writer_loop_first <= 1'd0;
 		litepciedma2_writer_splitter_desc_length <= 32'd0;
 		litepciedma2_writer_splitter_desc_offset <= 32'd0;
 		litepciedma2_writer_splitter_desc_id <= 32'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_valid <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_address <= 32'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_length <= 24'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_irq_disable <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_last_disable <= 1'd0;
-		litepciedma2_writer_splitter_pipe_valid_source_payload_user_id <= 8'd0;
 		litepciedma2_writer_data_fifo_readable <= 1'd0;
 		litepciedma2_writer_data_fifo_level0 <= 8'd0;
 		litepciedma2_writer_data_fifo_produce <= 7'd0;
@@ -12310,6 +12253,8 @@ always @(posedge sys_clk) begin
 		litepciedma2_reader_table_index <= 16'd0;
 		litepciedma2_reader_table_count <= 16'd0;
 		litepciedma2_reader_table_loop_status_re <= 1'd0;
+		litepciedma2_reader_table_dmaCnt <= 32'd0;
+		litepciedma2_reader_table_dmaDescriptorCnt_re <= 1'd0;
 		litepciedma2_reader_table_level_re <= 1'd0;
 		litepciedma2_reader_table_reset_storage <= 1'd0;
 		litepciedma2_reader_table_reset_re <= 1'd0;
@@ -12321,6 +12266,7 @@ always @(posedge sys_clk) begin
 		litepciedma2_reader_table_table_level <= 9'd0;
 		litepciedma2_reader_table_table_produce <= 8'd0;
 		litepciedma2_reader_table_table_consume <= 8'd0;
+		litepciedma2_reader_table_loop_first <= 1'd0;
 		litepciedma2_reader_splitter_desc_length <= 32'd0;
 		litepciedma2_reader_splitter_desc_offset <= 32'd0;
 		litepciedma2_reader_splitter_desc_id <= 32'd0;
@@ -12363,7 +12309,7 @@ always @(posedge sys_clk) begin
 		pcie_msi_vector_re <= 1'd0;
 		pcie_msi_vector <= 32'd0;
 		pcie_msi_msi <= 32'd0;
-		mmap_sel_r <= 1'd0;
+		csr_bankarray_sel_r <= 1'd0;
 		litepciecore_litepcieendpoint_state <= 2'd0;
 		litepciecore_litepcieendpoint_litepcietlpheaderinserter128b3dws_state <= 1'd0;
 		litepciecore_litepcieendpoint_litepcietlpheaderinserter128b4dws_state <= 1'd0;
@@ -12436,59 +12382,59 @@ always @(posedge sys_clk) begin
 		litepciecore_litepcieendpoint_fsm0_state <= 2'd0;
 		litepciecore_litepcieendpoint_fsm1_state <= 2'd0;
 		litepciecore_litepciewishbonemaster_state <= 2'd0;
-		litepciecore_bufferizeendpoints0_state0 <= 1'd0;
+		litepciecore_resetinserter0_state <= 1'd0;
 		litepciecore_fsm0_state0 <= 1'd0;
-		litepciecore_bufferizeendpoints0_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints0_state <= 1'd0;
 		litepciecore_fsm0_state1 <= 1'd0;
-		litepciecore_bufferizeendpoints1_state0 <= 1'd0;
+		litepciecore_resetinserter1_state <= 1'd0;
 		litepciecore_fsm1_state0 <= 1'd0;
-		litepciecore_bufferizeendpoints1_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints1_state <= 1'd0;
 		litepciecore_fsm1_state1 <= 1'd0;
-		litepciecore_bufferizeendpoints2_state0 <= 1'd0;
+		litepciecore_resetinserter2_state <= 1'd0;
 		litepciecore_fsm2_state0 <= 1'd0;
-		litepciecore_bufferizeendpoints2_state1 <= 1'd0;
+		litepciecore_bufferizeendpoints2_state <= 1'd0;
 		litepciecore_fsm2_state1 <= 1'd0;
 		litepciecore_wishbone2csr_state <= 1'd0;
 	end
-	xilinxmultiregimpl6_xilinxmultiregimpl60 <= s7pciephy_command[2];
-	xilinxmultiregimpl6_xilinxmultiregimpl61 <= xilinxmultiregimpl6_xilinxmultiregimpl60;
-	xilinxmultiregimpl70 <= s7pciephy_max_request_size;
-	xilinxmultiregimpl71 <= xilinxmultiregimpl70;
-	xilinxmultiregimpl80 <= s7pciephy_max_payload_size;
-	xilinxmultiregimpl81 <= xilinxmultiregimpl80;
+	xilinxmultiregimpl6_regs0 <= s7pciephy_command[2];
+	xilinxmultiregimpl6_regs1 <= xilinxmultiregimpl6_regs0;
+	xilinxmultiregimpl7_regs0 <= s7pciephy_max_request_size;
+	xilinxmultiregimpl7_regs1 <= xilinxmultiregimpl7_regs0;
+	xilinxmultiregimpl8_regs0 <= s7pciephy_max_payload_size;
+	xilinxmultiregimpl8_regs1 <= xilinxmultiregimpl8_regs0;
 end
 
-always @(posedge to2594933811536_clk) begin
-	s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_binary <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_next_binary;
-	s7pciephy_tx_datapath_cdc_cdc_graycounter1_q <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_next;
-	if (to2594933811536_rst) begin
-		s7pciephy_tx_datapath_cdc_cdc_graycounter1_q <= 3'd0;
-		s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_binary <= 3'd0;
-	end
-	xilinxmultiregimpl00 <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q;
-	xilinxmultiregimpl01 <= xilinxmultiregimpl00;
-end
-
-always @(posedge to2594934206720_clk) begin
-	s7pciephy_msi_cdc_cdc_graycounter1_q_binary <= s7pciephy_msi_cdc_cdc_graycounter1_q_next_binary;
-	s7pciephy_msi_cdc_cdc_graycounter1_q <= s7pciephy_msi_cdc_cdc_graycounter1_q_next;
-	if (to2594934206720_rst) begin
-		s7pciephy_msi_cdc_cdc_graycounter1_q <= 3'd0;
-		s7pciephy_msi_cdc_cdc_graycounter1_q_binary <= 3'd0;
-	end
-	xilinxmultiregimpl40 <= s7pciephy_msi_cdc_cdc_graycounter0_q;
-	xilinxmultiregimpl41 <= xilinxmultiregimpl40;
-end
-
-always @(posedge to2594934547712_clk) begin
+always @(posedge to140314895575840_clk) begin
 	s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_binary <= s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_next_binary;
 	s7pciephy_rx_datapath_cdc_cdc_graycounter1_q <= s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_next;
-	if (to2594934547712_rst) begin
+	if (to140314895575840_rst) begin
 		s7pciephy_rx_datapath_cdc_cdc_graycounter1_q <= 3'd0;
 		s7pciephy_rx_datapath_cdc_cdc_graycounter1_q_binary <= 3'd0;
 	end
-	xilinxmultiregimpl20 <= s7pciephy_rx_datapath_cdc_cdc_graycounter0_q;
-	xilinxmultiregimpl21 <= xilinxmultiregimpl20;
+	xilinxmultiregimpl2_regs0 <= s7pciephy_rx_datapath_cdc_cdc_graycounter0_q;
+	xilinxmultiregimpl2_regs1 <= xilinxmultiregimpl2_regs0;
+end
+
+always @(posedge to140314895828592_clk) begin
+	s7pciephy_msi_cdc_cdc_graycounter1_q_binary <= s7pciephy_msi_cdc_cdc_graycounter1_q_next_binary;
+	s7pciephy_msi_cdc_cdc_graycounter1_q <= s7pciephy_msi_cdc_cdc_graycounter1_q_next;
+	if (to140314895828592_rst) begin
+		s7pciephy_msi_cdc_cdc_graycounter1_q <= 3'd0;
+		s7pciephy_msi_cdc_cdc_graycounter1_q_binary <= 3'd0;
+	end
+	xilinxmultiregimpl4_regs0 <= s7pciephy_msi_cdc_cdc_graycounter0_q;
+	xilinxmultiregimpl4_regs1 <= xilinxmultiregimpl4_regs0;
+end
+
+always @(posedge to140314895943952_clk) begin
+	s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_binary <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_next_binary;
+	s7pciephy_tx_datapath_cdc_cdc_graycounter1_q <= s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_next;
+	if (to140314895943952_rst) begin
+		s7pciephy_tx_datapath_cdc_cdc_graycounter1_q <= 3'd0;
+		s7pciephy_tx_datapath_cdc_cdc_graycounter1_q_binary <= 3'd0;
+	end
+	xilinxmultiregimpl0_regs0 <= s7pciephy_tx_datapath_cdc_cdc_graycounter0_q;
+	xilinxmultiregimpl0_regs1 <= xilinxmultiregimpl0_regs0;
 end
 
 
@@ -12506,9 +12452,9 @@ initial begin
 end
 reg [5:0] mem_adr0;
 always @(posedge sys_clk) begin
-	mem_adr0 <= mmap_adr;
+	mem_adr0 <= csr_bankarray_adr;
 end
-assign mmap_dat_r = mem[mem_adr0];
+assign csr_bankarray_dat_r = mem[mem_adr0];
 
 
 IBUFDS_GTE2 IBUFDS_GTE2(
@@ -12526,12 +12472,12 @@ IBUFDS_GTE2 IBUFDS_GTE2(
 reg [145:0] storage[0:3];
 reg [145:0] storage_dat0;
 reg [145:0] storage_dat1;
-always @(posedge from2594933811536_clk) begin
+always @(posedge from140314895943952_clk) begin
 	if (s7pciephy_tx_datapath_cdc_cdc_wrport_we)
 		storage[s7pciephy_tx_datapath_cdc_cdc_wrport_adr] <= s7pciephy_tx_datapath_cdc_cdc_wrport_dat_w;
 	storage_dat0 <= storage[s7pciephy_tx_datapath_cdc_cdc_wrport_adr];
 end
-always @(posedge to2594933811536_clk) begin
+always @(posedge to140314895943952_clk) begin
 	storage_dat1 <= storage[s7pciephy_tx_datapath_cdc_cdc_rdport_adr];
 end
 assign s7pciephy_tx_datapath_cdc_cdc_wrport_dat_r = storage_dat0;
@@ -12546,12 +12492,12 @@ assign s7pciephy_tx_datapath_cdc_cdc_rdport_dat_r = storage_dat1;
 reg [145:0] storage_1[0:3];
 reg [145:0] storage_1_dat0;
 reg [145:0] storage_1_dat1;
-always @(posedge from2594934547712_clk) begin
+always @(posedge from140314895575840_clk) begin
 	if (s7pciephy_rx_datapath_cdc_cdc_wrport_we)
 		storage_1[s7pciephy_rx_datapath_cdc_cdc_wrport_adr] <= s7pciephy_rx_datapath_cdc_cdc_wrport_dat_w;
 	storage_1_dat0 <= storage_1[s7pciephy_rx_datapath_cdc_cdc_wrport_adr];
 end
-always @(posedge to2594934547712_clk) begin
+always @(posedge to140314895575840_clk) begin
 	storage_1_dat1 <= storage_1[s7pciephy_rx_datapath_cdc_cdc_rdport_adr];
 end
 assign s7pciephy_rx_datapath_cdc_cdc_wrport_dat_r = storage_1_dat0;
@@ -12566,12 +12512,12 @@ assign s7pciephy_rx_datapath_cdc_cdc_rdport_dat_r = storage_1_dat1;
 reg [9:0] storage_2[0:3];
 reg [9:0] storage_2_dat0;
 reg [9:0] storage_2_dat1;
-always @(posedge from2594934206720_clk) begin
+always @(posedge from140314895828592_clk) begin
 	if (s7pciephy_msi_cdc_cdc_wrport_we)
 		storage_2[s7pciephy_msi_cdc_cdc_wrport_adr] <= s7pciephy_msi_cdc_cdc_wrport_dat_w;
 	storage_2_dat0 <= storage_2[s7pciephy_msi_cdc_cdc_wrport_adr];
 end
-always @(posedge to2594934206720_clk) begin
+always @(posedge to140314895828592_clk) begin
 	storage_2_dat1 <= storage_2[s7pciephy_msi_cdc_cdc_rdport_adr];
 end
 assign s7pciephy_msi_cdc_cdc_wrport_dat_r = storage_2_dat0;
@@ -12586,14 +12532,14 @@ assign s7pciephy_msi_cdc_cdc_rdport_dat_r = storage_2_dat1;
 reg [59:0] storage_3[0:255];
 reg [59:0] storage_3_dat0;
 always @(posedge sys_clk) begin
-	if (litepciedma0_writer_table_table_wrport_we)
-		storage_3[litepciedma0_writer_table_table_wrport_adr] <= litepciedma0_writer_table_table_wrport_dat_w;
-	storage_3_dat0 <= storage_3[litepciedma0_writer_table_table_wrport_adr];
+	if (litepciedma0_writer_table_wrport_we)
+		storage_3[litepciedma0_writer_table_wrport_adr] <= litepciedma0_writer_table_wrport_dat_w;
+	storage_3_dat0 <= storage_3[litepciedma0_writer_table_wrport_adr];
 end
 always @(posedge sys_clk) begin
 end
-assign litepciedma0_writer_table_table_wrport_dat_r = storage_3_dat0;
-assign litepciedma0_writer_table_table_rdport_dat_r = storage_3[litepciedma0_writer_table_table_rdport_adr];
+assign litepciedma0_writer_table_wrport_dat_r = storage_3_dat0;
+assign litepciedma0_writer_table_rdport_dat_r = storage_3[litepciedma0_writer_table_rdport_adr];
 
 
 //------------------------------------------------------------------------------
@@ -12706,14 +12652,14 @@ assign litepciedma0_buffering_writer_fifo_rdport_dat_r = storage_8_dat1;
 reg [59:0] storage_9[0:255];
 reg [59:0] storage_9_dat0;
 always @(posedge sys_clk) begin
-	if (litepciedma1_writer_table_table_wrport_we)
-		storage_9[litepciedma1_writer_table_table_wrport_adr] <= litepciedma1_writer_table_table_wrport_dat_w;
-	storage_9_dat0 <= storage_9[litepciedma1_writer_table_table_wrport_adr];
+	if (litepciedma1_writer_table_wrport_we)
+		storage_9[litepciedma1_writer_table_wrport_adr] <= litepciedma1_writer_table_wrport_dat_w;
+	storage_9_dat0 <= storage_9[litepciedma1_writer_table_wrport_adr];
 end
 always @(posedge sys_clk) begin
 end
-assign litepciedma1_writer_table_table_wrport_dat_r = storage_9_dat0;
-assign litepciedma1_writer_table_table_rdport_dat_r = storage_9[litepciedma1_writer_table_table_rdport_adr];
+assign litepciedma1_writer_table_wrport_dat_r = storage_9_dat0;
+assign litepciedma1_writer_table_rdport_dat_r = storage_9[litepciedma1_writer_table_rdport_adr];
 
 
 //------------------------------------------------------------------------------
@@ -12826,14 +12772,14 @@ assign litepciedma1_buffering_writer_fifo_rdport_dat_r = storage_14_dat1;
 reg [59:0] storage_15[0:255];
 reg [59:0] storage_15_dat0;
 always @(posedge sys_clk) begin
-	if (litepciedma2_writer_table_table_wrport_we)
-		storage_15[litepciedma2_writer_table_table_wrport_adr] <= litepciedma2_writer_table_table_wrport_dat_w;
-	storage_15_dat0 <= storage_15[litepciedma2_writer_table_table_wrport_adr];
+	if (litepciedma2_writer_table_wrport_we)
+		storage_15[litepciedma2_writer_table_wrport_adr] <= litepciedma2_writer_table_wrport_dat_w;
+	storage_15_dat0 <= storage_15[litepciedma2_writer_table_wrport_adr];
 end
 always @(posedge sys_clk) begin
 end
-assign litepciedma2_writer_table_table_wrport_dat_r = storage_15_dat0;
-assign litepciedma2_writer_table_table_rdport_dat_r = storage_15[litepciedma2_writer_table_table_rdport_adr];
+assign litepciedma2_writer_table_wrport_dat_r = storage_15_dat0;
+assign litepciedma2_writer_table_rdport_dat_r = storage_15[litepciedma2_writer_table_rdport_adr];
 
 
 //------------------------------------------------------------------------------
@@ -13355,7 +13301,7 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_2 (
-	.C(from2594933811536_clk),
+	.C(from140314895943952_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_tx_datapath_cdc_cd_rst),
@@ -13365,17 +13311,17 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_3 (
-	.C(from2594933811536_clk),
+	.C(from140314895943952_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl1_rst_meta),
 	.PRE(s7pciephy_tx_datapath_cdc_cd_rst),
-	.Q(from2594933811536_rst)
+	.Q(from140314895943952_rst)
 );
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_4 (
-	.C(to2594933811536_clk),
+	.C(to140314895943952_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_tx_datapath_cdc_cd_rst),
@@ -13385,17 +13331,17 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_5 (
-	.C(to2594933811536_clk),
+	.C(to140314895943952_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl2_rst_meta),
 	.PRE(s7pciephy_tx_datapath_cdc_cd_rst),
-	.Q(to2594933811536_rst)
+	.Q(to140314895943952_rst)
 );
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_6 (
-	.C(from2594934547712_clk),
+	.C(from140314895575840_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_rx_datapath_cdc_cd_rst),
@@ -13405,17 +13351,17 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_7 (
-	.C(from2594934547712_clk),
+	.C(from140314895575840_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl3_rst_meta),
 	.PRE(s7pciephy_rx_datapath_cdc_cd_rst),
-	.Q(from2594934547712_rst)
+	.Q(from140314895575840_rst)
 );
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_8 (
-	.C(to2594934547712_clk),
+	.C(to140314895575840_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_rx_datapath_cdc_cd_rst),
@@ -13425,17 +13371,17 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_9 (
-	.C(to2594934547712_clk),
+	.C(to140314895575840_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl4_rst_meta),
 	.PRE(s7pciephy_rx_datapath_cdc_cd_rst),
-	.Q(to2594934547712_rst)
+	.Q(to140314895575840_rst)
 );
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_10 (
-	.C(from2594934206720_clk),
+	.C(from140314895828592_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_msi_cdc_cd_rst),
@@ -13445,17 +13391,17 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_11 (
-	.C(from2594934206720_clk),
+	.C(from140314895828592_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl5_rst_meta),
 	.PRE(s7pciephy_msi_cdc_cd_rst),
-	.Q(from2594934206720_rst)
+	.Q(from140314895828592_rst)
 );
 
 (* ars_ff1 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_12 (
-	.C(to2594934206720_clk),
+	.C(to140314895828592_clk),
 	.CE(1'd1),
 	.D(1'd0),
 	.PRE(s7pciephy_msi_cdc_cd_rst),
@@ -13465,15 +13411,15 @@ assign litepciecore_litepcieendpoint_syncfifo7_rdport_dat_r = storage_30_dat1;
 (* ars_ff2 = "true", async_reg = "true" *) FDPE #(
 	.INIT(1'd1)
 ) FDPE_13 (
-	.C(to2594934206720_clk),
+	.C(to140314895828592_clk),
 	.CE(1'd1),
 	.D(xilinxasyncresetsynchronizerimpl6_rst_meta),
 	.PRE(s7pciephy_msi_cdc_cd_rst),
-	.Q(to2594934206720_rst)
+	.Q(to140314895828592_rst)
 );
 
 endmodule
 
 // -----------------------------------------------------------------------------
-//  Auto-Generated by LiteX on 2022-10-12 09:49:10.
+//  Auto-Generated by LiteX on 2022-11-03 16:39:21.
 //------------------------------------------------------------------------------

@@ -6,9 +6,9 @@ set_msg_config -id {Common 17-55} -new_severity {Warning}
 
 # Add Sources
 
-read_verilog {c:\users\servenikas\downloads\litex\litepcie\litepcie\phy\xilinx_s7_gen2\pcie_pipe_clock.v}
-read_verilog {c:\users\servenikas\downloads\litex\litepcie\litepcie\phy\xilinx_s7_gen2\pcie_s7_support.v}
-read_verilog {Z:\Work\5G_RADIO_00\Litepcie_gen\build\gateware\litepcie_core.v}
+read_verilog {/home/richard/software/litepcie/litepcie/phy/xilinx_s7_gen2/pcie_pipe_clock.v}
+read_verilog {/home/richard/software/litepcie/litepcie/phy/xilinx_s7_gen2/pcie_s7_support.v}
+read_verilog {/home/richard/projects/5G_RADIO_00/Litepcie_gen/build/gateware/litepcie_core.v}
 
 # Add EDIFs
 
