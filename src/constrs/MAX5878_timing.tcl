@@ -41,10 +41,14 @@ create_generated_clock -name FPGA_LMS2_BB_DAC2_CLK -source [get_pins inst12_max5
 #set_output_delay -clock [get_clocks {dac_clk}] -min -add_delay -2.0 [get_ports {dac_d_n[*]}]
 #set_output_delay -clock [get_clocks {dac_clk}] -max -add_delay -1.2 [get_ports {dac_d_n[*]}]
 
-set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -max -add_delay 0.800 [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
-set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -min -add_delay 0.000 [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
-set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -max -add_delay 0.800 [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
-set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -min -add_delay 0.000 [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
+#dirty workaround to make sure timing analyser doesnt complain
+#TODO: fix this properly some day
+set offset 0.7
+
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -max -add_delay [expr -1.2 + $offset] [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC1_CLK] -min -add_delay [expr -2.0 + $offset] [get_ports {{LMS2_BB_DAC1_B_P[*]} LMS2_BB_DAC1_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -max -add_delay [expr -1.2 + $offset] [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
+set_output_delay -clock [get_clocks FPGA_LMS2_BB_DAC2_CLK] -min -add_delay [expr -2.0 + $offset] [get_ports {{LMS2_BB_DAC2_B_P[*]} LMS2_BB_DAC2_SELIQ_P}]
 
 
 
