@@ -2407,6 +2407,39 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       from_memcfg          => inst0_from_memcfg -- B.J
    );
    
+   --RF switch control
+   inst13_rf_sw_ctrl : entity work.rf_sw_ctrl
+      port map (
+                CLK                => CLK100_FPGA,
+                CLK_LMS1           => LMS1_MCLK1,
+                CLK_LMS2           => inst1_pll_1_c1,
+                RESET_N            => '1',
+                FROM_PERIPHCFG     => inst0_from_periphcfg,
+                TO_PERIPHCFG       => inst0_to_periphcfg,
+                RFSW_LMS1_RX1_V1   => RFSW_LMS1_RX1_V1,
+                RFSW_LMS1_RX2_V1   => RFSW_LMS1_RX2_V1,
+                RFSW_LMS1_TX1_V1   => RFSW_LMS1_TX1_V1,
+                RFSW_LMS1_TX2_V1   => RFSW_LMS1_TX2_V1,
+                RFSW_LMS2_RX1C_V1  => RFSW_LMS2_RX1C_V1,
+                RFSW_LMS2_RX2IN_V1 => RFSW_LMS2_RX2IN_V1,
+                RFSW_LMS2_TRX1_V1  => RFSW_LMS2_TRX1_V1,
+                RFSW_LMS2_TRX1T_V1 => RFSW_LMS2_TRX1T_V1,
+                RFSW_LMS2_RX1IN_V1 => RFSW_LMS2_RX1IN_V1,
+                RFSW_LMS2_RX2C_V1  => RFSW_LMS2_RX2C_V1,
+                RFSW_LMS2_TRX2_V1  => RFSW_LMS2_TRX2_V1,
+                RFSW_LMS2_TRX2T_V1 => RFSW_LMS2_TRX2T_V1,
+                RFSW1_LMS3_RX1_V1  => RFSW1_LMS3_RX1_V1,
+                RFSW1_LMS3_RX2_V1  => RFSW1_LMS3_RX2_V1,
+                LMS1_TX1_EN        => LMS1_TX1_EN,
+                LMS1_TX2_EN        => LMS1_TX2_EN,
+                LMS2_TX1_1_EN      => LMS2_TX1_1_EN,
+                LMS2_TX2_1_EN      => LMS2_TX2_1_EN,
+                LMS2_RX1_LNA_SD    => LMS2_RX1_LNA_SD,
+                LMS2_RX2_LNA_SD    => LMS2_RX2_LNA_SD,
+                LMS1_TXANT_EN      => inst6_tx_ant_en,
+                LMS2_TXANT_EN      => inst12_tx_ant_en
+   );
+   
    
 --   inst18_IC_74HC595_top: entity work.IC_74HC595_top
 --   port map(
@@ -2513,33 +2546,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    --LNA2_BP_M            <= inst0_from_fpgacfg_mod_1.GPIO(9); -- 1 default
    ---- RF Switch LMS2 port 2
    --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
-   --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default
-
-   RFSW_LMS1_RX1_V1   <= inst0_from_periphcfg.RF_SWITCHES(11);
-   RFSW_LMS1_RX2_V1   <= inst0_from_periphcfg.RF_SWITCHES(10);
-   RFSW_LMS1_TX1_V1   <= inst0_from_periphcfg.RF_SWITCHES(13);
-   RFSW_LMS1_TX2_V1   <= inst0_from_periphcfg.RF_SWITCHES(12);
-         
-   RFSW_LMS2_RX1C_V1  <= inst0_from_periphcfg.RF_SWITCHES(2);
-   RFSW_LMS2_RX2IN_V1 <= inst0_from_periphcfg.RF_SWITCHES(5);
-   RFSW_LMS2_TRX1_V1  <= inst0_from_periphcfg.RF_SWITCHES(6);
-   RFSW_LMS2_TRX1T_V1 <= inst0_from_periphcfg.RF_SWITCHES(7);
-         
-   RFSW_LMS2_RX1IN_V1 <= inst0_from_periphcfg.RF_SWITCHES(3);
-   RFSW_LMS2_RX2C_V1  <= inst0_from_periphcfg.RF_SWITCHES(4);
-   RFSW_LMS2_TRX2_V1  <= inst0_from_periphcfg.RF_SWITCHES(8);
-   RFSW_LMS2_TRX2T_V1 <= inst0_from_periphcfg.RF_SWITCHES(9);
-         
-   RFSW1_LMS3_RX1_V1  <= inst0_from_periphcfg.RF_SWITCHES(0);
-   RFSW1_LMS3_RX2_V1  <= inst0_from_periphcfg.RF_SWITCHES(1);
-   
-   LMS1_TX1_EN     <= inst0_from_periphcfg.RF_AMP_CTRL(5);
-   LMS1_TX2_EN     <= inst0_from_periphcfg.RF_AMP_CTRL(4);
-   LMS2_TX1_1_EN   <= inst0_from_periphcfg.RF_AMP_CTRL(3);
-   LMS2_TX2_1_EN   <= inst0_from_periphcfg.RF_AMP_CTRL(2);
-   LMS2_RX1_LNA_SD <= inst0_from_periphcfg.RF_AMP_CTRL(1);
-   LMS2_RX2_LNA_SD <= inst0_from_periphcfg.RF_AMP_CTRL(0);
-   
+   --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default   
 
    CDCM_RESET_N         <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
    CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';

@@ -163,7 +163,7 @@ begin
 		if mreset = '0' then	
 			--Read only registers
 			mem(0)	<= "0100000000000000"; -- ADPD_BUFF_SIZE
-			mem(1)  <= "0000101000100000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
+			mem(1)  <= "0000100000100000"; -- 9 free, rf_sw(2:0),PAEN1,PAEN0,ADPD_CONT_CAP_EN,ADPD_CAP_EN
 			mem(2)	<= "0000000000000000"; -- adpd_config0(15:0) 
 			mem(3)	<= "0000000000000000"; -- adpd_config1(15:0)
 			mem(4)	<= "0000000000000000"; -- adpd_data(15:0)

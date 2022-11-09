@@ -135,11 +135,14 @@ begin
                when "00010" => dout_reg <= to_periphcfg.BOARD_GPIO_RD;
                when "01000" => dout_reg <= to_periphcfg.PERIPH_INPUT_RD_0;
                when "01001" => dout_reg <= to_periphcfg.PERIPH_INPUT_RD_1;
+               when 5d"17"  => dout_reg <= "00" & to_periphcfg.RF_SWITCHES;
+               when 5d"18"  => dout_reg <= "0000000000" & to_periphcfg.RF_AMP_CTRL;
                when others  => dout_reg <= mem(to_integer(unsigned(inst_reg(4 downto 0))));
             end case;
          end if;      
       end if;
    end process dout_reg_proc;
+   
    
    -- Tri state buffer to connect multiple serial interfaces in parallel
    --sdout <= dout_reg(7) when oe = '1' else 'Z';
@@ -216,5 +219,9 @@ begin
       from_periphcfg.PERIPH_OUTPUT_VAL_1  <= mem(15) (15 downto 0);
       from_periphcfg.RF_SWITCHES          <= mem(17) (13 downto 0); 
       from_periphcfg.RF_AMP_CTRL          <= mem(18) (5  downto 0);
+      from_periphcfg.LMS1_RFSW_MODE_A     <= mem(21) (3 downto 0);
+      from_periphcfg.LMS1_RFSW_MODE_B     <= mem(21) (7 downto 4);
+      from_periphcfg.LMS2_RFSW_MODE_A     <= mem(22) (3 downto 0);
+      from_periphcfg.LMS2_RFSW_MODE_B     <= mem(22) (7 downto 4);
 
 end periphcfg_arch;
