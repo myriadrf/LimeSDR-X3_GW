@@ -146,6 +146,9 @@ signal rf_amps_int_LMS1B : std_logic_vector(0 downto 0);-- is rf_amps_spi(4);
 signal rf_amps_int_LMS2A : std_logic_vector(1 downto 0);-- is rf_amps_spi(1) & rf_amps_spi(3);
 signal rf_amps_int_LMS2B : std_logic_vector(1 downto 0);-- is rf_amps_spi(0) & rf_amps_spi(2);
 
+signal lms1_txant_en_sync : std_logic;
+signal lms2_txant_en_sync : std_logic;
+
 begin
 
 
@@ -233,6 +236,23 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
     ------
     -- Control
     ------
+      LMS1_TXANTEN_sync : entity work.sync_reg
+      port map (
+                clk      => CLK_LMS1,
+                reset_n  => reset_n,
+                async_in => LMS1_TXANT_EN,
+                sync_out => lms1_txant_en_sync
+         );
+         
+      LMS2_TXANTEN_sync : entity work.sync_reg
+      port map (
+                clk      => CLK_LMS2,
+                reset_n  => reset_n,
+                async_in => LMS2_TXANT_EN,
+                sync_out => lms2_txant_en_sync
+         );
+    
+    
        LMS1_control_in_A : entity work.bus_sync_reg
           generic map (
                        bus_width => 4
@@ -404,7 +424,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force hi frequency tdd uplink/downlink control
             when "0011" =>
-                if LMS1_TXANT_EN = '1' then
+                if lms1_txant_en_sync = '1' then
                     rf_switches_int_LMS1A <= C_LMS1_HIFREQ_RFSW_DL_A;
                     rf_amps_int_LMS1A     <= C_LMS1_RFAMP_DL_A;
                 else
@@ -424,7 +444,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force lo frequency tdd uplink/downlink control
             when "0110" =>
-                if LMS1_TXANT_EN = '1' then
+                if lms1_txant_en_sync = '1' then
                     rf_switches_int_LMS1A <= C_LMS1_LOFREQ_RFSW_DL_A;
                     rf_amps_int_LMS1A     <= C_LMS1_RFAMP_DL_A;
                 else
@@ -462,7 +482,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force hi frequency tdd uplink/downlink control
             when "0011" =>
-                if LMS1_TXANT_EN = '1' then
+                if lms1_txant_en_sync = '1' then
                     rf_switches_int_LMS1B <= C_LMS1_HIFREQ_RFSW_DL_B;
                     rf_amps_int_LMS1B     <= C_LMS1_RFAMP_DL_B;
                 else
@@ -482,7 +502,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force lo frequency tdd uplink/downlink control
             when "0110" =>
-                if LMS1_TXANT_EN = '1' then
+                if lms1_txant_en_sync = '1' then
                     rf_switches_int_LMS1B <= C_LMS1_LOFREQ_RFSW_DL_B;
                     rf_amps_int_LMS1B     <= C_LMS1_RFAMP_DL_B;
                 else
@@ -519,7 +539,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force hi frequency tdd uplink/downlink control
             when "0011" =>
-                if LMS2_TXANT_EN = '1' then
+                if lms2_txant_en_sync = '1' then
                     rf_switches_int_LMS2A <= C_LMS2_RFSW_DL_A;
                     rf_amps_int_LMS2A     <= C_LMS2_RFAMP_DL_A;
                 else
@@ -556,7 +576,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
                 
             --Force hi frequency tdd uplink/downlink control
             when "0011" =>
-                if LMS2_TXANT_EN = '1' then
+                if lms2_txant_en_sync = '1' then
                     rf_switches_int_LMS2B <= C_LMS2_RFSW_DL_B;
                     rf_amps_int_LMS2B     <= C_LMS2_RFAMP_DL_B;
                 else
