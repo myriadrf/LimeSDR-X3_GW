@@ -21,6 +21,6 @@ package revisions is
 	constant compile_hour_stamp : integer := 08;
 	
 	constant magic_num : std_logic_vector(31 downto 0) := x"d8a5f009";
-   constant board_id : std_logic_vector(15 downto 0) := x"0019"; -- 5g radio
+   constant board_id : std_logic_vector(15 downto 0) := x"001A"; -- 5g radio
 end revisions;
 
