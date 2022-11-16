@@ -138,6 +138,9 @@ set_false_path -through [get_pins -filter REF_PIN_NAME=~RXPMARESETDONE -of_objec
 set_false_path -through [get_pins -filter REF_PIN_NAME=~RXSYNCDONE -of_objects [get_cells -hierarchical -filter { PRIMITIVE_TYPE =~ IO.gt.* }]]
 set_false_path -through [get_pins -filter REF_PIN_NAME=~TXSYNCDONE -of_objects [get_cells -hierarchical -filter { PRIMITIVE_TYPE =~ IO.gt.* }]]
 
+#--------- Misc
+set_false_path -from [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pipe_clock_i/pclk_sel_reg/C] -to [get_pins inst2_pcie_top/inst1_litepcie_top/inst0_litepcie_core/pcie_support/pipe_clock_i/pclk_i1_bufgctrl.pclk_i1/S1]
+
 ###############################################################################
 # End
 ###############################################################################
