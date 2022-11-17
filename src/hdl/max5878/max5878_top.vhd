@@ -410,8 +410,8 @@ BEGIN
       seliq_to_pins_n => DAC1_SELIQ_N,
       clk_to_pins_p => DAC1_CLK_P,
       clk_to_pins_n => DAC1_CLK_N,
-      clk_reset => NOT tx_reset_n, --'0',
-      io_reset => NOT tx_reset_n--'0'
+      clk_reset => not (tx_reset_n or from_txtspcfg_0.insel), --'0',
+      io_reset => not (tx_reset_n or from_txtspcfg_0.insel)--'0'
    );
 
    io_inst1 : max5878_io
@@ -431,8 +431,8 @@ BEGIN
       seliq_to_pins_n => DAC2_SELIQ_N,
       clk_to_pins_p => DAC2_CLK_P,
       clk_to_pins_n => DAC2_CLK_N,
-      clk_reset => NOT tx_reset_n, --'0',
-      io_reset => NOT tx_reset_n--'0'
+      clk_reset => NOT (tx_reset_n or from_txtspcfg_1.insel), --'0',
+      io_reset => NOT (tx_reset_n or from_txtspcfg_1.insel)--'0'
    );
 
    DAC1_PD <= '0';
