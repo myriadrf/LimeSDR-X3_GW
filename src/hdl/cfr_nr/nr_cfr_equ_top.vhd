@@ -180,7 +180,8 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
     SIGNAL zeroes, saq_7p, sbq_7p : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL invertq_insta_6, invertq_instb_6 : STD_LOGIC;
 
-
+    SIGNAL reset_n_gated_a : STD_LOGIC;
+    SIGNAL reset_n_gated_b : STD_LOGIC;
 -- attribute MARK_DEBUG : string;
 -- attribute MARK_DEBUG of ai_out : signal is "TRUE";
 -- attribute MARK_DEBUG of aq_out : signal is "TRUE";
@@ -189,6 +190,9 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
 
 BEGIN
 
+    reset_n_gated_a <= reset_n or from_txtspcfg_0.insel;
+    reset_n_gated_b <= reset_n or from_txtspcfg_1.insel;
+    
     zeroes <= (OTHERS => '0');
     sdout <= sdout_insta_2 OR sdout_instb_2 OR sdout_insta_4 OR sdout_instb_4;
     sen0 <= sen OR (NOT from_memcfg.mac(0));
@@ -330,7 +334,7 @@ BEGIN
         PORT MAP
         (
             clk => clk,
-            nrst => reset_n,
+            nrst => reset_n_gated_a,
             --TXI => sai_6(24 DOWNTO 7), -- 18bit
             --TXQ => saq_6(24 DOWNTO 7),
             TXI => sai_6, -- 18bit
@@ -357,13 +361,13 @@ BEGIN
 
     insta_6_i : invsinc26 PORT MAP(
         clk => clk,
-        reset => reset_n,
+        reset => reset_n_gated_a,
         en => '1',
         x1 => sai_8,
         y1 => sai_9); -- 18 bit
     insta_6_q : invsinc26 PORT MAP(
         clk => clk,
-        reset => reset_n,
+        reset => reset_n_gated_a,
         en => '1',
         x1 => saq_8,
         y1 => saq_9); -- 18 bit
@@ -390,8 +394,8 @@ BEGIN
         )
         PORT MAP(
             clk => clk,
-            reset_n => reset_n,
-            en => reset_n,
+            reset_n => reset_n_gated_a,
+            en => reset_n_gated_a,
             from_fircfg => from_fircfg_a,
             d => sai_10,
             q => sai_11,
@@ -408,8 +412,8 @@ BEGIN
         )
         PORT MAP(
             clk => clk,
-            reset_n => reset_n,
-            en => reset_n,
+            reset_n => reset_n_gated_a,
+            en => reset_n_gated_a,
             from_fircfg => from_fircfg_a,
             d => saq_10,
             q => saq_11,
@@ -539,7 +543,7 @@ BEGIN
         PORT MAP
         (
             clk => clk,
-            nrst => reset_n,
+            nrst => reset_n_gated_b,
             --TXI => sbi_6(24 DOWNTO 7), -- 18bit
             --TXQ => sbq_6(24 DOWNTO 7),
             TXI => sbi_6, -- 18bit
@@ -566,13 +570,13 @@ BEGIN
 
     instb_6_i : invsinc26 PORT MAP(
         clk => clk,
-        reset => reset_n,
+        reset => reset_n_gated_b,
         en => '1',
         x1 => sbi_8,
         y1 => sbi_9); -- 18 bit
     instb_6_q : invsinc26 PORT MAP(
         clk => clk,
-        reset => reset_n,
+        reset => reset_n_gated_b,
         en => '1',
         x1 => sbq_8,
         y1 => sbq_9); -- 18 bit
@@ -599,8 +603,8 @@ BEGIN
         )
         PORT MAP(
             clk => clk,
-            reset_n => reset_n,
-            en => reset_n,
+            reset_n => reset_n_gated_b,
+            en => reset_n_gated_b,
             from_fircfg => from_fircfg_b,
             d => sbi_10,
             q => sbi_11,
@@ -617,8 +621,8 @@ BEGIN
         )
         PORT MAP(
             clk => clk,
-            reset_n => reset_n,
-            en => reset_n,
+            reset_n => reset_n_gated_b,
+            en => reset_n_gated_b,
             from_fircfg => from_fircfg_b,
             d => sbq_10,
             q => sbq_11,
