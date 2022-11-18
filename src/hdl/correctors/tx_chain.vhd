@@ -325,7 +325,7 @@ port map(
 dccorr_inst5 : dccorr -- 16 bit
 port map(
    clk   => clk,
-   nrst  => nrst,
+   nrst  => inst0_en,--nrst,-- Never fully reset dc corr, unless it's bypassed,
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorri,
@@ -338,7 +338,7 @@ port map(
 dccorr_inst6 : dccorr -- 16 bit
 port map(
    clk   => clk,
-   nrst  => nrst,
+   nrst  => inst0_en,--nrst,-- Never fully reset dc corr, unless it's bypassed
    en    => inst0_en,
    byp   => inst0_dc_byp,
    dc    => inst0_dccorrq,

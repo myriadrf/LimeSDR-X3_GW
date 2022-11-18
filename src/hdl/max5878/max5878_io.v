@@ -96,6 +96,25 @@ module max5878_io
   reg[15:0] data_out_from_device_reg;
   wire[31:0] data_out_from_device_mod;
   
+  reg[2:0] reset_dly_counter;
+  reg io_reset_int;
+  
+  always @(posedge clk_div) begin
+    if (io_reset == 0) begin
+        io_reset_int      <= 0;
+        reset_dly_counter <= 0;
+    end
+    else begin
+       if (reset_dly_counter >= 7)
+            io_reset_int <= 1;
+       else begin
+            io_reset_int <= 0;
+            reset_dly_counter <= reset_dly_counter + 1;
+       end        
+    end  
+  end
+  
+  
   always @(posedge clk_div) begin
     data_out_from_device_reg = data_out_from_device[15:0];
   end
@@ -163,7 +182,7 @@ module max5878_io
          .TBYTEIN        (1'b0),
          .TBYTEOUT       (),
          .TCE            (1'b0),
-         .RST            (io_reset));
+         .RST            (io_reset_int));
 
      // Concatenate the serdes outputs together. Keep the timesliced
      //   bits together, and placing the earliest bits on the right
@@ -217,7 +236,7 @@ module max5878_io
          .TBYTEIN        (1'b0),
          .TBYTEOUT       (),
          .TCE            (1'b0),
-         .RST            (io_reset));
+         .RST            (io_reset_int));
          
         // Differential buffer for SELIQ
     OBUFDS

@@ -179,7 +179,12 @@ ARCHITECTURE struct OF nr_cfr_equ_top IS
 
     SIGNAL zeroes, saq_7p, sbq_7p : STD_LOGIC_VECTOR(15 DOWNTO 0);
     SIGNAL invertq_insta_6, invertq_instb_6 : STD_LOGIC;
-
+    
+    SIGNAL dccorr_ai_out : std_logic_vector(15 downto 0);
+    SIGNAL dccorr_aq_out : std_logic_vector(15 downto 0);
+    SIGNAL dccorr_bi_out : std_logic_vector(15 downto 0);
+    SIGNAL dccorr_bq_out : std_logic_vector(15 downto 0);
+    
     SIGNAL reset_n_gated_a : STD_LOGIC;
     SIGNAL reset_n_gated_b : STD_LOGIC;
 -- attribute MARK_DEBUG : string;
@@ -344,7 +349,11 @@ BEGIN
             from_txtspcfg => from_txtspcfg_0, -- TxTSP configuration, channel A
             to_txtspcfg => to_txtspcfg_0
         );
-
+        
+        
+        dccorr_ai_out <= sai_7;
+        dccorr_aq_out <= saq_7;
+        
     Adder1 : adder GENERIC MAP(res_n => 16, op_n => 16, addi => 0)
     PORT MAP(dataa => zeroes, datab => saq_7, res => saq_7p);
     PROCESS (clk)
@@ -438,8 +447,8 @@ BEGIN
     --PROCESS (clk)
     --BEGIN
     --    IF rising_edge(clk) THEN
-    ai_out <= sai_12;
-    aq_out <= saq_12;
+    ai_out <= sai_12 when reset_n_gated_a = '1' else dccorr_ai_out;
+    aq_out <= saq_12 when reset_n_gated_a = '1' else dccorr_aq_out;
     --    END IF;
     --END PROCESS;
 
@@ -553,6 +562,9 @@ BEGIN
             from_txtspcfg => from_txtspcfg_1, -- TxTSP configuration, channel B 
             to_txtspcfg => to_txtspcfg_1
         );
+        
+    dccorr_bi_out <= sbi_7;
+    dccorr_bq_out <= sbq_7;
 
     Adder2 : adder GENERIC MAP(res_n => 16, op_n => 16, addi => 0)
     PORT MAP(dataa => zeroes, datab => sbq_7, res => sbq_7p);
@@ -646,8 +658,8 @@ BEGIN
     --PROCESS (clk)
     --BEGIN
     --    IF rising_edge(clk) THEN
-    bi_out <= sbi_12;
-    bq_out <= sbq_12;
+    bi_out <= sbi_12 when reset_n_gated_b = '1' else dccorr_bi_out;
+    bq_out <= sbq_12 when reset_n_gated_b = '1' else dccorr_bq_out;
     --    END IF;
     --END PROCESS;
 
