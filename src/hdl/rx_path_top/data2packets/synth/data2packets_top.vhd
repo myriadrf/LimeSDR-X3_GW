@@ -35,6 +35,8 @@ entity data2packets_top is
       pct_buff_wrusedw  : in std_logic_vector(pct_buff_wrusedw_w-1 downto 0);   
       pct_buff_wrreq    : out std_logic;
       pct_buff_wrdata   : out std_logic_vector(outbus_width-1 downto 0);
+      rx_pct_size       : in  std_logic_vector(15 downto 0);
+      rx_pct_size_smpls : in  std_logic_vector(15 downto 0);
       smpl_buff_rdusedw : in std_logic_vector(smpl_buff_rdusedw_w-1 downto 0);
       smpl_buff_rdreq   : out std_logic;
       smpl_buff_rddata  : in std_logic_vector(outbus_width-1 downto 0);
@@ -86,6 +88,8 @@ signal smpl_buff_rdusedw_reg        : std_logic_vector(smpl_buff_rdusedw_w-1 dow
 
 signal pct_hdr_captured             : std_logic;
 
+signal packet_size                  : integer;
+signal packet_size_bytes            : integer;
  
 begin
 
@@ -106,16 +110,20 @@ end process;
 -- packets so that whole packet contains only integer samples
 -- ----------------------------------------------------------------------------
 
+packet_size <= to_integer(unsigned(rx_pct_size(15 downto 3)));
+packet_size_bytes <= to_integer(unsigned(rx_pct_size_smpls));
+
 process(clk, reset_n)
 begin
    if reset_n = '0' then 
       inst2_pct_size <= (others => '0');
    elsif (clk'event AND clk='1') then
-      if sample_width = "01" then 
-         inst2_pct_size <= std_logic_vector(to_unsigned(128,inst2_pct_size'length)); --128x64b=1024Bytes
-      else 
-         inst2_pct_size <= std_logic_vector(to_unsigned(512,inst2_pct_size'length)); --512x64b=4096Bytes
-      end if;
+--      if sample_width = "01" then 
+--         inst2_pct_size <= std_logic_vector(to_unsigned(128,inst2_pct_size'length)); --128x64b=1024Bytes
+--      else 
+--         inst2_pct_size <= std_logic_vector(to_unsigned(512,inst2_pct_size'length)); --512x64b=4096Bytes
+         inst2_pct_size <= std_logic_vector(to_unsigned(packet_size,inst2_pct_size'length)); --512x64b=4096Bytes
+--      end if;
       if C_OUTBUS_DOUBLE then
         inst2_pct_size_mod <= '0' & inst2_pct_size(inst2_pct_size'LEFT downto 1);
       else
@@ -123,6 +131,7 @@ begin
       end if;
    end if;
 end process;
+
 
 
 --max words in pct_buff
@@ -161,13 +170,13 @@ begin
    if reset_n = '0' then 
       smpl_buff_rdusedw_min <= (others=>'0');
    elsif (clk'event AND clk='1') then 
-      if sample_width = "10" then
-         smpl_buff_rdusedw_min <= to_unsigned(680, smpl_buff_rdusedw_min'length);
-      elsif sample_width = "01" then
-         smpl_buff_rdusedw_min <= to_unsigned(144, smpl_buff_rdusedw_min'length);
-      else
-         smpl_buff_rdusedw_min <= to_unsigned(510, smpl_buff_rdusedw_min'length);
-      end if;
+--      if sample_width = "10" then
+         smpl_buff_rdusedw_min <= to_unsigned(packet_size_bytes, smpl_buff_rdusedw_min'length);
+--      elsif sample_width = "01" then
+--         smpl_buff_rdusedw_min <= to_unsigned(144, smpl_buff_rdusedw_min'length);
+--      else
+--         smpl_buff_rdusedw_min <= to_unsigned(510, smpl_buff_rdusedw_min'length);
+--      end if;
    end if;
 end process;
 
@@ -219,13 +228,13 @@ begin
    if reset_n = '0' then 
       inst0_smpl_rd_size <= (others=>'0');
    elsif (clk'event AND clk='1') then 
-      if sample_width = "10" then
-         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(680, inst0_smpl_rd_size'length));
-      elsif sample_width = "01" then
-         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(144, inst0_smpl_rd_size'length));
-      else
-         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(510, inst0_smpl_rd_size'length));
-      end if;
+--      if sample_width = "10" then
+         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(packet_size_bytes, inst0_smpl_rd_size'length));
+--      elsif sample_width = "01" then
+--         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(144, inst0_smpl_rd_size'length));
+--      else
+--         inst0_smpl_rd_size <= std_logic_vector(to_unsigned(510, inst0_smpl_rd_size'length));
+--      end if;
    end if;
 end process;
 
@@ -263,142 +272,89 @@ end process;
 -- ----------------------------------------------------------------------------
 
 BUS64 : if C_OUTBUS_DOUBLE = false generate 
-
--- ----------------------------------------------------------------------------
--- Bit packing instance
--- ----------------------------------------------------------------------------
-bit_pack_inst1 : entity work.bit_pack
-  generic map (
-        G_PORT_WIDTH    => outbus_width,
-        G_DISABLE_14BIT => G_DISABLE_14BIT
-        )
-  port map (
-        clk             => clk,
-        reset_n         => reset_n,
-        data_in         => smpl_buff_rddata,
-        data_in_valid   => inst1_data_in_valid,
-        sample_width    => sample_width,
-        data_out        => inst1_data_out,
-        data_out_valid  => inst1_data_out_valid
-        );
-
--- ----------------------------------------------------------------------------
--- Packet formation instance
--- ----------------------------------------------------------------------------        
-
-data2packets_inst2 : entity work.data2packets
-   generic map(
-      pct_size_w        => pct_buff_wrusedw_w
-   )
-   port map(
-      clk               => clk,
-      reset_n           => reset_n,
-      pct_size          => inst2_pct_size_mod,
-      pct_hdr_0         => pct_hdr_0,
-      pct_hdr_1         => pct_hdr_1,
-      pct_data          => inst1_data_out,
-      pct_data_wrreq    => inst1_data_out_valid,
-      pct_state         => inst2_pct_state,
-      pct_wrreq         => inst2_pct_wrreq,
-      pct_q             => inst2_pct_q    
-        );
-end generate;
-
-BUS128 : if C_OUTBUS_DOUBLE = true generate
-
-    -- ----------------------------------------------------------------------------
-    -- Bit packing instance nr0
-    -- ----------------------------------------------------------------------------
-    bit_pack_inst1 : entity work.bit_pack
-    generic map (
-        G_PORT_WIDTH    => outbus_width,
-        G_DISABLE_14BIT => G_DISABLE_14BIT
-        )
-      port map (
-        clk             => clk,
-        reset_n         => reset_n,
-        data_in         => smpl_buff_rddata,--(63 downto 0),
-        data_in_valid   => inst1_data_in_valid,
-        sample_width    => sample_width,
-        data_out        => inst1_data_out,--(63 downto 0),
-        data_out_valid  => inst1_data_out_valid
-        );
         
---    -- ----------------------------------------------------------------------------
---    -- Bit packing instance nr0
---    -- ----------------------------------------------------------------------------
---    bit_pack_inst1_1 : entity work.bit_pack
---      port map (
---        clk             => clk,
---        reset_n         => reset_n,
---        data_in         => smpl_buff_rddata(127 downto 64),
---        data_in_valid   => inst1_data_in_valid,
---        sample_width    => sample_width,
---        data_out        => inst1_data_out(127 downto 64),
---        data_out_valid  => open--inst1_data_out_valid
---        );
-
-    -- ----------------------------------------------------------------------------
-    -- Packet formation instance
-    -- ----------------------------------------------------------------------------        
-
-    -- local declaration for doubled bus
-    double_bus : block
-    
---        signal inst1_data_out_mod       : std_logic_vector(127 downto 0);
---        signal inst1_data_out_valid_mod : std_logic;
---        signal rdusedw                  : std_logic_vector(smpl_buff_rdusedw_w-1 downto 0);
---        attribute MARK_DEBUG of inst1_data_out_mod        : signal is "TRUE";
---        attribute MARK_DEBUG of inst1_data_out_valid_mod  : signal is "TRUE";
---        attribute MARK_DEBUG of rdusedw                   : signal is "TRUE";
-    
-    begin
-               
---           smpl_fifo_inst1 : entity work.fifo_inst
---              generic map(
---                  dev_family      => dev_family, 
---                  wrwidth         => 64,
---                  wrusedw_witdth  => smpl_buff_rdusedw_w+1,
---                  rdwidth         => 128,
---                  rdusedw_width   => smpl_buff_rdusedw_w,
---                  show_ahead      => "ON"
---              ) 
-            
---              port map(
---                  --input ports 
---                  reset_n        => reset_n,
---                  wrclk          => clk,
---                  wrreq          => inst1_data_out_valid,
---                  data           => inst1_data_out,
---                  wrfull         => open,
---                  wrempty        => open,
---                  wrusedw        => open,
---                  rdclk          => clk,
---                  rdreq          => not inst1_data_out_valid_mod,
---                  q              => inst1_data_out_mod,
---                  rdempty        => inst1_data_out_valid_mod,
---                  rdusedw        => rdusedw  
---                    );
+        -- ----------------------------------------------------------------------------
+        -- Bit packing instance
+        -- ----------------------------------------------------------------------------
+        bit_pack_inst1 : entity work.bit_pack
+          generic map (
+                G_PORT_WIDTH    => outbus_width,
+                G_DISABLE_14BIT => G_DISABLE_14BIT
+                )
+          port map (
+                clk             => clk,
+                reset_n         => reset_n,
+                data_in         => smpl_buff_rddata,
+                data_in_valid   => inst1_data_in_valid,
+                sample_width    => sample_width,
+                data_out        => inst1_data_out,
+                data_out_valid  => inst1_data_out_valid
+                );
         
+        -- ----------------------------------------------------------------------------
+        -- Packet formation instance
+        -- ----------------------------------------------------------------------------        
         
-        
-        data2packets_inst2_1 : entity work.data2packets128
+        data2packets_inst2 : entity work.data2packets
            generic map(
               pct_size_w        => pct_buff_wrusedw_w
            )
            port map(
               clk               => clk,
               reset_n           => reset_n,
-              -- right shift by one bit to halve this value
-              pct_size          => inst2_pct_size_mod,--'0' & inst2_pct_size(inst2_pct_size'LEFT downto 1), 
-              pct_hdr           => pct_hdr_1 & pct_hdr_0,
+              pct_size          => inst2_pct_size_mod,
+              pct_hdr_0         => pct_hdr_0,
+              pct_hdr_1         => pct_hdr_1,
               pct_data          => inst1_data_out,
               pct_data_wrreq    => inst1_data_out_valid,
               pct_state         => inst2_pct_state,
               pct_wrreq         => inst2_pct_wrreq,
               pct_q             => inst2_pct_q    
                 );
+end generate;
+
+BUS128 : if C_OUTBUS_DOUBLE = true generate
+    
+        -- ----------------------------------------------------------------------------
+        -- Bit packing instance nr0
+        -- ----------------------------------------------------------------------------
+        bit_pack_inst1 : entity work.bit_pack
+        generic map (
+            G_PORT_WIDTH    => outbus_width,
+            G_DISABLE_14BIT => G_DISABLE_14BIT
+            )
+          port map (
+            clk             => clk,
+            reset_n         => reset_n,
+            data_in         => smpl_buff_rddata,--(63 downto 0),
+            data_in_valid   => inst1_data_in_valid,
+            sample_width    => sample_width,
+            data_out        => inst1_data_out,--(63 downto 0),
+            data_out_valid  => inst1_data_out_valid
+            );
             
+        double_bus : block
+        
+        
+        begin
+                   
+            data2packets_inst2_1 : entity work.data2packets128
+               generic map(
+                  pct_size_w        => pct_buff_wrusedw_w
+               )
+               port map(
+                  clk               => clk,
+                  reset_n           => reset_n,
+                  -- right shift by one bit to halve this value
+                  pct_size          => inst2_pct_size_mod,--'0' & inst2_pct_size(inst2_pct_size'LEFT downto 1), 
+                  pct_hdr           => pct_hdr_1 & pct_hdr_0,
+                  pct_data          => inst1_data_out,
+                  pct_data_wrreq    => inst1_data_out_valid,
+                  pct_state         => inst2_pct_state,
+                  pct_wrreq         => inst2_pct_wrreq,
+                  pct_q             => inst2_pct_q    
+                    );
+                
     end block double_bus;
 end generate;
 

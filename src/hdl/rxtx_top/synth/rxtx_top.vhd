@@ -146,6 +146,9 @@ signal pct_drop_rst              : std_logic;
 signal pct_loss_pulse            : std_logic; 
 signal pct_loss_pulse_reg        : std_logic;
 
+signal rx_pct_size               : std_logic_vector(15 downto 0);
+signal rx_pct_size_smpls         : std_logic_vector(15 downto 0);
+
     -- attribute MARK_DEBUG : string;
     -- attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
     -- attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
@@ -155,6 +158,9 @@ signal pct_loss_pulse_reg        : std_logic;
     -- attribute MARK_DEBUG of pct_loss_pulse_reg : signal is "TRUE";
 
 begin
+
+    rx_pct_size       <= from_fpgacfg.RX_PACKET_SIZE;
+    rx_pct_size_smpls <= from_fpgacfg.RX_PACKET_SAMPLES;
 
     pct_loss_counter_proc : process(all)
     begin
@@ -342,6 +348,8 @@ RX_gen0 : if RX_EN = true generate
       smpl_fifo_wrreq      => rx_smpl_fifo_wrreq,
       smpl_fifo_data       => rx_smpl_fifo_data,
       smpl_fifo_wrfull     => rx_smpl_fifo_wrfull,
+      rx_pct_size          => rx_pct_size,
+      rx_pct_size_smpls    => rx_pct_size_smpls,
       --Packet fifo ports 
       pct_fifo_wusedw      => rx_pct_fifo_wusedw,
       pct_fifo_wrreq       => rx_pct_fifo_wrreq,

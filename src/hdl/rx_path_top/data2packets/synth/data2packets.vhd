@@ -220,7 +220,7 @@ fsm : process(current_state, pct_data_wrreq, pct_data_wr_cnt, pct_data_wr_cnt_ma
          end if;
          
       when s0 => -- state
-         if pct_data_wr_cnt = pct_data_wr_cnt_max AND pct_data_wrreq = '1' then 
+         if pct_data_wr_cnt >= pct_data_wr_cnt_max AND pct_data_wrreq = '1' then 
             next_state <= s1;
          else 
             next_state <= s0;

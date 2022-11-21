@@ -38,6 +38,8 @@ entity rx_path_top is
       smpl_fifo_wrreq      : in std_logic;
       smpl_fifo_data       : in std_logic_vector(iq_width*4-1 downto 0);
       smpl_fifo_wrfull     : out std_logic;
+      rx_pct_size          : in  std_logic_vector(15 downto 0);
+      rx_pct_size_smpls    : in  std_logic_vector(15 downto 0);
       --Packet FIFO ports 
       pct_fifo_wusedw      : in std_logic_vector(pct_buff_wrusedw_w-1 downto 0);
       pct_fifo_wrreq       : out std_logic;
@@ -279,6 +281,8 @@ data2packets_top_inst2 : entity work.data2packets_top
       pct_buff_wrusedw  => pct_fifo_wusedw,
       pct_buff_wrreq    => pct_fifo_wrreq,
       pct_buff_wrdata   => pct_fifo_wdata,
+      rx_pct_size       => rx_pct_size,
+      rx_pct_size_smpls => rx_pct_size_smpls,
       pct_hdr_cap       => pct_hdr_cap,
       smpl_buff_rdusedw => inst1_rdusedw,
       smpl_buff_rdreq   => inst2_smpl_buff_rdreq,
