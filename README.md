@@ -1,4 +1,4 @@
-Gateware version 2.25
+Gateware version 2.26
 
 # PCIe_5GRadio_lms7_trx FPGA gateware
 
