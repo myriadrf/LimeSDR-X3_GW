@@ -180,10 +180,10 @@ begin
          mem(18)	<= "0000000000111100"; --  0 free, Reserved(15:6), LMS1_TX1_PA_EN, LMS1_TX2_PA_EN, LMS2_TX1_PA_EN, LMS2_TX2_PA_EN, LMS2_RX1_LNA_SD, LMS2_RX2_LNA_SD
          mem(19)	<= "0000000000000000"; --  0 free, Reserved STORAGE FOR LMS1 PA LEVEL
          mem(20)	<= "0000000000000000"; --  0 free, Reserved STORAGE FOR LMS1 PA LEVEL
-         mem(21)	<= "0000000000000000"; --  0 free, Reserved
-         mem(22)	<= "0000000000000000"; --  0 free, Reserved
-         mem(23)	<= "0000000000000000"; --  0 free, Reserved
-         mem(24)	<= "0000000000000000"; --  0 free, Reserved
+         mem(21)	<= "0000000000000000"; --  0 free, RFSW auto control settings
+         mem(22)	<= "0000000000000000"; --  0 free, RFSW auto control settings
+         mem(23)	<= "0000000000000000"; --  0 free, RF_switches_manual_override
+         mem(24)	<= "0000000000000000"; --  0 free, RF_amp_ctrl_manual_override
          mem(25)	<= "0000000000000000"; --  0 free, Reserved
          mem(26)	<= "0000000000000000"; --  0 free, Reserved
          mem(27)	<= "0000000000000000"; --  0 free, Reserved
@@ -209,19 +209,21 @@ begin
 -- ---------------------------------------------------------------------------------------------
 -- Decoding logic
 -- ---------------------------------------------------------------------------------------------
-      from_periphcfg.BOARD_GPIO_OVRD      <= mem(0) (15 downto 0);
-      from_periphcfg.BOARD_GPIO_DIR       <= mem(4) (15 downto 0);
-      from_periphcfg.BOARD_GPIO_VAL       <= mem(6) (15 downto 0);
+      from_periphcfg.BOARD_GPIO_OVRD             <= mem(0) (15 downto 0);
+      from_periphcfg.BOARD_GPIO_DIR              <= mem(4) (15 downto 0);
+      from_periphcfg.BOARD_GPIO_VAL              <= mem(6) (15 downto 0);
       
-      from_periphcfg.PERIPH_OUTPUT_OVRD_0 <= mem(12) (15 downto 0);
-      from_periphcfg.PERIPH_OUTPUT_VAL_0  <= mem(13) (15 downto 0);
-      from_periphcfg.PERIPH_OUTPUT_OVRD_1 <= mem(14) (15 downto 0);
-      from_periphcfg.PERIPH_OUTPUT_VAL_1  <= mem(15) (15 downto 0);
-      from_periphcfg.RF_SWITCHES          <= mem(17) (13 downto 0); 
-      from_periphcfg.RF_AMP_CTRL          <= mem(18) (5  downto 0);
-      from_periphcfg.LMS1_RFSW_MODE_A     <= mem(21) (3 downto 0);
-      from_periphcfg.LMS1_RFSW_MODE_B     <= mem(21) (7 downto 4);
-      from_periphcfg.LMS2_RFSW_MODE_A     <= mem(22) (3 downto 0);
-      from_periphcfg.LMS2_RFSW_MODE_B     <= mem(22) (7 downto 4);
+      from_periphcfg.PERIPH_OUTPUT_OVRD_0        <= mem(12) (15 downto 0);
+      from_periphcfg.PERIPH_OUTPUT_VAL_0         <= mem(13) (15 downto 0);
+      from_periphcfg.PERIPH_OUTPUT_OVRD_1        <= mem(14) (15 downto 0);
+      from_periphcfg.PERIPH_OUTPUT_VAL_1         <= mem(15) (15 downto 0);
+      from_periphcfg.RF_SWITCHES                 <= mem(17) (13 downto 0); 
+      from_periphcfg.RF_AMP_CTRL                 <= mem(18) (5  downto 0);
+      from_periphcfg.LMS1_RFSW_MODE_A            <= mem(21) (3 downto 0);
+      from_periphcfg.LMS1_RFSW_MODE_B            <= mem(21) (7 downto 4);
+      from_periphcfg.LMS2_RFSW_MODE_A            <= mem(22) (3 downto 0);
+      from_periphcfg.LMS2_RFSW_MODE_B            <= mem(22) (7 downto 4);
+      from_periphcfg.RF_switches_manual_override <= mem(23) (13 downto 0);
+      from_periphcfg.RF_amp_ctrl_manual_override <= mem(24) (5 downto 0);
 
 end periphcfg_arch;

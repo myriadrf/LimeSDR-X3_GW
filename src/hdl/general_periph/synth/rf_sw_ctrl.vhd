@@ -149,10 +149,13 @@ signal rf_amps_int_LMS2B : std_logic_vector(1 downto 0);-- is rf_amps_spi(0) & r
 signal lms1_txant_en_sync : std_logic;
 signal lms2_txant_en_sync : std_logic;
 
+signal RF_switches_manual_override : std_logic_vector(13 downto 0);
+signal RF_amp_ctrl_manual_override : std_logic_vector(5  downto 0);
+
 begin
 
-
-
+RF_switches_manual_override <= FROM_PERIPHCFG.RF_switches_manual_override;
+RF_amp_ctrl_manual_override <= FROM_PERIPHCFG.RF_amp_ctrl_manual_override;
 
 
 
@@ -202,32 +205,32 @@ rf_switches_spi_LMS2B     <= rf_switches_spi(4) & rf_switches_spi(5) & rf_switch
 rf_switches_spi_LMS3A(0)  <= rf_switches_spi(0);  
 rf_switches_spi_LMS3B(0)  <= rf_switches_spi(1); 
 
-rf_switches_int( 0 ) <= rf_switches_int_LMS3A(0);
-rf_switches_int( 1 ) <= rf_switches_int_LMS3B(0);
-rf_switches_int( 2 ) <= rf_switches_int_LMS2A(3);
-rf_switches_int( 3 ) <= rf_switches_int_LMS2A(2);
-rf_switches_int( 4 ) <= rf_switches_int_LMS2B(3);
-rf_switches_int( 5 ) <= rf_switches_int_LMS2B(2);
-rf_switches_int( 6 ) <= rf_switches_int_LMS2A(1);
-rf_switches_int( 7 ) <= rf_switches_int_LMS2A(0);
-rf_switches_int( 8 ) <= rf_switches_int_LMS2B(1);
-rf_switches_int( 9 ) <= rf_switches_int_LMS2B(0);
-rf_switches_int( 10) <= rf_switches_int_LMS1B(1);
-rf_switches_int( 11) <= rf_switches_int_LMS1A(1);
-rf_switches_int( 12) <= rf_switches_int_LMS1B(0);
-rf_switches_int( 13) <= rf_switches_int_LMS1A(0);
+rf_switches_int( 0 ) <= rf_switches_int_LMS3A(0) when RF_switches_manual_override( 0 ) = '0' else rf_switches_spi( 0 );
+rf_switches_int( 1 ) <= rf_switches_int_LMS3B(0) when RF_switches_manual_override( 1 ) = '0' else rf_switches_spi( 1 );
+rf_switches_int( 2 ) <= rf_switches_int_LMS2A(3) when RF_switches_manual_override( 2 ) = '0' else rf_switches_spi( 2 );
+rf_switches_int( 3 ) <= rf_switches_int_LMS2A(2) when RF_switches_manual_override( 3 ) = '0' else rf_switches_spi( 3 );
+rf_switches_int( 4 ) <= rf_switches_int_LMS2B(3) when RF_switches_manual_override( 4 ) = '0' else rf_switches_spi( 4 );
+rf_switches_int( 5 ) <= rf_switches_int_LMS2B(2) when RF_switches_manual_override( 5 ) = '0' else rf_switches_spi( 5 );
+rf_switches_int( 6 ) <= rf_switches_int_LMS2A(1) when RF_switches_manual_override( 6 ) = '0' else rf_switches_spi( 6 );
+rf_switches_int( 7 ) <= rf_switches_int_LMS2A(0) when RF_switches_manual_override( 7 ) = '0' else rf_switches_spi( 7 );
+rf_switches_int( 8 ) <= rf_switches_int_LMS2B(1) when RF_switches_manual_override( 8 ) = '0' else rf_switches_spi( 8 );
+rf_switches_int( 9 ) <= rf_switches_int_LMS2B(0) when RF_switches_manual_override( 9 ) = '0' else rf_switches_spi( 9 );
+rf_switches_int( 10) <= rf_switches_int_LMS1B(1) when RF_switches_manual_override( 10) = '0' else rf_switches_spi( 10);
+rf_switches_int( 11) <= rf_switches_int_LMS1A(1) when RF_switches_manual_override( 11) = '0' else rf_switches_spi( 11);
+rf_switches_int( 12) <= rf_switches_int_LMS1B(0) when RF_switches_manual_override( 12) = '0' else rf_switches_spi( 12);
+rf_switches_int( 13) <= rf_switches_int_LMS1A(0) when RF_switches_manual_override( 13) = '0' else rf_switches_spi( 13);
 
 rf_amps_spi_LMS1A(0) <= rf_amps_spi(5);
 rf_amps_spi_LMS1B(0) <= rf_amps_spi(4);
 rf_amps_spi_LMS2A    <= rf_amps_spi(1) & rf_amps_spi(3);
 rf_amps_spi_LMS2B    <= rf_amps_spi(0) & rf_amps_spi(2);
 
-rf_amps_int( 0 ) <= rf_amps_int_LMS2B(1);
-rf_amps_int( 1 ) <= rf_amps_int_LMS2A(1);
-rf_amps_int( 2 ) <= rf_amps_int_LMS2B(0);
-rf_amps_int( 3 ) <= rf_amps_int_LMS2A(0);
-rf_amps_int( 4 ) <= rf_amps_int_LMS1B(0);
-rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0);
+rf_amps_int( 0 ) <= rf_amps_int_LMS2B(1) when RF_amp_ctrl_manual_override( 0 ) = '0' else rf_amps_spi( 0 );
+rf_amps_int( 1 ) <= rf_amps_int_LMS2A(1) when RF_amp_ctrl_manual_override( 1 ) = '0' else rf_amps_spi( 1 );
+rf_amps_int( 2 ) <= rf_amps_int_LMS2B(0) when RF_amp_ctrl_manual_override( 2 ) = '0' else rf_amps_spi( 2 );
+rf_amps_int( 3 ) <= rf_amps_int_LMS2A(0) when RF_amp_ctrl_manual_override( 3 ) = '0' else rf_amps_spi( 3 );
+rf_amps_int( 4 ) <= rf_amps_int_LMS1B(0) when RF_amp_ctrl_manual_override( 4 ) = '0' else rf_amps_spi( 4 );
+rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0) when RF_amp_ctrl_manual_override( 5 ) = '0' else rf_amps_spi( 5 );
 
 ------
 -- SYNC LOGIC
