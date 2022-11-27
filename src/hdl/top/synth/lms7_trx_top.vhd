@@ -2492,6 +2492,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    PMOD_A_PIN9 <= inst6_tx_ant_en;
    PMOD_A_PIN8 <= inst12_tx_ant_en;
    
+   PMOD_B_PIN1 <= inst1_pll_1_c1;
+   PMOD_B_PIN3 <= lms2_bb_adc1_clkout_global;
+   
 
    FPGA_SPI0_SCLK       <= inst0_spi_0_SCLK;
    FPGA_SPI0_MOSI       <= inst0_spi_0_MOSI;
