@@ -91,6 +91,10 @@ signal smpl_cnt_en_internal: std_logic;
 type state_type is (idle, rd_a, rd_b, rd_ab);
 signal current_state, next_state : state_type;
 
+--attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of smpl_cnt_en : signal is "TRUE";
+--attribute MARK_DEBUG of data_valid : signal is "TRUE";
+
 begin
 
 --Monitor status of ch_en 

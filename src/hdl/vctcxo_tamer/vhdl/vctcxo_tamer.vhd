@@ -181,17 +181,17 @@ architecture arch of vctcxo_tamer is
     signal mm_accuracy_reg_reset: std_logic;
     signal mm_accuracy_reg      : std_logic_vector(3 downto 0) := x"0"; 
     
-    attribute MARK_DEBUG : string;
-    attribute MARK_DEBUG of mm_rd_datav: signal is "TRUE";
-    attribute MARK_DEBUG of PPS_1S_ERROR_TOL: signal is "TRUE";
-    attribute MARK_DEBUG of PPS_10S_ERROR_TOL: signal is "TRUE";
-    attribute MARK_DEBUG of PPS_100S_ERROR_TOL: signal is "TRUE";
-    attribute MARK_DEBUG of pps_1s_error: signal is "TRUE";
-    attribute MARK_DEBUG of pps_10s_error: signal is "TRUE";
-    attribute MARK_DEBUG of pps_100s_error: signal is "TRUE";
-    attribute MARK_DEBUG of pps_1s_count_v: signal is "TRUE";
-    attribute MARK_DEBUG of pps_10s_count_v: signal is "TRUE";
-    attribute MARK_DEBUG of pps_100s_count_v: signal is "TRUE";
+--    attribute MARK_DEBUG : string;
+--    attribute MARK_DEBUG of mm_rd_datav: signal is "TRUE";
+--    attribute MARK_DEBUG of PPS_1S_ERROR_TOL: signal is "TRUE";
+--    attribute MARK_DEBUG of PPS_10S_ERROR_TOL: signal is "TRUE";
+--    attribute MARK_DEBUG of PPS_100S_ERROR_TOL: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_1s_error: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_10s_error: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_100s_error: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_1s_count_v: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_10s_count_v: signal is "TRUE";
+--    attribute MARK_DEBUG of pps_100s_count_v: signal is "TRUE";
 
 begin
 
