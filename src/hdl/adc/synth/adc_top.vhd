@@ -71,6 +71,9 @@ signal valid_cnt_ovrfl  : std_logic;
 signal reset_n_sync     : std_logic;
 signal debug : std_Logic;
 
+signal counter0 : signed(15 downto 0) := (others => '0');
+signal counter1 : signed(20 downto 0) := (others => '0');
+
 --attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of inst1_RYI: signal is "TRUE";
 --attribute MARK_DEBUG of inst1_RYQ: signal is "TRUE";
@@ -79,6 +82,18 @@ signal debug : std_Logic;
 --attribute MARK_DEBUG of debug: signal is "TRUE";
   
 begin
+
+    process(clk, reset_n)
+    begin
+        if reset_n = '0' or debug = '1' then
+            counter0 <= (others => '0');
+            counter1 <= (others => '0');
+        elsif rising_edge(clk) then
+            counter0 <= counter0 + 1;
+            counter1 <= counter1 + 1;
+        end if;
+    end process;
+    
 
 debug <= from_rxtspcfg.debug_ctrl;
 
@@ -135,8 +150,8 @@ rx_chain_inst1 : entity work.rx_chain
 --RYI <= inst1_RYI(17 downto 2);  -- B.J.  not working !!!
 --RYQ <= inst1_RYQ(17 downto 2);  -- B.J.  not working !!!
 
-RYI <= inst1_RYI(17 downto 2) when debug = '1' else inst1_RXI(17 downto 2);
-RYQ <= inst1_RYQ(17 downto 2) when debug = '1' else inst1_RXQ(17 downto 2);
+RYI <= inst1_RYI(17 downto 2) when debug = '1' else std_logic_vector(counter0);
+RYQ <= inst1_RYQ(17 downto 2) when debug = '1' else std_logic_vector(counter1(20 downto 5));
 -- ----------------------------------------------------------------------------
 -- Chain of registers for storing samples
 -- ----------------------------------------------------------------------------
@@ -193,8 +208,8 @@ end process;
 -- B.J.
 --data_ch_a <=  inst0_data_ch_a;  --inst1_RYI(17 downto 4); 
 --data_ch_b <=  inst0_data_ch_b;  --inst1_RYQ(17 downto 4);
-data_ch_a <=  inst1_RYI(17 downto 4)  when debug = '1' else inst1_RXI(17 downto 4);
-data_ch_b <=  inst1_RYQ(17 downto 4)  when debug = '1' else inst1_RXQ(17 downto 4);
+data_ch_a <=  inst1_RYI(17 downto 4)  when debug = '1' else std_logic_vector(counter0(13 downto 0));             
+data_ch_b <=  inst1_RYQ(17 downto 4)  when debug = '1' else std_logic_vector(counter1(14 downto 1));
 
   
 end arch;   

@@ -92,6 +92,13 @@ type state_type is (idle, rd_a, rd_b, rd_ab);
 signal current_state, next_state : state_type;
 
 --attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of data_valid : signal is "TRUE";
+--attribute MARK_DEBUG of data : signal is "TRUE";
+--attribute MARK_DEBUG of reset_n : signal is "TRUE";
+--attribute MARK_DEBUG of ai : signal is "TRUE";
+--attribute MARK_DEBUG of aq : signal is "TRUE";
+--attribute MARK_DEBUG of bi : signal is "TRUE";
+--attribute MARK_DEBUG of bq : signal is "TRUE";
 --attribute MARK_DEBUG of smpl_cnt_en : signal is "TRUE";
 --attribute MARK_DEBUG of data_valid : signal is "TRUE";
 

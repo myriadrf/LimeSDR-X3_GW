@@ -66,6 +66,10 @@ ARCHITECTURE arch OF adc_top_equaliser IS
 
     SIGNAL reset_n_sync : STD_LOGIC;
     SIGNAL debug : STD_LOGIC;
+    
+    signal counter0 : signed(15 downto 0) := (others => '0');
+    signal counter1 : signed(20 downto 0) := (others => '0');
+
 
 --    ATTRIBUTE MARK_DEBUG : STRING;
 --    ATTRIBUTE MARK_DEBUG OF inst1_RYI : SIGNAL IS "TRUE";
@@ -79,6 +83,17 @@ ARCHITECTURE arch OF adc_top_equaliser IS
     SIGNAL inst1_RYI_P, inst1_RYQ_P : STD_LOGIC_VECTOR(17 DOWNTO 0); -- BJ
 
 BEGIN
+
+    process(clk, reset_n)
+    begin
+        if reset_n = '0' or debug = '1' then
+            counter0 <= (others => '0');
+            counter1 <= (others => '0');
+        elsif rising_edge(clk) then
+            counter0 <= counter0 + 1;
+            counter1 <= counter1 + 1;
+        end if;
+    end process;
 
     debug <= from_rxtspcfg.debug_ctrl;
 
@@ -219,9 +234,11 @@ BEGIN
     -- B.J.
     --data_ch_a <=  inst0_data_ch_a;  --inst1_RYI(17 downto 4); 
     --data_ch_b <=  inst0_data_ch_b;  --inst1_RYQ(17 downto 4);
-    data_ch_a <= inst1_RYI(17 DOWNTO 4) WHEN debug = '1' ELSE
-        inst1_RXI(17 DOWNTO 4);
-    data_ch_b <= inst1_RYQ(17 DOWNTO 4) WHEN debug = '1' ELSE
-        inst1_RXQ(17 DOWNTO 4);
+--    data_ch_a <= inst1_RYI(17 DOWNTO 4) WHEN debug = '1' ELSE
+--        inst1_RXI(17 DOWNTO 4);
+--    data_ch_b <= inst1_RYQ(17 DOWNTO 4) WHEN debug = '1' ELSE
+--        inst1_RXQ(17 DOWNTO 4);
+data_ch_a <=  inst1_RYI(17 downto 4)  when debug = '1' else std_logic_vector(counter0(13 downto 0));             
+data_ch_b <=  inst1_RYQ(17 downto 4)  when debug = '1' else std_logic_vector(counter1(14 downto 1));
 
 END arch;
