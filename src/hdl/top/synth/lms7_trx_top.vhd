@@ -2495,10 +2495,11 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    PMOD_A_PIN3 <= inst12_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(4)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(4);         
    -- TRX2_TDD_SW (High = TX enbled, Low = RX Enabled)
    PMOD_A_PIN4 <= inst12_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(5)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(5); 
-   
 
-   PMOD_A_PIN9 <= inst6_tx_ant_en;
-   PMOD_A_PIN8 <= inst12_tx_ant_en;
+   -- LMS2 tx ant en
+   PMOD_A_PIN8 <= inst12_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(8)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(8);  
+   -- LMS1 tx ant en
+   PMOD_A_PIN9 <= inst6_tx_ant_en when inst0_from_periphcfg.PERIPH_OUTPUT_OVRD_0(9)='0' else inst0_from_periphcfg.PERIPH_OUTPUT_VAL_0(9);
    
 --   LMS2 clocks
 --   PMOD_B_PIN1 <= inst1_pll_1_c1;
