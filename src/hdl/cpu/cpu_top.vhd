@@ -169,9 +169,6 @@ entity cpu_top is
       from_memcfg          : out    t_FROM_MEMCFG;
       from_cdcmcfg         : out    t_FROM_CDCMCFG;     
       -- testing
-      pll_c0               : out    std_logic;
-      pll_c1               : out    std_logic;
-      pll_locked           : out    std_logic;
       smpl_cmp_en          : out    std_logic_vector ( 3 downto 0 );
       smpl_cmp_status      : in     std_logic_vector ( 1 downto 0 );
       smpl_cmp_sel         : out    std_logic_vector (0 downto 0);
@@ -364,12 +361,7 @@ architecture arch of cpu_top is
       smpl_cmp_sel_tri_o         : out STD_LOGIC_VECTOR ( 0 to 0 );
       vctcxo_tamer_0_ctrl_tri_i  : in STD_LOGIC_VECTOR ( 3 downto 0 );
       cdcm_read_start_tri_i      : in STD_LOGIC_VECTOR ( 0 downto 0 );
-      cdcm_cfg_start_tri_i       : in STD_LOGIC_VECTOR ( 0 downto 0 );
-      
-      
-      pll_c0                     : out STD_LOGIC;
-      pll_c1                     : out STD_LOGIC;
-      pll_locked                 : out STD_LOGIC
+      cdcm_cfg_start_tri_i       : in STD_LOGIC_VECTOR ( 0 downto 0 )
    );
    end component;
    
@@ -509,10 +501,6 @@ begin
       extm_0_axi_sel_tri_o     => pll_axi_sel,
       vctcxo_tamer_0_ctrl_tri_i=> vctcxo_tamer_0_ctrl_export,
       
-      -- tsting
-      pll_c0                   => pll_c0, 
-      pll_c1                   => pll_c1,
-      pll_locked               => pll_locked,
       smpl_cmp_en_tri_o        => smpl_cmp_en,
       smpl_cmp_status_tri_i    => smpl_cmp_status_sync,
       smpl_cmp_sel_tri_o       => smpl_cmp_sel,
