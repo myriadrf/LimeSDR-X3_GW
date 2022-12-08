@@ -499,12 +499,6 @@ signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
 signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
 signal inst0_smpl_cmp_sel        : std_logic_vector(0 downto 0);
 
---test_out
-signal inst0_pll_c0              : std_logic;
-signal inst0_pll_c1              : std_logic;
-signal inst0_pll_locked          : std_logic;
-
-
 --inst1 (pll_top instance)
 signal inst1_lms1_txpll_c0             : std_logic;
 signal inst1_lms1_txpll_c1             : std_logic;
@@ -1108,9 +1102,6 @@ begin
       to_gnsscfg                 => inst0_to_gnsscfg,
       to_memcfg                  => inst0_to_memcfg,
       from_memcfg                => inst0_from_memcfg,
-      pll_c0                     => inst0_pll_c0,
-      pll_c1                     => inst0_pll_c1,
-      pll_locked                 => inst0_pll_locked,
       smpl_cmp_sel               => inst0_smpl_cmp_sel,
       smpl_cmp_en                => inst0_smpl_cmp_en, 
       smpl_cmp_status            => inst0_smpl_cmp_status,
