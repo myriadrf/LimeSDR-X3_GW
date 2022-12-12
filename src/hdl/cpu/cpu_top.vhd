@@ -256,7 +256,16 @@ architecture arch of cpu_top is
    
    signal vctcxo_tamer_0_irq_out_irq   : std_logic;
    signal vctcxo_tamer_0_ctrl_export   : std_logic_vector(3 downto 0);
-       
+   
+   
+attribute DONT_TOUCH : string;
+attribute DONT_TOUCH of pll_axi_sel : signal is "TRUE";
+attribute DONT_TOUCH of pll_rst : signal is "TRUE";
+attribute DONT_TOUCH of inst0_pllcfg_cmd_export : signal is "TRUE";
+attribute DONT_TOUCH of inst0_pllcfg_stat_export : signal is "TRUE";
+				
+				
+                    
    component mb_subsystem is
    port (
       clk                        : in std_logic;
