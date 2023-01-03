@@ -211,7 +211,7 @@ begin
 	-- Decoding logic
 	-- ---------------------------------------------------------------------------------------------
    from_memcfg.mac <= mem(31) (15 downto 0);
-   
+   from_memcfg.lmk_debug_pins  <= mem(30)(3 downto 0);
    from_memcfg.LMS1_tx_pct_rst <= mem(1)(0);
    from_memcfg.LMS1_tx_drp_rst <= mem(1)(1);
    from_memcfg.LMS2_tx_pct_rst <= mem(6)(0);

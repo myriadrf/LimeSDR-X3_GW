@@ -2427,6 +2427,19 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    );
    
    
+--   inst4_debug_pll : entity work.clk_wiz_0
+--     port map (
+--        clk_in1    => LMK1_CLK1,
+--        clk_out1   => LMK2_CLKIN1,
+--        reset      => inst0_from_memcfg.lmk_debug_pins(0),
+--        locked     => open
+--     );
+     
+     
+     LMK1_SEL <= inst0_from_memcfg.lmk_debug_pins(0);
+     LMK2_SEL <= inst0_from_memcfg.lmk_debug_pins(1);
+   
+   
 --   inst18_IC_74HC595_top: entity work.IC_74HC595_top
 --   port map(
 
@@ -2551,9 +2564,9 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
 
     -- LMK1_SEL 0 = VCTCXO, 1 = External clock
-   LMK1_SEL <= '0';
+--   LMK1_SEL <= '0';
     -- LMS2_SEL 0 = LMK1  , 1 = FPGA source
-   LMK2_SEL <= '0';
+--   LMK2_SEL <= '0';
 
 end arch;   
 

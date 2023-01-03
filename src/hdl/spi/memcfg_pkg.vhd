@@ -25,6 +25,7 @@ package memcfg_pkg is
       LMS1_tx_drp_rst : std_logic;
       LMS2_tx_pct_rst : std_logic;
       LMS2_tx_drp_rst : std_logic;
+      lmk_debug_pins    : std_logic_vector(3 downto 0);
    end record t_FROM_MEMCFG;
   
    -- Inputs to the 

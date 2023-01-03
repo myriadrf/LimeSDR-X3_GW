@@ -208,7 +208,7 @@ begin
          mem(15)  <= x"03FC";             -- 16 free, sync_size
          --Peripheral config
          mem(16)  <= x"0001";             -- 16 free, txant_pre
-         mem(17)  <= x"0001";             -- 16 free, txant_post
+         mem(17)  <= x"0002";             -- 16 free, txant_post
          mem(18)  <= "1111111111111111";  --  0 free, SPI_SS[15:0]
          mem(19)  <= "0110111101101011";  --  0 free, rsrvd,LMS2_RXEN,LMS2_TXEN,LMS2_TXNRX2,LMS2_TXNRX1,LMS2_CORE_LDO_EN,LMS2_RESET,LMS2_SS,rsrvd,LMS1_RXEN,LMS1_TXEN,LMS1_TXNRX2,LMS1_TXNRX1,LMS1_CORE_LDO_EN,LMS1_RESET,LMS1_SS
          mem(20)  <= "0000000000000011";  --  0 free, (Reserved LMS control)
