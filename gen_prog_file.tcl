@@ -3,7 +3,7 @@ set script_path [file dirname [file normalize [info script]]]
 puts $script_path
 
 # Set output file path and name
-set bit_path "[file normalize "$script_path/PCIe_5GRadio_lms7_trx/PCIe_5GRadio_lms7_trx.runs/impl_1/lms7_trx_top.bit"]"
+set bit_path "[file normalize "$script_path/LimeSDR-X3/LimeSDR-X3.runs/impl_1/lms7_trx_top.bit"]"
 puts $bit_path
 
 set bit_string "up 0x00000000 $bit_path "

@@ -2,4 +2,4 @@ set script_path [file dirname [file normalize [info script]]]
 puts $script_path
 
 cd $script_path
-source PCIe_5GRadio_lms7_trx.tcl
+source LimeSDR-X3.tcl

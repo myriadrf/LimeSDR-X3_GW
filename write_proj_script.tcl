@@ -17,7 +17,7 @@ set script_path [file dirname [file normalize [info script]]]
 puts $script_path
 
 # Set output file path and name
-set output_path "[file normalize "$script_path/PCIe_5GRadio_lms7_trx.tcl"]"
+set output_path "[file normalize "$script_path/LimeSDR-X3.tcl"]"
 puts $output_path
 
 # Generate project build script

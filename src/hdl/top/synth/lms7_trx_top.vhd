@@ -1,6 +1,6 @@
 -- ----------------------------------------------------------------------------
 -- FILE:          lms7_trx_top.vhd
--- DESCRIPTION:   Top level file for LimeSDR-PCIe board
+-- DESCRIPTION:   Top level file for LimeSDR-X3 board
 -- DATE:          10:06 AM Friday, May 11, 2018
 -- AUTHOR(s):     Lime Microsystems
 -- REVISIONS:
