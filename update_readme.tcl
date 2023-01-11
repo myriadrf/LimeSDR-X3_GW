@@ -23,7 +23,10 @@ proc update_readme_number { input_file output_file source_file} {
 			set minor_compile_ver $version_number
 		} elseif { [regexp {^\s*constant major_rev : integer := ([[:digit:]]+);\s*$} \ $line match version_number] } {
 			set major_compile_ver $version_number
-		} 
+		} elseif { [regexp {^\s*constant major_rev : integer := -([[:digit:]]+);\s*$} \ $line match version_number] } {
+			set major_compile_ver "-"
+            append major_compile_ver $version_number
+		}
 		
 	}
 	

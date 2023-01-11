@@ -11,13 +11,13 @@ use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 package revisions is
-	constant major_rev : integer := 2;
+	constant major_rev : integer := -1; 
 	constant minor_rev : integer := 1;
 	constant beta_rev : integer := 1;
-	constant compile_rev : integer := 35;
+	constant compile_rev : integer := 36;
 	constant compile_year_stamp : integer := 23;
 	constant compile_month_stamp : integer := 01;
-	constant compile_day_stamp : integer := 03;
+	constant compile_day_stamp : integer := 11;
 	constant compile_hour_stamp : integer := 15;
 	
 	constant magic_num : std_logic_vector(31 downto 0) := x"d8a5f009";
