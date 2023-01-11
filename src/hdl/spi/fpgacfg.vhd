@@ -88,12 +88,12 @@ begin
    begin
       if lreset = '0' then
          BOARD_ID_reg      <= BOARD_ID;
-         MAJOR_REV_reg     <= std_logic_vector(to_unsigned(MAJOR_REV, 16));
-         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 16));
+         MAJOR_REV_reg     <= std_logic_vector(to_signed(MAJOR_REV, 16));
+         COMPILE_REV_reg   <= std_logic_vector(to_signed(COMPILE_REV, 16));
       elsif sclk'event and sclk = '1' then
          BOARD_ID_reg      <= BOARD_ID;
-         MAJOR_REV_reg     <= std_logic_vector(to_unsigned(MAJOR_REV, 16));
-         COMPILE_REV_reg   <= std_logic_vector(to_unsigned(COMPILE_REV, 16));
+         MAJOR_REV_reg     <= std_logic_vector(to_signed(MAJOR_REV, 16));
+         COMPILE_REV_reg   <= std_logic_vector(to_signed(COMPILE_REV, 16));
       end if;
    end process;
 
