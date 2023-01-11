@@ -1,6 +1,6 @@
-# PCIe_5GRadio_lms7_trx FPGA gateware
+# LimeSDR-X3 FPGA gateware
 
-This repository contains the FPGA gateware project for the PCIe_5GRadio board.
+This repository contains the FPGA gateware project for the LimeSDR-X3 board.
 
 The gateware can be built with the free version of the Xilinx Vivado v2019.1 (64-bit).
 
@@ -12,7 +12,7 @@ The gateware can be built with the free version of the Xilinx Vivado v2019.1 (64
 
 ## Changing project settings or adding new src files
 
-* Open PCIe_5GRadio_lms7_trx project with Vivado;
+* Open LimeSDR-X3 project with Vivado;
 * Select Tools->Run Tcl script.. 
 * Move into the gateware directory and execute "write_proj_script.tcl"
 
