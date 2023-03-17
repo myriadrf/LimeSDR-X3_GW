@@ -73,7 +73,6 @@ constant c_INST1_RDUSEDW_WIDTH   : integer := FIFO_WORDS_TO_Nbits(g_PCT_MAX_SIZE
 signal inst1_reset_n             : std_logic;
 
 signal inst1_wrusedw             : std_logic_vector(c_INST1_WRUSEDW_WIDTH-1 downto 0);
-signal inst1_almostwrempty       : std_logic;
 
 
 
@@ -299,6 +298,10 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
       if reset_n = '0' then 
          inst1_0_pct_words  <= (others=>'1');
          inst1_1_pct_words  <= (others=>'1');
+      elsif inst1_0_pct_rdy_reg = '1' and inst1_0_rdreq = '1' then
+         inst1_0_pct_words  <= (others => '1');
+      elsif inst1_1_pct_rdy_reg = '1' and inst1_1_rdreq = '1' then
+         inst1_1_pct_words  <= (others => '1');
       elsif (pct_rdclk'event AND pct_rdclk='1') then
          if inst0_pct_header_valid_reg = '1' then
             -- For compatibility: if there are no packet size inserted in packet header
