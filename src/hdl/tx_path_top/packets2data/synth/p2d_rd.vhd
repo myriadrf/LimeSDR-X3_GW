@@ -105,6 +105,8 @@ signal current_state, next_state : state_type;
 -- attribute MARK_DEBUG of pct_smpl_nr_equal : signal is "TRUE";
 -- attribute MARK_DEBUG of pct_smpl_nr_less : signal is "TRUE";
 -- attribute MARK_DEBUG of pct_buff_rdy : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_buff_rdreq : signal is "TRUE";
+-- attribute MARK_DEBUG of smpl_buff_almost_full : signal is "TRUE";
 
 begin
    

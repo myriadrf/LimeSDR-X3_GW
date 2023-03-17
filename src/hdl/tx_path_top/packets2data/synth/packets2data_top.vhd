@@ -48,9 +48,10 @@ entity packets2data_top is
       in_pct_reset_n_req: out std_logic;
       in_pct_rdreq      : out std_logic;
       in_pct_data       : in std_logic_vector(in_pct_data_w-1 downto 0);
-      in_pct_rdy        : in std_logic;
+      in_pct_rdy        : in std_logic_vector(1 downto 0);
       in_pct_clr_flag   : out std_logic;
       in_pct_buff_rdy   : out std_logic_vector(g_BUFF_COUNT-1 downto 0);
+      in_pct_fifo_sel   : out std_logic;
       
       smpl_fifo_wrreq   : out std_logic;
       smpl_fifo_wrfull  : in  std_logic;
@@ -90,7 +91,11 @@ signal fifo_full_sig             : std_logic;
 
 signal mux_sel                   : std_logic;
  
- 
+
+--attribute MARK_DEBUG : string;
+--attribute MARK_DEBUG of smpl_fifo_wrusedw : signal is "TRUE";
+				
+
 begin
 
 max_fifo_words <= ((decomp_fifo_size-1)=> '0', others=>'1');
@@ -153,6 +158,7 @@ end process;
       in_pct_rdy              => in_pct_rdy,
       in_pct_clr_flag         => in_pct_clr_flag,
       in_pct_buff_rdy         => in_pct_buff_rdy, 
+      in_pct_fifo_sel         => in_pct_fifo_sel,
       
       p2d_rd_read_hold        => inst1_data_out_read_hold,
       

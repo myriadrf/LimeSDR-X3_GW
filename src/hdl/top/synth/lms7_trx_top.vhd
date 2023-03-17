@@ -1791,7 +1791,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_tstcfg_from_rxtx     => inst7_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       from_memcfg             => inst0_from_memcfg,
-      to_memcfg               => inst0_to_memcfg,
       -- TX module signals
       tx_clk                  => inst1_lms1_txpll_c1,      
       tx_clk_reset_n          => inst1_lms1_txpll_locked,
@@ -1821,6 +1820,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata,
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en,
+      tx_packet_count         => inst0_to_memcfg.LMS1_tx_pct_cnt,
+      tx_drop_count           => inst0_to_memcfg.LMS1_tx_drp_cnt,
       
       ext_rx_en => dpd_tx_en,   
       tx_dma_en => inst2_s0_dma_en
@@ -1937,13 +1938,12 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       
    )
    port map(               
-   sys_clk                 => CLK100_FPGA,                                
+      sys_clk                 => CLK100_FPGA,                                
       from_fpgacfg            => inst0_from_fpgacfg_mod_1,
       to_fpgacfg              => inst0_to_fpgacfg_1,
       to_tstcfg_from_rxtx     => inst9_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       from_memcfg             => inst0_from_memcfg,
-      to_memcfg               => inst0_to_memcfg,
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => reset_n,     
@@ -1973,6 +1973,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_pct_fifo_wdata       => inst9_rx_pct_fifo_wdata,
       -- RX sample nr count enable
       rx_smpl_nr_cnt_en       => inst10_smpl_cnt_en,
+      tx_packet_count         => inst0_to_memcfg.LMS2_tx_pct_cnt,
+      tx_drop_count           => inst0_to_memcfg.LMS2_tx_drp_cnt,
 
        ext_rx_en => '0',
        --ext_rx_en => dpd_tx_en,  -- B.J.      
@@ -2218,7 +2220,6 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
       from_tstcfg             => inst0_from_tstcfg,      
       from_memcfg             => inst0_from_memcfg,
-      to_memcfg               => inst0_to_memcfg,  
       -- TX module signals
       tx_clk                  => inst1_pll_1_c1,
       tx_clk_reset_n          => '0',--reset_n,     
@@ -2250,6 +2251,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       -- smpl_cnt_en increments counter that is only used for TX synchronisation
       -- making it useless for LMS3
       rx_smpl_nr_cnt_en       => '0',--inst11_smpl_cnt_en,
+      tx_packet_count         => open,
+      tx_drop_count           => open,
 
       --ext_rx_en =>  '0',
       ext_rx_en =>  '0', -- not for now: dpd_tx_en,  -- B.J.

@@ -37,7 +37,8 @@ entity p2d_wr_fsm is
       in_pct_reset_n_req: out std_logic;
       in_pct_rdreq      : out std_logic;
       in_pct_data       : in std_logic_vector(g_DATA_WIDTH-1 downto 0);
-      in_pct_rdy        : in std_logic;
+      in_pct_rdy        : in std_logic_vector(1 downto 0);
+      in_pct_fifo_sel   : out std_logic;
       
       pct_hdr_0         : out std_logic_vector(63 downto 0);
       pct_hdr_0_valid   : out std_logic_vector(g_BUFF_COUNT-1 downto 0);
@@ -64,7 +65,7 @@ constant c_PCT_MAX_WORDS   : integer := g_PCT_MAX_SIZE*8/g_DATA_WIDTH;
 constant c_PCT_HDR_WORDS   : integer := g_PCT_HDR_SIZE*8/g_DATA_WIDTH;
 constant c_RD_RATIO        : integer := g_DATA_WIDTH/8;
 
-type state_type is (idle, rd_hdr, wait_cmpr_pipe, check_smpl_nr, clr_fifo, switch_next_buff, rd_pct, wait_wr_end, check_next_buf, switch_current_buff);
+type state_type is (idle, rd_hdr, wait_cmpr_pipe, check_smpl_nr, clr_fifo, wait0, wait1, switch_next_buff, rd_pct, wait_wr_end, check_next_buf, switch_current_buff);
 signal current_state, next_state : state_type;  
 
 signal current_buff_cnt       : unsigned(3 downto 0);
@@ -85,6 +86,9 @@ signal pct_smpl_nr_equal      : std_logic;
 signal pct_smpl_nr_less       : std_logic;
 signal pct_hdr_0_reg          : std_logic_vector(63 downto 0);
 signal pct_hdr_1_reg          : std_logic_vector(63 downto 0);
+
+signal fifo_sel               : std_logic;
+signal fifo_sel_next          : std_logic;
 alias  crnt_pct_sync_dis      : std_logic is pct_hdr_0_reg(4);
 
 
@@ -110,9 +114,14 @@ alias  crnt_pct_sync_dis      : std_logic is pct_hdr_0_reg(4);
 -- attribute MARK_DEBUG of current_state : signal is "TRUE";
 -- attribute MARK_DEBUG of pct_smpl_nr_equal : signal is "TRUE";
 -- attribute MARK_DEBUG of pct_smpl_nr_less : signal is "TRUE";
+-- attribute MARK_DEBUG of fifo_sel : signal is "TRUE";
 -- attribute MARK_DEBUG of pct_hdr_1_reg : signal is "TRUE";
 -- attribute MARK_DEBUG of sample_nr : signal is "TRUE";
 -- attribute MARK_DEBUG of in_pct_reset_n_req : signal is "TRUE";
+-- attribute MARK_DEBUG of in_pct_rdy : signal is "TRUE";
+-- attribute MARK_DEBUG of crnt_pct_sync_dis : signal is "TRUE";
+-- attribute MARK_DEBUG of pct_sync_dis : signal is "TRUE";
+-- attribute MARK_DEBUG of in_pct_data : signal is "TRUE";
 
 begin
 
@@ -202,8 +211,10 @@ begin
 fsm_f : process(clk, reset_n)begin
    if(reset_n = '0')then
       current_state <= idle;
+      fifo_sel      <= '0';
    elsif(clk'event and clk = '1')then
       current_state <= next_state;
+      fifo_sel      <= fifo_sel_next;
    end if;
 end process;
 
@@ -213,11 +224,17 @@ end process;
 fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
                next_buff_rdy, in_pct_data_valid, pipe_cnt, pct_smpl_nr_less, 
                crnt_pct_sync_dis, pct_sync_dis, rd_cnt_max) begin
-   next_state <= current_state;
+   next_state     <= current_state;
+   fifo_sel_next  <= fifo_sel;
    case current_state is
    
       when idle =>
-         if in_pct_rdy = '1' then
+         if in_pct_rdy /= "00" then
+            if in_pct_rdy = "01" then
+                fifo_sel_next <= '0';
+            else
+                fifo_sel_next <= '1';
+            end if;
             next_state <= rd_hdr;
          else 
             next_state <= idle;
@@ -245,7 +262,13 @@ fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
          end if;
          
       when clr_fifo => 
-         next_state <= idle;
+         next_state    <= wait0;
+         
+      when wait0 =>
+         next_state <= wait1;
+         
+      when wait1 =>
+         next_state <= idle;     
 
       when switch_next_buff => 
          next_state <= rd_pct;
@@ -272,8 +295,8 @@ fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
          end if;
             
       when switch_current_buff => 
-         next_state <= idle;
-         
+         next_state    <= idle;
+
       when others => 
          next_state <= idle;
    end case;
@@ -370,10 +393,10 @@ begin
 end process;
 
 
-in_pct_rdreq <= in_pct_rdreq_int;
-
-pct_hdr_0 <= pct_hdr_0_reg;
-pct_hdr_1 <= pct_hdr_1_reg;
+in_pct_rdreq    <= in_pct_rdreq_int;
+in_pct_fifo_sel <= fifo_sel;
+pct_hdr_0       <= pct_hdr_0_reg;
+pct_hdr_1       <= pct_hdr_1_reg;
 
 end arch;   
 

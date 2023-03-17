@@ -36,7 +36,8 @@ entity pct_separate_fsm is
       pct_header_valid  : out std_logic;
       
       pct_counter       : out std_logic_vector(31 downto 0);
-      pct_counter_rst   : in  std_logic
+      pct_counter_rst   : in  std_logic;
+      fifo_sel          : out std_logic := '0'
 
    );
 end pct_separate_fsm;
@@ -52,7 +53,7 @@ constant c_PCT_HDR_WORDS   : integer := g_PCT_HDR_SIZE*8/g_DATA_WIDTH;
 constant c_RD_RATIO        : integer := g_DATA_WIDTH/8;
 
 -- Internal signals
-type state_type is (idle, rd_pct, rd_done);
+type state_type is (idle, rd_pct, sw_fifo, rd_done);
 signal current_state, next_state : state_type;
 
 signal infifo_rdreq_int    : std_logic;
@@ -68,6 +69,9 @@ signal header_valid_reg    : std_logic;
 signal pct_counter_inc     : std_logic;
 signal pct_counter_inc_reg : std_logic;
 signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
+
+signal fifo_sel_next        : std_logic;
+signal fifo_sel_reg        : std_logic;
 
 -- attribute MARK_DEBUG : string;
 --attribute MARK_DEBUG of current_state: signal is "TRUE";
@@ -87,6 +91,8 @@ signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
 --attribute MARK_DEBUG of pct_counter_inc          : signal is "TRUE";
 --attribute MARK_DEBUG of pct_counter_int          : signal is "TRUE";
 --attribute MARK_DEBUG of pct_counter_rst          : signal is "TRUE";
+--attribute MARK_DEBUG of fifo_sel_reg                 : signal is "TRUE";
+
 
   
 begin
@@ -111,8 +117,10 @@ pct_counter <= pct_counter_int;
 fsm_f : process(clk, reset_n)begin
    if(reset_n = '0')then
       current_state <= idle;
+      fifo_sel_reg      <= '0';
    elsif(clk'event and clk = '1')then
       current_state <= next_state;
+      fifo_sel_reg      <= fifo_sel_next;
    end if;
 end process;
 
@@ -122,7 +130,8 @@ end process;
 fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt, 
                rd_cnt_max) begin
    pct_counter_inc <= '0';
-   next_state <= current_state;
+   fifo_sel_next   <= fifo_sel_reg;
+   next_state      <= current_state;
    case current_state is
    
       when idle =>
@@ -138,15 +147,20 @@ fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt,
          elsif rd_cnt = rd_cnt_max - 1 AND infifo_rdempty = '1' then 
             next_state <= rd_pct;
          else 
-            next_state <= rd_done;
+            next_state <= sw_fifo;
+            
          end if;
+         
+      when sw_fifo =>
+         fifo_sel_next   <= not fifo_sel_reg;
+         next_state      <= rd_done;
          
       when rd_done =>
          if pct_wrempty = '1' then 
-            next_state <= idle;
+            next_state      <= idle;
             pct_counter_inc <= '1';
          else
-            next_state <= rd_done;
+            next_state      <= rd_done;
          end if;
                   
       when others => 
@@ -271,7 +285,7 @@ pct_wrreq         <= pct_wrreq_reg;
 pct_data          <= infifo_data;
 pct_header        <= header_1 & header_0;
 pct_header_valid  <= header_valid_reg;
-
+fifo_sel          <= fifo_sel_reg;
 
 end arch;   
 

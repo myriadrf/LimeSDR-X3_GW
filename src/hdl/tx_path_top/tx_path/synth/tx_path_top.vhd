@@ -100,10 +100,11 @@ signal sample_width_sync_iq_rdclk   : std_logic_vector(1 downto 0);
 
 --inst0
 signal inst0_reset_n                : std_logic;
-signal inst0_pct_rdy                : std_logic;
+signal inst0_pct_rdy                : std_logic_vector(1 downto 0);
 signal inst0_pct_header             : std_logic_vector(127 downto 0);
 signal inst0_pct_data               : std_logic_vector(127 downto 0);
 signal inst0_pct_data_rdempty       : std_logic;
+signal inst0_in_pct_fifo_sel        : std_logic;
 
 --inst1
 signal inst1_smpl_buff_rdempty      : std_logic;
@@ -123,6 +124,7 @@ signal pct_sync_num_of_packets_12b  : std_logic_vector(2 downto 0);
 signal pct_sync_num_of_packets_16b  : std_logic_vector(2 downto 0);
 signal pct_sync_num_of_rdy_packets  : unsigned(2 downto 0);
 signal pct_rdy_combined_vect        : std_logic_vector(g_BUFF_COUNT downto 0);
+
 
 begin
 pct_loss_pulse    <= inst1_in_pct_clr_flag;
@@ -276,7 +278,8 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       g_INFIFO_DATA_WIDTH     => g_FIFO_DATA_W,
       g_PCT_MAX_SIZE          => g_PCT_MAX_SIZE, -- Packet FIFO size in bytes
       g_PCT_HDR_SIZE          => g_PCT_HDR_SIZE,
-      g_PCTFIFO_RDATA_WIDTH   => 128
+      g_PCTFIFO_RDATA_WIDTH   => 128,
+      g_dual_onepctfifo       => g_DOUBLE_BUS --dual fifo is needed only when high throughput is required i.e. when double bus is also needed
    )
    port map(
       clk               => pct_wrclk,
@@ -292,7 +295,8 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       pct_data          => inst0_pct_data,
       pct_data_rdempty  => inst0_pct_data_rdempty,
       pct_counter       => pct_counter    ,
-      pct_counter_rst   => pct_counter_rst
+      pct_counter_rst   => pct_counter_rst,
+      ext_rd_fifo_sel   => inst0_in_pct_fifo_sel
    ); 
 
 -- ----------------------------------------------------------------------------
@@ -331,6 +335,7 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       in_pct_rdy        => inst0_pct_rdy,
       in_pct_clr_flag   => inst1_in_pct_clr_flag,
       in_pct_buff_rdy   => inst1_in_pct_buff_rdy,
+      in_pct_fifo_sel   => inst0_in_pct_fifo_sel,
       
       smpl_fifo_wrreq   => smpl_fifo_wrreq,
       smpl_fifo_wrfull  => smpl_fifo_wrfull,

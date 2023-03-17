@@ -82,8 +82,11 @@ entity rxtx_top is
       rx_pct_fifo_wdata       : out    std_logic_vector(RX_DATABUS_WIDTH-1 downto 0);
          -- RX sample nr count enable
       rx_smpl_nr_cnt_en       : in     std_logic;
-      to_memcfg            : out     t_TO_MEMCFG;
-      from_memcfg          : in    t_FROM_MEMCFG;
+--      to_memcfg               : out    t_TO_MEMCFG;
+      from_memcfg             : in     t_FROM_MEMCFG;
+         -- debug/monitoring signals
+      tx_packet_count         : out    std_logic_vector(31 downto 0);
+      tx_drop_count           : out    std_logic_vector(31 downto 0);
 
       ext_rx_en: in std_logic;  -- B.J.;
       tx_dma_en: in std_logic
@@ -149,13 +152,14 @@ signal pct_loss_pulse_reg        : std_logic;
 signal rx_pct_size               : std_logic_vector(15 downto 0);
 signal rx_pct_size_smpls         : std_logic_vector(15 downto 0);
 
-    -- attribute MARK_DEBUG : string;
+--     attribute MARK_DEBUG : string;
     -- attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
     -- attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
 --    attribute MARK_DEBUG of pct_counter_rst : signal is "TRUE";
 --    attribute MARK_DEBUG of pct_drop_rst : signal is "TRUE";
-    -- attribute MARK_DEBUG of pct_loss_pulse : signal is "TRUE";
-    -- attribute MARK_DEBUG of pct_loss_pulse_reg : signal is "TRUE";
+--     attribute MARK_DEBUG of pct_loss_pulse : signal is "TRUE";
+--     attribute MARK_DEBUG of pct_loss_pulse_reg : signal is "TRUE";
+--     attribute MARK_DEBUG of tx_in_pct_rdusedw : signal is "TRUE";
 
 begin
 
@@ -194,16 +198,14 @@ begin
                 async_in => pct_drop_counter,
                 sync_out => pct_drop_counter_sync
    );
+   tx_packet_count <= pct_counter_sync;
+   tx_drop_count   <= pct_drop_counter_sync;
    
    g_index1 : if index = 1 generate
-    to_memcfg.LMS1_tx_pct_cnt <= pct_counter_sync;
-    to_memcfg.LMS1_tx_drp_cnt <= pct_drop_counter_sync;
     pct_counter_rst           <= from_memcfg.LMS1_tx_pct_rst;  
     pct_drop_rst              <= from_memcfg.LMS1_tx_drp_rst;
    end generate;
    g_index2 : if index = 2 generate
-    to_memcfg.LMS2_tx_pct_cnt <= pct_counter_sync;
-    to_memcfg.LMS2_tx_drp_cnt <= pct_drop_counter_sync;
     pct_counter_rst           <= from_memcfg.LMS2_tx_pct_rst;  
     pct_drop_rst              <= from_memcfg.LMS2_tx_drp_rst;
    end generate;

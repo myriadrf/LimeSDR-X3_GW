@@ -46,7 +46,8 @@ entity packets2data is
       in_pct_reset_n_req      : out std_logic;
       in_pct_rdreq            : out std_logic;
       in_pct_data             : in std_logic_vector(in_pct_data_w-1 downto 0);
-      in_pct_rdy              : in std_logic;
+      in_pct_rdy              : in std_logic_vector(1 downto 0);
+      in_pct_fifo_sel         : out std_logic;
             
       in_pct_clr_flag         : out std_logic;
       in_pct_buff_rdy         : out std_logic_vector(g_BUFF_COUNT-1 downto 0);
@@ -170,6 +171,7 @@ p2d_wr_fsm_inst0 : entity work.p2d_wr_fsm
       in_pct_rdreq      => in_pct_rdreq,
       in_pct_data       => in_pct_data,
       in_pct_rdy        => in_pct_rdy,
+      in_pct_fifo_sel   => in_pct_fifo_sel,
 
       pct_hdr_0         => inst0_pct_hdr_0,
       pct_hdr_0_valid   => inst0_pct_hdr_0_valid,
