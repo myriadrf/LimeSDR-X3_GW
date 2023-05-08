@@ -80,6 +80,7 @@ signal next_buff_rdy          : std_logic;
 
 signal in_pct_rdreq_int       : std_logic;
 signal in_pct_data_valid      : std_logic;
+signal in_pct_data_valid_reg  : std_logic;
 
 signal pct_data_wrreq_cnt     : unsigned(15 downto 0);
 signal pct_smpl_nr_equal      : std_logic;
@@ -127,7 +128,7 @@ begin
 
    LPM_COMPARE_component : entity work.lpm_compare_inst
    GENERIC MAP (
-      lpm_pipeline         => 3,
+      lpm_pipeline         => 2,
       lpm_representation   => "UNSIGNED",
       lpm_type             => "LPM_COMPARE",
       lpm_width            => 64
@@ -229,12 +230,13 @@ fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
    case current_state is
    
       when idle =>
-         if in_pct_rdy /= "00" then
-            if in_pct_rdy = "01" then
-                fifo_sel_next <= '0';
-            else
-                fifo_sel_next <= '1';
-            end if;
+         if (in_pct_rdy(0) = '1' and fifo_sel = '0') or (in_pct_rdy(1) = '1' and fifo_sel = '1') then
+--         if in_pct_rdy /= "00" then
+--            if in_pct_rdy = "01" then
+--                fifo_sel_next <= '0';
+--            else
+--                fifo_sel_next <= '1';
+--            end if;
             next_state <= rd_hdr;
          else 
             next_state <= idle;
@@ -267,12 +269,14 @@ fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
       when wait0 =>
          next_state <= wait1;
          
+         
       when wait1 =>
-         next_state <= idle;     
+         fifo_sel_next <= not fifo_sel;   
+         next_state <= idle;
 
       when switch_next_buff => 
          next_state <= rd_pct;
-                  
+         
       when rd_pct =>
          if rd_cnt < rd_cnt_max - 1 then 
             next_state <= rd_pct;
@@ -295,6 +299,7 @@ fsm : process(current_state, current_buff_rdy, in_pct_rdy, rd_cnt,
          end if;
             
       when switch_current_buff => 
+         fifo_sel_next <= not fifo_sel;
          next_state    <= idle;
 
       when others => 
@@ -311,10 +316,12 @@ end process;
       if reset_n = '0' then 
          in_pct_data_valid <= '0';
          pct_data_wrreq_cnt <= (others => '0');
+         in_pct_data_valid_reg <= '0'; --register the valid signal, since the data input is registered externally
       elsif (clk'event AND clk='1') then 
-         in_pct_data_valid <= in_pct_rdreq_int;
+         in_pct_data_valid_reg <= in_pct_data_valid;
+         in_pct_data_valid     <= in_pct_rdreq_int;
          
-         if in_pct_data_valid = '1' then 
+         if in_pct_data_valid_reg = '1' then 
             pct_data_wrreq_cnt <= pct_data_wrreq_cnt + 1;
          elsif current_state = idle then 
             pct_data_wrreq_cnt <= (others => '0');
@@ -356,7 +363,9 @@ begin
       end if;
       
       -- Packet header
-      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt = C_HEADER_POS then 
+      -- With delayed input the header appears at pipe_cnt = 2
+      --      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt = C_HEADER_POS then 
+      if pipe_cnt = 2 then
          pct_hdr_0_reg     <= in_pct_data(63 downto 0);
          pct_hdr_1_reg     <= in_pct_data(127 downto 64);
          if in_pct_data(23 downto 8) = "0000000000000000" then 
@@ -366,7 +375,8 @@ begin
          end if;
       end if;
       
-      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt = C_HEADER_POS then 
+--      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt = C_HEADER_POS then 
+      if pipe_cnt = 2 then
          pct_hdr_0_valid   <= (others=>'0');
          pct_hdr_0_valid(to_integer(current_buff_cnt))   <= '1';
          
@@ -378,11 +388,11 @@ begin
       end if;
       
       -- Packet data
-      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt > C_HEADER_POS then 
+      if in_pct_data_valid_reg = '1' AND pct_data_wrreq_cnt > C_HEADER_POS then 
          pct_data         <= in_pct_data;
       end if;
       
-      if in_pct_data_valid = '1' AND pct_data_wrreq_cnt > C_HEADER_POS then 
+      if in_pct_data_valid_reg = '1' AND pct_data_wrreq_cnt > C_HEADER_POS then 
          pct_data_wrreq   <= (others=>'0');
          pct_data_wrreq(to_integer(current_buff_cnt))   <= '1';
       else 

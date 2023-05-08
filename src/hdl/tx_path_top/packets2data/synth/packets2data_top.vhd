@@ -213,8 +213,8 @@ end process;
     
    inst1_128bit_reset <= '1' when sample_width = "10" else '0';    
    
-        --4 is an arbitrary value, can be changed if needed
-   inst1_data_out_read_hold <= '1' when unsigned(inst2_wrusedw) > 4 else '0';
+        --Stop writing when fifo is half full
+   inst1_data_out_read_hold <= inst2_wrusedw(inst2_wrusedw'LEFT-1);--inst2_wrfull;--'1' when unsigned(inst2_wrusedw) > 4 else '0';
 
         --Bit packer -> turns 12bit sample stream to a 16bit sample stream
    inst1_unpack_128_to_48 : entity work.unpack_128_to_48

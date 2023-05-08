@@ -102,6 +102,12 @@ signal inst1_1_pct_wrreq         : std_logic;
 signal inst1_0_pct_data          : std_logic_vector(g_INFIFO_DATA_WIDTH-1 downto 0);
 signal inst1_1_pct_data          : std_logic_vector(g_INFIFO_DATA_WIDTH-1 downto 0);
 
+signal inst1_0_pct_wrreq_reg     : std_logic;
+signal inst1_1_pct_wrreq_reg     : std_logic;
+
+signal inst1_0_pct_data_reg      : std_logic_vector(g_INFIFO_DATA_WIDTH-1 downto 0);
+signal inst1_1_pct_data_reg      : std_logic_vector(g_INFIFO_DATA_WIDTH-1 downto 0);
+
 signal inst1_0_wrempty          : std_logic;
 signal inst1_1_wrempty          : std_logic;
 
@@ -122,6 +128,8 @@ signal inst1_1_pct_rdy_reg         : std_logic;
 
 signal inst1_0_pct_words           : unsigned(15 downto 0);
 signal inst1_1_pct_words           : unsigned(15 downto 0);
+
+
 
 signal inst1_0_reset_n             : std_logic;
 signal inst1_1_reset_n             : std_logic;
@@ -159,9 +167,21 @@ signal inst0_wrempty               : std_logic;
 				  
 begin
 
--- 
-rd_fifo_sel <= ext_rd_fifo_sel when g_dual_onepctfifo = true else '0';
-fifo_sel <= inst0_fifo_sel when g_dual_onepctfifo = true else '0';
+
+fifo_sel_gen_true : if g_dual_onepctfifo = true generate 
+    rd_fifo_sel <= ext_rd_fifo_sel;
+    fifo_sel    <= inst0_fifo_sel;
+    pct_rdy(0)  <= inst1_0_pct_rdy_reg;
+    pct_rdy(1)  <= inst1_1_pct_rdy_reg;
+end generate;
+
+fifo_sel_gen_false : if g_dual_onepctfifo = false generate 
+    rd_fifo_sel <= '0';
+    fifo_sel    <= '0';
+    pct_rdy(0)  <= inst1_0_pct_rdy_reg;
+    pct_rdy(1)  <= inst1_0_pct_rdy_reg;
+end generate;
+
 ---- Fifo selection muxes
 --internal selector
 inst0_wrempty <= (inst1_0_wrempty and  not inst1_0_wr_rst_busy) when fifo_sel = '0' else (inst1_1_wrempty and not inst1_1_wr_rst_busy);
@@ -174,16 +194,14 @@ inst1_0_rdreq <= pct_data_rdreq when rd_fifo_sel = '0' else '0';
 inst1_1_rdreq <= pct_data_rdreq when rd_fifo_sel = '1' else '0';
 pct_data <= inst1_0_fifooutdata when rd_fifo_sel = '0' else inst1_1_fifooutdata;
 pct_data_rdempty <= inst1_0_rdempty when rd_fifo_sel = '0' else inst1_1_rdempty;
-inst1_0_reset_n  <= inst1_reset_n when rd_fifo_sel = '0' else '1';
-inst1_1_reset_n  <= inst1_reset_n when rd_fifo_sel = '1' else '1';
+inst1_0_reset_n  <= pct_aclr_n  when rd_fifo_sel = '0' else '1';
+inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
 
-pct_rdy(0) <= inst1_0_pct_rdy_reg;
-pct_rdy(1) <= inst1_1_pct_rdy_reg;
 -- ----------------------------------------------------------------------------
 -- Reset logic
 -- ----------------------------------------------------------------------------  
    sync_reg0 : entity work.sync_reg 
-   port map(clk, pct_aclr_n AND reset_n, '1', inst1_reset_n);
+   port map(clk, reset_n, '1', inst1_reset_n);
 
 -- ----------------------------------------------------------------------------
 -- Packet separate state machine
@@ -211,6 +229,20 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
    );
    
 -- ----------------------------------------------------------------------------
+-- Registering fifo write signals to aid timing
+-- ----------------------------------------------------------------------------  
+  fifo_wr_reg_proc : process(clk)
+  begin
+    if rising_edge(clk) then
+        inst1_0_pct_wrreq_reg <= inst1_0_pct_wrreq;
+        inst1_1_pct_wrreq_reg <= inst1_1_pct_wrreq;
+                              
+        inst1_0_pct_data_reg  <= inst1_0_pct_data;
+        inst1_1_pct_data_reg  <= inst1_1_pct_data;
+    end if; 
+  end process;
+   
+-- ----------------------------------------------------------------------------
 -- FIFO for storing one packet
 -- ----------------------------------------------------------------------------   
    inst1_0_fifo_inst : entity work.fifo_inst   
@@ -223,12 +255,12 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
       show_ahead     => "OFF"
    )
    port map(
-      reset_n        => inst1_0_reset_n and reset_n,
+      reset_n        => inst1_0_reset_n and inst1_reset_n,
       wr_rst_busy    => inst1_0_wr_rst_busy,
       rd_rst_busy    => inst1_rd_rst_busy,
       wrclk          => clk,
-      wrreq          => inst1_0_pct_wrreq,
-      data           => inst1_0_pct_data,
+      wrreq          => inst1_0_pct_wrreq_reg,
+      data           => inst1_0_pct_data_reg,
       wrfull         => open,
       wrempty        => inst1_0_wrempty,
       wrusedw        => inst1_wrusedw,
@@ -251,12 +283,12 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
           show_ahead     => "OFF"
        )
        port map(
-          reset_n        => inst1_1_reset_n and reset_n,
+          reset_n        => inst1_1_reset_n and inst1_reset_n,
           wr_rst_busy    => inst1_1_wr_rst_busy,
           rd_rst_busy    => open,
           wrclk          => clk,
-          wrreq          => inst1_1_pct_wrreq,
-          data           => inst1_1_pct_data,
+          wrreq          => inst1_1_pct_wrreq_reg,
+          data           => inst1_1_pct_data_reg,
           wrfull         => open,
           wrempty        => inst1_1_wrempty,
           wrusedw        => open,
@@ -291,17 +323,14 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
 --         pct_header_valid <= inst2_rdreq;
 --      end if;
 --   end process;
+      
    
-   -- Capture packet size in bytes from packet header and convert to FIFO read words count
-   pct_words_proc : process(pct_rdclk, reset_n)
+   pct_words_proc_0 : process(pct_rdclk, reset_n)
    begin
       if reset_n = '0' then 
          inst1_0_pct_words  <= (others=>'1');
-         inst1_1_pct_words  <= (others=>'1');
       elsif inst1_0_pct_rdy_reg = '1' and inst1_0_rdreq = '1' then
          inst1_0_pct_words  <= (others => '1');
-      elsif inst1_1_pct_rdy_reg = '1' and inst1_1_rdreq = '1' then
-         inst1_1_pct_words  <= (others => '1');
       elsif (pct_rdclk'event AND pct_rdclk='1') then
          if inst0_pct_header_valid_reg = '1' then
             -- For compatibility: if there are no packet size inserted in packet header
@@ -309,24 +338,44 @@ pct_rdy(1) <= inst1_1_pct_rdy_reg;
             if inst0_pct_header_reg(23 downto 8) = "0000000000000000" then 
                 if fifo_sel = '0' then
                     inst1_0_pct_words <= to_unsigned(c_MAX_PCT_WORDS,inst1_0_pct_words'length);
-                else 
-                    inst1_1_pct_words <= to_unsigned(c_MAX_PCT_WORDS,inst1_1_pct_words'length);
                 end if;
             else 
                 if fifo_sel = '0' then
                     inst1_0_pct_words <= unsigned(inst0_pct_header_reg(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
-                else
-                    inst1_1_pct_words <= unsigned(inst0_pct_header_reg(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
                 end if;
             end if;
          else 
             inst1_0_pct_words <= inst1_0_pct_words;
+         end if;
+      end if;
+   end process;
+      
+   pct_words_proc_1 : process(pct_rdclk, reset_n)
+   begin
+      if reset_n = '0' then 
+         inst1_1_pct_words  <= (others=>'1');
+      elsif inst1_1_pct_rdy_reg = '1' and inst1_1_rdreq = '1' then
+         inst1_1_pct_words  <= (others => '1');
+      elsif (pct_rdclk'event AND pct_rdclk='1') then
+         if inst0_pct_header_valid_reg = '1' then
+            -- For compatibility: if there are no packet size inserted in packet header
+            --                    then  pct_words = max number of packet words
+            if inst0_pct_header_reg(23 downto 8) = "0000000000000000" then 
+                if fifo_sel = '1' then
+                    inst1_1_pct_words <= to_unsigned(c_MAX_PCT_WORDS,inst1_1_pct_words'length);
+                end if;
+            else 
+                if fifo_sel = '1' then
+                    inst1_1_pct_words <= unsigned(inst0_pct_header_reg(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
+                end if;
+            end if;
+         else 
             inst1_1_pct_words <= inst1_1_pct_words;
          end if;
          
       end if;
    end process;
-   
+      
 -- ----------------------------------------------------------------------------
 -- Output registers
 -- ---------------------------------------------------------------------------- 

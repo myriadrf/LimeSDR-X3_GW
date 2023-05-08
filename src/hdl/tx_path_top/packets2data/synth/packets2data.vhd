@@ -122,10 +122,19 @@ type pct_size_array is array (0 to (g_BUFF_COUNT-1)) of std_logic_vector(15 down
 signal pct_buff_size                : pct_size_array;
 
 signal smpl_buff_valid_int          : std_logic;
+signal in_pct_data_reg              : std_logic_vector(in_pct_data'LEFT downto 0);
+
 
 
   
 begin
+
+process(rclk)
+begin
+    if rising_edge(rclk) then
+        in_pct_data_reg <= in_pct_data;
+    end if;
+end process;
 
 
 sync_reg1 : entity work.sync_reg 
@@ -169,7 +178,7 @@ p2d_wr_fsm_inst0 : entity work.p2d_wr_fsm
       sample_nr         => sample_nr,
       in_pct_reset_n_req=> inst0_in_pct_reset_n_req,
       in_pct_rdreq      => in_pct_rdreq,
-      in_pct_data       => in_pct_data,
+      in_pct_data       => in_pct_data_reg,
       in_pct_rdy        => in_pct_rdy,
       in_pct_fifo_sel   => in_pct_fifo_sel,
 
@@ -246,7 +255,7 @@ begin
             if inst0_pct_hdr_0(23 downto 8) = "0000000000000000" then 
                pct_buff_size(i) <= std_logic_vector(to_unsigned(c_PCT_MAX_WORDS, 16));
             else 
-               pct_buff_size(i) <= std_logic_vector(unsigned(in_pct_data(23 downto 8))/c_RD_RATIO);
+               pct_buff_size(i) <= std_logic_vector(unsigned(in_pct_data_reg(23 downto 8))/c_RD_RATIO);
             end if;
          else 
             pct_buff_size(i) <= pct_buff_size(i);

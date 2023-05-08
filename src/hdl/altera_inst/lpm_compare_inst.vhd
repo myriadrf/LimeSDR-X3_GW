@@ -42,6 +42,8 @@ architecture arch of lpm_compare_inst is
 
    type pipeline_type is array(lpm_pipeline downto 0) of std_logic_vector(5 downto 0);
    signal pipeline : pipeline_type;
+   signal dataa_reg : std_logic_vector(dataa'LEFT downto 0);
+   signal datab_reg : std_logic_vector(datab'LEFT downto 0);
    
    function bool_to_logic( Input : boolean) return std_logic is
    begin
@@ -59,25 +61,45 @@ begin
    if aclr = '1' then
       pipeline <= (others => (others => '0'));
    else
-      if lpm_representation = "SIGNED" then
-         pipeline(0)(0) <= bool_to_logic(signed(dataa) <  signed(datab)); -- alb
-         pipeline(0)(1) <= bool_to_logic(signed(dataa) =  signed(datab)); -- aeb
-         pipeline(0)(2) <= bool_to_logic(signed(dataa) >  signed(datab)); -- agb
-         pipeline(0)(3) <= bool_to_logic(signed(dataa) >= signed(datab)); -- ageb
-         pipeline(0)(4) <= bool_to_logic(signed(dataa) <= signed(datab)); -- aleb
-         pipeline(0)(5) <= bool_to_logic(signed(dataa) /= signed(datab)); -- aneb
+      if lpm_pipeline >= 1 then --use registered inputs to ease timing if pipeline is at least 1
+          if lpm_representation = "SIGNED" then
+             pipeline(0)(0) <= bool_to_logic(signed(dataa_reg) <  signed(datab_reg)); -- alb
+             pipeline(0)(1) <= bool_to_logic(signed(dataa_reg) =  signed(datab_reg)); -- aeb
+             pipeline(0)(2) <= bool_to_logic(signed(dataa_reg) >  signed(datab_reg)); -- agb
+             pipeline(0)(3) <= bool_to_logic(signed(dataa_reg) >= signed(datab_reg)); -- ageb
+             pipeline(0)(4) <= bool_to_logic(signed(dataa_reg) <= signed(datab_reg)); -- aleb
+             pipeline(0)(5) <= bool_to_logic(signed(dataa_reg) /= signed(datab_reg)); -- aneb
+          else
+             pipeline(0)(0) <= bool_to_logic(unsigned(dataa_reg) <  unsigned(datab_reg)); -- alb
+             pipeline(0)(1) <= bool_to_logic(unsigned(dataa_reg) =  unsigned(datab_reg)); -- aeb
+             pipeline(0)(2) <= bool_to_logic(unsigned(dataa_reg) >  unsigned(datab_reg)); -- agb
+             pipeline(0)(3) <= bool_to_logic(unsigned(dataa_reg) >= unsigned(datab_reg)); -- ageb
+             pipeline(0)(4) <= bool_to_logic(unsigned(dataa_reg) <= unsigned(datab_reg)); -- aleb
+             pipeline(0)(5) <= bool_to_logic(unsigned(dataa_reg) /= unsigned(datab_reg)); -- aneb
+          end if;
       else
-         pipeline(0)(0) <= bool_to_logic(unsigned(dataa) <  unsigned(datab)); -- alb
-         pipeline(0)(1) <= bool_to_logic(unsigned(dataa) =  unsigned(datab)); -- aeb
-         pipeline(0)(2) <= bool_to_logic(unsigned(dataa) >  unsigned(datab)); -- agb
-         pipeline(0)(3) <= bool_to_logic(unsigned(dataa) >= unsigned(datab)); -- ageb
-         pipeline(0)(4) <= bool_to_logic(unsigned(dataa) <= unsigned(datab)); -- aleb
-         pipeline(0)(5) <= bool_to_logic(unsigned(dataa) /= unsigned(datab)); -- aneb
+          if lpm_representation = "SIGNED" then
+             pipeline(0)(0) <= bool_to_logic(signed(dataa) <  signed(datab)); -- alb
+             pipeline(0)(1) <= bool_to_logic(signed(dataa) =  signed(datab)); -- aeb
+             pipeline(0)(2) <= bool_to_logic(signed(dataa) >  signed(datab)); -- agb
+             pipeline(0)(3) <= bool_to_logic(signed(dataa) >= signed(datab)); -- ageb
+             pipeline(0)(4) <= bool_to_logic(signed(dataa) <= signed(datab)); -- aleb
+             pipeline(0)(5) <= bool_to_logic(signed(dataa) /= signed(datab)); -- aneb
+          else
+             pipeline(0)(0) <= bool_to_logic(unsigned(dataa) <  unsigned(datab)); -- alb
+             pipeline(0)(1) <= bool_to_logic(unsigned(dataa) =  unsigned(datab)); -- aeb
+             pipeline(0)(2) <= bool_to_logic(unsigned(dataa) >  unsigned(datab)); -- agb
+             pipeline(0)(3) <= bool_to_logic(unsigned(dataa) >= unsigned(datab)); -- ageb
+             pipeline(0)(4) <= bool_to_logic(unsigned(dataa) <= unsigned(datab)); -- aleb
+             pipeline(0)(5) <= bool_to_logic(unsigned(dataa) /= unsigned(datab)); -- aneb
+          end if;
       end if;
    
       if(rising_edge(clock)) then
          if clken = '1' then
-            if lpm_pipeline > 0 then
+            dataa_reg <= dataa;
+            datab_reg <= datab;
+            if lpm_pipeline > 1 then
                for i in 1 to lpm_pipeline loop
                   pipeline(i) <= pipeline(i-1);
                end loop;
@@ -87,13 +109,24 @@ begin
        
    end if;
    end process;
-
-   alb   <=pipeline(lpm_pipeline)(0) ;
-   aeb   <=pipeline(lpm_pipeline)(1) ;
-   agb   <=pipeline(lpm_pipeline)(2) ;
-   ageb  <=pipeline(lpm_pipeline)(3) ;
-   aleb  <=pipeline(lpm_pipeline)(4) ;
-   aneb  <=pipeline(lpm_pipeline)(5) ;
+   
+   non_reg_compare : if lpm_pipeline = 0  generate
+       alb   <=pipeline(lpm_pipeline)(0) ;
+       aeb   <=pipeline(lpm_pipeline)(1) ;
+       agb   <=pipeline(lpm_pipeline)(2) ;
+       ageb  <=pipeline(lpm_pipeline)(3) ;
+       aleb  <=pipeline(lpm_pipeline)(4) ;
+       aneb  <=pipeline(lpm_pipeline)(5) ;
+   end generate;
+   
+   reg_compare : if lpm_pipeline >= 1 generate
+       alb   <=pipeline(lpm_pipeline-1)(0) ;
+       aeb   <=pipeline(lpm_pipeline-1)(1) ;
+       agb   <=pipeline(lpm_pipeline-1)(2) ;
+       ageb  <=pipeline(lpm_pipeline-1)(3) ;
+       aleb  <=pipeline(lpm_pipeline-1)(4) ;
+       aneb  <=pipeline(lpm_pipeline-1)(5) ;
+   end generate;
 
   
 end arch;   

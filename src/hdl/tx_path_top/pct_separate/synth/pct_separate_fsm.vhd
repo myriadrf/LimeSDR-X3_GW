@@ -243,11 +243,13 @@ begin
    
       if current_state = idle then 
          rd_cnt_max <= (others=>'1');
-      elsif wr_cnt = 0 AND infifo_data_valid= '1' then
-         if infifo_data(23 downto 8) = "0000000000000000" then 
+      elsif wr_cnt = 1 AND infifo_data_valid= '1' then
+--         if infifo_data(23 downto 8) = "0000000000000000" then 
+         if header_0(23 downto 8) = "0000000000000000" then 
             rd_cnt_max  <= to_unsigned(c_MAX_PCT_WORDS,rd_cnt_max'length);
          else 
-            rd_cnt_max  <= unsigned(infifo_data(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
+--            rd_cnt_max  <= unsigned(infifo_data(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
+            rd_cnt_max  <= unsigned(header_0(23 downto 8))/c_RD_RATIO + c_PCT_HDR_WORDS;
          end if;
       else 
          rd_cnt_max  <= rd_cnt_max;
