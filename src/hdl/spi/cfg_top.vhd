@@ -18,7 +18,6 @@ use work.tstcfg_pkg.all;
 use work.txtspcfg_pkg.all;
 use work.rxtspcfg_pkg.all;
 use work.periphcfg_pkg.all;
-use work.tamercfg_pkg.all;
 use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
 use work.cdcmcfg_pkg.all;
@@ -87,8 +86,6 @@ entity cfg_top is
 
       to_periphcfg         : in  t_TO_PERIPHCFG;
       from_periphcfg       : out t_FROM_PERIPHCFG;
-      to_tamercfg          : in  t_TO_TAMERCFG;
-      from_tamercfg        : out t_FROM_TAMERCFG;
       to_gnsscfg           : in  t_TO_GNSSCFG;
       from_gnsscfg         : out t_FROM_GNSSCFG;
       to_memcfg            : in  t_TO_MEMCFG;

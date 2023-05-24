@@ -19,7 +19,6 @@ use work.tstcfg_pkg.all;
 use work.txtspcfg_pkg.all;
 use work.rxtspcfg_pkg.all;
 use work.periphcfg_pkg.all;
-use work.tamercfg_pkg.all;
 use work.gnsscfg_pkg.all;
 use work.memcfg_pkg.all;
 use work.cdcmcfg_pkg.all;
@@ -75,7 +74,6 @@ entity lms7_trx_top is
       g_TXTSPCFG_START_ADDR   : integer := 128;
       g_RXTSPCFG_START_ADDR   : integer := 160;
       g_PERIPHCFG_START_ADDR  : integer := 192;
-      g_TAMERCFG_START_ADDR   : integer := 224;
       g_GNSSCFG_START_ADDR    : integer := 256;
 
       g_RXTSPCFG_START_ADDR_3   : integer := 352; -- B.J.
@@ -485,8 +483,6 @@ signal inst0_to_rxtspcfg_2a, inst0_to_rxtspcfg_2b : t_TO_RXTSPCFG; -- B.J.
 
 signal inst0_from_periphcfg      : t_FROM_PERIPHCFG;
 signal inst0_to_periphcfg        : t_TO_PERIPHCFG;
-signal inst0_from_tamercfg       : t_FROM_TAMERCFG;
-signal inst0_to_tamercfg         : t_TO_TAMERCFG;
 signal inst0_from_gnsscfg        : t_FROM_GNSSCFG;
 signal inst0_to_gnsscfg          : t_TO_GNSSCFG;
 signal inst0_to_memcfg           : t_TO_MEMCFG;
@@ -979,7 +975,6 @@ begin
       TXTSPCFG_START_ADDR  => g_TXTSPCFG_START_ADDR,
       RXTSPCFG_START_ADDR  => g_RXTSPCFG_START_ADDR,
       PERIPHCFG_START_ADDR => g_PERIPHCFG_START_ADDR,
-      TAMERCFG_START_ADDR  => g_TAMERCFG_START_ADDR,
       GNSSCFG_START_ADDR   => g_GNSSCFG_START_ADDR,
       MEMCFG_START_ADDR    => g_MEMCFG_START_ADDR,
       RXTSPCFG_START_ADDR_3  => g_RXTSPCFG_START_ADDR_3, -- B.J.
@@ -1084,8 +1079,6 @@ begin
       
       from_periphcfg             => inst0_from_periphcfg,
       to_periphcfg               => inst0_to_periphcfg,
-      from_tamercfg              => inst0_from_tamercfg,
-      to_tamercfg                => inst0_to_tamercfg,
       from_gnsscfg               => inst0_from_gnsscfg,
       to_gnsscfg                 => inst0_to_gnsscfg,
       to_memcfg                  => inst0_to_memcfg,
