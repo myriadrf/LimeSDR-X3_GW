@@ -35,6 +35,11 @@ entity pct_separate_fsm is
       pct_header        : out std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0);
       pct_header_valid  : out std_logic;
       
+      tdd_ts_on         : out std_logic_vector(63 downto 0);
+      tdd_ts_off        : out std_logic_vector(63 downto 0);
+      tdd_ts_valid      : out std_logic;
+      clear_fifo_n      : out std_logic;
+      
       pct_counter       : out std_logic_vector(31 downto 0);
       pct_counter_rst   : in  std_logic;
       fifo_sel          : out std_logic := '0'
@@ -71,21 +76,25 @@ signal pct_counter_inc_reg : std_logic;
 signal pct_counter_int     : std_logic_vector(pct_counter'LEFT downto 0);
 
 signal fifo_sel_next        : std_logic;
-signal fifo_sel_reg        : std_logic;
+signal fifo_sel_reg         : std_logic;
+signal save_tdd_ts          : std_logic;
 
--- attribute MARK_DEBUG : string;
---attribute MARK_DEBUG of current_state: signal is "TRUE";
---attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
+ attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of tdd_ts_valid: signal is "TRUE";
+attribute MARK_DEBUG of clear_fifo_n: signal is "TRUE";
+attribute MARK_DEBUG of infifo_data: signal is "TRUE";
+attribute MARK_DEBUG of current_state: signal is "TRUE";
+attribute MARK_DEBUG of infifo_rdreq    : signal is "TRUE";
 --attribute MARK_DEBUG of infifo_data     : signal is "TRUE";
---attribute MARK_DEBUG of infifo_rdempty  : signal is "TRUE";
---attribute MARK_DEBUG of pct_wrreq       : signal is "TRUE";
+attribute MARK_DEBUG of infifo_rdempty  : signal is "TRUE";
+attribute MARK_DEBUG of pct_wrreq       : signal is "TRUE";
 --attribute MARK_DEBUG of pct_data        : signal is "TRUE";
---attribute MARK_DEBUG of pct_wrempty     : signal is "TRUE";
+attribute MARK_DEBUG of pct_wrempty     : signal is "TRUE";
 --attribute MARK_DEBUG of pct_header      : signal is "TRUE";
 --attribute MARK_DEBUG of pct_header_valid: signal is "TRUE";
---attribute MARK_DEBUG of rd_cnt          : signal is "TRUE";
---attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
---attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
+attribute MARK_DEBUG of rd_cnt          : signal is "TRUE";
+attribute MARK_DEBUG of rd_cnt_max      : signal is "TRUE";
+attribute MARK_DEBUG of wr_cnt          : signal is "TRUE";
 
 --attribute MARK_DEBUG of pct_counter_inc_reg          : signal is "TRUE";
 --attribute MARK_DEBUG of pct_counter_inc          : signal is "TRUE";
@@ -132,6 +141,7 @@ fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt,
    pct_counter_inc <= '0';
    fifo_sel_next   <= fifo_sel_reg;
    next_state      <= current_state;
+   clear_fifo_n    <= '1';
    case current_state is
    
       when idle =>
@@ -142,6 +152,8 @@ fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt,
          end if;
       
       when rd_pct =>
+         --Prevent writing if TDD packet is received
+         clear_fifo_n <= not save_tdd_ts;
          if rd_cnt < rd_cnt_max - 1 then 
             next_state <= rd_pct;
          elsif rd_cnt = rd_cnt_max - 1 AND infifo_rdempty = '1' then 
@@ -152,7 +164,15 @@ fsm : process( current_state, infifo_rdempty, pct_wrempty, rd_cnt, wr_cnt,
          end if;
          
       when sw_fifo =>
-         fifo_sel_next   <= not fifo_sel_reg;
+         --Prevent writing if TDD packet is received
+         clear_fifo_n <= not save_tdd_ts;
+         if save_tdd_ts = '1' then
+            --if a tdd packet is received, fifo was not used, so no need to switch
+            fifo_sel_next   <= fifo_sel_reg;
+         else
+            fifo_sel_next   <= not fifo_sel_reg;
+         end if;
+         
          next_state      <= rd_done;
          
       when rd_done =>
@@ -225,10 +245,23 @@ end process;
 hdr_cap : process(clk)
 begin
    if (clk'event AND clk='1') then 
+      tdd_ts_valid <= '0';
    
       if wr_cnt = 0 AND infifo_data_valid= '1' then 
          header_0 <= infifo_data(63 downto 0);
          header_1 <= infifo_data(127 downto 64);
+         --Check bit
+         if infifo_data(5) = '1' then
+            save_tdd_ts <= '1';
+         else
+            save_tdd_ts <= '0';
+         end if;
+      end if;
+      
+      if wr_cnt = 1 AND infifo_data_valid= '1' and save_tdd_ts = '1' then 
+         tdd_ts_on  <= infifo_data(63 downto 0);
+         tdd_ts_off <= infifo_data(127 downto 64);
+         tdd_ts_valid <= '1';
       end if;
       
    end if;

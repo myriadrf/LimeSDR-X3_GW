@@ -58,10 +58,15 @@ entity tx_path_top is
       in_pct_rdreq         : out std_logic;
       in_pct_data          : in std_logic_vector(g_FIFO_DATA_W-1 downto 0);
       in_pct_rdempty       : in std_logic;
+      --alternative tdd control signal ports
+      alt_tdd_ts_on     : out std_logic_vector(63 downto 0); 
+      alt_tdd_ts_off    : out std_logic_vector(63 downto 0);  
+      alt_tdd_ts_valid  : out std_logic;
       
       pct_counter       : out std_logic_vector(31 downto 0);
       pct_counter_rst   : in  std_logic;
-      pct_loss_pulse    : out std_logic
+      pct_loss_pulse    : out std_logic;
+      sample_nr_syncd   : out std_logic_vector(63 downto 0)
       );
 end tx_path_top;
 
@@ -127,6 +132,7 @@ signal pct_rdy_combined_vect        : std_logic_vector(g_BUFF_COUNT downto 0);
 
 
 begin
+sample_nr_syncd <= rx_sample_nr_iq_rdclk;
 pct_loss_pulse    <= inst1_in_pct_clr_flag;
 
 --Synchronization registers for asynchronous input ports
@@ -296,7 +302,10 @@ inst0_one_pct_fifo : entity work.one_pct_fifo
       pct_data_rdempty  => inst0_pct_data_rdempty,
       pct_counter       => pct_counter    ,
       pct_counter_rst   => pct_counter_rst,
-      ext_rd_fifo_sel   => inst0_in_pct_fifo_sel
+      ext_rd_fifo_sel   => inst0_in_pct_fifo_sel,
+      alt_tdd_ts_on     => alt_tdd_ts_on   ,
+      alt_tdd_ts_off    => alt_tdd_ts_off  ,
+      alt_tdd_ts_valid  => alt_tdd_ts_valid
    ); 
 
 -- ----------------------------------------------------------------------------

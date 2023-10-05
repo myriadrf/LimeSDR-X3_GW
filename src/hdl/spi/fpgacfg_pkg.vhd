@@ -40,6 +40,7 @@ package fpgacfg_pkg is
       txpct_loss_clr : std_logic;
       rx_en          : std_logic;
       tx_en          : std_logic;
+      txant_alt_en   : std_logic;
       rx_ptrn_en     : std_logic;
       tx_ptrn_en     : std_logic;
       tx_cnt_en      : std_logic;

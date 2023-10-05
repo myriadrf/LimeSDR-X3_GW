@@ -21,8 +21,10 @@ entity rf_sw_ctrl is
 	CLK_LMS2           : in std_logic;
 	RESET_N            : in std_logic;
 	--config port
-	FROM_PERIPHCFG 	   : in t_FROM_PERIPHCFG;
-	TO_PERIPHCFG       : out t_TO_PERIPHCFG;
+	FROM_PERIPHCFG 	 : in t_FROM_PERIPHCFG;
+--	TO_PERIPHCFG       : out t_TO_PERIPHCFG;
+   RF_SWITCHES        : out std_logic_vector(13 downto 0);
+   RF_AMP_CTRL        : out std_logic_vector(5  downto 0);
 	--Switches
 	RFSW_LMS1_RX1_V1   : out std_logic;
 	RFSW_LMS1_RX2_V1   : out std_logic;
@@ -153,6 +155,7 @@ signal RF_switches_manual_override : std_logic_vector(13 downto 0);
 signal RF_amp_ctrl_manual_override : std_logic_vector(5  downto 0);
 
 begin
+
 
 RF_switches_manual_override <= FROM_PERIPHCFG.RF_switches_manual_override;
 RF_amp_ctrl_manual_override <= FROM_PERIPHCFG.RF_amp_ctrl_manual_override;
@@ -335,7 +338,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0) when RF_amp_ctrl_manual_override( 5 ) =
                     clk      => CLK,
                     reset_n  => '1',
                     async_in => rf_switches_int(13 downto 10),
-                    sync_out => TO_PERIPHCFG.RF_SWITCHES(13 downto 10)
+                    sync_out => RF_SWITCHES(13 downto 10)
        );
        
        LMS1_rfamp_control_sync_out : entity work.bus_sync_reg
@@ -346,7 +349,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0) when RF_amp_ctrl_manual_override( 5 ) =
                     clk      => CLK,
                     reset_n  => '1',
                     async_in => rf_amps_int(5 downto 4),
-                    sync_out => TO_PERIPHCFG.RF_AMP_CTRL(5 downto 4)
+                    sync_out => RF_AMP_CTRL(5 downto 4)
        );
        
     ------
@@ -382,7 +385,7 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0) when RF_amp_ctrl_manual_override( 5 ) =
                     clk      => CLK,
                     reset_n  => '1',
                     async_in => rf_switches_int(9 downto 2),
-                    sync_out => TO_PERIPHCFG.RF_SWITCHES(9 downto 2)--rf_switches_spi(13 downto 10)
+                    sync_out => RF_SWITCHES(9 downto 2)--rf_switches_spi(13 downto 10)
        );
        
        LMS2_rfamp_control_sync_out : entity work.bus_sync_reg
@@ -393,13 +396,13 @@ rf_amps_int( 5 ) <= rf_amps_int_LMS1A(0) when RF_amp_ctrl_manual_override( 5 ) =
                     clk      => CLK,
                     reset_n  => '1',
                     async_in => rf_amps_int(3 downto 0),
-                    sync_out => TO_PERIPHCFG.RF_AMP_CTRL(3 downto 0)--rf_amps_spi(5 downto 4)
+                    sync_out => RF_AMP_CTRL(3 downto 0)--rf_amps_spi(5 downto 4)
        );
        
     ------
     -- LMS3 (manual control only, no need to sync anything)
     ------
-    TO_PERIPHCFG.RF_SWITCHES(1 downto 0) <= FROM_PERIPHCFG.RF_SWITCHES(1 downto 0);
+    RF_SWITCHES(1 downto 0) <= FROM_PERIPHCFG.RF_SWITCHES(1 downto 0);
 
 ------
 -- CONTROL LOGIC

@@ -88,6 +88,8 @@ entity rxtx_top is
       tx_packet_count         : out    std_logic_vector(31 downto 0);
       tx_drop_count           : out    std_logic_vector(31 downto 0);
 
+      alt_tdd_out             : out    std_logic:= '0';
+
       ext_rx_en: in std_logic;  -- B.J.;
       tx_dma_en: in std_logic
       );
@@ -152,7 +154,24 @@ signal pct_loss_pulse_reg        : std_logic;
 signal rx_pct_size               : std_logic_vector(15 downto 0);
 signal rx_pct_size_smpls         : std_logic_vector(15 downto 0);
 
---     attribute MARK_DEBUG : string;
+signal tx_syncd_TS               : std_logic_vector(63 downto 0);
+
+signal txen_on_used     : std_logic := '0';
+signal txen_off_used    : std_logic := '0';
+signal txen_on_ts       : std_logic_vector(63 downto 0);
+signal txen_off_ts      : std_logic_vector(63 downto 0);
+signal tdd_out          : std_logic;
+signal alt_tdd_ts_on    : std_logic_vector(63 downto 0); 
+signal alt_tdd_ts_off   : std_logic_vector(63 downto 0);  
+signal alt_tdd_ts_valid : std_logic;
+
+     attribute MARK_DEBUG : string;
+     attribute MARK_DEBUG of txen_on_used    : signal is "TRUE";
+     attribute MARK_DEBUG of txen_off_used   : signal is "TRUE";
+     attribute MARK_DEBUG of txen_on_ts      : signal is "TRUE";
+     attribute MARK_DEBUG of txen_off_ts     : signal is "TRUE";
+     attribute MARK_DEBUG of tdd_out         : signal is "TRUE";
+     attribute MARK_DEBUG of tx_syncd_TS         : signal is "TRUE";
     -- attribute MARK_DEBUG of pct_counter_sync : signal is "TRUE";
     -- attribute MARK_DEBUG of pct_drop_counter_sync : signal is "TRUE";
 --    attribute MARK_DEBUG of pct_counter_rst : signal is "TRUE";
@@ -162,6 +181,41 @@ signal rx_pct_size_smpls         : std_logic_vector(15 downto 0);
 --     attribute MARK_DEBUG of tx_in_pct_rdusedw : signal is "TRUE";
 
 begin
+--alt_tdd_out
+   txen_gen : process(tx_clk,inst1_reset_n)
+      
+      
+   begin
+      alt_tdd_out <= tdd_out;
+      if inst1_reset_n = '0' then
+         tdd_out         <= '0';
+         txen_on_used    <= '0';
+         txen_off_used   <= '0';
+      elsif rising_edge(tx_clk) then
+         txen_on_ts      <= alt_tdd_ts_on;
+         txen_off_ts     <= alt_tdd_ts_off;
+         
+         if alt_tdd_ts_valid = '1' then
+            txen_on_used <= '0';
+         elsif tx_syncd_TS >= txen_on_ts    then
+            txen_on_used <= '1';
+         end if;
+         
+         if alt_tdd_ts_valid = '1' then
+            txen_off_used <= '0';
+         elsif tx_syncd_TS >= txen_off_ts then
+            txen_off_used <= '1';
+         end if;
+         
+         if tdd_out = '1' and tx_syncd_TS >= txen_off_ts and txen_off_used = '0' then
+            tdd_out <= '0';
+         elsif tdd_out = '0' and tx_syncd_TS >= txen_on_ts and txen_on_used = '0' then
+            tdd_out <= '1';
+         end if;
+         
+      
+      end if;   
+   end process;
 
     rx_pct_size       <= from_fpgacfg.RX_PACKET_SIZE;
     rx_pct_size_smpls <= from_fpgacfg.RX_PACKET_SAMPLES;
@@ -296,13 +350,18 @@ TX_gen0 : if TX_EN = true generate
       smpl_fifo_wrfull     => tx_smpl_fifo_wrfull,
       smpl_fifo_wrusedw    => tx_smpl_fifo_wrusedw,
       smpl_fifo_data       => tx_smpl_fifo_data,
+      --alternative tdd signal source signals
+      alt_tdd_ts_on        => alt_tdd_ts_on   ,
+      alt_tdd_ts_off       => alt_tdd_ts_off  ,
+      alt_tdd_ts_valid     => alt_tdd_ts_valid,
       --fifo ports
       in_pct_rdreq         => tx_in_pct_rdreq,
       in_pct_data          => tx_in_pct_data,
       in_pct_rdempty       => tx_in_pct_rdempty,
       pct_counter          => pct_counter    ,
       pct_counter_rst      => pct_counter_rst,
-      pct_loss_pulse       => pct_loss_pulse
+      pct_loss_pulse       => pct_loss_pulse,
+      sample_nr_syncd      => tx_syncd_TS
       );
       
 -- ----------------------------------------------------------------------------

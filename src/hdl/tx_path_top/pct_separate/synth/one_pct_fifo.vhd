@@ -41,7 +41,11 @@ entity one_pct_fifo is
       pct_data          : out std_logic_vector(g_PCTFIFO_RDATA_WIDTH-1 downto 0);
       pct_data_rdempty  : out std_logic;
       
-      ext_rd_fifo_sel      : in  std_logic;
+      alt_tdd_ts_on     : out std_logic_vector(63 downto 0); 
+      alt_tdd_ts_off    : out std_logic_vector(63 downto 0);  
+      alt_tdd_ts_valid  : out std_logic;
+           
+      ext_rd_fifo_sel   : in  std_logic;
       
       pct_counter       : out std_logic_vector(31 downto 0);
       pct_counter_rst   : in  std_logic
@@ -60,6 +64,7 @@ constant c_PCT_HDR_WORDS         : integer := g_PCT_HDR_SIZE*8/g_PCTFIFO_RDATA_W
 constant c_RD_RATIO              : integer := g_PCTFIFO_RDATA_WIDTH/8;
 
 -- inst0
+signal inst0_clear_fifo_n        : std_logic;
 signal inst0_pct_wrreq           : std_logic;          
 signal inst0_pct_data            : std_logic_vector(g_INFIFO_DATA_WIDTH-1 downto 0);
 signal inst0_pct_header          : std_logic_vector(g_PCT_HDR_SIZE*8-1 downto 0);
@@ -137,30 +142,32 @@ signal inst1_1_reset_n             : std_logic;
 
 signal inst0_wrempty               : std_logic;
 
+signal inst1_0_reset_n_wr          : std_logic;
+signal inst1_1_reset_n_wr          : std_logic;
 
--- attribute MARK_DEBUG : string;
+ attribute MARK_DEBUG : string;
 -- attribute MARK_DEBUG of infifo_rdreq : signal is "TRUE";
 -- attribute MARK_DEBUG of infifo_data  : signal is "TRUE";
 
--- attribute MARK_DEBUG of inst0_pct_wrreq  : signal is "TRUE";
--- attribute MARK_DEBUG of pct_data_rdreq  : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_0_rdusedw  : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_1_rdusedw  : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_reset_n  : signal is "TRUE";
--- attribute MARK_DEBUG of fifo_sel  : signal is "TRUE";
+ attribute MARK_DEBUG of inst0_pct_wrreq  : signal is "TRUE";
+ attribute MARK_DEBUG of pct_data_rdreq  : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_0_rdusedw  : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_1_rdusedw  : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_reset_n  : signal is "TRUE";
+ attribute MARK_DEBUG of fifo_sel  : signal is "TRUE";
  
--- attribute MARK_DEBUG of inst1_0_rdempty    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_1_rdempty    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_0_pct_wrreq  : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_1_pct_wrreq  : signal is "TRUE";
--- attribute MARK_DEBUG of ext_rd_fifo_sel    : signal is "TRUE";
--- attribute MARK_DEBUG of inst0_wrempty    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_0_rdempty    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_1_rdempty    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_0_pct_wrreq  : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_1_pct_wrreq  : signal is "TRUE";
+ attribute MARK_DEBUG of ext_rd_fifo_sel    : signal is "TRUE";
+ attribute MARK_DEBUG of inst0_wrempty    : signal is "TRUE";
 -- attribute MARK_DEBUG of inst1_0_fifooutdata    : signal is "TRUE";
 -- attribute MARK_DEBUG of inst1_1_fifooutdata    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_0_reset_n    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_1_reset_n    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_0_rdreq    : signal is "TRUE";
--- attribute MARK_DEBUG of inst1_1_rdreq    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_0_reset_n    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_1_reset_n    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_0_rdreq    : signal is "TRUE";
+ attribute MARK_DEBUG of inst1_1_rdreq    : signal is "TRUE";
 -- attribute MARK_DEBUG of inst1_0_pct_words    : signal is "TRUE";
 -- attribute MARK_DEBUG of inst1_1_pct_words    : signal is "TRUE";
 				
@@ -194,8 +201,12 @@ inst1_0_rdreq <= pct_data_rdreq when rd_fifo_sel = '0' else '0';
 inst1_1_rdreq <= pct_data_rdreq when rd_fifo_sel = '1' else '0';
 pct_data <= inst1_0_fifooutdata when rd_fifo_sel = '0' else inst1_1_fifooutdata;
 pct_data_rdempty <= inst1_0_rdempty when rd_fifo_sel = '0' else inst1_1_rdempty;
-inst1_0_reset_n  <= pct_aclr_n  when rd_fifo_sel = '0' else '1';
-inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
+inst1_0_reset_n  <= pct_aclr_n when rd_fifo_sel = '0' else '1';
+inst1_1_reset_n  <= pct_aclr_n when rd_fifo_sel = '1' else '1';
+
+inst1_0_reset_n_wr  <= inst0_clear_fifo_n  when fifo_sel = '0' else '1';
+inst1_1_reset_n_wr  <= inst0_clear_fifo_n  when fifo_sel = '1' else '1';
+
 
 -- ----------------------------------------------------------------------------
 -- Reset logic
@@ -223,6 +234,10 @@ inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
       pct_wrempty       => inst0_wrempty,
       pct_header        => inst0_pct_header,    
       pct_header_valid  => inst0_pct_header_valid,
+      tdd_ts_on         => alt_tdd_ts_on,
+      tdd_ts_off        => alt_tdd_ts_off,
+      tdd_ts_valid      => alt_tdd_ts_valid,
+      clear_fifo_n      => inst0_clear_fifo_n,
       pct_counter       => pct_counter    ,
       pct_counter_rst   => pct_counter_rst,
       fifo_sel          => inst0_fifo_sel
@@ -255,7 +270,7 @@ inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
       show_ahead     => "OFF"
    )
    port map(
-      reset_n        => inst1_0_reset_n and inst1_reset_n,
+      reset_n        => inst1_0_reset_n and inst1_reset_n and inst1_0_reset_n_wr,
       wr_rst_busy    => inst1_0_wr_rst_busy,
       rd_rst_busy    => inst1_rd_rst_busy,
       wrclk          => clk,
@@ -271,6 +286,8 @@ inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
       rdusedw        => inst1_0_rdusedw           
    );
    
+   
+   
    gen_secondfifo : if g_dual_onepctfifo = true generate
    
        inst1_1_fifo_inst : entity work.fifo_inst   
@@ -283,7 +300,7 @@ inst1_1_reset_n  <= pct_aclr_n  when rd_fifo_sel = '1' else '1';
           show_ahead     => "OFF"
        )
        port map(
-          reset_n        => inst1_1_reset_n and inst1_reset_n,
+          reset_n        => inst1_1_reset_n and inst1_reset_n and inst1_1_reset_n_wr,
           wr_rst_busy    => inst1_1_wr_rst_busy,
           rd_rst_busy    => open,
           wrclk          => clk,

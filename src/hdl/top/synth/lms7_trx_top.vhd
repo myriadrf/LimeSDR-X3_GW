@@ -397,6 +397,10 @@ constant c_SPI2_TX1_DAC             : integer := 2;
 constant c_SPI2_TX2_DAC             : integer := 3;
 
      
+signal lms1_tdd_txen         : std_logic;
+signal lms2_tdd_txen         : std_logic;
+signal inst7_alt_txen        : std_logic;
+signal inst9_alt_txen        : std_logic;
 
 signal reset_n                   : std_logic;
 signal reset_n_lmk_clk           : std_logic;
@@ -730,6 +734,10 @@ signal inst12_tx_src_sel               : std_logic_vector(1 downto 0);
 
 
 signal inst12_gnss_sdout: std_logic;
+
+--inst13
+signal inst13_rf_switches              : std_logic_vector(13 downto 0);
+signal inst13_rf_amp_ctrl              : std_logic_vector(5  downto 0);
 --inst19
 signal inst19_phy_clk                  : std_logic;
 signal inst19_wfm_0_infifo_rdreq       : std_logic;
@@ -836,6 +844,10 @@ signal inst0_from_fircfg_rx_a       : t_FROM_FIRCFG; -- B.J.
 signal inst0_from_fircfg_rx_b       : t_FROM_FIRCFG; -- B.J.
       
 -- end B.J.
+
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of lms1_tdd_txen: signal is "TRUE";
+attribute MARK_DEBUG of lms2_tdd_txen: signal is "TRUE";
 
 begin
 
@@ -1504,6 +1516,9 @@ begin
       gpio_out_val         => (others=>'0'),
       gpio_rd_val          => open,
       gpio                 => open,      
+      --rf switch controls (input)
+      RF_SWITCHES          => inst13_rf_switches,
+      RF_AMP_CTRL          => inst13_rf_amp_ctrl,
       --Fan control
       fan_sens_in          => LM75_OS,
       fan_ctrl_out         => FAN_CTRL
@@ -1757,68 +1772,71 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
          );
    
    --LMS1_DIQ1_D <= LMS1_DIQ1_11_DELAYED & LMS1_DIQ1_INT(10 downto 0);
-   inst7_rxtx_top : entity work.rxtx_top
-   generic map(
-      index                   => 1,
-      DEV_FAMILY              => g_DEV_FAMILY,
-      -- TX parameters
-      TX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
-      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
-      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
-      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
-      TX_IN_PCT_DATA_W        => c_H2F_S0_0_RWIDTH,      -- 
-      TX_IN_PCT_RDUSEDW_W     => c_H2F_S0_0_RDUSEDW_WIDTH,
-      TX_HIGHSPEED_BUS        => false,
+   --uncomment
+--   inst7_rxtx_top : entity work.rxtx_top
+--   generic map(
+--      index                   => 1,
+--      DEV_FAMILY              => g_DEV_FAMILY,
+--      -- TX parameters
+--      TX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
+--      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
+--      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
+--      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
+--      TX_IN_PCT_DATA_W        => c_H2F_S0_0_RWIDTH,      -- 
+--      TX_IN_PCT_RDUSEDW_W     => c_H2F_S0_0_RDUSEDW_WIDTH,
+--      TX_HIGHSPEED_BUS        => false,
       
-      -- RX parameters
-      RX_DATABUS_WIDTH        => c_F2H_S0_WWIDTH,
-      RX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
-      RX_INVERT_INPUT_CLOCKS  => "ON",
-      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S0_WRUSEDW_WIDTH --bus width in bits 
+--      -- RX parameters
+--      RX_DATABUS_WIDTH        => c_F2H_S0_WWIDTH,
+--      RX_IQ_WIDTH             => g_LMS_DIQ_WIDTH,
+--      RX_INVERT_INPUT_CLOCKS  => "ON",
+--      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S0_WRUSEDW_WIDTH --bus width in bits 
       
-   )
-   port map(        
-      sys_clk                 => CLK100_FPGA,                                     
-      from_fpgacfg            => inst0_from_fpgacfg_mod_0,
-      to_fpgacfg              => inst0_to_fpgacfg_0,
-      to_tstcfg_from_rxtx     => inst7_to_tstcfg_from_rxtx,
-      from_tstcfg             => inst0_from_tstcfg,      
-      from_memcfg             => inst0_from_memcfg,
-      -- TX module signals
-      tx_clk                  => inst1_lms1_txpll_c1,      
-      tx_clk_reset_n          => inst1_lms1_txpll_locked,
-      tx_pct_loss_flg         => inst7_tx_pct_loss_flg,
-      --Tx interface data 
-      tx_smpl_fifo_wrreq      => inst7_tx_smpl_fifo_wrreq,
-      tx_smpl_fifo_wrfull     => inst6_tx_fifo_0_wrfull,
-      tx_smpl_fifo_wrusedw    => inst6_tx_fifo_0_wrusedw,
-      tx_smpl_fifo_data       => inst7_tx_smpl_fifo_data,
-      --TX packet FIFO ports
-      tx_in_pct_reset_n_req   => inst7_tx_in_pct_reset_n_req,
-      tx_in_pct_rdreq         => inst7_tx_in_pct_rdreq,
-      tx_in_pct_data          => inst2_H2F_S0_0_rdata,
-      tx_in_pct_rdempty       => inst2_H2F_S0_0_rempty,
-      tx_in_pct_rdusedw       => inst2_H2F_S0_0_rdusedw,     
-      -- RX path
-      rx_clk                  => inst1_lms1_rxpll_c1,
-      rx_clk_reset_n          => inst1_lms1_rxpll_locked,
-      --RX FIFO for IQ samples   
-      rx_smpl_fifo_wrreq      => inst6_rx_data_valid,
-      rx_smpl_fifo_data       => inst6_rx_data,
-      rx_smpl_fifo_wrfull     => open,
-      --RX Packet FIFO ports
-      rx_pct_fifo_aclrn_req   => inst7_rx_pct_fifo_aclrn_req,
-      rx_pct_fifo_wusedw      => inst2_F2H_S0_wrusedw,
-      rx_pct_fifo_wrreq       => inst7_rx_pct_fifo_wrreq,
-      rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata,
-      -- RX sample nr count enable
-      rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en,
-      tx_packet_count         => inst0_to_memcfg.LMS1_tx_pct_cnt,
-      tx_drop_count           => inst0_to_memcfg.LMS1_tx_drp_cnt,
+--   )
+--   port map(        
+--      sys_clk                 => CLK100_FPGA,                                     
+--      from_fpgacfg            => inst0_from_fpgacfg_mod_0,
+--      to_fpgacfg              => inst0_to_fpgacfg_0,
+--      to_tstcfg_from_rxtx     => inst7_to_tstcfg_from_rxtx,
+--      from_tstcfg             => inst0_from_tstcfg,      
+--      from_memcfg             => inst0_from_memcfg,
+--      -- TX module signals
+--      tx_clk                  => inst1_lms1_txpll_c1,      
+--      tx_clk_reset_n          => inst1_lms1_txpll_locked,
+--      tx_pct_loss_flg         => inst7_tx_pct_loss_flg,
+--      --Tx interface data 
+--      tx_smpl_fifo_wrreq      => inst7_tx_smpl_fifo_wrreq,
+--      tx_smpl_fifo_wrfull     => inst6_tx_fifo_0_wrfull,
+--      tx_smpl_fifo_wrusedw    => inst6_tx_fifo_0_wrusedw,
+--      tx_smpl_fifo_data       => inst7_tx_smpl_fifo_data,
+--      --TX packet FIFO ports
+--      tx_in_pct_reset_n_req   => inst7_tx_in_pct_reset_n_req,
+--      tx_in_pct_rdreq         => inst7_tx_in_pct_rdreq,
+--      tx_in_pct_data          => inst2_H2F_S0_0_rdata,
+--      tx_in_pct_rdempty       => inst2_H2F_S0_0_rempty,
+--      tx_in_pct_rdusedw       => inst2_H2F_S0_0_rdusedw,     
+--      -- RX path
+--      rx_clk                  => inst1_lms1_rxpll_c1,
+--      rx_clk_reset_n          => inst1_lms1_rxpll_locked,
+--      --RX FIFO for IQ samples   
+--      rx_smpl_fifo_wrreq      => inst6_rx_data_valid,
+--      rx_smpl_fifo_data       => inst6_rx_data,
+--      rx_smpl_fifo_wrfull     => open,
+--      --RX Packet FIFO ports
+--      rx_pct_fifo_aclrn_req   => inst7_rx_pct_fifo_aclrn_req,
+--      rx_pct_fifo_wusedw      => inst2_F2H_S0_wrusedw,
+--      rx_pct_fifo_wrreq       => inst7_rx_pct_fifo_wrreq,
+--      rx_pct_fifo_wdata       => inst7_rx_pct_fifo_wdata,
+--      -- RX sample nr count enable
+--      rx_smpl_nr_cnt_en       => inst6_rx_smpl_cnt_en,
+--      tx_packet_count         => inst0_to_memcfg.LMS1_tx_pct_cnt,
+--      tx_drop_count           => inst0_to_memcfg.LMS1_tx_drp_cnt,
       
-      ext_rx_en => dpd_tx_en,   
-      tx_dma_en => inst2_s0_dma_en
-   );   
+--      alt_tdd_out             => inst7_alt_txen,
+      
+--      ext_rx_en => dpd_tx_en,   
+--      tx_dma_en => inst2_s0_dma_en
+--   );   
 	
 ---- ----------------------------------------------------------------------------
 ---- rxtx_top instance.
@@ -1968,6 +1986,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_smpl_nr_cnt_en       => inst10_smpl_cnt_en,
       tx_packet_count         => inst0_to_memcfg.LMS2_tx_pct_cnt,
       tx_drop_count           => inst0_to_memcfg.LMS2_tx_drp_cnt,
+      
+      alt_tdd_out             => inst9_alt_txen,
 
        ext_rx_en => '0',
        --ext_rx_en => dpd_tx_en,  -- B.J.      
@@ -2185,74 +2205,77 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 
 
  -- RX and TX module
-   inst11_rxtx_top : entity work.rxtx_top
-   generic map(
-      INDEX                   => 3,
-      DEV_FAMILY              => g_DEV_FAMILY,
-      TX_EN                   => false,
-      -- TX parameters
-      TX_IQ_WIDTH             => 14,
-      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
-      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
-      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
-      TX_IN_PCT_DATA_W        => c_H2F_S2_0_RWIDTH,      -- 
-      TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
-      TX_HIGHSPEED_BUS        => true,
+   --uncomment
+--   inst11_rxtx_top : entity work.rxtx_top
+--   generic map(
+--      INDEX                   => 3,
+--      DEV_FAMILY              => g_DEV_FAMILY,
+--      TX_EN                   => false,
+--      -- TX parameters
+--      TX_IQ_WIDTH             => 14,
+--      TX_N_BUFF               => g_TX_N_BUFF,              -- 2,4 valid values
+--      TX_IN_PCT_SIZE          => g_TX_PCT_SIZE,
+--      TX_IN_PCT_HDR_SIZE      => g_TX_IN_PCT_HDR_SIZE,
+--      TX_IN_PCT_DATA_W        => c_H2F_S2_0_RWIDTH,      -- 
+--      TX_IN_PCT_RDUSEDW_W     => c_H2F_S2_0_RDUSEDW_WIDTH,
+--      TX_HIGHSPEED_BUS        => true,
       
-      -- RX parameters
-      RX_DATABUS_WIDTH        => c_F2H_S2_WWIDTH,
-      RX_IQ_WIDTH             => 14,
-      RX_INVERT_INPUT_CLOCKS  => "ON",
-      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
+--      -- RX parameters
+--      RX_DATABUS_WIDTH        => c_F2H_S2_WWIDTH,
+--      RX_IQ_WIDTH             => 14,
+--      RX_INVERT_INPUT_CLOCKS  => "ON",
+--      RX_PCT_BUFF_WRUSEDW_W   => c_F2H_S2_WRUSEDW_WIDTH --bus width in bits 
       
-   )
-   port map(            
-    sys_clk                 => CLK100_FPGA,                                   
-      from_fpgacfg            => inst0_from_fpgacfg_mod_2,
-      to_fpgacfg              => inst0_to_fpgacfg_2,
-      to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
-      from_tstcfg             => inst0_from_tstcfg,      
-      from_memcfg             => inst0_from_memcfg,
-      -- TX module signals
-      tx_clk                  => inst1_pll_1_c1,
-      tx_clk_reset_n          => '0',--reset_n,     
-      tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
-      --Tx interface data 
-      tx_smpl_fifo_wrreq      => open,--inst11_tx_smpl_fifo_wrreq,
-      tx_smpl_fifo_wrfull     => '1',--inst12_tx0_wrfull,
-      tx_smpl_fifo_wrusedw    => (others => '1'),--inst12_tx0_wrusedw,
-      tx_smpl_fifo_data       => open,--inst11_tx_smpl_fifo_data,
-      --TX packet FIFO ports
-      tx_in_pct_reset_n_req   => open,--inst11_tx_in_pct_reset_n_req,
-      tx_in_pct_rdreq         => open,--inst11_tx_in_pct_rdreq,
-      tx_in_pct_data          => (others => '0'),--inst2_H2F_S2_0_rdata,
-      tx_in_pct_rdempty       => '0',--inst2_H2F_S2_0_rempty,
-      tx_in_pct_rdusedw       => (others => '1'),--inst2_H2F_S2_0_rdusedw,     
-      -- RX path
-      rx_clk                  => lms3_bb_adc1_clkout_global,
-      rx_clk_reset_n          => reset_n,
-      --RX FIFO for IQ samples   
-      rx_smpl_fifo_wrreq      => inst11_data_valid,
-      rx_smpl_fifo_data       => inst11_data, --inst10_rx_data,
-      rx_smpl_fifo_wrfull     => inst2_F2H_S2_wfull,--open,
-      --RX Packet FIFO ports
-      rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
-      rx_pct_fifo_wusedw      => inst2_F2H_S2_wrusedw,
-      rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
-      rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata,
-      -- RX sample nr count enable
-      -- smpl_cnt_en increments counter that is only used for TX synchronisation
-      -- making it useless for LMS3
-      rx_smpl_nr_cnt_en       => '0',--inst11_smpl_cnt_en,
-      tx_packet_count         => open,
-      tx_drop_count           => open,
+--   )
+--   port map(            
+--    sys_clk                 => CLK100_FPGA,                                   
+--      from_fpgacfg            => inst0_from_fpgacfg_mod_2,
+--      to_fpgacfg              => inst0_to_fpgacfg_2,
+--      to_tstcfg_from_rxtx     => inst11_to_tstcfg_from_rxtx,
+--      from_tstcfg             => inst0_from_tstcfg,      
+--      from_memcfg             => inst0_from_memcfg,
+--      -- TX module signals
+--      tx_clk                  => inst1_pll_1_c1,
+--      tx_clk_reset_n          => '0',--reset_n,     
+--      tx_pct_loss_flg         => open,--inst11_tx_pct_loss_flg,
+--      --Tx interface data 
+--      tx_smpl_fifo_wrreq      => open,--inst11_tx_smpl_fifo_wrreq,
+--      tx_smpl_fifo_wrfull     => '1',--inst12_tx0_wrfull,
+--      tx_smpl_fifo_wrusedw    => (others => '1'),--inst12_tx0_wrusedw,
+--      tx_smpl_fifo_data       => open,--inst11_tx_smpl_fifo_data,
+--      --TX packet FIFO ports
+--      tx_in_pct_reset_n_req   => open,--inst11_tx_in_pct_reset_n_req,
+--      tx_in_pct_rdreq         => open,--inst11_tx_in_pct_rdreq,
+--      tx_in_pct_data          => (others => '0'),--inst2_H2F_S2_0_rdata,
+--      tx_in_pct_rdempty       => '0',--inst2_H2F_S2_0_rempty,
+--      tx_in_pct_rdusedw       => (others => '1'),--inst2_H2F_S2_0_rdusedw,     
+--      -- RX path
+--      rx_clk                  => lms3_bb_adc1_clkout_global,
+--      rx_clk_reset_n          => reset_n,
+--      --RX FIFO for IQ samples   
+--      rx_smpl_fifo_wrreq      => inst11_data_valid,
+--      rx_smpl_fifo_data       => inst11_data, --inst10_rx_data,
+--      rx_smpl_fifo_wrfull     => inst2_F2H_S2_wfull,--open,
+--      --RX Packet FIFO ports
+--      rx_pct_fifo_aclrn_req   => inst11_rx_pct_fifo_aclrn_req,
+--      rx_pct_fifo_wusedw      => inst2_F2H_S2_wrusedw,
+--      rx_pct_fifo_wrreq       => inst11_rx_pct_fifo_wrreq,
+--      rx_pct_fifo_wdata       => inst11_rx_pct_fifo_wdata,
+--      -- RX sample nr count enable
+--      -- smpl_cnt_en increments counter that is only used for TX synchronisation
+--      -- making it useless for LMS3
+--      rx_smpl_nr_cnt_en       => '0',--inst11_smpl_cnt_en,
+--      tx_packet_count         => open,
+--      tx_drop_count           => open,
+      
+--      alt_tdd_out             => open,
 
-      --ext_rx_en =>  '0',
-      ext_rx_en =>  '0', -- not for now: dpd_tx_en,  -- B.J.
+--      --ext_rx_en =>  '0',
+--      ext_rx_en =>  '0', -- not for now: dpd_tx_en,  -- B.J.
 
-      tx_dma_en => inst2_s2_dma_en   
+--      tx_dma_en => inst2_s2_dma_en   
    
-   );
+--   );
  
    inst12_tx1_data   <= inst10_adc1_data_ch_b & inst10_adc1_data_ch_a;
    inst12_tx1_wrreq  <= (not inst12_tx1_wrfull) AND (inst0_from_fpgacfg_mod_2.dlb_en AND inst1_pll_0_locked);
@@ -2389,6 +2412,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       from_memcfg          => inst0_from_memcfg -- B.J
    );
    
+   
+   lms1_tdd_txen <= inst6_tx_ant_en  when inst0_from_fpgacfg_0.txant_alt_en = '0' else inst7_alt_txen;
+   lms2_tdd_txen <= inst12_tx_ant_en when inst0_from_fpgacfg_1.txant_alt_en = '0' else inst9_alt_txen;
+   
    --RF switch control
    inst13_rf_sw_ctrl : entity work.rf_sw_ctrl
       port map (
@@ -2397,7 +2424,10 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
                 CLK_LMS2           => inst1_pll_1_c1,
                 RESET_N            => '1',
                 FROM_PERIPHCFG     => inst0_from_periphcfg,
-                TO_PERIPHCFG       => inst0_to_periphcfg,
+                RF_SWITCHES        => inst13_rf_switches,
+                RF_AMP_CTRL        => inst13_rf_amp_ctrl,
+                
+--                TO_PERIPHCFG       => inst0_to_periphcfg,
                 RFSW_LMS1_RX1_V1   => RFSW_LMS1_RX1_V1,
                 RFSW_LMS1_RX2_V1   => RFSW_LMS1_RX2_V1,
                 RFSW_LMS1_TX1_V1   => RFSW_LMS1_TX1_V1,
@@ -2418,8 +2448,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
                 LMS2_TX2_1_EN      => LMS2_TX2_1_EN,
                 LMS2_RX1_LNA_SD    => LMS2_RX1_LNA_SD,
                 LMS2_RX2_LNA_SD    => LMS2_RX2_LNA_SD,
-                LMS1_TXANT_EN      => inst6_tx_ant_en,
-                LMS2_TXANT_EN      => inst12_tx_ant_en
+                LMS1_TXANT_EN      => lms1_tdd_txen,--inst6_tx_ant_en,
+                LMS2_TXANT_EN      => lms2_tdd_txen--inst12_tx_ant_en
    );
    
    

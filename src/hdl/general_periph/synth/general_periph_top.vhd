@@ -65,6 +65,10 @@ entity general_periph_top is
       gpio_rd_val          : out    std_logic_vector(N_GPIO-1 downto 0);
       gpio                 : inout  std_logic_vector(N_GPIO-1 downto 0); -- to FPGA pins
       
+      --rf switch controls
+      rf_switches          : in std_logic_vector(13 downto 0);
+      rf_amp_ctrl          : in std_logic_vector(5  downto 0);
+      
       --Fan control
       fan_sens_in          : in     std_logic;
       fan_ctrl_out         : out    std_logic
@@ -101,6 +105,9 @@ signal inst5_out_val_0              : std_logic_vector(N_GPIO-1 downto 0);
 signal inst5_out_val_1              : std_logic_vector(N_GPIO-1 downto 0);
 
 begin
+
+--Default value 'Z' to avoid implicit conflicts for actually unused signals
+--to_periphcfg <= (others => (others => 'Z'));
    
 -- ----------------------------------------------------------------------------
 -- Alive instance
@@ -220,6 +227,9 @@ begin
    end process;
    
    to_periphcfg.PERIPH_INPUT_RD_1 <= (others=>'0');
+   
+   to_periphcfg.rf_switches <= rf_switches;
+   to_periphcfg.rf_amp_ctrl <= rf_amp_ctrl;
                      
       
 end arch;   

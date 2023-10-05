@@ -163,7 +163,7 @@ begin
          mem(1)   <= "0000000000000000"; --R/W  0 free, reserved[15:6],DDR2_2_TST_EN,DDR2_1_TST_EN,ADF_TST_EN,VCTCXO_TST_EN,Si5351C_TST_EN,FX3_PCLK_TST_EN
          mem(2)   <= "0000000000000000"; --RD   0 free, reserved
          mem(3)   <= "0000000000000000"; --RD   0 free, reserved[15:6],DDR2_2_TST_FRC_ERR,DDR2_1_TST_FRC_ERR,ADF_TST_FRC_ERR,VCTCXO_TST_FRC_ERR,Si5351C_TST_FRC_ERR,FX3_PCLK_TST_FRC_ERR
-         mem(4)   <= "0000000000000000"; --RD   0 free, reserved
+         mem(4)   <= "0000000000000000"; --RD   0 free, Reserved
          mem(5)   <= "0000000000000000"; --RD   0 free, Reserved
          mem(6)   <= "0000000000000000"; --RD   0 free, Reserved
          mem(7)   <= "0000000000000000"; --RD   0 free, Reserved
@@ -219,6 +219,7 @@ begin
    from_tstcfg.TEST_FRC_ERR  <= mem(3)(5 downto 0);
    from_tstcfg.TX_TST_I      <= mem(29)(15 downto 0);
    from_tstcfg.TX_TST_Q      <= mem(30)(15 downto 0);
+
 
 
 

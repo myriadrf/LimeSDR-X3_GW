@@ -260,6 +260,7 @@ begin
       from_fpgacfg.txpct_loss_clr      <= mem(9) (1);
       from_fpgacfg.rx_en               <= mem(10) (0);
       from_fpgacfg.tx_en               <= mem(10) (1);
+      from_fpgacfg.txant_alt_en        <= mem(10) (2);
       from_fpgacfg.rx_ptrn_en          <= mem(10) (8);
       from_fpgacfg.tx_ptrn_en          <= mem(10) (9);
       from_fpgacfg.tx_cnt_en           <= mem(10) (10);
