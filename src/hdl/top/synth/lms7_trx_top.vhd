@@ -1219,7 +1219,7 @@ begin
       
       pll_1_inclk_p              => CDCM_LMS2_BB_DAC1_REFC_P, 
       pll_1_inclk_n              => CDCM_LMS2_BB_DAC1_REFC_N, 
-      pll_1_logic_reset_n        => not inst0_pll_rst(5),
+      pll_1_logic_reset_n        => not inst0_pll_rst(5) and not inst0_from_cdcmcfg.CDCM_RECONFIG_START,
       pll_1_c0                   => inst1_pll_1_c0,
       pll_1_c1                   => inst1_pll_1_c1,
       pll_1_c2                   => inst1_pll_1_c2,
@@ -2551,13 +2551,38 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default   
 
-   CDCM_RESET_N         <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
-   CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
+   CDCM_RESET_N         <= reset_n;--not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
+--   CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
+   
+   cdcm_syncn_sync : process(LMK1_CLK1)
+   begin
+      if rising_edge(LMK1_CLK1) then
+         CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;
+      end if;   
+   end process;
    
    PPS_OUT <= inst1_lms1_rxpll_c1;
    
    LMS2_RESET <= inst0_from_fpgacfg_1.LMS1_RESET;
    LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
+   
+   
+   
+   
+      IBUFDS_inst : IBUFDS
+   generic map (
+      DIFF_TERM => FALSE, -- Differential Termination 
+      IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
+      IOSTANDARD => "DEFAULT")
+   port map (
+      O => PMOD_B_PIN1,  -- Buffer output
+      I => CDCM_LMS2_BB_DAC2_REFC_P,  -- Diff_p buffer input (connect directly to top-level port)
+      IB => CDCM_LMS2_BB_DAC2_REFC_N -- Diff_n buffer input (connect directly to top-level port)
+   );
+   
+   PMOD_B_PIN4 <= LMK1_CLK1;
+   
+   
 
     -- LMK1_SEL 0 = VCTCXO, 1 = External clock
 --   LMK1_SEL <= '0';
