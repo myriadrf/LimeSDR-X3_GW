@@ -495,6 +495,11 @@ signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
 signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
 signal inst0_smpl_cmp_sel        : std_logic_vector(0 downto 0);
 
+signal inst0_gnss_tpulse_sync    : std_logic;
+signal inst0_lms1_gnss_reset_n   : std_logic;
+signal inst0_lms2_gnss_reset_n   : std_logic;
+signal inst0_lms3_gnss_reset_n   : std_logic;
+
 --inst1 (pll_top instance)
 signal inst1_lms1_txpll_c0             : std_logic;
 signal inst1_lms1_txpll_c1             : std_logic;
@@ -753,7 +758,11 @@ signal inst20_wfm_0_outfifo_data       : std_logic_vector(127 downto 0);
 signal CLK100_FPGA                     : std_logic;
 signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 
---attribute MARK_DEBUG : string;
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of inst0_gnss_tpulse_sync  : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms1_gnss_reset_n : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms2_gnss_reset_n : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms3_gnss_reset_n : signal is "TRUE";
 --attribute MARK_DEBUG of inst9_rx_pct_fifo_wrreq : signal is "TRUE";
 --attribute MARK_DEBUG of inst2_F2H_S1_wrusedw : signal is "TRUE";
 
@@ -838,6 +847,62 @@ signal inst0_from_fircfg_rx_b       : t_FROM_FIRCFG; -- B.J.
 -- end B.J.
 
 begin
+
+
+-- ----------------------------------------------------------------------------
+-- Logic to implement optional GNSS synced reset
+-- ----------------------------------------------------------------------------
+   --Sync GNSS_TPULSE to the same clock as rx_en
+   sync_reg0_1 : entity work.sync_reg 
+   port map(clk100_fpga, GNSS_TPULSE, '1', inst0_gnss_tpulse_sync);
+   -------------
+   --LMS1
+   -------------
+   lms1_gnss_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_0.rx_en)
+      variable gnss_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_0.rx_en = '0' then
+         gnss_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         gnss_reset_n := gnss_reset_n;
+         if  inst0_gnss_tpulse_sync = '1' then
+             gnss_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms1_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_0.gnss_sync_en = '1' else '1';
+   end process; 
+   -------------
+   --LMS2
+   -------------
+   lms2_gnss_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_1.rx_en)
+      variable gnss_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_1.rx_en = '0' then
+         gnss_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         gnss_reset_n := gnss_reset_n;
+         if  inst0_gnss_tpulse_sync = '1' then
+             gnss_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms2_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_1.gnss_sync_en = '1' else '1';
+   end process; 
+   -------------
+   --LMS1
+   -------------
+   lms3_gnss_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_2.rx_en)
+      variable gnss_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_2.rx_en = '0' then
+         gnss_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         gnss_reset_n := gnss_reset_n;
+         if  inst0_gnss_tpulse_sync = '1' then
+             gnss_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms3_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_2.gnss_sync_en = '1' else '1';
+   end process; 
 
 -- ----------------------------------------------------------------------------
 -- Input buffers
@@ -1564,7 +1629,7 @@ begin
    process(inst0_from_fpgacfg_0, inst2_F2H_S0_open)
    begin 
       inst0_from_fpgacfg_mod_0        <= inst0_from_fpgacfg_0;
-      inst0_from_fpgacfg_mod_0.rx_en  <= inst0_from_fpgacfg_0.rx_en AND inst2_F2H_S0_open;
+      inst0_from_fpgacfg_mod_0.rx_en  <= inst0_from_fpgacfg_0.rx_en AND inst2_F2H_S0_open and inst0_lms1_gnss_reset_n;
    end process;
    
 --   --Module for LMS7002 IC
@@ -1828,7 +1893,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    process(inst0_from_fpgacfg_1, inst2_F2H_S1_open)
    begin 
       inst0_from_fpgacfg_mod_1        <= inst0_from_fpgacfg_1;
-      inst0_from_fpgacfg_mod_1.rx_en  <= inst0_from_fpgacfg_1.rx_en AND inst2_F2H_S1_open;
+      inst0_from_fpgacfg_mod_1.rx_en  <= inst0_from_fpgacfg_1.rx_en AND inst2_F2H_S1_open and inst0_lms2_gnss_reset_n;
    end process;
    
    --inst10_adc1_top : entity work.adc_top
@@ -2094,7 +2159,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    process(inst0_from_fpgacfg_2, inst2_F2H_S2_open)
    begin 
       inst0_from_fpgacfg_mod_2        <= inst0_from_fpgacfg_2;
-      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open;
+      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open and inst0_lms3_gnss_reset_n;
    end process;
  
    inst10_adc3_top : entity work.adc_top
