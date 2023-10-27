@@ -1,0 +1,3 @@
+[submodule "wr_cores"]
+	path = wr_cores
+	url = https://gitlab.com/vbuitvydas/wr_cores.git
