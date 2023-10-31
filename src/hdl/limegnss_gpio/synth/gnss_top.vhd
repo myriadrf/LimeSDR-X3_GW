@@ -27,6 +27,8 @@ entity gnss_top is
       sclk                 : in  std_logic;   -- Data clock
       sen                  : in  std_logic;   -- Enable signal (active low)
       sdout                : out std_logic;   -- Data out
+      
+      gnss_enabled         : out std_logic;
    
       -- Signals coming from the pins or top level serial interface
       lreset               : in  std_logic;   -- Logic reset signal, resets logic cells only  (use only one reset)
@@ -113,7 +115,7 @@ begin
 
 sync_reg0 : entity work.sync_reg 
 port map(clk, reset_n, inst2_en, inst0_reset_n);
-
+gnss_enabled <= inst0_reset_n;
 -- ----------------------------------------------------------------------------
 -- NMEA message parser
 -- ----------------------------------------------------------------------------

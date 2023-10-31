@@ -733,7 +733,7 @@ signal inst12_tx1_wrreq                : std_logic;
 signal inst12_tx1_data                 : std_logic_vector(27 downto 0);
 signal inst12_tx_src_sel               : std_logic_vector(1 downto 0);
 
-
+signal inst12_gnss_enabled : std_logic;
 signal inst12_gnss_sdout: std_logic;
 --inst19
 signal inst19_phy_clk                  : std_logic;
@@ -768,6 +768,8 @@ attribute MARK_DEBUG of inst0_lms3_gnss_reset_n : signal is "TRUE";
 
 signal spi0_lms1_miso   : std_logic;
 signal spi0_lms2_miso   : std_logic;
+
+signal gnss_chip_reset_n     : std_logic;
 
 -- B.J.
 component data_cap_buffer is
@@ -2372,7 +2374,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       
       -- Testing (UART logger)
       fan_ctrl_in       => '0',
-      uart_tx           => inst12_uart_tx
+      uart_tx           => inst12_uart_tx,
+      gnss_enabled      => inst12_gnss_enabled
       
    );
    
@@ -2632,21 +2635,26 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
    
    
+   process(clk100_fpga,reset_n,inst12_gnss_enabled)
+      variable counter : integer range 0 to 100000000;
+   begin
    
+      if reset_n = '0' or inst12_gnss_enabled = '0' then
+         gnss_chip_reset_n <= '0'; 
+         counter           :=  0;  
+      elsif rising_edge(clk100_fpga) then
+         if counter >= 100000000 then
+            gnss_chip_reset_n <= '1';
+         else
+            gnss_chip_reset_n <= '0';
+            counter := counter + 1;
+         end if;
+      end if;
+   end process;
    
-      IBUFDS_inst : IBUFDS
-   generic map (
-      DIFF_TERM => FALSE, -- Differential Termination 
-      IBUF_LOW_PWR => TRUE, -- Low power (TRUE) vs. performance (FALSE) setting for referenced I/O standards
-      IOSTANDARD => "DEFAULT")
-   port map (
-      O => PMOD_B_PIN1,  -- Buffer output
-      I => CDCM_LMS2_BB_DAC2_REFC_P,  -- Diff_p buffer input (connect directly to top-level port)
-      IB => CDCM_LMS2_BB_DAC2_REFC_N -- Diff_n buffer input (connect directly to top-level port)
-   );
-   
-   PMOD_B_PIN4 <= LMK1_CLK1;
-   
+   PMOD_B_PIN1 <= gnss_chip_reset_n;
+   PMOD_B_PIN7 <= gnss_chip_reset_n;
+    
    
 
     -- LMK1_SEL 0 = VCTCXO, 1 = External clock

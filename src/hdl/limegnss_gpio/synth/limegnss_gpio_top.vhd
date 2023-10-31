@@ -69,7 +69,9 @@ entity limegnss_gpio_top is
       
       -- Testing (UART logger)
       fan_ctrl_in       : in std_logic;
-      uart_tx           : out std_logic
+      uart_tx           : out std_logic;
+      
+      gnss_enabled      : out std_logic
       
       
       
@@ -161,6 +163,7 @@ gnss_top_inst1 : entity work.gnss_top
       mreset               => mreset,
       clk                  => vctcxo_clk,
       reset_n              => areset_n,
+      gnss_enabled         => gnss_enabled,
       data                 => uart_data_reg,
       data_v               => uart_data_valid,
       gagsa_fix            => inst1_gagsa_fix,
