@@ -1641,23 +1641,23 @@ begin
 -- added by B.J. 
 -- LMS#1 has two CFR+FIR+DPD chains for both transmitting channels.
 --	for trasmit only LMS#1 is used: both channels A and B are active
-inst6_lms7002_top : entity work.lms7002_top_DPD
+inst6_lms7002_top : entity work.lms7002_top
    generic map(
-      DPDTopWrapper_enable    => 1,
+--      DPDTopWrapper_enable    => 1,
       g_DEV_FAMILY            => g_DEV_FAMILY,
       g_IQ_WIDTH              => g_LMS_DIQ_WIDTH,
       g_INV_INPUT_CLK         => "ON",
       g_TX_SMPL_FIFO_0_WRUSEDW  => 9,
       g_TX_SMPL_FIFO_0_DATAW    => 128,
       g_TX_SMPL_FIFO_1_WRUSEDW  => 9,
-      g_TX_SMPL_FIFO_1_DATAW    => 128,
+      g_TX_SMPL_FIFO_1_DATAW    => 128
 
-      g_ADPDCFG_START_ADDR   => g_ADPDCFG_START_ADDR, -- B.J.
-      g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
-      g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
-      g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
-      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
-      DPD_enable => DPD_enable
+--      g_ADPDCFG_START_ADDR   => g_ADPDCFG_START_ADDR, -- B.J.
+--      g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
+--      g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
+--      g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
+--      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
+--      DPD_enable => DPD_enable
    ) 
    port map(  
       from_fpgacfg         => inst0_from_fpgacfg_mod_0,
@@ -1667,6 +1667,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       mem_reset_n          => reset_n,
       -- PORT1 interface
       MCLK1                => inst1_lms1_txpll_c1, -- 122.88
+      MCLK1_2x             => '0',
       FCLK1                => open, 
       --DIQ1                 => LMS1_DIQ1_INT,
       DIQ1                 => LMS1_DIQ1_D,
@@ -1710,103 +1711,103 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
-      rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en,
+      rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en
             -- SPI for internal modules
-      sdin                 => inst0_spi_0_MOSI,  -- Data in
-      sclk                 => inst0_spi_0_SCLK,  -- Data clock
-      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
-      sdout                => inst6_sdout,  -- Data out  
+--      sdin                 => inst0_spi_0_MOSI,  -- Data in
+--      sclk                 => inst0_spi_0_SCLK,  -- Data clock
+--      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
+--      sdout                => inst6_sdout,  -- Data out  
       
-       -- B.J. 
-       xp_ai                => xp_ai, 
-       xp_aq                => xp_aq,
-       xp_bi                => xp_bi, 
-       xp_bq                => xp_bq,
-       yp_ai                => yp_ai, 
-       yp_aq                => yp_aq,
-       yp_bi                => yp_bi,
-       yp_bq                => yp_bq,
-       x_ai                 => x_ai_lms1,
-       x_aq                 => x_aq_lms1,
-       x_bi                 => x_bi_lms1,
-       x_bq                 => x_bq_lms1,
+--       -- B.J. 
+--       xp_ai                => xp_ai, 
+--       xp_aq                => xp_aq,
+--       xp_bi                => xp_bi, 
+--       xp_bq                => xp_bq,
+--       yp_ai                => yp_ai, 
+--       yp_aq                => yp_aq,
+--       yp_bi                => yp_bi,
+--       yp_bq                => yp_bq,
+--       x_ai                 => x_ai_lms1,
+--       x_aq                 => x_aq_lms1,
+--       x_bi                 => x_bi_lms1,
+--       x_bq                 => x_bq_lms1,
 
-       xp_data_valid        => xp_data_valid,
-       x_data_valid         => x_data_valid_lms1,
+--       xp_data_valid        => xp_data_valid,
+--       x_data_valid         => x_data_valid_lms1,
 
-       cap_en               => cap_en, 
-       cap_cont_en          => cap_cont_en,
-       cap_resetn           => cap_resetn,  -- reset signal for dpd capture buffer
-       cap_size             => cap_size,
-       tx_en => dpd_tx_en,
-       capture_en => dpd_capture_en,  -- enables DPD capture (1) or LMS#3 streaming (0) going to PCIe 
-       reset_n_software => reset_n_soft,  -- not used 
-       lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
+--       cap_en               => cap_en, 
+--       cap_cont_en          => cap_cont_en,
+--       cap_resetn           => cap_resetn,  -- reset signal for dpd capture buffer
+--       cap_size             => cap_size,
+--       tx_en => dpd_tx_en,
+--       capture_en => dpd_capture_en,  -- enables DPD capture (1) or LMS#3 streaming (0) going to PCIe 
+--       reset_n_software => reset_n_soft,  -- not used 
+--       lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
    );
 
-   inst_data_cap_buffer: data_cap_buffer
-      port map (
+--   inst_data_cap_buffer: data_cap_buffer
+--      port map (
          
-         wclk0 => inst1_lms1_txpll_c1,   -- clk for xp_a (122.88)
-         wclk1 => inst1_lms1_txpll_c1,   -- clk for yp_a (122.88)
-         wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
-         wclk3 => inst1_lms1_txpll_c1,   -- clk for xp_b (122.88)
-         wclk4 => inst1_lms1_txpll_c1,   -- clk for yp_b (122.88)
-         wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
-         wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
-         wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
+--         wclk0 => inst1_lms1_txpll_c1,   -- clk for xp_a (122.88)
+--         wclk1 => inst1_lms1_txpll_c1,   -- clk for yp_a (122.88)
+--         wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
+--         wclk3 => inst1_lms1_txpll_c1,   -- clk for xp_b (122.88)
+--         wclk4 => inst1_lms1_txpll_c1,   -- clk for yp_b (122.88)
+--         wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
+--         wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
+--         wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
     
-         rdclk => pcie_bus_clk, 
-         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
-         reset_n => cap_resetn, -- reset signal for dpd capture buffer
+--         rdclk => pcie_bus_clk, 
+--         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
+--         reset_n => cap_resetn, -- reset signal for dpd capture buffer
          
-         ch_0_valid => xp_data_valid, 
-         ch_0_i => xp_ai, 
-         ch_0_q => xp_aq,          
+--         ch_0_valid => xp_data_valid, 
+--         ch_0_i => xp_ai, 
+--         ch_0_q => xp_aq,          
          
-         ch_1_valid => xp_data_valid, 
-         ch_1_i =>  yp_ai, 
-         ch_1_q =>  yp_aq,    
+--         ch_1_valid => xp_data_valid, 
+--         ch_1_i =>  yp_ai, 
+--         ch_1_q =>  yp_aq,    
          
-         ch_2_valid => '1', 
+--         ch_2_valid => '1', 
          
-         -- SWAPPED I AND Q FOR 3.1 BOARD,  LMS 3
-         ch_2_i => x_ai_lms3, --x_ai, lms#3
-         ch_2_q => x_aq_lms3, --x_aq, lms#3
+--         -- SWAPPED I AND Q FOR 3.1 BOARD,  LMS 3
+--         ch_2_i => x_ai_lms3, --x_ai, lms#3
+--         ch_2_q => x_aq_lms3, --x_aq, lms#3
          
-         ch_3_valid => xp_data_valid, 
-         ch_3_i => xp_bi, 
-         ch_3_q => xp_bq,          
+--         ch_3_valid => xp_data_valid, 
+--         ch_3_i => xp_bi, 
+--         ch_3_q => xp_bq,          
          
-         ch_4_valid => xp_data_valid, 
-         ch_4_i => yp_bi, 
-         ch_4_q => yp_bq,   
+--         ch_4_valid => xp_data_valid, 
+--         ch_4_i => yp_bi, 
+--         ch_4_q => yp_bq,   
          
-         ch_5_valid => '1', 
+--         ch_5_valid => '1', 
          
-         -- SWAPPED I AND Q FOR 3.1 BOARD, LMS 3
-         ch_5_i => x_bi_lms3, --x_bi, lms#3
-         ch_5_q => x_bq_lms3, --x_bq, lms#3 
+--         -- SWAPPED I AND Q FOR 3.1 BOARD, LMS 3
+--         ch_5_i => x_bi_lms3, --x_bi, lms#3
+--         ch_5_q => x_bq_lms3, --x_bq, lms#3 
          
-         ch_6_valid => x_data_valid_lms1, 
-         ch_6_i => x_aq_lms1, --x_ai 
-         ch_6_q => x_ai_lms1, --x_aq, lms#1
+--         ch_6_valid => x_data_valid_lms1, 
+--         ch_6_i => x_aq_lms1, --x_ai 
+--         ch_6_q => x_ai_lms1, --x_aq, lms#1
 
-         ch_7_valid => not x_data_valid_lms1, 
-         ch_7_i => x_bq_lms1, --x_bi, lms#1
-         ch_7_q => x_bi_lms1, --x_bq, lms#1 
+--         ch_7_valid => not x_data_valid_lms1, 
+--         ch_7_i => x_bq_lms1, --x_bi, lms#1
+--         ch_7_q => x_bi_lms1, --x_bq, lms#1 
          
-         cap_en => cap_en, 
-         cap_cont_en => cap_cont_en, 
-         cap_size => cap_size, 
-         cap_done => OPEN,    
+--         cap_en => cap_en, 
+--         cap_cont_en => cap_cont_en, 
+--         cap_size => cap_size, 
+--         cap_done => OPEN,    
          
-         to_dma_reader   => DPD_to_dma_reader, 
-         from_dma_reader  => DPD_from_dma_reader,   
+--         to_dma_reader   => DPD_to_dma_reader, 
+--         from_dma_reader  => DPD_from_dma_reader,   
          
-         test_data_en =>  '0',
-         lms3_monitoring => lms3_monitoring -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
-      );
+--         test_data_en =>  '0',
+--         lms3_monitoring => lms3_monitoring -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
+--      );
   
    
    --Trying to add additional delay for LMS1_DIQ1(11)  
