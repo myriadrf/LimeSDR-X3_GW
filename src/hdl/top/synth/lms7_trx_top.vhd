@@ -96,7 +96,7 @@ entity lms7_trx_top is
       -- External periphery
       g_GPIO_N                : integer := 16;
 
-      DPD_enable : INTEGER := 1  -- B.J.
+      DPD_enable : INTEGER := 0  -- B.J.
    );
    port (
       -- ----------------------------------------------------------------------------
@@ -227,6 +227,30 @@ entity lms7_trx_top is
       --LMS2_BB_DAC2_XOR_P         : out    std_logic;     -- XORN high and XORP low - data stream unchanged, 
       --LMS2_BB_DAC2_XOR_N         : out    std_logic;     -- XORN low and XORP high -  invert the DAC input data
       -- ----------------------------------------------------------------------------
+      -- White Rabbit PTP
+      WR_PTP_CLK1_125_P          : in     std_logic;
+      WR_PTP_CLK1_125_N          : in     std_logic;
+      
+      WR_PTP_CLK0_125_P          : in     std_logic;
+      WR_PTP_CLK0_125_N          : in     std_logic;
+      
+      WR_PTP_CLK0_20             : in     std_logic;
+      
+      WR_PTP_SFP_TD_P            : out    std_logic;  
+      WR_PTP_SFP_TD_N            : out    std_logic;
+      WR_PTP_SFP_RD_P            : in     std_logic;
+      WR_PTP_SFP_RD_N            : in     std_logic;
+      WR_PTP_SFP_MOD_DEF0        : in     std_logic;
+      WR_PTP_SFP_MOD_DEF1        : inout  std_logic;
+      WR_PTP_SFP_MOD_DEF2        : inout  std_logic;
+      WR_PTP_SFP_RATE_SEL        : out    std_logic;
+      WR_PTP_SFP_TX_FAULT        : in     std_logic;
+      WR_PTP_SFP_TX_DISABLE      : out    std_logic;
+      WR_PTP_SFP_LOS             : in     std_logic;
+      
+      PTP_CLK2_OUT               : out    std_logic;
+    
+      -- ----------------------------------------------------------------------------
       -- Clock generator
       CDCM_RESET_N        : out std_logic;
       CDCM_SYNCN          : out std_logic;
@@ -315,7 +339,7 @@ entity lms7_trx_top is
       XO_VC_FPGA        : out    std_logic := '0';
          --GNSS
       GNSS_UART_TX      : in     std_logic;
-      GNSS_UART_RX      : out    std_logic := '1';
+      GNSS_UART_RX      : out    std_logic;
       GNSS_TPULSE       : in     std_logic;
          -- PPS
       PPS_OUT           : out    std_logic;
@@ -326,13 +350,13 @@ entity lms7_trx_top is
          -- ADF 
       ADF_MUXOUT        : in     std_logic;
          -- PMODs
-       PMOD_B_PIN1      : inout std_logic;
-       PMOD_B_PIN2      : inout std_logic;
-       PMOD_B_PIN3      : inout std_logic;
-       PMOD_B_PIN4      : inout std_logic;
+       PMOD_B_PIN1      : out std_logic;
+       PMOD_B_PIN2      : in  std_logic;
+       PMOD_B_PIN3      : out std_logic;
+       PMOD_B_PIN4      : out std_logic;
                         
-       PMOD_B_PIN7      : inout std_logic;
-       PMOD_B_PIN8      : inout std_logic;
+       PMOD_B_PIN7      : out std_logic;
+       PMOD_B_PIN8      : in  std_logic;
        PMOD_B_PIN9      : inout std_logic;
        PMOD_B_PIN10     : inout std_logic;
                         
@@ -402,6 +426,7 @@ signal reset_n                   : std_logic;
 signal reset_n_lmk_clk           : std_logic;
 signal reset_n_clk100_fpga       : std_logic;
 signal reset_n_si_clk0           : std_logic;
+signal reset_n_gnss              : std_logic;
 
 signal lms2_bb_adc1_clkout       : std_logic;
 signal lms2_bb_adc1_clkout_global: std_logic;
@@ -441,6 +466,11 @@ signal inst0_spi_2_MISO          : std_logic;
 signal inst0_spi_2_MOSI          : std_logic;
 signal inst0_spi_2_SCLK          : std_logic;
 signal inst0_spi_2_SS_n          : std_logic_vector(3 downto 0);
+signal inst0_spi_2_SEL_n         : std_logic;
+signal inst0_i2c_scl_o           : std_logic;
+signal inst0_i2c_scl_t           : std_logic;
+signal inst0_i2c_sda_o           : std_logic;
+signal inst0_i2c_sda_t           : std_logic;
 signal inst0_pll_stat            : std_logic_vector(9 downto 0);
 signal inst0_pll_rst             : std_logic_vector(31 downto 0);
 signal inst0_pll_rcfg_to_pll_0   : std_logic_vector(63 downto 0);
@@ -760,6 +790,40 @@ signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 signal spi0_lms1_miso   : std_logic;
 signal spi0_lms2_miso   : std_logic;
 
+signal wrpc_spi_sclk          : std_logic;
+signal wrpc_spi_mosi          : std_logic;
+signal wrpc_spi_xo_25_dac_ss  : std_logic;
+signal wrpc_spi_xo_20_dac_ss  : std_logic;
+signal wrpc_ptp_clk2_out      : std_logic;
+
+signal wrpc_i2c_scl           : std_logic;
+signal wrpc_i2c_sda           : std_logic;
+
+signal wrpc_uart_rxd_i        : std_logic;
+signal wrpc_uart_txd_o        : std_logic;
+
+signal wrc_pps_out            : std_logic;
+signal wrpc_dac_refclk_cs_n_o : std_logic;
+signal wrpc_dac_refclk_sclk_o : std_logic;
+signal wrpc_dac_refclk_din_o  : std_logic;
+
+signal wrpc_dac_dmtd_cs_n_o   : std_logic;
+signal wrpc_dac_dmtd_sclk_o   : std_logic;
+signal wrpc_dac_dmtd_din_o    : std_logic;
+
+signal wrpc_eeprom_sda_o      : std_logic;
+signal wrpc_eeprom_scl_o      : std_logic;
+
+
+
+
+
+
+
+
+
+
+
 -- B.J.
 component data_cap_buffer is
 	port (	
@@ -1012,8 +1076,17 @@ begin
       fpga_cfg_qspi_MISO	     =>FPGA_CFG_MISO,
       fpga_cfg_qspi_SS_n         =>FPGA_CFG_CS,
       -- I2C
-      i2c_scl                    => FPGA_I2C_SCL,
-      i2c_sda                    => FPGA_I2C_SDA,
+      --i2c_scl                    => FPGA_I2C_SCL,
+      --i2c_sda                    => FPGA_I2C_SDA,
+      
+      i2c_scl_i                  => FPGA_I2C_SCL,
+      i2c_scl_o                  => inst0_i2c_scl_o,
+      i2c_scl_t                  => inst0_i2c_scl_t,
+      i2c_sda_i                  => FPGA_I2C_SDA,
+      i2c_sda_o                  => inst0_i2c_sda_o,
+      i2c_sda_t                  => inst0_i2c_sda_t,
+      
+      uart_0_txd                 => open, 
       -- Genral purpose I/O
       gpi                        => "00000000",--"0000" & FPGA_SW,
       gpo                        => inst0_gpo, 
@@ -2449,6 +2522,87 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 --      DS       => SR_DIN_LS      -- serial data
 --      );
 
+
+
+   wrpc_top_inst : entity work.wrpc_top
+   generic map (
+      --Add full path to .\wr_cores\bin\wrpc\wrc_phy16.bram
+      g_dpram_initf => "D:\work_dir\LimeSDR-X3\LimeSDR-X3_GW\wr_cores\bin\wrpc\wrc_phy16.bram",
+      g_simulation  => 0
+   )
+   port map (
+      ---------------------------------------------------------------------------`
+      -- Clocks/resets
+      ---------------------------------------------------------------------------
+      -- Local oscillators   
+      clk_125m_dmtd_p_i       => WR_PTP_CLK1_125_P,             -- 124.992 MHz PLL reference
+      clk_125m_dmtd_n_i       => WR_PTP_CLK1_125_N,
+                              
+      clk_125m_gtp_n_i        => WR_PTP_CLK0_125_N,             -- 125.000 MHz GTP reference
+      clk_125m_gtp_p_i        => WR_PTP_CLK0_125_P,
+                              
+      clk_20m_vcxo_i          => WR_PTP_CLK0_20,
+      
+      clk_ext_100m            => CLK100_FPGA,
+      ---------------------------------------------------------------------------
+      -- SPI interface to DACs
+      ---------------------------------------------------------------------------
+      dac_refclk_cs_n_o       => wrpc_dac_refclk_cs_n_o, 
+      dac_refclk_sclk_o       => wrpc_dac_refclk_sclk_o, 
+      dac_refclk_din_o        => wrpc_dac_refclk_din_o, 
+
+      dac_dmtd_cs_n_o         => wrpc_dac_dmtd_cs_n_o, 
+      dac_dmtd_sclk_o         => wrpc_dac_dmtd_sclk_o, 
+      dac_dmtd_din_o          => wrpc_dac_dmtd_din_o , 
+
+      ---------------------------------------------------------------------------
+      -- SFP I/O for transceiver
+      ---------------------------------------------------------------------------
+      sfp_txp_o               => WR_PTP_SFP_TD_P,
+      sfp_txn_o               => WR_PTP_SFP_TD_N,
+      sfp_rxp_i               => WR_PTP_SFP_RD_P,
+      sfp_rxn_i               => WR_PTP_SFP_RD_N,
+      sfp_mod_def0_i          => WR_PTP_SFP_MOD_DEF0,          -- sfp detect
+      sfp_mod_def1_b          => WR_PTP_SFP_MOD_DEF1,          -- scl
+      sfp_mod_def2_b          => WR_PTP_SFP_MOD_DEF2,          -- sda
+      sfp_rate_select_o       => WR_PTP_SFP_RATE_SEL,
+      sfp_tx_fault_i          => WR_PTP_SFP_TX_FAULT,
+      sfp_tx_disable_o        => WR_PTP_SFP_TX_DISABLE,
+      sfp_los_i               => WR_PTP_SFP_LOS,
+      ---------------------------------------------------------------------------
+      -- UART
+      ---------------------------------------------------------------------------
+      uart_rxd_i              => PMOD_B_PIN8,
+      uart_txd_o              => PMOD_B_PIN7,
+      ---------------------------------------------------------------------------
+      -- Miscellanous clbv3 pins
+      ---------------------------------------------------------------------------
+      -- Red LED next to the SFP: blinking indicates that packets are being
+      -- transferred.
+      led_act_o               => open, 
+      -- Green LED next to the SFP: indicates if the link is up.
+      led_link_o              => open,
+      
+      reset_n                 => FPGA_SW(0),
+      ---------------------------------------------------------------------------
+      -- Digital I/O Pins
+      -- used in this design to output WR-aligned 1-PPS (in Slave mode) and input
+      -- 10MHz & 1-PPS from external reference (in GrandMaster mode).
+      ---------------------------------------------------------------------------
+      -- I2C interface for accessing FMC EEPROM. Deprecated, was used in
+      -- pre-v3.0 releases to store WRPC configuration. Now we use Flash for this.
+      eeprom_sda_i            => FPGA_I2C_SDA,
+      eeprom_sda_o            => wrpc_eeprom_sda_o,
+      eeprom_scl_i            => FPGA_I2C_SCL,
+      eeprom_scl_o            => wrpc_eeprom_scl_o,
+      
+      --1-PPS from external reference (in GrandMaster mode).
+      wrc_pps_in              => GNSS_TPULSE,
+      --WR-aligned 1-PPS (in Slave mode)
+      wrc_pps_out             => PTP_CLK2_OUT  
+      
+   );
+
 -- ----------------------------------------------------------------------------
 -- Output ports
 -- ----------------------------------------------------------------------------
@@ -2492,6 +2646,17 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 --   LMS2 clocks
 --   PMOD_B_PIN1 <= inst1_pll_1_c1;
 --   PMOD_B_PIN3 <= lms2_bb_adc1_clkout_global;
+
+   gnss_reset_vio : entity work.vio_0
+   PORT MAP (
+      clk            => CLK100_FPGA,
+      probe_out0(0)  => reset_n_gnss
+   );
+
+   PMOD_B_PIN1    <= GNSS_UART_TX;
+   GNSS_UART_RX   <= PMOD_B_PIN2;
+   PMOD_B_PIN4    <= reset_n_clk100_fpga AND reset_n_gnss; 
+   
    
 
    FPGA_SPI0_SCLK       <= inst0_spi_0_SCLK;
@@ -2511,14 +2676,42 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    FPGA_SPI1_LMS3_BB_ADC2_SS  <= inst0_spi_1_SS_n(c_SPI1_LMS3_BB_ADC2_SS_NR);
    FPGA_SPI1_CDCM_SS          <= inst0_spi_1_SS_n(c_SPI1_CDCM_SS_NR);
    
-   FPGA_SPI2_MOSI          <= inst0_spi_2_MOSI;
-   FPGA_SPI2_SCLK          <= inst0_spi_2_SCLK;
-   FPGA_SPI2_XO_DAC_SS     <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR);
-   FPGA_SPI2_ADF_SS        <= inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR);
-   FPGA_SPI2_LMS1_TX1DAC_SS<= inst0_spi_2_SS_n(c_SPI2_TX1_DAC);
-   FPGA_SPI2_LMS1_TX2DAC_SS<= inst0_spi_2_SS_n(c_SPI2_TX2_DAC);
-     
    
+   -- FPGA SPI 2
+   -- FPGA_SPI2 line has two masters - cpu_top and wrpc instances. 
+   -- cpu_top has priority access over wrpc instance. 
+   FPGA_SPI2_MOSI             <= inst0_spi_2_MOSI        when inst0_spi_2_SEL_n = '0'        else 
+                                 wrpc_dac_refclk_din_o   when wrpc_dac_refclk_cs_n_o = '0'   else 
+                                 wrpc_dac_dmtd_din_o     when wrpc_dac_dmtd_cs_n_o = '0'     else 
+                                 '0';
+                                 
+   FPGA_SPI2_SCLK             <= inst0_spi_2_SCLK        when inst0_spi_2_SEL_n = '0'        else
+                                 wrpc_dac_refclk_sclk_o  when wrpc_dac_refclk_cs_n_o = '0'   else
+                                 wrpc_dac_dmtd_sclk_o    when wrpc_dac_dmtd_cs_n_o = '0'     else 
+                                 '0';
+                                 
+   FPGA_SPI2_XO_DAC_SS        <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR);
+   FPGA_SPI2_ADF_SS           <= inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR);
+   FPGA_SPI2_LMS1_TX1DAC_SS   <= inst0_spi_2_SS_n(c_SPI2_TX1_DAC);
+   FPGA_SPI2_LMS1_TX2DAC_SS   <= inst0_spi_2_SS_n(c_SPI2_TX2_DAC);
+   
+   FPGA_SPI2_XO_20_DAC_SS     <= wrpc_dac_dmtd_cs_n_o    when inst0_spi_2_SEL_n = '1' else '1';
+   FPGA_SPI2_XO_25_DAC_SS     <= wrpc_dac_refclk_cs_n_o  when inst0_spi_2_SEL_n = '1' else '1';
+
+   inst0_spi_2_SEL_n          <= inst0_spi_2_SS_n(c_SPI2_XO_DAC_SS_NR) AND inst0_spi_2_SS_n(c_SPI2_ADF_SS_NR) AND inst0_spi_2_SS_n(c_SPI2_TX1_DAC) AND inst0_spi_2_SS_n(c_SPI2_TX2_DAC);  
+     
+     
+   -- FPGA_I2C
+   FPGA_I2C_SCL <= inst0_i2c_scl_o  when inst0_i2c_scl_t = '0'    else 
+                   '0'              when wrpc_eeprom_scl_o = '0'  else 
+                   'Z';
+                   
+   FPGA_I2C_SDA <= inst0_i2c_sda_o  when inst0_i2c_sda_t = '0'    else 
+                   '0'              when wrpc_eeprom_sda_o = '0'  else 
+                   'Z';
+   
+   --i2c_scl <= inst0_iic_0_scl_o when inst0_iic_0_scl_t = '0' else 'Z';
+   --i2c_sda <= inst0_iic_0_sda_o when inst0_iic_0_sda_t = '0' else 'Z';
    
    
    ---- LMS1 PA power control (Active high, by default disabled)

@@ -76,8 +76,16 @@ entity cpu_top is
       spi_2_SCLK           : out    std_logic;
       spi_2_SS_n           : out    std_logic_vector(3 downto 0); 
       -- I2C
-      i2c_scl              : inout  std_logic;
-      i2c_sda              : inout  std_logic;
+      --i2c_scl              : inout  std_logic;
+      --i2c_sda              : inout  std_logic;
+      i2c_scl_i            : in     std_logic; 
+      i2c_scl_o            : out    std_logic;
+      i2c_scl_t            : out    std_logic;
+      i2c_sda_i            : in     std_logic;
+      i2c_sda_o            : out    std_logic;
+      i2c_sda_t            : out    std_logic;
+      -- UART 0
+      uart_0_txd           : out    std_logic;
 	  -- Configuration Flash SPI
 	  fpga_cfg_qspi_MISO   : in     std_logic;
 	  fpga_cfg_qspi_MOSI   : out    std_logic;
@@ -422,12 +430,12 @@ begin
       fifo_write_0_wr_en       => exfifo_of_wr,
       gpio_0_tri_i             => gpi,
       gpio_1_tri_o             => gpo,
-      iic_0_scl_i              => i2c_scl,
-      iic_0_scl_o              => inst0_iic_0_scl_o,
-      iic_0_scl_t              => inst0_iic_0_scl_t,
-      iic_0_sda_i              => i2c_sda,
-      iic_0_sda_o              => inst0_iic_0_sda_o,
-      iic_0_sda_t              => inst0_iic_0_sda_t,
+      iic_0_scl_i              => i2c_scl_i, --i2c_scl,
+      iic_0_scl_o              => i2c_scl_o, --inst0_iic_0_scl_o,
+      iic_0_scl_t              => i2c_scl_t, --inst0_iic_0_scl_t,
+      iic_0_sda_i              => i2c_sda_i, --i2c_sda,
+      iic_0_sda_o              => i2c_sda_o, --inst0_iic_0_sda_o,
+      iic_0_sda_t              => i2c_sda_t, --inst0_iic_0_sda_t,
       pll_rst_tri_o            => pll_rst,
       pllcfg_cmd_tri_i         => inst0_pllcfg_cmd_export,
       pllcfg_stat_tri_o        => inst0_pllcfg_stat_export,
@@ -471,7 +479,7 @@ begin
       spi_2_ss_o               => inst0_spi_2_SS_n,
       spi_2_ss_t               => open,
       uart_0_rxd               => '0',
-      uart_0_txd               => open,
+      uart_0_txd               => uart_0_txd,
       
       fpga_cfg_qspi_io0_i      => inst0_fpga_cfg_qspi_io0_i,
       fpga_cfg_qspi_io0_o      => inst0_fpga_cfg_qspi_io0_o,
@@ -632,8 +640,8 @@ begin
    inst0_fpga_cfg_qspi_io1_i <= fpga_cfg_qspi_MISO;
    fpga_cfg_qspi_SS_n    <= inst0_fpga_cfg_qspi_ss_o(0);
    
-   i2c_scl <= inst0_iic_0_scl_o when inst0_iic_0_scl_t = '0' else 'Z';
-   i2c_sda <= inst0_iic_0_sda_o when inst0_iic_0_sda_t = '0' else 'Z';
+   --i2c_scl <= inst0_iic_0_scl_o when inst0_iic_0_scl_t = '0' else 'Z';
+   --i2c_sda <= inst0_iic_0_sda_o when inst0_iic_0_sda_t = '0' else 'Z';
    
    vctcxo_tamer_0_ctrl_export(0) <= vctcxo_tune_en_sync;
    vctcxo_tamer_0_ctrl_export(1) <= vctcxo_irq_sync;
