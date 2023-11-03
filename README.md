@@ -1,4 +1,4 @@
-Gateware version -1.44
+Gateware version -1.45
 
 # LimeSDR-X3 FPGA gateware
 
