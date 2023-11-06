@@ -200,7 +200,7 @@ begin
          mem(7)   <= "0000000000000011";  --  0 free, ch_en[15:0]
          mem(8)   <= "0000000100000010";  --  6 free, sync_mode,synch_dis, mimo_int_en, trxiq_pulse, ddr_en, mode, reserved[2:0], smpl_width[1:0]
          mem(9)   <= "0000000000000011";  -- 14 free, txpct_loss_clr, smpl_nr_clr,
-         mem(10)  <= "0000000000000000";  -- 14 free, tx_en, rx_en,
+         mem(10)  <= "0000000000000000";  -- 12 free, tpulse_sel, tpulse_sync_en, tx_en, rx_en
          mem(11)  <= "0000000000000000";  -- 16 free, 
          mem(12)  <= "0000000000000011";  --  0 free, wfm_ch_en
          mem(13)  <= "0000000000000000";  --  0 free, Reserved,wfm_load,wfm_play,Reserved
@@ -260,6 +260,8 @@ begin
       from_fpgacfg.txpct_loss_clr      <= mem(9) (1);
       from_fpgacfg.rx_en               <= mem(10) (0);
       from_fpgacfg.tx_en               <= mem(10) (1);
+      from_fpgacfg.tpulse_sync_en      <= mem(10) (2);
+      from_fpgacfg.tpulse_sel          <= mem(10) (3);   -- 0 - gnss_tpulse,  1 - wr_tpulse
       from_fpgacfg.rx_ptrn_en          <= mem(10) (8);
       from_fpgacfg.tx_ptrn_en          <= mem(10) (9);
       from_fpgacfg.tx_cnt_en           <= mem(10) (10);

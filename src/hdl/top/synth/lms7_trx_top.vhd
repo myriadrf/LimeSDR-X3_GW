@@ -351,14 +351,14 @@ entity lms7_trx_top is
       ADF_MUXOUT        : in     std_logic;
          -- PMODs
        PMOD_B_PIN1      : out std_logic;
-       PMOD_B_PIN2      : in  std_logic;
-       PMOD_B_PIN3      : out std_logic;
-       PMOD_B_PIN4      : out std_logic;
+       PMOD_B_PIN2      : inout std_logic;
+       PMOD_B_PIN3      : inout std_logic;
+       PMOD_B_PIN4      : inout std_logic;
                         
-       PMOD_B_PIN7      : out std_logic;
-       PMOD_B_PIN8      : in  std_logic;
-       PMOD_B_PIN9      : inout std_logic;
-       PMOD_B_PIN10     : inout std_logic;
+       PMOD_B_PIN7      : out   std_logic;
+       PMOD_B_PIN8      : inout std_logic;
+       PMOD_B_PIN9      : out   std_logic;
+       PMOD_B_PIN10     : in    std_logic;
                         
        PMOD_A_PIN1      : inout std_logic;
        PMOD_A_PIN2      : inout std_logic;
@@ -524,6 +524,11 @@ signal inst0_pll_axi_resetn_out  : std_logic_vector(0 downto 0);
 signal inst0_smpl_cmp_en         : std_logic_vector(3 downto 0);
 signal inst0_smpl_cmp_status     : std_logic_vector(1 downto 0);
 signal inst0_smpl_cmp_sel        : std_logic_vector(0 downto 0);
+
+signal inst0_gnss_tpulse_sync    : std_logic;
+signal inst0_lms1_tpulse_reset_n   : std_logic;
+signal inst0_lms2_tpulse_reset_n   : std_logic;
+signal inst0_lms3_tpulse_reset_n   : std_logic;
 
 --inst1 (pll_top instance)
 signal inst1_lms1_txpll_c0             : std_logic;
@@ -758,7 +763,7 @@ signal inst12_tx1_wrreq                : std_logic;
 signal inst12_tx1_data                 : std_logic_vector(27 downto 0);
 signal inst12_tx_src_sel               : std_logic_vector(1 downto 0);
 
-
+signal inst12_gnss_enabled : std_logic;
 signal inst12_gnss_sdout: std_logic;
 --inst19
 signal inst19_phy_clk                  : std_logic;
@@ -783,7 +788,11 @@ signal inst20_wfm_0_outfifo_data       : std_logic_vector(127 downto 0);
 signal CLK100_FPGA                     : std_logic;
 signal CDCM_LMS2_BB_DAC2_REFC          : std_logic;
 
---attribute MARK_DEBUG : string;
+attribute MARK_DEBUG : string;
+attribute MARK_DEBUG of inst0_gnss_tpulse_sync  : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms1_tpulse_reset_n : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms2_tpulse_reset_n : signal is "TRUE";
+attribute MARK_DEBUG of inst0_lms3_tpulse_reset_n : signal is "TRUE";
 --attribute MARK_DEBUG of inst9_rx_pct_fifo_wrreq : signal is "TRUE";
 --attribute MARK_DEBUG of inst2_F2H_S1_wrusedw : signal is "TRUE";
 
@@ -814,6 +823,11 @@ signal wrpc_dac_dmtd_din_o    : std_logic;
 signal wrpc_eeprom_sda_o      : std_logic;
 signal wrpc_eeprom_scl_o      : std_logic;
 
+signal inst0_wr_tpulse_sync   : std_logic;
+
+signal lms1_tpulse_sync       : std_logic;
+signal lms2_tpulse_sync       : std_logic;
+signal lms3_tpulse_sync       : std_logic;
 
 
 
@@ -822,6 +836,9 @@ signal wrpc_eeprom_scl_o      : std_logic;
 
 
 
+
+
+signal gnss_chip_reset_n     : std_logic;
 
 
 -- B.J.
@@ -902,6 +919,72 @@ signal inst0_from_fircfg_rx_b       : t_FROM_FIRCFG; -- B.J.
 -- end B.J.
 
 begin
+
+
+-- ----------------------------------------------------------------------------
+-- Logic to implement optional GNSS synced reset
+-- ----------------------------------------------------------------------------
+   --Sync GNSS_TPULSE to the same clock as rx_en
+   sync_reg0_1 : entity work.sync_reg 
+   port map(clk100_fpga, GNSS_TPULSE, '1', inst0_gnss_tpulse_sync);
+   
+   --Sync White Rabbit tpulse to the same clock as rx_en
+   sync_reg0_2 : entity work.sync_reg 
+   port map(clk100_fpga, wrc_pps_out, '1', inst0_wr_tpulse_sync);
+   
+   --Select Synchronization time pulse source
+   lms1_tpulse_sync <= inst0_gnss_tpulse_sync when inst0_from_fpgacfg_0.tpulse_sel = '0' else inst0_wr_tpulse_sync;
+   lms2_tpulse_sync <= inst0_gnss_tpulse_sync when inst0_from_fpgacfg_1.tpulse_sel = '0' else inst0_wr_tpulse_sync;
+   lms3_tpulse_sync <= inst0_gnss_tpulse_sync when inst0_from_fpgacfg_2.tpulse_sel = '0' else inst0_wr_tpulse_sync;
+   
+   -------------
+   --LMS1
+   -------------
+   lms1_tpulse_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_0.rx_en)
+      variable tpulse_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_0.rx_en = '0' then
+         tpulse_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         tpulse_reset_n := tpulse_reset_n;
+         if  lms1_tpulse_sync = '1' then
+             tpulse_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms1_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_0.tpulse_sync_en = '1' else '1';
+   end process; 
+   -------------
+   --LMS2
+   -------------
+   lms2_tpulse_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_1.rx_en)
+      variable tpulse_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_1.rx_en = '0' then
+         tpulse_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         tpulse_reset_n := tpulse_reset_n;
+         if  lms2_tpulse_sync = '1' then
+             tpulse_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms2_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_1.tpulse_sync_en = '1' else '1';
+   end process; 
+   -------------
+   --LMS1
+   -------------
+   lms3_tpulse_reset_proc : process(clk100_fpga,inst0_from_fpgacfg_2.rx_en)
+      variable tpulse_reset_n : std_logic;
+   begin
+      if inst0_from_fpgacfg_2.rx_en = '0' then
+         tpulse_reset_n := '0';   
+      elsif rising_edge(clk100_fpga) then
+         tpulse_reset_n := tpulse_reset_n;
+         if  lms3_tpulse_sync = '1' then
+             tpulse_reset_n := '1';
+         end if;      
+      end if;   
+      inst0_lms3_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_2.tpulse_sync_en = '1' else '1';
+   end process; 
 
 -- ----------------------------------------------------------------------------
 -- Input buffers
@@ -1292,7 +1375,7 @@ begin
       
       pll_1_inclk_p              => CDCM_LMS2_BB_DAC1_REFC_P, 
       pll_1_inclk_n              => CDCM_LMS2_BB_DAC1_REFC_N, 
-      pll_1_logic_reset_n        => not inst0_pll_rst(5),
+      pll_1_logic_reset_n        => not inst0_pll_rst(5) and not inst0_from_cdcmcfg.CDCM_RECONFIG_START,
       pll_1_c0                   => inst1_pll_1_c0,
       pll_1_c1                   => inst1_pll_1_c1,
       pll_1_c2                   => inst1_pll_1_c2,
@@ -1637,7 +1720,7 @@ begin
    process(inst0_from_fpgacfg_0, inst2_F2H_S0_open)
    begin 
       inst0_from_fpgacfg_mod_0        <= inst0_from_fpgacfg_0;
-      inst0_from_fpgacfg_mod_0.rx_en  <= inst0_from_fpgacfg_0.rx_en AND inst2_F2H_S0_open;
+      inst0_from_fpgacfg_mod_0.rx_en  <= inst0_from_fpgacfg_0.rx_en AND inst2_F2H_S0_open and inst0_lms1_tpulse_reset_n;
    end process;
    
 --   --Module for LMS7002 IC
@@ -1647,23 +1730,23 @@ begin
 -- added by B.J. 
 -- LMS#1 has two CFR+FIR+DPD chains for both transmitting channels.
 --	for trasmit only LMS#1 is used: both channels A and B are active
-inst6_lms7002_top : entity work.lms7002_top_DPD
+inst6_lms7002_top : entity work.lms7002_top
    generic map(
-      DPDTopWrapper_enable    => 1,
+--      DPDTopWrapper_enable    => 1,
       g_DEV_FAMILY            => g_DEV_FAMILY,
       g_IQ_WIDTH              => g_LMS_DIQ_WIDTH,
       g_INV_INPUT_CLK         => "ON",
       g_TX_SMPL_FIFO_0_WRUSEDW  => 9,
       g_TX_SMPL_FIFO_0_DATAW    => 128,
       g_TX_SMPL_FIFO_1_WRUSEDW  => 9,
-      g_TX_SMPL_FIFO_1_DATAW    => 128,
+      g_TX_SMPL_FIFO_1_DATAW    => 128
 
-      g_ADPDCFG_START_ADDR   => g_ADPDCFG_START_ADDR, -- B.J.
-      g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
-      g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
-      g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
-      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
-      DPD_enable => DPD_enable
+--      g_ADPDCFG_START_ADDR   => g_ADPDCFG_START_ADDR, -- B.J.
+--      g_CFR0CFG_START_ADDR   => g_CFR0CFG_START_ADDR, -- B.J.
+--      g_CFR1CFG_START_ADDR   => g_CFR1CFG_START_ADDR, -- B.J.
+--      g_FIR0CFG_START_ADDR   => g_FIR0CFG_START_ADDR, -- B.J.
+--      g_FIR1CFG_START_ADDR   => g_FIR1CFG_START_ADDR,  -- B.J.
+--      DPD_enable => DPD_enable
    ) 
    port map(  
       from_fpgacfg         => inst0_from_fpgacfg_mod_0,
@@ -1673,6 +1756,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       mem_reset_n          => reset_n,
       -- PORT1 interface
       MCLK1                => inst1_lms1_txpll_c1, -- 122.88
+      MCLK1_2x             => '0',
       FCLK1                => open, 
       --DIQ1                 => LMS1_DIQ1_INT,
       DIQ1                 => LMS1_DIQ1_D,
@@ -1716,103 +1800,103 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       rx_smpl_cmp_length   => inst0_from_pllcfg.auto_phcfg_smpls, --inst1_lms1_smpl_cmp_cnt,
       rx_smpl_cmp_done     => inst6_rx_smpl_cmp_done,
       rx_smpl_cmp_err      => inst6_rx_smpl_cmp_err,
-      rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en,
+      rx_smpl_cnt_en       => inst6_rx_smpl_cnt_en
             -- SPI for internal modules
-      sdin                 => inst0_spi_0_MOSI,  -- Data in
-      sclk                 => inst0_spi_0_SCLK,  -- Data clock
-      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
-      sdout                => inst6_sdout,  -- Data out  
+--      sdin                 => inst0_spi_0_MOSI,  -- Data in
+--      sclk                 => inst0_spi_0_SCLK,  -- Data clock
+--      sen                  => inst0_spi_0_SS_n(c_SPI0_FPGA_SS_NR),  -- Enable signal (active low)
+--      sdout                => inst6_sdout,  -- Data out  
       
-       -- B.J. 
-       xp_ai                => xp_ai, 
-       xp_aq                => xp_aq,
-       xp_bi                => xp_bi, 
-       xp_bq                => xp_bq,
-       yp_ai                => yp_ai, 
-       yp_aq                => yp_aq,
-       yp_bi                => yp_bi,
-       yp_bq                => yp_bq,
-       x_ai                 => x_ai_lms1,
-       x_aq                 => x_aq_lms1,
-       x_bi                 => x_bi_lms1,
-       x_bq                 => x_bq_lms1,
+--       -- B.J. 
+--       xp_ai                => xp_ai, 
+--       xp_aq                => xp_aq,
+--       xp_bi                => xp_bi, 
+--       xp_bq                => xp_bq,
+--       yp_ai                => yp_ai, 
+--       yp_aq                => yp_aq,
+--       yp_bi                => yp_bi,
+--       yp_bq                => yp_bq,
+--       x_ai                 => x_ai_lms1,
+--       x_aq                 => x_aq_lms1,
+--       x_bi                 => x_bi_lms1,
+--       x_bq                 => x_bq_lms1,
 
-       xp_data_valid        => xp_data_valid,
-       x_data_valid         => x_data_valid_lms1,
+--       xp_data_valid        => xp_data_valid,
+--       x_data_valid         => x_data_valid_lms1,
 
-       cap_en               => cap_en, 
-       cap_cont_en          => cap_cont_en,
-       cap_resetn           => cap_resetn,  -- reset signal for dpd capture buffer
-       cap_size             => cap_size,
-       tx_en => dpd_tx_en,
-       capture_en => dpd_capture_en,  -- enables DPD capture (1) or LMS#3 streaming (0) going to PCIe 
-       reset_n_software => reset_n_soft,  -- not used 
-       lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
+--       cap_en               => cap_en, 
+--       cap_cont_en          => cap_cont_en,
+--       cap_resetn           => cap_resetn,  -- reset signal for dpd capture buffer
+--       cap_size             => cap_size,
+--       tx_en => dpd_tx_en,
+--       capture_en => dpd_capture_en,  -- enables DPD capture (1) or LMS#3 streaming (0) going to PCIe 
+--       reset_n_software => reset_n_soft,  -- not used 
+--       lms3_monitoring => lms3_monitoring  -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
    );
 
-   inst_data_cap_buffer: data_cap_buffer
-      port map (
+--   inst_data_cap_buffer: data_cap_buffer
+--      port map (
          
-         wclk0 => inst1_lms1_txpll_c1,   -- clk for xp_a (122.88)
-         wclk1 => inst1_lms1_txpll_c1,   -- clk for yp_a (122.88)
-         wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
-         wclk3 => inst1_lms1_txpll_c1,   -- clk for xp_b (122.88)
-         wclk4 => inst1_lms1_txpll_c1,   -- clk for yp_b (122.88)
-         wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
-         wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
-         wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
+--         wclk0 => inst1_lms1_txpll_c1,   -- clk for xp_a (122.88)
+--         wclk1 => inst1_lms1_txpll_c1,   -- clk for yp_a (122.88)
+--         wclk2 => lms3_bb_adc1_clkout,   -- clk for x_a, LMS#3 (61.44)
+--         wclk3 => inst1_lms1_txpll_c1,   -- clk for xp_b (122.88)
+--         wclk4 => inst1_lms1_txpll_c1,   -- clk for yp_b (122.88)
+--         wclk5 => lms3_bb_adc2_clkout,   -- clk for x_b, LMS#3 (61.44)
+--         wclk6 => inst1_lms1_rxpll_c1,   -- clk for x_a, LMS#1 (122.88)
+--         wclk7 => inst1_lms1_rxpll_c1,   -- clk for x_b, LMS#1 (122.88)
     
-         rdclk => pcie_bus_clk, 
-         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
-         reset_n => cap_resetn, -- reset signal for dpd capture buffer
+--         rdclk => pcie_bus_clk, 
+--         clk =>  inst1_lms1_txpll_c1,   -- inst1_lms1_txpll_c1
+--         reset_n => cap_resetn, -- reset signal for dpd capture buffer
          
-         ch_0_valid => xp_data_valid, 
-         ch_0_i => xp_ai, 
-         ch_0_q => xp_aq,          
+--         ch_0_valid => xp_data_valid, 
+--         ch_0_i => xp_ai, 
+--         ch_0_q => xp_aq,          
          
-         ch_1_valid => xp_data_valid, 
-         ch_1_i =>  yp_ai, 
-         ch_1_q =>  yp_aq,    
+--         ch_1_valid => xp_data_valid, 
+--         ch_1_i =>  yp_ai, 
+--         ch_1_q =>  yp_aq,    
          
-         ch_2_valid => '1', 
+--         ch_2_valid => '1', 
          
-         -- SWAPPED I AND Q FOR 3.1 BOARD,  LMS 3
-         ch_2_i => x_ai_lms3, --x_ai, lms#3
-         ch_2_q => x_aq_lms3, --x_aq, lms#3
+--         -- SWAPPED I AND Q FOR 3.1 BOARD,  LMS 3
+--         ch_2_i => x_ai_lms3, --x_ai, lms#3
+--         ch_2_q => x_aq_lms3, --x_aq, lms#3
          
-         ch_3_valid => xp_data_valid, 
-         ch_3_i => xp_bi, 
-         ch_3_q => xp_bq,          
+--         ch_3_valid => xp_data_valid, 
+--         ch_3_i => xp_bi, 
+--         ch_3_q => xp_bq,          
          
-         ch_4_valid => xp_data_valid, 
-         ch_4_i => yp_bi, 
-         ch_4_q => yp_bq,   
+--         ch_4_valid => xp_data_valid, 
+--         ch_4_i => yp_bi, 
+--         ch_4_q => yp_bq,   
          
-         ch_5_valid => '1', 
+--         ch_5_valid => '1', 
          
-         -- SWAPPED I AND Q FOR 3.1 BOARD, LMS 3
-         ch_5_i => x_bi_lms3, --x_bi, lms#3
-         ch_5_q => x_bq_lms3, --x_bq, lms#3 
+--         -- SWAPPED I AND Q FOR 3.1 BOARD, LMS 3
+--         ch_5_i => x_bi_lms3, --x_bi, lms#3
+--         ch_5_q => x_bq_lms3, --x_bq, lms#3 
          
-         ch_6_valid => x_data_valid_lms1, 
-         ch_6_i => x_aq_lms1, --x_ai 
-         ch_6_q => x_ai_lms1, --x_aq, lms#1
+--         ch_6_valid => x_data_valid_lms1, 
+--         ch_6_i => x_aq_lms1, --x_ai 
+--         ch_6_q => x_ai_lms1, --x_aq, lms#1
 
-         ch_7_valid => not x_data_valid_lms1, 
-         ch_7_i => x_bq_lms1, --x_bi, lms#1
-         ch_7_q => x_bi_lms1, --x_bq, lms#1 
+--         ch_7_valid => not x_data_valid_lms1, 
+--         ch_7_i => x_bq_lms1, --x_bi, lms#1
+--         ch_7_q => x_bi_lms1, --x_bq, lms#1 
          
-         cap_en => cap_en, 
-         cap_cont_en => cap_cont_en, 
-         cap_size => cap_size, 
-         cap_done => OPEN,    
+--         cap_en => cap_en, 
+--         cap_cont_en => cap_cont_en, 
+--         cap_size => cap_size, 
+--         cap_done => OPEN,    
          
-         to_dma_reader   => DPD_to_dma_reader, 
-         from_dma_reader  => DPD_from_dma_reader,   
+--         to_dma_reader   => DPD_to_dma_reader, 
+--         from_dma_reader  => DPD_from_dma_reader,   
          
-         test_data_en =>  '0',
-         lms3_monitoring => lms3_monitoring -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
-      );
+--         test_data_en =>  '0',
+--         lms3_monitoring => lms3_monitoring -- when 1 LMS3 is used for DPD monitoring path, otherwise (0) the LMS#1 is used
+--      );
   
    
    --Trying to add additional delay for LMS1_DIQ1(11)  
@@ -1901,7 +1985,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    process(inst0_from_fpgacfg_1, inst2_F2H_S1_open)
    begin 
       inst0_from_fpgacfg_mod_1        <= inst0_from_fpgacfg_1;
-      inst0_from_fpgacfg_mod_1.rx_en  <= inst0_from_fpgacfg_1.rx_en AND inst2_F2H_S1_open;
+      inst0_from_fpgacfg_mod_1.rx_en  <= inst0_from_fpgacfg_1.rx_en AND inst2_F2H_S1_open and inst0_lms2_tpulse_reset_n;
    end process;
    
    --inst10_adc1_top : entity work.adc_top
@@ -2167,7 +2251,7 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    process(inst0_from_fpgacfg_2, inst2_F2H_S2_open)
    begin 
       inst0_from_fpgacfg_mod_2        <= inst0_from_fpgacfg_2;
-      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open;
+      inst0_from_fpgacfg_mod_2.rx_en  <= inst0_from_fpgacfg_2.rx_en AND inst2_F2H_S2_open and inst0_lms3_tpulse_reset_n;
    end process;
  
    inst10_adc3_top : entity work.adc_top
@@ -2380,7 +2464,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       
       -- Testing (UART logger)
       fan_ctrl_in       => '0',
-      uart_tx           => inst12_uart_tx
+      uart_tx           => inst12_uart_tx,
+      gnss_enabled      => inst12_gnss_enabled
       
    );
    
@@ -2572,8 +2657,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       ---------------------------------------------------------------------------
       -- UART
       ---------------------------------------------------------------------------
-      uart_rxd_i              => PMOD_B_PIN8,
-      uart_txd_o              => PMOD_B_PIN7,
+      uart_rxd_i              => PMOD_B_PIN10,
+      uart_txd_o              => PMOD_B_PIN9,
       ---------------------------------------------------------------------------
       -- Miscellanous clbv3 pins
       ---------------------------------------------------------------------------
@@ -2599,7 +2684,8 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
       --1-PPS from external reference (in GrandMaster mode).
       wrc_pps_in              => GNSS_TPULSE,
       --WR-aligned 1-PPS (in Slave mode)
-      wrc_pps_out             => PTP_CLK2_OUT  
+      wrc_pps_out_ext         => PTP_CLK2_OUT,
+      wrc_pps_out_int         => wrc_pps_out
       
    );
 
@@ -2647,15 +2733,15 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
 --   PMOD_B_PIN1 <= inst1_pll_1_c1;
 --   PMOD_B_PIN3 <= lms2_bb_adc1_clkout_global;
 
-   gnss_reset_vio : entity work.vio_0
-   PORT MAP (
-      clk            => CLK100_FPGA,
-      probe_out0(0)  => reset_n_gnss
-   );
+   --gnss_reset_vio : entity work.vio_0
+   --PORT MAP (
+   --   clk            => CLK100_FPGA,
+   --   probe_out0(0)  => reset_n_gnss
+   --);
 
-   PMOD_B_PIN1    <= GNSS_UART_TX;
-   GNSS_UART_RX   <= PMOD_B_PIN2;
-   PMOD_B_PIN4    <= reset_n_clk100_fpga AND reset_n_gnss; 
+   --PMOD_B_PIN1    <= GNSS_UART_TX;
+   --GNSS_UART_RX   <= PMOD_B_PIN2;
+   --PMOD_B_PIN4    <= reset_n_clk100_fpga AND reset_n_gnss; 
    
    
 
@@ -2744,13 +2830,43 @@ inst6_lms7002_top : entity work.lms7002_top_DPD
    --RFSW2_TRX2T_V1       <= inst0_from_fpgacfg_mod_1.GPIO(12) when inst0_from_fpgacfg_mod_1.GPIO(15) = '0' else NOT inst8_tx_ant_en;-- 0 default
    --RFSW2_TRX2R_V1       <= inst0_from_fpgacfg_mod_1.GPIO(13);-- 1 default   
 
-   CDCM_RESET_N         <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
-   CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
+   CDCM_RESET_N         <= reset_n;--not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--'1';
+--   CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;--FPGA_SPI1_CDCM1_SS;--'1';
+   
+   cdcm_syncn_sync : process(LMK1_CLK1)
+   begin
+      if rising_edge(LMK1_CLK1) then
+         CDCM_SYNCN           <= not inst0_from_cdcmcfg.CDCM_RECONFIG_START;
+      end if;   
+   end process;
    
    PPS_OUT <= inst1_lms1_rxpll_c1;
    
    LMS2_RESET <= inst0_from_fpgacfg_1.LMS1_RESET;
    LMS3_RESET <= inst0_from_fpgacfg_2.LMS1_RESET;
+   
+   
+   process(clk100_fpga,reset_n,inst12_gnss_enabled)
+      variable counter : integer range 0 to 100000000;
+   begin
+   
+      if reset_n = '0' or inst12_gnss_enabled = '0' then
+         gnss_chip_reset_n <= '0'; 
+         counter           :=  0;  
+      elsif rising_edge(clk100_fpga) then
+         if counter >= 100000000 then
+            gnss_chip_reset_n <= '1';
+         else
+            gnss_chip_reset_n <= '0';
+            counter := counter + 1;
+         end if;
+      end if;
+   end process;
+   
+   PMOD_B_PIN1 <= gnss_chip_reset_n;
+   PMOD_B_PIN7 <= gnss_chip_reset_n;
+    
+   
 
     -- LMK1_SEL 0 = VCTCXO, 1 = External clock
 --   LMK1_SEL <= '0';

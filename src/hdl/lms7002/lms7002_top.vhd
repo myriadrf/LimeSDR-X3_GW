@@ -81,12 +81,7 @@ entity lms7002_top is
       rx_smpl_cmp_done  : out std_logic;
       rx_smpl_cmp_err   : out std_logic;
       -- RX sample counter enable
-      rx_smpl_cnt_en    : out std_logic;
-         -- SPI for internal modules
-      sdin              : in std_logic;   -- Data in
-      sclk              : in std_logic;   -- Data clock
-      sen               : in std_logic;   -- Enable signal (active low)
-      sdout             : out std_logic  -- Data out
+      rx_smpl_cnt_en    : out std_logic
    );
 end lms7002_top;
 
@@ -119,17 +114,11 @@ signal int_fidm                  : std_logic;
 signal lms_txen_int        : std_logic;
 signal lms_rxen_int        : std_logic;
 
-signal tx_fifo_1_cnt       : unsigned(63 downto 0);
-signal tx_fifo_1_error     : std_logic;
 signal debug_tx_ptrn_en    : std_logic;
 
-   attribute noprune : boolean;
-   attribute noprune of tx_fifo_1_cnt     : signal is true;
-   attribute noprune of tx_fifo_1_error   : signal is true;
-
-attribute mark_debug    : string;
-attribute keep          : string;
-attribute mark_debug of debug_tx_ptrn_en     : signal is "true";
+--attribute mark_debug    : string;
+--attribute keep          : string;
+--attribute mark_debug of debug_tx_ptrn_en     : signal is "true";
 
   
 begin
@@ -151,42 +140,9 @@ begin
    sync_reg4 : entity work.sync_reg 
    port map(MCLK1_2x, (inst1_fifo_0_reset_n OR inst1_fifo_1_reset_n), '1', inst1_clk_2x_reset_n);
 
-   sync_reg5 : entity work.sync_reg 
-   port map(MCLK2, inst0_reset_n, from_fpgacfg.tx_ptrn_en, debug_tx_ptrn_en);
-   
-   
-   
-   process(tx_fifo_1_wrclk, tx_fifo_1_reset_n) 
-   begin 
-      if tx_fifo_1_reset_n = '0' then 
-         tx_fifo_1_cnt   <= (others=>'0');
-         tx_fifo_1_error <= '0';
-      elsif rising_edge(tx_fifo_1_wrclk) then
-      
-         if tx_fifo_1_wrreq = '1' then
-            if tx_fifo_1_cnt < 153599 then 
-               tx_fifo_1_cnt <= tx_fifo_1_cnt + 2;
-            else
-               tx_fifo_1_cnt <= (others=>'0');
-            end if;
-            
-            if std_logic_vector(tx_fifo_1_cnt) = tx_fifo_1_data then 
-               tx_fifo_1_error <= '0';
-            else
-               tx_fifo_1_error <= '1';
-            end if;
-            
-         else
-            tx_fifo_1_cnt     <= tx_fifo_1_cnt;
-            tx_fifo_1_error   <= tx_fifo_1_error;
-         end if;
-         
-         
-         
-         
-      end if;
-   end process;
-   
+--   sync_reg5 : entity work.sync_reg 
+--   port map(MCLK2, inst0_reset_n, from_fpgacfg.tx_ptrn_en, debug_tx_ptrn_en);
+     
     
 -- ----------------------------------------------------------------------------
 -- RX interface
@@ -221,7 +177,10 @@ inst0_diq2fifo : entity work.diq2fifo
       smpl_cmp_done  => rx_smpl_cmp_done,
       smpl_cmp_err   => rx_smpl_cmp_err,
       -- sample counter enable
-      smpl_cnt_en    => rx_smpl_cnt_en
+      smpl_cnt_en    => rx_smpl_cnt_en,
+      diq_h          => open,
+      diq_l          => open,
+      cap_en         => '0'
    );
    
 -- ----------------------------------------------------------------------------
@@ -291,12 +250,7 @@ inst1_lms7002_tx : entity work.lms7002_tx
       fifo_1_wrreq         => tx_fifo_1_wrreq,
       fifo_1_data          => tx_fifo_1_data,
       fifo_1_wrfull        => tx_fifo_1_wrfull,
-      fifo_1_wrusedw       => tx_fifo_1_wrusedw,
-      --TX sample ports (direct access to DDR cells)
-      sdin                 => sdin,  
-      sclk                 => sclk,
-      sen                  => sen,  
-      sdout                => sdout
+      fifo_1_wrusedw       => tx_fifo_1_wrusedw
       
       
    );

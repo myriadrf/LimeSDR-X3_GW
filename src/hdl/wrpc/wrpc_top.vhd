@@ -139,7 +139,8 @@ entity wrpc_top is
    --1-PPS from external reference (in GrandMaster mode).
    wrc_pps_in          : in     std_logic;
    --WR-aligned 1-PPS (in Slave mode)
-   wrc_pps_out         : out    std_logic
+   wrc_pps_out_ext     : out    std_logic;
+   wrc_pps_out_int     : out    std_logic
    
    );
 end entity wrpc_top;
@@ -338,7 +339,7 @@ begin  -- architecture top
       INIT         => '0',
       SRTYPE       => "SYNC")
    port map(
-      Q  => wrc_pps_out,
+      Q  => wrc_pps_out_ext,
       C  => clk_ref_62m5,
       CE => '1',
       D1 => pps_p_o,
@@ -346,6 +347,8 @@ begin  -- architecture top
       R  => '0',
       S  => '0'
    );
+   
+   wrc_pps_out_int <= pps_p_o;
    
    
 end architecture top;
