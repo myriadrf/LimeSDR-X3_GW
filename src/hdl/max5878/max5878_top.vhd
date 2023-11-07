@@ -311,7 +311,7 @@ BEGIN
       PORT MAP(
          clk => clk,
          reset_n => tx_reset_n,
-         en => xena AND (from_fpgacfg.rx_en OR from_fpgacfg.wfm_play),
+         en => (from_fpgacfg.rx_en OR from_fpgacfg.wfm_play),
          ch_en => from_fpgacfg.ch_en(1 DOWNTO 0),
          fidm => '0',
          DIQ0 => inst3_DIQ0,
