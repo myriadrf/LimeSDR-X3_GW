@@ -946,10 +946,10 @@ begin
       if inst0_from_fpgacfg_0.rx_en = '0' then
          tpulse_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         tpulse_reset_n := tpulse_reset_n;
-         if  lms1_tpulse_sync = '1' then
-             tpulse_reset_n := '1';
-         end if;      
+         tpulse_reset_n := tpulse_reset_n OR lms1_tpulse_sync;
+         --if  lms1_tpulse_sync = '1' then
+         --    tpulse_reset_n := '1';
+         --end if;      
       end if;   
       inst0_lms1_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_0.tpulse_sync_en = '1' else '1';
    end process; 
@@ -962,10 +962,10 @@ begin
       if inst0_from_fpgacfg_1.rx_en = '0' then
          tpulse_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         tpulse_reset_n := tpulse_reset_n;
-         if  lms2_tpulse_sync = '1' then
-             tpulse_reset_n := '1';
-         end if;      
+         tpulse_reset_n := tpulse_reset_n OR lms2_tpulse_sync;
+         --if  lms2_tpulse_sync = '1' then
+         --    tpulse_reset_n := '1';
+         --end if;      
       end if;   
       inst0_lms2_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_1.tpulse_sync_en = '1' else '1';
    end process; 
@@ -978,10 +978,10 @@ begin
       if inst0_from_fpgacfg_2.rx_en = '0' then
          tpulse_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         tpulse_reset_n := tpulse_reset_n;
-         if  lms3_tpulse_sync = '1' then
-             tpulse_reset_n := '1';
-         end if;      
+         tpulse_reset_n := tpulse_reset_n OR lms3_tpulse_sync;
+         --if  lms3_tpulse_sync = '1' then
+         --    tpulse_reset_n := '1';
+         --end if;      
       end if;   
       inst0_lms3_tpulse_reset_n <= tpulse_reset_n when inst0_from_fpgacfg_2.tpulse_sync_en = '1' else '1';
    end process; 
