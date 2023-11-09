@@ -866,10 +866,7 @@ begin
       if inst0_from_fpgacfg_0.rx_en = '0' then
          gnss_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         gnss_reset_n := gnss_reset_n;
-         if  inst0_gnss_tpulse_sync = '1' then
-             gnss_reset_n := '1';
-         end if;      
+         gnss_reset_n := gnss_reset_n or inst0_gnss_tpulse_sync;
       end if;   
       inst0_lms1_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_0.gnss_sync_en = '1' else '1';
    end process; 
@@ -882,10 +879,7 @@ begin
       if inst0_from_fpgacfg_1.rx_en = '0' then
          gnss_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         gnss_reset_n := gnss_reset_n;
-         if  inst0_gnss_tpulse_sync = '1' then
-             gnss_reset_n := '1';
-         end if;      
+         gnss_reset_n := gnss_reset_n or inst0_gnss_tpulse_sync;
       end if;   
       inst0_lms2_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_1.gnss_sync_en = '1' else '1';
    end process; 
@@ -898,10 +892,7 @@ begin
       if inst0_from_fpgacfg_2.rx_en = '0' then
          gnss_reset_n := '0';   
       elsif rising_edge(clk100_fpga) then
-         gnss_reset_n := gnss_reset_n;
-         if  inst0_gnss_tpulse_sync = '1' then
-             gnss_reset_n := '1';
-         end if;      
+         gnss_reset_n := gnss_reset_n or inst0_gnss_tpulse_sync;
       end if;   
       inst0_lms3_gnss_reset_n <= gnss_reset_n when inst0_from_fpgacfg_2.gnss_sync_en = '1' else '1';
    end process; 
