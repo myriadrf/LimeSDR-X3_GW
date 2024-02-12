@@ -311,7 +311,7 @@ BEGIN
       PORT MAP(
          clk => clk,
          reset_n => tx_reset_n,
-         en => (from_fpgacfg.rx_en OR from_fpgacfg.wfm_play),
+         en => xena and (from_fpgacfg.rx_en OR from_fpgacfg.wfm_play),
          ch_en => from_fpgacfg.ch_en(1 DOWNTO 0),
          fidm => '0',
          DIQ0 => inst3_DIQ0,
@@ -351,44 +351,44 @@ BEGIN
    bi_in <= mux1_dac2_da;
    bq_in <= mux1_dac2_db;
 
---   nr_cfr : nr_cfr_equ_top
---   GENERIC MAP(
---      CFR2CFG_START_ADDR => g_CFR2CFG_START_ADDR,
---      CFR3CFG_START_ADDR => g_CFR3CFG_START_ADDR,
---      FIR2CFG_START_ADDR => g_FIR2CFG_START_ADDR,
---      FIR3CFG_START_ADDR => g_FIR3CFG_START_ADDR
---   )
---   PORT MAP(
---      clk => clk,
---      reset_n => reset_n,
---      mem_reset_n => reset_n,
---      from_memcfg => from_memcfg,
---      sdin => sdin,
---      sclk => sclk,
---      sen => sen,
---      sdout => sdout,
---      ai_in => ai_in,
---      aq_in => aq_in,
---      bi_in => bi_in,
---      bq_in => bq_in,
---      ai_out => ai_out,
---      aq_out => aq_out,
---      bi_out => bi_out,
---      bq_out => bq_out,
---      xen => xena,
---      --yen => OPEN,
---      from_txtspcfg_0 => from_txtspcfg_0, -- TXTSP configuration, channel A
---      to_txtspcfg_0 => to_txtspcfg_0,
---      from_txtspcfg_1 => from_txtspcfg_1, -- TXTSP configuration, channel B 
---      to_txtspcfg_1 => to_txtspcfg_1,
---      from_fircfg_a => from_fircfg_a,
---      from_fircfg_b => from_fircfg_b
---   ); 
+   nr_cfr : nr_cfr_equ_top
+   GENERIC MAP(
+      CFR2CFG_START_ADDR => g_CFR2CFG_START_ADDR,
+      CFR3CFG_START_ADDR => g_CFR3CFG_START_ADDR,
+      FIR2CFG_START_ADDR => g_FIR2CFG_START_ADDR,
+      FIR3CFG_START_ADDR => g_FIR3CFG_START_ADDR
+   )
+   PORT MAP(
+      clk => clk,
+      reset_n => reset_n,
+      mem_reset_n => reset_n,
+      from_memcfg => from_memcfg,
+      sdin => sdin,
+      sclk => sclk,
+      sen => sen,
+      sdout => sdout,
+      ai_in => ai_in,
+      aq_in => aq_in,
+      bi_in => bi_in,
+      bq_in => bq_in,
+      ai_out => ai_out,
+      aq_out => aq_out,
+      bi_out => bi_out,
+      bq_out => bq_out,
+      xen => xena,
+      --yen => OPEN,
+      from_txtspcfg_0 => from_txtspcfg_0, -- TXTSP configuration, channel A
+      to_txtspcfg_0 => to_txtspcfg_0,
+      from_txtspcfg_1 => from_txtspcfg_1, -- TXTSP configuration, channel B 
+      to_txtspcfg_1 => to_txtspcfg_1,
+      from_fircfg_a => from_fircfg_a,
+      from_fircfg_b => from_fircfg_b
+   ); 
 
-   fir_out_ai_dc <= ai_in;--ai_out;
-   fir_out_aq_dc <= aq_in;--aq_out;
-   fir_out_bi_dc <= bi_in;--bi_out;
-   fir_out_bq_dc <= bq_in;--bq_out;
+   fir_out_ai_dc <= ai_out;
+   fir_out_aq_dc <= aq_out;
+   fir_out_bi_dc <= bi_out;
+   fir_out_bq_dc <= bq_out;
 
    -- ----------------------------------------------------------------------------
    -- DAC IO modules
